@@ -34,6 +34,9 @@ jobs:
       - name: Architecture summaries up to date
         run: npm run arch:summaries -- --check
 
+      - name: Architecture drawings up to date
+        run: npm run arch:drawings -- --check
+
       - name: Type check
         run: npx tsc --noEmit
 

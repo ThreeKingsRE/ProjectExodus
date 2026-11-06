@@ -11,7 +11,7 @@ import {
 } from 'lucide-react'
 import { ELEMENT_SUMMARIES, type ElementSummary } from '@/data/architecture/summary'
 import { useElementDetails } from '@/lib/architecture/useElementDetails'
-import { ArchitectureSVG } from './ArchitectureSVG'
+import { ElementDrawing, hasTechnicalDrawing } from './ElementDrawing'
 
 // Historical periods for timeline view
 const HISTORICAL_PERIODS = [
@@ -178,7 +178,7 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
           flex items-center justify-center bg-[var(--muted)]/30 rounded-lg mb-3
           ${size === 'small' ? 'h-20' : size === 'large' ? 'h-40' : 'h-28'}
         `}>
-          <ArchitectureSVG
+          <ElementDrawing
             category={element.category}
             elementId={element.id}
             size={size === 'small' ? 60 : size === 'large' ? 120 : 80}
@@ -254,11 +254,10 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
 
           {/* Header with SVG */}
           <div className="relative h-48 bg-gradient-to-br from-teal-500/20 to-cyan-500/20 flex items-center justify-center">
-            <ArchitectureSVG
+            <ElementDrawing
               category={state.selectedElement.category}
               elementId={state.selectedElement.id}
               size={140}
-              showHalo
             />
           </div>
 
@@ -300,6 +299,24 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
                 {selectedDetail ? selectedDetail.description : state.selectedElement.teaser}
               </p>
             </div>
+
+            {/* Technical drawing sheet */}
+            {hasTechnicalDrawing(state.selectedElement.id) && (
+              <a
+                href={`/architecture/drawings/${state.selectedElement.id}.svg`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-lg overflow-hidden border border-[var(--border)] hover:border-[var(--primary)] transition-colors"
+              >
+                <ElementDrawing
+                  elementId={state.selectedElement.id}
+                  category={state.selectedElement.category}
+                  variant="sheet"
+                  alt={`Technical drawing of the ${state.selectedElement.name}`}
+                  className="w-full h-auto"
+                />
+              </a>
+            )}
 
             {/* Characteristics */}
             {selectedDetail && selectedDetail.characteristics.length > 0 && (
@@ -349,7 +366,7 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
                       className="flex-shrink-0 w-24 p-2 rounded-lg bg-[var(--muted)]/50 hover:bg-[var(--muted)] transition-colors"
                     >
                       <div className="h-16 flex items-center justify-center">
-                        <ArchitectureSVG category={e.category} elementId={e.id} size={48} />
+                        <ElementDrawing category={e.category} elementId={e.id} size={48} />
                       </div>
                       <p className="text-xs text-center text-[var(--foreground)] truncate mt-1">
                         {e.name}
@@ -477,7 +494,7 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
                   className="flex items-center gap-4 p-4 bg-[var(--card)] rounded-xl border border-[var(--border)] cursor-pointer hover:shadow-lg transition-all"
                 >
                   <div className="w-16 h-16 flex-shrink-0 bg-[var(--muted)]/30 rounded-lg flex items-center justify-center">
-                    <ArchitectureSVG category={element.category} elementId={element.id} size={48} />
+                    <ElementDrawing category={element.category} elementId={element.id} size={48} />
                   </div>
 
                   <div className="flex-1 min-w-0">
@@ -546,7 +563,7 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
                             className="flex-shrink-0 w-20 p-2 rounded-lg bg-[var(--muted)]/50 hover:bg-[var(--muted)] transition-colors"
                           >
                             <div className="h-12 flex items-center justify-center">
-                              <ArchitectureSVG category={element.category} elementId={element.id} size={40} />
+                              <ElementDrawing category={element.category} elementId={element.id} size={40} />
                             </div>
                             <p className="text-xs text-center text-[var(--foreground)] truncate mt-1">
                               {element.name}

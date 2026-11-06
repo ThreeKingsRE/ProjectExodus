@@ -12,7 +12,7 @@ import {
 import type { LearningLevel } from '@/data/architecture/types'
 import { ELEMENT_SUMMARIES, getRandomSummaries, type ElementDetail, type ElementSummary } from '@/data/architecture/summary'
 import { fetchElementDetails } from '@/lib/architecture/useElementDetails'
-import { ArchitectureSVG } from './ArchitectureSVG'
+import { ElementDrawing } from './ElementDrawing'
 
 // Question types
 type QuestionType = 'definition' | 'image_identify' | 'era_match' | 'true_false' | 'fill_blank'
@@ -653,11 +653,10 @@ export function QuizGame({ config: userConfig, onComplete, onExit }: QuizGamePro
             {currentQuestion.type === 'image_identify' && (
               <div className="mb-6 flex justify-center">
                 <div className="w-48 h-48 bg-[var(--muted)]/50 rounded-xl p-4 flex items-center justify-center">
-                  <ArchitectureSVG
+                  <ElementDrawing
                     category={currentQuestion.element.category}
                     elementId={currentQuestion.element.id}
                     size={160}
-                    showHalo={showResult && selectedAnswer === currentQuestion.correctAnswer}
                   />
                 </div>
               </div>

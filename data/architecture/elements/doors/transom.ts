@@ -1,8 +1,8 @@
 import type { ArchitecturalElement } from '../../types';
 
 export const TRANSOM: ArchitecturalElement = {
-  id: 'transom',
-  slug: 'transom',
+  id: 'door-transom',
+  slug: 'door-transom',
   name: 'Transom',
   alternativeNames: ['Transom Window', 'Fanlight', 'Overlight', 'Transom Light'],
   pronunciation: {

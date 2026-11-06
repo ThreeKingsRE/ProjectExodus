@@ -2241,8 +2241,8 @@
   "teaser": "Revolving door systems feature a central vertical shaft supporting three or four door wings arranged at equal angles (90° or 120°), rotating within a curved enclosure typically 6.5-7 feet in diameter."
  },
  {
-  "id": "transom",
-  "slug": "transom",
+  "id": "door-transom",
+  "slug": "door-transom",
   "name": "Transom",
   "alternativeNames": [
    "Transom Window",
@@ -2279,8 +2279,8 @@
   "teaser": "The transom window occupies the space above a door, spanning the full width of the door frame and separated by a horizontal structural member (the transom bar or head)."
  },
  {
-  "id": "tympanum",
-  "slug": "tympanum",
+  "id": "door-tympanum",
+  "slug": "door-tympanum",
   "name": "Tympanum",
   "alternativeNames": [
    "Tympan",

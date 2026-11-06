@@ -1,8 +1,8 @@
 import type { ArchitecturalElement } from '../../types';
 
 export const TYMPANUM: ArchitecturalElement = {
-  id: 'tympanum',
-  slug: 'tympanum',
+  id: 'door-tympanum',
+  slug: 'door-tympanum',
   name: 'Tympanum',
   alternativeNames: ['Tympan', 'Doorway Panel', 'Portal Lunette'],
   pronunciation: {

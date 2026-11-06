@@ -13,7 +13,7 @@ import type { LearningLevel } from '@/data/architecture/types'
 import type { ElementSummary } from '@/data/architecture/summary'
 import { ELEMENT_SUMMARIES, getRandomSummaries } from '@/data/architecture/summary'
 import { CATEGORIES } from '@/data/architecture/categories'
-import { ArchitectureSVG } from './ArchitectureSVG'
+import { ElementDrawing } from './ElementDrawing'
 
 interface GameConfig {
   elementCount: number
@@ -586,11 +586,10 @@ export function FlashcardGame({ config: userConfig, onComplete, onExit, showConf
                   >
                   {/* SVG Illustration */}
                   <div className="absolute inset-0 flex items-center justify-center" style={{ padding: 'clamp(0.5rem, 2%, 0.75rem)' }}>
-                    <ArchitectureSVG
+                    <ElementDrawing
                       category={currentElement.category}
                       elementId={currentElement.id}
                       className="w-full h-full"
-                      showHalo={false}
                     />
                   </div>
 

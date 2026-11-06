@@ -15,7 +15,7 @@ import { CATEGORIES } from '@/data/architecture/categories'
 import { PERIODS } from '@/data/architecture/periods'
 import { REGIONS } from '@/data/architecture/regions'
 import type { LearningLevel } from '@/data/architecture/types'
-import { ArchitectureSVG } from '@/components/architecture/ArchitectureSVG'
+import { ElementDrawing, hasTechnicalDrawing } from '@/components/architecture/ElementDrawing'
 
 const learningLevels: { id: LearningLevel; name: string }[] = [
   { id: 'ELEMENTARY', name: 'Elementary' },
@@ -264,11 +264,11 @@ export default function ExplorePage() {
                       {/* SVG Illustration */}
                       <div className="aspect-square bg-gradient-to-br from-[var(--muted)] to-[var(--background)] relative overflow-hidden">
                         <div className="absolute inset-0 flex items-center justify-center p-4">
-                          <ArchitectureSVG
+                          <ElementDrawing
                             category={element.category}
                             elementId={element.id}
-                            size={80}
-                            className="opacity-80 group-hover:opacity-100 transition-opacity"
+                            size={150}
+                            className="opacity-90 group-hover:opacity-100 transition-opacity"
                           />
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2">
@@ -293,7 +293,7 @@ export default function ExplorePage() {
                     <Card className="border border-[var(--border)] hover:border-[var(--primary)]/50 transition-all cursor-pointer group">
                       <CardContent className="p-3 sm:p-4 flex items-center gap-3 sm:gap-4">
                         <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-[var(--muted)] to-[var(--background)] flex items-center justify-center shrink-0 p-1.5">
-                          <ArchitectureSVG
+                          <ElementDrawing
                             category={element.category}
                             elementId={element.id}
                             size={32}
@@ -338,7 +338,7 @@ export default function ExplorePage() {
               {/* Header Image */}
               <div className="h-40 sm:h-48 bg-gradient-to-br from-[var(--muted)] to-[var(--background)] relative shrink-0">
                 <div className="absolute inset-0 flex items-center justify-center p-6 sm:p-8">
-                  <ArchitectureSVG
+                  <ElementDrawing
                     category={selectedElement.category}
                     elementId={selectedElement.id}
                     size={120}
@@ -406,6 +406,31 @@ export default function ExplorePage() {
                     <TextSkeleton />
                   )}
                 </div>
+
+                {/* Technical drawing sheet (title block, dimensions, source credit) */}
+                {hasTechnicalDrawing(selectedElement.id) && (
+                  <div>
+                    <h3 className="font-bold text-[var(--foreground)] mb-2 flex items-center gap-2">
+                      <Layers className="w-4 h-4" />
+                      Technical Drawing
+                    </h3>
+                    <a
+                      href={`/architecture/drawings/${selectedElement.id}.svg`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block rounded-lg overflow-hidden border border-[var(--border)] hover:border-[var(--primary)] transition-colors"
+                    >
+                      <ElementDrawing
+                        elementId={selectedElement.id}
+                        category={selectedElement.category}
+                        variant="sheet"
+                        alt={`Technical drawing of the ${selectedElement.name}`}
+                        className="w-full h-auto"
+                      />
+                    </a>
+                    <p className="text-xs text-[var(--muted-foreground)] mt-1">Tap to open full size</p>
+                  </div>
+                )}
 
                 {/* Metadata */}
                 <div className="flex flex-wrap gap-2">
