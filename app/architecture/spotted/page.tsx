@@ -11,8 +11,7 @@ import {
   Trash2, Edit3, Eye, Grid, Map as MapIcon
 } from 'lucide-react'
 import Link from 'next/link'
-import { ALL_ELEMENTS, searchElements } from '@/data/architecture/elements'
-import type { ArchitecturalElement } from '@/data/architecture/types'
+import { ELEMENT_SUMMARIES, searchSummaries, type ElementSummary } from '@/data/architecture/summary'
 
 interface SpottedPhoto {
   id: string
@@ -38,7 +37,7 @@ export default function SpottedPage() {
   const [uploadStep, setUploadStep] = useState<'photo' | 'element' | 'details' | 'confirm'>('photo')
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-  const [selectedElement, setSelectedElement] = useState<ArchitecturalElement | null>(null)
+  const [selectedElement, setSelectedElement] = useState<ElementSummary | null>(null)
   const [elementSearch, setElementSearch] = useState('')
   const [location, setLocation] = useState('')
   const [notes, setNotes] = useState('')
@@ -111,8 +110,8 @@ export default function SpottedPage() {
 
   // Search elements
   const searchResults = elementSearch.trim()
-    ? searchElements(elementSearch).slice(0, 6)
-    : ALL_ELEMENTS.slice(0, 6)
+    ? searchSummaries(elementSearch).slice(0, 6)
+    : ELEMENT_SUMMARIES.slice(0, 6)
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
@@ -396,7 +395,7 @@ export default function SpottedPage() {
                           >
                             <h4 className="font-bold text-[var(--foreground)]">{element.name}</h4>
                             <p className="text-sm text-[var(--muted-foreground)] truncate">
-                              {element.description.ELEMENTARY}
+                              {element.teaser}
                             </p>
                           </button>
                         ))}

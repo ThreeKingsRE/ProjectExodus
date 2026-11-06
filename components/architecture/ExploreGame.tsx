@@ -9,8 +9,8 @@ import {
   ChevronRight, Clock, MapPin, Info, X, Star, Home,
   Columns, ArrowUpDown, Calendar, Globe, Tag, BookOpen
 } from 'lucide-react'
-import type { ArchitecturalElement } from '@/data/architecture/types'
-import { ALL_ELEMENTS } from '@/data/architecture/elements'
+import { ELEMENT_SUMMARIES, type ElementSummary } from '@/data/architecture/summary'
+import { useElementDetails } from '@/lib/architecture/useElementDetails'
 import { ArchitectureSVG } from './ArchitectureSVG'
 
 // Historical periods for timeline view
@@ -52,7 +52,7 @@ interface ExploreState {
   selectedPeriod: string | null
   sortBy: 'name' | 'category' | 'period' | 'difficulty'
   sortOrder: 'asc' | 'desc'
-  selectedElement: ArchitecturalElement | null
+  selectedElement: ElementSummary | null
   bookmarks: string[]
 }
 
@@ -95,13 +95,14 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
 
   // Filtered elements based on search, category, period
   const filteredElements = useMemo(() => {
-    let elements = ALL_ELEMENTS
+    let elements = ELEMENT_SUMMARIES
 
     if (state.searchQuery) {
       const query = state.searchQuery.toLowerCase()
       elements = elements.filter(e =>
         e.name.toLowerCase().includes(query) ||
-        Object.values(e.description).some(d => d.toLowerCase().includes(query)) ||
+        e.teaser.toLowerCase().includes(query) ||
+        e.searchTags.some(t => t.toLowerCase().includes(query)) ||
         e.category.toLowerCase().includes(query)
       )
     }
@@ -119,23 +120,27 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
     return elements
   }, [state.searchQuery, state.selectedCategory, state.selectedPeriod])
 
+  // Full text for the open element, fetched on demand
+  const { details } = useElementDetails(state.selectedElement ? [state.selectedElement.id] : [], 'HIGH_SCHOOL')
+  const selectedDetail = state.selectedElement ? details[state.selectedElement.id] : undefined
+
   // Bookmarked elements
   const bookmarkedElements = useMemo(() =>
-    ALL_ELEMENTS.filter(e => state.bookmarks.includes(e.id)),
+    ELEMENT_SUMMARIES.filter(e => state.bookmarks.includes(e.id)),
     [state.bookmarks]
   )
 
   // Category counts
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {}
-    ALL_ELEMENTS.forEach(el => {
+    ELEMENT_SUMMARIES.forEach(el => {
       counts[el.category] = (counts[el.category] || 0) + 1
     })
     return counts
   }, [])
 
   // Render element card
-  const renderElementCard = (element: ArchitecturalElement, size: 'small' | 'medium' | 'large' = 'medium') => {
+  const renderElementCard = (element: ElementSummary, size: 'small' | 'medium' | 'large' = 'medium') => {
     const isBookmarked = state.bookmarks.includes(element.id)
 
     return (
@@ -199,7 +204,7 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
 
         {size !== 'small' && (
           <p className="mt-2 text-sm text-[var(--muted-foreground)] line-clamp-2">
-            {element.description.HIGH_SCHOOL.split('.')[0]}.
+            {element.teaser}
           </p>
         )}
 
@@ -292,16 +297,16 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
             {/* Description */}
             <div className="prose prose-sm dark:prose-invert">
               <p className="text-[var(--foreground)] leading-relaxed">
-                {state.selectedElement.description.HIGH_SCHOOL}
+                {selectedDetail ? selectedDetail.description : state.selectedElement.teaser}
               </p>
             </div>
 
             {/* Characteristics */}
-            {state.selectedElement.characteristics && state.selectedElement.characteristics.length > 0 && (
+            {selectedDetail && selectedDetail.characteristics.length > 0 && (
               <div>
                 <h3 className="font-bold text-[var(--foreground)] mb-2">Key Features</h3>
                 <ul className="space-y-2">
-                  {state.selectedElement.characteristics.map((feature, i) => (
+                  {selectedDetail.characteristics.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-[var(--foreground)]">
                       <Star className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
                       <span>{feature}</span>
@@ -312,11 +317,11 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
             )}
 
             {/* Famous examples */}
-            {state.selectedElement.famousExamples && state.selectedElement.famousExamples.length > 0 && (
+            {selectedDetail && selectedDetail.famousExamples.length > 0 && (
               <div>
                 <h3 className="font-bold text-[var(--foreground)] mb-2">Famous Examples</h3>
                 <div className="flex flex-wrap gap-2">
-                  {state.selectedElement.famousExamples.map((example, i) => (
+                  {selectedDetail.famousExamples.map((example, i) => (
                     <span
                       key={i}
                       className="px-3 py-1.5 rounded-full bg-[var(--muted)] text-sm text-[var(--foreground)]"
@@ -334,7 +339,7 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
                 More in {state.selectedElement.category}
               </h3>
               <div className="flex gap-2 overflow-x-auto pb-2">
-                {ALL_ELEMENTS
+                {ELEMENT_SUMMARIES
                   .filter(e => e.category === state.selectedElement!.category && e.id !== state.selectedElement!.id)
                   .slice(0, 5)
                   .map(e => (
@@ -478,7 +483,7 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-[var(--foreground)]">{element.name}</h3>
                     <p className="text-sm text-[var(--muted-foreground)] truncate">
-                      {element.description.HIGH_SCHOOL.split('.')[0]}.
+                      {element.teaser}
                     </p>
                   </div>
 
@@ -503,7 +508,7 @@ export function ExploreGame({ onExit }: ExploreGameProps) {
             {/* Periods */}
             <div className="space-y-6">
               {HISTORICAL_PERIODS.map((period, index) => {
-                const periodElements = ALL_ELEMENTS.filter(e =>
+                const periodElements = ELEMENT_SUMMARIES.filter(e =>
                   e.periods?.some(p => p.toLowerCase().includes(period.id))
                 )
 

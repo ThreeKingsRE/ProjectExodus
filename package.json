@@ -19,7 +19,8 @@
     "party:dev": "partykit dev",
     "party:deploy": "partykit deploy",
     "lint:ci": "eslint --config eslint.ci.config.mjs .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "arch:summaries": "tsx scripts/architecture/build-summaries.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

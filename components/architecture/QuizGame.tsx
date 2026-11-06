@@ -9,8 +9,9 @@ import {
   Check, X, Ghost, Flag, Play, HelpCircle, Lightbulb,
   BookOpen, Clock, Target, Award
 } from 'lucide-react'
-import type { ArchitecturalElement, LearningLevel } from '@/data/architecture/types'
-import { ALL_ELEMENTS, getRandomElements } from '@/data/architecture/elements'
+import type { LearningLevel } from '@/data/architecture/types'
+import { ELEMENT_SUMMARIES, getRandomSummaries, type ElementDetail, type ElementSummary } from '@/data/architecture/summary'
+import { fetchElementDetails } from '@/lib/architecture/useElementDetails'
 import { ArchitectureSVG } from './ArchitectureSVG'
 
 // Question types
@@ -19,7 +20,7 @@ type QuestionType = 'definition' | 'image_identify' | 'era_match' | 'true_false'
 interface QuizQuestion {
   id: string
   type: QuestionType
-  element: ArchitecturalElement
+  element: ElementDetail
   questionText: string
   options: string[]
   correctAnswer: string
@@ -82,9 +83,9 @@ const DEFAULT_CONFIG: QuizConfig = {
 
 // Generate quiz questions from elements
 function generateQuestions(
-  elements: ArchitecturalElement[],
+  elements: ElementDetail[],
   types: QuestionType[],
-  allElements: ArchitecturalElement[]
+  allElements: ElementSummary[]
 ): QuizQuestion[] {
   return elements.map((element, index) => {
     const type = types[index % types.length]
@@ -108,11 +109,11 @@ function generateQuestions(
           id: `q-${index}-${element.id}`,
           type,
           element,
-          questionText: element.description.HIGH_SCHOOL.split('.')[0] + '.',
+          questionText: element.description.split('.')[0] + '.',
           options,
           correctAnswer: element.name,
           hint: `This is a type of ${element.category.toLowerCase()}`,
-          explanation: element.description.HIGH_SCHOOL,
+          explanation: element.description,
           points: basePoints,
           difficulty,
         }
@@ -134,7 +135,7 @@ function generateQuestions(
           options,
           correctAnswer: element.name,
           hint: `It belongs to the ${element.category} category`,
-          explanation: element.description.HIGH_SCHOOL,
+          explanation: element.description,
           points: basePoints,
           difficulty,
         }
@@ -156,7 +157,7 @@ function generateQuestions(
           options,
           correctAnswer: period,
           hint: `Think about when ${element.category.toLowerCase()}s like this were most popular`,
-          explanation: `The ${element.name} is most associated with the ${period} period. ${element.description.HIGH_SCHOOL}`,
+          explanation: `The ${element.name} is most associated with the ${period} period. ${element.description}`,
           points: basePoints + 25, // Era questions are harder
           difficulty,
         }
@@ -176,14 +177,14 @@ function generateQuestions(
           options: ['True', 'False'],
           correctAnswer: isTrue ? 'True' : 'False',
           hint: `Consider what category ${element.name} would logically fall under`,
-          explanation: `The ${element.name} is classified as a ${correctCategory} element. ${element.description.HIGH_SCHOOL}`,
+          explanation: `The ${element.name} is classified as a ${correctCategory} element. ${element.description}`,
           points: basePoints - 10, // True/false are easier
           difficulty,
         }
       }
 
       case 'fill_blank': {
-        const sentence = element.description.HIGH_SCHOOL.split('.')[0]
+        const sentence = element.description.split('.')[0]
         const wordToRemove = element.name
         const blankedSentence = sentence.replace(
           new RegExp(wordToRemove, 'gi'),
@@ -198,7 +199,7 @@ function generateQuestions(
           options: [], // Fill-blank uses text input
           correctAnswer: element.name.toLowerCase(),
           hint: `It's a type of ${element.category.toLowerCase()}`,
-          explanation: element.description.HIGH_SCHOOL,
+          explanation: element.description,
           points: basePoints + 50, // Fill-blank is hardest
           difficulty,
         }
@@ -244,16 +245,33 @@ export function QuizGame({ config: userConfig, onComplete, onExit }: QuizGamePro
   const [ghostPosition, setGhostPosition] = useState(0)
 
   // Initialize quiz
-  const startQuiz = useCallback(() => {
-    const elements = config.category
-      ? ALL_ELEMENTS.filter(e => e.category === config.category)
-      : ALL_ELEMENTS
+  const [loadingQuestions, setLoadingQuestions] = useState(false)
+  const [loadError, setLoadError] = useState<string | null>(null)
 
-    const selectedElements = getRandomElements(config.questionCount)
+  const startQuiz = useCallback(async () => {
+    const pool = config.category
+      ? ELEMENT_SUMMARIES.filter(e => e.category === config.category)
+      : ELEMENT_SUMMARIES
+
+    // Pick from the configured pool, then fetch only this round's full text.
+    // Questions are written from the HIGH_SCHOOL description.
+    const selected = getRandomSummaries(config.questionCount, [], pool)
+    setLoadingQuestions(true)
+    setLoadError(null)
+    let details: Record<string, ElementDetail>
+    try {
+      details = await fetchElementDetails(selected.map(e => e.id), 'HIGH_SCHOOL')
+    } catch {
+      setLoadError('Could not load questions. Check your connection and try again.')
+      return
+    } finally {
+      setLoadingQuestions(false)
+    }
+    const selectedElements = selected.map(e => details[e.id]).filter((e): e is ElementDetail => !!e)
     const generatedQuestions = generateQuestions(
       selectedElements,
       config.questionTypes,
-      elements
+      pool
     )
 
     setQuestions(generatedQuestions)
@@ -439,12 +457,14 @@ export function QuizGame({ config: userConfig, onComplete, onExit }: QuizGamePro
                 </div>
 
                 <div className="flex flex-col gap-3">
+                  {loadError && <p className="text-sm text-red-500 text-center">{loadError}</p>}
                   <Button
                     onClick={startQuiz}
+                    disabled={loadingQuestions}
                     className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-bold py-4 text-lg"
                   >
                     <Play className="w-5 h-5 mr-2" />
-                    Start Quiz
+                    {loadingQuestions ? 'Loading questions…' : 'Start Quiz'}
                   </Button>
 
                   {onExit && (
@@ -521,6 +541,7 @@ export function QuizGame({ config: userConfig, onComplete, onExit }: QuizGamePro
                 <div className="flex flex-col gap-3">
                   <Button
                     onClick={startQuiz}
+                    disabled={loadingQuestions}
                     className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-bold"
                   >
                     <RotateCcw className="w-4 h-4 mr-2" />

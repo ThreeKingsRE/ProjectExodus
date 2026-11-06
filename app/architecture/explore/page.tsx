@@ -9,11 +9,12 @@ import {
   Clock, Globe, Layers, GraduationCap, Volume2, BookOpen
 } from 'lucide-react'
 import Link from 'next/link'
-import { ALL_ELEMENTS, searchElements, getElementsByCategory, getElementsByPeriod, getElementsByRegion } from '@/data/architecture/elements'
+import { ELEMENT_SUMMARIES, searchSummaries, getSummaryById, type ElementSummary } from '@/data/architecture/summary'
+import { useElementDetails } from '@/lib/architecture/useElementDetails'
 import { CATEGORIES } from '@/data/architecture/categories'
 import { PERIODS } from '@/data/architecture/periods'
 import { REGIONS } from '@/data/architecture/regions'
-import type { ArchitecturalElement, LearningLevel } from '@/data/architecture/types'
+import type { LearningLevel } from '@/data/architecture/types'
 import { ArchitectureSVG } from '@/components/architecture/ArchitectureSVG'
 
 const learningLevels: { id: LearningLevel; name: string }[] = [
@@ -25,6 +26,16 @@ const learningLevels: { id: LearningLevel; name: string }[] = [
   { id: 'PHD', name: 'PhD' },
 ]
 
+function TextSkeleton() {
+  return (
+    <div className="space-y-2 animate-pulse" aria-label="Loading">
+      <div className="h-3 rounded bg-[var(--muted)]" />
+      <div className="h-3 rounded bg-[var(--muted)] w-11/12" />
+      <div className="h-3 rounded bg-[var(--muted)] w-4/5" />
+    </div>
+  )
+}
+
 export default function ExplorePage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
@@ -33,15 +44,18 @@ export default function ExplorePage() {
   const [selectedLevel, setSelectedLevel] = useState<LearningLevel>('MIDDLE_SCHOOL')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [showFilters, setShowFilters] = useState(false)
-  const [selectedElement, setSelectedElement] = useState<ArchitecturalElement | null>(null)
+  const [selectedElement, setSelectedElement] = useState<ElementSummary | null>(null)
+  // Full text for the open element is fetched on demand, per learning level
+  const { details } = useElementDetails(selectedElement ? [selectedElement.id] : [], selectedLevel)
+  const detail = selectedElement ? details[selectedElement.id] : undefined
 
   // Filter elements
   const filteredElements = useMemo(() => {
-    let results = ALL_ELEMENTS
+    let results = ELEMENT_SUMMARIES
 
     // Search query
     if (searchQuery.trim()) {
-      results = searchElements(searchQuery)
+      results = searchSummaries(searchQuery)
     }
 
     // Category filter
@@ -86,7 +100,7 @@ export default function ExplorePage() {
             </Link>
             <h1 className="text-xl font-black text-[var(--foreground)]">Explore Elements</h1>
             <span className="text-sm text-[var(--muted-foreground)]">
-              {filteredElements.length} of {ALL_ELEMENTS.length}
+              {filteredElements.length} of {ELEMENT_SUMMARIES.length}
             </span>
           </div>
 
@@ -290,7 +304,7 @@ export default function ExplorePage() {
                             {element.name}
                           </h3>
                           <p className="text-xs sm:text-sm text-[var(--muted-foreground)] truncate">
-                            {element.description[selectedLevel].slice(0, 80)}...
+                            {element.teaser}
                           </p>
                         </div>
                         <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--muted-foreground)] shrink-0" />
@@ -340,7 +354,7 @@ export default function ExplorePage() {
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4">
                   <h2 className="text-xl sm:text-2xl font-black text-white">{selectedElement.name}</h2>
                   <div className="flex items-center gap-2 text-white/80 text-xs sm:text-sm">
-                    <span>{selectedElement.pronunciation.phonetic}</span>
+                    <span>{selectedElement.phonetic}</span>
                     <button className="p-1 rounded-full hover:bg-white/20">
                       <Volume2 className="w-3 h-3 sm:w-4 sm:h-4" />
                     </button>
@@ -373,9 +387,11 @@ export default function ExplorePage() {
                     <BookOpen className="w-4 h-4" />
                     Description
                   </h3>
-                  <p className="text-[var(--muted-foreground)]">
-                    {selectedElement.description[selectedLevel]}
-                  </p>
+                  {detail ? (
+                    <p className="text-[var(--muted-foreground)]">{detail.description}</p>
+                  ) : (
+                    <TextSkeleton />
+                  )}
                 </div>
 
                 {/* History */}
@@ -384,9 +400,11 @@ export default function ExplorePage() {
                     <Clock className="w-4 h-4" />
                     History
                   </h3>
-                  <p className="text-[var(--muted-foreground)]">
-                    {selectedElement.history[selectedLevel]}
-                  </p>
+                  {detail ? (
+                    <p className="text-[var(--muted-foreground)]">{detail.history}</p>
+                  ) : (
+                    <TextSkeleton />
+                  )}
                 </div>
 
                 {/* Metadata */}
@@ -404,14 +422,14 @@ export default function ExplorePage() {
                 </div>
 
                 {/* Famous Examples */}
-                {selectedElement.famousExamples.length > 0 && (
+                {detail && detail.famousExamples.length > 0 && (
                   <div>
                     <h3 className="font-bold text-[var(--foreground)] mb-2 flex items-center gap-2">
                       <Globe className="w-4 h-4" />
                       Famous Examples
                     </h3>
                     <div className="space-y-2">
-                      {selectedElement.famousExamples.map((example, i) => (
+                      {detail.famousExamples.map((example, i) => (
                         <div key={i} className="p-3 rounded-lg bg-[var(--muted)]">
                           <p className="font-semibold text-[var(--foreground)]">{example.name}</p>
                           <p className="text-sm text-[var(--muted-foreground)]">
@@ -424,15 +442,15 @@ export default function ExplorePage() {
                 )}
 
                 {/* Confusion Pairs */}
-                {selectedElement.confusionPairs.length > 0 && (
+                {detail && detail.confusionPairs.length > 0 && (
                   <div>
                     <h3 className="font-bold text-[var(--foreground)] mb-2 flex items-center gap-2">
                       <Layers className="w-4 h-4" />
                       Often Confused With
                     </h3>
-                    {selectedElement.confusionPairs.map((pair, i) => (
+                    {detail.confusionPairs.map((pair, i) => (
                       <div key={i} className="p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
-                        <p className="font-semibold text-purple-600">{pair.elementId}</p>
+                        <p className="font-semibold text-purple-600">{getSummaryById(pair.elementId)?.name ?? pair.elementId}</p>
                         <p className="text-sm text-[var(--muted-foreground)]">{pair.reason}</p>
                         <p className="text-sm text-[var(--foreground)] mt-1">
                           <strong>Key difference:</strong> {pair.distinction}

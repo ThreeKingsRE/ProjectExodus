@@ -11,7 +11,7 @@ import {
   Camera, Brain, Medal, Crown, Shield, Gem, Heart
 } from 'lucide-react'
 import Link from 'next/link'
-import { ALL_ELEMENTS } from '@/data/architecture/elements'
+import { ELEMENT_SUMMARIES, ELEMENT_COUNT } from '@/data/architecture/summary'
 import { BADGES } from '@/data/architecture/badges'
 
 // Mock user stats - in production these would come from the database
@@ -215,7 +215,7 @@ export default function DashboardPage() {
                     <div className="h-3 bg-[var(--muted)] rounded-full overflow-hidden">
                       <div
                         className="h-full bg-green-500 rounded-full"
-                        style={{ width: `${(mockStats.elementsMastered / ALL_ELEMENTS.length) * 100}%` }}
+                        style={{ width: `${(mockStats.elementsMastered / ELEMENT_COUNT) * 100}%` }}
                       />
                     </div>
                   </div>
@@ -227,7 +227,7 @@ export default function DashboardPage() {
                     <div className="h-3 bg-[var(--muted)] rounded-full overflow-hidden">
                       <div
                         className="h-full bg-amber-500 rounded-full"
-                        style={{ width: `${(mockStats.elementsLearning / ALL_ELEMENTS.length) * 100}%` }}
+                        style={{ width: `${(mockStats.elementsLearning / ELEMENT_COUNT) * 100}%` }}
                       />
                     </div>
                   </div>
@@ -239,13 +239,13 @@ export default function DashboardPage() {
                     <div className="h-3 bg-[var(--muted)] rounded-full overflow-hidden">
                       <div
                         className="h-full bg-[var(--border)] rounded-full"
-                        style={{ width: `${(mockStats.elementsNew / ALL_ELEMENTS.length) * 100}%` }}
+                        style={{ width: `${(mockStats.elementsNew / ELEMENT_COUNT) * 100}%` }}
                       />
                     </div>
                   </div>
                 </div>
                 <p className="text-center text-sm text-[var(--muted-foreground)] mt-4">
-                  {mockStats.elementsMastered + mockStats.elementsLearning} of {ALL_ELEMENTS.length} elements discovered
+                  {mockStats.elementsMastered + mockStats.elementsLearning} of {ELEMENT_COUNT} elements discovered
                 </p>
               </CardContent>
             </Card>
@@ -378,7 +378,7 @@ export default function DashboardPage() {
               Track your mastery of individual architectural elements
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-              {ALL_ELEMENTS.slice(0, 20).map((element, i) => {
+              {ELEMENT_SUMMARIES.slice(0, 20).map((element, i) => {
                 const mastery = Math.random() * 100 // Mock mastery level
                 const status = mastery > 80 ? 'mastered' : mastery > 30 ? 'learning' : 'new'
 

@@ -8,8 +8,9 @@ import {
   Timer, Trophy, Layers, ChevronRight, RotateCcw, Home,
   Check, X, Target, MousePointer, Hand, ChevronDown
 } from 'lucide-react'
-import type { ArchitecturalElement, LearningLevel } from '@/data/architecture/types'
-import { ALL_ELEMENTS } from '@/data/architecture/elements'
+import type { LearningLevel } from '@/data/architecture/types'
+import type { ElementSummary } from '@/data/architecture/summary'
+import { ELEMENT_SUMMARIES } from '@/data/architecture/summary'
 import { ArchitectureSVG } from './ArchitectureSVG'
 
 interface DiagramLabel {
@@ -134,12 +135,12 @@ export function DiagramBuilderGame({ config: userConfig, onComplete, onExit, sho
 
   // Get elements for the word bank
   const wordBankElements = currentStructure.labels.map(label => {
-    const element = ALL_ELEMENTS.find(el => el.id === label.elementId)
+    const element = ELEMENT_SUMMARIES.find(el => el.id === label.elementId)
     return element
-  }).filter(Boolean) as ArchitecturalElement[]
+  }).filter(Boolean) as ElementSummary[]
 
   // Shuffle word bank
-  const [shuffledWords, setShuffledWords] = useState<ArchitecturalElement[]>([])
+  const [shuffledWords, setShuffledWords] = useState<ElementSummary[]>([])
 
   useEffect(() => {
     setShuffledWords([...wordBankElements].sort(() => Math.random() - 0.5))
@@ -467,7 +468,7 @@ export function DiagramBuilderGame({ config: userConfig, onComplete, onExit, sho
                   {currentStructure.labels.map((label) => {
                     const assignment = gameState.assignments[label.id]
                     const isCorrect = assignment === label.elementId
-                    const element = assignment ? ALL_ELEMENTS.find(el => el.id === assignment) : null
+                    const element = assignment ? ELEMENT_SUMMARIES.find(el => el.id === assignment) : null
 
                     return (
                       <button

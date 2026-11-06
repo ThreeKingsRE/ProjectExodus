@@ -31,6 +31,9 @@ jobs:
       - name: Generate Prisma client
         run: npx prisma generate
 
+      - name: Architecture summaries up to date
+        run: npm run arch:summaries -- --check
+
       - name: Type check
         run: npx tsc --noEmit
 

@@ -13,7 +13,7 @@ import {
   HardHat, Hammer, Wrench
 } from 'lucide-react'
 import Link from 'next/link'
-import { ALL_ELEMENTS, ELEMENT_STATS } from '@/data/architecture/elements'
+import { ELEMENT_COUNT } from '@/data/architecture/summary'
 import { PERIODS } from '@/data/architecture/periods'
 import { REGIONS } from '@/data/architecture/regions'
 import { CATEGORIES } from '@/data/architecture/categories'
@@ -155,7 +155,7 @@ export default function ArchitecturePage() {
               className="flex flex-wrap justify-center gap-6 mb-8"
             >
               {[
-                { value: ALL_ELEMENTS.length, label: 'Elements', icon: Layers },
+                { value: ELEMENT_COUNT, label: 'Elements', icon: Layers },
                 { value: Object.keys(PERIODS).length, label: 'Historical Periods', icon: Clock },
                 { value: Object.keys(REGIONS).length, label: 'World Regions', icon: Globe },
                 { value: learningLevels.length, label: 'Learning Levels', icon: GraduationCap },

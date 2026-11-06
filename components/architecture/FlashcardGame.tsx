@@ -9,8 +9,9 @@ import {
   Volume2, VolumeX, Check, X, Ghost, Flag, Pause, Play,
   Shuffle, Clock, Target
 } from 'lucide-react'
-import type { ArchitecturalElement, LearningLevel } from '@/data/architecture/types'
-import { ALL_ELEMENTS, getRandomElements } from '@/data/architecture/elements'
+import type { LearningLevel } from '@/data/architecture/types'
+import type { ElementSummary } from '@/data/architecture/summary'
+import { ELEMENT_SUMMARIES, getRandomSummaries } from '@/data/architecture/summary'
 import { CATEGORIES } from '@/data/architecture/categories'
 import { ArchitectureSVG } from './ArchitectureSVG'
 
@@ -83,8 +84,8 @@ export function FlashcardGame({ config: userConfig, onComplete, onExit, showConf
   })
 
   // Game elements
-  const [elements, setElements] = useState<ArchitecturalElement[]>([])
-  const [options, setOptions] = useState<ArchitecturalElement[]>([])
+  const [elements, setElements] = useState<ElementSummary[]>([])
+  const [options, setOptions] = useState<ElementSummary[]>([])
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
 
@@ -102,7 +103,7 @@ export function FlashcardGame({ config: userConfig, onComplete, onExit, showConf
 
   // Initialize game
   useEffect(() => {
-    const gameElements = getRandomElements(config.elementCount)
+    const gameElements = getRandomSummaries(config.elementCount)
     setElements(gameElements)
 
     // Load best time from localStorage
@@ -145,7 +146,7 @@ export function FlashcardGame({ config: userConfig, onComplete, onExit, showConf
   useEffect(() => {
     if (elements.length > 0 && gameState.currentIndex < elements.length) {
       const current = elements[gameState.currentIndex]
-      const wrongOptions = getRandomElements(3, [current.id, ...elements.map(e => e.id)])
+      const wrongOptions = getRandomSummaries(3, [current.id, ...elements.map(e => e.id)])
       const allOptions = [current, ...wrongOptions].sort(() => Math.random() - 0.5)
       setOptions(allOptions)
       questionStartRef.current = Date.now()
@@ -424,7 +425,7 @@ export function FlashcardGame({ config: userConfig, onComplete, onExit, showConf
                               >
                                 <span className="font-bold text-xs sm:text-sm text-[var(--foreground)] block">{category.name}</span>
                                 <span className="text-[0.625rem] text-[var(--muted-foreground)]">
-                                  {ALL_ELEMENTS.filter(e => e.category === category.id).length} elements
+                                  {ELEMENT_SUMMARIES.filter(e => e.category === category.id).length} elements
                                 </span>
                               </button>
                             ))}
