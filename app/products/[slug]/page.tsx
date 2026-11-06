@@ -4,27 +4,75 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { BackButton } from '@/components/navigation/BackButton'
 import { Leaf, ExternalLink, TrendingDown, Award } from 'lucide-react'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+import { cache } from 'react'
+import { prisma } from '@/lib/db'
+import { computeSustainabilityScore } from '@/lib/products/score'
 
 // ISR: Revalidate product pages every 30 minutes (1800 seconds)
 // Products may have price/availability changes, so shorter cache time
 export const revalidate = 1800
 
-async function getProduct(slug: string) {
+const getProduct = cache(async (slug: string) => {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
-    const res = await fetch(`${baseUrl}/api/products/${slug}`, {
-      next: { revalidate: 1800 }, // Cache for 30 minutes, matching page revalidate
+    const product = await prisma.product.findUnique({
+      where: { slug, status: 'PUBLISHED' },
+      include: {
+        category: true,
+        vendor: true,
+        images: { orderBy: { order: 'asc' } },
+        sustainabilityMetric: true,
+        tags: { include: { tag: true } },
+        certifications: { include: { certification: true } },
+      },
     })
-
-    if (!res.ok) {
-      return null
+    if (!product) return null
+    const metric = product.sustainabilityMetric
+    return {
+      ...product,
+      price: product.price != null ? Number(product.price) : null,
+      sustainabilityMetric: metric
+        ? {
+            ...metric,
+            sustainabilityScore: computeSustainabilityScore(
+              {
+                sustainabilityScore: metric.sustainabilityScore,
+                carbonSavings: metric.carbonSavings != null ? Number(metric.carbonSavings) : null,
+                recycledContent: metric.recycledContent,
+                recyclable: metric.recyclable,
+                biodegradable: metric.biodegradable,
+                renewableEnergy: metric.renewableEnergy,
+                lifespanYears: metric.lifespanYears,
+                repairability: metric.repairability,
+              },
+              product.certifications.length
+            ),
+          }
+        : null,
     }
-
-    const data = await res.json()
-    return data.success ? data.data : null
   } catch (error) {
     console.error('Error fetching product:', error)
     return null
+  }
+})
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const product = await getProduct(slug)
+  if (!product) return { title: 'Product not found' }
+  const image = product.images[0]?.url
+  return {
+    title: product.name,
+    description: product.description.slice(0, 160),
+    openGraph: {
+      title: product.name,
+      description: product.description.slice(0, 160),
+      images: image?.startsWith('https://') ? [image] : undefined,
+    },
   }
 }
 

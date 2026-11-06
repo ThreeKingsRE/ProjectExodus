@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Leaf, Star, ExternalLink, Shield } from 'lucide-react'
+import { getScoreTier as getRatingTier, isAffiliateLink as isAffiliateProduct } from '@/lib/products/score'
 
 interface ProductCardProps {
   product: {
@@ -23,20 +24,6 @@ interface ProductCardProps {
       carbonSavings: number | null
     }
   }
-}
-
-// Get rating tier based on score
-function getRatingTier(score: number): { label: string; color: string; bgColor: string } {
-  if (score >= 90) return { label: 'EXCEPTIONAL', color: 'text-emerald-600', bgColor: 'bg-emerald-500' }
-  if (score >= 80) return { label: 'EXCELLENT', color: 'text-green-600', bgColor: 'bg-green-500' }
-  if (score >= 70) return { label: 'VERY GOOD', color: 'text-lime-600', bgColor: 'bg-lime-500' }
-  if (score >= 60) return { label: 'GOOD', color: 'text-yellow-600', bgColor: 'bg-yellow-500' }
-  return { label: 'FAIR', color: 'text-orange-600', bgColor: 'bg-orange-500' }
-}
-
-// Check if product is an affiliate product
-function isAffiliateProduct(purchaseLink?: string | null): boolean {
-  return purchaseLink?.includes('ref=projectexodus') || purchaseLink?.includes('?ref=') || false
 }
 
 export function ProductCard({ product }: ProductCardProps) {
