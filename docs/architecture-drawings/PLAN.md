@@ -1,10 +1,26 @@
 # Architecture Drawings: Technical Redesign + Expansion Plan
 
-Status: **proposal / brainstorm**. One pilot sheet is built (see below); nothing in the live app has changed yet.
+Status: **in progress.** Decisions below are settled; the data-load fix and the first two drawing families are live.
 
-![Pilot sheet: Tuscan order, vellum (day) and blueprint (night)](pilot-tuscan-preview.png)
+### Decisions (from Mr. Nobody)
+- **Look:** paper (ink on vellum) only. No blueprint mode.
+- **Views:** one view per element, chosen by type: columns in **half section / half elevation**, arches and openings in **elevation**, and **plan** for elements that don't need a section (floors, gardens, urban layouts, ceilings as reflected plans).
+- **Sources:** redrawing from public-domain survey drawings is fine, and **every drawing carries its source credit on the image itself**, on both the full sheet and the unlabeled plate. The build refuses to produce a drawing without one.
+- **Order:** fix the data load first, then redraw.
 
-Pilot: `scripts/architecture/pilot-tuscan.ts` writes `public/architecture/drawings/tuscan-order/elevation.svg` (19 KB raw, **3.8 KB gzipped**), generated entirely from Vignola's proportions.
+### Progress
+| Step | Status |
+|---|---|
+| Data load: summaries to the client, full text per element on demand | ✅ ~770 KB gz less JS per architecture page |
+| Drawing system: sheet + plate rendering, manifest, CI checks, `ElementDrawing` with legacy fallback | ✅ |
+| Classical orders (Tuscan, Doric, Ionic, Corinthian, Composite) | ✅ half section / half elevation, after Vignola (1562) |
+| Arches (round, pointed, horseshoe, ogee, Tudor, trefoil, keystone, voussoir) | ✅ elevation, original compass constructions |
+| Remaining columns: pilaster, entasis, caryatid | next |
+| Vaults, domes, roofs, windows, doors, floors (plan), ceilings (RCP), walls, gardens (plan), urban (plan) … | queued, by family |
+
+Generator code: `scripts/architecture/drawings/` (`npm run arch:drawings`). Output: `public/architecture/drawings/<id>.svg` (sheet) and `<id>.plate.svg` (unlabeled plate).
+
+*The original brainstorm follows; where it differs from the decisions above, the decisions win.*
 
 ---
 

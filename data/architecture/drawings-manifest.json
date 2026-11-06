@@ -28,5 +28,53 @@
   "sheetNo": "COL-05",
   "source": "Proportions after Giacomo Barozzi da Vignola, Regola delli cinque ordini d’architettura (Rome, 1562). Simplified; drawn by Project Exodus.",
   "aspect": 0.258
+ },
+ "round-arch": {
+  "view": "ELEVATION",
+  "sheetNo": "ARC-01",
+  "source": "Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.",
+  "aspect": 1.118
+ },
+ "pointed-arch": {
+  "view": "ELEVATION",
+  "sheetNo": "ARC-02",
+  "source": "Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.",
+  "aspect": 0.918
+ },
+ "horseshoe-arch": {
+  "view": "ELEVATION",
+  "sheetNo": "ARC-03",
+  "source": "Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.",
+  "aspect": 0.889
+ },
+ "ogee-arch": {
+  "view": "ELEVATION",
+  "sheetNo": "ARC-04",
+  "source": "Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.",
+  "aspect": 0.973
+ },
+ "tudor-arch": {
+  "view": "ELEVATION",
+  "sheetNo": "ARC-05",
+  "source": "Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.",
+  "aspect": 1.213
+ },
+ "trefoil-arch": {
+  "view": "ELEVATION",
+  "sheetNo": "ARC-06",
+  "source": "Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.",
+  "aspect": 1.086
+ },
+ "keystone": {
+  "view": "ELEVATION",
+  "sheetNo": "ARC-07",
+  "source": "Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.",
+  "aspect": 1.118
+ },
+ "voussoir": {
+  "view": "ELEVATION",
+  "sheetNo": "ARC-08",
+  "source": "Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.",
+  "aspect": 1.118
  }
 }

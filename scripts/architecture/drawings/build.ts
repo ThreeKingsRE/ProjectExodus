@@ -12,13 +12,14 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync, readdirSync, unlink
 import { gzipSync } from 'zlib'
 import { renderSheet, renderPlate, type SheetSpec } from './sheet'
 import { ORDERS, buildOrder } from './families/orders'
+import { ARCHES, buildArch } from './families/arches'
 import { ELEMENT_SUMMARIES } from '../../../data/architecture/summary'
 
 const OUT_DIR = 'public/architecture/drawings'
 const MANIFEST = 'data/architecture/drawings-manifest.json'
 const MAX_GZIP = 14 * 1024 // per file budget
 
-const specs: SheetSpec[] = [...ORDERS.map(buildOrder)]
+const specs: SheetSpec[] = [...ORDERS.map(buildOrder), ...ARCHES.map(buildArch)]
 
 const known = new Set(ELEMENT_SUMMARIES.map((e) => e.id))
 const files = new Map<string, string>()

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="79.6 104.8 440.8 478.2" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of an ogee arch formed by a convex curve rising into a concave curve on each side, meeting in a point, with the four centres marked. Source: Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="wall-ogee-arch" clip-rule="evenodd"><path clip-rule="evenodd" d="M97.6 114.4H502.4V539H97.6Z M152.61 351.35 L152.7 346.38 L152.99 340.76 L153.48 335.17 L154.17 329.6 L155.06 324.07 L156.14 318.59 L157.42 313.16 L158.9 307.8 L160.58 302.52 L162.46 297.32 L164.55 292.21 L166.84 287.2 L169.35 282.31 L172.06 277.55 L174.99 272.92 L178.14 268.44 L181.51 264.11 L185.11 259.97 L188.95 256.02 L193.02 252.28 L197.32 248.78 L201.86 245.53 L206.63 242.57 L211.62 239.92 L216.82 237.61 L222.2 235.67 L227.75 234.13 L233.43 233.01 L239.19 232.33 L243.53 232.13 L244.95 232.1 L244.92 232.1 L244.96 232.1 L245.07 232.06 L245.29 231.99 L245.61 231.84 L246.05 231.61 L246.6 231.27 L247.26 230.79 L248.02 230.18 L248.86 229.4 L249.77 228.46 L250.74 227.34 L251.74 226.05 L252.77 224.59 L253.81 222.95 L254.83 221.15 L255.84 219.19 L256.81 217.07 L257.73 214.82 L258.59 212.43 L259.39 209.91 L260.11 207.29 L260.76 204.58 L261.31 201.78 L261.77 198.91 L262.13 195.98 L262.39 193.01 L262.55 190.01 L300 149.6 L337.45 190.01 L337.61 193.01 L337.87 195.98 L338.23 198.91 L338.69 201.78 L339.24 204.58 L339.89 207.29 L340.61 209.91 L341.41 212.43 L342.27 214.82 L343.19 217.07 L344.16 219.19 L345.17 221.15 L346.19 222.95 L347.23 224.59 L348.26 226.05 L349.26 227.34 L350.23 228.46 L351.14 229.4 L351.98 230.18 L352.74 230.79 L353.4 231.27 L353.95 231.61 L354.39 231.84 L354.71 231.99 L354.93 232.06 L355.04 232.1 L355.08 232.1 L355.05 232.1 L356.47 232.13 L360.81 232.33 L366.57 233.01 L372.25 234.13 L377.8 235.67 L383.18 237.61 L388.38 239.92 L393.37 242.57 L398.14 245.53 L402.68 248.78 L406.98 252.28 L411.05 256.02 L414.89 259.97 L418.49 264.11 L421.86 268.44 L425.01 272.92 L427.94 277.55 L430.65 282.31 L433.16 287.2 L435.45 292.21 L437.54 297.32 L439.42 302.52 L441.1 307.8 L442.58 313.16 L443.86 318.59 L444.94 324.07 L445.83 329.6 L446.52 335.17 L447.01 340.76 L447.3 346.38 L447.39 351.35 L458.4 352 L458.4 539 L141.6 539 L141.6 352 Z"/></clipPath>
+    <pattern id="ashlar-ogee-arch" width="52.8" height="26.4" patternUnits="userSpaceOnUse" x="300" y="352">
+      <path d="M0 0H52.8M0 13.2H52.8M13.2 0V13.2M39.6 13.2V26.4" class="ink l-hair"/>
+    </pattern>
+  </defs>
+  <rect class="paper" x="79.6" y="104.8" width="440.8" height="478.2"/>
+  <g class="layer-shading ink l-shading">
+    <rect x="97.6" y="114.4" width="404.8" height="424.6" fill="url(#ashlar-ogee-arch)" stroke="none" clip-path="url(#wall-ogee-arch)"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M194.64 318.88 L158.19 310.37"/>
+    <path d="M209.5 289.02 L175.14 272.71"/>
+    <path d="M236.68 270.46 L204.51 243.88"/>
+    <path d="M268.47 261.58 L243.76 232.12"/>
+    <path d="M289.35 235.77 L261.99 197.11"/>
+    <path d="M298.85 203.73 L285.9 164.81"/>
+    <path d="M301.15 203.73 L314.1 164.81"/>
+    <path d="M310.65 235.77 L338.01 197.11"/>
+    <path d="M331.53 261.58 L356.24 232.12"/>
+    <path d="M363.32 270.46 L395.49 243.88"/>
+    <path d="M390.5 289.02 L424.86 272.71"/>
+    <path d="M405.36 318.88 L441.81 310.37"/>
+    <path d="M130.6 539H469.4" stroke-dasharray="6 4"/>
+    <path d="M245 352 L190.68 339.09" stroke-dasharray="3 3"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M190 352 L190.08 347.68 L190.3 343.38 L190.68 339.09 L191.2 334.85 L191.87 330.65 L192.69 326.51 L193.65 322.43 L194.75 318.44 L195.99 314.55 L197.37 310.75 L198.87 307.07 L200.5 303.51 L202.26 300.08 L204.13 296.8 L206.11 293.66 L208.2 290.69 L210.39 287.89 L212.67 285.26 L215.04 282.81 L217.5 280.55 L220.03 278.49 L222.63 276.63 L225.29 274.98 L228 273.54 L230.76 272.31 L233.56 271.3 L236.4 270.52 L239.25 269.95 L242.12 269.61 L245 269.5 L247.88 269.39 L250.75 269.05 L253.6 268.48 L256.44 267.7 L259.24 266.69 L262 265.46 L264.71 264.02 L267.37 262.37 L269.97 260.51 L272.5 258.45 L274.96 256.19 L277.33 253.74 L279.61 251.11 L281.8 248.31 L283.89 245.34 L285.87 242.2 L287.74 238.92 L289.5 235.49 L291.13 231.93 L292.63 228.25 L294.01 224.45 L295.25 220.56 L296.35 216.57 L297.31 212.49 L298.13 208.35 L298.8 204.15 L299.32 199.91 L299.7 195.62 L299.92 191.32 L300 187 L300.08 191.32 L300.3 195.62 L300.68 199.91 L301.2 204.15 L301.87 208.35 L302.69 212.49 L303.65 216.57 L304.75 220.56 L305.99 224.45 L307.37 228.25 L308.87 231.93 L310.5 235.49 L312.26 238.92 L314.13 242.2 L316.11 245.34 L318.2 248.31 L320.39 251.11 L322.67 253.74 L325.04 256.19 L327.5 258.45 L330.03 260.51 L332.63 262.37 L335.29 264.02 L338 265.46 L340.76 266.69 L343.56 267.7 L346.4 268.48 L349.25 269.05 L352.12 269.39 L355 269.5 L357.88 269.61 L360.75 269.95 L363.6 270.52 L366.44 271.3 L369.24 272.31 L372 273.54 L374.71 274.98 L377.37 276.63 L379.97 278.49 L382.5 280.55 L384.96 282.81 L387.33 285.26 L389.61 287.89 L391.8 290.69 L393.89 293.66 L395.87 296.8 L397.74 300.08 L399.5 303.51 L401.13 307.07 L402.63 310.75 L404.01 314.55 L405.25 318.44 L406.35 322.43 L407.31 326.51 L408.13 330.65 L408.8 334.85 L409.32 339.09 L409.7 343.38 L409.92 347.68 L410 352"/>
+    <path d="M152.61 351.35 L152.7 346.38 L152.99 340.76 L153.48 335.17 L154.17 329.6 L155.06 324.07 L156.14 318.59 L157.42 313.16 L158.9 307.8 L160.58 302.52 L162.46 297.32 L164.55 292.21 L166.84 287.2 L169.35 282.31 L172.06 277.55 L174.99 272.92 L178.14 268.44 L181.51 264.11 L185.11 259.97 L188.95 256.02 L193.02 252.28 L197.32 248.78 L201.86 245.53 L206.63 242.57 L211.62 239.92 L216.82 237.61 L222.2 235.67 L227.75 234.13 L233.43 233.01 L239.19 232.33 L243.53 232.13 L244.95 232.1 L244.92 232.1 L244.96 232.1 L245.07 232.06 L245.29 231.99 L245.61 231.84 L246.05 231.61 L246.6 231.27 L247.26 230.79 L248.02 230.18 L248.86 229.4 L249.77 228.46 L250.74 227.34 L251.74 226.05 L252.77 224.59 L253.81 222.95 L254.83 221.15 L255.84 219.19 L256.81 217.07 L257.73 214.82 L258.59 212.43 L259.39 209.91 L260.11 207.29 L260.76 204.58 L261.31 201.78 L261.77 198.91 L262.13 195.98 L262.39 193.01 L262.55 190.01 L300 149.6 L337.45 190.01 L337.61 193.01 L337.87 195.98 L338.23 198.91 L338.69 201.78 L339.24 204.58 L339.89 207.29 L340.61 209.91 L341.41 212.43 L342.27 214.82 L343.19 217.07 L344.16 219.19 L345.17 221.15 L346.19 222.95 L347.23 224.59 L348.26 226.05 L349.26 227.34 L350.23 228.46 L351.14 229.4 L351.98 230.18 L352.74 230.79 L353.4 231.27 L353.95 231.61 L354.39 231.84 L354.71 231.99 L354.93 232.06 L355.04 232.1 L355.08 232.1 L355.05 232.1 L356.47 232.13 L360.81 232.33 L366.57 233.01 L372.25 234.13 L377.8 235.67 L383.18 237.61 L388.38 239.92 L393.37 242.57 L398.14 245.53 L402.68 248.78 L406.98 252.28 L411.05 256.02 L414.89 259.97 L418.49 264.11 L421.86 268.44 L425.01 272.92 L427.94 277.55 L430.65 282.31 L433.16 287.2 L435.45 292.21 L437.54 297.32 L439.42 302.52 L441.1 307.8 L442.58 313.16 L443.86 318.59 L444.94 324.07 L445.83 329.6 L446.52 335.17 L447.01 340.76 L447.3 346.38 L447.39 351.35"/>
+    <path d="M298.85 203.73 L284.21 143.67 L315.79 143.67 L301.15 203.73 Z"/>
+    <path d="M190 352 L196.6 352 L196.6 363 L135 363 L135 352 L190 352"/>
+    <path d="M190 363 L190 539"/>
+    <path d="M141.6 363 L141.6 539"/>
+    <path d="M410 352 L403.4 352 L403.4 363 L465 363 L465 352 L410 352"/>
+    <path d="M410 363 L410 539"/>
+    <path d="M458.4 363 L458.4 539"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M135 352H465"/>
+    <path d="M300 396V123.2"/>
+    <path d="M240 352H250M245 347V357" stroke-dasharray="none"/>
+    <path d="M350 352H360M355 347V357" stroke-dasharray="none"/>
+    <path d="M240 187H250M245 182V192" stroke-dasharray="none"/>
+    <path d="M350 187H360M355 182V192" stroke-dasharray="none"/>
+  </g>
+  <text class="t-credit" x="85.6" y="572">SOURCE: Original geometric construction drawn by Project Exodus from the standard compass</text>
+  <text class="t-credit" x="85.6" y="581">method for this arch form; no external drawing reproduced.</text>
+</svg>
