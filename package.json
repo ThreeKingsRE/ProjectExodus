@@ -17,7 +17,9 @@
     "setup:db": "tsx scripts/setup-db.ts",
     "postinstall": "echo 'Skipping prisma generate in this environment'",
     "party:dev": "partykit dev",
-    "party:deploy": "partykit deploy"
+    "party:deploy": "partykit deploy",
+    "lint:ci": "eslint --config eslint.ci.config.mjs .",
+    "typecheck": "tsc --noEmit"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

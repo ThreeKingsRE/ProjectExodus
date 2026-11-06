@@ -900,8 +900,9 @@ export function ProfileBusinessCard({ userId, onClose, onSave: onSaveCallback, i
     }
   }
 
-  // Visibility Toggle Button Component
-  const VisibilityToggle = ({ field, className = '' }: { field: keyof FieldVisibility; className?: string }) => {
+  // Visibility toggle button. A render helper rather than a component defined
+  // inside render (which would remount on every render).
+  const renderVisibilityToggle = (field: keyof FieldVisibility, className = '') => {
     if (!isOwnProfile) return null
 
     const isVisible = fieldVisibility[field]
@@ -923,94 +924,6 @@ export function ProfileBusinessCard({ userId, onClose, onSave: onSaveCallback, i
     )
   }
 
-  // Editable Field Component - WYSIWYG inline editing with full hover feedback
-  const EditableField = ({
-    fieldId,
-    value,
-    placeholder,
-    onChange,
-    type = 'text',
-    className = '',
-    textClassName = '',
-    maxLength,
-  }: {
-    fieldId: string
-    value: string
-    placeholder: string
-    onChange: (value: string) => void
-    type?: 'text' | 'textarea'
-    className?: string
-    textClassName?: string
-    maxLength?: number
-  }) => {
-    const isCurrentlyEditing = editingField === fieldId
-    const isEmpty = !value || value.trim() === ''
-
-    // Ghost placeholder state (empty, not editing)
-    if (isEmpty && !isCurrentlyEditing) {
-      return (
-        <div
-          onClick={() => setEditingField(fieldId)}
-          className={`group cursor-pointer relative ${className}`}
-        >
-          <span className="opacity-40 italic border-b border-dashed border-current flex items-center gap-1.5 hover:opacity-60 transition-opacity">
-            {placeholder}
-            <Edit2 className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </span>
-        </div>
-      )
-    }
-
-    // Editing state
-    if (isCurrentlyEditing) {
-      if (type === 'textarea') {
-        return (
-          <div className={className}>
-            <textarea
-              autoFocus
-              value={value}
-              onChange={(e) => onChange(e.target.value)}
-              onBlur={() => setEditingField(null)}
-              onKeyDown={(e) => e.key === 'Escape' && setEditingField(null)}
-              className={`w-full bg-black/20 backdrop-blur-sm rounded-lg px-3 py-2 border-2 border-white/50 focus:border-white outline-none resize-none ${textClassName}`}
-              placeholder={placeholder}
-              rows={3}
-              maxLength={maxLength}
-            />
-            {maxLength && (
-              <p className="text-[10px] text-white/60 text-right mt-1">{value.length}/{maxLength}</p>
-            )}
-          </div>
-        )
-      }
-      return (
-        <input
-          autoFocus
-          type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          onBlur={() => setEditingField(null)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === 'Escape') setEditingField(null)
-          }}
-          className={`bg-black/20 backdrop-blur-sm rounded-lg px-3 py-1 border-2 border-white/50 focus:border-white outline-none w-full ${textClassName}`}
-          placeholder={placeholder}
-          maxLength={maxLength}
-        />
-      )
-    }
-
-    // Display state with hover feedback
-    return (
-      <div
-        onClick={() => setEditingField(fieldId)}
-        className={`group cursor-pointer relative rounded-lg px-2 py-1 -mx-2 -my-1 hover:bg-white/10 transition-all border border-transparent hover:border-dashed hover:border-white/30 ${className}`}
-      >
-        <span className={textClassName}>{value}</span>
-        <Edit2 className="w-3 h-3 absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-white/70" />
-      </div>
-    )
-  }
 
   return (
     <>
@@ -1243,13 +1156,13 @@ export function ProfileBusinessCard({ userId, onClose, onSave: onSaveCallback, i
                       ) : (
                         <span className="text-white flex-1">{profile.location}</span>
                       )}
-                      <VisibilityToggle field="showLocation" className="text-white/70" />
+                      {renderVisibilityToggle('showLocation', 'text-white/70')}
                     </>
                   ) : (
                     <>
                       <MapPin className="w-3.5 h-3.5 text-white/50 flex-shrink-0" />
                       <span className="italic border-b border-dashed border-white/30 text-white/50 text-xs flex-1">Add location</span>
-                      <VisibilityToggle field="showLocation" className="text-white/70" />
+                      {renderVisibilityToggle('showLocation', 'text-white/70')}
                     </>
                   )}
                 </div>
@@ -1258,7 +1171,7 @@ export function ProfileBusinessCard({ userId, onClose, onSave: onSaveCallback, i
                 <div className="flex items-center gap-2">
                   <Mail className="w-3.5 h-3.5 text-white/75 flex-shrink-0" />
                   <span className="text-white truncate flex-1">{profile.email || 'No email'}</span>
-                  <VisibilityToggle field="showEmail" className="text-white/70" />
+                  {renderVisibilityToggle('showEmail', 'text-white/70')}
                 </div>
 
                 {/* Phone with visibility toggle */}
@@ -1277,13 +1190,13 @@ export function ProfileBusinessCard({ userId, onClose, onSave: onSaveCallback, i
                       ) : (
                         <span className="text-white flex-1">{profile.phone}</span>
                       )}
-                      <VisibilityToggle field="showPhone" className="text-white/70" />
+                      {renderVisibilityToggle('showPhone', 'text-white/70')}
                     </>
                   ) : (
                     <>
                       <Phone className="w-3.5 h-3.5 text-white/50 flex-shrink-0" />
                       <span className="italic border-b border-dashed border-white/30 text-white/50 text-xs flex-1">Add phone number</span>
-                      <VisibilityToggle field="showPhone" className="text-white/70" />
+                      {renderVisibilityToggle('showPhone', 'text-white/70')}
                     </>
                   )}
                 </div>
@@ -1372,7 +1285,7 @@ export function ProfileBusinessCard({ userId, onClose, onSave: onSaveCallback, i
                   <Sparkles className="w-3.5 h-3.5" />
                   Expertise
                 </h4>
-                <VisibilityToggle field="showSkills" />
+                {renderVisibilityToggle('showSkills')}
               </div>
               {profile.skills.length > 0 ? (
                 <div
@@ -1428,7 +1341,7 @@ export function ProfileBusinessCard({ userId, onClose, onSave: onSaveCallback, i
                   <Heart className="w-3.5 h-3.5" />
                   Interests
                 </h4>
-                <VisibilityToggle field="showInterests" />
+                {renderVisibilityToggle('showInterests')}
               </div>
               {profile.interests && profile.interests.length > 0 ? (
                 <div
@@ -1675,7 +1588,7 @@ export function ProfileBusinessCard({ userId, onClose, onSave: onSaveCallback, i
                     <Briefcase className="w-4 h-4" style={{ color: archetypeColor }} />
                     Experience
                   </h4>
-                  <VisibilityToggle field="showExperience" />
+                  {renderVisibilityToggle('showExperience')}
                 </div>
                 {profile.experience.length > 0 ? (
                   <div
@@ -1720,7 +1633,7 @@ export function ProfileBusinessCard({ userId, onClose, onSave: onSaveCallback, i
                     <GraduationCap className="w-4 h-4" style={{ color: archetypeColor }} />
                     Education
                   </h4>
-                  <VisibilityToggle field="showEducation" />
+                  {renderVisibilityToggle('showEducation')}
                 </div>
                 {profile.education.length > 0 ? (
                   <div
