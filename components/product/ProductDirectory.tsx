@@ -457,6 +457,10 @@ function DirectoryCard({
               alt={safeImage.alt || p.name}
               loading="lazy"
               onError={() => setImageFailed(true)}
+              // Images that failed before hydration never fire onError
+              ref={(el) => {
+                if (el && el.complete && el.naturalWidth === 0) setImageFailed(true)
+              }}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           ) : (

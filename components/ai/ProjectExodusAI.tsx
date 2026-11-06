@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 import { MessageCircle, X, Send, Leaf, Sparkles, Moon } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { useSageContextSafe } from './SageContext'
@@ -13,6 +14,51 @@ interface Message {
   timestamp: Date
 }
 
+const TOOL_STATUS: Record<string, string> = {
+  search_products: 'Searching products…',
+  search_articles: 'Searching articles…',
+  search_learning: 'Searching learning modules…',
+}
+
+/**
+ * Render Sage's reply with minimal, safe markdown: **bold** and [text](url)
+ * links. Builds React elements (never HTML strings). On-site links use Next
+ * <Link>; external links must be http(s) and open in a new tab.
+ */
+function SageText({ text }: { text: string }) {
+  const parts: React.ReactNode[] = []
+  const pattern = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*/g
+  let last = 0
+  let match: RegExpExecArray | null
+  let key = 0
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > last) parts.push(text.slice(last, match.index))
+    if (match[3] !== undefined) {
+      parts.push(<strong key={key++}>{match[3]}</strong>)
+    } else {
+      const [, label, href] = match
+      if (href.startsWith('/') && !href.startsWith('//')) {
+        parts.push(
+          <Link key={key++} href={href} className="underline font-semibold">
+            {label}
+          </Link>
+        )
+      } else if (/^https?:\/\//i.test(href)) {
+        parts.push(
+          <a key={key++} href={href} target="_blank" rel="noopener noreferrer" className="underline font-semibold">
+            {label}
+          </a>
+        )
+      } else {
+        parts.push(label) // drop unsafe schemes (javascript:, data:, ...)
+      }
+    }
+    last = match.index + match[0].length
+  }
+  if (last < text.length) parts.push(text.slice(last))
+  return <>{parts}</>
+}
+
 export function ProjectExodusAI() {
   const pathname = usePathname()
   const isHomepage = pathname === '/'
@@ -20,6 +66,8 @@ export function ProjectExodusAI() {
   const [messages, setMessages] = useState<Message[]>([])
   const [inputValue, setInputValue] = useState('')
   const [hasGreeted, setHasGreeted] = useState(false)
+  const [isStreaming, setIsStreaming] = useState(false)
+  const [status, setStatus] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const sageContext = useSageContextSafe()
@@ -65,112 +113,76 @@ export function ProjectExodusAI() {
   }, [messages])
 
   const handleSendMessage = async () => {
-    if (!inputValue.trim()) return
+    const text = inputValue.trim()
+    if (!text || isStreaming) return
 
-    const userMessage: Message = {
-      role: 'user',
-      content: inputValue,
-      timestamp: new Date()
-    }
-
-    setMessages(prev => [...prev, userMessage])
-    const currentInput = inputValue
+    const userMessage: Message = { role: 'user', content: text, timestamp: new Date() }
+    const history = [...messages, userMessage]
+    setMessages([...history, { role: 'assistant', content: '', timestamp: new Date() }])
     setInputValue('')
+    setIsStreaming(true)
+    setStatus(null)
 
-    // Call the actual AI API
+    // Append streamed text to the placeholder assistant message
+    const appendToReply = (delta: string) =>
+      setMessages(prev => {
+        const next = [...prev]
+        const last = next[next.length - 1]
+        next[next.length - 1] = { ...last, content: last.content + delta }
+        return next
+      })
+
     try {
       const response = await fetch('/api/chat', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: [...messages, userMessage].map(m => ({
-            role: m.role,
-            content: m.content
-          }))
+          messages: history
+            .filter(m => m.content.trim())
+            .map(m => ({ role: m.role, content: m.content })),
         }),
       })
 
-      if (!response.ok) {
-        throw new Error('API request failed')
+      if (response.status === 429) {
+        appendToReply("I'm getting a lot of questions right now. Give me a moment and try again.")
+        return
       }
+      if (!response.ok || !response.body) throw new Error(`Chat request failed (${response.status})`)
 
-      const data = await response.json()
-
-      const aiResponse: Message = {
-        role: 'assistant',
-        content: data.message || 'Sorry, I encountered an error. Please try again.',
-        timestamp: new Date()
+      // Newline-delimited JSON events
+      const reader = response.body.getReader()
+      const decoder = new TextDecoder()
+      let buffer = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        buffer += decoder.decode(value, { stream: true })
+        const lines = buffer.split('\n')
+        buffer = lines.pop() ?? ''
+        for (const line of lines) {
+          if (!line.trim()) continue
+          const event = JSON.parse(line) as
+            | { type: 'text'; text: string }
+            | { type: 'tool'; name: string }
+            | { type: 'done' }
+            | { type: 'error'; message: string }
+          if (event.type === 'text') {
+            setStatus(null)
+            appendToReply(event.text)
+          } else if (event.type === 'tool') {
+            setStatus(TOOL_STATUS[event.name] ?? 'Looking that up…')
+          } else if (event.type === 'error') {
+            appendToReply(`\n\n${event.message}`)
+          }
+        }
       }
-      setMessages(prev => [...prev, aiResponse])
     } catch (error) {
-      console.error('AI API Error:', error)
-      // Fallback to keyword matching if API fails
-      const aiResponse: Message = {
-        role: 'assistant',
-        content: getAIResponse(currentInput),
-        timestamp: new Date()
-      }
-      setMessages(prev => [...prev, aiResponse])
+      console.error('Sage error:', error)
+      appendToReply("Sorry, I couldn't reach my knowledge base just now. Please try again, or browse the [Learn hub](/learn) and [product directory](/products).")
+    } finally {
+      setIsStreaming(false)
+      setStatus(null)
     }
-  }
-
-  const getAIResponse = (userInput: string): string => {
-    const input = userInput.toLowerCase()
-
-    // Solar/Renewable Energy
-    if (input.includes('solar') || input.includes('renewable energy') || input.includes('wind') || input.includes('clean energy')) {
-      return "⚡ Great question! Renewable energy is transforming our world. Solar PV costs have dropped 89% since 2010, making it the cheapest electricity source in most regions. I'd recommend checking out our Renewable Energy learning page where you can discover how solar panels can save you $150,000-$300,000 over 20 years, or browse our curated solar products. Would you like me to guide you to specific resources?"
-    }
-
-    // Fashion
-    if (input.includes('fashion') || input.includes('clothing') || input.includes('textile')) {
-      return "👕 Sustainable fashion is crucial! The fashion industry produces 10% of global carbon emissions and 92 million tons of textile waste annually. But there's hope—circular fashion can create $560 billion in economic opportunities while reducing emissions by 143 million tons by 2030. Check out our Sustainable Fashion page to learn about ethical brands, or explore our eco-friendly clothing products!"
-    }
-
-    // Agriculture/Farming
-    if (input.includes('farm') || input.includes('agriculture') || input.includes('food') || input.includes('soil')) {
-      return "🌾 Regenerative agriculture is the future! Did you know that regenerative farms can sequester 3-8 tons of CO₂ per hectare annually while increasing yields by 13% and profitability by 78%? Our Regenerative Agriculture page features the 10 Commandments of Sustainable Agriculture—principles of stewardship, biodiversity, integrity, and more. Want to learn specific practices like cover cropping or no-till farming?"
-    }
-
-    // Zero Waste
-    if (input.includes('waste') || input.includes('recycle') || input.includes('compost') || input.includes('plastic')) {
-      return "♻️ Love your zero waste interest! Americans throw away 2.24 billion tons of waste yearly, but we can change that. The 5 R's (Refuse, Reduce, Reuse, Recycle, Rot) can help you divert 30-60% of household waste from landfills. Our Zero Waste page has room-by-room guides, and we offer eco-friendly alternatives to single-use plastics. Ready to start your zero waste journey?"
-    }
-
-    // Green Building
-    if (input.includes('build') || input.includes('house') || input.includes('home') || input.includes('passive house') || input.includes('leed')) {
-      return "🏡 Green building is one of the most impactful climate solutions! Buildings account for 39% of global CO₂ emissions, but high-performance green buildings can reduce energy use by 60-90% with only 0-8% additional upfront cost. Passive House standard saves $150,000-$300,000 over 20 years! Check out our Green Building page and certification guides (LEED, Passive House, etc.)."
-    }
-
-    // Water Conservation
-    if (input.includes('water') || input.includes('drought') || input.includes('conserv')) {
-      return "💧 Water conservation is critical! Only 0.5% of Earth's water is accessible freshwater, and 2.2 billion people lack safely managed drinking water. But simple changes like WaterSense fixtures can save 13,000+ gallons annually per household. Our Water Conservation page covers everything from rainwater harvesting to agricultural drip irrigation. What aspect interests you most?"
-    }
-
-    // Products
-    if (input.includes('product') || input.includes('buy') || input.includes('shop') || input.includes('store')) {
-      return "🛍️ Our marketplace features 70+ sustainable products across all categories! From Goal Zero solar generators and EcoFlow power stations to Patagonia clothing, Berkey water filters, and Subpod composters. Every product is vetted for sustainability credentials. What category are you interested in? Renewable energy, fashion, zero waste, agriculture, or home goods?"
-    }
-
-    // Carbon Calculator
-    if (input.includes('carbon') || input.includes('footprint') || input.includes('calculator') || input.includes('emissions') || input.includes('calculate')) {
-      return "📊 Our Carbon Footprint Calculator uses EPA-verified methodology to measure your annual CO₂ emissions across housing, transportation, food, goods, and travel. You'll get personalized recommendations showing exactly how much CO₂ you can save with specific actions. The average American emits 16 tons/year—let's see where you stand and create your reduction plan! Visit /tools/carbon-calculator to get started."
-    }
-
-    // Emerging Tech / Innovation
-    if (input.includes('innovation') || input.includes('technology') || input.includes('tech') || input.includes('future') || input.includes('battery') || input.includes('hydrogen') || input.includes('carbon capture')) {
-      return "🚀 Breakthrough innovations are transforming sustainability RIGHT NOW! Climeworks' DAC plants capture CO₂ from air, QuantumScape's solid-state batteries enable 500-mile EVs, green hydrogen costs dropped 70%, and vertical farms grow food with 95% less water. $1.4 trillion invested in climate tech in 2023 alone! Check out our Emerging Technologies page to explore carbon capture, advanced batteries, green hydrogen, vertical farming, and AI for climate. The future is here!"
-    }
-
-    // Success Stories / Case Studies / Examples
-    if (input.includes('success') || input.includes('example') || input.includes('case study') || input.includes('proof') || input.includes('works') || input.includes('real world')) {
-      return "✅ Sustainability isn't just theory—it's WORKING! Patagonia built a $3B business on activism, Interface saved $450M while going carbon-negative, Copenhagen is carbon-neutral by 2025, regenerative farms are sequestering carbon while increasing profits 78%, and net-zero buildings save 70-90% on energy. Our Success Stories page shows companies, cities, farms, and buildings proving environmental stewardship = economic prosperity. See the proof!"
-    }
-
-    // General/Default
-    return "I'm here to help you on your sustainability journey! 🌱 I can guide you through:\n\n⚡ Renewable Energy (solar, wind, storage)\n👕 Sustainable Fashion (circular economy, ethical brands)\n🌾 Regenerative Agriculture (soil health, carbon sequestration)\n♻️ Zero Waste Living (the 5 R's, composting)\n🏡 Green Building (Passive House, LEED)\n💧 Water Conservation (efficiency, rainwater harvesting)\n🚀 Emerging Technologies (carbon capture, green H₂, AI)\n✅ Success Stories (real-world proof)\n📊 Carbon Calculator (measure your impact)\n\nWhat would you like to explore? Or ask me about specific products, certifications, or practices!"
   }
 
   // Don't render anything if Sage is napping or animating to nap
@@ -290,7 +302,18 @@ export function ProjectExodusAI() {
                     </div>
                   )}
                   <p className="text-sm leading-relaxed whitespace-pre-line">
-                    {message.content}
+                    {message.content ? (
+                      <SageText text={message.content} />
+                    ) : (
+                      <span className="inline-flex items-center gap-2 text-theme-muted">
+                        <span className="inline-flex gap-1" aria-hidden>
+                          <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce [animation-delay:150ms]" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce [animation-delay:300ms]" />
+                        </span>
+                        {status ?? 'Thinking…'}
+                      </span>
+                    )}
                   </p>
                   <p className={`text-xs mt-2 ${message.role === 'user' ? 'text-white/60' : 'text-theme-muted'}`}>
                     {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -308,13 +331,13 @@ export function ProjectExodusAI() {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                onKeyDown={(e) => e.key === 'Enter' && !e.nativeEvent.isComposing && handleSendMessage()}
                 placeholder="Ask about sustainability..."
                 className="flex-1 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-xl bg-[var(--muted)] border-2 border-[var(--border)] focus:border-theme-primary focus:outline-none text-[var(--foreground)] placeholder:text-theme-muted font-medium"
               />
               <button
                 onClick={handleSendMessage}
-                disabled={!inputValue.trim()}
+                disabled={!inputValue.trim() || isStreaming}
                 className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-moss-600 to-ocean-600 flex items-center justify-center hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity shadow-lg flex-shrink-0"
                 aria-label="Send message"
               >
