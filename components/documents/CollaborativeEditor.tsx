@@ -118,13 +118,26 @@ export function CollaborativeEditor({
         // Get room name
         const roomName = getDocumentName(collaborationType, documentId!)
 
-        // Create PartyKit provider
+        // Create PartyKit provider. The server requires a short-lived signed
+        // token; `params` is re-evaluated on every (re)connect so a fresh token
+        // is fetched each time.
         provider = new YPartyKitProvider(
           collaborationConfig.host!,
           roomName,
           ydoc,
           {
             connect: true,
+            params: async () => {
+              const res = await fetch(`/api/documents/${documentId}/collab-token`, {
+                cache: 'no-store',
+              })
+              if (!res.ok) {
+                setConnectionStatus('error')
+                throw new Error(`Collaboration token request failed (${res.status})`)
+              }
+              const data = await res.json()
+              return { token: data.token as string }
+            },
           }
         )
 
