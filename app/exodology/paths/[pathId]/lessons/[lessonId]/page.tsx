@@ -1103,6 +1103,14 @@ function GuidedExercisePlayer({ content }: { content: NonNullable<LessonData['co
 // MAIN PAGE COMPONENT
 // ============================================================================
 
+const LESSON_TYPE_ICONS: Record<string, typeof BookOpen> = {
+  instruction: BookOpen,
+  interactive: Play,
+  reflection: Lightbulb,
+  game: Gamepad2,
+  assessment: FileText,
+}
+
 export default function LessonPage() {
   const params = useParams()
   const router = useRouter()
@@ -1133,6 +1141,55 @@ export default function LessonPage() {
       markStarted()
     }
   }, [session, progressLoading, markStarted])
+
+  // Get prev/next lesson navigation
+  const { prevLesson, nextLesson, currentIndex, totalLessons } = getLessonNavigation(pathId, lessonId)
+
+  // Keyboard navigation (hooks must run before conditional returns)
+  useEffect(() => {
+    if (!session || !lessonData) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't trigger if user is typing in an input/textarea
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+        return
+      }
+
+      switch (e.key) {
+        case 'ArrowLeft':
+          if (prevLesson) {
+            router.push(`/exodology/paths/${pathId}/lessons/${prevLesson.id}`)
+          }
+          break
+        case 'ArrowRight':
+          if (nextLesson) {
+            router.push(`/exodology/paths/${pathId}/lessons/${nextLesson.id}`)
+          }
+          break
+        case ' ': // Space key
+          e.preventDefault()
+          if (progress?.status !== 'COMPLETED' && !saving) {
+            markCompleted()
+          }
+          break
+        case 'Escape':
+          router.push(`/exodology/paths/${pathId}`)
+          break
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [session, lessonData, prevLesson, nextLesson, pathId, router, progress, saving, markCompleted])
+
+  // State for showing keyboard shortcuts hint
+  const [showKeyboardHint, setShowKeyboardHint] = useState(true)
+
+  // Hide keyboard hint after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => setShowKeyboardHint(false), 5000)
+    return () => clearTimeout(timer)
+  }, [])
+
 
   if (!lessonData || !meta) {
     notFound()
@@ -1238,65 +1295,7 @@ export default function LessonPage() {
     }
   }
 
-  const getLessonTypeIcon = (type: string) => {
-    switch (type) {
-      case 'instruction': return BookOpen
-      case 'interactive': return Play
-      case 'reflection': return Lightbulb
-      case 'game': return Gamepad2
-      case 'assessment': return FileText
-      default: return BookOpen
-    }
-  }
-
-  const TypeIcon = getLessonTypeIcon(lessonData.type)
-
-  // Get prev/next lesson navigation
-  const { prevLesson, nextLesson, currentIndex, totalLessons } = getLessonNavigation(pathId, lessonId)
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't trigger if user is typing in an input/textarea
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
-        return
-      }
-
-      switch (e.key) {
-        case 'ArrowLeft':
-          if (prevLesson) {
-            router.push(`/exodology/paths/${pathId}/lessons/${prevLesson.id}`)
-          }
-          break
-        case 'ArrowRight':
-          if (nextLesson) {
-            router.push(`/exodology/paths/${pathId}/lessons/${nextLesson.id}`)
-          }
-          break
-        case ' ': // Space key
-          e.preventDefault()
-          if (progress?.status !== 'COMPLETED' && !saving) {
-            markCompleted()
-          }
-          break
-        case 'Escape':
-          router.push(`/exodology/paths/${pathId}`)
-          break
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [prevLesson, nextLesson, pathId, router, progress, saving, markCompleted])
-
-  // State for showing keyboard shortcuts hint
-  const [showKeyboardHint, setShowKeyboardHint] = useState(true)
-
-  // Hide keyboard hint after 5 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => setShowKeyboardHint(false), 5000)
-    return () => clearTimeout(timer)
-  }, [])
+  const TypeIcon = LESSON_TYPE_ICONS[lessonData.type] ?? BookOpen
 
   return (
     <div className="min-h-screen bg-[var(--background)]">

@@ -90,6 +90,11 @@ export function CollaborativeCanvasWorkspace({
   const cursorTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
   const userColor = getUserColor(currentUser.id)
 
+  // Add activity to feed (defined before the effects that use it)
+  const addActivity = useCallback((event: CollaborativeEvent) => {
+    setActivityFeed(prev => [event, ...prev].slice(0, 50)) // Keep last 50 events
+  }, [])
+
   // Initialize Pusher connection
   useEffect(() => {
     const pusher = getPusherClient()
@@ -233,14 +238,6 @@ export function CollaborativeCanvasWorkspace({
       }
     }
   }, [projectId, currentUser.id])
-
-  // Add activity to feed
-  const addActivity = (event: CollaborativeEvent) => {
-    setActivityFeed(prev => {
-      const next = [event, ...prev].slice(0, 50) // Keep last 50 events
-      return next
-    })
-  }
 
   // Broadcast cursor movement
   const broadcastCursor = useCallback((x: number, y: number) => {

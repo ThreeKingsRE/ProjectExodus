@@ -17,6 +17,56 @@ interface SearchResult {
   index: number
 }
 
+function escapeRegex(str: string) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+/**
+ * Find regex matches in the editor document and return ProseMirror positions.
+ *
+ * Plain-text offsets don't map to document positions (every block boundary and
+ * inline node shifts them), so each textblock is searched separately with a
+ * per-character position map. Non-text inline nodes become U+FFFC so they
+ * occupy a slot but never match normal search text.
+ */
+function findMatches(editor: Editor, pattern: RegExp): SearchResult[] {
+  const results: SearchResult[] = []
+
+  editor.state.doc.descendants((node, pos) => {
+    if (!node.isTextblock) return true
+
+    let text = ''
+    const positions: number[] = []
+    node.forEach((child, offset) => {
+      const childPos = pos + 1 + offset
+      if (child.isText && child.text) {
+        for (let k = 0; k < child.text.length; k++) {
+          text += child.text[k]
+          positions.push(childPos + k)
+        }
+      } else {
+        text += '\uFFFC'
+        positions.push(childPos)
+      }
+    })
+
+    pattern.lastIndex = 0
+    let match: RegExpExecArray | null
+    while ((match = pattern.exec(text)) !== null) {
+      if (match[0].length === 0) {
+        pattern.lastIndex++
+        continue
+      }
+      const from = positions[match.index]
+      const to = positions[match.index + match[0].length - 1] + 1
+      results.push({ from, to, index: results.length })
+    }
+    return false
+  })
+
+  return results
+}
+
 export function FindReplaceDialog({ editor, isOpen, onClose }: FindReplaceDialogProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [replaceTerm, setReplaceTerm] = useState('')
@@ -26,7 +76,6 @@ export function FindReplaceDialog({ editor, isOpen, onClose }: FindReplaceDialog
   const [results, setResults] = useState<SearchResult[]>([])
   const [currentIndex, setCurrentIndex] = useState(-1)
   const searchInputRef = useRef<HTMLInputElement>(null)
-  const [highlightedRanges, setHighlightedRanges] = useState<{ from: number; to: number }[]>([])
 
   // Focus search input when dialog opens
   useEffect(() => {
@@ -34,6 +83,43 @@ export function FindReplaceDialog({ editor, isOpen, onClose }: FindReplaceDialog
       searchInputRef.current.focus()
     }
   }, [isOpen])
+
+  const scrollToResult = useCallback((result: SearchResult) => {
+    if (!editor) return
+
+    try {
+      editor.commands.setTextSelection({ from: result.from, to: result.to })
+
+      // Scroll into view
+      const domSelection = window.getSelection()
+      if (domSelection && domSelection.rangeCount > 0) {
+        const range = domSelection.getRangeAt(0)
+        const rect = range.getBoundingClientRect()
+        if (rect.top < 100 || rect.bottom > window.innerHeight - 100) {
+          range.startContainer.parentElement?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          })
+        }
+      }
+    } catch (error) {
+      console.error('Error scrolling to result:', error)
+    }
+  }, [editor])
+
+  const goToNext = useCallback(() => {
+    if (results.length === 0) return
+    const newIndex = (currentIndex + 1) % results.length
+    setCurrentIndex(newIndex)
+    scrollToResult(results[newIndex])
+  }, [results, currentIndex, scrollToResult])
+
+  const goToPrevious = useCallback(() => {
+    if (results.length === 0) return
+    const newIndex = currentIndex <= 0 ? results.length - 1 : currentIndex - 1
+    setCurrentIndex(newIndex)
+    scrollToResult(results[newIndex])
+  }, [results, currentIndex, scrollToResult])
 
   // Handle keyboard shortcuts
   useEffect(() => {
@@ -60,7 +146,7 @@ export function FindReplaceDialog({ editor, isOpen, onClose }: FindReplaceDialog
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isOpen, results, currentIndex])
+  }, [isOpen, onClose, goToNext, goToPrevious])
 
   // Search for text when search term changes
   const performSearch = useCallback(() => {
@@ -69,9 +155,6 @@ export function FindReplaceDialog({ editor, isOpen, onClose }: FindReplaceDialog
       setCurrentIndex(-1)
       return
     }
-
-    const content = editor.getText()
-    const searchResults: SearchResult[] = []
 
     let searchPattern: RegExp
     try {
@@ -83,82 +166,21 @@ export function FindReplaceDialog({ editor, isOpen, onClose }: FindReplaceDialog
       return
     }
 
-    let match
-    let index = 0
-    while ((match = searchPattern.exec(content)) !== null) {
-      // Convert text position to editor position
-      const from = getEditorPosition(editor, match.index)
-      const to = getEditorPosition(editor, match.index + match[0].length)
-
-      if (from !== -1 && to !== -1) {
-        searchResults.push({ from, to, index: index++ })
-      }
-    }
+    const searchResults = findMatches(editor, searchPattern)
 
     setResults(searchResults)
     setCurrentIndex(searchResults.length > 0 ? 0 : -1)
 
-    // Highlight all matches
     if (searchResults.length > 0) {
-      setHighlightedRanges(searchResults.map(r => ({ from: r.from, to: r.to })))
-      // Go to first result
       scrollToResult(searchResults[0])
     }
-  }, [editor, searchTerm, caseSensitive, wholeWord])
+  }, [editor, searchTerm, caseSensitive, wholeWord, scrollToResult])
 
   // Debounce search
   useEffect(() => {
     const timer = setTimeout(performSearch, 150)
     return () => clearTimeout(timer)
   }, [performSearch])
-
-  const escapeRegex = (str: string) => {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  }
-
-  const getEditorPosition = (editor: Editor, textPosition: number): number => {
-    // Simple position mapping - in real Tiptap, this would need to account for nodes
-    // For basic text content, position is approximately equal
-    // This is a simplification - a full implementation would walk the document structure
-    return textPosition + 1 // Tiptap positions are 1-indexed
-  }
-
-  const scrollToResult = (result: SearchResult) => {
-    if (!editor) return
-
-    try {
-      editor.commands.setTextSelection({ from: result.from, to: result.to })
-
-      // Scroll into view
-      const domSelection = window.getSelection()
-      if (domSelection && domSelection.rangeCount > 0) {
-        const range = domSelection.getRangeAt(0)
-        const rect = range.getBoundingClientRect()
-        if (rect.top < 100 || rect.bottom > window.innerHeight - 100) {
-          range.startContainer.parentElement?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-          })
-        }
-      }
-    } catch (error) {
-      console.error('Error scrolling to result:', error)
-    }
-  }
-
-  const goToNext = () => {
-    if (results.length === 0) return
-    const newIndex = (currentIndex + 1) % results.length
-    setCurrentIndex(newIndex)
-    scrollToResult(results[newIndex])
-  }
-
-  const goToPrevious = () => {
-    if (results.length === 0) return
-    const newIndex = currentIndex <= 0 ? results.length - 1 : currentIndex - 1
-    setCurrentIndex(newIndex)
-    scrollToResult(results[newIndex])
-  }
 
   const replaceOne = () => {
     if (!editor || currentIndex < 0 || currentIndex >= results.length) return

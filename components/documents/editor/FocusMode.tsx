@@ -27,7 +27,6 @@ export function FocusMode({
   const [typewriterMode, setTypewriterMode] = useState(false)
   const [dimSurroundings, setDimSurroundings] = useState(true)
   const [showStats, setShowStats] = useState(true)
-  const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null)
 
   // Ambient sound URLs (would be hosted audio files in production)
   const soundUrls: Record<AmbientSound, string> = {
@@ -38,15 +37,10 @@ export function FocusMode({
     whitenoise: '/sounds/whitenoise.mp3',
   }
 
-  // Handle ambient sounds
+  // Handle ambient sounds. The effect cleanup stops the previous sound whenever
+  // the selection changes and on unmount, so no audio element state is needed.
   useEffect(() => {
-    if (ambientSound === 'none') {
-      if (audioElement) {
-        audioElement.pause()
-        audioElement.src = ''
-      }
-      return
-    }
+    if (ambientSound === 'none') return
 
     // Note: In production, these audio files would need to exist
     // For now, we'll just set up the infrastructure
@@ -58,23 +52,11 @@ export function FocusMode({
     // audio.src = soundUrls[ambientSound]
     // audio.play().catch(console.error)
 
-    setAudioElement(audio)
-
     return () => {
       audio.pause()
       audio.src = ''
     }
   }, [ambientSound])
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (audioElement) {
-        audioElement.pause()
-        audioElement.src = ''
-      }
-    }
-  }, [audioElement])
 
   // Handle escape key to exit focus mode
   useEffect(() => {

@@ -105,6 +105,14 @@ export function InfiniteCanvasWorkspace({
   const canvasRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
 
+  // History
+  const saveToHistory = useCallback((nodes: CanvasNode[], connections: CanvasConnection[]) => {
+    const newHistory = history.slice(0, historyIndex + 1)
+    newHistory.push({ nodes: [...nodes], connections: [...connections] })
+    setHistory(newHistory)
+    setHistoryIndex(newHistory.length - 1)
+  }, [history, historyIndex])
+
   // Add node to canvas
   const addNode = useCallback((x: number, y: number, type: NodeType = activeNodeType) => {
     const newNode: CanvasNode = {
@@ -123,7 +131,7 @@ export function InfiniteCanvasWorkspace({
 
     setNodes(prev => [...prev, newNode])
     saveToHistory([...nodes, newNode], connections)
-  }, [activeNodeType, zoom, pan, nodes, connections])
+  }, [activeNodeType, zoom, pan, nodes, connections, saveToHistory])
 
   // Delete node
   const deleteNode = useCallback((nodeId: string) => {
@@ -166,14 +174,6 @@ export function InfiniteCanvasWorkspace({
   const resetView = () => {
     setZoom(1)
     setPan({ x: 0, y: 0 })
-  }
-
-  // History
-  const saveToHistory = (nodes: CanvasNode[], connections: CanvasConnection[]) => {
-    const newHistory = history.slice(0, historyIndex + 1)
-    newHistory.push({ nodes: [...nodes], connections: [...connections] })
-    setHistory(newHistory)
-    setHistoryIndex(newHistory.length - 1)
   }
 
   const undo = () => {

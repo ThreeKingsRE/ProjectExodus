@@ -65,6 +65,106 @@ const initialData: FormData = {
   paperUsage: 'medium'
 }
 
+// Input components live at module scope so they aren't re-created each render
+// (re-creating them would remount inputs and drop focus/drag state).
+function SliderInput({
+  label,
+  value,
+  onChange,
+  min,
+  max,
+  step = 1,
+  unit = '',
+  helpText
+}: {
+  label: string
+  value: number
+  onChange: (val: number) => void
+  min: number
+  max: number
+  step?: number
+  unit?: string
+  helpText?: string
+}) {
+  return (
+  <div className="space-y-3">
+    <div className="flex justify-between items-center">
+      <label className="font-bold text-earth-800 dark:text-sand-200">{label}</label>
+      <span className="text-2xl font-black text-ocean-600 dark:text-ocean-400">
+        {value}{unit}
+      </span>
+    </div>
+    {helpText && (
+      <p className="text-sm text-earth-600 dark:text-sand-400">{helpText}</p>
+    )}
+    <input
+      type="range"
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      onChange={(e) => onChange(Number(e.target.value))}
+      className="w-full h-3 bg-sand-200 dark:bg-earth-700 rounded-lg appearance-none cursor-pointer accent-ocean-500"
+    />
+    <div className="flex justify-between text-xs font-medium text-earth-500 dark:text-sand-500">
+      <span>{min}{unit}</span>
+      <span>{max}{unit}</span>
+    </div>
+  </div>
+  )
+}
+
+function OptionButton({
+  selected,
+  onClick,
+  children
+}: {
+  selected: boolean
+  onClick: () => void
+  children: React.ReactNode
+}) {
+  return (
+  <button
+    onClick={onClick}
+    className={`px-4 py-3 rounded-xl font-bold transition-all ${
+      selected
+        ? 'bg-ocean-500 text-white shadow-lg scale-105'
+        : 'bg-sand-100 dark:bg-earth-700 text-earth-700 dark:text-sand-300 hover:bg-sand-200 dark:hover:bg-earth-600'
+    }`}
+  >
+    {children}
+  </button>
+  )
+}
+
+function ToggleButton({
+  value,
+  onChange,
+  label
+}: {
+  value: boolean
+  onChange: (val: boolean) => void
+  label: string
+}) {
+  return (
+  <button
+    onClick={() => onChange(!value)}
+    className={`w-full p-4 rounded-xl font-bold transition-all border-2 ${
+      value
+        ? 'bg-ocean-100 dark:bg-ocean-900 border-ocean-500 text-ocean-700 dark:text-ocean-300'
+        : 'bg-sand-50 dark:bg-earth-800 border-sand-300 dark:border-earth-600 text-earth-600 dark:text-sand-400'
+    }`}
+  >
+    <div className="flex items-center justify-between">
+      <span>{label}</span>
+      <div className={`w-12 h-6 rounded-full p-1 transition-colors ${value ? 'bg-ocean-500' : 'bg-sand-300 dark:bg-earth-600'}`}>
+        <div className={`w-4 h-4 rounded-full bg-white transition-transform ${value ? 'translate-x-6' : ''}`} />
+      </div>
+    </div>
+  </button>
+  )
+}
+
 export default function WaterCalculatorPage() {
   const [currentStep, setCurrentStep] = useState<Category>('indoor')
   const [formData, setFormData] = useState<FormData>(initialData)
@@ -232,98 +332,6 @@ export default function WaterCalculatorPage() {
       setCurrentStep(steps[currentStepIndex - 1].id)
     }
   }
-
-  const SliderInput = ({
-    label,
-    value,
-    onChange,
-    min,
-    max,
-    step = 1,
-    unit = '',
-    helpText
-  }: {
-    label: string
-    value: number
-    onChange: (val: number) => void
-    min: number
-    max: number
-    step?: number
-    unit?: string
-    helpText?: string
-  }) => (
-    <div className="space-y-3">
-      <div className="flex justify-between items-center">
-        <label className="font-bold text-earth-800 dark:text-sand-200">{label}</label>
-        <span className="text-2xl font-black text-ocean-600 dark:text-ocean-400">
-          {value}{unit}
-        </span>
-      </div>
-      {helpText && (
-        <p className="text-sm text-earth-600 dark:text-sand-400">{helpText}</p>
-      )}
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full h-3 bg-sand-200 dark:bg-earth-700 rounded-lg appearance-none cursor-pointer accent-ocean-500"
-      />
-      <div className="flex justify-between text-xs font-medium text-earth-500 dark:text-sand-500">
-        <span>{min}{unit}</span>
-        <span>{max}{unit}</span>
-      </div>
-    </div>
-  )
-
-  const OptionButton = ({
-    selected,
-    onClick,
-    children
-  }: {
-    selected: boolean
-    onClick: () => void
-    children: React.ReactNode
-  }) => (
-    <button
-      onClick={onClick}
-      className={`px-4 py-3 rounded-xl font-bold transition-all ${
-        selected
-          ? 'bg-ocean-500 text-white shadow-lg scale-105'
-          : 'bg-sand-100 dark:bg-earth-700 text-earth-700 dark:text-sand-300 hover:bg-sand-200 dark:hover:bg-earth-600'
-      }`}
-    >
-      {children}
-    </button>
-  )
-
-  const ToggleButton = ({
-    value,
-    onChange,
-    label
-  }: {
-    value: boolean
-    onChange: (val: boolean) => void
-    label: string
-  }) => (
-    <button
-      onClick={() => onChange(!value)}
-      className={`w-full p-4 rounded-xl font-bold transition-all border-2 ${
-        value
-          ? 'bg-ocean-100 dark:bg-ocean-900 border-ocean-500 text-ocean-700 dark:text-ocean-300'
-          : 'bg-sand-50 dark:bg-earth-800 border-sand-300 dark:border-earth-600 text-earth-600 dark:text-sand-400'
-      }`}
-    >
-      <div className="flex items-center justify-between">
-        <span>{label}</span>
-        <div className={`w-12 h-6 rounded-full p-1 transition-colors ${value ? 'bg-ocean-500' : 'bg-sand-300 dark:bg-earth-600'}`}>
-          <div className={`w-4 h-4 rounded-full bg-white transition-transform ${value ? 'translate-x-6' : ''}`} />
-        </div>
-      </div>
-    </button>
-  )
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-ocean-50 via-sand-50 to-moss-50 dark:from-earth-900 dark:via-earth-800 dark:to-earth-900">

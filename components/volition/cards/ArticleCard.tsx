@@ -34,6 +34,11 @@ export function ArticleCard({
   const isCompact = viewMode === 'compact'
   const isMinimal = viewMode === 'minimal'
 
+
+  const [showMenu, setShowMenu] = useState(false)
+  const isPublished = article.status === 'PUBLISHED'
+  const isDraft = article.status === 'DRAFT'
+
   // Minimal view - just title header
   if (isMinimal) {
     return (
@@ -47,10 +52,6 @@ export function ArticleCard({
       </div>
     )
   }
-
-  const [showMenu, setShowMenu] = useState(false)
-  const isPublished = article.status === 'PUBLISHED'
-  const isDraft = article.status === 'DRAFT'
 
   if (isCompact) {
     return (

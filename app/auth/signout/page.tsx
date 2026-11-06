@@ -6,22 +6,22 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { LogOut } from 'lucide-react'
 import { useEffect } from 'react'
 
+const handleSignOut = async () => {
+  await signOut({
+    callbackUrl: '/',
+    redirect: true
+  })
+}
+
 export default function SignOutPage() {
   useEffect(() => {
-    // Auto sign out after 3 seconds if user doesn't click
+    // Auto sign out after 5 seconds if user doesn't click
     const timer = setTimeout(() => {
       handleSignOut()
     }, 5000)
 
     return () => clearTimeout(timer)
   }, [])
-
-  const handleSignOut = async () => {
-    await signOut({
-      callbackUrl: '/',
-      redirect: true
-    })
-  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[color-mix(in_srgb,var(--muted)_50%,var(--background))] via-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[color-mix(in_srgb,var(--accent)_15%,var(--background))] p-4">

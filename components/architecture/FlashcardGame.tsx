@@ -166,54 +166,17 @@ export function FlashcardGame({ config: userConfig, onComplete, onExit, showConf
     })
   }, [])
 
-  // Handle answer selection
-  const handleAnswer = useCallback((answerId: string) => {
-    if (selectedAnswer !== null || gameState.phase !== 'playing') return
-
-    const current = elements[gameState.currentIndex]
-    const correct = answerId === current.id
-    const timeMs = Date.now() - questionStartRef.current
-
-    setSelectedAnswer(answerId)
-    setIsCorrect(correct)
-
-    // Play sound
-    if (soundEnabled) {
-      const audio = new Audio(correct ? '/sounds/correct.mp3' : '/sounds/wrong.mp3')
-      audio.volume = 0.3
-      audio.play().catch(() => {}) // Ignore audio errors
-    }
-
-    // Update state
-    setGameState(prev => {
-      const newStreak = correct ? prev.streak + 1 : 0
-      return {
-        ...prev,
-        score: prev.score + (correct ? 100 + (prev.streak * 10) : 0),
-        streak: newStreak,
-        maxStreak: Math.max(prev.maxStreak, newStreak),
-        answers: [...prev.answers, { elementId: current.id, correct, timeMs }],
-      }
-    })
-
-    // Move to next question after delay
-    setTimeout(() => {
-      setSelectedAnswer(null)
-      setIsCorrect(null)
-
-      if (gameState.currentIndex + 1 >= elements.length) {
-        finishGame()
-      } else {
-        setGameState(prev => ({
-          ...prev,
-          currentIndex: prev.currentIndex + 1,
-        }))
-      }
-    }, 1000)
-  }, [selectedAnswer, gameState.phase, gameState.currentIndex, elements, soundEnabled])
+  // Mirror of gameState for callbacks that fire after a delay
+  const gameStateRef = useRef(gameState)
+  useEffect(() => {
+    gameStateRef.current = gameState
+  }, [gameState])
 
   // Finish game
   const finishGame = useCallback(async () => {
+    // Read the latest state: this runs from a timeout scheduled before the final
+    // answer's state update committed, so the render-time `gameState` is stale.
+    const gameState = gameStateRef.current
     const finalElapsed = Date.now() - gameState.startTime
     const beatPB = bestTime ? finalElapsed < bestTime : false
 
@@ -274,7 +237,54 @@ export function FlashcardGame({ config: userConfig, onComplete, onExit, showConf
     if (onComplete) {
       onComplete(gameState)
     }
-  }, [gameState, bestTime, onComplete, config, elements.length])
+  }, [bestTime, onComplete, config, elements.length])
+
+  // Handle answer selection
+  const handleAnswer = useCallback((answerId: string) => {
+    if (selectedAnswer !== null || gameState.phase !== 'playing') return
+
+    const current = elements[gameState.currentIndex]
+    const correct = answerId === current.id
+    const timeMs = Date.now() - questionStartRef.current
+
+    setSelectedAnswer(answerId)
+    setIsCorrect(correct)
+
+    // Play sound
+    if (soundEnabled) {
+      const audio = new Audio(correct ? '/sounds/correct.mp3' : '/sounds/wrong.mp3')
+      audio.volume = 0.3
+      audio.play().catch(() => {}) // Ignore audio errors
+    }
+
+    // Update state
+    setGameState(prev => {
+      const newStreak = correct ? prev.streak + 1 : 0
+      return {
+        ...prev,
+        score: prev.score + (correct ? 100 + (prev.streak * 10) : 0),
+        streak: newStreak,
+        maxStreak: Math.max(prev.maxStreak, newStreak),
+        answers: [...prev.answers, { elementId: current.id, correct, timeMs }],
+      }
+    })
+
+    // Move to next question after delay
+    setTimeout(() => {
+      setSelectedAnswer(null)
+      setIsCorrect(null)
+
+      if (gameState.currentIndex + 1 >= elements.length) {
+        finishGame()
+      } else {
+        setGameState(prev => ({
+          ...prev,
+          currentIndex: prev.currentIndex + 1,
+        }))
+      }
+    }, 1000)
+  }, [selectedAnswer, gameState.phase, gameState.currentIndex, elements, soundEnabled, finishGame])
+
 
   // Format time
   const formatTime = (ms: number) => {
