@@ -70,7 +70,7 @@ export const authConfig = {
       }
 
       // All other matched routes require authentication
-      // The middleware matcher in middleware.ts controls which routes reach this point
+      // The proxy matcher in proxy.ts controls which routes reach this point
       if (!isLoggedIn) {
         return false // Redirects to signIn page defined above
       }

@@ -3,7 +3,7 @@ import { authConfig } from "./auth.config"
 
 export default NextAuth(authConfig).auth
 
-// Configure which routes to run middleware on
+// Configure which routes the proxy (formerly middleware) runs on
 export const config = {
   matcher: [
     '/admin/:path*',      // Protect all admin routes

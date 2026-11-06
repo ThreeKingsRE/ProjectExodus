@@ -19,7 +19,7 @@ Database access uses a Prisma singleton pattern (`lib/db/prisma.ts:1-38`) with a
 - `app/layout.tsx:58-171` - Root layout with provider stack
 - `auth.ts:9-102` - Full NextAuth configuration
 - `auth.config.ts:5-37` - Edge-compatible auth config for middleware
-- `middleware.ts:1-13` - Route protection (admin, auth, profile)
+- `proxy.ts` - Route protection (Next 16 proxy, formerly middleware)
 - `prisma/schema.prisma:1-973` - Complete database schema (30+ models)
 - `lib/smoothThemeEngine.ts:1-841` - Theme color interpolation engine
 - `components/providers/TimeThemeProvider.tsx:1-292` - Solar-based theme provider
