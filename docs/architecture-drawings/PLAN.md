@@ -1,10 +1,10 @@
 # Architecture Drawings: Technical Redesign + Expansion Plan
 
-Status: **in progress.** Decisions below are settled; the data-load fix and the first two drawing families are live.
+Status: **redraw complete (239/239).** The data-load fix and every drawing are live; the legacy inline SVG registry is deleted. Next: the expansion (§3).
 
 ### Decisions (from Mr. Nobody)
 - **Look:** paper (ink on vellum) only. No blueprint mode.
-- **Views:** one view per element, chosen by type: columns in **half section / half elevation**, arches and openings in **elevation**, and **plan** for elements that don't need a section (floors, gardens, urban layouts, ceilings as reflected plans).
+- **Views:** one view per element, chosen by type: columns in **half section / half elevation**, arches and openings in **elevation**, **plan** for elements that don't need a section (floors, gardens, urban layouts, ceilings as reflected plans), **section** where the build-up is the point (envelopes, roofs, fireplaces), and a **paraline view** (isometric or oblique) where the element only reads in 3D (free plan, sculptural stair, transept, quoins, loggia, porte-cochère).
 - **Sources:** redrawing from public-domain survey drawings is fine, and **every drawing carries its source credit on the image itself**, on both the full sheet and the unlabeled plate. The build refuses to produce a drawing without one.
 - **Order:** fix the data load first, then redraw.
 
@@ -12,11 +12,11 @@ Status: **in progress.** Decisions below are settled; the data-load fix and the 
 | Step | Status |
 |---|---|
 | Data load: summaries to the client, full text per element on demand | ✅ ~770 KB gz less JS per architecture page |
-| Drawing system: sheet + plate rendering, manifest, CI checks, `ElementDrawing` with legacy fallback | ✅ |
-| Classical orders (Tuscan, Doric, Ionic, Corinthian, Composite) | ✅ half section / half elevation, after Vignola (1562) |
-| Arches (round, pointed, horseshoe, ogee, Tudor, trefoil, keystone, voussoir) | ✅ elevation, original compass constructions |
-| Remaining columns: pilaster, entasis, caryatid | next |
-| Vaults, domes, roofs, windows, doors, floors (plan), ceilings (RCP), walls, gardens (plan), urban (plan) … | queued, by family |
+| Drawing system: sheet + plate rendering, manifest, CI checks (coverage, credit, size, fit) | ✅ |
+| All 239 elements, in 12 families (orders, arches, vaults, floors, stairs, roofs, interiors, openings, structure, landscape, rooms, religious, decorative, façade) | ✅ avg 2.4 KB gz per file |
+| Paraline views (`axo`, `face`, `box`, `axoWall` in `kit.ts`) | ✅ |
+| Legacy inline SVG registry (`ArchitectureSVG`, ~900 KB of TSX) | ✅ deleted; only the comparison-page components remain |
+| Expansion toward 450+ elements | next |
 
 Generator code: `scripts/architecture/drawings/` (`npm run arch:drawings`). Output: `public/architecture/drawings/<id>.svg` (sheet) and `<id>.plate.svg` (unlabeled plate).
 

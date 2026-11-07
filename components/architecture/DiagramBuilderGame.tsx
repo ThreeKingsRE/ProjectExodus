@@ -11,7 +11,6 @@ import {
 import type { LearningLevel } from '@/data/architecture/types'
 import type { ElementSummary } from '@/data/architecture/summary'
 import { ELEMENT_SUMMARIES } from '@/data/architecture/summary'
-import { ArchitectureSVG } from './ArchitectureSVG'
 
 interface DiagramLabel {
   id: string

@@ -1,6 +1,5 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import manifest from '@/data/architecture/drawings-manifest.json'
 
 /**
@@ -13,14 +12,9 @@ import manifest from '@/data/architecture/drawings-manifest.json'
  *  - variant "sheet": full sheet with title block, labels, dimensions and
  *    source. Use on detail views.
  *
- * Elements not yet redrawn fall back to the legacy inline SVG components,
- * which are code-split so pages only load them when a fallback is shown.
+ * Every element in the summaries has a drawing (the drawings build fails
+ * otherwise); an unknown id renders an empty placeholder of the same size.
  */
-
-const LegacyArchitectureSVG = dynamic(
-  () => import('./ArchitectureSVG').then((m) => m.ArchitectureSVG),
-  { loading: () => <div className="w-full h-full animate-pulse rounded bg-[var(--muted)]" /> }
-)
 
 type ManifestEntry = { view: string; sheetNo: string; source: string; aspect: number }
 const DRAWINGS = manifest as Record<string, ManifestEntry>
@@ -40,7 +34,7 @@ interface ElementDrawingProps {
   /** Accessible name. Leave generic in games so it doesn't reveal the answer. */
   alt?: string
   className?: string
-  /** Height in px (legacy fallback: square icon size) */
+  /** Height in px */
   size?: number
 }
 
@@ -67,5 +61,5 @@ export function ElementDrawing({
       />
     )
   }
-  return <LegacyArchitectureSVG category={category} elementId={elementId} size={size} className={className} />
+  return <div aria-hidden className={`rounded-sm bg-[var(--muted)] ${className}`} style={size ? { height: size, width: size } : undefined} data-category={category} />
 }

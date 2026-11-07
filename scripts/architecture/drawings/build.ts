@@ -65,6 +65,8 @@ for (const spec of specs) {
   }
 }
 
+for (const id of known) if (!manifest[id]) problems.push(`${id}: element has no drawing`)
+
 const manifestJson = JSON.stringify(manifest, null, 1) + '\n'
 
 if (problems.length) {
