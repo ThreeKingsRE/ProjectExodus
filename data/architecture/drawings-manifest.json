@@ -664,5 +664,137 @@
   "sheetNo": "DOR-11",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 0.643
+ },
+ "x-bracing": {
+  "view": "ELEVATION",
+  "sheetNo": "STC-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.121
+ },
+ "chevron-bracing": {
+  "view": "ELEVATION",
+  "sheetNo": "STC-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.121
+ },
+ "diagonal-bracing": {
+  "view": "ELEVATION",
+  "sheetNo": "STC-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.121
+ },
+ "pratt-truss": {
+  "view": "ELEVATION",
+  "sheetNo": "STC-04",
+  "source": "Truss form patented by Thomas and Caleb Pratt (1844). Force pattern for gravity load on a simply supported span. Original drawing by Project Exodus.",
+  "aspect": 2.168
+ },
+ "dead-load": {
+  "view": "SECTION",
+  "sheetNo": "STC-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.264
+ },
+ "spread-footing": {
+  "view": "SECTION",
+  "sheetNo": "STC-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.126
+ },
+ "space-frame": {
+  "view": "PLAN",
+  "sheetNo": "STC-07",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "tension-cable": {
+  "view": "SECTION",
+  "sheetNo": "STC-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.309
+ },
+ "diagrid-structure": {
+  "view": "ELEVATION",
+  "sheetNo": "STC-09",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.673
+ },
+ "mass-timber": {
+  "view": "SECTION",
+  "sheetNo": "STC-10",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.195
+ },
+ "exposed-structure": {
+  "view": "ELEVATION",
+  "sheetNo": "STC-11",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.179
+ },
+ "gerberette": {
+  "view": "ELEVATION",
+  "sheetNo": "STC-12",
+  "source": "After the gerberettes of the Centre Pompidou, Paris (1977; Piano & Rogers, engineer Peter Rice, Arup), named for Heinrich Gerber. Simplified; not a survey.",
+  "aspect": 1.123
+ },
+ "massive-cantilever": {
+  "view": "SECTION",
+  "sheetNo": "STC-13",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.276
+ },
+ "setback-tower": {
+  "view": "ELEVATION",
+  "sheetNo": "STC-14",
+  "source": "Setback rules of the New York 1916 Zoning Resolution. Generic original drawing by Project Exodus; not a specific building.",
+  "aspect": 0.936
+ },
+ "exposed-service-tower": {
+  "view": "PLAN",
+  "sheetNo": "STC-15",
+  "source": "Served and servant spaces, an idea articulated by Louis Kahn (e.g. Richards Medical Research Laboratories, 1957–65). Generic original drawing by Project Exodus.",
+  "aspect": 1
+ },
+ "piloti": {
+  "view": "ELEVATION",
+  "sheetNo": "STC-16",
+  "source": "One of Le Corbusier’s Five Points of a New Architecture (1926/27). Generic original drawing by Project Exodus.",
+  "aspect": 1.54
+ },
+ "stilt-house": {
+  "view": "ELEVATION",
+  "sheetNo": "STC-17",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "trullo": {
+  "view": "SECTION",
+  "sheetNo": "STC-18",
+  "source": "Form of the trulli of Alberobello, Apulia (UNESCO World Heritage). Generic original drawing by Project Exodus; not a survey.",
+  "aspect": 0.953
+ },
+ "windcatcher": {
+  "view": "SECTION",
+  "sheetNo": "STC-19",
+  "source": "Badgir form of the Iranian plateau (e.g. Yazd). Generic original drawing by Project Exodus; not a survey.",
+  "aspect": 0.848
+ },
+ "yurt": {
+  "view": "SECTION",
+  "sheetNo": "STC-20",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.272
+ },
+ "triple-stepped-platform": {
+  "view": "ELEVATION",
+  "sheetNo": "STC-21",
+  "source": "Stepped podium in the Aksumite and Ethiopian church tradition. Generic original drawing by Project Exodus; not a survey.",
+  "aspect": 1.891
+ },
+ "stone-and-chain-hoops": {
+  "view": "SECTION",
+  "sheetNo": "STC-22",
+  "source": "Principle as used in Brunelleschi’s dome of Santa Maria del Fiore, Florence (1420–36). Simplified; not a survey. Original drawing by Project Exodus.",
+  "aspect": 1.296
  }
 }

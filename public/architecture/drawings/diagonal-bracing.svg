@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Diagonal Bracing: elevation</title>
+  <desc id="d">Elevation of a steel frame with a single diagonal member across each storey of one bay, turning the rectangle into rigid triangles. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M160 480 L480 480 L480 498 L160 498 Z" fill="url(#h-concrete)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <circle cx="320" cy="480" r="3"/>
+    <circle cx="440" cy="380" r="3"/>
+    <circle cx="320" cy="380" r="3"/>
+    <circle cx="440" cy="280" r="3"/>
+    <circle cx="320" cy="280" r="3"/>
+    <circle cx="440" cy="180" r="3"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M196 180 L204 180 L204 480 L196 480 Z"/>
+    <path d="M316 180 L324 180 L324 480 L316 480 Z"/>
+    <path d="M436 180 L444 180 L444 480 L436 480 Z"/>
+    <path d="M200 376 L440 376 L440 384 L200 384 Z"/>
+    <path d="M200 276 L440 276 L440 284 L200 284 Z"/>
+    <path d="M200 176 L440 176 L440 184 L200 184 Z"/>
+    <path d="M160 480 L480 480 L480 498 L160 498 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M320 480L440 380" style="stroke: var(--_accent)" stroke-width="2.4"/>
+    <path d="M320 380L440 280" style="stroke: var(--_accent)" stroke-width="2.4"/>
+    <path d="M320 280L440 180" style="stroke: var(--_accent)" stroke-width="2.4"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M110 380L190 380M183.55 382.73L190 380L183.55 377.27" stroke-dasharray="none"/>
+    <path d="M110 280L190 280M183.55 282.73L190 280L183.55 277.27" stroke-dasharray="none"/>
+    <path d="M110 180L190 180M183.55 182.73L190 180L183.55 177.27" stroke-dasharray="none"/>
+    <path d="M200 480L222 180M320 480L342 180"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M320 520L440 520M316 524L324 516M436 524L444 516M320 514L320 526M440 514L440 526"/><text x="380" y="534" text-anchor="middle">BRACED BAY</text>
+    <path d="M470 480L470 380M466 484L474 476M466 384L474 376M460 480L476 480M460 380L476 380"/><text x="478" y="433">STOREY</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M64.4 278.75L86 278.75L217.5 280"/><circle cx="217.5" cy="280" r="1.5" class="solid"/><text x="34" y="281.75">BEAM</text>
+    <path d="M125.4 318.75L86 318.75L347.5 320"/><circle cx="347.5" cy="320" r="1.5" class="solid"/><text x="34" y="321.75">DIAGONAL BRACE</text>
+    <path d="M162 333.75L86 333.75L208.5 330"/><circle cx="208.5" cy="330" r="1.5" class="solid"/><text x="34" y="336.75">SWAY WITHOUT BRACING</text>
+    <path d="M76.6 428.75L86 428.75L193.5 430"/><circle cx="193.5" cy="430" r="1.5" class="solid"/><text x="34" y="431.75">COLUMN</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="110" y="170" class="t-small t-accent">WIND / SEISMIC</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">DIAGONAL BRACING</text>
+    <text class="t-sub" x="26" y="710">SINGLE DIAGONAL PER BAY</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  STC-03</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN QUARTERS OF BAY</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

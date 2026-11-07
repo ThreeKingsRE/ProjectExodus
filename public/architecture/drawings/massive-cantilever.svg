@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Massive Cantilever: section</title>
+  <desc id="d">Section through a deep concrete mass that projects far beyond the wall carrying it, balanced by a length held down inside, with its steel reinforcement along the top where it is pulled in tension. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M210 230 L260 230 L260 500 L210 500 Z" fill="url(#h-concrete)" stroke="none"/>
+    <path d="M100 160 L520 160 L520 230 L100 230 Z" fill="url(#h-concrete)" stroke="none"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M110 170L510 170" stroke-width="2"/>
+    <circle cx="120" cy="170" r="2" class="solid"/>
+    <circle cx="140" cy="170" r="2" class="solid"/>
+    <circle cx="160" cy="170" r="2" class="solid"/>
+    <circle cx="180" cy="170" r="2" class="solid"/>
+    <circle cx="200" cy="170" r="2" class="solid"/>
+    <circle cx="220" cy="170" r="2" class="solid"/>
+    <circle cx="240" cy="170" r="2" class="solid"/>
+    <circle cx="260" cy="170" r="2" class="solid"/>
+    <circle cx="280" cy="170" r="2" class="solid"/>
+    <circle cx="300" cy="170" r="2" class="solid"/>
+    <circle cx="320" cy="170" r="2" class="solid"/>
+    <circle cx="340" cy="170" r="2" class="solid"/>
+    <circle cx="360" cy="170" r="2" class="solid"/>
+    <circle cx="380" cy="170" r="2" class="solid"/>
+    <circle cx="400" cy="170" r="2" class="solid"/>
+    <circle cx="420" cy="170" r="2" class="solid"/>
+    <circle cx="440" cy="170" r="2" class="solid"/>
+    <circle cx="460" cy="170" r="2" class="solid"/>
+    <circle cx="480" cy="170" r="2" class="solid"/>
+    <circle cx="500" cy="170" r="2" class="solid"/>
+    <path d="M60 500L560 500"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M210 230 L260 230 L260 500 L210 500 Z"/>
+    <path d="M100 160 L520 160 L520 230 L100 230 Z"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M100 260Q220 260 235 340Q320 270 520 260"/>
+    <path d="M500 110L500 154M497.27 147.55L500 154L502.73 147.55" stroke-dasharray="none"/>
+    <path d="M120 260L120 226M122.73 232.45L120 226L117.27 232.45" stroke-dasharray="none"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M260 140L520 140M256 144L264 136M516 144L524 136M260 134L260 146M520 134L520 146"/><text x="390" y="154" text-anchor="middle">PROJECTION</text>
+    <path d="M100 140L260 140M96 144L104 136M256 144L264 136M100 134L100 146M260 134L260 146"/><text x="180" y="154" text-anchor="middle">BACK-SPAN</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M155.9 170L107.5 170"/><circle cx="107.5" cy="170" r="1.5" class="solid"/><text x="34" y="173">TENSION STEEL (TOP)</text>
+    <path d="M143.7 195L137.5 195"/><circle cx="137.5" cy="195" r="1.5" class="solid"/><text x="34" y="198">CANTILEVERED SLAB</text>
+    <path d="M131.5 370L207.5 370"/><circle cx="207.5" cy="370" r="1.5" class="solid"/><text x="34" y="373">SUPPORTING WALL</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="320" y="300" class="t-small t-accent">BENDING MOMENT (MAX AT SUPPORT)</text>
+    <text x="126" y="250" class="t-small t-accent">HOLD-DOWN</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">MASSIVE CANTILEVER</text>
+    <text class="t-sub" x="26" y="710">HEAVY CONCRETE PROJECTING FAR PAST ITS SUPPORT</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  STC-13</text>
+    <text class="t-small" x="416" y="699">SECTION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="40" height="5" class="solid"/><rect x="456" y="730" width="40" height="5" class="ink l-fine"/><rect x="496" y="730" width="40" height="5" class="solid"/><rect x="536" y="730" width="40" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="574" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

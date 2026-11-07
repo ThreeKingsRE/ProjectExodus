@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Pratt Truss: elevation</title>
+  <desc id="d">Elevation of a bridge-style truss: a top and bottom chord joined by vertical struts and by diagonals that slope down toward the middle, so under load the diagonals pull and the verticals push. Source: Truss form patented by Thomas and Caleb Pratt (1844). Force pattern for gravity load on a simply supported span. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M124 400h32"/>
+    <path d="M126 400L121 406"/>
+    <path d="M132 400L127 406"/>
+    <path d="M138 400L133 406"/>
+    <path d="M144 400L139 406"/>
+    <path d="M150 400L145 406"/>
+    <path d="M514 408h32"/>
+    <path d="M516 408L511 414"/>
+    <path d="M522 408L517 414"/>
+    <path d="M528 408L523 414"/>
+    <path d="M534 408L529 414"/>
+    <path d="M540 408L535 414"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M140 286 L530 286 L530 294 L140 294 Z"/>
+    <path d="M140 376 L530 376 L530 384 L140 384 Z"/>
+    <path d="M140 380L140 290"/>
+    <path d="M205 380L205 290"/>
+    <path d="M270 380L270 290"/>
+    <path d="M335 380L335 290"/>
+    <path d="M400 380L400 290"/>
+    <path d="M465 380L465 290"/>
+    <path d="M530 380L530 290"/>
+    <circle cx="140" cy="380" r="3"/>
+    <circle cx="140" cy="290" r="3"/>
+    <circle cx="205" cy="380" r="3"/>
+    <circle cx="205" cy="290" r="3"/>
+    <circle cx="270" cy="380" r="3"/>
+    <circle cx="270" cy="290" r="3"/>
+    <circle cx="335" cy="380" r="3"/>
+    <circle cx="335" cy="290" r="3"/>
+    <circle cx="400" cy="380" r="3"/>
+    <circle cx="400" cy="290" r="3"/>
+    <circle cx="465" cy="380" r="3"/>
+    <circle cx="465" cy="290" r="3"/>
+    <circle cx="530" cy="380" r="3"/>
+    <circle cx="530" cy="290" r="3"/>
+    <path d="M140 384 L130 400 L150 400 Z"/>
+    <path d="M530 384 L520 400 L540 400 Z"/>
+    <circle cx="525" cy="404" r="4"/>
+    <circle cx="535" cy="404" r="4"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M140 290L205 380" style="stroke: var(--_accent)" stroke-width="1.8"/>
+    <path d="M205 290L270 380" style="stroke: var(--_accent)" stroke-width="1.8"/>
+    <path d="M270 290L335 380" style="stroke: var(--_accent)" stroke-width="1.8"/>
+    <path d="M400 290L335 380" style="stroke: var(--_accent)" stroke-width="1.8"/>
+    <path d="M465 290L400 380" style="stroke: var(--_accent)" stroke-width="1.8"/>
+    <path d="M530 290L465 380" style="stroke: var(--_accent)" stroke-width="1.8"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M205 230L205 282M202.27 275.55L205 282L207.73 275.55" stroke-dasharray="none"/>
+    <path d="M270 230L270 282M267.27 275.55L270 282L272.73 275.55" stroke-dasharray="none"/>
+    <path d="M335 230L335 282M332.27 275.55L335 282L337.73 275.55" stroke-dasharray="none"/>
+    <path d="M400 230L400 282M397.27 275.55L400 282L402.73 275.55" stroke-dasharray="none"/>
+    <path d="M465 230L465 282M462.27 275.55L465 282L467.73 275.55" stroke-dasharray="none"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M140 434L530 434M136 438L144 430M526 438L534 430M140 428L140 440M530 428L530 440"/><text x="335" y="448" text-anchor="middle">SPAN</text>
+    <path d="M554 380L554 290M550 384L558 376M550 294L558 286M544 380L560 380M544 290L560 290"/><text x="562" y="338">D</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M94.9 290L137.5 290"/><circle cx="137.5" cy="290" r="1.5" class="solid"/><text x="34" y="293">TOP CHORD</text>
+    <path d="M137.6 320L202.5 320"/><circle cx="202.5" cy="320" r="1.5" class="solid"/><text x="34" y="323">VERTICAL (STRUT)</text>
+    <path d="M125.4 335L170 335"/><circle cx="170" cy="335" r="1.5" class="solid"/><text x="34" y="338">DIAGONAL (TIE)</text>
+    <path d="M113.2 380L137.5 380"/><circle cx="137.5" cy="380" r="1.5" class="solid"/><text x="34" y="383">BOTTOM CHORD</text>
+    <path d="M107.1 396L127.5 396"/><circle cx="127.5" cy="396" r="1.5" class="solid"/><text x="34" y="399">PIN SUPPORT</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="172.5" y="280" text-anchor="middle" class="t-small t-accent">C</text>
+    <text x="237.5" y="280" text-anchor="middle" class="t-small t-accent">C</text>
+    <text x="302.5" y="280" text-anchor="middle" class="t-small t-accent">C</text>
+    <text x="367.5" y="280" text-anchor="middle" class="t-small t-accent">C</text>
+    <text x="432.5" y="280" text-anchor="middle" class="t-small t-accent">C</text>
+    <text x="497.5" y="280" text-anchor="middle" class="t-small t-accent">C</text>
+    <text x="172.5" y="398" text-anchor="middle" class="t-small t-accent">T</text>
+    <text x="237.5" y="398" text-anchor="middle" class="t-small t-accent">T</text>
+    <text x="302.5" y="398" text-anchor="middle" class="t-small t-accent">T</text>
+    <text x="367.5" y="398" text-anchor="middle" class="t-small t-accent">T</text>
+    <text x="432.5" y="398" text-anchor="middle" class="t-small t-accent">T</text>
+    <text x="497.5" y="398" text-anchor="middle" class="t-small t-accent">T</text>
+    <text x="209" y="335" class="t-small t-accent">C</text>
+    <text x="274" y="335" class="t-small t-accent">C</text>
+    <text x="339" y="335" class="t-small t-accent">C</text>
+    <text x="404" y="335" class="t-small t-accent">C</text>
+    <text x="469" y="335" class="t-small t-accent">C</text>
+    <text x="530" y="220" text-anchor="end" class="t-small t-accent">C = COMPRESSION · T = TENSION</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">PRATT TRUSS</text>
+    <text class="t-sub" x="26" y="710">VERTICALS IN COMPRESSION, DIAGONALS IN TENSION</text>
+    <text class="t-small" x="26" y="726">SOURCE: Truss form patented by Thomas and Caleb Pratt (1844). Force</text>
+    <text class="t-small" x="26" y="736">pattern for gravity load on a simply supported span. Original drawing by</text>
+    <text class="t-small" x="26" y="746">Project Exodus.</text>
+    <text class="t-sub" x="416" y="684">SHEET  STC-04</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN PANELS</text>
+    <rect x="416" y="730" width="65" height="5" class="solid"/><rect x="481" y="730" width="65" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="544" y="749">2</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

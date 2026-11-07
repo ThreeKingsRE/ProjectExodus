@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="102 92 436 462" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a timber house standing on tall posts, its floor lifted clear of floodwater and damp ground, reached by a ladder and covered by a steep thatched roof. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="st-roof"><path d="M180 230 L330 110 L480 230 Z"/></clipPath>
+  </defs>
+  <rect class="paper" x="102" y="92" width="436" height="462"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M204 330 L216 330 L216 510 L204 510 Z" fill="url(#h-timber)" stroke="none"/>
+    <path d="M284 330 L296 330 L296 510 L284 510 Z" fill="url(#h-timber)" stroke="none"/>
+    <path d="M364 330 L376 330 L376 510 L364 510 Z" fill="url(#h-timber)" stroke="none"/>
+    <path d="M444 330 L456 330 L456 510 L444 510 Z" fill="url(#h-timber)" stroke="none"/>
+    <path d="M200 318 L460 318 L460 330 L200 330 Z" fill="url(#h-timber)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <path d="M220 222L220 316"/>
+    <path d="M232 222L232 316"/>
+    <path d="M244 222L244 316"/>
+    <path d="M256 222L256 316"/>
+    <path d="M268 222L268 316"/>
+    <path d="M280 222L280 316"/>
+    <path d="M292 222L292 316"/>
+    <path d="M304 222L304 316"/>
+    <path d="M316 222L316 316"/>
+    <path d="M328 222L328 316"/>
+    <path d="M340 222L340 316"/>
+    <path d="M352 222L352 316"/>
+    <path d="M364 222L364 316"/>
+    <path d="M376 222L376 316"/>
+    <path d="M388 222L388 316"/>
+    <path d="M400 222L400 316"/>
+    <path d="M412 222L412 316"/>
+    <path d="M424 222L424 316"/>
+    <path d="M436 222L436 316"/>
+    <g clip-path="url(#st-roof)"><path d="M-93.43 -1.78L501.78 -253.43M-90.7 4.67L504.5 -246.98M-87.98 11.12L507.23 -240.53M-85.25 17.56L509.96 -234.09M-82.53 24.01L512.68 -227.64M-79.8 30.46L515.41 -221.19M-77.07 36.91L518.13 -214.74M-74.35 43.35L520.86 -208.3M-71.62 49.8L523.59 -201.85M-68.9 56.25L526.31 -195.4M-66.17 62.7L529.04 -188.95M-63.44 69.14L531.76 -182.51M-60.72 75.59L534.49 -176.06M-57.99 82.04L537.22 -169.61M-55.27 88.48L539.94 -163.16M-52.54 94.93L542.67 -156.72M-49.81 101.38L545.39 -150.27M-47.09 107.83L548.12 -143.82M-44.36 114.27L550.85 -137.38M-41.64 120.72L553.57 -130.93M-38.91 127.17L556.3 -124.48M-36.18 133.62L559.02 -118.03M-33.46 140.06L561.75 -111.59M-30.73 146.51L564.48 -105.14M-28.01 152.96L567.2 -98.69M-25.28 159.41L569.93 -92.24M-22.55 165.85L572.65 -85.8M-19.83 172.3L575.38 -79.35M-17.1 178.75L578.1 -72.9M-14.38 185.2L580.83 -66.45M-11.65 191.64L583.56 -60.01M-8.93 198.09L586.28 -53.56M-6.2 204.54L589.01 -47.11M-3.47 210.99L591.73 -40.66M-0.75 217.43L594.46 -34.22M1.98 223.88L597.19 -27.77M4.7 230.33L599.91 -21.32M7.43 236.78L602.64 -14.87M10.16 243.22L605.36 -8.43M12.88 249.67L608.09 -1.98M15.61 256.12L610.82 4.47M18.33 262.57L613.54 10.92M21.06 269.01L616.27 17.36M23.79 275.46L618.99 23.81M26.51 281.91L621.72 30.26M29.24 288.36L624.45 36.71M31.96 294.8L627.17 43.15M34.69 301.25L629.9 49.6M37.42 307.7L632.62 56.05M40.14 314.14L635.35 62.5M42.87 320.59L638.08 68.94M45.59 327.04L640.8 75.39M48.32 333.49L643.53 81.84M51.05 339.93L646.25 88.28M53.77 346.38L648.98 94.73M56.5 352.83L651.71 101.18M59.22 359.28L654.43 107.63M61.95 365.72L657.16 114.07M64.68 372.17L659.88 120.52M67.4 378.62L662.61 126.97M70.13 385.07L665.33 133.42M72.85 391.51L668.06 139.86M75.58 397.96L670.79 146.31M78.3 404.41L673.51 152.76M81.03 410.86L676.24 159.21M83.76 417.3L678.96 165.65M86.48 423.75L681.69 172.1M89.21 430.2L684.42 178.55M91.93 436.65L687.14 185M94.66 443.09L689.87 191.44M97.39 449.54L692.59 197.89M100.11 455.99L695.32 204.34M102.84 462.44L698.05 210.79M105.56 468.88L700.77 217.23M108.29 475.33L703.5 223.68M111.02 481.78L706.22 230.13M113.74 488.23L708.95 236.58M116.47 494.67L711.68 243.02M119.19 501.12L714.4 249.47M121.92 507.57L717.13 255.92M124.65 514.02L719.85 262.37M127.37 520.46L722.58 268.81M130.1 526.91L725.31 275.26M132.82 533.36L728.03 281.71M135.55 539.8L730.76 288.16M138.28 546.25L733.48 294.6M141 552.7L736.21 301.05M143.73 559.15L738.93 307.5M146.45 565.59L741.66 313.94M149.18 572.04L744.39 320.39M151.9 578.49L747.11 326.84M154.63 584.94L749.84 333.29M157.36 591.38L752.56 339.73"/></g>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M174.3 459L186.3 459"/>
+    <path d="M178.6 438L190.6 438"/>
+    <path d="M182.9 417L194.9 417"/>
+    <path d="M187.2 396L199.2 396"/>
+    <path d="M191.5 375L203.5 375"/>
+    <path d="M195.8 354L207.8 354"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M210 220 L450 220 L450 318 L210 318 Z"/>
+    <path d="M180 230 L330 110 L480 230 Z"/>
+    <path d="M170 480L200 330"/>
+    <path d="M182 480L212 330"/>
+    <path d="M120 480L520 480"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M204 330 L216 330 L216 510 L204 510 Z"/>
+    <path d="M284 330 L296 330 L296 510 L284 510 Z"/>
+    <path d="M364 330 L376 330 L376 510 L364 510 Z"/>
+    <path d="M444 330 L456 330 L456 510 L444 510 Z"/>
+    <path d="M200 318 L460 318 L460 330 L200 330 Z"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M120 410L520 410"/>
+    <path d="M130 418q7 -6 14 0"/>
+    <path d="M160 418q7 -6 14 0"/>
+    <path d="M190 418q7 -6 14 0"/>
+    <path d="M220 418q7 -6 14 0"/>
+    <path d="M250 418q7 -6 14 0"/>
+    <path d="M280 418q7 -6 14 0"/>
+    <path d="M310 418q7 -6 14 0"/>
+    <path d="M340 418q7 -6 14 0"/>
+    <path d="M370 418q7 -6 14 0"/>
+    <path d="M400 418q7 -6 14 0"/>
+    <path d="M430 418q7 -6 14 0"/>
+    <path d="M460 418q7 -6 14 0"/>
+    <path d="M490 418q7 -6 14 0"/>
+  </g>
+  <text class="t-credit" x="108" y="543">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this</text>
+  <text class="t-credit" x="108" y="552">form; no external drawing reproduced.</text>
+</svg>

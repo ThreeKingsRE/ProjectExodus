@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Space Frame: plan</title>
+  <desc id="d">Plan of a roof structure made of two parallel grids of short steel members, the lower one offset by half a bay and linked to the upper by diagonals into pyramids, meeting at spherical joints. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M180 80 L200 80 L200 100 L180 100 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M530 80 L550 80 L550 100 L530 100 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M180 430 L200 430 L200 450 L180 450 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M530 430 L550 430 L550 450 L530 450 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M215 115V415M215 115H515M265 115V415M215 165H515M315 115V415M215 215H515M365 115V415M215 265H515M415 115V415M215 315H515M465 115V415M215 365H515M515 115V415M215 415H515" stroke-dasharray="5 3"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M190 90V440M190 90H540M240 90V440M190 140H540M290 90V440M190 190H540M340 90V440M190 240H540M390 90V440M190 290H540M440 90V440M190 340H540M490 90V440M190 390H540M540 90V440M190 440H540"/>
+    <circle cx="190" cy="90" r="2.6" class="solid"/>
+    <circle cx="190" cy="140" r="2.6" class="solid"/>
+    <circle cx="190" cy="190" r="2.6" class="solid"/>
+    <circle cx="190" cy="240" r="2.6" class="solid"/>
+    <circle cx="190" cy="290" r="2.6" class="solid"/>
+    <circle cx="190" cy="340" r="2.6" class="solid"/>
+    <circle cx="190" cy="390" r="2.6" class="solid"/>
+    <circle cx="190" cy="440" r="2.6" class="solid"/>
+    <circle cx="240" cy="90" r="2.6" class="solid"/>
+    <circle cx="240" cy="140" r="2.6" class="solid"/>
+    <circle cx="240" cy="190" r="2.6" class="solid"/>
+    <circle cx="240" cy="240" r="2.6" class="solid"/>
+    <circle cx="240" cy="290" r="2.6" class="solid"/>
+    <circle cx="240" cy="340" r="2.6" class="solid"/>
+    <circle cx="240" cy="390" r="2.6" class="solid"/>
+    <circle cx="240" cy="440" r="2.6" class="solid"/>
+    <circle cx="290" cy="90" r="2.6" class="solid"/>
+    <circle cx="290" cy="140" r="2.6" class="solid"/>
+    <circle cx="290" cy="190" r="2.6" class="solid"/>
+    <circle cx="290" cy="240" r="2.6" class="solid"/>
+    <circle cx="290" cy="290" r="2.6" class="solid"/>
+    <circle cx="290" cy="340" r="2.6" class="solid"/>
+    <circle cx="290" cy="390" r="2.6" class="solid"/>
+    <circle cx="290" cy="440" r="2.6" class="solid"/>
+    <circle cx="340" cy="90" r="2.6" class="solid"/>
+    <circle cx="340" cy="140" r="2.6" class="solid"/>
+    <circle cx="340" cy="190" r="2.6" class="solid"/>
+    <circle cx="340" cy="240" r="2.6" class="solid"/>
+    <circle cx="340" cy="290" r="2.6" class="solid"/>
+    <circle cx="340" cy="340" r="2.6" class="solid"/>
+    <circle cx="340" cy="390" r="2.6" class="solid"/>
+    <circle cx="340" cy="440" r="2.6" class="solid"/>
+    <circle cx="390" cy="90" r="2.6" class="solid"/>
+    <circle cx="390" cy="140" r="2.6" class="solid"/>
+    <circle cx="390" cy="190" r="2.6" class="solid"/>
+    <circle cx="390" cy="240" r="2.6" class="solid"/>
+    <circle cx="390" cy="290" r="2.6" class="solid"/>
+    <circle cx="390" cy="340" r="2.6" class="solid"/>
+    <circle cx="390" cy="390" r="2.6" class="solid"/>
+    <circle cx="390" cy="440" r="2.6" class="solid"/>
+    <circle cx="440" cy="90" r="2.6" class="solid"/>
+    <circle cx="440" cy="140" r="2.6" class="solid"/>
+    <circle cx="440" cy="190" r="2.6" class="solid"/>
+    <circle cx="440" cy="240" r="2.6" class="solid"/>
+    <circle cx="440" cy="290" r="2.6" class="solid"/>
+    <circle cx="440" cy="340" r="2.6" class="solid"/>
+    <circle cx="440" cy="390" r="2.6" class="solid"/>
+    <circle cx="440" cy="440" r="2.6" class="solid"/>
+    <circle cx="490" cy="90" r="2.6" class="solid"/>
+    <circle cx="490" cy="140" r="2.6" class="solid"/>
+    <circle cx="490" cy="190" r="2.6" class="solid"/>
+    <circle cx="490" cy="240" r="2.6" class="solid"/>
+    <circle cx="490" cy="290" r="2.6" class="solid"/>
+    <circle cx="490" cy="340" r="2.6" class="solid"/>
+    <circle cx="490" cy="390" r="2.6" class="solid"/>
+    <circle cx="490" cy="440" r="2.6" class="solid"/>
+    <circle cx="540" cy="90" r="2.6" class="solid"/>
+    <circle cx="540" cy="140" r="2.6" class="solid"/>
+    <circle cx="540" cy="190" r="2.6" class="solid"/>
+    <circle cx="540" cy="240" r="2.6" class="solid"/>
+    <circle cx="540" cy="290" r="2.6" class="solid"/>
+    <circle cx="540" cy="340" r="2.6" class="solid"/>
+    <circle cx="540" cy="390" r="2.6" class="solid"/>
+    <circle cx="540" cy="440" r="2.6" class="solid"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M215 115L190 90M215 115L240 90M215 115L240 140M215 115L190 140M215 165L190 140M215 165L240 140M215 165L240 190M215 165L190 190M215 215L190 190M215 215L240 190M215 215L240 240M215 215L190 240M215 265L190 240M215 265L240 240M215 265L240 290M215 265L190 290M215 315L190 290M215 315L240 290M215 315L240 340M215 315L190 340M215 365L190 340M215 365L240 340M215 365L240 390M215 365L190 390M215 415L190 390M215 415L240 390M215 415L240 440M215 415L190 440M265 115L240 90M265 115L290 90M265 115L290 140M265 115L240 140M265 165L240 140M265 165L290 140M265 165L290 190M265 165L240 190M265 215L240 190M265 215L290 190M265 215L290 240M265 215L240 240M265 265L240 240M265 265L290 240M265 265L290 290M265 265L240 290M265 315L240 290M265 315L290 290M265 315L290 340M265 315L240 340M265 365L240 340M265 365L290 340M265 365L290 390M265 365L240 390M265 415L240 390M265 415L290 390M265 415L290 440M265 415L240 440M315 115L290 90M315 115L340 90M315 115L340 140M315 115L290 140M315 165L290 140M315 165L340 140M315 165L340 190M315 165L290 190M315 215L290 190M315 215L340 190M315 215L340 240M315 215L290 240M315 265L290 240M315 265L340 240M315 265L340 290M315 265L290 290M315 315L290 290M315 315L340 290M315 315L340 340M315 315L290 340M315 365L290 340M315 365L340 340M315 365L340 390M315 365L290 390M315 415L290 390M315 415L340 390M315 415L340 440M315 415L290 440M365 115L340 90M365 115L390 90M365 115L390 140M365 115L340 140M365 165L340 140M365 165L390 140M365 165L390 190M365 165L340 190M365 215L340 190M365 215L390 190M365 215L390 240M365 215L340 240M365 265L340 240M365 265L390 240M365 265L390 290M365 265L340 290M365 315L340 290M365 315L390 290M365 315L390 340M365 315L340 340M365 365L340 340M365 365L390 340M365 365L390 390M365 365L340 390M365 415L340 390M365 415L390 390M365 415L390 440M365 415L340 440M415 115L390 90M415 115L440 90M415 115L440 140M415 115L390 140M415 165L390 140M415 165L440 140M415 165L440 190M415 165L390 190M415 215L390 190M415 215L440 190M415 215L440 240M415 215L390 240M415 265L390 240M415 265L440 240M415 265L440 290M415 265L390 290M415 315L390 290M415 315L440 290M415 315L440 340M415 315L390 340M415 365L390 340M415 365L440 340M415 365L440 390M415 365L390 390M415 415L390 390M415 415L440 390M415 415L440 440M415 415L390 440M465 115L440 90M465 115L490 90M465 115L490 140M465 115L440 140M465 165L440 140M465 165L490 140M465 165L490 190M465 165L440 190M465 215L440 190M465 215L490 190M465 215L490 240M465 215L440 240M465 265L440 240M465 265L490 240M465 265L490 290M465 265L440 290M465 315L440 290M465 315L490 290M465 315L490 340M465 315L440 340M465 365L440 340M465 365L490 340M465 365L490 390M465 365L440 390M465 415L440 390M465 415L490 390M465 415L490 440M465 415L440 440M515 115L490 90M515 115L540 90M515 115L540 140M515 115L490 140M515 165L490 140M515 165L540 140M515 165L540 190M515 165L490 190M515 215L490 190M515 215L540 190M515 215L540 240M515 215L490 240M515 265L490 240M515 265L540 240M515 265L540 290M515 265L490 290M515 315L490 290M515 315L540 290M515 315L540 340M515 315L490 340M515 365L490 340M515 365L540 340M515 365L540 390M515 365L490 390M515 415L490 390M515 415L540 390M515 415L540 440M515 415L490 440" style="stroke: var(--_accent)" stroke-width="0.8"/>
+    <path d="M180 80 L200 80 L200 100 L180 100 Z"/>
+    <path d="M530 80 L550 80 L550 100 L530 100 Z"/>
+    <path d="M180 430 L200 430 L200 450 L180 450 Z"/>
+    <path d="M530 430 L550 430 L550 450 L530 450 Z"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <circle cx="340" cy="240" r="22"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M190 468L240 468M186 472L194 464M236 472L244 464M190 462L190 474M240 462L240 474"/><text x="215" y="482" text-anchor="middle">MODULE</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M125.4 140L187.5 140"/><circle cx="187.5" cy="140" r="1.5" class="solid"/><text x="34" y="143">TOP CHORD GRID</text>
+    <path d="M162 215L212.5 215"/><circle cx="212.5" cy="215" r="1.5" class="solid"/><text x="34" y="218">BOTTOM GRID (DASHED)</text>
+    <path d="M113.2 302.5L225 302.5"/><circle cx="225" cy="302.5" r="1.5" class="solid"/><text x="34" y="305.5">DIAGONAL WEB</text>
+    <path d="M125.4 440L177.5 440"/><circle cx="177.5" cy="440" r="1.5" class="solid"/><text x="34" y="443">SUPPORT COLUMN</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="366" y="218" class="t-small t-accent">BALL JOINT (NODE)</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">SPACE FRAME</text>
+    <text class="t-sub" x="26" y="710">TWO LAYERS OF GRID JOINED BY DIAGONALS</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  STC-07</text>
+    <text class="t-small" x="416" y="699">PLAN</text>
+    <text class="t-small" x="416" y="724">SCALE IN MODULES</text>
+    <rect x="416" y="730" width="50" height="5" class="solid"/><rect x="466" y="730" width="50" height="5" class="ink l-fine"/><rect x="516" y="730" width="50" height="5" class="solid"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="564" y="749">3</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

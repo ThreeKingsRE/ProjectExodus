@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="112 62 466 522" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a tall building that steps inward in stages as it rises, keeping inside an imaginary sloping plane drawn from the far side of the street so daylight reaches the pavement. Source: Setback rules of the New York 1916 Zoning Resolution. Generic original drawing by Project Exodus; not a specific building.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="112" y="62" width="466" height="522"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M250 416L250 514"/>
+    <path d="M270 416L270 514"/>
+    <path d="M290 416L290 514"/>
+    <path d="M310 416L310 514"/>
+    <path d="M330 416L330 514"/>
+    <path d="M350 416L350 514"/>
+    <path d="M370 416L370 514"/>
+    <path d="M390 416L390 514"/>
+    <path d="M410 416L410 514"/>
+    <path d="M430 416L430 514"/>
+    <path d="M450 416L450 514"/>
+    <path d="M470 416L470 514"/>
+    <path d="M490 416L490 514"/>
+    <path d="M510 416L510 514"/>
+    <path d="M280 316L280 404"/>
+    <path d="M300 316L300 404"/>
+    <path d="M320 316L320 404"/>
+    <path d="M340 316L340 404"/>
+    <path d="M360 316L360 404"/>
+    <path d="M380 316L380 404"/>
+    <path d="M400 316L400 404"/>
+    <path d="M420 316L420 404"/>
+    <path d="M440 316L440 404"/>
+    <path d="M460 316L460 404"/>
+    <path d="M480 316L480 404"/>
+    <path d="M310 226L310 304"/>
+    <path d="M330 226L330 304"/>
+    <path d="M350 226L350 304"/>
+    <path d="M370 226L370 304"/>
+    <path d="M390 226L390 304"/>
+    <path d="M410 226L410 304"/>
+    <path d="M430 226L430 304"/>
+    <path d="M450 226L450 304"/>
+    <path d="M340 146L340 214"/>
+    <path d="M360 146L360 214"/>
+    <path d="M380 146L380 214"/>
+    <path d="M400 146L400 214"/>
+    <path d="M420 146L420 214"/>
+    <path d="M360 86L360 134"/>
+    <path d="M380 86L380 134"/>
+    <path d="M400 86L400 134"/>
+    <path d="M150 520L150 490"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M230 410 L530 410 L530 520 L230 520 Z"/>
+    <path d="M260 310 L500 310 L500 410 L260 410 Z"/>
+    <path d="M290 220 L470 220 L470 310 L290 310 Z"/>
+    <path d="M320 140 L440 140 L440 220 L320 220 Z"/>
+    <path d="M340 80 L420 80 L420 140 L340 140 Z"/>
+    <path d="M130 520L560 520"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M150 520L360 50"/>
+  </g>
+  <text class="t-credit" x="118" y="573">SOURCE: Setback rules of the New York 1916 Zoning Resolution. Generic original drawing by Project</text>
+  <text class="t-credit" x="118" y="582">Exodus; not a specific building.</text>
+</svg>
