@@ -268,5 +268,101 @@
   "sheetNo": "STR-14",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 1.422
+ },
+ "gable": {
+  "view": "ELEVATION",
+  "sheetNo": "ROF-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.06
+ },
+ "hip-roof": {
+  "view": "ROOF PLAN",
+  "sheetNo": "ROF-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.583
+ },
+ "mansard": {
+  "view": "SECTION",
+  "sheetNo": "ROF-03",
+  "source": "Form named after François Mansart (1598–1666). Original drawing by Project Exodus.",
+  "aspect": 1.877
+ },
+ "thatch-roof": {
+  "view": "SECTION",
+  "sheetNo": "ROF-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.034
+ },
+ "cupola": {
+  "view": "ELEVATION",
+  "sheetNo": "ROF-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.219
+ },
+ "lantern": {
+  "view": "ELEVATION",
+  "sheetNo": "ROF-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.219
+ },
+ "buttress": {
+  "view": "SECTION",
+  "sheetNo": "ROF-07",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.075
+ },
+ "flying-buttress": {
+  "view": "SECTION",
+  "sheetNo": "ROF-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.991
+ },
+ "stepped-crown": {
+  "view": "ELEVATION",
+  "sheetNo": "ROF-09",
+  "source": "Setback form as encouraged by the New York 1916 Zoning Resolution. Original, generic drawing by Project Exodus; not a specific building.",
+  "aspect": 0.562
+ },
+ "battlement": {
+  "view": "ELEVATION",
+  "sheetNo": "FRT-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.346
+ },
+ "merlon": {
+  "view": "ELEVATION",
+  "sheetNo": "FRT-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.346
+ },
+ "crenel": {
+  "view": "ELEVATION",
+  "sheetNo": "FRT-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.346
+ },
+ "machicolation": {
+  "view": "SECTION",
+  "sheetNo": "FRT-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "portcullis": {
+  "view": "ELEVATION",
+  "sheetNo": "FRT-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.272
+ },
+ "pilaster": {
+  "view": "PLAN SECTION",
+  "sheetNo": "COL-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.56
+ },
+ "entasis": {
+  "view": "ELEVATION",
+  "sheetNo": "COL-07",
+  "source": "Entasis as described by Vitruvius, De architectura, Book III. Curve exaggerated for clarity. Original drawing by Project Exodus.",
+  "aspect": 0.351
  }
 }

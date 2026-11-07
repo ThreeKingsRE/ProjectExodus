@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="232 62 196 550" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a column shaft whose outline bows gently outward instead of tapering in a straight line, shown against a straight taper with the curve exaggerated so it can be seen. Source: Entasis as described by Vitruvius, De architectura, Book III. Curve exaggerated for clarity. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="232" y="62" width="196" height="550"/>
+  <g class="layer-profile ink l-profile">
+    <path d="M390 520 L390.32 510 L390.63 500 L390.94 490 L391.24 480 L391.53 470 L391.8 460 L392.05 450 L392.29 440 L392.5 430 L392.69 420 L392.85 410 L392.98 400 L393.08 390 L393.14 380 L393.17 370 L393.16 360 L393.11 350 L393.03 340 L392.9 330 L392.72 320 L392.51 310 L392.25 300 L391.94 290 L391.6 280 L391.2 270 L390.76 260 L390.28 250 L389.76 240 L389.19 230 L388.58 220 L387.93 210 L387.24 200 L386.52 190 L385.75 180 L384.96 170 L384.13 160 L383.27 150 L382.39 140 L381.47 130 L380.54 120 L279.46 120 L278.53 130 L277.61 140 L276.73 150 L275.87 160 L275.04 170 L274.25 180 L273.48 190 L272.76 200 L272.07 210 L271.42 220 L270.81 230 L270.24 240 L269.72 250 L269.24 260 L268.8 270 L268.4 280 L268.06 290 L267.75 300 L267.49 310 L267.28 320 L267.1 330 L266.97 340 L266.89 350 L266.84 360 L266.83 370 L266.86 380 L266.92 390 L267.02 400 L267.15 410 L267.31 420 L267.5 430 L267.71 440 L267.95 450 L268.2 460 L268.47 470 L268.76 480 L269.06 490 L269.37 500 L269.68 510 L270 520 Z"/>
+    <path d="M256 520 L404 520 L404 538 L256 538 Z"/>
+    <path d="M266 98 L394 98 L394 120 L266 120 Z"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M390 520L376 120"/>
+    <path d="M270 520L284 120"/>
+    <path d="M330 80L330 550"/>
+  </g>
+  <text class="t-credit" x="238" y="583">SOURCE: Entasis as described by</text>
+  <text class="t-credit" x="238" y="592">Vitruvius, De architectura, Book III.</text>
+  <text class="t-credit" x="238" y="601">Curve exaggerated for clarity. Original</text>
+  <text class="t-credit" x="238" y="610">drawing by Project Exodus.</text>
+</svg>

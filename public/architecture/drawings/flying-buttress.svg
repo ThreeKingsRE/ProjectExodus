@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Flying Buttress: section</title>
+  <desc id="d">Half cross-section of a Gothic church: the outward push of the high nave vault is carried by arched stone struts leaping over the side aisle to tall outer piers topped with pinnacles. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M170 100 L176.8 100.18 L183.59 100.71 L190.34 101.6 L197.03 102.84 L203.65 104.43 L210.17 106.36 L216.59 108.63 L222.88 111.24 L229.02 114.17 L235 117.42 L240.8 120.97 L246.41 124.83 L251.81 128.97 L256.99 133.39 L261.92 138.08 L266.61 143.01 L271.03 148.19 L275.17 153.59 L279.03 159.2 L282.58 165 L285.83 170.98 L288.76 177.12 L291.37 183.41 L293.64 189.83 L295.57 196.35 L297.16 202.97 L298.4 209.66 L299.29 216.41 L299.82 223.2 L300 230 L312 230 L311.81 222.57 L311.22 215.16 L310.25 207.79 L308.9 200.48 L307.16 193.25 L305.05 186.12 L302.57 179.11 L299.72 172.24 L296.52 165.53 L292.98 159 L289.09 152.66 L284.88 146.53 L280.35 140.64 L275.53 134.98 L270.41 129.59 L265.02 124.47 L259.36 119.65 L253.47 115.12 L247.34 110.91 L241 107.02 L234.47 103.48 L227.76 100.28 L220.89 97.43 L213.88 94.95 L206.75 92.84 L199.52 91.1 L192.21 89.75 L184.84 88.78 L177.43 88.19 L170 88 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M300 110 L326 110 L326 500 L300 500 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M470 150 L526 150 L526 500 L470 500 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M326 166L470 186L470 214Q398 234 326 186Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M326 236L470 261L470 289Q398 309 326 256Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M304 130 L322 130 L322 200 L304 200 Z"/>
+    <path d="M480 150L498 96"/>
+    <path d="M516 150L498 96"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M470 150 L498 70 L526 150"/>
+    <path d="M326 380 L326.39 372.47 L327.57 365.03 L329.52 357.75 L332.22 350.71 L335.65 344 L339.75 337.68 L344.49 331.82 L349.82 326.49 L355.68 321.75 L362 317.65 L368.71 314.22 L375.75 311.52 L383.03 309.57 L390.47 308.39 L398 308 L405.53 308.39 L412.97 309.57 L420.25 311.52 L427.29 314.22 L434 317.65 L440.32 321.75 L446.18 326.49 L451.51 331.82 L456.25 337.68 L460.35 344 L463.78 350.71 L466.48 357.75 L468.43 365.03 L469.61 372.47 L470 380"/>
+    <path d="M326 300L470 330"/>
+    <path d="M160 500L586 500"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M170 100 L176.8 100.18 L183.59 100.71 L190.34 101.6 L197.03 102.84 L203.65 104.43 L210.17 106.36 L216.59 108.63 L222.88 111.24 L229.02 114.17 L235 117.42 L240.8 120.97 L246.41 124.83 L251.81 128.97 L256.99 133.39 L261.92 138.08 L266.61 143.01 L271.03 148.19 L275.17 153.59 L279.03 159.2 L282.58 165 L285.83 170.98 L288.76 177.12 L291.37 183.41 L293.64 189.83 L295.57 196.35 L297.16 202.97 L298.4 209.66 L299.29 216.41 L299.82 223.2 L300 230 L312 230 L311.81 222.57 L311.22 215.16 L310.25 207.79 L308.9 200.48 L307.16 193.25 L305.05 186.12 L302.57 179.11 L299.72 172.24 L296.52 165.53 L292.98 159 L289.09 152.66 L284.88 146.53 L280.35 140.64 L275.53 134.98 L270.41 129.59 L265.02 124.47 L259.36 119.65 L253.47 115.12 L247.34 110.91 L241 107.02 L234.47 103.48 L227.76 100.28 L220.89 97.43 L213.88 94.95 L206.75 92.84 L199.52 91.1 L192.21 89.75 L184.84 88.78 L177.43 88.19 L170 88 Z"/>
+    <path d="M300 110 L326 110 L326 500 L300 500 Z"/>
+    <path d="M470 150 L526 150 L526 500 L470 500 Z"/>
+    <path d="M326 166L470 186"/>
+    <path d="M326 186Q398 234 470 214"/>
+    <path d="M326 236L470 261"/>
+    <path d="M326 256Q398 309 470 289"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M260 240L386 262M379.18 263.58L386 262L380.12 258.21" stroke-dasharray="none"/>
+    <path d="M386 262Q460 300 498 500" stroke-dasharray="6 3"/>
+    <path d="M170 90L170 510"/>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M101 115.83L146 115.83L227.5 118"/><circle cx="227.5" cy="118" r="1.5" class="solid"/><text x="34" y="118.83">NAVE VAULT</text>
+    <path d="M88.8 130.83L146 130.83L477.5 120"/><circle cx="477.5" cy="120" r="1.5" class="solid"/><text x="34" y="133.83">PINNACLE</text>
+    <path d="M143.7 157.83L146 157.83L301.5 160"/><circle cx="301.5" cy="160" r="1.5" class="solid"/><text x="34" y="160.83">CLERESTORY WINDOW</text>
+    <path d="M131.5 197.83L146 197.83L382.5 200"/><circle cx="382.5" cy="200" r="1.5" class="solid"/><text x="34" y="200.83">FLYING BUTTRESS</text>
+    <path d="M107.1 357.83L146 357.83L342.5 360"/><circle cx="342.5" cy="360" r="1.5" class="solid"/><text x="34" y="360.83">AISLE VAULT</text>
+    <path d="M119.3 397.83L146 397.83L467.5 400"/><circle cx="467.5" cy="400" r="1.5" class="solid"/><text x="34" y="400.83">BUTTRESS PIER</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="464" y="490" text-anchor="end" class="t-small t-accent">THRUST TO GROUND</text>
+    <text x="174" y="492" class="t-small t-accent">NAVE ℄</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">FLYING BUTTRESS</text>
+    <text class="t-sub" x="26" y="710">ARCHED STRUTS CARRYING VAULT THRUST OVER AN AISLE</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  ROF-08</text>
+    <text class="t-small" x="416" y="699">SECTION</text>
+    <text class="t-small" x="416" y="724">SCALE IN BAYS (INDICATIVE)</text>
+    <rect x="416" y="730" width="50" height="5" class="solid"/><rect x="466" y="730" width="50" height="5" class="ink l-fine"/><rect x="516" y="730" width="50" height="5" class="solid"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="564" y="749">3</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

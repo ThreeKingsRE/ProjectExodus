@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Portcullis: elevation</title>
+  <desc id="d">Elevation of an arched castle gateway with a heavy lattice grate partly lowered in grooves cut into the sides of the opening, its spiked foot ready to drop. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="pc-wall"><path d="M130 500 L130 140 L530 140 L530 500 Z"/></clipPath>
+    <clipPath id="pc-clip"><path d="M250 500 L250 300 L250 300 L250.44 291.64 L251.75 283.37 L253.92 275.28 L256.92 267.46 L260.72 260 L265.28 252.98 L270.55 246.47 L276.47 240.55 L282.98 235.28 L290 230.72 L297.46 226.92 L305.28 223.92 L313.37 221.75 L321.64 220.44 L330 220 L338.36 220.44 L346.63 221.75 L354.72 223.92 L362.54 226.92 L370 230.72 L377.02 235.28 L383.53 240.55 L389.45 246.47 L394.72 252.98 L399.28 260 L403.08 267.46 L406.08 275.28 L408.25 283.37 L409.56 291.64 L410 300 L410 500 Z"/></clipPath>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#pc-wall)"><path d="M-208.14 -218.14L868.14 -218.14M-208.14 -200.14L868.14 -200.14M-208.14 -182.14L868.14 -182.14M-208.14 -164.14L868.14 -164.14M-208.14 -146.14L868.14 -146.14M-208.14 -128.14L868.14 -128.14M-208.14 -110.14L868.14 -110.14M-208.14 -92.14L868.14 -92.14M-208.14 -74.14L868.14 -74.14M-208.14 -56.14L868.14 -56.14M-208.14 -38.14L868.14 -38.14M-208.14 -20.14L868.14 -20.14M-208.14 -2.14L868.14 -2.14M-208.14 15.86L868.14 15.86M-208.14 33.86L868.14 33.86M-208.14 51.86L868.14 51.86M-208.14 69.86L868.14 69.86M-208.14 87.86L868.14 87.86M-208.14 105.86L868.14 105.86M-208.14 123.86L868.14 123.86M-208.14 141.86L868.14 141.86M-208.14 159.86L868.14 159.86M-208.14 177.86L868.14 177.86M-208.14 195.86L868.14 195.86M-208.14 213.86L868.14 213.86M-208.14 231.86L868.14 231.86M-208.14 249.86L868.14 249.86M-208.14 267.86L868.14 267.86M-208.14 285.86L868.14 285.86M-208.14 303.86L868.14 303.86M-208.14 321.86L868.14 321.86M-208.14 339.86L868.14 339.86M-208.14 357.86L868.14 357.86M-208.14 375.86L868.14 375.86M-208.14 393.86L868.14 393.86M-208.14 411.86L868.14 411.86M-208.14 429.86L868.14 429.86M-208.14 447.86L868.14 447.86M-208.14 465.86L868.14 465.86M-208.14 483.86L868.14 483.86M-208.14 501.86L868.14 501.86M-208.14 519.86L868.14 519.86M-208.14 537.86L868.14 537.86M-208.14 555.86L868.14 555.86M-208.14 573.86L868.14 573.86M-208.14 591.86L868.14 591.86M-208.14 609.86L868.14 609.86M-208.14 627.86L868.14 627.86M-208.14 645.86L868.14 645.86M-208.14 663.86L868.14 663.86M-208.14 681.86L868.14 681.86M-208.14 699.86L868.14 699.86M-208.14 717.86L868.14 717.86M-208.14 735.86L868.14 735.86M-208.14 753.86L868.14 753.86M-208.14 771.86L868.14 771.86M-208.14 789.86L868.14 789.86M-208.14 807.86L868.14 807.86M-208.14 825.86L868.14 825.86M-208.14 843.86L868.14 843.86"/></g>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M250 500 L250 300 L250 300 L250.44 291.64 L251.75 283.37 L253.92 275.28 L256.92 267.46 L260.72 260 L265.28 252.98 L270.55 246.47 L276.47 240.55 L282.98 235.28 L290 230.72 L297.46 226.92 L305.28 223.92 L313.37 221.75 L321.64 220.44 L330 220 L338.36 220.44 L346.63 221.75 L354.72 223.92 L362.54 226.92 L370 230.72 L377.02 235.28 L383.53 240.55 L389.45 246.47 L394.72 252.98 L399.28 260 L403.08 267.46 L406.08 275.28 L408.25 283.37 L409.56 291.64 L410 300 L410 500 Z" style="fill: var(--_paper)"/>
+    <path d="M254 160L254 500" stroke-dasharray="6 3"/>
+    <path d="M406 160L406 500" stroke-dasharray="6 3"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M130 500 L130 140 L530 140 L530 500"/>
+    <path d="M250 500 L250 300 L250 300 L250.44 291.64 L251.75 283.37 L253.92 275.28 L256.92 267.46 L260.72 260 L265.28 252.98 L270.55 246.47 L276.47 240.55 L282.98 235.28 L290 230.72 L297.46 226.92 L305.28 223.92 L313.37 221.75 L321.64 220.44 L330 220 L338.36 220.44 L346.63 221.75 L354.72 223.92 L362.54 226.92 L370 230.72 L377.02 235.28 L383.53 240.55 L389.45 246.47 L394.72 252.98 L399.28 260 L403.08 267.46 L406.08 275.28 L408.25 283.37 L409.56 291.64 L410 300 L410 500"/>
+    <g clip-path="url(#pc-clip)"><path d="M262 170V440l-3 -2 3 12 3 -12 -3 2M282 170V440l-3 -2 3 12 3 -12 -3 2M302 170V440l-3 -2 3 12 3 -12 -3 2M322 170V440l-3 -2 3 12 3 -12 -3 2M342 170V440l-3 -2 3 12 3 -12 -3 2M362 170V440l-3 -2 3 12 3 -12 -3 2M382 170V440l-3 -2 3 12 3 -12 -3 2M256 180H404M256 206H404M256 232H404M256 258H404M256 284H404M256 310H404M256 336H404M256 362H404M256 388H404M256 414H404" stroke-width="2.2"/></g>
+    <path d="M100 500L560 500"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M440 250L440 180M442.73 186.45L440 180L437.27 186.45" stroke-dasharray="none"/>
+    <path d="M440 300L440 370M437.27 363.55L440 370L442.73 363.55" stroke-dasharray="none"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M250 522L410 522M246 526L254 518M406 526L414 518M250 516L250 528M410 516L410 528"/><text x="330" y="536" text-anchor="middle">GATEWAY</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M101 200L127.5 200"/><circle cx="127.5" cy="200" r="1.5" class="solid"/><text x="34" y="203">GATE TOWER</text>
+    <path d="M125.4 270L259.5 270"/><circle cx="259.5" cy="270" r="1.5" class="solid"/><text x="34" y="273">LATTICE GRILLE</text>
+    <path d="M125.4 360L251.5 360"/><circle cx="251.5" cy="360" r="1.5" class="solid"/><text x="34" y="363">GROOVE IN JAMB</text>
+    <path d="M137.6 448L259.5 448"/><circle cx="259.5" cy="448" r="1.5" class="solid"/><text x="34" y="451">IRON-SHOD SPIKES</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="330" y="156" text-anchor="middle" class="t-small">RAISED INTO CHAMBER ABOVE</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">PORTCULLIS</text>
+    <text class="t-sub" x="26" y="710">VERTICAL SLIDING GRILLE CLOSING A GATEWAY</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  FRT-05</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN QUARTERS OF GATEWAY</text>
+    <rect x="416" y="730" width="40" height="5" class="solid"/><rect x="456" y="730" width="40" height="5" class="ink l-fine"/><rect x="496" y="730" width="40" height="5" class="solid"/><rect x="536" y="730" width="40" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="574" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

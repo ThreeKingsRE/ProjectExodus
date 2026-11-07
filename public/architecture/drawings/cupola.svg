@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Cupola: elevation</title>
+  <desc id="d">Elevation of a small open turret with louvred arched openings and a little dome, sitting on the ridge of a pitched roof and topped by a weathervane. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="cp-roof"><path d="M100 520 L330 410 L560 520 Z"/></clipPath>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#cp-roof)"><path d="M-142.97 -7.97L802.97 -7.97M-142.97 0.03L802.97 0.03M-142.97 8.03L802.97 8.03M-142.97 16.03L802.97 16.03M-142.97 24.03L802.97 24.03M-142.97 32.03L802.97 32.03M-142.97 40.03L802.97 40.03M-142.97 48.03L802.97 48.03M-142.97 56.03L802.97 56.03M-142.97 64.03L802.97 64.03M-142.97 72.03L802.97 72.03M-142.97 80.03L802.97 80.03M-142.97 88.03L802.97 88.03M-142.97 96.03L802.97 96.03M-142.97 104.03L802.97 104.03M-142.97 112.03L802.97 112.03M-142.97 120.03L802.97 120.03M-142.97 128.03L802.97 128.03M-142.97 136.03L802.97 136.03M-142.97 144.03L802.97 144.03M-142.97 152.03L802.97 152.03M-142.97 160.03L802.97 160.03M-142.97 168.03L802.97 168.03M-142.97 176.03L802.97 176.03M-142.97 184.03L802.97 184.03M-142.97 192.03L802.97 192.03M-142.97 200.03L802.97 200.03M-142.97 208.03L802.97 208.03M-142.97 216.03L802.97 216.03M-142.97 224.03L802.97 224.03M-142.97 232.03L802.97 232.03M-142.97 240.03L802.97 240.03M-142.97 248.03L802.97 248.03M-142.97 256.03L802.97 256.03M-142.97 264.03L802.97 264.03M-142.97 272.03L802.97 272.03M-142.97 280.03L802.97 280.03M-142.97 288.03L802.97 288.03M-142.97 296.03L802.97 296.03M-142.97 304.03L802.97 304.03M-142.97 312.03L802.97 312.03M-142.97 320.03L802.97 320.03M-142.97 328.03L802.97 328.03M-142.97 336.03L802.97 336.03M-142.97 344.03L802.97 344.03M-142.97 352.03L802.97 352.03M-142.97 360.03L802.97 360.03M-142.97 368.03L802.97 368.03M-142.97 376.03L802.97 376.03M-142.97 384.03L802.97 384.03M-142.97 392.03L802.97 392.03M-142.97 400.03L802.97 400.03M-142.97 408.03L802.97 408.03M-142.97 416.03L802.97 416.03M-142.97 424.03L802.97 424.03M-142.97 432.03L802.97 432.03M-142.97 440.03L802.97 440.03M-142.97 448.03L802.97 448.03M-142.97 456.03L802.97 456.03M-142.97 464.03L802.97 464.03M-142.97 472.03L802.97 472.03M-142.97 480.03L802.97 480.03M-142.97 488.03L802.97 488.03M-142.97 496.03L802.97 496.03M-142.97 504.03L802.97 504.03M-142.97 512.03L802.97 512.03M-142.97 520.03L802.97 520.03M-142.97 528.03L802.97 528.03M-142.97 536.03L802.97 536.03M-142.97 544.03L802.97 544.03M-142.97 552.03L802.97 552.03M-142.97 560.03L802.97 560.03M-142.97 568.03L802.97 568.03M-142.97 576.03L802.97 576.03M-142.97 584.03L802.97 584.03M-142.97 592.03L802.97 592.03M-142.97 600.03L802.97 600.03M-142.97 608.03L802.97 608.03M-142.97 616.03L802.97 616.03M-142.97 624.03L802.97 624.03M-142.97 632.03L802.97 632.03M-142.97 640.03L802.97 640.03M-142.97 648.03L802.97 648.03M-142.97 656.03L802.97 656.03M-142.97 664.03L802.97 664.03M-142.97 672.03L802.97 672.03M-142.97 680.03L802.97 680.03M-142.97 688.03L802.97 688.03M-142.97 696.03L802.97 696.03M-142.97 704.03L802.97 704.03M-142.97 712.03L802.97 712.03M-142.97 720.03L802.97 720.03M-142.97 728.03L802.97 728.03M-142.97 736.03L802.97 736.03M-142.97 744.03L802.97 744.03M-142.97 752.03L802.97 752.03M-142.97 760.03L802.97 760.03M-142.97 768.03L802.97 768.03M-142.97 776.03L802.97 776.03M-142.97 784.03L802.97 784.03M-142.97 792.03L802.97 792.03M-142.97 800.03L802.97 800.03M-142.97 808.03L802.97 808.03M-142.97 816.03L802.97 816.03M-142.97 824.03L802.97 824.03M-142.97 832.03L802.97 832.03M-142.97 840.03L802.97 840.03M-142.97 848.03L802.97 848.03M-142.97 856.03L802.97 856.03M-142.97 864.03L802.97 864.03M-142.97 872.03L802.97 872.03M-142.97 880.03L802.97 880.03M-142.97 888.03L802.97 888.03M-142.97 896.03L802.97 896.03M-142.97 904.03L802.97 904.03M-142.97 912.03L802.97 912.03M-142.97 920.03L802.97 920.03M-142.97 928.03L802.97 928.03M-142.97 936.03L802.97 936.03"/></g>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M286 330L306 333"/>
+    <path d="M286 337L306 340"/>
+    <path d="M286 344L306 347"/>
+    <path d="M286 351L306 354"/>
+    <path d="M286 358L306 361"/>
+    <path d="M286 365L306 368"/>
+    <path d="M286 372L306 375"/>
+    <path d="M286 379L306 382"/>
+    <path d="M320 330L340 333"/>
+    <path d="M320 337L340 340"/>
+    <path d="M320 344L340 347"/>
+    <path d="M320 351L340 354"/>
+    <path d="M320 358L340 361"/>
+    <path d="M320 365L340 368"/>
+    <path d="M320 372L340 375"/>
+    <path d="M320 379L340 382"/>
+    <path d="M354 330L374 333"/>
+    <path d="M354 337L374 340"/>
+    <path d="M354 344L374 347"/>
+    <path d="M354 351L374 354"/>
+    <path d="M354 358L374 361"/>
+    <path d="M354 365L374 368"/>
+    <path d="M354 372L374 375"/>
+    <path d="M354 379L374 382"/>
+    <path d="M284 278 L284.25 273.19 L285.01 268.44 L286.25 263.79 L287.98 259.29 L290.16 255 L292.79 250.96 L295.82 247.22 L299.22 243.82 L302.96 240.79 L307 238.16 L311.29 235.98 L315.79 234.25 L320.44 233.01 L325.19 232.25 L330 232 L334.81 232.25 L339.56 233.01 L344.21 234.25 L348.71 235.98 L353 238.16 L357.04 240.79 L360.78 243.82 L364.18 247.22 L367.21 250.96 L369.84 255 L372.02 259.29 L373.75 263.79 L374.99 268.44 L375.75 273.19 L376 278"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M100 520 L330 410 L560 520"/>
+    <path d="M260 402 L400 402 L400 420 L260 420 Z"/>
+    <path d="M270 290 L390 290 L390 402 L270 402 Z"/>
+    <path d="M284 390V324A12 12 0 0 1 308 324V390"/>
+    <path d="M318 390V324A12 12 0 0 1 342 324V390"/>
+    <path d="M352 390V324A12 12 0 0 1 376 324V390"/>
+    <path d="M262 278 L398 278 L398 290 L262 290 Z"/>
+    <path d="M266 278 L266.35 271.31 L267.4 264.69 L269.13 258.22 L271.53 251.97 L274.57 246 L278.22 240.38 L282.44 235.18 L287.18 230.44 L292.38 226.22 L298 222.57 L303.97 219.53 L310.22 217.13 L316.69 215.4 L323.31 214.35 L330 214 L336.69 214.35 L343.31 215.4 L349.78 217.13 L356.03 219.53 L362 222.57 L367.62 226.22 L372.82 230.44 L377.56 235.18 L381.78 240.38 L385.43 246 L388.47 251.97 L390.87 258.22 L392.6 264.69 L393.65 271.31 L394 278"/>
+    <path d="M330 214L330 154"/>
+    <path d="M330 162l26 6l-26 6"/>
+    <path d="M316 184L344 184"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M330 144L330 440"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M270 540L390 540M266 544L274 536M386 544L394 536M270 534L270 546M390 534L390 546"/><text x="330" y="554" text-anchor="middle">WIDTH</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M107.1 164L325.5 164"/><circle cx="325.5" cy="164" r="1.5" class="solid"/><text x="34" y="167">WEATHERVANE</text>
+    <path d="M107.1 260L273.5 260"/><circle cx="273.5" cy="260" r="1.5" class="solid"/><text x="34" y="263">CUPOLA DOME</text>
+    <path d="M82.7 284L259.5 284"/><circle cx="259.5" cy="284" r="1.5" class="solid"/><text x="34" y="287">CORNICE</text>
+    <path d="M131.5 350L281.5 350"/><circle cx="281.5" cy="350" r="1.5" class="solid"/><text x="34" y="353">LOUVRED OPENING</text>
+    <path d="M64.4 411L257.5 411"/><circle cx="257.5" cy="411" r="1.5" class="solid"/><text x="34" y="414">BASE</text>
+    <path d="M94.9 484L167.5 484"/><circle cx="167.5" cy="484" r="1.5" class="solid"/><text x="34" y="487">MAIN ROOF</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="314" y="188" class="t-small" text-anchor="end">N</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">CUPOLA</text>
+    <text class="t-sub" x="26" y="710">SMALL DOMED STRUCTURE CROWNING A ROOF</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  ROF-05</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN FIFTHS OF WIDTH</text>
+    <rect x="416" y="730" width="24" height="5" class="solid"/><rect x="440" y="730" width="24" height="5" class="ink l-fine"/><rect x="464" y="730" width="24" height="5" class="solid"/><rect x="488" y="730" width="24" height="5" class="ink l-fine"/><rect x="512" y="730" width="24" height="5" class="solid"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">5</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>
