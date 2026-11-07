@@ -76,5 +76,59 @@
   "sheetNo": "ARC-08",
   "source": "Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.",
   "aspect": 1.118
+ },
+ "barrel-vault": {
+  "view": "SECTION",
+  "sheetNo": "VLT-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.019
+ },
+ "groin-vault": {
+  "view": "REFLECTED CEILING PLAN",
+  "sheetNo": "VLT-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "rib-vault": {
+  "view": "REFLECTED CEILING PLAN",
+  "sheetNo": "VLT-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "fan-vault": {
+  "view": "REFLECTED CEILING PLAN",
+  "sheetNo": "VLT-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.305
+ },
+ "pendentive": {
+  "view": "REFLECTED CEILING PLAN",
+  "sheetNo": "VLT-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "squinch": {
+  "view": "REFLECTED CEILING PLAN",
+  "sheetNo": "VLT-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "oculus": {
+  "view": "SECTION",
+  "sheetNo": "VLT-07",
+  "source": "Dimensions of the Pantheon, Rome (c. 125 CE): rotunda diameter and height 43.3 m, oculus 8.2 m. Original drawing by Project Exodus; coffering and shell simplified.",
+  "aspect": 1.308
+ },
+ "dome": {
+  "view": "HALF SECTION · HALF ELEVATION",
+  "sheetNo": "VLT-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.862
+ },
+ "onion-dome": {
+  "view": "HALF SECTION · HALF ELEVATION",
+  "sheetNo": "VLT-09",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.676
  }
 }

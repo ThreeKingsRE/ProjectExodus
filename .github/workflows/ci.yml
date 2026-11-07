@@ -40,6 +40,9 @@ jobs:
       - name: Type check
         run: npx tsc --noEmit
 
+      - name: Type check drawing scripts
+        run: npx tsc -p scripts/architecture/tsconfig.json
+
       - name: Lint
         run: npm run lint:ci
 

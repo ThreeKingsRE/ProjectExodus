@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="119 119 422 448" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Plan looking up at a square bay where an arched niche spans each corner, turning the square into an octagon that carries a round dome. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="119" y="119" width="422" height="448"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M167 167 L193 167 L193 193 L167 193 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M467 167 L493 167 L493 193 L467 193 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M467 467 L493 467 L493 493 L467 493 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M167 467 L193 467 L193 493 L167 493 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M180 180L480 180"/>
+    <path d="M180 194L480 194" stroke-dasharray="6 4"/>
+    <path d="M480 180L480 480"/>
+    <path d="M466 180L466 480" stroke-dasharray="6 4"/>
+    <path d="M480 480L180 480"/>
+    <path d="M480 466L180 466" stroke-dasharray="6 4"/>
+    <path d="M180 480L180 180"/>
+    <path d="M194 480L194 180" stroke-dasharray="6 4"/>
+    <path d="M201.6 180Q194.18 194.18 180 201.6"/>
+    <path d="M196.2 180Q191.48 191.48 180 196.2"/>
+    <path d="M190.8 180Q188.78 188.78 180 190.8"/>
+    <path d="M185.4 180Q186.08 186.08 180 185.4"/>
+    <path d="M458.4 180Q465.83 194.18 480 201.6"/>
+    <path d="M463.8 180Q468.53 191.48 480 196.2"/>
+    <path d="M469.2 180Q471.23 188.78 480 190.8"/>
+    <path d="M474.6 180Q473.93 186.08 480 185.4"/>
+    <path d="M458.4 480Q465.83 465.83 480 458.4"/>
+    <path d="M463.8 480Q468.53 468.53 480 463.8"/>
+    <path d="M469.2 480Q471.23 471.23 480 469.2"/>
+    <path d="M474.6 480Q473.93 473.93 480 474.6"/>
+    <path d="M201.6 480Q194.18 465.83 180 458.4"/>
+    <path d="M196.2 480Q191.48 468.53 180 463.8"/>
+    <path d="M190.8 480Q188.78 471.23 180 469.2"/>
+    <path d="M185.4 480Q186.08 473.93 180 474.6"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M180 207 L207 180 L453 180 L480 207 L480 453 L453 480 L207 480 L180 453 Z"/>
+    <path d="M207 180L180 207"/>
+    <path d="M453 180L480 207"/>
+    <path d="M453 480L480 453"/>
+    <path d="M207 480L180 453"/>
+    <path d="M465.81 330 L465.29 341.84 L463.75 353.58 L461.18 365.15 L457.62 376.45 L453.09 387.4 L447.62 397.91 L441.25 407.9 L434.04 417.3 L426.03 426.03 L417.3 434.04 L407.9 441.25 L397.91 447.62 L387.4 453.09 L376.45 457.62 L365.15 461.18 L353.58 463.75 L341.84 465.29 L330 465.81 L318.16 465.29 L306.42 463.75 L294.85 461.18 L283.55 457.62 L272.6 453.09 L262.09 447.62 L252.1 441.25 L242.7 434.04 L233.97 426.03 L225.96 417.3 L218.75 407.9 L212.38 397.91 L206.91 387.4 L202.38 376.45 L198.82 365.15 L196.25 353.58 L194.71 341.84 L194.19 330 L194.71 318.16 L196.25 306.42 L198.82 294.85 L202.38 283.55 L206.91 272.6 L212.38 262.09 L218.75 252.1 L225.96 242.7 L233.97 233.97 L242.7 225.96 L252.1 218.75 L262.09 212.38 L272.6 206.91 L283.55 202.38 L294.85 198.82 L306.42 196.25 L318.16 194.71 L330 194.19 L341.84 194.71 L353.58 196.25 L365.15 198.82 L376.45 202.38 L387.4 206.91 L397.91 212.38 L407.9 218.75 L417.3 225.96 L426.03 233.97 L434.04 242.7 L441.25 252.1 L447.62 262.09 L453.09 272.6 L457.62 283.55 L461.18 294.85 L463.75 306.42 L465.29 318.16 L465.81 330 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M167 167 L193 167 L193 193 L167 193 Z"/>
+    <path d="M467 167 L493 167 L493 193 L467 193 Z"/>
+    <path d="M467 467 L493 467 L493 493 L467 493 Z"/>
+    <path d="M167 467 L193 467 L193 493 L167 493 Z"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M140 330L520 330"/>
+    <path d="M330 140L330 520"/>
+  </g>
+  <text class="t-credit" x="125" y="556">SOURCE: Original drawing by Project Exodus from the standard geometric construction of</text>
+  <text class="t-credit" x="125" y="565">this form; no external drawing reproduced.</text>
+</svg>

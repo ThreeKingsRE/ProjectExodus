@@ -213,8 +213,7 @@ export function buildArch(a: ArchSpec): SheetSpec {
   const wallTop = g.rise + depth + 0.16
   const wx0 = -0.5 - pierW - 0.2
   const wx1 = 0.5 + pierW + 0.2
-  const openingD = path([...ringInner, [0.5, -pierH], [-0.5, -pierH]].map(P), true)
-  const ringOuterD = path([...extrados, [0.5 + pierW, 0], [0.5 + pierW, -pierH], [-0.5 - pierW, -pierH], [-0.5 - pierW, 0]].map(P), true)
+  const ringOuterD = path(([...extrados, [0.5 + pierW, 0], [0.5 + pierW, -pierH], [-0.5 - pierW, -pierH], [-0.5 - pierW, 0]] as Pt[]).map(P), true)
   const id = a.id
   const defs = `<clipPath id="wall-${id}" clip-rule="evenodd"><path clip-rule="evenodd" d="M${f(X(wx0))} ${f(Y(wallTop))}H${f(X(wx1))}V${f(Y(-pierH))}H${f(X(wx0))}Z ${ringOuterD}"/></clipPath>
     <pattern id="ashlar-${id}" width="${f(S * 0.24)}" height="${f(S * 0.12)}" patternUnits="userSpaceOnUse" x="${f(X(0))}" y="${f(Y(0))}">
@@ -261,8 +260,8 @@ export function buildArch(a: ArchSpec): SheetSpec {
   for (const s of [-1, 1]) {
     const xi = s * 0.5
     const xo = s * (0.5 + pierW)
-    layers.profile!.push(el(path([[xi, 0], [xi - s * 0.03, 0], [xi - s * 0.03, -imp], [xo + s * 0.03, -imp], [xo + s * 0.03, 0], [xi, 0]].map(P))))
-    layers.profile!.push(el(path([[xi, -imp], [xi, -pierH]].map(P))), el(path([[xo, -imp], [xo, -pierH]].map(P))))
+    layers.profile!.push(el(path(([[xi, 0], [xi - s * 0.03, 0], [xi - s * 0.03, -imp], [xo + s * 0.03, -imp], [xo + s * 0.03, 0], [xi, 0]] as Pt[]).map(P))))
+    layers.profile!.push(el(path(([[xi, -imp], [xi, -pierH]] as Pt[]).map(P))), el(path(([[xo, -imp], [xo, -pierH]] as Pt[]).map(P))))
   }
   layers.fine!.push(el(`M${f(X(-0.5 - pierW - 0.05))} ${f(Y(-pierH))}H${f(X(0.5 + pierW + 0.05))}`, 'stroke-dasharray="6 4"'))
 

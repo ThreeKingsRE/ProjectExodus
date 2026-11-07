@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Onion Dome: half section · half elevation</title>
+  <desc id="d">Half section and half elevation of an onion dome: it swells wider than the drum, then tapers through a reverse curve to a point topped by a cross finial. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M197 400 L190.7 394.19 L184.49 388.38 L178.42 382.56 L172.58 376.75 L167.04 370.94 L161.87 365.13 L157.13 359.31 L152.87 353.5 L149.16 347.69 L146.03 341.88 L143.52 336.06 L141.67 330.25 L140.5 324.44 L140.01 318.63 L140.44 312.81 L142.18 307 L145.26 301.19 L149.63 295.38 L155.28 289.56 L162.15 283.75 L170.2 277.94 L179.36 272.13 L189.57 266.31 L200.75 260.5 L212.82 254.69 L225.69 248.88 L239.27 243.06 L253.44 237.25 L268.11 231.44 L268.67 225.63 L276.64 219.81 L284.08 214 L290.99 208.19 L297.33 202.38 L303.07 196.56 L308.15 190.75 L312.52 184.94 L316.09 179.13 L318.71 173.31 L320 167.5 L320 169.12 L320 175.7 L320 182.65 L318.72 189.17 L313.97 195.48 L308.56 201.67 L302.54 207.78 L295.94 213.83 L288.8 219.83 L281.15 225.8 L274.72 230.06 L272.66 237.4 L256.24 244.21 L242.16 249.98 L228.71 255.74 L215.99 261.49 L204.11 267.21 L193.15 272.9 L183.22 278.56 L174.39 284.15 L166.76 289.67 L160.38 295.06 L155.31 300.27 L151.57 305.23 L149.11 309.87 L147.81 314.19 L147.51 318.59 L147.92 323.38 L148.93 328.36 L150.55 333.43 L152.78 338.6 L155.62 343.88 L159.06 349.26 L163.06 354.72 L167.58 360.26 L172.56 365.86 L177.94 371.5 L183.66 377.2 L189.64 382.93 L195.81 388.69 L202.09 394.49 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M197 400 L202.09 400 L202.09 482.5 L197 482.5 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M197 418 L202.09 418"/>
+    <path d="M197 460 L202.09 460"/>
+    <path d="M358.01 400 L359.95 394.19 L361.88 388.38 L363.75 382.56 L365.55 376.75 L367.27 370.94 L368.86 365.13 L370.33 359.31 L371.64 353.5 L372.79 347.69 L373.76 341.88 L374.53 336.06 L375.11 330.25 L375.47 324.44 L375.62 318.63 L375.49 312.81 L374.95 307 L374 301.19 L372.65 295.38 L370.9 289.56 L368.78 283.75 L366.29 277.94 L363.46 272.13 L360.3 266.31 L356.85 260.5 L353.12 254.69 L349.14 248.88 L344.95 243.06 L340.57 237.25 L336.04 231.44 L335.86 225.63 L333.4 219.81 L331.1 214 L328.96 208.19 L327 202.38 L325.23 196.56 L323.66 190.75 L322.31 184.94 L321.21 179.13 L320.4 173.31"/>
+    <path d="M392.3 400 L396 394.19 L399.65 388.38 L403.22 382.56 L406.65 376.75 L409.91 370.94 L412.95 365.13 L415.73 359.31 L418.23 353.5 L420.42 347.69 L422.26 341.88 L423.73 336.06 L424.82 330.25 L425.51 324.44 L425.79 318.63 L425.54 312.81 L424.52 307 L422.71 301.19 L420.14 295.38 L416.82 289.56 L412.78 283.75 L408.05 277.94 L402.67 272.13 L396.66 266.31 L390.09 260.5 L383 254.69 L375.43 248.88 L367.45 243.06 L359.12 237.25 L350.5 231.44 L350.17 225.63 L345.49 219.81 L341.11 214 L337.05 208.19 L333.32 202.38 L329.95 196.56 L326.96 190.75 L324.39 184.94 L322.3 179.13 L320.76 173.31"/>
+    <path d="M419.51 400 L424.6 394.19 L429.63 388.38 L434.54 382.56 L439.26 376.75 L443.74 370.94 L447.93 365.13 L451.77 359.31 L455.21 353.5 L458.21 347.69 L460.75 341.88 L462.77 336.06 L464.27 330.25 L465.22 324.44 L465.61 318.63 L465.27 312.81 L463.86 307 L461.37 301.19 L457.83 295.38 L453.26 289.56 L447.7 283.75 L441.19 277.94 L433.78 272.13 L425.52 266.31 L416.47 260.5 L406.71 254.69 L396.3 248.88 L385.32 243.06 L373.85 237.25 L361.98 231.44 L361.52 225.63 L355.08 219.81 L349.06 214 L343.47 208.19 L338.34 202.38 L333.7 196.56 L329.58 190.75 L326.05 184.94 L323.16 179.13 L321.04 173.31"/>
+    <path d="M436.98 400 L442.97 394.19 L448.88 388.38 L454.65 382.56 L460.2 376.75 L465.47 370.94 L470.39 365.13 L474.9 359.31 L478.95 353.5 L482.48 347.69 L485.46 341.88 L487.84 336.06 L489.6 330.25 L490.72 324.44 L491.18 318.63 L490.78 312.81 L489.11 307 L486.19 301.19 L482.03 295.38 L476.66 289.56 L470.13 283.75 L462.47 277.94 L453.76 272.13 L444.05 266.31 L433.41 260.5 L421.93 254.69 L409.69 248.88 L396.78 243.06 L383.3 237.25 L369.35 231.44 L368.81 225.63 L361.24 219.81 L354.16 214 L347.59 208.19 L341.56 202.38 L336.1 196.56 L331.27 190.75 L327.11 184.94 L323.72 179.13 L321.23 173.31"/>
+    <path d="M353 463V427A9.75 9.75 0 0 1 372.5 427V463Z"/>
+    <path d="M413 463V427A9.75 9.75 0 0 1 432.5 427V463Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M443 400 L449.3 394.19 L455.51 388.38 L461.58 382.56 L467.42 376.75 L472.96 370.94 L478.13 365.13 L482.87 359.31 L487.13 353.5 L490.84 347.69 L493.97 341.88 L496.48 336.06 L498.33 330.25 L499.5 324.44 L499.99 318.63 L499.56 312.81 L497.82 307 L494.74 301.19 L490.37 295.38 L484.72 289.56 L477.85 283.75 L469.8 277.94 L460.64 272.13 L450.43 266.31 L439.25 260.5 L427.18 254.69 L414.31 248.88 L400.73 243.06 L386.56 237.25 L371.89 231.44 L371.33 225.63 L363.36 219.81 L355.92 214 L349.01 208.19 L342.67 202.38 L336.93 196.56 L331.85 190.75 L327.48 184.94 L323.91 179.13 L321.29 173.31 L320 167.5"/>
+    <path d="M443 400 L443 482.5 L320 482.5"/>
+    <path d="M320 400 L452 400 L452 394 L320 394"/>
+    <path d="M197 482.5L197 486.75L202 490.75L192 496.75L197 500.75L197 505"/>
+    <path d="M443 482.5L443 486.75L448 490.75L438 496.75L443 500.75L443 505"/>
+    <path d="M320 167.5L320 104.5"/>
+    <path d="M305 122.14L335 122.14"/>
+    <circle cx="320" cy="151.75" r="4"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M197 400 L190.7 394.19 L184.49 388.38 L178.42 382.56 L172.58 376.75 L167.04 370.94 L161.87 365.13 L157.13 359.31 L152.87 353.5 L149.16 347.69 L146.03 341.88 L143.52 336.06 L141.67 330.25 L140.5 324.44 L140.01 318.63 L140.44 312.81 L142.18 307 L145.26 301.19 L149.63 295.38 L155.28 289.56 L162.15 283.75 L170.2 277.94 L179.36 272.13 L189.57 266.31 L200.75 260.5 L212.82 254.69 L225.69 248.88 L239.27 243.06 L253.44 237.25 L268.11 231.44 L268.67 225.63 L276.64 219.81 L284.08 214 L290.99 208.19 L297.33 202.38 L303.07 196.56 L308.15 190.75 L312.52 184.94 L316.09 179.13 L318.71 173.31 L320 167.5 L320 169.12 L320 175.7 L320 182.65 L318.72 189.17 L313.97 195.48 L308.56 201.67 L302.54 207.78 L295.94 213.83 L288.8 219.83 L281.15 225.8 L274.72 230.06 L272.66 237.4 L256.24 244.21 L242.16 249.98 L228.71 255.74 L215.99 261.49 L204.11 267.21 L193.15 272.9 L183.22 278.56 L174.39 284.15 L166.76 289.67 L160.38 295.06 L155.31 300.27 L151.57 305.23 L149.11 309.87 L147.81 314.19 L147.51 318.59 L147.92 323.38 L148.93 328.36 L150.55 333.43 L152.78 338.6 L155.62 343.88 L159.06 349.26 L163.06 354.72 L167.58 360.26 L172.56 365.86 L177.94 371.5 L183.66 377.2 L189.64 382.93 L195.81 388.69 L202.09 394.49 Z"/>
+    <path d="M197 400 L202.09 400 L202.09 482.5 L197 482.5 Z"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M320 520L320 147.5"/>
+    <path d="M117.5 400L522.5 400"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M197 529L443 529M193 533L201 525M439 533L447 525M197 523L197 535M443 523L443 535"/><text x="320" y="543" text-anchor="middle">DIAMETER</text>
+    <path d="M539.99 400L539.99 167.5M535.99 404L543.99 396M535.99 171.5L543.99 163.5M335 400L545.99 400M335 167.5L545.99 167.5"/><text x="547.99" y="286.75">RISE</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M76.6 122.5L314.5 122.5"/><circle cx="314.5" cy="122.5" r="1.5" class="solid"/><text x="34" y="125.5">FINIAL</text>
+    <path d="M131.5 272.13L180.61 272.13"/><circle cx="180.61" cy="272.13" r="1.5" class="solid"/><text x="34" y="275.13">SHELL (SECTION)</text>
+    <path d="M94.9 400L194.5 400"/><circle cx="194.5" cy="400" r="1.5" class="solid"/><text x="34" y="403">SPRINGING</text>
+    <path d="M64.4 445L194.5 445"/><circle cx="194.5" cy="445" r="1.5" class="solid"/><text x="34" y="448">DRUM</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="310" y="567" text-anchor="end" class="t-sub">HALF SECTION</text>
+    <text x="330" y="567" class="t-sub">HALF ELEVATION</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">ONION DOME</text>
+    <text class="t-sub" x="26" y="710">BULBOUS DOME SWELLING BEYOND ITS DRUM</text>
+    <text class="t-small" x="26" y="730">SOURCE: Original drawing by Project Exodus from the standard</text>
+    <text class="t-small" x="26" y="741">geometric construction of this form; no external drawing</text>
+    <text class="t-small" x="26" y="752">reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  VLT-09</text>
+    <text class="t-small" x="416" y="699">HALF SECTION</text><text class="t-small" x="416" y="709">HALF ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN TENTHS OF DIAMETER</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/><rect x="536" y="730" width="30" height="5" class="solid"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="564" y="749">5</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>
