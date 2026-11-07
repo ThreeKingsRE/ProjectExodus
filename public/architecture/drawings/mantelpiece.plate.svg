@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="222 148 316 475" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a classical chimneypiece: pilaster jambs with scroll consoles either side of the fire opening, a frieze with a central tablet, a projecting shelf, and an overmantel mirror above. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="222" y="148" width="316" height="475"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M300 420 L460 420 L460 560 L300 560 Z" fill="url(#h-brick)" stroke="none"/>
+    <path d="M240 560 L520 560 L520 570 L240 570 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M300 560 L322 542 L438 542 L460 560"/>
+    <path d="M322 542L322 420"/>
+    <path d="M438 542L438 420"/>
+    <path d="M266 454 L294 454 L294 544 L266 544 Z"/>
+    <path d="M270 458 L290 458 L290 540 L270 540 Z"/>
+    <path d="M270 416C270 434 290 434 290 448"/>
+    <circle cx="274" cy="422" r="4"/>
+    <circle cx="287" cy="447" r="3"/>
+    <path d="M466 454 L494 454 L494 544 L466 544 Z"/>
+    <path d="M470 458 L490 458 L490 540 L470 540 Z"/>
+    <path d="M470 416C470 434 490 434 490 448"/>
+    <circle cx="474" cy="422" r="4"/>
+    <circle cx="487" cy="447" r="3"/>
+    <path d="M346 374 L414 374 L414 396 L346 396 Z"/>
+    <path d="M349 377 L411 377 L411 393 L349 393 Z"/>
+    <path d="M358 385q11 -8 22 0q11 8 22 0"/>
+    <path d="M284 200 L476 200 L476 340 L284 340 Z"/>
+    <path d="M320 230L350 210"/>
+    <path d="M334 236L364 216"/>
+    <path d="M348 242L378 222"/>
+    <path d="M354 190q26 -24 52 0"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M260 400 L300 400 L300 560 L260 560 Z"/>
+    <path d="M256 548 L304 548 L304 560 L256 560 Z"/>
+    <path d="M460 400 L500 400 L500 560 L460 560 Z"/>
+    <path d="M456 548 L504 548 L504 560 L456 560 Z"/>
+    <path d="M260 370 L500 370 L500 400 L260 400 Z"/>
+    <path d="M248 356 L512 356 L512 370 L248 370 Z"/>
+    <path d="M254 370L506 370"/>
+    <path d="M274 190 L486 190 L486 350 L274 350 Z"/>
+    <path d="M200 560L560 560"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M240 560 L520 560 L520 570 L240 570 Z"/>
+  </g>
+  <text class="t-credit" x="228" y="603">SOURCE: Original drawing by Project Exodus from the standard</text>
+  <text class="t-credit" x="228" y="612">geometric construction of this form; no external drawing</text>
+  <text class="t-credit" x="228" y="621">reproduced.</text>
+</svg>

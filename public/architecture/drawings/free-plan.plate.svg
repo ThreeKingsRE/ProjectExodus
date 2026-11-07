@@ -1,0 +1,264 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="174.78 137 443.03 487" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Isometric of a floor slab carried on a regular grid of slender columns, with curved and straight partitions placed freely on it without regard to where the columns stand, because no wall carries load. Source: After Le Corbusier's Dom-ino frame (1914) and "Five Points" (1926). Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern><pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
+  </defs>
+  <rect class="paper" x="174.78" y="137" width="443.03" height="487"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M305.36 580L599.81 410"/>
+    <path d="M365.98 575L158.13 455"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M417.94 379.5 L410.15 375 L410.15 275 L417.94 279.5 Z" style="fill: var(--_paper)"/>
+    <path d="M417.94 379.5 L410.15 375 L410.15 275 L417.94 279.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M417.94 379.5 L410.15 375 L410.15 275 L417.94 279.5 Z"/>
+    <path d="M417.94 379.5 L425.74 375 L425.74 275 L417.94 279.5 Z" style="fill: var(--_paper)"/>
+    <path d="M417.94 379.5 L425.74 375 L425.74 275 L417.94 279.5 Z"/>
+    <path d="M417.94 279.5 L425.74 275 L417.94 270.5 L410.15 275 Z" style="fill: var(--_paper)"/>
+    <path d="M417.94 279.5 L425.74 275 L417.94 270.5 L410.15 275 Z"/>
+    <path d="M331.34 429.5 L323.55 425 L323.55 325 L331.34 329.5 Z" style="fill: var(--_paper)"/>
+    <path d="M331.34 429.5 L323.55 425 L323.55 325 L331.34 329.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M331.34 429.5 L323.55 425 L323.55 325 L331.34 329.5 Z"/>
+    <path d="M331.34 429.5 L339.13 425 L339.13 325 L331.34 329.5 Z" style="fill: var(--_paper)"/>
+    <path d="M331.34 429.5 L339.13 425 L339.13 325 L331.34 329.5 Z"/>
+    <path d="M331.34 329.5 L339.13 325 L331.34 320.5 L323.55 325 Z" style="fill: var(--_paper)"/>
+    <path d="M331.34 329.5 L339.13 325 L331.34 320.5 L323.55 325 Z"/>
+    <path d="M513.21 434.5 L505.41 430 L505.41 330 L513.21 334.5 Z" style="fill: var(--_paper)"/>
+    <path d="M513.21 434.5 L505.41 430 L505.41 330 L513.21 334.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M513.21 434.5 L505.41 430 L505.41 330 L513.21 334.5 Z"/>
+    <path d="M513.21 434.5 L521 430 L521 330 L513.21 334.5 Z" style="fill: var(--_paper)"/>
+    <path d="M513.21 434.5 L521 430 L521 330 L513.21 334.5 Z"/>
+    <path d="M513.21 334.5 L521 330 L513.21 325.5 L505.41 330 Z" style="fill: var(--_paper)"/>
+    <path d="M513.21 334.5 L521 330 L513.21 325.5 L505.41 330 Z"/>
+    <path d="M244.74 479.5 L236.94 475 L236.94 375 L244.74 379.5 Z" style="fill: var(--_paper)"/>
+    <path d="M244.74 479.5 L236.94 475 L236.94 375 L244.74 379.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M244.74 479.5 L236.94 475 L236.94 375 L244.74 379.5 Z"/>
+    <path d="M244.74 479.5 L252.53 475 L252.53 375 L244.74 379.5 Z" style="fill: var(--_paper)"/>
+    <path d="M244.74 479.5 L252.53 475 L252.53 375 L244.74 379.5 Z"/>
+    <path d="M244.74 379.5 L252.53 375 L244.74 370.5 L236.94 375 Z" style="fill: var(--_paper)"/>
+    <path d="M244.74 379.5 L252.53 375 L244.74 370.5 L236.94 375 Z"/>
+    <path d="M426.6 484.5 L418.81 480 L418.81 380 L426.6 384.5 Z" style="fill: var(--_paper)"/>
+    <path d="M426.6 484.5 L418.81 480 L418.81 380 L426.6 384.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M426.6 484.5 L418.81 480 L418.81 380 L426.6 384.5 Z"/>
+    <path d="M426.6 484.5 L434.4 480 L434.4 380 L426.6 384.5 Z" style="fill: var(--_paper)"/>
+    <path d="M426.6 484.5 L434.4 480 L434.4 380 L426.6 384.5 Z"/>
+    <path d="M426.6 384.5 L434.4 380 L426.6 375.5 L418.81 380 Z" style="fill: var(--_paper)"/>
+    <path d="M426.6 384.5 L434.4 380 L426.6 375.5 L418.81 380 Z"/>
+    <path d="M340 534.5 L332.21 530 L332.21 430 L340 434.5 Z" style="fill: var(--_paper)"/>
+    <path d="M340 534.5 L332.21 530 L332.21 430 L340 434.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M340 534.5 L332.21 530 L332.21 430 L340 434.5 Z"/>
+    <path d="M340 534.5 L347.79 530 L347.79 430 L340 434.5 Z" style="fill: var(--_paper)"/>
+    <path d="M340 534.5 L347.79 530 L347.79 430 L340 434.5 Z"/>
+    <path d="M340 434.5 L347.79 430 L340 425.5 L332.21 430 Z" style="fill: var(--_paper)"/>
+    <path d="M340 434.5 L347.79 430 L340 425.5 L332.21 430 Z"/>
+    <path d="M340 460 L192.78 375 L192.78 363 L340 448 Z" style="fill: var(--_paper)"/>
+    <path d="M340 460 L192.78 375 L192.78 363 L340 448 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M340 460 L192.78 375 L192.78 363 L340 448 Z"/>
+    <path d="M340 460 L565.17 330 L565.17 318 L340 448 Z" style="fill: var(--_paper)"/>
+    <path d="M340 460 L565.17 330 L565.17 318 L340 448 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M340 460 L565.17 330 L565.17 318 L340 448 Z"/>
+    <path d="M340 448 L565.17 318 L417.94 233 L192.78 363 Z" style="fill: var(--_paper)"/>
+    <path d="M340 448 L565.17 318 L417.94 233 L192.78 363 Z"/>
+    <path d="M417.94 267.5 L410.15 263 L410.15 185 L417.94 189.5 Z" style="fill: var(--_paper)"/>
+    <path d="M417.94 267.5 L410.15 263 L410.15 185 L417.94 189.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M417.94 267.5 L410.15 263 L410.15 185 L417.94 189.5 Z"/>
+    <path d="M417.94 267.5 L425.74 263 L425.74 185 L417.94 189.5 Z" style="fill: var(--_paper)"/>
+    <path d="M417.94 267.5 L425.74 263 L425.74 185 L417.94 189.5 Z"/>
+    <path d="M417.94 189.5 L425.74 185 L417.94 180.5 L410.15 185 Z" style="fill: var(--_paper)"/>
+    <path d="M417.94 189.5 L425.74 185 L417.94 180.5 L410.15 185 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M417.94 189.5 L425.74 185 L417.94 180.5 L410.15 185 Z"/>
+    <path d="M360.96 269.27 L367.71 264 L367.71 208 L360.96 213.27 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M360.96 269.27 L367.71 264 L367.71 208 L360.96 213.27 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M360.96 213.27L367.71 208"/>
+    <path d="M360.96 269.27L367.71 264"/>
+    <path d="M367.71 264L367.71 208"/>
+    <path d="M356.4 275.8 L360.96 269.27 L360.96 213.27 L356.4 219.8 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M356.4 275.8 L360.96 269.27 L360.96 213.27 L356.4 219.8 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M356.4 219.8L360.96 213.27"/>
+    <path d="M356.4 275.8L360.96 269.27"/>
+    <path d="M353.52 283.31 L356.4 275.8 L356.4 219.8 L353.52 227.31 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M353.52 283.31 L356.4 275.8 L356.4 219.8 L353.52 227.31 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M353.52 227.31L356.4 219.8"/>
+    <path d="M353.52 283.31L356.4 275.8"/>
+    <path d="M351.55 291.33 L353.52 283.31 L353.52 227.31 L351.55 235.33 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M351.55 291.33 L353.52 283.31 L353.52 227.31 L351.55 235.33 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M351.55 235.33L353.52 227.31"/>
+    <path d="M351.55 291.33L353.52 283.31"/>
+    <path d="M349.57 299.36 L351.55 291.33 L351.55 235.33 L349.57 243.36 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M349.57 299.36 L351.55 291.33 L351.55 235.33 L349.57 243.36 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M349.57 243.36L351.55 235.33"/>
+    <path d="M349.57 299.36L351.55 291.33"/>
+    <path d="M346.69 306.86 L349.57 299.36 L349.57 243.36 L346.69 250.86 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M346.69 306.86 L349.57 299.36 L349.57 243.36 L346.69 250.86 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M346.69 250.86L349.57 243.36"/>
+    <path d="M346.69 306.86L349.57 299.36"/>
+    <path d="M342.13 313.4 L346.69 306.86 L346.69 250.86 L342.13 257.4 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M342.13 313.4 L346.69 306.86 L346.69 250.86 L342.13 257.4 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M342.13 257.4L346.69 250.86"/>
+    <path d="M342.13 313.4L346.69 306.86"/>
+    <path d="M335.38 318.67 L342.13 313.4 L342.13 257.4 L335.38 262.67 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M335.38 318.67 L342.13 313.4 L342.13 257.4 L335.38 262.67 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M335.38 262.67L342.13 257.4"/>
+    <path d="M335.38 318.67L342.13 313.4"/>
+    <path d="M326.26 322.56 L335.38 318.67 L335.38 262.67 L326.26 266.56 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M326.26 322.56 L335.38 318.67 L335.38 262.67 L326.26 266.56 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M326.26 266.56L335.38 262.67"/>
+    <path d="M326.26 322.56L335.38 318.67"/>
+    <path d="M314.94 325.2 L326.26 322.56 L326.26 266.56 L314.94 269.2 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M314.94 325.2 L326.26 322.56 L326.26 266.56 L314.94 269.2 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M314.94 269.2L326.26 266.56"/>
+    <path d="M314.94 325.2L326.26 322.56"/>
+    <path d="M301.94 326.86 L314.94 325.2 L314.94 269.2 L301.94 270.86 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M301.94 326.86 L314.94 325.2 L314.94 269.2 L301.94 270.86 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M301.94 270.86L314.94 269.2"/>
+    <path d="M301.94 326.86L314.94 325.2"/>
+    <path d="M288.04 328 L301.94 326.86 L301.94 270.86 L288.04 272 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M288.04 328 L301.94 326.86 L301.94 270.86 L288.04 272 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M288.04 272L301.94 270.86"/>
+    <path d="M288.04 328L301.94 326.86"/>
+    <path d="M288.04 328L288.04 272"/>
+    <path d="M331.34 317.5 L323.55 313 L323.55 235 L331.34 239.5 Z" style="fill: var(--_paper)"/>
+    <path d="M331.34 317.5 L323.55 313 L323.55 235 L331.34 239.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M331.34 317.5 L323.55 313 L323.55 235 L331.34 239.5 Z"/>
+    <path d="M331.34 317.5 L339.13 313 L339.13 235 L331.34 239.5 Z" style="fill: var(--_paper)"/>
+    <path d="M331.34 317.5 L339.13 313 L339.13 235 L331.34 239.5 Z"/>
+    <path d="M331.34 239.5 L339.13 235 L331.34 230.5 L323.55 235 Z" style="fill: var(--_paper)"/>
+    <path d="M331.34 239.5 L339.13 235 L331.34 230.5 L323.55 235 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M331.34 239.5 L339.13 235 L331.34 230.5 L323.55 235 Z"/>
+    <path d="M513.21 322.5 L505.41 318 L505.41 240 L513.21 244.5 Z" style="fill: var(--_paper)"/>
+    <path d="M513.21 322.5 L505.41 318 L505.41 240 L513.21 244.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M513.21 322.5 L505.41 318 L505.41 240 L513.21 244.5 Z"/>
+    <path d="M513.21 322.5 L521 318 L521 240 L513.21 244.5 Z" style="fill: var(--_paper)"/>
+    <path d="M513.21 322.5 L521 318 L521 240 L513.21 244.5 Z"/>
+    <path d="M513.21 244.5 L521 240 L513.21 235.5 L505.41 240 Z" style="fill: var(--_paper)"/>
+    <path d="M513.21 244.5 L521 240 L513.21 235.5 L505.41 240 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M513.21 244.5 L521 240 L513.21 235.5 L505.41 240 Z"/>
+    <path d="M436.66 293.97 L425.09 294.69 L425.09 238.69 L436.66 237.97 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M436.66 293.97 L425.09 294.69 L425.09 238.69 L436.66 237.97 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M436.66 237.97L425.09 238.69"/>
+    <path d="M436.66 293.97L425.09 294.69"/>
+    <path d="M448.13 295.14 L436.66 293.97 L436.66 237.97 L448.13 239.14 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M448.13 295.14 L436.66 293.97 L436.66 237.97 L448.13 239.14 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M448.13 239.14L436.66 237.97"/>
+    <path d="M448.13 295.14L436.66 293.97"/>
+    <path d="M448.13 295.14L448.13 239.14"/>
+    <path d="M425.09 294.69 L414.31 297.22 L414.31 241.22 L425.09 238.69 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M425.09 294.69 L414.31 297.22 L414.31 241.22 L425.09 238.69 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M425.09 238.69L414.31 241.22"/>
+    <path d="M425.09 294.69L414.31 297.22"/>
+    <path d="M414.31 297.22 L405.16 301.39 L405.16 245.39 L414.31 241.22 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M414.31 297.22 L405.16 301.39 L405.16 245.39 L414.31 241.22 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M414.31 241.22L405.16 245.39"/>
+    <path d="M414.31 297.22L405.16 301.39"/>
+    <path d="M405.16 301.39 L398.37 306.85 L398.37 250.85 L405.16 245.39 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M405.16 301.39 L398.37 306.85 L398.37 250.85 L405.16 245.39 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M405.16 245.39L398.37 250.85"/>
+    <path d="M405.16 301.39L398.37 306.85"/>
+    <path d="M398.37 306.85 L394.47 313.18 L394.47 257.18 L398.37 250.85 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M398.37 306.85 L394.47 313.18 L394.47 257.18 L398.37 250.85 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M398.37 250.85L394.47 257.18"/>
+    <path d="M398.37 306.85L394.47 313.18"/>
+    <path d="M394.47 313.18 L393.75 319.89 L393.75 263.89 L394.47 257.18 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M394.47 313.18 L393.75 319.89 L393.75 263.89 L394.47 257.18 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M394.47 257.18L393.75 263.89"/>
+    <path d="M394.47 313.18L393.75 319.89"/>
+    <path d="M393.75 319.89 L396.28 326.45 L396.28 270.45 L393.75 263.89 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M393.75 319.89 L396.28 326.45 L396.28 270.45 L393.75 263.89 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M393.75 263.89L396.28 270.45"/>
+    <path d="M393.75 319.89L396.28 326.45"/>
+    <path d="M393.75 319.89L393.75 263.89"/>
+    <path d="M396.28 326.45 L401.85 332.35 L401.85 276.35 L396.28 270.45 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M396.28 326.45 L401.85 332.35 L401.85 276.35 L396.28 270.45 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M396.28 270.45L401.85 276.35"/>
+    <path d="M396.28 326.45L401.85 332.35"/>
+    <path d="M401.85 332.35 L410.04 337.13 L410.04 281.13 L401.85 276.35 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M401.85 332.35 L410.04 337.13 L410.04 281.13 L401.85 276.35 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M401.85 276.35L410.04 281.13"/>
+    <path d="M401.85 332.35L410.04 337.13"/>
+    <path d="M410.04 337.13 L420.19 340.41 L420.19 284.41 L410.04 281.13 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M410.04 337.13 L420.19 340.41 L420.19 284.41 L410.04 281.13 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M410.04 281.13L420.19 284.41"/>
+    <path d="M410.04 337.13L420.19 340.41"/>
+    <path d="M443.16 341.61 L454.17 339.42 L454.17 283.42 L443.16 285.61 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M443.16 341.61 L454.17 339.42 L454.17 283.42 L443.16 285.61 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M443.16 285.61L454.17 283.42"/>
+    <path d="M443.16 341.61L454.17 339.42"/>
+    <path d="M454.17 339.42L454.17 283.42"/>
+    <path d="M420.19 340.41 L431.53 341.94 L431.53 285.94 L420.19 284.41 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M420.19 340.41 L431.53 341.94 L431.53 285.94 L420.19 284.41 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M420.19 284.41L431.53 285.94"/>
+    <path d="M420.19 340.41L431.53 341.94"/>
+    <path d="M431.53 341.94 L443.16 341.61 L443.16 285.61 L431.53 285.94 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>
+    <path d="M431.53 341.94 L443.16 341.61 L443.16 285.61 L431.53 285.94 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M431.53 285.94L443.16 285.61"/>
+    <path d="M431.53 341.94L443.16 341.61"/>
+    <path d="M244.74 367.5 L236.94 363 L236.94 285 L244.74 289.5 Z" style="fill: var(--_paper)"/>
+    <path d="M244.74 367.5 L236.94 363 L236.94 285 L244.74 289.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M244.74 367.5 L236.94 363 L236.94 285 L244.74 289.5 Z"/>
+    <path d="M244.74 367.5 L252.53 363 L252.53 285 L244.74 289.5 Z" style="fill: var(--_paper)"/>
+    <path d="M244.74 367.5 L252.53 363 L252.53 285 L244.74 289.5 Z"/>
+    <path d="M244.74 289.5 L252.53 285 L244.74 280.5 L236.94 285 Z" style="fill: var(--_paper)"/>
+    <path d="M244.74 289.5 L252.53 285 L244.74 280.5 L236.94 285 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M244.74 289.5 L252.53 285 L244.74 280.5 L236.94 285 Z"/>
+    <path d="M322.68 378 L244.74 333 L244.74 277 L322.68 322 Z" style="fill: var(--_paper)"/>
+    <path d="M322.68 378 L244.74 333 L244.74 277 L322.68 322 Z"/>
+    <path d="M322.68 378 L326.14 376 L326.14 320 L322.68 322 Z" style="fill: var(--_paper)"/>
+    <path d="M322.68 378 L326.14 376 L326.14 320 L322.68 322 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M322.68 378 L326.14 376 L326.14 320 L322.68 322 Z"/>
+    <path d="M322.68 322 L326.14 320 L248.2 275 L244.74 277 Z" style="fill: var(--_paper)"/>
+    <path d="M322.68 322 L326.14 320 L248.2 275 L244.74 277 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M322.68 322 L326.14 320 L248.2 275 L244.74 277 Z"/>
+    <path d="M426.6 372.5 L418.81 368 L418.81 290 L426.6 294.5 Z" style="fill: var(--_paper)"/>
+    <path d="M426.6 372.5 L418.81 368 L418.81 290 L426.6 294.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M426.6 372.5 L418.81 368 L418.81 290 L426.6 294.5 Z"/>
+    <path d="M426.6 372.5 L434.4 368 L434.4 290 L426.6 294.5 Z" style="fill: var(--_paper)"/>
+    <path d="M426.6 372.5 L434.4 368 L434.4 290 L426.6 294.5 Z"/>
+    <path d="M426.6 294.5 L434.4 290 L426.6 285.5 L418.81 290 Z" style="fill: var(--_paper)"/>
+    <path d="M426.6 294.5 L434.4 290 L426.6 285.5 L418.81 290 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M426.6 294.5 L434.4 290 L426.6 285.5 L418.81 290 Z"/>
+    <path d="M340 422.5 L332.21 418 L332.21 340 L340 344.5 Z" style="fill: var(--_paper)"/>
+    <path d="M340 422.5 L332.21 418 L332.21 340 L340 344.5 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M340 422.5 L332.21 418 L332.21 340 L340 344.5 Z"/>
+    <path d="M340 422.5 L347.79 418 L347.79 340 L340 344.5 Z" style="fill: var(--_paper)"/>
+    <path d="M340 422.5 L347.79 418 L347.79 340 L340 344.5 Z"/>
+    <path d="M340 344.5 L347.79 340 L340 335.5 L332.21 340 Z" style="fill: var(--_paper)"/>
+    <path d="M340 344.5 L347.79 340 L340 335.5 L332.21 340 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M340 344.5 L347.79 340 L340 335.5 L332.21 340 Z"/>
+  </g>
+  <text class="t-credit" x="180.78" y="613">SOURCE: After Le Corbusier's Dom-ino frame (1914) and "Five Points" (1926). Original drawing</text>
+  <text class="t-credit" x="180.78" y="622">by Project Exodus.</text>
+</svg>

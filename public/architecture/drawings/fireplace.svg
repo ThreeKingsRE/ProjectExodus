@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Fireplace: section</title>
+  <desc id="d">Section through a masonry fireplace: the firebox with its sloping back, the throat and damper, the smoke shelf and smoke chamber above, and the flue rising inside the chimney breast. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M310 440 L362 440 L362 412 L382 300 L382 110 L310 110 Z" fill="url(#h-brick)" stroke="none"/>
+    <path d="M422 560 L500 560 L500 110 L412 110 L412 300 L430 408 L394 408 L422 492 Z" fill="url(#h-brick)" stroke="none"/>
+    <path d="M230 560 L500 560 L500 572 L230 572 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M284 392 L310 392 L310 404 L284 404 Z" fill="url(#h-timber)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <circle cx="363" cy="414" r="2"/>
+    <path d="M372 558q-6 -22 8 -34q-2 14 8 18q2 -16 12 -24q4 22 -4 40Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M190 560L230 560"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M310 440 L362 440 L362 412 L382 300 L382 110 L310 110 Z"/>
+    <path d="M422 560 L500 560 L500 110 L412 110 L412 300 L430 408 L394 408 L422 492 Z"/>
+    <path d="M230 560 L500 560 L500 572 L230 572 Z"/>
+    <path d="M284 392 L310 392 L310 404 L284 404 Z"/>
+    <path d="M363 414L388 404" style="stroke: var(--_accent)"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M392 520L380 430M383.55 436.03L380 430L378.15 436.75" stroke-dasharray="none"/>
+    <path d="M378 400L396 300M397.54 306.83L396 300L392.18 305.86" stroke-dasharray="none"/>
+    <path d="M397 290L397 150M399.73 156.45L397 150L394.27 156.45" stroke-dasharray="none"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M272 440L272 560M268 444L276 436M268 564L276 556M310 440L278 440M310 560L278 560"/><text x="280" y="503">OPENING</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M64.4 176.22L174 176.22L381.5 180"/><circle cx="381.5" cy="180" r="1.5" class="solid"/><text x="34" y="179.22">FLUE</text>
+    <path d="M125.4 246.22L174 246.22L307.5 250"/><circle cx="307.5" cy="250" r="1.5" class="solid"/><text x="34" y="249.22">CHIMNEY BREAST</text>
+    <path d="M119.3 336.22L174 336.22L387.5 340"/><circle cx="387.5" cy="340" r="1.5" class="solid"/><text x="34" y="339.22">SMOKE CHAMBER</text>
+    <path d="M113.2 394.22L174 394.22L281.5 398"/><circle cx="281.5" cy="398" r="1.5" class="solid"/><text x="34" y="397.22">MANTEL SHELF</text>
+    <path d="M107.1 409.22L174 409.22L397.5 408"/><circle cx="397.5" cy="408" r="1.5" class="solid"/><text x="34" y="412.22">SMOKE SHELF</text>
+    <path d="M76.6 424.22L174 424.22L369.5 410"/><circle cx="369.5" cy="410" r="1.5" class="solid"/><text x="34" y="427.22">DAMPER</text>
+    <path d="M76.6 439.22L174 439.22L309.5 432"/><circle cx="309.5" cy="432" r="1.5" class="solid"/><text x="34" y="442.22">LINTEL</text>
+    <path d="M82.7 466.22L174 466.22L397.5 470"/><circle cx="397.5" cy="470" r="1.5" class="solid"/><text x="34" y="469.22">FIREBOX</text>
+    <path d="M76.6 562.22L174 562.22L233.5 566"/><circle cx="233.5" cy="566" r="1.5" class="solid"/><text x="34" y="565.22">HEARTH</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="404" y="210" class="t-small t-accent">SMOKE</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">FIREPLACE</text>
+    <text class="t-sub" x="26" y="710">OPEN HEARTH WITH A FLUE TO CARRY SMOKE AWAY</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  RM-05</text>
+    <text class="t-small" x="416" y="699">SECTION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

@@ -107,3 +107,91 @@ export function courses(L: Layers, clipId: string, poly: Pt[], angle: number, sp
   L[layer].push(`<g clip-path="url(#${clipId})"><path d="${parts.join('')}"/></g>`)
   return `<clipPath id="${clipId}"><path d="${path(poly, true)}"/></clipPath>`
 }
+
+// ---------------------------------------------------------------------------
+// Axonometric / paraline views, for elements that read best in three dimensions
+// ---------------------------------------------------------------------------
+
+/** Model point: x to the right, y into depth, z up (all in page px). */
+export type P3 = [number, number, number]
+
+/**
+ * A paraline projector. `origin` is where model (0,0,0) lands on the page.
+ * isometric: both ground axes at 30°; planometric (military): 45°/45° with the
+ * plan undistorted; oblique (cavalier/cabinet): x flat, depth at `depthAngle`.
+ */
+export function axo(origin: Pt, kind: 'isometric' | 'planometric' | 'oblique' = 'isometric', depthScale = kind === 'oblique' ? 0.5 : 1) {
+  const deg = Math.PI / 180
+  const [ax, ay] = kind === 'isometric' ? [30 * deg, 30 * deg] : kind === 'planometric' ? [45 * deg, 45 * deg] : [0, 45 * deg]
+  // oblique: depth recedes up and to the right; the others: x up-right, y up-left
+  const ySign = kind === 'oblique' ? 1 : -1
+  const P = (p: P3): Pt => [
+    origin[0] + p[0] * Math.cos(ax) + ySign * p[1] * depthScale * Math.cos(ay),
+    origin[1] - p[0] * Math.sin(ax) - p[1] * depthScale * Math.sin(ay) - p[2],
+  ]
+  return Object.assign(P, { kind })
+}
+export type Axo = ReturnType<typeof axo>
+
+/** Tone patterns for shaded faces; pass AXO_DEFS to finish() when using face(..., 'mid'|'dark'). */
+export const AXO_DEFS = `<pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern><pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>`
+
+/**
+ * One planar face, painted in order (painter's algorithm: draw far faces first).
+ * Fills with paper so it hides what is behind it, then tone, then outline.
+ */
+export function face(L: Layers, P: Axo, pts: P3[], tone: 'light' | 'mid' | 'dark' = 'light', outline: LayerName = 'profile') {
+  const d = path(pts.map(P), true)
+  // paper fill and tone travel in the same layer as the outline so stacking order holds
+  L[outline].push(`<path d="${d}" style="fill: var(--_paper)"/>`)
+  if (tone !== 'light') L[outline].push(`<path d="${d}" fill="url(#${tone === 'mid' ? 'h-tone' : 'h-tone-d'})" stroke="none"/>`)
+  L[outline].push(el(d))
+}
+
+/**
+ * Box from (x,y,z) of size w (x), d (y), h (z). Draws the three faces seen from
+ * the viewer: top, the y=min face (front) and the x=max or x=min side.
+ */
+export function box(L: Layers, P: Axo, [x, y, z]: P3, w: number, d: number, h: number, tones: { top?: 'light' | 'mid' | 'dark'; front?: 'light' | 'mid' | 'dark'; side?: 'light' | 'mid' | 'dark' } = {}, outline: LayerName = 'profile') {
+  const { top = 'light', front = 'mid', side = 'dark' } = tones
+  // isometric/planometric: y recedes up-left, so the x=min side faces the viewer;
+  // oblique: y recedes up-right, so the x=max side does
+  const sx = P.kind === 'oblique' ? x + w : x
+  face(L, P, [[sx, y, z], [sx, y + d, z], [sx, y + d, z + h], [sx, y, z + h]], side, outline)
+  face(L, P, [[x, y, z], [x + w, y, z], [x + w, y, z + h], [x, y, z + h]], front, outline)
+  face(L, P, [[x, y, z + h], [x + w, y, z + h], [x + w, y + d, z + h], [x, y + d, z + h]], top, outline)
+}
+
+/** Add 3D points to the bounds through the projector. */
+export function addAxo(B: Bounds, P: Axo, ...pts: P3[]) {
+  B.add(...pts.map(P))
+}
+
+/**
+ * A thin wall following a plan curve, from z0 to z0+h, painted segment by
+ * segment far-to-near with only its real edges stroked: top, bottom, ends and
+ * the vertical silhouettes where the curve turns away from the viewer.
+ */
+export function axoWall(L: Layers, P: Axo, plan: Array<[number, number]>, z0: number, h: number, tone: 'light' | 'mid' | 'dark' = 'mid', layer: LayerName = 'profile') {
+  // viewing direction in plan: iso/planometric look towards +x +y; oblique towards +y
+  const view: [number, number] = P.kind === 'oblique' ? [0, 1] : [1, 1]
+  const segs = plan.slice(1).map((b, i) => {
+    const a = plan[i]
+    const nx = b[1] - a[1]
+    const ny = -(b[0] - a[0])
+    return { a, b, i, facing: Math.sign(nx * view[0] + ny * view[1]), depth: ((a[0] + b[0]) * view[0] + (a[1] + b[1]) * view[1]) / 2 }
+  })
+  const fill = tone === 'light' ? '' : `<path d="__D__" fill="url(#${tone === 'mid' ? 'h-tone' : 'h-tone-d'})" stroke="none"/>`
+  for (const s of [...segs].sort((p, q) => q.depth - p.depth)) {
+    const quad = path([P([s.a[0], s.a[1], z0]), P([s.b[0], s.b[1], z0]), P([s.b[0], s.b[1], z0 + h]), P([s.a[0], s.a[1], z0 + h])], true)
+    L[layer].push(`<path d="${quad}" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.6"/>`)
+    if (fill) L[layer].push(fill.replace('__D__', quad))
+    L[layer].push(line(P([s.a[0], s.a[1], z0 + h]), P([s.b[0], s.b[1], z0 + h])), line(P([s.a[0], s.a[1], z0]), P([s.b[0], s.b[1], z0])))
+    const prev = segs[s.i - 1]
+    const verts: Array<[number, number]> = []
+    if (s.i === 0) verts.push(s.a)
+    if (s.i === segs.length - 1) verts.push(s.b)
+    if (prev && prev.facing !== s.facing) verts.push(s.a)
+    for (const v of verts) L[layer].push(line(P([v[0], v[1], z0]), P([v[0], v[1], z0 + h])))
+  }
+}

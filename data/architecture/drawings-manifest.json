@@ -970,5 +970,65 @@
   "sheetNo": "URB-14",
   "source": "Recording conventions of single-context archaeological section drawing (layer numbering, datum, scale). Illustrative, not a real site. Original drawing by Project Exodus.",
   "aspect": 1.451
+ },
+ "boiserie": {
+  "view": "ELEVATION",
+  "sheetNo": "RM-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.88
+ },
+ "built-in-bookcase": {
+  "view": "ELEVATION",
+  "sheetNo": "RM-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.85
+ },
+ "mantelpiece": {
+  "view": "ELEVATION",
+  "sheetNo": "RM-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.699
+ },
+ "shoji-screen": {
+  "view": "ELEVATION",
+  "sheetNo": "RM-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.01
+ },
+ "fireplace": {
+  "view": "SECTION",
+  "sheetNo": "RM-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.677
+ },
+ "inglenook": {
+  "view": "PLAN",
+  "sheetNo": "RM-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.436
+ },
+ "kubbealti-domed-chamber": {
+  "view": "SECTION",
+  "sheetNo": "RM-07",
+  "source": "After the Kubbealtı (Imperial Council Hall), Topkapı Palace, Istanbul (16th c.). Simplified; not a survey. Original drawing by Project Exodus.",
+  "aspect": 0.85
+ },
+ "double-height-space": {
+  "view": "SECTION",
+  "sheetNo": "RM-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.067
+ },
+ "free-plan": {
+  "view": "ISOMETRIC",
+  "sheetNo": "RM-09",
+  "source": "After Le Corbusier's Dom-ino frame (1914) and \"Five Points\" (1926). Original drawing by Project Exodus.",
+  "aspect": 0.959
+ },
+ "sculptural-staircase": {
+  "view": "ISOMETRIC",
+  "sheetNo": "RM-10",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.742
  }
 }
