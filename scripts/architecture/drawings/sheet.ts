@@ -136,7 +136,9 @@ export function renderSheet(spec: SheetSpec): string {
   assertSource(spec)
   const tbTop = PAGE_H - 116
   const split = PAGE_W - 200
-  const sourceLines = wrap(`SOURCE: ${spec.source}`, 64).slice(0, 3)
+  // The credit is never truncated: wrap to the title block, fail the build if it can't fit
+  const sourceLines = wrap(`SOURCE: ${spec.source}`, 74)
+  if (sourceLines.length > 4) throw new Error(`${spec.id}: source credit too long for the title block (${sourceLines.length} lines; max 4)`)
   const { unitPx, unitName, count } = spec.scale
   const bar = Array.from({ length: count }, (_, i) =>
     `<rect x="${f(split + 16 + i * unitPx)}" y="${tbTop + 66}" width="${f(unitPx)}" height="5" class="${i % 2 ? 'ink l-fine' : 'solid'}"/>`
@@ -157,7 +159,7 @@ ${layersSvg(spec, LAYERS)}
     <path class="ink l-fine" d="M12 ${tbTop}H${PAGE_W - 12}M${split} ${tbTop}V${PAGE_H - 12}"/>
     <text class="t-title" x="26" y="${tbTop + 28}">${esc(spec.title.toUpperCase())}</text>
     <text class="t-sub" x="26" y="${tbTop + 46}">${esc(spec.subtitle.toUpperCase())}</text>
-    ${sourceLines.map((l, i) => `<text class="t-small" x="26" y="${tbTop + 66 + i * 11}">${esc(l)}</text>`).join('\n    ')}
+    ${sourceLines.map((l, i) => `<text class="t-small" x="26" y="${tbTop + 62 + i * 10}">${esc(l)}</text>`).join('\n    ')}
     <text class="t-sub" x="${split + 16}" y="${tbTop + 20}">SHEET  ${esc(spec.sheetNo)}</text>
     ${spec.view.split(' · ').slice(0, 2).map((l, i) => `<text class="t-small" x="${split + 16}" y="${tbTop + 35 + i * 10}">${esc(l)}</text>`).join('')}
     <text class="t-small" x="${split + 16}" y="${tbTop + 60}">SCALE IN ${esc(unitName.toUpperCase())}</text>

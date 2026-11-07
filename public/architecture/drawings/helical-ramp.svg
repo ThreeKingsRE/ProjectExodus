@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Helical Ramp: plan</title>
+  <desc id="d">Plan of a ramp that spirals upward around an open central light well inside a circular wall, with the direction of rise marked. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M537 300 L536.25 317.17 L534.01 334.21 L530.29 350.99 L525.12 367.38 L518.54 383.26 L510.61 398.5 L501.37 412.99 L490.91 426.63 L479.3 439.3 L466.63 450.91 L452.99 461.37 L438.5 470.61 L423.26 478.54 L407.38 485.12 L390.99 490.29 L374.21 494.01 L357.17 496.25 L340 497 L322.83 496.25 L305.79 494.01 L289.01 490.29 L272.62 485.12 L256.74 478.54 L241.5 470.61 L227.01 461.37 L213.37 450.91 L200.7 439.3 L189.09 426.63 L178.63 412.99 L169.39 398.5 L161.46 383.26 L154.88 367.38 L149.71 350.99 L145.99 334.21 L143.75 317.17 L143 300 L143.75 282.83 L145.99 265.79 L149.71 249.01 L154.88 232.62 L161.46 216.74 L169.39 201.5 L178.63 187.01 L189.09 173.37 L200.7 160.7 L213.37 149.09 L227.01 138.63 L241.5 129.39 L256.74 121.46 L272.62 114.88 L289.01 109.71 L305.79 105.99 L322.83 103.75 L340 103 L357.17 103.75 L374.21 105.99 L390.99 109.71 L407.38 114.88 L423.26 121.46 L438.5 129.39 L452.99 138.63 L466.63 149.09 L479.3 160.7 L490.91 173.37 L501.37 187.01 L510.61 201.5 L518.54 216.74 L525.12 232.62 L530.29 249.01 L534.01 265.79 L536.25 282.83 L537 300 L525 300 L524.3 283.88 L522.19 267.88 L518.7 252.12 L513.84 236.73 L507.67 221.82 L500.21 207.5 L491.54 193.89 L481.72 181.08 L470.81 169.19 L458.92 158.28 L446.11 148.46 L432.5 139.79 L418.18 132.33 L403.27 126.16 L387.88 121.3 L372.12 117.81 L356.12 115.7 L340 115 L323.88 115.7 L307.88 117.81 L292.12 121.3 L276.73 126.16 L261.82 132.33 L247.5 139.79 L233.89 148.46 L221.08 158.28 L209.19 169.19 L198.28 181.08 L188.46 193.89 L179.79 207.5 L172.33 221.82 L166.16 236.73 L161.3 252.12 L157.81 267.88 L155.7 283.88 L155 300 L155.7 316.12 L157.81 332.12 L161.3 347.88 L166.16 363.27 L172.33 378.18 L179.79 392.5 L188.46 406.11 L198.28 418.92 L209.19 430.81 L221.08 441.72 L233.89 451.54 L247.5 460.21 L261.82 467.67 L276.73 473.84 L292.12 478.7 L307.88 482.19 L323.88 484.3 L340 485 L356.12 484.3 L372.12 482.19 L387.88 478.7 L403.27 473.84 L418.18 467.67 L432.5 460.21 L446.11 451.54 L458.92 441.72 L470.81 430.81 L481.72 418.92 L491.54 406.11 L500.21 392.5 L507.67 378.18 L513.84 363.27 L518.7 347.88 L522.19 332.12 L524.3 316.12 L525 300 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M410 300L525 300" stroke-dasharray="2 5"/>
+    <path d="M407.61 318.12L518.7 347.88" stroke-dasharray="2 5"/>
+    <path d="M400.62 335L500.21 392.5" stroke-dasharray="2 5"/>
+    <path d="M389.5 349.5L470.81 430.81" stroke-dasharray="2 5"/>
+    <path d="M375 360.62L432.5 460.21" stroke-dasharray="2 5"/>
+    <path d="M358.12 367.61L387.88 478.7" stroke-dasharray="2 5"/>
+    <path d="M340 370L340 485" stroke-dasharray="2 5"/>
+    <path d="M321.88 367.61L292.12 478.7" stroke-dasharray="2 5"/>
+    <path d="M305 360.62L247.5 460.21" stroke-dasharray="2 5"/>
+    <path d="M290.5 349.5L209.19 430.81" stroke-dasharray="2 5"/>
+    <path d="M279.38 335L179.79 392.5" stroke-dasharray="2 5"/>
+    <path d="M272.39 318.12L161.3 347.88" stroke-dasharray="2 5"/>
+    <path d="M270 300L155 300" stroke-dasharray="2 5"/>
+    <path d="M272.39 281.88L161.3 252.12" stroke-dasharray="2 5"/>
+    <path d="M279.38 265L179.79 207.5" stroke-dasharray="2 5"/>
+    <path d="M290.5 250.5L209.19 169.19" stroke-dasharray="2 5"/>
+    <path d="M305 239.38L247.5 139.79" stroke-dasharray="2 5"/>
+    <path d="M321.88 232.39L292.12 121.3" stroke-dasharray="2 5"/>
+    <path d="M340 230L340 115" stroke-dasharray="2 5"/>
+    <path d="M358.12 232.39L387.88 121.3" stroke-dasharray="2 5"/>
+    <path d="M375 239.38L432.5 139.79" stroke-dasharray="2 5"/>
+    <path d="M389.5 250.5L470.81 169.19" stroke-dasharray="2 5"/>
+    <path d="M400.62 265L500.21 207.5" stroke-dasharray="2 5"/>
+    <path d="M407.61 281.88L518.7 252.12" stroke-dasharray="2 5"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M525 300 L524.3 316.12 L522.19 332.12 L518.7 347.88 L513.84 363.27 L507.67 378.18 L500.21 392.5 L491.54 406.11 L481.72 418.92 L470.81 430.81 L458.92 441.72 L446.11 451.54 L432.5 460.21 L418.18 467.67 L403.27 473.84 L387.88 478.7 L372.12 482.19 L356.12 484.3 L340 485 L323.88 484.3 L307.88 482.19 L292.12 478.7 L276.73 473.84 L261.82 467.67 L247.5 460.21 L233.89 451.54 L221.08 441.72 L209.19 430.81 L198.28 418.92 L188.46 406.11 L179.79 392.5 L172.33 378.18 L166.16 363.27 L161.3 347.88 L157.81 332.12 L155.7 316.12 L155 300 L155.7 283.88 L157.81 267.88 L161.3 252.12 L166.16 236.73 L172.33 221.82 L179.79 207.5 L188.46 193.89 L198.28 181.08 L209.19 169.19 L221.08 158.28 L233.89 148.46 L247.5 139.79 L261.82 132.33 L276.73 126.16 L292.12 121.3 L307.88 117.81 L323.88 115.7 L340 115 L356.12 115.7 L372.12 117.81 L387.88 121.3 L403.27 126.16 L418.18 132.33 L432.5 139.79 L446.11 148.46 L458.92 158.28 L470.81 169.19 L481.72 181.08 L491.54 193.89 L500.21 207.5 L507.67 221.82 L513.84 236.73 L518.7 252.12 L522.19 267.88 L524.3 283.88 L525 300 Z"/>
+    <path d="M410 300 L409.73 306.1 L408.94 312.16 L407.61 318.12 L405.78 323.94 L403.44 329.58 L400.62 335 L397.34 340.15 L393.62 345 L389.5 349.5 L385 353.62 L380.15 357.34 L375 360.62 L369.58 363.44 L363.94 365.78 L358.12 367.61 L352.16 368.94 L346.1 369.73 L340 370 L333.9 369.73 L327.84 368.94 L321.88 367.61 L316.06 365.78 L310.42 363.44 L305 360.62 L299.85 357.34 L295 353.62 L290.5 349.5 L286.38 345 L282.66 340.15 L279.38 335 L276.56 329.58 L274.22 323.94 L272.39 318.12 L271.06 312.16 L270.27 306.1 L270 300 L270.27 293.9 L271.06 287.84 L272.39 281.88 L274.22 276.06 L276.56 270.42 L279.38 265 L282.66 259.85 L286.38 255 L290.5 250.5 L295 246.38 L299.85 242.66 L305 239.38 L310.42 236.56 L316.06 234.22 L321.88 232.39 L327.84 231.06 L333.9 230.27 L340 230 L346.1 230.27 L352.16 231.06 L358.12 232.39 L363.94 234.22 L369.58 236.56 L375 239.38 L380.15 242.66 L385 246.38 L389.5 250.5 L393.62 255 L397.34 259.85 L400.62 265 L403.44 270.42 L405.78 276.06 L407.61 281.88 L408.94 287.84 L409.73 293.9 L410 300 Z"/>
+    <path d="M340 172.5 L349.25 172.84 L358.46 173.84 L367.57 175.52 L376.53 177.85 L385.3 180.82 L393.83 184.42 L402.08 188.63 L410 193.43 L417.55 198.8 L424.69 204.69 L431.39 211.09 L437.6 217.96 L443.3 225.26 L448.45 232.96 L453.03 241 L457.01 249.36 L460.38 257.99 L463.11 266.84 L465.19 275.86 L466.62 285.01 L467.37 294.24 L467.45 303.5 L466.86 312.75 L465.6 321.92 L463.68 330.98 L461.1 339.88 L457.89 348.56 L454.05 356.99 L449.62 365.12 L444.6 372.9 L439.03 380.3 L432.94 387.28 L426.36 393.8 L419.33 399.82 L411.87 405.31 L404.04 410.25 L395.87 414.61 L387.4 418.36 L378.68 421.49 L369.76 423.98 L360.69 425.81 L351.5 426.98 L342.25 427.48 L332.99 427.31 L323.77 426.46 L314.64 424.95 L305.63 422.78 L296.81 419.96 L288.22 416.51 L279.9 412.44 L271.89 407.79 L264.25 402.56 L257.01 396.79 L250.2 390.51 L243.87 383.75 L238.04 376.55 L232.75 368.95 L228.03 360.98 L223.9 352.7 L220.38 344.13 L217.49 335.33 L215.25 326.35 L213.67 317.22 L212.75 308.01 L212.51 298.75 L212.93 289.5 L214.03 280.3 L215.79 271.21 L218.21 262.27 L221.27 253.53 L224.96 245.03 L229.25 236.83 L234.13 228.96 L239.56 221.46 L245.53 214.38 L251.99 207.74 L258.92 201.6 L266.28 195.97 L274.02 190.9 L282.12 186.4"/>
+    <circle cx="340" cy="172.5" r="3" class="solid"/>
+    <path d="M274.02 190.9L282.12 186.4M277.81 191.91L282.12 186.4L275.16 187.15" stroke-dasharray="none"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M537 300 L536.25 317.17 L534.01 334.21 L530.29 350.99 L525.12 367.38 L518.54 383.26 L510.61 398.5 L501.37 412.99 L490.91 426.63 L479.3 439.3 L466.63 450.91 L452.99 461.37 L438.5 470.61 L423.26 478.54 L407.38 485.12 L390.99 490.29 L374.21 494.01 L357.17 496.25 L340 497 L322.83 496.25 L305.79 494.01 L289.01 490.29 L272.62 485.12 L256.74 478.54 L241.5 470.61 L227.01 461.37 L213.37 450.91 L200.7 439.3 L189.09 426.63 L178.63 412.99 L169.39 398.5 L161.46 383.26 L154.88 367.38 L149.71 350.99 L145.99 334.21 L143.75 317.17 L143 300 L143.75 282.83 L145.99 265.79 L149.71 249.01 L154.88 232.62 L161.46 216.74 L169.39 201.5 L178.63 187.01 L189.09 173.37 L200.7 160.7 L213.37 149.09 L227.01 138.63 L241.5 129.39 L256.74 121.46 L272.62 114.88 L289.01 109.71 L305.79 105.99 L322.83 103.75 L340 103 L357.17 103.75 L374.21 105.99 L390.99 109.71 L407.38 114.88 L423.26 121.46 L438.5 129.39 L452.99 138.63 L466.63 149.09 L479.3 160.7 L490.91 173.37 L501.37 187.01 L510.61 201.5 L518.54 216.74 L525.12 232.62 L530.29 249.01 L534.01 265.79 L536.25 282.83 L537 300 L525 300 L524.3 283.88 L522.19 267.88 L518.7 252.12 L513.84 236.73 L507.67 221.82 L500.21 207.5 L491.54 193.89 L481.72 181.08 L470.81 169.19 L458.92 158.28 L446.11 148.46 L432.5 139.79 L418.18 132.33 L403.27 126.16 L387.88 121.3 L372.12 117.81 L356.12 115.7 L340 115 L323.88 115.7 L307.88 117.81 L292.12 121.3 L276.73 126.16 L261.82 132.33 L247.5 139.79 L233.89 148.46 L221.08 158.28 L209.19 169.19 L198.28 181.08 L188.46 193.89 L179.79 207.5 L172.33 221.82 L166.16 236.73 L161.3 252.12 L157.81 267.88 L155.7 283.88 L155 300 L155.7 316.12 L157.81 332.12 L161.3 347.88 L166.16 363.27 L172.33 378.18 L179.79 392.5 L188.46 406.11 L198.28 418.92 L209.19 430.81 L221.08 441.72 L233.89 451.54 L247.5 460.21 L261.82 467.67 L276.73 473.84 L292.12 478.7 L307.88 482.19 L323.88 484.3 L340 485 L356.12 484.3 L372.12 482.19 L387.88 478.7 L403.27 473.84 L418.18 467.67 L432.5 460.21 L446.11 451.54 L458.92 441.72 L470.81 430.81 L481.72 418.92 L491.54 406.11 L500.21 392.5 L507.67 378.18 L513.84 363.27 L518.7 347.88 L522.19 332.12 L524.3 316.12 L525 300 Z"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M155 519L270 519M151 523L159 515M266 523L274 515M155 513L155 525M270 513L270 525"/><text x="212.5" y="533" text-anchor="middle">RAMP WIDTH</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M162 260L140.5 260"/><circle cx="140.5" cy="260" r="1.5" class="solid"/><text x="34" y="263">OUTER WALL (SECTION)</text>
+    <path d="M119.3 312L267.5 312"/><circle cx="267.5" cy="312" r="1.5" class="solid"/><text x="34" y="315">INNER PARAPET</text>
+    <path d="M113.2 374L198.75 374"/><circle cx="198.75" cy="374" r="1.5" class="solid"/><text x="34" y="377">RAMP SURFACE</text>
+    <path d="M143.7 412.44L277.4 412.44"/><circle cx="277.4" cy="412.44" r="1.5" class="solid"/><text x="34" y="415.44">DIRECTION OF RISE</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="340" y="304" text-anchor="middle" class="t-small">LIGHT WELL</text>
+    <text x="348" y="186.5" class="t-sub">UP</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">HELICAL RAMP</text>
+    <text class="t-sub" x="26" y="710">CONTINUOUS RAMP WINDING ROUND A CENTRAL VOID</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  STR-10</text>
+    <text class="t-small" x="416" y="699">PLAN</text>
+    <text class="t-small" x="416" y="724">SCALE IN FIFTHS OF RADIUS</text>
+    <rect x="416" y="730" width="37" height="5" class="solid"/><rect x="453" y="730" width="37" height="5" class="ink l-fine"/><rect x="490" y="730" width="37" height="5" class="solid"/><rect x="527" y="730" width="37" height="5" class="ink l-fine"/><rect x="564" y="730" width="37" height="5" class="solid"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="599" y="749">5</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

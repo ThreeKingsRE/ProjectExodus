@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Perron: elevation</title>
+  <desc id="d">Elevation of an outdoor stair with two symmetrical flights climbing toward each other to a platform before a raised front door, edged with balustrades. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M262 385 L358 385 L358 470 L262 470 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M110 170 L510 170 L510 470 L110 470 Z"/>
+    <path d="M262 385 L358 385 L358 470 L262 470 Z"/>
+    <path d="M250 338c-2 8 2 18 0 33"/>
+    <path d="M234 349c-2 8 2 18 0 33"/>
+    <path d="M218 360c-2 8 2 18 0 33"/>
+    <path d="M202 371c-2 8 2 18 0 33"/>
+    <path d="M186 382c-2 8 2 18 0 33"/>
+    <path d="M170 393c-2 8 2 18 0 33"/>
+    <path d="M154 404c-2 8 2 18 0 33"/>
+    <path d="M138 415c-2 8 2 18 0 33"/>
+    <path d="M122 426c-2 8 2 18 0 33"/>
+    <path d="M106 437c-2 8 2 18 0 33"/>
+    <path d="M370 338c2 8 -2 18 0 33"/>
+    <path d="M386 349c2 8 -2 18 0 33"/>
+    <path d="M402 360c2 8 -2 18 0 33"/>
+    <path d="M418 371c2 8 -2 18 0 33"/>
+    <path d="M434 382c2 8 -2 18 0 33"/>
+    <path d="M450 393c2 8 -2 18 0 33"/>
+    <path d="M466 404c2 8 -2 18 0 33"/>
+    <path d="M482 415c2 8 -2 18 0 33"/>
+    <path d="M498 426c2 8 -2 18 0 33"/>
+    <path d="M514 437c2 8 -2 18 0 33"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M280 371V261A30 30 0 0 1 340 261V371"/>
+    <path d="M250 371 L370 371 L370 470 L250 470 Z"/>
+    <path d="M250 371 L250 371 L250 382 L234 382 L234 382 L234 393 L218 393 L218 393 L218 404 L202 404 L202 404 L202 415 L186 415 L186 415 L186 426 L170 426 L170 426 L170 437 L154 437 L154 437 L154 448 L138 448 L138 448 L138 459 L122 459 L122 459 L122 470 L106 470 L106 470 L250 470"/>
+    <path d="M250 335L106 434"/>
+    <path d="M370 371 L370 371 L370 382 L386 382 L386 382 L386 393 L402 393 L402 393 L402 404 L418 404 L418 404 L418 415 L434 415 L434 415 L434 426 L450 426 L450 426 L450 437 L466 437 L466 437 L466 448 L482 448 L482 448 L482 459 L498 459 L498 459 L498 470 L514 470 L514 470 L370 470"/>
+    <path d="M370 335L514 434"/>
+    <path d="M250 335L370 335"/>
+    <path d="M99 424 L113 424 L113 470 L99 470 Z"/>
+    <path d="M507 424 L521 424 L521 470 L507 470 Z"/>
+    <path d="M95 470L525 470"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M250 492L370 492M246 496L254 488M366 496L374 488M250 486L250 498M370 486L370 498"/><text x="310" y="506" text-anchor="middle">PLATFORM</text>
+    <path d="M536 470L536 371M532 474L540 466M532 375L540 367M526 470L542 470M526 371L542 371"/><text x="544" y="423.5">9 R</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M88.8 308.8L81 308.8L277.5 311"/><circle cx="277.5" cy="311" r="1.5" class="solid"/><text x="34" y="311.8">ENTRANCE</text>
+    <path d="M101 365.8L81 365.8L199.5 368"/><circle cx="199.5" cy="368" r="1.5" class="solid"/><text x="34" y="368.8">BALUSTRADE</text>
+    <path d="M88.8 408.8L81 408.8L259.5 411"/><circle cx="259.5" cy="411" r="1.5" class="solid"/><text x="34" y="411.8">PLATFORM</text>
+    <path d="M76.6 423.8L81 423.8L167.5 415"/><circle cx="167.5" cy="415" r="1.5" class="solid"/><text x="34" y="426.8">FLIGHT</text>
+    <path d="M119.3 447.8L81 447.8L96.5 450"/><circle cx="96.5" cy="450" r="1.5" class="solid"/><text x="34" y="450.8">TERMINAL PIER</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">PERRON</text>
+    <text class="t-sub" x="26" y="710">EXTERNAL STAIR RISING TO A RAISED ENTRANCE</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  STR-14</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN TWO GOINGS</text>
+    <rect x="416" y="730" width="32" height="5" class="solid"/><rect x="448" y="730" width="32" height="5" class="ink l-fine"/><rect x="480" y="730" width="32" height="5" class="solid"/><rect x="512" y="730" width="32" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="542" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

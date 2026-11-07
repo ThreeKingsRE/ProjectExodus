@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Accessibility Ramp: section</title>
+  <desc id="d">Section through a gently sloping ramp at no more than 1 in 12, rising at most 760 mm before a level landing, with handrails at a constant height above the surface. Source: Ramp limits from the 2010 ADA Standards for Accessible Design, §405 (max slope 1:12, max rise 760 mm per run, landings ≥ 1525 mm, handrails 865–965 mm). Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M139.2 330 L562.33 330 L562.33 340 L139.2 340 Z" fill="url(#h-earth)" stroke="none"/>
+    <path d="M180 330 L490.08 304.16 L541.93 304.16 L541.93 330 Z" fill="url(#h-concrete)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M180 330L180 299.4"/>
+    <path d="M335.04 317.08L335.04 286.48"/>
+    <path d="M490.08 304.16L490.08 273.56"/>
+    <path d="M541.93 304.16L541.93 273.56"/>
+    <path d="M128.15 327 L180 327 L180 330 L128.15 330 Z" stroke-dasharray="4 3"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M139.2 330 L562.33 330 L562.33 340 L139.2 340 Z"/>
+    <path d="M169.8 299.4 L180 299.4 L490.08 273.56 L541.93 273.56" stroke-width="2.2"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M180 330 L490.08 304.16 L541.93 304.16 L541.93 330 Z"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M180 362L490.08 362M176 366L184 358M486.08 366L494.08 358M180 356L180 368M490.08 356L490.08 368"/><text x="335.04" y="376" text-anchor="middle">RUN 9120</text>
+    <path d="M490.08 362L541.93 362M486.08 366L494.08 358M537.93 366L545.93 358M490.08 356L490.08 368M541.93 356L541.93 368"/><text x="516.01" y="376" text-anchor="middle">LANDING 1525</text>
+    <path d="M128.15 362L180 362M124.15 366L132.15 358M176 366L184 358M128.15 356L128.15 368M180 356L180 368"/><text x="154.07" y="376" text-anchor="middle">1525</text>
+    <path d="M555.93 330L555.93 304.16M551.93 334L559.93 326M551.93 308.16L559.93 300.16M545.93 330L561.93 330M545.93 304.16L561.93 304.16"/><text x="563.93" y="320.08">≤760</text>
+    <path d="M153.8 330L153.8 299.4M149.8 334L157.8 326M149.8 303.4L157.8 295.4M143.8 330L159.8 330M143.8 299.4L159.8 299.4"/><text x="161.8" y="317.7">865–965</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M88.8 292.71L125.2 292.71L239.52 294.23"/><circle cx="239.52" cy="294.23" r="1.5" class="solid"/><text x="34" y="295.71">HANDRAIL</text>
+    <path d="M107.1 308.64L125.2 308.64L494.38 310.16"/><circle cx="494.38" cy="310.16" r="1.5" class="solid"/><text x="34" y="311.64">TOP LANDING</text>
+    <path d="M88.8 323.64L125.2 323.64L270.52 324.25"/><circle cx="270.52" cy="324.25" r="1.5" class="solid"/><text x="34" y="326.64">RAMP RUN</text>
+    <path d="M76.6 338.64L125.2 338.64L136.7 335"/><circle cx="136.7" cy="335" r="1.5" class="solid"/><text x="34" y="341.64">GROUND</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="319.54" y="308.37" class="t-sub t-accent">SLOPE 1:12 MAX</text>
+    <text x="562.33" y="392" text-anchor="end" class="t-small">DIMENSIONS IN MM</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">ACCESSIBILITY RAMP</text>
+    <text class="t-sub" x="26" y="710">WHEELCHAIR-ACCESSIBLE RAMP TO CODE LIMITS</text>
+    <text class="t-small" x="26" y="726">SOURCE: Ramp limits from the 2010 ADA Standards for Accessible Design,</text>
+    <text class="t-small" x="26" y="736">§405 (max slope 1:12, max rise 760 mm per run, landings ≥ 1525 mm,</text>
+    <text class="t-small" x="26" y="746">handrails 865–965 mm). Original drawing by Project Exodus.</text>
+    <text class="t-sub" x="416" y="684">SHEET  STR-12</text>
+    <text class="t-small" x="416" y="699">SECTION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES</text>
+    <rect x="416" y="730" width="34" height="5" class="solid"/><rect x="450" y="730" width="34" height="5" class="ink l-fine"/><rect x="484" y="730" width="34" height="5" class="solid"/><rect x="518" y="730" width="34" height="5" class="ink l-fine"/><rect x="552" y="730" width="34" height="5" class="solid"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="584" y="749">5</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

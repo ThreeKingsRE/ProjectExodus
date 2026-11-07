@@ -173,9 +173,8 @@
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">COMPOSITE ORDER</text>
     <text class="t-sub" x="26" y="710">COLUMN AND ENTABLATURE · 10 DIAMETERS</text>
-    <text class="t-small" x="26" y="730">SOURCE: Proportions after Giacomo Barozzi da Vignola, Regola</text>
-    <text class="t-small" x="26" y="741">delli cinque ordini d’architettura (Rome, 1562). Simplified;</text>
-    <text class="t-small" x="26" y="752">drawn by Project Exodus.</text>
+    <text class="t-small" x="26" y="726">SOURCE: Proportions after Giacomo Barozzi da Vignola, Regola delli cinque</text>
+    <text class="t-small" x="26" y="736">ordini d’architettura (Rome, 1562). Simplified; drawn by Project Exodus.</text>
     <text class="t-sub" x="416" y="684">SHEET  COL-05</text>
     <text class="t-small" x="416" y="699">HALF SECTION</text><text class="t-small" x="416" y="709">HALF ELEVATION</text>
     <text class="t-small" x="416" y="724">SCALE IN MODULES</text>

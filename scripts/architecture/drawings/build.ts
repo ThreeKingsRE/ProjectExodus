@@ -15,13 +15,14 @@ import { ORDERS, buildOrder } from './families/orders'
 import { ARCHES, buildArch } from './families/arches'
 import { VAULT_SHEETS } from './families/vaults'
 import { FLOOR_SHEETS } from './families/floors'
+import { STAIR_SHEETS } from './families/stairs'
 import { ELEMENT_SUMMARIES } from '../../../data/architecture/summary'
 
 const OUT_DIR = 'public/architecture/drawings'
 const MANIFEST = 'data/architecture/drawings-manifest.json'
 const MAX_GZIP = 14 * 1024 // per file budget
 
-const specs: SheetSpec[] = [...ORDERS.map(buildOrder), ...ARCHES.map(buildArch), ...VAULT_SHEETS.map((build) => build()), ...FLOOR_SHEETS.map((build) => build())]
+const specs: SheetSpec[] = [...ORDERS.map(buildOrder), ...ARCHES.map(buildArch), ...VAULT_SHEETS.map((build) => build()), ...FLOOR_SHEETS.map((build) => build()), ...STAIR_SHEETS.map((build) => build())]
 
 const known = new Set(ELEMENT_SUMMARIES.map((e) => e.id))
 const files = new Map<string, string>()

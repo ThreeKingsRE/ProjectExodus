@@ -184,5 +184,89 @@
   "sheetNo": "FLR-09",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 1
+ },
+ "tread": {
+  "view": "SECTION",
+  "sheetNo": "STR-01",
+  "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
+  "aspect": 1.364
+ },
+ "riser": {
+  "view": "SECTION",
+  "sheetNo": "STR-02",
+  "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
+  "aspect": 1.364
+ },
+ "stringer": {
+  "view": "SECTION",
+  "sheetNo": "STR-03",
+  "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
+  "aspect": 1.364
+ },
+ "landing": {
+  "view": "SECTION",
+  "sheetNo": "STR-04",
+  "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
+  "aspect": 1.364
+ },
+ "newel-post": {
+  "view": "SECTION",
+  "sheetNo": "STR-05",
+  "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
+  "aspect": 1.364
+ },
+ "baluster": {
+  "view": "SECTION",
+  "sheetNo": "STR-06",
+  "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
+  "aspect": 1.364
+ },
+ "handrail": {
+  "view": "SECTION",
+  "sheetNo": "STR-07",
+  "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
+  "aspect": 1.364
+ },
+ "spiral-stair": {
+  "view": "PLAN",
+  "sheetNo": "STR-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "grand-staircase": {
+  "view": "PLAN",
+  "sheetNo": "STR-09",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.044
+ },
+ "helical-ramp": {
+  "view": "PLAN",
+  "sheetNo": "STR-10",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "ramp-circulation": {
+  "view": "PLAN",
+  "sheetNo": "STR-11",
+  "source": "Ramp limits from the 2010 ADA Standards for Accessible Design, §405 (max slope 1:12, max rise 760 mm per run, landings ≥ 1525 mm, handrails 865–965 mm). Original drawing by Project Exodus.",
+  "aspect": 2.05
+ },
+ "accessibility-ramp": {
+  "view": "SECTION",
+  "sheetNo": "STR-12",
+  "source": "Ramp limits from the 2010 ADA Standards for Accessible Design, §405 (max slope 1:12, max rise 760 mm per run, landings ≥ 1525 mm, handrails 865–965 mm). Original drawing by Project Exodus.",
+  "aspect": 4.976
+ },
+ "cantilevered-stair": {
+  "view": "SECTION",
+  "sheetNo": "STR-13",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.909
+ },
+ "perron": {
+  "view": "ELEVATION",
+  "sheetNo": "STR-14",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.422
  }
 }
