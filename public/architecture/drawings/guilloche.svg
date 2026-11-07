@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Guilloche: elevation</title>
+  <desc id="d">Elevation of a guilloche band: two ribbons weave over and under each other in a continuous wave, enclosing a row of circular eyes, each filled with a small rosette. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-fine ink l-fine">
+    <circle cx="227.5" cy="360" r="5"/>
+    <circle cx="227.5" cy="360" r="1.5"/>
+    <circle cx="262.5" cy="360" r="5"/>
+    <circle cx="262.5" cy="360" r="1.5"/>
+    <circle cx="297.5" cy="360" r="5"/>
+    <circle cx="297.5" cy="360" r="1.5"/>
+    <circle cx="332.5" cy="360" r="5"/>
+    <circle cx="332.5" cy="360" r="1.5"/>
+    <circle cx="367.5" cy="360" r="5"/>
+    <circle cx="367.5" cy="360" r="1.5"/>
+    <circle cx="402.5" cy="360" r="5"/>
+    <circle cx="402.5" cy="360" r="1.5"/>
+    <circle cx="437.5" cy="360" r="5"/>
+    <circle cx="437.5" cy="360" r="1.5"/>
+    <circle cx="472.5" cy="360" r="5"/>
+    <circle cx="472.5" cy="360" r="1.5"/>
+    <circle cx="507.5" cy="360" r="5"/>
+    <circle cx="507.5" cy="360" r="1.5"/>
+    <circle cx="542.5" cy="360" r="5"/>
+    <circle cx="542.5" cy="360" r="1.5"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M210 310 L560 310 L560 410 L210 410 Z"/>
+    <path d="M210 316L560 316"/>
+    <path d="M210 404L560 404"/>
+    <path d="M210 360L212 354.64L214 349.46L216 344.61L218 340.26L220 336.55L222 333.58L224 331.47L226 330.27L228 330.03L230 330.75L232 332.41L234 334.96L236 338.32L238 342.37L240 346.98L242 352.02L244 357.31" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M210 360L212 354.64L214 349.46L216 344.61L218 340.26L220 336.55L222 333.58L224 331.47L226 330.27L228 330.03L230 330.75L232 332.41L234 334.96L236 338.32L238 342.37L240 346.98L242 352.02L244 357.31" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M210 360L212 365.36L214 370.54L216 375.39L218 379.74L220 383.45L222 386.42L224 388.53L226 389.73L228 389.97L230 389.25L232 387.59L234 385.04L236 381.68L238 377.63L240 373.02L242 367.98L244 362.69" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M210 360L212 365.36L214 370.54L216 375.39L218 379.74L220 383.45L222 386.42L224 388.53L226 389.73L228 389.97L230 389.25L232 387.59L234 385.04L236 381.68L238 377.63L240 373.02L242 367.98L244 362.69" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M245 360L247 354.64L249 349.46L251 344.61L253 340.26L255 336.55L257 333.58L259 331.47L261 330.27L263 330.03L265 330.75L267 332.41L269 334.96L271 338.32L273 342.37L275 346.98L277 352.02L279 357.31" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M245 360L247 354.64L249 349.46L251 344.61L253 340.26L255 336.55L257 333.58L259 331.47L261 330.27L263 330.03L265 330.75L267 332.41L269 334.96L271 338.32L273 342.37L275 346.98L277 352.02L279 357.31" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M245 360L247 365.36L249 370.54L251 375.39L253 379.74L255 383.45L257 386.42L259 388.53L261 389.73L263 389.97L265 389.25L267 387.59L269 385.04L271 381.68L273 377.63L275 373.02L277 367.98L279 362.69" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M245 360L247 365.36L249 370.54L251 375.39L253 379.74L255 383.45L257 386.42L259 388.53L261 389.73L263 389.97L265 389.25L267 387.59L269 385.04L271 381.68L273 377.63L275 373.02L277 367.98L279 362.69" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M280 360L282 354.64L284 349.46L286 344.61L288 340.26L290 336.55L292 333.58L294 331.47L296 330.27L298 330.03L300 330.75L302 332.41L304 334.96L306 338.32L308 342.37L310 346.98L312 352.02L314 357.31" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M280 360L282 354.64L284 349.46L286 344.61L288 340.26L290 336.55L292 333.58L294 331.47L296 330.27L298 330.03L300 330.75L302 332.41L304 334.96L306 338.32L308 342.37L310 346.98L312 352.02L314 357.31" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M280 360L282 365.36L284 370.54L286 375.39L288 379.74L290 383.45L292 386.42L294 388.53L296 389.73L298 389.97L300 389.25L302 387.59L304 385.04L306 381.68L308 377.63L310 373.02L312 367.98L314 362.69" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M280 360L282 365.36L284 370.54L286 375.39L288 379.74L290 383.45L292 386.42L294 388.53L296 389.73L298 389.97L300 389.25L302 387.59L304 385.04L306 381.68L308 377.63L310 373.02L312 367.98L314 362.69" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M315 360L317 354.64L319 349.46L321 344.61L323 340.26L325 336.55L327 333.58L329 331.47L331 330.27L333 330.03L335 330.75L337 332.41L339 334.96L341 338.32L343 342.37L345 346.98L347 352.02L349 357.31" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M315 360L317 354.64L319 349.46L321 344.61L323 340.26L325 336.55L327 333.58L329 331.47L331 330.27L333 330.03L335 330.75L337 332.41L339 334.96L341 338.32L343 342.37L345 346.98L347 352.02L349 357.31" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M315 360L317 365.36L319 370.54L321 375.39L323 379.74L325 383.45L327 386.42L329 388.53L331 389.73L333 389.97L335 389.25L337 387.59L339 385.04L341 381.68L343 377.63L345 373.02L347 367.98L349 362.69" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M315 360L317 365.36L319 370.54L321 375.39L323 379.74L325 383.45L327 386.42L329 388.53L331 389.73L333 389.97L335 389.25L337 387.59L339 385.04L341 381.68L343 377.63L345 373.02L347 367.98L349 362.69" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M350 360L352 354.64L354 349.46L356 344.61L358 340.26L360 336.55L362 333.58L364 331.47L366 330.27L368 330.03L370 330.75L372 332.41L374 334.96L376 338.32L378 342.37L380 346.98L382 352.02L384 357.31" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M350 360L352 354.64L354 349.46L356 344.61L358 340.26L360 336.55L362 333.58L364 331.47L366 330.27L368 330.03L370 330.75L372 332.41L374 334.96L376 338.32L378 342.37L380 346.98L382 352.02L384 357.31" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M350 360L352 365.36L354 370.54L356 375.39L358 379.74L360 383.45L362 386.42L364 388.53L366 389.73L368 389.97L370 389.25L372 387.59L374 385.04L376 381.68L378 377.63L380 373.02L382 367.98L384 362.69" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M350 360L352 365.36L354 370.54L356 375.39L358 379.74L360 383.45L362 386.42L364 388.53L366 389.73L368 389.97L370 389.25L372 387.59L374 385.04L376 381.68L378 377.63L380 373.02L382 367.98L384 362.69" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M385 360L387 354.64L389 349.46L391 344.61L393 340.26L395 336.55L397 333.58L399 331.47L401 330.27L403 330.03L405 330.75L407 332.41L409 334.96L411 338.32L413 342.37L415 346.98L417 352.02L419 357.31" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M385 360L387 354.64L389 349.46L391 344.61L393 340.26L395 336.55L397 333.58L399 331.47L401 330.27L403 330.03L405 330.75L407 332.41L409 334.96L411 338.32L413 342.37L415 346.98L417 352.02L419 357.31" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M385 360L387 365.36L389 370.54L391 375.39L393 379.74L395 383.45L397 386.42L399 388.53L401 389.73L403 389.97L405 389.25L407 387.59L409 385.04L411 381.68L413 377.63L415 373.02L417 367.98L419 362.69" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M385 360L387 365.36L389 370.54L391 375.39L393 379.74L395 383.45L397 386.42L399 388.53L401 389.73L403 389.97L405 389.25L407 387.59L409 385.04L411 381.68L413 377.63L415 373.02L417 367.98L419 362.69" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M420 360L422 354.64L424 349.46L426 344.61L428 340.26L430 336.55L432 333.58L434 331.47L436 330.27L438 330.03L440 330.75L442 332.41L444 334.96L446 338.32L448 342.37L450 346.98L452 352.02L454 357.31" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M420 360L422 354.64L424 349.46L426 344.61L428 340.26L430 336.55L432 333.58L434 331.47L436 330.27L438 330.03L440 330.75L442 332.41L444 334.96L446 338.32L448 342.37L450 346.98L452 352.02L454 357.31" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M420 360L422 365.36L424 370.54L426 375.39L428 379.74L430 383.45L432 386.42L434 388.53L436 389.73L438 389.97L440 389.25L442 387.59L444 385.04L446 381.68L448 377.63L450 373.02L452 367.98L454 362.69" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M420 360L422 365.36L424 370.54L426 375.39L428 379.74L430 383.45L432 386.42L434 388.53L436 389.73L438 389.97L440 389.25L442 387.59L444 385.04L446 381.68L448 377.63L450 373.02L452 367.98L454 362.69" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M455 360L457 354.64L459 349.46L461 344.61L463 340.26L465 336.55L467 333.58L469 331.47L471 330.27L473 330.03L475 330.75L477 332.41L479 334.96L481 338.32L483 342.37L485 346.98L487 352.02L489 357.31" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M455 360L457 354.64L459 349.46L461 344.61L463 340.26L465 336.55L467 333.58L469 331.47L471 330.27L473 330.03L475 330.75L477 332.41L479 334.96L481 338.32L483 342.37L485 346.98L487 352.02L489 357.31" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M455 360L457 365.36L459 370.54L461 375.39L463 379.74L465 383.45L467 386.42L469 388.53L471 389.73L473 389.97L475 389.25L477 387.59L479 385.04L481 381.68L483 377.63L485 373.02L487 367.98L489 362.69" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M455 360L457 365.36L459 370.54L461 375.39L463 379.74L465 383.45L467 386.42L469 388.53L471 389.73L473 389.97L475 389.25L477 387.59L479 385.04L481 381.68L483 377.63L485 373.02L487 367.98L489 362.69" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M490 360L492 354.64L494 349.46L496 344.61L498 340.26L500 336.55L502 333.58L504 331.47L506 330.27L508 330.03L510 330.75L512 332.41L514 334.96L516 338.32L518 342.37L520 346.98L522 352.02L524 357.31" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M490 360L492 354.64L494 349.46L496 344.61L498 340.26L500 336.55L502 333.58L504 331.47L506 330.27L508 330.03L510 330.75L512 332.41L514 334.96L516 338.32L518 342.37L520 346.98L522 352.02L524 357.31" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M490 360L492 365.36L494 370.54L496 375.39L498 379.74L500 383.45L502 386.42L504 388.53L506 389.73L508 389.97L510 389.25L512 387.59L514 385.04L516 381.68L518 377.63L520 373.02L522 367.98L524 362.69" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M490 360L492 365.36L494 370.54L496 375.39L498 379.74L500 383.45L502 386.42L504 388.53L506 389.73L508 389.97L510 389.25L512 387.59L514 385.04L516 381.68L518 377.63L520 373.02L522 367.98L524 362.69" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M525 360L527 354.64L529 349.46L531 344.61L533 340.26L535 336.55L537 333.58L539 331.47L541 330.27L543 330.03L545 330.75L547 332.41L549 334.96L551 338.32L553 342.37L555 346.98L557 352.02L559 357.31" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M525 360L527 354.64L529 349.46L531 344.61L533 340.26L535 336.55L537 333.58L539 331.47L541 330.27L543 330.03L545 330.75L547 332.41L549 334.96L551 338.32L553 342.37L555 346.98L557 352.02L559 357.31" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+    <path d="M525 360L527 365.36L529 370.54L531 375.39L533 379.74L535 383.45L537 386.42L539 388.53L541 389.73L543 389.97L545 389.25L547 387.59L549 385.04L551 381.68L553 377.63L555 373.02L557 367.98L559 362.69" style="stroke-width: 11; stroke-linecap: round"/>
+    <path d="M525 360L527 365.36L529 370.54L531 375.39L533 379.74L535 383.45L537 386.42L539 388.53L541 389.73L543 389.97L545 389.25L547 387.59L549 385.04L551 381.68L553 377.63L555 373.02L557 367.98L559 362.69" style="stroke: var(--_paper); stroke-width: 8; stroke-linecap: round"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M227.5 434L297.5 434M223.5 438L231.5 430M293.5 438L301.5 430M227.5 428L227.5 440M297.5 428L297.5 440"/><text x="262.5" y="448" text-anchor="middle">ONE REPEAT</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M119.3 309.25L174 309.25L207.5 313"/><circle cx="207.5" cy="313" r="1.5" class="solid"/><text x="34" y="312.25">FILLET BORDER</text>
+    <path d="M143.7 330.25L174 330.25L242.5 334"/><circle cx="242.5" cy="334" r="1.5" class="solid"/><text x="34" y="333.25">INTERLACED RIBBON</text>
+    <path d="M155.9 356.25L174 356.25L273.5 360"/><circle cx="273.5" cy="360" r="1.5" class="solid"/><text x="34" y="359.25">OVER-UNDER CROSSING</text>
+    <path d="M119.3 371.25L174 371.25L220 360"/><circle cx="220" cy="360" r="1.5" class="solid"/><text x="34" y="374.25">ROSETTE (EYE)</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">GUILLOCHE</text>
+    <text class="t-sub" x="26" y="710">BAND OF INTERLACED RIBBONS</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  DEC-04</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN UNITS (INDICATIVE)</text>
+    <rect x="416" y="730" width="35" height="5" class="solid"/><rect x="451" y="730" width="35" height="5" class="ink l-fine"/><rect x="486" y="730" width="35" height="5" class="solid"/><rect x="521" y="730" width="35" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="554" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

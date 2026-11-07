@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Cornice: section</title>
+  <desc id="d">Section through a classical cornice: bed mouldings and a dentil band step out from the frieze to carry the corona, a deep projecting slab whose drip throws rain clear, crowned by an S-curved cymatium. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.79 7.41) scale(0.97)">
+  <g class="layer-hatch ink l-hair">
+    <path d="M260 560 L260 500 L266 500 L266 492 L266.61 486.31 L268.41 481 L271.27 476.44 L275 472.95 L279.34 470.75 L284 470 L288.66 469.32 L293 467.32 L296.73 464.14 L299.59 460 L301.39 455.18 L302 450 L302 444 L322 444 L322 408 L326 408 L326 402 L329.83 401.24 L333.07 399.07 L335.24 395.83 L336 392 L340 392 L340 362 L436 362 L436 368 L442 368 L442 362 L456 362 L456 312 L462 312 L462 306 L463.67 299.75 L468.44 293.5 L475.58 287.25 L484 281 L492.42 274.75 L499.56 268.5 L504.33 262.25 L506 256 L506 250 L506 242 L320 230 L230 230 L230 560 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M340 392H360C364 380 390 374 428 372M360 392c-12 -2 -10 -16 0 -14c8 2 6 10 0 10M428 372c6 -2 8 -8 2 -10"/>
+    <path d="M290 452q6 -6 10 0"/>
+    <path d="M290 464q6 -6 10 0"/>
+    <path d="M322 426L310 426"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M260 560 L260 500 L266 500 L266 492 L266.61 486.31 L268.41 481 L271.27 476.44 L275 472.95 L279.34 470.75 L284 470 L288.66 469.32 L293 467.32 L296.73 464.14 L299.59 460 L301.39 455.18 L302 450 L302 444 L322 444 L322 408 L326 408 L326 402 L329.83 401.24 L333.07 399.07 L335.24 395.83 L336 392 L340 392 L340 362 L436 362 L436 368 L442 368 L442 362 L456 362 L456 312 L462 312 L462 306 L463.67 299.75 L468.44 293.5 L475.58 287.25 L484 281 L492.42 274.75 L499.56 268.5 L504.33 262.25 L506 256 L506 250 L506 242 L320 230 L230 230 L230 560 Z"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M500 240Q510 250 506 300M439 368q2 30 0 70"/>
+    <path d="M439 380L439 440M436.27 433.55L439 440L441.73 433.55" stroke-dasharray="none"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M260 590L506 590M256 594L264 586M502 594L510 586M260 584L260 596M506 584L506 596"/><text x="383" y="604" text-anchor="middle">PROJECTION</text>
+    <path d="M550 500L550 242M546 504L554 496M546 246L554 238M510 500L556 500M510 242L556 242"/><text x="558" y="374">HEIGHT</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M168.1 289.63L479.5 290"/><circle cx="479.5" cy="290" r="1.5" class="solid"/><text x="34" y="292.63">CYMATIUM (CYMA RECTA)</text>
+    <path d="M76.6 336.63L397.5 337"/><circle cx="397.5" cy="337" r="1.5" class="solid"/><text x="34" y="339.63">CORONA</text>
+    <path d="M107.1 367.63L436.5 368"/><circle cx="436.5" cy="368" r="1.5" class="solid"/><text x="34" y="370.63">DRIP GROOVE</text>
+    <path d="M149.8 382.63L174 382.63L377.5 380"/><circle cx="377.5" cy="380" r="1.5" class="solid"/><text x="34" y="385.63">MODILLION (BEYOND)</text>
+    <path d="M107.1 425.63L319.5 426"/><circle cx="319.5" cy="426" r="1.5" class="solid"/><text x="34" y="428.63">DENTIL BAND</text>
+    <path d="M162 457.63L297.5 458"/><circle cx="297.5" cy="458" r="1.5" class="solid"/><text x="34" y="460.63">OVOLO (EGG-AND-DART)</text>
+    <path d="M155.9 484.63L269.5 485"/><circle cx="269.5" cy="485" r="1.5" class="solid"/><text x="34" y="487.63">BED MOULD (CAVETTO)</text>
+    <path d="M76.6 529.63L257.5 530"/><circle cx="257.5" cy="530" r="1.5" class="solid"/><text x="34" y="532.63">FRIEZE</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="446" y="430" class="t-small t-accent">DRIP</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">CORNICE</text>
+    <text class="t-sub" x="26" y="710">CROWNING PROJECTION OF AN ENTABLATURE</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  DEC-01</text>
+    <text class="t-small" x="416" y="699">SECTION</text>
+    <text class="t-small" x="416" y="724">SCALE IN MODULES (INDICATIVE)</text>
+    <rect x="416" y="730" width="38.69" height="5" class="solid"/><rect x="454.69" y="730" width="38.69" height="5" class="ink l-fine"/><rect x="493.38" y="730" width="38.69" height="5" class="solid"/><rect x="532.06" y="730" width="38.69" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="568.75" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

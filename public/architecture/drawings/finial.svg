@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Finial: elevation</title>
+  <desc id="d">Elevation of a Gothic pinnacle: a body with blind tracery and gablets carries a slender spirelet whose edges are studded with curling leaf crockets, ending in a necking band and a cross-shaped fleuron. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(1.47 8.34) scale(0.94)">
+  <g class="layer-fine ink l-fine">
+    <path d="M374 580V500Q374 470 358 464Q342 470 342 500V580"/>
+    <circle cx="358" cy="484" r="6"/>
+    <path d="M386 580V500Q386 470 402 464Q418 470 418 500V580"/>
+    <circle cx="402" cy="484" r="6"/>
+    <path d="M380 410L380 210"/>
+    <path d="M380 194L380 148"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M334 450 L426 450 L426 590 L334 590 Z"/>
+    <path d="M330 450 L380 410 L430 450"/>
+    <path d="M340 450 L372 210 L388 210 L420 450 Z"/>
+    <path d="M344.57 415.71c-8 -2 -16 -10 -14 -18c2 -6 10 -4 8 2c-2 4 -6 2 -6 -1"/>
+    <path d="M415.43 415.71c8 -2 16 -10 14 -18c-2 -6 -10 -4 -8 2c2 4 6 2 6 -1"/>
+    <path d="M349.14 381.43c-8 -2 -16 -10 -14 -18c2 -6 10 -4 8 2c-2 4 -6 2 -6 -1"/>
+    <path d="M410.86 381.43c8 -2 16 -10 14 -18c-2 -6 -10 -4 -8 2c2 4 6 2 6 -1"/>
+    <path d="M353.71 347.14c-8 -2 -16 -10 -14 -18c2 -6 10 -4 8 2c-2 4 -6 2 -6 -1"/>
+    <path d="M406.29 347.14c8 -2 16 -10 14 -18c-2 -6 -10 -4 -8 2c2 4 6 2 6 -1"/>
+    <path d="M358.29 312.86c-8 -2 -16 -10 -14 -18c2 -6 10 -4 8 2c-2 4 -6 2 -6 -1"/>
+    <path d="M401.71 312.86c8 -2 16 -10 14 -18c-2 -6 -10 -4 -8 2c2 4 6 2 6 -1"/>
+    <path d="M362.86 278.57c-8 -2 -16 -10 -14 -18c2 -6 10 -4 8 2c-2 4 -6 2 -6 -1"/>
+    <path d="M397.14 278.57c8 -2 16 -10 14 -18c-2 -6 -10 -4 -8 2c2 4 6 2 6 -1"/>
+    <path d="M367.43 244.29c-8 -2 -16 -10 -14 -18c2 -6 10 -4 8 2c-2 4 -6 2 -6 -1"/>
+    <path d="M392.57 244.29c8 -2 16 -10 14 -18c-2 -6 -10 -4 -8 2c2 4 6 2 6 -1"/>
+    <path d="M368 202 L392 202 L392 210 L368 210 Z"/>
+    <path d="M380 202C374 182 346 188 346 172C346 160 362 162 364 172"/>
+    <path d="M380 202C386 182 414 188 414 172C414 160 398 162 396 172"/>
+    <path d="M372 196C366 172 372 152 380 140C388 152 394 172 388 196Z" style="fill: var(--_paper)"/>
+    <path d="M230 590L530 590"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M500 450L500 140M496 454L504 446M496 144L504 136M420 450L506 450M420 140L506 140"/><text x="508" y="298">SPIRELET + FINIAL</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M137.6 172L343.5 172"/><circle cx="343.5" cy="172" r="1.5" class="solid"/><text x="34" y="175">FLEURON (FINIAL)</text>
+    <path d="M113.2 206L365.5 206"/><circle cx="365.5" cy="206" r="1.5" class="solid"/><text x="34" y="209">NECKING BAND</text>
+    <path d="M82.7 330L347.5 330"/><circle cx="347.5" cy="330" r="1.5" class="solid"/><text x="34" y="333">CROCKET</text>
+    <path d="M88.8 400L355.5 400"/><circle cx="355.5" cy="400" r="1.5" class="solid"/><text x="34" y="403">SPIRELET</text>
+    <path d="M76.6 446L331.5 446"/><circle cx="331.5" cy="446" r="1.5" class="solid"/><text x="34" y="449">GABLET</text>
+    <path d="M119.3 520L339.5 520"/><circle cx="339.5" cy="520" r="1.5" class="solid"/><text x="34" y="523">BLIND TRACERY</text>
+    <path d="M119.3 570L331.5 570"/><circle cx="331.5" cy="570" r="1.5" class="solid"/><text x="34" y="573">PINNACLE BODY</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">FINIAL</text>
+    <text class="t-sub" x="26" y="710">ORNAMENT CROWNING A PINNACLE OR GABLE</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  DEC-09</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN UNITS (INDICATIVE)</text>
+    <rect x="416" y="730" width="28.16" height="5" class="solid"/><rect x="444.16" y="730" width="28.16" height="5" class="ink l-fine"/><rect x="472.32" y="730" width="28.16" height="5" class="solid"/><rect x="500.48" y="730" width="28.16" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="526.65" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

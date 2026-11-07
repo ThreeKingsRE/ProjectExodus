@@ -1132,5 +1132,143 @@
   "sheetNo": "REL-17",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 0.676
+ },
+ "cornice": {
+  "view": "SECTION",
+  "sheetNo": "DEC-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.84
+ },
+ "dentil": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.489
+ },
+ "egg-and-dart": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 3.078
+ },
+ "guilloche": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 3.315
+ },
+ "zigzag-motif": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.078
+ },
+ "acanthus": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.737
+ },
+ "rosette": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-07",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "boss": {
+  "view": "REFLECTED PLAN · SECTION",
+  "sheetNo": "DEC-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.688
+ },
+ "finial": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-09",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.672
+ },
+ "gargoyle": {
+  "view": "SECTION",
+  "sheetNo": "DEC-10",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.973
+ },
+ "muqarnas": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-11",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.813
+ },
+ "volute": {
+  "view": "CONSTRUCTION",
+  "sheetNo": "DEC-12",
+  "source": "Construction after Vignola, Regola delli cinque ordini d'architettura (1562), twelve-centre method (public domain). Redrawn by Project Exodus.",
+  "aspect": 1.089
+ },
+ "cartouche": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-13",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.774
+ },
+ "arabesque": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-14",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "iznik-tiles": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-15",
+  "source": "After 16th-century Iznik tile panels, e.g. the Rüstem Pasha Mosque, Istanbul. Generic; not a copy of a specific panel. Original drawing by Project Exodus.",
+  "aspect": 1
+ },
+ "grotesque": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-16",
+  "source": "After Renaissance grotesque pilasters derived from the painted rooms of the Domus Aurea, Rome. Generic; not a copy. Original drawing by Project Exodus.",
+  "aspect": 0.344
+ },
+ "plateresque-ornament": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-17",
+  "source": "After Spanish Plateresque façades such as the University of Salamanca (c. 1529). Generic; not a survey. Original drawing by Project Exodus.",
+  "aspect": 0.525
+ },
+ "wild-men-savage-men": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-18",
+  "source": "After the wild-men supporters on the façade of the Colegio de San Gregorio, Valladolid (c. 1496). Simplified; not a copy. Original drawing by Project Exodus.",
+  "aspect": 0.623
+ },
+ "astwerk-branches-work": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-19",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.975
+ },
+ "sunburst-pattern": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-20",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.878
+ },
+ "floral-ironwork": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-21",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.379
+ },
+ "organic-ornament": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-22",
+  "source": "After Louis Sullivan, A System of Architectural Ornament (1924). Original drawing by Project Exodus.",
+  "aspect": 1
+ },
+ "whiplash-curve": {
+  "view": "ELEVATION",
+  "sheetNo": "DEC-23",
+  "source": "After Victor Horta, Hôtel Tassel, Brussels (1893), and Hermann Obrist's \"Whiplash\" embroidery (c. 1895). Original drawing by Project Exodus.",
+  "aspect": 0.825
  }
 }

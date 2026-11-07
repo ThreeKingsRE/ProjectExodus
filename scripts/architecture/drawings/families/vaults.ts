@@ -6,7 +6,7 @@
  * REFLECTED CEILING PLAN (the plan looking up, the usual way to show vaulting).
  */
 import { type Pt, type SheetSpec, f, path, el, vDim, hDim, text, breakLine } from '../sheet'
-import { newLayers, finish, hatched, masked, circle, line, rect, ring, callouts, arrow, courses, Bounds, ORIGINAL, type Meta } from '../kit'
+import { newLayers, finish, hatched, masked, circle, line, rect, ring, callouts, arrow, courses, Bounds, ORIGINAL } from '../kit'
 
 const RCP = 'REFLECTED CEILING PLAN'
 

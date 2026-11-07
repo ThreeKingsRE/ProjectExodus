@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Astwerk (Branch-work): elevation</title>
+  <desc id="d">Elevation of a doorway framed in late-Gothic branch-work: the jambs are tree trunks with bark, whose branches arch over the opening and interlace at the top, ending in lopped stubs instead of conventional tracery. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M310 400 L450 400 L450 580 L310 580 Z"/>
+    <path d="M293 570q3 -4 6 0M461 562q3 -4 6 0M293 554q3 -4 6 0M461 546q3 -4 6 0M293 538q3 -4 6 0M461 530q3 -4 6 0M293 522q3 -4 6 0M461 514q3 -4 6 0M293 506q3 -4 6 0M461 498q3 -4 6 0M293 490q3 -4 6 0M461 482q3 -4 6 0M293 474q3 -4 6 0M461 466q3 -4 6 0M293 458q3 -4 6 0M461 450q3 -4 6 0M293 442q3 -4 6 0M461 434q3 -4 6 0M293 426q3 -4 6 0M461 418q3 -4 6 0"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M296 580V400" style="stroke-width: 16; stroke-linecap: round"/>
+    <path d="M296 580V400" style="stroke: var(--_paper); stroke-width: 13; stroke-linecap: round"/>
+    <path d="M464 580V400" style="stroke-width: 16; stroke-linecap: round"/>
+    <path d="M464 580V400" style="stroke: var(--_paper); stroke-width: 13; stroke-linecap: round"/>
+    <path d="M296 400C296 300 420 260 490 200" style="stroke-width: 12; stroke-linecap: round"/>
+    <path d="M296 400C296 300 420 260 490 200" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: round"/>
+    <path d="M464 400C464 300 340 260 270 200" style="stroke-width: 12; stroke-linecap: round"/>
+    <path d="M464 400C464 300 340 260 270 200" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: round"/>
+    <path d="M296 400C296 340 320 300 360 286" style="stroke-width: 10; stroke-linecap: round"/>
+    <path d="M296 400C296 340 320 300 360 286" style="stroke: var(--_paper); stroke-width: 7; stroke-linecap: round"/>
+    <path d="M464 400C464 340 440 300 400 286" style="stroke-width: 10; stroke-linecap: round"/>
+    <path d="M464 400C464 340 440 300 400 286" style="stroke: var(--_paper); stroke-width: 7; stroke-linecap: round"/>
+    <path d="M296 420C266 380 246 340 252 300" style="stroke-width: 9; stroke-linecap: round"/>
+    <path d="M296 420C266 380 246 340 252 300" style="stroke: var(--_paper); stroke-width: 6; stroke-linecap: round"/>
+    <path d="M464 420C494 380 514 340 508 300" style="stroke-width: 9; stroke-linecap: round"/>
+    <path d="M464 420C494 380 514 340 508 300" style="stroke: var(--_paper); stroke-width: 6; stroke-linecap: round"/>
+    <ellipse cx="490" cy="200" rx="5" ry="4" style="fill: var(--_paper)"/>
+    <ellipse cx="270" cy="200" rx="5" ry="4" style="fill: var(--_paper)"/>
+    <ellipse cx="360" cy="286" rx="5" ry="4" style="fill: var(--_paper)"/>
+    <ellipse cx="400" cy="286" rx="5" ry="4" style="fill: var(--_paper)"/>
+    <ellipse cx="252" cy="300" rx="5" ry="4" style="fill: var(--_paper)"/>
+    <ellipse cx="508" cy="300" rx="5" ry="4" style="fill: var(--_paper)"/>
+    <path d="M296 470l-18 -12" style="stroke-width: 7; stroke-linecap: round"/>
+    <path d="M296 470l-18 -12" style="stroke: var(--_paper); stroke-width: 4; stroke-linecap: round"/>
+    <ellipse cx="278" cy="458" rx="3.5" ry="3" style="fill: var(--_paper)"/>
+    <path d="M464 500l18 -12" style="stroke-width: 7; stroke-linecap: round"/>
+    <path d="M464 500l18 -12" style="stroke: var(--_paper); stroke-width: 4; stroke-linecap: round"/>
+    <ellipse cx="482" cy="488" rx="3.5" ry="3" style="fill: var(--_paper)"/>
+    <path d="M296 520l-18 -12" style="stroke-width: 7; stroke-linecap: round"/>
+    <path d="M296 520l-18 -12" style="stroke: var(--_paper); stroke-width: 4; stroke-linecap: round"/>
+    <ellipse cx="278" cy="508" rx="3.5" ry="3" style="fill: var(--_paper)"/>
+    <path d="M190 580L570 580"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M310 602L450 602M306 606L314 598M446 606L454 598M310 596L310 608M450 596L450 608"/><text x="380" y="616" text-anchor="middle">DOOR</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M107.1 200L262.5 200"/><circle cx="262.5" cy="200" r="1.5" class="solid"/><text x="34" y="203">LOPPED STUB</text>
+    <path d="M143.7 250L357.5 250"/><circle cx="357.5" cy="250" r="1.5" class="solid"/><text x="34" y="253">CROSSING BRANCHES</text>
+    <path d="M174.2 286L337.5 286"/><circle cx="337.5" cy="286" r="1.5" class="solid"/><text x="34" y="289">INTERLACE (OVER/UNDER)</text>
+    <path d="M125.4 340L247.5 340"/><circle cx="247.5" cy="340" r="1.5" class="solid"/><text x="34" y="343">OUTWARD BRANCH</text>
+    <path d="M113.2 450L285.5 450"/><circle cx="285.5" cy="450" r="1.5" class="solid"/><text x="34" y="453">TRUNK (JAMB)</text>
+    <path d="M113.2 520L290.5 520"/><circle cx="290.5" cy="520" r="1.5" class="solid"/><text x="34" y="523">BARK TEXTURE</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">ASTWERK (BRANCH-WORK)</text>
+    <text class="t-sub" x="26" y="710">LATE-GOTHIC TRACERY CARVED AS TREE BRANCHES</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  DEC-19</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN UNITS (INDICATIVE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Cartouche: elevation</title>
+  <desc id="d">Elevation of a Baroque cartouche: an oval field for an inscription or coat of arms, surrounded by a frame whose edges curl and scroll like parchment, topped by a shell and hung with garlands and a pendant drop. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(1.34 9.37) scale(0.94)">
+  <g class="layer-fine ink l-fine">
+    <path d="M342 340L418 340"/>
+    <path d="M334 360L426 360"/>
+    <path d="M334 380L426 380"/>
+    <path d="M342 400L418 400"/>
+    <g transform="translate(380 370) scale(1 1)"><path d="M0 -136C48 -136 106 -118 124 -74M124 -74C146 -36 146 -8 132 0"/></g>
+    <g transform="translate(380 370) scale(-1 1)"><path d="M0 -136C48 -136 106 -118 124 -74M124 -74C146 -36 146 -8 132 0"/></g>
+    <g transform="translate(380 370) scale(1 -1)"><path d="M0 -136C48 -136 106 -118 124 -74M124 -74C146 -36 146 -8 132 0"/></g>
+    <g transform="translate(380 370) scale(-1 -1)"><path d="M0 -136C48 -136 106 -118 124 -74M124 -74C146 -36 146 -8 132 0"/></g>
+    <path d="M368 230L344 192"/>
+    <path d="M372 230L356 188"/>
+    <path d="M376 230L368 184"/>
+    <path d="M380 230L380 180"/>
+    <path d="M384 230L392 184"/>
+    <path d="M388 230L404 188"/>
+    <path d="M392 230L416 192"/>
+    <path d="M260 330q-40 40 -20 110q6 14 20 6"/>
+    <path d="M500 330q40 40 20 110q-6 14 -20 6"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <ellipse cx="380" cy="370" rx="86" ry="112"/>
+    <ellipse cx="380" cy="370" rx="76" ry="102"/>
+    <g transform="translate(380 370) scale(1 1)"><path d="M0 -124C40 -124 92 -110 110 -70C118 -50 104 -36 92 -44C80 -52 92 -66 100 -60M110 -70C130 -40 132 -10 120 0"/></g>
+    <g transform="translate(380 370) scale(-1 1)"><path d="M0 -124C40 -124 92 -110 110 -70C118 -50 104 -36 92 -44C80 -52 92 -66 100 -60M110 -70C130 -40 132 -10 120 0"/></g>
+    <g transform="translate(380 370) scale(1 -1)"><path d="M0 -124C40 -124 92 -110 110 -70C118 -50 104 -36 92 -44C80 -52 92 -66 100 -60M110 -70C130 -40 132 -10 120 0"/></g>
+    <g transform="translate(380 370) scale(-1 -1)"><path d="M0 -124C40 -124 92 -110 110 -70C118 -50 104 -36 92 -44C80 -52 92 -66 100 -60M110 -70C130 -40 132 -10 120 0"/></g>
+    <path d="M334 234Q340 178 380 172Q420 178 426 234Z" style="fill: var(--_paper)"/>
+    <path d="M360 506Q380 556 380 576Q380 556 400 506"/>
+    <circle cx="380" cy="582" r="6"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M570 482L570 258M566 486L574 478M566 262L574 254M470 482L576 482M470 258L576 258"/><text x="578" y="373">FIELD</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M107.1 204L347.5 204"/><circle cx="347.5" cy="204" r="1.5" class="solid"/><text x="34" y="207">SHELL CREST</text>
+    <path d="M125.4 294L277.5 294"/><circle cx="277.5" cy="294" r="1.5" class="solid"/><text x="34" y="297">SCROLLED FRAME</text>
+    <path d="M107.1 314L281.5 314"/><circle cx="281.5" cy="314" r="1.5" class="solid"/><text x="34" y="317">CURLED EDGE</text>
+    <path d="M186.4 360L331.5 360"/><circle cx="331.5" cy="360" r="1.5" class="solid"/><text x="34" y="363">OVAL FIELD (INSCRIPTION)</text>
+    <path d="M82.7 390L237.5 390"/><circle cx="237.5" cy="390" r="1.5" class="solid"/><text x="34" y="393">GARLAND</text>
+    <path d="M113.2 582L371.5 582"/><circle cx="371.5" cy="582" r="1.5" class="solid"/><text x="34" y="585">PENDANT DROP</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">CARTOUCHE</text>
+    <text class="t-sub" x="26" y="710">ORNAMENTAL FRAME FOR AN INSCRIPTION OR ARMS</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  DEC-13</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN UNITS (INDICATIVE)</text>
+    <rect x="416" y="730" width="37.77" height="5" class="solid"/><rect x="453.77" y="730" width="37.77" height="5" class="ink l-fine"/><rect x="491.54" y="730" width="37.77" height="5" class="solid"/><rect x="529.31" y="730" width="37.77" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="565.08" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Plateresque Ornament: elevation</title>
+  <desc id="d">Elevation of a Plateresque window surround: baluster-shaped candelabra columns on pedestals, a frieze of scrolls, a crowning medallion with a bust between scrolls and cresting finials, and a coat of arms below the sill, all in shallow, densely worked relief. Source: After Spanish Plateresque façades such as the University of Salamanca (c. 1529). Generic; not a survey. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M317 322 L443 322 L443 520 L317 520 Z"/>
+    <path d="M281 528 L301 528 L301 562 L281 562 Z"/>
+    <path d="M281 470L301 470"/>
+    <path d="M281 430L301 430"/>
+    <path d="M281 380L301 380"/>
+    <path d="M459 528 L479 528 L479 562 L459 562 Z"/>
+    <path d="M459 470L479 470"/>
+    <path d="M459 430L479 430"/>
+    <path d="M459 380L479 380"/>
+    <path d="M275 296c6 -12 18 -12 20 -2c2 8 -8 10 -10 4M305 296c6 -12 18 -12 20 -2c2 8 -8 10 -10 4M335 296c6 -12 18 -12 20 -2c2 8 -8 10 -10 4M365 296c6 -12 18 -12 20 -2c2 8 -8 10 -10 4M395 296c6 -12 18 -12 20 -2c2 8 -8 10 -10 4M425 296c6 -12 18 -12 20 -2c2 8 -8 10 -10 4M455 296c6 -12 18 -12 20 -2c2 8 -8 10 -10 4"/>
+    <path d="M370 236q-4 -18 4 -24q-10 -6 -6 -18q8 -12 18 -2q4 6 0 12l6 6q-4 4 -6 4q6 8 4 22"/>
+    <path d="M380 534L380 594"/>
+    <path d="M354 560L406 560"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M325 330 L435 330 L435 520 L325 520 Z"/>
+    <path d="M275 520 L307 520 L307 570 L275 570 Z"/>
+    <path d="M283 520q-10 -30 -2 -50q-8 -20 0 -40q-10 -24 -2 -50q-4 -14 2 -32h20q6 18 2 32q8 26 -2 50q8 20 0 40q8 20 -2 50Z" style="fill: var(--_paper)"/>
+    <path d="M279 316 L303 316 L303 326 L279 326 Z"/>
+    <path d="M453 520 L485 520 L485 570 L453 570 Z"/>
+    <path d="M461 520q-10 -30 -2 -50q-8 -20 0 -40q-10 -24 -2 -50q-4 -14 2 -32h20q6 18 2 32q8 26 -2 50q8 20 0 40q8 20 -2 50Z" style="fill: var(--_paper)"/>
+    <path d="M457 316 L481 316 L481 326 L457 326 Z"/>
+    <path d="M265 276 L495 276 L495 316 L265 316 Z"/>
+    <path d="M259 266 L501 266 L501 276 L259 276 Z"/>
+    <circle cx="380" cy="210" r="40" style="fill: var(--_paper)"/>
+    <circle cx="380" cy="210" r="32"/>
+    <path d="M340 220c-30 0 -60 20 -80 46c16 -8 26 0 20 10"/>
+    <path d="M420 220c30 0 60 20 80 46c-16 -8 -26 0 -20 10"/>
+    <path d="M264 266q-6 -16 6 -26q12 10 6 26Z"/>
+    <path d="M270 240L270 222"/>
+    <path d="M374 170q-6 -16 6 -26q12 10 6 26Z"/>
+    <path d="M380 144L380 126"/>
+    <path d="M484 266q-6 -16 6 -26q12 10 6 26Z"/>
+    <path d="M490 240L490 222"/>
+    <path d="M354 534h52v26q0 24 -26 34q-26 -10 -26 -34Z"/>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M155.9 210L337.5 210"/><circle cx="337.5" cy="210" r="1.5" class="solid"/><text x="34" y="213">MEDALLION WITH BUST</text>
+    <path d="M131.5 240L261.5 240"/><circle cx="261.5" cy="240" r="1.5" class="solid"/><text x="34" y="243">CRESTING FINIAL</text>
+    <path d="M76.6 256L277.5 256"/><circle cx="277.5" cy="256" r="1.5" class="solid"/><text x="34" y="259">SCROLL</text>
+    <path d="M82.7 271L256.5 271"/><circle cx="256.5" cy="271" r="1.5" class="solid"/><text x="34" y="274">CORNICE</text>
+    <path d="M76.6 296L262.5 296"/><circle cx="262.5" cy="296" r="1.5" class="solid"/><text x="34" y="299">FRIEZE</text>
+    <path d="M131.5 430L278.5 430"/><circle cx="278.5" cy="430" r="1.5" class="solid"/><text x="34" y="433">BALUSTER COLUMN</text>
+    <path d="M76.6 470L322.5 470"/><circle cx="322.5" cy="470" r="1.5" class="solid"/><text x="34" y="473">WINDOW</text>
+    <path d="M131.5 560L351.5 560"/><circle cx="351.5" cy="560" r="1.5" class="solid"/><text x="34" y="563">HERALDIC SHIELD</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">PLATERESQUE ORNAMENT</text>
+    <text class="t-sub" x="26" y="710">SILVERSMITH-FINE SPANISH RENAISSANCE RELIEF</text>
+    <text class="t-small" x="26" y="726">SOURCE: After Spanish Plateresque façades such as the University of</text>
+    <text class="t-small" x="26" y="736">Salamanca (c. 1529). Generic; not a survey. Original drawing by Project</text>
+    <text class="t-small" x="26" y="746">Exodus.</text>
+    <text class="t-sub" x="416" y="684">SHEET  DEC-17</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN UNITS (INDICATIVE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

@@ -44,9 +44,6 @@ function field(id: string): Field {
   return { L, B, clipId, defs: [`<clipPath id="${clipId}"><rect x="${FX}" y="${FY}" width="${FW}" height="${FH}"/></clipPath>`] }
 }
 
-const clipped = (F: Field, layer: keyof Layers, d: string, attrs = '') =>
-  F.L[layer].push(`<g clip-path="url(#${F.clipId})"><path d="${d}"${attrs ? ' ' + attrs : ''}/></g>`)
-
 const meta = (id: string, title: string, subtitle: string, sheetNo: string, description: string, source = ORIGINAL, view = 'PLAN') => ({
   id, title, subtitle, view, sheetNo, source, description,
 })

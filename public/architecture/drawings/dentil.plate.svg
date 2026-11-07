@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="142 222 436 328" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a dentil course: a row of small rectangular blocks, separated by gaps about half their width, set beneath the corona of a classical cornice, with the profile shown in section at the left. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="142" y="222" width="436" height="328"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M160 250 L194 250 L194 270 L190 270 L190 316 L182 316 L182 330 L178 330 L178 366 L170 366 L170 380 L160 380 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <path d="M234 330 L243 330 L243 366 L234 366 Z" fill="url(#h-stone)"/>
+    <path d="M261 330 L270 330 L270 366 L261 366 Z" fill="url(#h-stone)"/>
+    <path d="M288 330 L297 330 L297 366 L288 366 Z" fill="url(#h-stone)"/>
+    <path d="M315 330 L324 330 L324 366 L315 366 Z" fill="url(#h-stone)"/>
+    <path d="M342 330 L351 330 L351 366 L342 366 Z" fill="url(#h-stone)"/>
+    <path d="M369 330 L378 330 L378 366 L369 366 Z" fill="url(#h-stone)"/>
+    <path d="M396 330 L405 330 L405 366 L396 366 Z" fill="url(#h-stone)"/>
+    <path d="M423 330 L432 330 L432 366 L423 366 Z" fill="url(#h-stone)"/>
+    <path d="M450 330 L459 330 L459 366 L450 366 Z" fill="url(#h-stone)"/>
+    <path d="M477 330 L486 330 L486 366 L477 366 Z" fill="url(#h-stone)"/>
+    <path d="M504 330 L513 330 L513 366 L504 366 Z" fill="url(#h-stone)"/>
+    <path d="M531 330 L540 330 L540 366 L531 366 Z" fill="url(#h-stone)"/>
+    <path d="M558 330 L567 330 L567 366 L558 366 Z" fill="url(#h-stone)"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M210 258L560 258"/>
+    <path d="M210 296L560 296"/>
+    <path d="M214 378q8 -12 16 0M230 378q8 -12 16 0M246 378q8 -12 16 0M262 378q8 -12 16 0M278 378q8 -12 16 0M294 378q8 -12 16 0M310 378q8 -12 16 0M326 378q8 -12 16 0M342 378q8 -12 16 0M358 378q8 -12 16 0M374 378q8 -12 16 0M390 378q8 -12 16 0M406 378q8 -12 16 0M422 378q8 -12 16 0M438 378q8 -12 16 0M454 378q8 -12 16 0M470 378q8 -12 16 0M486 378q8 -12 16 0M502 378q8 -12 16 0M518 378q8 -12 16 0M534 378q8 -12 16 0"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M210 250 L560 250 L560 270 L210 270 Z"/>
+    <path d="M210 270 L560 270 L560 316 L210 316 Z"/>
+    <path d="M210 316 L560 316 L560 330 L210 330 Z"/>
+    <path d="M210 330L560 330"/>
+    <path d="M210 366L560 366"/>
+    <path d="M216 330 L234 330 L234 366 L216 366 Z"/>
+    <path d="M243 330 L261 330 L261 366 L243 366 Z"/>
+    <path d="M270 330 L288 330 L288 366 L270 366 Z"/>
+    <path d="M297 330 L315 330 L315 366 L297 366 Z"/>
+    <path d="M324 330 L342 330 L342 366 L324 366 Z"/>
+    <path d="M351 330 L369 330 L369 366 L351 366 Z"/>
+    <path d="M378 330 L396 330 L396 366 L378 366 Z"/>
+    <path d="M405 330 L423 330 L423 366 L405 366 Z"/>
+    <path d="M432 330 L450 330 L450 366 L432 366 Z"/>
+    <path d="M459 330 L477 330 L477 366 L459 366 Z"/>
+    <path d="M486 330 L504 330 L504 366 L486 366 Z"/>
+    <path d="M513 330 L531 330 L531 366 L513 366 Z"/>
+    <path d="M540 330 L558 330 L558 366 L540 366 Z"/>
+    <path d="M210 366 L560 366 L560 380 L210 380 Z"/>
+    <path d="M210 380 L560 380 L560 490 L210 490 Z"/>
+    <path d="M210 506H560"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M160 250 L194 250 L194 270 L190 270 L190 316 L182 316 L182 330 L178 330 L178 366 L170 366 L170 380 L160 380 Z"/>
+  </g>
+  <text class="t-credit" x="148" y="539">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this</text>
+  <text class="t-credit" x="148" y="548">form; no external drawing reproduced.</text>
+</svg>

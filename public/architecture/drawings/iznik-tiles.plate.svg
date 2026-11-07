@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="198 108 364 399" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a four-tile Iznik panel: serrated saz leaves, tulips and carnations are drawn so that each tile carries a quarter of a medallion that completes where four tiles meet, framed by border tiles with cloud bands. Source: After 16th-century Iznik tile panels, e.g. the Rüstem Pasha Mosque, Istanbul. Generic; not a copy of a specific panel. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="198" y="108" width="364" height="399"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M380 150L380 430"/>
+    <path d="M240 290L520 290"/>
+    <g transform="translate(380 290) scale(1 1)"><path d="M30 60C34 90 40 110 60 126M60 126C50 120 46 106 50 96C56 104 60 110 60 126C62 108 66 100 72 94C76 108 72 120 60 126"/></g>
+    <g transform="translate(380 290) scale(-1 1)"><path d="M30 60C34 90 40 110 60 126M60 126C50 120 46 106 50 96C56 104 60 110 60 126C62 108 66 100 72 94C76 108 72 120 60 126"/></g>
+    <g transform="translate(380 290) scale(1 -1)"><path d="M30 60C34 90 40 110 60 126M60 126C50 120 46 106 50 96C56 104 60 110 60 126C62 108 66 100 72 94C76 108 72 120 60 126"/></g>
+    <g transform="translate(380 290) scale(-1 -1)"><path d="M30 60C34 90 40 110 60 126M60 126C50 120 46 106 50 96C56 104 60 110 60 126C62 108 66 100 72 94C76 108 72 120 60 126"/></g>
+    <g transform="translate(380 290) scale(1 1)"><path d="M90 30C100 40 104 52 106 64M106 64C96 64 90 58 92 50M106 64C116 62 120 54 118 46M106 64C108 54 106 46 102 40"/></g>
+    <g transform="translate(380 290) scale(-1 1)"><path d="M90 30C100 40 104 52 106 64M106 64C96 64 90 58 92 50M106 64C116 62 120 54 118 46M106 64C108 54 106 46 102 40"/></g>
+    <g transform="translate(380 290) scale(1 -1)"><path d="M90 30C100 40 104 52 106 64M106 64C96 64 90 58 92 50M106 64C116 62 120 54 118 46M106 64C108 54 106 46 102 40"/></g>
+    <g transform="translate(380 290) scale(-1 -1)"><path d="M90 30C100 40 104 52 106 64M106 64C96 64 90 58 92 50M106 64C116 62 120 54 118 46M106 64C108 54 106 46 102 40"/></g>
+    <g transform="translate(380 290) scale(1 1)"><path d="M120 120m-10 0a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M120 112v16M112 120h16"/></g>
+    <g transform="translate(380 290) scale(-1 1)"><path d="M120 120m-10 0a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M120 112v16M112 120h16"/></g>
+    <g transform="translate(380 290) scale(1 -1)"><path d="M120 120m-10 0a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M120 112v16M112 120h16"/></g>
+    <g transform="translate(380 290) scale(-1 -1)"><path d="M120 120m-10 0a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M120 112v16M112 120h16"/></g>
+    <path d="M242 138q6 -8 12 0q6 8 12 0M242 442q6 -8 12 0q6 8 12 0M270 138q6 -8 12 0q6 8 12 0M270 442q6 -8 12 0q6 8 12 0M298 138q6 -8 12 0q6 8 12 0M298 442q6 -8 12 0q6 8 12 0M326 138q6 -8 12 0q6 8 12 0M326 442q6 -8 12 0q6 8 12 0M354 138q6 -8 12 0q6 8 12 0M354 442q6 -8 12 0q6 8 12 0M382 138q6 -8 12 0q6 8 12 0M382 442q6 -8 12 0q6 8 12 0M410 138q6 -8 12 0q6 8 12 0M410 442q6 -8 12 0q6 8 12 0M438 138q6 -8 12 0q6 8 12 0M438 442q6 -8 12 0q6 8 12 0M466 138q6 -8 12 0q6 8 12 0M466 442q6 -8 12 0q6 8 12 0M494 138q6 -8 12 0q6 8 12 0M494 442q6 -8 12 0q6 8 12 0M228 152q-8 6 0 12q8 6 0 12M532 152q-8 6 0 12q8 6 0 12M228 180q-8 6 0 12q8 6 0 12M532 180q-8 6 0 12q8 6 0 12M228 208q-8 6 0 12q8 6 0 12M532 208q-8 6 0 12q8 6 0 12M228 236q-8 6 0 12q8 6 0 12M532 236q-8 6 0 12q8 6 0 12M228 264q-8 6 0 12q8 6 0 12M532 264q-8 6 0 12q8 6 0 12M228 292q-8 6 0 12q8 6 0 12M532 292q-8 6 0 12q8 6 0 12M228 320q-8 6 0 12q8 6 0 12M532 320q-8 6 0 12q8 6 0 12M228 348q-8 6 0 12q8 6 0 12M532 348q-8 6 0 12q8 6 0 12M228 376q-8 6 0 12q8 6 0 12M532 376q-8 6 0 12q8 6 0 12M228 404q-8 6 0 12q8 6 0 12M532 404q-8 6 0 12q8 6 0 12"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M216 126 L544 126 L544 454 L216 454 Z"/>
+    <path d="M240 150 L520 150 L520 430 L240 430 Z"/>
+    <g transform="translate(380 290) scale(1 1)"><path d="M8 8C40 20 90 30 128 96C100 70 60 52 14 40"/></g>
+    <g transform="translate(380 290) scale(-1 1)"><path d="M8 8C40 20 90 30 128 96C100 70 60 52 14 40"/></g>
+    <g transform="translate(380 290) scale(1 -1)"><path d="M8 8C40 20 90 30 128 96C100 70 60 52 14 40"/></g>
+    <g transform="translate(380 290) scale(-1 -1)"><path d="M8 8C40 20 90 30 128 96C100 70 60 52 14 40"/></g>
+    <circle cx="380" cy="290" r="18" style="fill: var(--_paper)"/>
+    <circle cx="380" cy="290" r="8"/>
+  </g>
+  <text class="t-credit" x="204" y="487">SOURCE: After 16th-century Iznik tile panels, e.g. the Rüstem Pasha Mosque,</text>
+  <text class="t-credit" x="204" y="496">Istanbul. Generic; not a copy of a specific panel. Original drawing by</text>
+  <text class="t-credit" x="204" y="505">Project Exodus.</text>
+</svg>

@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="192 172 376 402" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a rosette set in a square coffer: two rings of radiating petals, sixteen outer and eight inner, around a raised central button. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="192" y="172" width="376" height="402"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M224 204 L536 204 L536 516 L224 516 Z"/>
+    <path d="M248 228 L512 228 L512 492 L248 492 Z"/>
+    <g transform="translate(380 360) rotate(0)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(22.5)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(45)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(67.5)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(90)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(112.5)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(135)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(157.5)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(180)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(202.5)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(225)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(247.5)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(270)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(292.5)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(315)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(337.5)"><path d="M0 -48Q6 -80 0 -108"/></g>
+    <g transform="translate(380 360) rotate(22.5)"><path d="M0 -24Q4 -46 0 -62"/></g>
+    <g transform="translate(380 360) rotate(67.5)"><path d="M0 -24Q4 -46 0 -62"/></g>
+    <g transform="translate(380 360) rotate(112.5)"><path d="M0 -24Q4 -46 0 -62"/></g>
+    <g transform="translate(380 360) rotate(157.5)"><path d="M0 -24Q4 -46 0 -62"/></g>
+    <g transform="translate(380 360) rotate(202.5)"><path d="M0 -24Q4 -46 0 -62"/></g>
+    <g transform="translate(380 360) rotate(247.5)"><path d="M0 -24Q4 -46 0 -62"/></g>
+    <g transform="translate(380 360) rotate(292.5)"><path d="M0 -24Q4 -46 0 -62"/></g>
+    <g transform="translate(380 360) rotate(337.5)"><path d="M0 -24Q4 -46 0 -62"/></g>
+    <circle cx="385" cy="360" r="1.5"/>
+    <circle cx="382.5" cy="364.33" r="1.5"/>
+    <circle cx="377.5" cy="364.33" r="1.5"/>
+    <circle cx="375" cy="360" r="1.5"/>
+    <circle cx="377.5" cy="355.67" r="1.5"/>
+    <circle cx="382.5" cy="355.67" r="1.5"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M210 190 L550 190 L550 530 L210 530 Z"/>
+    <path d="M236 216 L524 216 L524 504 L236 504 Z"/>
+    <g transform="translate(380 360) rotate(0)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(22.5)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(45)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(67.5)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(90)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(112.5)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(135)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(157.5)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(180)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(202.5)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(225)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(247.5)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(270)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(292.5)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(315)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(337.5)"><path d="M0 -40C22 -60 18 -100 0 -118C-18 -100 -22 -60 0 -40Z"/></g>
+    <g transform="translate(380 360) rotate(22.5)"><path d="M0 -16C20 -26 26 -56 0 -72C-26 -56 -20 -26 0 -16Z" style="fill: var(--_paper)"/></g>
+    <g transform="translate(380 360) rotate(67.5)"><path d="M0 -16C20 -26 26 -56 0 -72C-26 -56 -20 -26 0 -16Z" style="fill: var(--_paper)"/></g>
+    <g transform="translate(380 360) rotate(112.5)"><path d="M0 -16C20 -26 26 -56 0 -72C-26 -56 -20 -26 0 -16Z" style="fill: var(--_paper)"/></g>
+    <g transform="translate(380 360) rotate(157.5)"><path d="M0 -16C20 -26 26 -56 0 -72C-26 -56 -20 -26 0 -16Z" style="fill: var(--_paper)"/></g>
+    <g transform="translate(380 360) rotate(202.5)"><path d="M0 -16C20 -26 26 -56 0 -72C-26 -56 -20 -26 0 -16Z" style="fill: var(--_paper)"/></g>
+    <g transform="translate(380 360) rotate(247.5)"><path d="M0 -16C20 -26 26 -56 0 -72C-26 -56 -20 -26 0 -16Z" style="fill: var(--_paper)"/></g>
+    <g transform="translate(380 360) rotate(292.5)"><path d="M0 -16C20 -26 26 -56 0 -72C-26 -56 -20 -26 0 -16Z" style="fill: var(--_paper)"/></g>
+    <g transform="translate(380 360) rotate(337.5)"><path d="M0 -16C20 -26 26 -56 0 -72C-26 -56 -20 -26 0 -16Z" style="fill: var(--_paper)"/></g>
+    <circle cx="380" cy="360" r="18" style="fill: var(--_paper)"/>
+    <circle cx="380" cy="360" r="10"/>
+  </g>
+  <text class="t-credit" x="198" y="563">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+  <text class="t-credit" x="198" y="572">construction of this form; no external drawing reproduced.</text>
+</svg>
