@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Minbar: elevation</title>
+  <desc id="d">Side elevation of a mosque pulpit: a gateway at the foot opens onto a straight flight of steps between triangular side panels of geometric lattice, rising to a seat sheltered by a small kiosk with a conical canopy. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="mb-a"><path d="M280 590 L460 590 L460 390 Z"/></clipPath><clipPath id="mb-b"><path d="M280 590 L460 590 L460 390 Z"/></clipPath>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-fine ink l-fine">
+    <g clip-path="url(#mb-a)"><path d="M468.49 122.44L737.56 588.49M458.1 128.44L727.17 594.49M447.7 134.44L716.78 600.49M437.31 140.44L706.38 606.49M426.92 146.44L695.99 612.49M416.53 152.44L685.6 618.49M406.13 158.44L675.21 624.49M395.74 164.44L664.81 630.49M385.35 170.44L654.42 636.49M374.96 176.44L644.03 642.49M364.56 182.44L633.64 648.49M354.17 188.44L623.24 654.49M343.78 194.44L612.85 660.49M333.39 200.44L602.46 666.49M323 206.44L592.07 672.49M312.6 212.44L581.68 678.49M302.21 218.44L571.28 684.49M291.82 224.44L560.89 690.49M281.43 230.44L550.5 696.49M271.03 236.44L540.11 702.49M260.64 242.44L529.71 708.49M250.25 248.44L519.32 714.49M239.86 254.44L508.93 720.49M229.46 260.44L498.54 726.49M219.07 266.44L488.14 732.49M208.68 272.44L477.75 738.49M198.29 278.44L467.36 744.49M187.9 284.44L456.97 750.49M177.5 290.44L446.58 756.49M167.11 296.44L436.18 762.49M156.72 302.44L425.79 768.49M146.33 308.44L415.4 774.49M135.93 314.44L405.01 780.49M125.54 320.44L394.61 786.49M115.15 326.44L384.22 792.49M104.76 332.44L373.83 798.49M94.36 338.44L363.44 804.49M83.97 344.44L353.04 810.49M73.58 350.44L342.65 816.49M63.19 356.44L332.26 822.49M52.8 362.44L321.87 828.49M42.4 368.44L311.48 834.49M32.01 374.44L301.08 840.49M21.62 380.44L290.69 846.49M11.23 386.44L280.3 852.49"/></g>
+    <g clip-path="url(#mb-b)"><path d="M2.44 588.49L271.51 122.44M12.83 594.49L281.9 128.44M23.22 600.49L292.3 134.44M33.62 606.49L302.69 140.44M44.01 612.49L313.08 146.44M54.4 618.49L323.47 152.44M64.79 624.49L333.87 158.44M75.19 630.49L344.26 164.44M85.58 636.49L354.65 170.44M95.97 642.49L365.04 176.44M106.36 648.49L375.44 182.44M116.76 654.49L385.83 188.44M127.15 660.49L396.22 194.44M137.54 666.49L406.61 200.44M147.93 672.49L417 206.44M158.32 678.49L427.4 212.44M168.72 684.49L437.79 218.44M179.11 690.49L448.18 224.44M189.5 696.49L458.57 230.44M199.89 702.49L468.97 236.44M210.29 708.49L479.36 242.44M220.68 714.49L489.75 248.44M231.07 720.49L500.14 254.44M241.46 726.49L510.54 260.44M251.86 732.49L520.93 266.44M262.25 738.49L531.32 272.44M272.64 744.49L541.71 278.44M283.03 750.49L552.1 284.44M293.42 756.49L562.5 290.44M303.82 762.49L572.89 296.44M314.21 768.49L583.28 302.44M324.6 774.49L593.67 308.44M334.99 780.49L604.07 314.44M345.39 786.49L614.46 320.44M355.78 792.49L624.85 326.44M366.17 798.49L635.24 332.44M376.56 804.49L645.64 338.44M386.96 810.49L656.03 344.44M397.35 816.49L666.42 350.44M407.74 822.49L676.81 356.44M418.13 828.49L687.2 362.44M428.52 834.49L697.6 368.44M438.92 840.49L707.99 374.44M449.31 846.49L718.38 380.44M459.7 852.49L728.77 386.44"/></g>
+    <path d="M280 588L280 530"/>
+    <path d="M316 548L316 490"/>
+    <path d="M352 508L352 450"/>
+    <path d="M388 468L388 410"/>
+    <path d="M424 428L424 370"/>
+    <path d="M460 388L460 330"/>
+    <path d="M248 590V450Q248 434.64 260 430.8Q272 434.64 272 450V590"/>
+    <path d="M236 360l6 -12l6 12"/>
+    <path d="M249 360l6 -12l6 12"/>
+    <path d="M262 360l6 -12l6 12"/>
+    <path d="M275 360l6 -12l6 12"/>
+    <path d="M482 590V530Q482 513.36 495 509.2Q508 513.36 508 530V590"/>
+    <path d="M468 364 L522 364 L522 390 L468 390 Z"/>
+    <path d="M470 280Q495 256 520 280"/>
+    <path d="M490 124a5.5 5.5 0 1 0 10 0a4 4 0 1 1 -10 0Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M280 590 L460 590 L460 390 Z"/>
+    <path d="M280 590 L280 570 L298 570 L298 550 L316 550 L316 530 L334 530 L334 510 L352 510 L352 490 L370 490 L370 470 L388 470 L388 450 L406 450 L406 430 L424 430 L424 410 L442 410 L442 390 L460 390"/>
+    <path d="M280 530L460 330"/>
+    <path d="M240 360 L280 360 L280 590 L240 590 Z"/>
+    <path d="M234 360h52"/>
+    <path d="M460 390 L530 390 L530 590 L460 590 Z"/>
+    <path d="M464 250 L470 250 L470 390 L464 390 Z"/>
+    <path d="M520 250 L526 250 L526 390 L520 390 Z"/>
+    <path d="M456 242 L534 242 L534 250 L456 250 Z"/>
+    <path d="M458 242Q468 200 495 154Q522 200 532 242"/>
+    <path d="M495 154L495 120"/>
+    <circle cx="495" cy="144" r="4"/>
+    <circle cx="495" cy="134" r="3"/>
+    <path d="M210 590L560 590"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M280 612L460 612M276 616L284 608M456 616L464 608M280 606L280 618M460 606L460 618"/><text x="370" y="626" text-anchor="middle">FLIGHT</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M119.3 129.88L492.5 130"/><circle cx="492.5" cy="130" r="1.5" class="solid"/><text x="34" y="132.88">ALEM (FINIAL)</text>
+    <path d="M125.4 209.88L463.5 210"/><circle cx="463.5" cy="210" r="1.5" class="solid"/><text x="34" y="212.88">CONICAL CANOPY</text>
+    <path d="M113.2 319.88L461.5 320"/><circle cx="461.5" cy="320" r="1.5" class="solid"/><text x="34" y="322.88">KIOSK COLUMN</text>
+    <path d="M131.5 375.88L465.5 376"/><circle cx="465.5" cy="376" r="1.5" class="solid"/><text x="34" y="378.88">PREACHER'S SEAT</text>
+    <path d="M82.7 390.88L174 390.88L237.5 390"/><circle cx="237.5" cy="390" r="1.5" class="solid"/><text x="34" y="393.88">GATEWAY</text>
+    <path d="M88.8 449.88L349.5 450"/><circle cx="349.5" cy="450" r="1.5" class="solid"/><text x="34" y="452.88">HANDRAIL</text>
+    <path d="M70.5 529.88L313.5 530"/><circle cx="313.5" cy="530" r="1.5" class="solid"/><text x="34" y="532.88">STEPS</text>
+    <path d="M143.7 549.88L385.5 550"/><circle cx="385.5" cy="550" r="1.5" class="solid"/><text x="34" y="552.88">GEOMETRIC LATTICE</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">MINBAR</text>
+    <text class="t-sub" x="26" y="710">STEPPED PULPIT OF A MOSQUE</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  REL-02</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

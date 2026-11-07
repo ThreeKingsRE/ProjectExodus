@@ -1030,5 +1030,107 @@
   "sheetNo": "RM-10",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 0.742
+ },
+ "altar": {
+  "view": "ELEVATION",
+  "sheetNo": "REL-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.93
+ },
+ "minbar": {
+  "view": "ELEVATION",
+  "sheetNo": "REL-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.746
+ },
+ "rood-screen": {
+  "view": "ELEVATION",
+  "sheetNo": "REL-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.886
+ },
+ "mihrab": {
+  "view": "ELEVATION",
+  "sheetNo": "REL-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.641
+ },
+ "bell-tower": {
+  "view": "ELEVATION",
+  "sheetNo": "REL-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.432
+ },
+ "minaret": {
+  "view": "ELEVATION",
+  "sheetNo": "REL-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.423
+ },
+ "gopuram": {
+  "view": "ELEVATION",
+  "sheetNo": "REL-07",
+  "source": "After South Indian (Dravidian) temple gateways such as those of the Meenakshi Temple, Madurai. Generic; not a survey. Original drawing by Project Exodus.",
+  "aspect": 0.734
+ },
+ "shikhara": {
+  "view": "ELEVATION",
+  "sheetNo": "REL-08",
+  "source": "After North Indian (Nagara) temple towers such as those at Khajuraho. Generic; not a survey. Original drawing by Project Exodus.",
+  "aspect": 0.71
+ },
+ "pagoda": {
+  "view": "ELEVATION",
+  "sheetNo": "REL-09",
+  "source": "After Japanese five-storey pagodas such as those at Hōryū-ji and Daigo-ji. Generic; not a survey. Original drawing by Project Exodus.",
+  "aspect": 0.597
+ },
+ "stupa": {
+  "view": "ELEVATION",
+  "sheetNo": "REL-10",
+  "source": "After the Great Stupa at Sanchi, India (3rd c. BCE – 1st c. CE). Simplified; not a survey. Original drawing by Project Exodus.",
+  "aspect": 1.358
+ },
+ "torii-gate": {
+  "view": "ELEVATION",
+  "sheetNo": "REL-11",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.917
+ },
+ "nave": {
+  "view": "SECTION",
+  "sheetNo": "REL-12",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.969
+ },
+ "monolithic-church": {
+  "view": "SECTION",
+  "sheetNo": "REL-13",
+  "source": "After Bete Giyorgis (Church of St George), Lalibela, Ethiopia (early 13th c.). Simplified; not a survey. Original drawing by Project Exodus.",
+  "aspect": 0.95
+ },
+ "apse": {
+  "view": "PLAN",
+  "sheetNo": "REL-14",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.697
+ },
+ "baptistery": {
+  "view": "PLAN",
+  "sheetNo": "REL-15",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "qibla-wall": {
+  "view": "PLAN",
+  "sheetNo": "REL-16",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.793
+ },
+ "transept": {
+  "view": "ISOMETRIC",
+  "sheetNo": "REL-17",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.676
  }
 }

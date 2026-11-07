@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="192 62 396 572" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a North Indian (Nagara) temple tower: a curvilinear spire rising over the sanctum, its faces stepped in vertical projections and banded with miniature ribbed discs, crowned by a large amalaka and a pot finial. Source: After North Indian (Nagara) temple towers such as those at Khajuraho. Generic; not a survey. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="192" y="62" width="396" height="572"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M320 460L320 560"/>
+    <path d="M344 460L344 560"/>
+    <path d="M460 460L460 560"/>
+    <path d="M436 460L436 560"/>
+    <path d="M364 482 L416 482 L416 490 L364 490 Z"/>
+    <path d="M332 460Q326 325 368 190"/>
+    <path d="M448 460Q454 325 412 190"/>
+    <path d="M368 460Q362 325 380 190"/>
+    <path d="M412 460Q418 325 400 190"/>
+    <path d="M303.83 415L476.17 415"/>
+    <ellipse cx="310.83" cy="415" rx="7" ry="3"/>
+    <ellipse cx="469.17" cy="415" rx="7" ry="3"/>
+    <path d="M307.33 370L472.67 370"/>
+    <ellipse cx="314.33" cy="370" rx="7" ry="3"/>
+    <ellipse cx="465.67" cy="370" rx="7" ry="3"/>
+    <path d="M314.5 325L465.5 325"/>
+    <ellipse cx="321.5" cy="325" rx="7" ry="3"/>
+    <ellipse cx="458.5" cy="325" rx="7" ry="3"/>
+    <path d="M325.33 280L454.67 280"/>
+    <ellipse cx="332.33" cy="280" rx="7" ry="3"/>
+    <ellipse cx="447.67" cy="280" rx="7" ry="3"/>
+    <path d="M339.83 235L440.17 235"/>
+    <ellipse cx="346.83" cy="235" rx="7" ry="3"/>
+    <ellipse cx="433.17" cy="235" rx="7" ry="3"/>
+    <path d="M354 155Q348 168 354 181M363 155Q358.5 168 363 181M372 155Q369 168 372 181M381 155Q379.5 168 381 181M390 155Q390 168 390 181M399 155Q400.5 168 399 181M408 155Q411 168 408 181M417 155Q421.5 168 417 181M426 155Q432 168 426 181"/>
+    <path d="M390 80l28 6l-28 8"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M230 560 L550 560 L550 590 L230 590 Z"/>
+    <path d="M230 570L550 570"/>
+    <path d="M296 460 L484 460 L484 560 L296 560 Z"/>
+    <path d="M372 490 L408 490 L408 560 L372 560 Z"/>
+    <path d="M304 460Q298 325 358 190H422"/>
+    <path d="M476 460Q482 325 422 190"/>
+    <path d="M368 182 L412 182 L412 190 L368 190 Z"/>
+    <ellipse cx="390" cy="168" rx="40" ry="14"/>
+    <path d="M380 154q-12 -12 0 -26h20q12 14 0 26Z"/>
+    <path d="M390 128L390 80"/>
+    <path d="M210 590L570 590"/>
+  </g>
+  <text class="t-credit" x="198" y="623">SOURCE: After North Indian (Nagara) temple towers such as those at Khajuraho.</text>
+  <text class="t-credit" x="198" y="632">Generic; not a survey. Original drawing by Project Exodus.</text>
+</svg>

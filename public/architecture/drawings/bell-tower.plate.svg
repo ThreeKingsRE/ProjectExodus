@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="262 6 276 637" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a free-standing campanile: a square shaft divided by string courses, its windows growing larger towards the top, a belfry stage with two-light openings showing the bells, and a pyramidal roof with a cross. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="262" y="6" width="276" height="637"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M396 400V374A4 4 0 0 1 404 374V400Z"/>
+    <path d="M393 314V275A7 7 0 0 1 407 275V314Z"/>
+    <path d="M397 480V463A3 3 0 0 1 403 463V480Z"/>
+    <path d="M398 180 L402 180 L402 230 L398 230 Z"/>
+    <path d="M367.44 206L388.56 206"/>
+    <path d="M378 186.06L378 179.76"/>
+    <path d="M413.2 200L430.8 200"/>
+    <path d="M422 184.05L422 178.8"/>
+    <path d="M362 180L438 180"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M352 140 L448 140 L448 590 L352 590 Z"/>
+    <path d="M348 234 L452 234 L452 240 L348 240 Z"/>
+    <path d="M348 324 L452 324 L452 330 L348 330 Z"/>
+    <path d="M348 414 L452 414 L452 420 L348 420 Z"/>
+    <path d="M348 494 L452 494 L452 500 L348 500 Z"/>
+    <path d="M362 230V180A16 16 0 0 1 394 180V230Z"/>
+    <path d="M406 230V180A16 16 0 0 1 438 180V230Z"/>
+    <path d="M366 210C369.36 203.7 370.32 194.88 370.8 189.34Q378 182.78 385.2 189.34C385.68 194.88 386.64 203.7 390 210Z"/>
+    <path d="M412 204C414.8 198.75 415.6 191.4 416 186.78Q422 181.32 428 186.78C428.4 191.4 429.2 198.75 432 204Z"/>
+    <path d="M344 130 L456 130 L456 140 L344 140 Z"/>
+    <path d="M346 130 L400 50 L454 130 Z"/>
+    <path d="M400 50v-26M392 32h16"/>
+    <path d="M384 590V546A16 16 0 0 1 416 546V590"/>
+    <path d="M280 590L520 590"/>
+  </g>
+  <text class="t-credit" x="268" y="623">SOURCE: Original drawing by Project Exodus from the</text>
+  <text class="t-credit" x="268" y="632">standard geometric construction of this form; no external</text>
+  <text class="t-credit" x="268" y="641">drawing reproduced.</text>
+</svg>

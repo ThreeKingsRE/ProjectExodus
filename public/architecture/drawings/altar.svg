@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Altar: elevation</title>
+  <desc id="d">Elevation of a church altar raised on three steps: a carved frontal beneath the stone mensa, a gradine shelf carrying candlesticks, a central tabernacle and a crucifix above. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M282 433 L478 433 L478 505 L282 505 Z"/>
+    <path d="M288 439 L472 439 L472 499 L288 499 Z"/>
+    <path d="M380 445V493M364 459H396"/>
+    <path d="M306 469q14 -16 28 0q-14 16 -28 0Z"/>
+    <path d="M426 469q14 -16 28 0q-14 16 -28 0Z"/>
+    <path d="M280 411v6M277 414h6"/>
+    <path d="M330 411v6M327 414h6"/>
+    <path d="M380 411v6M377 414h6"/>
+    <path d="M430 411v6M427 414h6"/>
+    <path d="M480 411v6M477 414h6"/>
+    <path d="M368 390V364A12 12 0 0 1 392 364V390Z"/>
+    <circle cx="380" cy="315" r="2.5"/>
+    <path d="M380 224l-2 22l2 32l2 -32Z"/>
+    <circle cx="380" cy="218" r="4"/>
+    <path d="M326 324h12"/>
+    <path d="M329.5 294 L334.5 294 L334.5 324 L329.5 324 Z"/>
+    <path d="M332 294q-3 -6 0 -10q3 4 0 10Z"/>
+    <path d="M304 336h12"/>
+    <path d="M307.5 306 L312.5 306 L312.5 336 L307.5 336 Z"/>
+    <path d="M310 306q-3 -6 0 -10q3 4 0 10Z"/>
+    <path d="M282 348h12"/>
+    <path d="M285.5 318 L290.5 318 L290.5 348 L285.5 348 Z"/>
+    <path d="M288 318q-3 -6 0 -10q3 4 0 10Z"/>
+    <path d="M422 324h12"/>
+    <path d="M425.5 294 L430.5 294 L430.5 324 L425.5 324 Z"/>
+    <path d="M428 294q-3 -6 0 -10q3 4 0 10Z"/>
+    <path d="M444 336h12"/>
+    <path d="M447.5 306 L452.5 306 L452.5 336 L447.5 336 Z"/>
+    <path d="M450 306q-3 -6 0 -10q3 4 0 10Z"/>
+    <path d="M466 348h12"/>
+    <path d="M469.5 318 L474.5 318 L474.5 348 L469.5 348 Z"/>
+    <path d="M472 318q-3 -6 0 -10q3 4 0 10Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M210 545 L550 545 L550 560 L210 560 Z"/>
+    <path d="M230 530 L530 530 L530 545 L230 545 Z"/>
+    <path d="M250 515 L510 515 L510 530 L250 530 Z"/>
+    <path d="M270 420 L490 420 L490 515 L270 515 Z"/>
+    <path d="M260 408 L500 408 L500 420 L260 420 Z"/>
+    <path d="M280 394 L480 394 L480 408 L280 408 Z"/>
+    <path d="M356 394V346H404V394Z"/>
+    <path d="M352 346H408M360 346Q380 318 400 346"/>
+    <path d="M377 194 L383 194 L383 312 L377 312 Z"/>
+    <path d="M350 220 L410 220 L410 226 L350 226 Z"/>
+    <path d="M324 394h16l-5 -6h-6Z"/>
+    <path d="M332 388L332 324"/>
+    <path d="M302 394h16l-5 -6h-6Z"/>
+    <path d="M310 388L310 336"/>
+    <path d="M280 394h16l-5 -6h-6Z"/>
+    <path d="M288 388L288 348"/>
+    <path d="M420 394h16l-5 -6h-6Z"/>
+    <path d="M428 388L428 324"/>
+    <path d="M442 394h16l-5 -6h-6Z"/>
+    <path d="M450 388L450 336"/>
+    <path d="M464 394h16l-5 -6h-6Z"/>
+    <path d="M472 388L472 348"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M260 584L500 584M256 588L264 580M496 588L504 580M260 578L260 590M500 578L500 590"/><text x="380" y="598" text-anchor="middle">MENSA</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M88.8 222.71L347.5 223"/><circle cx="347.5" cy="223" r="1.5" class="solid"/><text x="34" y="225.71">CRUCIFIX</text>
+    <path d="M107.1 338.71L285.5 339"/><circle cx="285.5" cy="339" r="1.5" class="solid"/><text x="34" y="341.71">CANDLESTICK</text>
+    <path d="M101 369.71L353.5 370"/><circle cx="353.5" cy="370" r="1.5" class="solid"/><text x="34" y="372.71">TABERNACLE</text>
+    <path d="M82.7 400.71L277.5 401"/><circle cx="277.5" cy="401" r="1.5" class="solid"/><text x="34" y="403.71">GRADINE</text>
+    <path d="M149.8 415.71L174 415.71L257.5 414"/><circle cx="257.5" cy="414" r="1.5" class="solid"/><text x="34" y="418.71">MENSA (ALTAR SLAB)</text>
+    <path d="M82.7 468.71L279.5 469"/><circle cx="279.5" cy="469" r="1.5" class="solid"/><text x="34" y="471.71">FRONTAL</text>
+    <path d="M137.6 551.71L207.5 552"/><circle cx="207.5" cy="552" r="1.5" class="solid"/><text x="34" y="554.71">PREDELLA (STEPS)</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">ALTAR</text>
+    <text class="t-sub" x="26" y="710">TABLE FOR THE CENTRAL RITE OF A CHURCH</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  REL-01</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

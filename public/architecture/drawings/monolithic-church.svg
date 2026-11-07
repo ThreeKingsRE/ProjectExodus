@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Monolithic Church: section</title>
+  <desc id="d">Section through a church carved downward from a single mass of rock: a deep trench was cut to free the block, whose roof stays level with the surrounding ground, and the interior was then hollowed out with arches and pillars left in the stone. Source: After Bete Giyorgis (Church of St George), Lalibela, Ethiopia (early 13th c.). Simplified; not a survey. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.7 6.01) scale(0.97)">
+  <g class="layer-hatch ink l-hair">
+    <path d="M200 220 L570 220 L570 600 L200 600 ZM230 220 L230 540 L540 540 L540 220 Z" fill="url(#h-stone)" fill-rule="evenodd" stroke="none"/>
+    <path d="M300 228 L470 228 L470 540 L300 540 ZM318 522 L318 340 L452 340 L452 522 Z" fill="url(#h-stone)" fill-rule="evenodd" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M332 522V400A13.67 13.67 0 0 1 359.33 400V522"/>
+    <path d="M371.33 522V400A13.67 13.67 0 0 1 398.67 400V522"/>
+    <path d="M410.67 522V400A13.67 13.67 0 0 1 438 400V522"/>
+    <path d="M204 240L230 500"/>
+    <path d="M204 264L230 530"/>
+    <circle cx="518" cy="490" r="5"/>
+    <path d="M518 495v24M512 540l6 -21l6 21M510 508l8 -6l8 6"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M355 228v-4h60v4M379 224v-4h12v4"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M200 220 L230 220 L230 540 L540 540 L540 220 L570 220"/>
+    <path d="M300 228 L470 228 L470 540 L300 540 Z"/>
+    <path d="M318 340 L452 340 L452 522 L318 522 Z"/>
+    <path d="M299 260 L319 260 L319 274 L299 274 Z" style="fill: var(--_paper); stroke: none"/>
+    <path d="M300 260L318 260" class="l-fine"/>
+    <path d="M300 274L318 274" class="l-fine"/>
+    <path d="M451 260 L471 260 L471 274 L451 274 Z" style="fill: var(--_paper); stroke: none"/>
+    <path d="M452 260L470 260" class="l-fine"/>
+    <path d="M452 274L470 274" class="l-fine"/>
+    <path d="M299 290 L319 290 L319 304 L299 304 Z" style="fill: var(--_paper); stroke: none"/>
+    <path d="M300 290L318 290" class="l-fine"/>
+    <path d="M300 304L318 304" class="l-fine"/>
+    <path d="M451 290 L471 290 L471 304 L451 304 Z" style="fill: var(--_paper); stroke: none"/>
+    <path d="M452 290L470 290" class="l-fine"/>
+    <path d="M452 304L470 304" class="l-fine"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M190 220L574 220"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M554 540L554 220M550 544L558 536M550 224L558 216M540 540L560 540M540 220L560 220"/><text x="562" y="383">DEPTH</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M113.2 217.71L174 217.71L207.5 220"/><circle cx="207.5" cy="220" r="1.5" class="solid"/><text x="34" y="220.71">GROUND LEVEL</text>
+    <path d="M174.2 232.71L174 232.71L352.5 224"/><circle cx="352.5" cy="224" r="1.5" class="solid"/><text x="34" y="235.71">ROOF FLUSH WITH GROUND</text>
+    <path d="M125.4 287.71L174 287.71L237.5 290"/><circle cx="237.5" cy="290" r="1.5" class="solid"/><text x="34" y="290.71">ACCESS PASSAGE</text>
+    <path d="M192.5 302.71L174 302.71L297.5 300"/><circle cx="297.5" cy="300" r="1.5" class="solid"/><text x="34" y="305.71">CHURCH: ONE BLOCK OF ROCK</text>
+    <path d="M168.1 417.71L174 417.71L335.5 420"/><circle cx="335.5" cy="420" r="1.5" class="solid"/><text x="34" y="420.71">INTERIOR HOLLOWED OUT</text>
+    <path d="M76.6 527.71L174 527.71L257.5 530"/><circle cx="257.5" cy="530" r="1.5" class="solid"/><text x="34" y="530.71">TRENCH</text>
+    <path d="M119.3 567.71L174 567.71L217.5 570"/><circle cx="217.5" cy="570" r="1.5" class="solid"/><text x="34" y="570.71">UNCUT BEDROCK</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">MONOLITHIC CHURCH</text>
+    <text class="t-sub" x="26" y="710">CHURCH CARVED DOWN INTO LIVING ROCK</text>
+    <text class="t-small" x="26" y="726">SOURCE: After Bete Giyorgis (Church of St George), Lalibela, Ethiopia</text>
+    <text class="t-small" x="26" y="736">(early 13th c.). Simplified; not a survey. Original drawing by Project</text>
+    <text class="t-small" x="26" y="746">Exodus.</text>
+    <text class="t-sub" x="416" y="684">SHEET  REL-13</text>
+    <text class="t-small" x="416" y="699">SECTION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="29.12" height="5" class="solid"/><rect x="445.12" y="730" width="29.12" height="5" class="ink l-fine"/><rect x="474.25" y="730" width="29.12" height="5" class="solid"/><rect x="503.37" y="730" width="29.12" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="530.5" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

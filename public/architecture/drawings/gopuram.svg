@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Gopuram: elevation</title>
+  <desc id="d">Elevation of a Dravidian temple gateway: a stone base pierced by the entrance carries a pyramidal tower of diminishing tiers crowded with sculpted niches, capped by a barrel-vaulted roof lined with pot finials. Source: After South Indian (Dravidian) temple gateways such as those of the Meenakshi Temple, Madurai. Generic; not a survey. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M260 478L260 584"/>
+    <path d="M286 478L286 584"/>
+    <path d="M312 478L312 584"/>
+    <path d="M338 478L338 584"/>
+    <path d="M442 478L442 584"/>
+    <path d="M468 478L468 584"/>
+    <path d="M494 478L494 584"/>
+    <path d="M520 478L520 584"/>
+    <path d="M354 480 L426 480 L426 486 L354 486 Z"/>
+    <path d="M270.86 458V440Q276.86 432 282.86 440V458"/>
+    <circle cx="276.86" cy="446" r="2.2"/>
+    <path d="M276.86 449L276.86 456"/>
+    <path d="M308.57 458V440Q314.57 432 320.57 440V458"/>
+    <path d="M346.29 458V440Q352.29 432 358.29 440V458"/>
+    <circle cx="352.29" cy="446" r="2.2"/>
+    <path d="M352.29 449L352.29 456"/>
+    <path d="M384 458V440Q390 432 396 440V458"/>
+    <path d="M421.71 458V440Q427.71 432 433.71 440V458"/>
+    <circle cx="427.71" cy="446" r="2.2"/>
+    <path d="M427.71 449L427.71 456"/>
+    <path d="M459.43 458V440Q465.43 432 471.43 440V458"/>
+    <path d="M497.14 458V440Q503.14 432 509.14 440V458"/>
+    <circle cx="503.14" cy="446" r="2.2"/>
+    <path d="M503.14 449L503.14 456"/>
+    <path d="M284.57 412V394Q290.57 386 296.57 394V412"/>
+    <circle cx="290.57" cy="400" r="2.2"/>
+    <path d="M290.57 403L290.57 410"/>
+    <path d="M317.71 412V394Q323.71 386 329.71 394V412"/>
+    <path d="M350.86 412V394Q356.86 386 362.86 394V412"/>
+    <circle cx="356.86" cy="400" r="2.2"/>
+    <path d="M356.86 403L356.86 410"/>
+    <path d="M384 412V394Q390 386 396 394V412"/>
+    <path d="M417.14 412V394Q423.14 386 429.14 394V412"/>
+    <circle cx="423.14" cy="400" r="2.2"/>
+    <path d="M423.14 403L423.14 410"/>
+    <path d="M450.29 412V394Q456.29 386 462.29 394V412"/>
+    <path d="M483.43 412V394Q489.43 386 495.43 394V412"/>
+    <circle cx="489.43" cy="400" r="2.2"/>
+    <path d="M489.43 403L489.43 410"/>
+    <path d="M300.67 366V348Q306.67 340 312.67 348V366"/>
+    <circle cx="306.67" cy="354" r="2.2"/>
+    <path d="M306.67 357L306.67 364"/>
+    <path d="M334 366V348Q340 340 346 348V366"/>
+    <path d="M367.33 366V348Q373.33 340 379.33 348V366"/>
+    <circle cx="373.33" cy="354" r="2.2"/>
+    <path d="M373.33 357L373.33 364"/>
+    <path d="M400.67 366V348Q406.67 340 412.67 348V366"/>
+    <path d="M434 366V348Q440 340 446 348V366"/>
+    <circle cx="440" cy="354" r="2.2"/>
+    <path d="M440 357L440 364"/>
+    <path d="M467.33 366V348Q473.33 340 479.33 348V366"/>
+    <path d="M314 320V302Q320 294 326 302V320"/>
+    <circle cx="320" cy="308" r="2.2"/>
+    <path d="M320 311L320 318"/>
+    <path d="M342 320V302Q348 294 354 302V320"/>
+    <path d="M370 320V302Q376 294 382 302V320"/>
+    <circle cx="376" cy="308" r="2.2"/>
+    <path d="M376 311L376 318"/>
+    <path d="M398 320V302Q404 294 410 302V320"/>
+    <path d="M426 320V302Q432 294 438 302V320"/>
+    <circle cx="432" cy="308" r="2.2"/>
+    <path d="M432 311L432 318"/>
+    <path d="M454 320V302Q460 294 466 302V320"/>
+    <path d="M329.6 274V256Q335.6 248 341.6 256V274"/>
+    <circle cx="335.6" cy="262" r="2.2"/>
+    <path d="M335.6 265L335.6 272"/>
+    <path d="M356.8 274V256Q362.8 248 368.8 256V274"/>
+    <path d="M384 274V256Q390 248 396 256V274"/>
+    <circle cx="390" cy="262" r="2.2"/>
+    <path d="M390 265L390 272"/>
+    <path d="M411.2 274V256Q417.2 248 423.2 256V274"/>
+    <path d="M438.4 274V256Q444.4 248 450.4 256V274"/>
+    <circle cx="444.4" cy="262" r="2.2"/>
+    <path d="M444.4 265L444.4 272"/>
+    <path d="M342.4 228V210Q348.4 202 354.4 210V228"/>
+    <circle cx="348.4" cy="216" r="2.2"/>
+    <path d="M348.4 219L348.4 226"/>
+    <path d="M363.2 228V210Q369.2 202 375.2 210V228"/>
+    <path d="M384 228V210Q390 202 396 210V228"/>
+    <circle cx="390" cy="216" r="2.2"/>
+    <path d="M390 219L390 226"/>
+    <path d="M404.8 228V210Q410.8 202 416.8 210V228"/>
+    <path d="M425.6 228V210Q431.6 202 437.6 210V228"/>
+    <circle cx="431.6" cy="216" r="2.2"/>
+    <path d="M431.6 219L431.6 226"/>
+    <path d="M340 168q-14 -6 -10 -24"/>
+    <path d="M440 168q14 -6 10 -24"/>
+    <path d="M374 194V172Q390 156 406 172V194"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M240 470 L540 470 L540 590 L240 590 Z"/>
+    <path d="M360 486 L420 486 L420 590 L360 590 Z"/>
+    <path d="M244 462 L536 462 L536 470 L244 470 Z"/>
+    <path d="M250 462 L266 424 L514 424 L530 462 Z"/>
+    <path d="M260 416 L520 416 L520 424 L260 424 Z"/>
+    <path d="M266 416 L282 378 L498 378 L514 416 Z"/>
+    <path d="M276 370 L504 370 L504 378 L276 378 Z"/>
+    <path d="M282 370 L298 332 L482 332 L498 370 Z"/>
+    <path d="M292 324 L488 324 L488 332 L292 332 Z"/>
+    <path d="M298 324 L314 286 L466 286 L482 324 Z"/>
+    <path d="M308 278 L472 278 L472 286 L308 286 Z"/>
+    <path d="M314 278 L330 240 L450 240 L466 278 Z"/>
+    <path d="M324 232 L456 232 L456 240 L324 240 Z"/>
+    <path d="M330 232 L346 194 L434 194 L450 232 Z"/>
+    <path d="M340 194V168Q340 146 362 146H418Q440 146 440 168V194Z"/>
+    <path d="M358 146q-2 -8 4 -12q6 4 4 12Z"/>
+    <path d="M362 134L362 124"/>
+    <path d="M367.33 146q-2 -8 4 -12q6 4 4 12Z"/>
+    <path d="M371.33 134L371.33 124"/>
+    <path d="M376.67 146q-2 -8 4 -12q6 4 4 12Z"/>
+    <path d="M380.67 134L380.67 124"/>
+    <path d="M386 146q-2 -8 4 -12q6 4 4 12Z"/>
+    <path d="M390 134L390 124"/>
+    <path d="M395.33 146q-2 -8 4 -12q6 4 4 12Z"/>
+    <path d="M399.33 134L399.33 124"/>
+    <path d="M404.67 146q-2 -8 4 -12q6 4 4 12Z"/>
+    <path d="M408.67 134L408.67 124"/>
+    <path d="M414 146q-2 -8 4 -12q6 4 4 12Z"/>
+    <path d="M418 134L418 124"/>
+    <path d="M220 590L560 590"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M240 612L540 612M236 616L244 608M536 616L544 608M240 606L240 618M540 606L540 618"/><text x="390" y="626" text-anchor="middle">BASE</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M131.5 136L359.5 136"/><circle cx="359.5" cy="136" r="1.5" class="solid"/><text x="34" y="139">KALASHA FINIALS</text>
+    <path d="M155.9 164L337.5 164"/><circle cx="337.5" cy="164" r="1.5" class="solid"/><text x="34" y="167">SHALA (BARREL ROOF)</text>
+    <path d="M143.7 300L307.5 300"/><circle cx="307.5" cy="300" r="1.5" class="solid"/><text x="34" y="303">DIMINISHING TIERS</text>
+    <path d="M125.4 440L277.5 440"/><circle cx="277.5" cy="440" r="1.5" class="solid"/><text x="34" y="443">SCULPTED NICHE</text>
+    <path d="M137.6 466L241.5 466"/><circle cx="241.5" cy="466" r="1.5" class="solid"/><text x="34" y="469">CORNICE (KAPOTA)</text>
+    <path d="M101 520L237.5 520"/><circle cx="237.5" cy="520" r="1.5" class="solid"/><text x="34" y="523">STONE BASE</text>
+    <path d="M82.7 560L357.5 560"/><circle cx="357.5" cy="560" r="1.5" class="solid"/><text x="34" y="563">GATEWAY</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">GOPURAM</text>
+    <text class="t-sub" x="26" y="710">TOWERING GATEWAY OF A SOUTH INDIAN TEMPLE</text>
+    <text class="t-small" x="26" y="726">SOURCE: After South Indian (Dravidian) temple gateways such as those of</text>
+    <text class="t-small" x="26" y="736">the Meenakshi Temple, Madurai. Generic; not a survey. Original drawing by</text>
+    <text class="t-small" x="26" y="746">Project Exodus.</text>
+    <text class="t-sub" x="416" y="684">SHEET  REL-07</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

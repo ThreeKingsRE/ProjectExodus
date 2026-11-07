@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Stupa: elevation</title>
+  <desc id="d">Elevation of a great stupa: a solid hemispherical dome on a drum terrace with a railing, crowned by a square enclosure and a mast of three umbrellas, ringed at ground level by a stone railing entered through carved gateways. Source: After the Great Stupa at Sanchi, India (3rd c. BCE – 1st c. CE). Simplified; not a survey. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(1.32 13.92) scale(0.95)">
+  <g class="layer-fine ink l-fine">
+    <path d="M236 520v-12M248 520v-12M260 520v-12M272 520v-12M284 520v-12M296 520v-12M308 520v-12M320 520v-12M332 520v-12M344 520v-12M356 520v-12M368 520v-12M380 520v-12M392 520v-12M404 520v-12M416 520v-12M428 520v-12M440 520v-12M452 520v-12M464 520v-12M476 520v-12M488 520v-12M500 520v-12M512 520v-12M524 520v-12M536 520v-12M548 520v-12"/>
+    <path d="M232 514L548 514"/>
+    <path d="M232 508L548 508"/>
+    <path d="M372 336v18M378 336v18M384 336v18M390 336v18M396 336v18M402 336v18M408 336v18"/>
+    <path d="M196 544v36M212 544v36M228 544v36M244 544v36M260 544v36M276 544v36M292 544v36M308 544v36M324 544v36M340 544v36M356 544v36M372 544v36M388 544v36M404 544v36M420 544v36M436 544v36M452 544v36M468 544v36M484 544v36M500 544v36M516 544v36M532 544v36M548 544v36M564 544v36M580 544v36M190 554H590M190 564H590M190 574H590"/>
+    <circle cx="320" cy="437" r="4"/>
+    <circle cx="460" cy="437" r="4"/>
+    <circle cx="320" cy="457" r="3.5"/>
+    <circle cx="460" cy="457" r="3.5"/>
+    <circle cx="320" cy="477" r="3"/>
+    <circle cx="460" cy="477" r="3"/>
+    <path d="M384 424h12l-6 -14Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M230 520 L550 520 L550 580 L230 580 Z"/>
+    <path d="M250 508C250 398 320 358 390 358C460 358 530 398 530 508"/>
+    <path d="M368 332 L412 332 L412 358 L368 358 Z"/>
+    <path d="M390 332L390 258"/>
+    <path d="M364 312Q390 302 416 312Z"/>
+    <path d="M370 288Q390 278 410 288Z"/>
+    <path d="M376 266Q390 256 404 266Z"/>
+    <path d="M190 544 L590 544 L590 580 L190 580 Z"/>
+    <path d="M355 430 L365 430 L365 580 L355 580 Z" style="fill: var(--_paper)"/>
+    <path d="M415 430 L425 430 L425 580 L415 580 Z" style="fill: var(--_paper)"/>
+    <path d="M324 434Q390 426 456 434V440Q390 432 324 440Z" style="fill: var(--_paper)"/>
+    <path d="M324 454Q390 446 456 454V460Q390 452 324 460Z" style="fill: var(--_paper)"/>
+    <path d="M324 474Q390 466 456 474V480Q390 472 324 480Z" style="fill: var(--_paper)"/>
+    <path d="M170 580L610 580"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M250 602L530 602M246 606L254 598M526 606L534 598M250 596L250 608M530 596L530 608"/><text x="390" y="616" text-anchor="middle">DOME</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M155.9 311.57L361.5 312"/><circle cx="361.5" cy="312" r="1.5" class="solid"/><text x="34" y="314.57">CHATTRA (UMBRELLAS)</text>
+    <path d="M82.7 344.57L365.5 345"/><circle cx="365.5" cy="345" r="1.5" class="solid"/><text x="34" y="347.57">HARMIKA</text>
+    <path d="M107.1 427.57L277.5 428"/><circle cx="277.5" cy="428" r="1.5" class="solid"/><text x="34" y="430.57">ANDA (DOME)</text>
+    <path d="M137.6 442.57L174 442.57L321.5 440"/><circle cx="321.5" cy="440" r="1.5" class="solid"/><text x="34" y="445.57">TORANA (GATEWAY)</text>
+    <path d="M113.2 510.57L229.5 511"/><circle cx="229.5" cy="511" r="1.5" class="solid"/><text x="34" y="513.57">BERM RAILING</text>
+    <path d="M113.2 531.57L227.5 532"/><circle cx="227.5" cy="532" r="1.5" class="solid"/><text x="34" y="534.57">MEDHI (DRUM)</text>
+    <path d="M137.6 561.57L187.5 562"/><circle cx="187.5" cy="562" r="1.5" class="solid"/><text x="34" y="564.57">VEDIKA (RAILING)</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">STUPA</text>
+    <text class="t-sub" x="26" y="710">HEMISPHERICAL BUDDHIST RELIQUARY MOUND</text>
+    <text class="t-small" x="26" y="726">SOURCE: After the Great Stupa at Sanchi, India (3rd c. BCE – 1st c. CE).</text>
+    <text class="t-small" x="26" y="736">Simplified; not a survey. Original drawing by Project Exodus.</text>
+    <text class="t-sub" x="416" y="684">SHEET  REL-10</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="28.36" height="5" class="solid"/><rect x="444.36" y="730" width="28.36" height="5" class="ink l-fine"/><rect x="472.71" y="730" width="28.36" height="5" class="solid"/><rect x="501.07" y="730" width="28.36" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="527.42" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

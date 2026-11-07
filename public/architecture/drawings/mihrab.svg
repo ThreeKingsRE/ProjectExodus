@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Mihrab: elevation</title>
+  <desc id="d">Elevation of a mihrab set in the qibla wall: a pointed niche with a fluted conch hood on slender colonnettes, enclosed by a rectangular frame bearing an inscription band, with a lamp hanging in the niche. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M290 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M304 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M318 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M332 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M346 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M360 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M374 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M388 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M402 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M416 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M430 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M444 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M458 165v-7q4 -2 6 2v5m2 0q2 -8 6 -6M268 190h6v-6M486 190h6v-6M268 206h6v-6M486 206h6v-6M268 222h6v-6M486 222h6v-6M268 238h6v-6M486 238h6v-6M268 254h6v-6M486 254h6v-6M268 270h6v-6M486 270h6v-6M268 286h6v-6M486 286h6v-6M268 302h6v-6M486 302h6v-6M268 318h6v-6M486 318h6v-6M268 334h6v-6M486 334h6v-6M268 350h6v-6M486 350h6v-6M268 366h6v-6M486 366h6v-6M268 382h6v-6M486 382h6v-6M268 398h6v-6M486 398h6v-6M268 414h6v-6M486 414h6v-6M268 430h6v-6M486 430h6v-6M268 446h6v-6M486 446h6v-6M268 462h6v-6M486 462h6v-6M268 478h6v-6M486 478h6v-6M268 494h6v-6M486 494h6v-6M268 510h6v-6M486 510h6v-6M268 526h6v-6M486 526h6v-6M268 542h6v-6M486 542h6v-6"/>
+    <path d="M332 540V304Q332 240 380 224Q428 240 428 304V540"/>
+    <path d="M380 304L337.5 277.21"/>
+    <path d="M380 304L347.47 254.5"/>
+    <path d="M380 304L362.4 239.33"/>
+    <path d="M380 304L380 234"/>
+    <path d="M380 304L397.6 239.33"/>
+    <path d="M380 304L412.53 254.5"/>
+    <path d="M380 304L422.5 277.21"/>
+    <path d="M366 304 L366.69 299.67 L368.67 295.77 L371.77 292.67 L375.67 290.69 L380 290 L384.33 290.69 L388.23 292.67 L391.33 295.77 L393.31 299.67 L394 304"/>
+    <path d="M309 292 L323 292 L323 300 L309 300 Z"/>
+    <path d="M309 532 L323 532 L323 540 L309 540 Z"/>
+    <path d="M437 292 L451 292 L451 300 L437 300 Z"/>
+    <path d="M437 532 L451 532 L451 540 L437 540 Z"/>
+    <path d="M302 210c14 10 14 30 0 34c-12 4 -12 -14 0 -12"/>
+    <circle cx="302" cy="240" r="3"/>
+    <path d="M458 210c-14 10 -14 30 0 34c12 4 12 -14 0 -12"/>
+    <circle cx="458" cy="240" r="3"/>
+    <path d="M380 240L380 370"/>
+    <path d="M368 370h24l-6 22h-12Z"/>
+    <path d="M372 392q8 14 16 0"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M260 150 L500 150 L500 560 L260 560 Z"/>
+    <path d="M282 172 L478 172 L478 560 L282 560 Z"/>
+    <path d="M320 540V300Q320 220 380 200Q440 220 440 300V540"/>
+    <path d="M312 300 L320 300 L320 540 L312 540 Z"/>
+    <path d="M440 300 L448 300 L448 540 L440 540 Z"/>
+    <path d="M250 540 L510 540 L510 560 L250 560 Z"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M320 582L440 582M316 586L324 578M436 586L444 578M320 576L320 588M440 576L440 588"/><text x="380" y="596" text-anchor="middle">NICHE</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M137.6 161L287.5 161"/><circle cx="287.5" cy="161" r="1.5" class="solid"/><text x="34" y="164">INSCRIPTION BAND</text>
+    <path d="M143.7 226L285.5 226"/><circle cx="285.5" cy="226" r="1.5" class="solid"/><text x="34" y="229">SPANDREL ORNAMENT</text>
+    <path d="M101 270L347.5 270"/><circle cx="347.5" cy="270" r="1.5" class="solid"/><text x="34" y="273">CONCH HOOD</text>
+    <path d="M113.2 310L317.5 310"/><circle cx="317.5" cy="310" r="1.5" class="solid"/><text x="34" y="313">POINTED ARCH</text>
+    <path d="M113.2 380L365.5 380"/><circle cx="365.5" cy="380" r="1.5" class="solid"/><text x="34" y="383">HANGING LAMP</text>
+    <path d="M101 420L309.5 420"/><circle cx="309.5" cy="420" r="1.5" class="solid"/><text x="34" y="423">COLONNETTE</text>
+    <path d="M119.3 480L257.5 480"/><circle cx="257.5" cy="480" r="1.5" class="solid"/><text x="34" y="483">FRAME (ALFIZ)</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="380" y="526" class="t-small t-accent" text-anchor="middle">NICHE FACES MECCA</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">MIHRAB</text>
+    <text class="t-sub" x="26" y="710">NICHE MARKING THE DIRECTION OF PRAYER</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  REL-04</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

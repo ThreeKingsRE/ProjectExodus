@@ -22,13 +22,14 @@ import { OPENING_SHEETS } from './families/openings'
 import { STRUCTURE_SHEETS } from './families/structure'
 import { LANDSCAPE_SHEETS } from './families/landscape'
 import { ROOM_SHEETS } from './families/rooms'
+import { RELIGIOUS_SHEETS } from './families/religious'
 import { ELEMENT_SUMMARIES } from '../../../data/architecture/summary'
 
 const OUT_DIR = 'public/architecture/drawings'
 const MANIFEST = 'data/architecture/drawings-manifest.json'
 const MAX_GZIP = 14 * 1024 // per file budget
 
-const specs: SheetSpec[] = [...ORDERS.map(buildOrder), ...ARCHES.map(buildArch), ...VAULT_SHEETS.map((build) => build()), ...FLOOR_SHEETS.map((build) => build()), ...STAIR_SHEETS.map((build) => build()), ...ROOF_SHEETS.map((build) => build()), ...INTERIOR_SHEETS.map((build) => build()), ...OPENING_SHEETS.map((build) => build()), ...STRUCTURE_SHEETS.map((build) => build()), ...LANDSCAPE_SHEETS.map((build) => build()), ...ROOM_SHEETS.map((build) => build())]
+const specs: SheetSpec[] = [...ORDERS.map(buildOrder), ...ARCHES.map(buildArch), ...VAULT_SHEETS.map((build) => build()), ...FLOOR_SHEETS.map((build) => build()), ...STAIR_SHEETS.map((build) => build()), ...ROOF_SHEETS.map((build) => build()), ...INTERIOR_SHEETS.map((build) => build()), ...OPENING_SHEETS.map((build) => build()), ...STRUCTURE_SHEETS.map((build) => build()), ...LANDSCAPE_SHEETS.map((build) => build()), ...ROOM_SHEETS.map((build) => build()), ...RELIGIOUS_SHEETS.map((build) => build())]
 
 const known = new Set(ELEMENT_SUMMARIES.map((e) => e.id))
 const files = new Map<string, string>()

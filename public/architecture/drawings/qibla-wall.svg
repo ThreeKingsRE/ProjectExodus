@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Qibla Wall: plan</title>
+  <desc id="d">Plan of a mosque prayer hall: the qibla wall facing Mecca with the mihrab niche at its centre and the minbar beside it; the rows of worshippers run parallel to it, so the whole hall is oriented by this one wall. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M204 170 L204 146 L346 146 L346 146 L346.65 139.37 L348.59 132.99 L351.73 127.11 L355.96 121.96 L361.11 117.73 L366.99 114.59 L373.37 112.65 L380 112 L386.63 112.65 L393.01 114.59 L398.89 117.73 L404.04 121.96 L408.27 127.11 L411.41 132.99 L413.35 139.37 L414 146 L556 146 L556 170 L400 170 L400 170 L399.32 164.82 L397.32 160 L394.14 155.86 L390 152.68 L385.18 150.68 L380 150 L374.82 150.68 L370 152.68 L365.86 155.86 L362.68 160 L360.68 164.82 L360 170 L360 170 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M204 170 L220 170 L220 556 L204 556 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M540 170 L556 170 L556 556 L540 556 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M220 540 L350 540 L350 556 L220 556 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M410 540 L540 540 L540 556 L410 556 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M420 200h16M420 208h16M420 216h16M420 224h16M420 232h16M420 240h16M420 248h16"/>
+    <path d="M230 280L530 280" stroke-dasharray="6 3"/>
+    <path d="M230 310L530 310" stroke-dasharray="6 3"/>
+    <path d="M230 340L530 340" stroke-dasharray="6 3"/>
+    <path d="M230 370L530 370" stroke-dasharray="6 3"/>
+    <path d="M230 400L530 400" stroke-dasharray="6 3"/>
+    <path d="M230 430L530 430" stroke-dasharray="6 3"/>
+    <path d="M230 460L530 460" stroke-dasharray="6 3"/>
+    <path d="M230 490L530 490" stroke-dasharray="6 3"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M420 172 L436 172 L436 256 L420 256 Z"/>
+    <circle cx="284" cy="270" r="7"/>
+    <circle cx="284" cy="360" r="7"/>
+    <circle cx="284" cy="450" r="7"/>
+    <circle cx="348" cy="270" r="7"/>
+    <circle cx="348" cy="360" r="7"/>
+    <circle cx="348" cy="450" r="7"/>
+    <circle cx="412" cy="270" r="7"/>
+    <circle cx="412" cy="360" r="7"/>
+    <circle cx="412" cy="450" r="7"/>
+    <circle cx="476" cy="270" r="7"/>
+    <circle cx="476" cy="360" r="7"/>
+    <circle cx="476" cy="450" r="7"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M204 170 L204 146 L346 146 L346 146 L346.65 139.37 L348.59 132.99 L351.73 127.11 L355.96 121.96 L361.11 117.73 L366.99 114.59 L373.37 112.65 L380 112 L386.63 112.65 L393.01 114.59 L398.89 117.73 L404.04 121.96 L408.27 127.11 L411.41 132.99 L413.35 139.37 L414 146 L556 146 L556 170 L400 170 L400 170 L399.32 164.82 L397.32 160 L394.14 155.86 L390 152.68 L385.18 150.68 L380 150 L374.82 150.68 L370 152.68 L365.86 155.86 L362.68 160 L360.68 164.82 L360 170 L360 170 Z"/>
+    <path d="M204 170 L220 170 L220 556 L204 556 Z"/>
+    <path d="M540 170 L556 170 L556 556 L540 556 Z"/>
+    <path d="M220 540 L350 540 L350 556 L220 556 Z"/>
+    <path d="M410 540 L540 540 L540 556 L410 556 Z"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M380 520L380 92M382.73 98.45L380 92L377.27 98.45" stroke-dasharray="none"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M220 580L540 580M216 584L224 576M536 584L544 576M220 574L220 586M540 574L540 586"/><text x="380" y="594" text-anchor="middle">PRAYER HALL</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M125.4 155.5L174 155.5L357.5 158"/><circle cx="357.5" cy="158" r="1.5" class="solid"/><text x="34" y="158.5">MIHRAB (NICHE)</text>
+    <path d="M101 170.5L174 170.5L201.5 158"/><circle cx="201.5" cy="158" r="1.5" class="solid"/><text x="34" y="173.5">QIBLA WALL</text>
+    <path d="M131.5 227.5L174 227.5L417.5 230"/><circle cx="417.5" cy="230" r="1.5" class="solid"/><text x="34" y="230.5">MINBAR (PULPIT)</text>
+    <path d="M107.1 307.5L174 307.5L227.5 310"/><circle cx="227.5" cy="310" r="1.5" class="solid"/><text x="34" y="310.5">PRAYER ROWS</text>
+    <path d="M76.6 357.5L174 357.5L274.5 360"/><circle cx="274.5" cy="360" r="1.5" class="solid"/><text x="34" y="360.5">COLUMN</text>
+    <path d="M88.8 545.5L174 545.5L347.5 548"/><circle cx="347.5" cy="548" r="1.5" class="solid"/><text x="34" y="548.5">ENTRANCE</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="388" y="104" class="t-small t-accent">QIBLA: TOWARDS MECCA</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">QIBLA WALL</text>
+    <text class="t-sub" x="26" y="710">WALL OF A MOSQUE FACING MECCA</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  REL-16</text>
+    <text class="t-small" x="416" y="699">PLAN</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>
