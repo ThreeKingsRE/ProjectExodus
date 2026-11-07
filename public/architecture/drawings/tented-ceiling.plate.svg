@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="127 92 411 438" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Section through a room whose ceiling rises to a central point in panels like a fabric tent, edged with a scalloped valance. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="127" y="92" width="411" height="438"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M155 140 L175 140 L175 470 L155 470 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M490 140 L510 140 L510 470 L490 470 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M155 470 L510 470 L510 486 L155 486 Z" fill="url(#h-concrete)" stroke="none"/>
+    <path d="M155 122 L510 122 L510 140 L155 140 Z" fill="url(#h-concrete)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M332.5 170Q273.44 213.75 214.38 237.5"/>
+    <path d="M332.5 170Q293.13 202.5 253.75 215"/>
+    <path d="M332.5 170Q312.81 191.25 293.13 192.5"/>
+    <path d="M332.5 170Q332.5 180 332.5 170"/>
+    <path d="M332.5 170Q352.19 191.25 371.88 192.5"/>
+    <path d="M332.5 170Q371.88 202.5 411.25 215"/>
+    <path d="M332.5 170Q391.56 213.75 450.63 237.5"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M175 260q17 22 34 0M209 260q17 22 34 0M243 260q17 22 34 0M277 260q17 22 34 0M311 260q17 22 34 0M345 260q17 22 34 0M379 260q17 22 34 0M413 260q17 22 34 0M447 260q17 22 34 0M481 260q17 22 34 0"/>
+    <circle cx="332.5" cy="180" r="6"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M155 140 L175 140 L175 470 L155 470 Z"/>
+    <path d="M490 140 L510 140 L510 470 L490 470 Z"/>
+    <path d="M155 470 L510 470 L510 486 L155 486 Z"/>
+    <path d="M155 122 L510 122 L510 140 L155 140 Z"/>
+    <path d="M175 260 L332.5 170 L490 260"/>
+  </g>
+  <text class="t-credit" x="133" y="519">SOURCE: Original drawing by Project Exodus from the standard geometric construction of</text>
+  <text class="t-credit" x="133" y="528">this form; no external drawing reproduced.</text>
+</svg>

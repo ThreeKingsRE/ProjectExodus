@@ -364,5 +364,143 @@
   "sheetNo": "COL-07",
   "source": "Entasis as described by Vitruvius, De architectura, Book III. Curve exaggerated for clarity. Original drawing by Project Exodus.",
   "aspect": 0.351
+ },
+ "tray-ceiling": {
+  "view": "SECTION",
+  "sheetNo": "CLG-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.997
+ },
+ "coved-ceiling": {
+  "view": "SECTION",
+  "sheetNo": "CLG-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.997
+ },
+ "dropped-ceiling": {
+  "view": "SECTION",
+  "sheetNo": "CLG-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.997
+ },
+ "exposed-beams": {
+  "view": "SECTION",
+  "sheetNo": "CLG-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.997
+ },
+ "tented-ceiling": {
+  "view": "SECTION",
+  "sheetNo": "CLG-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.997
+ },
+ "reflected-ceiling-plan": {
+  "view": "REFLECTED CEILING PLAN",
+  "sheetNo": "CLG-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.099
+ },
+ "coffered-ceiling": {
+  "view": "REFLECTED CEILING PLAN",
+  "sheetNo": "CLG-07",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "ceiling-rose": {
+  "view": "REFLECTED CEILING PLAN",
+  "sheetNo": "CLG-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "muqarnas-ceiling": {
+  "view": "REFLECTED CEILING PLAN",
+  "sheetNo": "CLG-09",
+  "source": "Simplified eight-fold tier scheme in the manner of Islamic muqarnas vaulting. Original drawing by Project Exodus; not a measured survey of a specific building.",
+  "aspect": 1
+ },
+ "adobe": {
+  "view": "SECTION",
+  "sheetNo": "WAL-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.672
+ },
+ "rammed-earth": {
+  "view": "SECTION",
+  "sheetNo": "WAL-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.672
+ },
+ "plinth": {
+  "view": "SECTION",
+  "sheetNo": "WAL-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.655
+ },
+ "coping": {
+  "view": "SECTION",
+  "sheetNo": "WAL-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.721
+ },
+ "parapet": {
+  "view": "SECTION",
+  "sheetNo": "WAL-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.989
+ },
+ "curtain-wall": {
+  "view": "SECTION",
+  "sheetNo": "WAL-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.804
+ },
+ "dado": {
+  "view": "INTERIOR ELEVATION",
+  "sheetNo": "INT-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.798
+ },
+ "chair-rail": {
+  "view": "INTERIOR ELEVATION",
+  "sheetNo": "INT-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.798
+ },
+ "baseboard": {
+  "view": "INTERIOR ELEVATION",
+  "sheetNo": "INT-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.798
+ },
+ "crown-molding": {
+  "view": "INTERIOR ELEVATION",
+  "sheetNo": "INT-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.798
+ },
+ "wainscot": {
+  "view": "INTERIOR ELEVATION",
+  "sheetNo": "WAL-07",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.798
+ },
+ "log-cabin": {
+  "view": "ELEVATION",
+  "sheetNo": "WAL-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.169
+ },
+ "niche": {
+  "view": "ELEVATION",
+  "sheetNo": "WAL-09",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "alcove": {
+  "view": "PLAN",
+  "sheetNo": "WAL-10",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.027
  }
 }

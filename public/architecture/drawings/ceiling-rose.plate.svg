@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="172 112 376 402" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Plan looking up at a round plaster ornament on a ceiling: rings of beads and mouldings around sixteen leaf-shaped petals, with the light fitting hanging from its centre. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="172" y="112" width="376" height="402"/>
+  <g class="layer-fine ink l-fine">
+    <circle cx="360" cy="300" r="142"/>
+    <circle cx="360" cy="300" r="120"/>
+    <circle cx="360" cy="300" r="56"/>
+    <circle cx="360" cy="300" r="20"/>
+    <circle cx="506" cy="300" r="2"/>
+    <circle cx="505.2" cy="315.26" r="2"/>
+    <circle cx="502.81" cy="330.36" r="2"/>
+    <circle cx="498.85" cy="345.12" r="2"/>
+    <circle cx="493.38" cy="359.38" r="2"/>
+    <circle cx="486.44" cy="373" r="2"/>
+    <circle cx="478.12" cy="385.82" r="2"/>
+    <circle cx="468.5" cy="397.69" r="2"/>
+    <circle cx="457.69" cy="408.5" r="2"/>
+    <circle cx="445.82" cy="418.12" r="2"/>
+    <circle cx="433" cy="426.44" r="2"/>
+    <circle cx="419.38" cy="433.38" r="2"/>
+    <circle cx="405.12" cy="438.85" r="2"/>
+    <circle cx="390.36" cy="442.81" r="2"/>
+    <circle cx="375.26" cy="445.2" r="2"/>
+    <circle cx="360" cy="446" r="2"/>
+    <circle cx="344.74" cy="445.2" r="2"/>
+    <circle cx="329.64" cy="442.81" r="2"/>
+    <circle cx="314.88" cy="438.85" r="2"/>
+    <circle cx="300.62" cy="433.38" r="2"/>
+    <circle cx="287" cy="426.44" r="2"/>
+    <circle cx="274.18" cy="418.12" r="2"/>
+    <circle cx="262.31" cy="408.5" r="2"/>
+    <circle cx="251.5" cy="397.69" r="2"/>
+    <circle cx="241.88" cy="385.82" r="2"/>
+    <circle cx="233.56" cy="373" r="2"/>
+    <circle cx="226.62" cy="359.38" r="2"/>
+    <circle cx="221.15" cy="345.12" r="2"/>
+    <circle cx="217.19" cy="330.36" r="2"/>
+    <circle cx="214.8" cy="315.26" r="2"/>
+    <circle cx="214" cy="300" r="2"/>
+    <circle cx="214.8" cy="284.74" r="2"/>
+    <circle cx="217.19" cy="269.64" r="2"/>
+    <circle cx="221.15" cy="254.88" r="2"/>
+    <circle cx="226.62" cy="240.62" r="2"/>
+    <circle cx="233.56" cy="227" r="2"/>
+    <circle cx="241.88" cy="214.18" r="2"/>
+    <circle cx="251.5" cy="202.31" r="2"/>
+    <circle cx="262.31" cy="191.5" r="2"/>
+    <circle cx="274.18" cy="181.88" r="2"/>
+    <circle cx="287" cy="173.56" r="2"/>
+    <circle cx="300.62" cy="166.62" r="2"/>
+    <circle cx="314.88" cy="161.15" r="2"/>
+    <circle cx="329.64" cy="157.19" r="2"/>
+    <circle cx="344.74" cy="154.8" r="2"/>
+    <circle cx="360" cy="154" r="2"/>
+    <circle cx="375.26" cy="154.8" r="2"/>
+    <circle cx="390.36" cy="157.19" r="2"/>
+    <circle cx="405.12" cy="161.15" r="2"/>
+    <circle cx="419.38" cy="166.62" r="2"/>
+    <circle cx="433" cy="173.56" r="2"/>
+    <circle cx="445.82" cy="181.88" r="2"/>
+    <circle cx="457.69" cy="191.5" r="2"/>
+    <circle cx="468.5" cy="202.31" r="2"/>
+    <circle cx="478.12" cy="214.18" r="2"/>
+    <circle cx="486.44" cy="227" r="2"/>
+    <circle cx="493.38" cy="240.62" r="2"/>
+    <circle cx="498.85" cy="254.88" r="2"/>
+    <circle cx="502.81" cy="269.64" r="2"/>
+    <circle cx="505.2" cy="284.74" r="2"/>
+    <path d="M430 300L468 300"/>
+    <path d="M424.67 326.79L459.78 341.33"/>
+    <path d="M409.5 349.5L436.37 376.37"/>
+    <path d="M386.79 364.67L401.33 399.78"/>
+    <path d="M360 370L360 408"/>
+    <path d="M333.21 364.67L318.67 399.78"/>
+    <path d="M310.5 349.5L283.63 376.37"/>
+    <path d="M295.33 326.79L260.22 341.33"/>
+    <path d="M290 300L252 300"/>
+    <path d="M295.33 273.21L260.22 258.67"/>
+    <path d="M310.5 250.5L283.63 223.63"/>
+    <path d="M333.21 235.33L318.67 200.22"/>
+    <path d="M360 230L360 192"/>
+    <path d="M386.79 235.33L401.33 200.22"/>
+    <path d="M409.5 250.5L436.37 223.63"/>
+    <path d="M424.67 273.21L459.78 258.67"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <circle cx="360" cy="300" r="150"/>
+    <circle cx="360" cy="300" r="64"/>
+    <path d="M425.67 293.41Q457.13 276.23 478 300Q457.13 323.77 425.67 306.59"/>
+    <path d="M423.19 319.04Q458.84 315.21 469.02 345.16Q440.64 359.13 418.15 331.22"/>
+    <path d="M411.1 341.78Q445.49 351.88 443.44 383.44Q411.88 385.49 401.78 351.1"/>
+    <path d="M391.22 358.15Q419.13 380.64 405.16 409.02Q375.21 398.84 379.04 363.19"/>
+    <path d="M366.59 365.67Q383.77 397.13 360 418Q336.23 397.13 353.41 365.67"/>
+    <path d="M340.96 363.19Q344.79 398.84 314.84 409.02Q300.87 380.64 328.78 358.15"/>
+    <path d="M318.22 351.1Q308.12 385.49 276.56 383.44Q274.51 351.88 308.9 341.78"/>
+    <path d="M301.85 331.22Q279.36 359.13 250.98 345.16Q261.16 315.21 296.81 319.04"/>
+    <path d="M294.33 306.59Q262.87 323.77 242 300Q262.87 276.23 294.33 293.41"/>
+    <path d="M296.81 280.96Q261.16 284.79 250.98 254.84Q279.36 240.87 301.85 268.78"/>
+    <path d="M308.9 258.22Q274.51 248.12 276.56 216.56Q308.12 214.51 318.22 248.9"/>
+    <path d="M328.78 241.85Q300.87 219.36 314.84 190.98Q344.79 201.16 340.96 236.81"/>
+    <path d="M353.41 234.33Q336.23 202.87 360 182Q383.77 202.87 366.59 234.33"/>
+    <path d="M379.04 236.81Q375.21 201.16 405.16 190.98Q419.13 219.36 391.22 241.85"/>
+    <path d="M401.78 248.9Q411.88 214.51 443.44 216.56Q445.49 248.12 411.1 258.22"/>
+    <path d="M418.15 268.78Q440.64 240.87 469.02 254.84Q458.84 284.79 423.19 280.96"/>
+    <circle cx="360" cy="300" r="8"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M190 300L530 300"/>
+    <path d="M360 130L360 470"/>
+  </g>
+  <text class="t-credit" x="178" y="503">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+  <text class="t-credit" x="178" y="512">construction of this form; no external drawing reproduced.</text>
+</svg>

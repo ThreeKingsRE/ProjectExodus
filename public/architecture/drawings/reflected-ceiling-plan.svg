@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Reflected Ceiling Plan: reflected ceiling plan</title>
+  <desc id="d">Example reflected ceiling plan of an office ceiling: a 600 mm tile grid with light fittings, air diffusers, a return grille, sprinkler heads and a ceiling height tag, with a legend. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M174 64 L566 64 L566 396 L174 396 L174 64 L190 80 L190 380 L550 380 L550 80 L190 80 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <path d="M220 80V380M250 80V380M280 80V380M310 80V380M340 80V380M370 80V380M400 80V380M430 80V380M460 80V380M490 80V380M520 80V380M190 110H550M190 140H550M190 170H550M190 200H550M190 230H550M190 260H550M190 290H550M190 320H550M190 350H550"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M373 326L397 326"/>
+    <path d="M373 332L397 332"/>
+    <path d="M373 338L397 338"/>
+    <path d="M373 344L397 344"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M250 140 L280 140 L280 200 L250 200 Z" style="fill: var(--_paper)"/>
+    <path d="M250 140 L280 140 L280 200 L250 200 Z"/>
+    <path d="M250 140L280 200"/>
+    <path d="M280 140L250 200"/>
+    <path d="M370 140 L400 140 L400 200 L370 200 Z" style="fill: var(--_paper)"/>
+    <path d="M370 140 L400 140 L400 200 L370 200 Z"/>
+    <path d="M370 140L400 200"/>
+    <path d="M400 140L370 200"/>
+    <path d="M490 140 L520 140 L520 200 L490 200 Z" style="fill: var(--_paper)"/>
+    <path d="M490 140 L520 140 L520 200 L490 200 Z"/>
+    <path d="M490 140L520 200"/>
+    <path d="M520 140L490 200"/>
+    <path d="M250 260 L280 260 L280 320 L250 320 Z" style="fill: var(--_paper)"/>
+    <path d="M250 260 L280 260 L280 320 L250 320 Z"/>
+    <path d="M250 260L280 320"/>
+    <path d="M280 260L250 320"/>
+    <path d="M370 260 L400 260 L400 320 L370 320 Z" style="fill: var(--_paper)"/>
+    <path d="M370 260 L400 260 L400 320 L370 320 Z"/>
+    <path d="M370 260L400 320"/>
+    <path d="M400 260L370 320"/>
+    <path d="M490 260 L520 260 L520 320 L490 320 Z" style="fill: var(--_paper)"/>
+    <path d="M490 260 L520 260 L520 320 L490 320 Z"/>
+    <path d="M490 260L520 320"/>
+    <path d="M520 260L490 320"/>
+    <path d="M310 200 L340 200 L340 230 L310 230 Z" style="fill: var(--_paper)"/>
+    <path d="M310 200 L340 200 L340 230 L310 230 Z"/>
+    <path d="M317 207 L333 207 L333 223 L317 223 Z"/>
+    <path d="M310 200L317 207"/>
+    <path d="M340 200L333 207"/>
+    <path d="M310 230L317 223"/>
+    <path d="M340 230L333 223"/>
+    <path d="M430 200 L460 200 L460 230 L430 230 Z" style="fill: var(--_paper)"/>
+    <path d="M430 200 L460 200 L460 230 L430 230 Z"/>
+    <path d="M437 207 L453 207 L453 223 L437 223 Z"/>
+    <path d="M430 200L437 207"/>
+    <path d="M460 200L453 207"/>
+    <path d="M430 230L437 223"/>
+    <path d="M460 230L453 223"/>
+    <path d="M370 320 L400 320 L400 350 L370 350 Z" style="fill: var(--_paper)"/>
+    <path d="M370 320 L400 320 L400 350 L370 350 Z"/>
+    <circle cx="280" cy="215" r="3"/>
+    <path d="M274 215L286 215"/>
+    <circle cx="400" cy="215" r="3"/>
+    <path d="M394 215L406 215"/>
+    <circle cx="520" cy="215" r="3"/>
+    <path d="M514 215L526 215"/>
+    <ellipse cx="500" cy="350" rx="34" ry="13"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M174 64 L566 64 L566 396 L174 396 L174 64 L190 80 L190 380 L550 380 L550 80 L190 80 Z"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M190 50L220 50M186 54L194 46M216 54L224 46M190 44L190 56M220 44L220 56"/><text x="205" y="64" text-anchor="middle">600</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M113.2 90.83L160 90.83L217.5 95"/><circle cx="217.5" cy="95" r="1.5" class="solid"/><text x="34" y="93.83">CEILING GRID</text>
+    <path d="M119.3 165.83L160 165.83L247.5 170"/><circle cx="247.5" cy="170" r="1.5" class="solid"/><text x="34" y="168.83">LIGHT FIXTURE</text>
+    <path d="M131.5 210.83L160 210.83L307.5 215"/><circle cx="307.5" cy="215" r="1.5" class="solid"/><text x="34" y="213.83">SUPPLY DIFFUSER</text>
+    <path d="M94.9 225.83L160 225.83L271.5 215"/><circle cx="271.5" cy="215" r="1.5" class="solid"/><text x="34" y="228.83">SPRINKLER</text>
+    <path d="M119.3 330.83L160 330.83L367.5 335"/><circle cx="367.5" cy="335" r="1.5" class="solid"/><text x="34" y="333.83">RETURN GRILLE</text>
+    <path d="M101 345.83L160 345.83L171.5 340"/><circle cx="171.5" cy="340" r="1.5" class="solid"/><text x="34" y="348.83">WALL (CUT)</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="500" y="353" text-anchor="middle" class="t-small">CLG +2700</text>
+    <text x="190" y="414" class="t-small">⊠ LIGHT FIXTURE</text>
+    <text x="282" y="414" class="t-small">◰ SUPPLY DIFFUSER</text>
+    <text x="374" y="414" class="t-small">≡ RETURN GRILLE</text>
+    <text x="466" y="414" class="t-small">⊖ SPRINKLER HEAD</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">REFLECTED CEILING PLAN</text>
+    <text class="t-sub" x="26" y="710">THE CEILING DRAWN AS IF MIRRORED ONTO THE FLOOR</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  CLG-06</text>
+    <text class="t-small" x="416" y="699">REFLECTED CEILING PLAN</text>
+    <text class="t-small" x="416" y="724">SCALE IN 600 MM GRID</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/><rect x="536" y="730" width="30" height="5" class="solid"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="564" y="749">5</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>
