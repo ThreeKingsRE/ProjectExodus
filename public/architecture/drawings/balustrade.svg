@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Balustrade: elevation</title>
+  <desc id="d">Elevation of a classical balustrade: vase-shaped balusters stand in runs between solid pedestals on a continuous plinth and bottom rail, capped by a moulded handrail. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(1.87 30.43) scale(0.92)">
+  <g class="layer-fine ink l-fine">
+    <path d="M216 414 L244 414 L244 490 L216 490 Z"/>
+    <path d="M371 414 L399 414 L399 490 L371 490 Z"/>
+    <path d="M526 414 L554 414 L554 490 L526 490 Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M204 500 L566 500 L566 520 L204 520 Z"/>
+    <path d="M210 490 L560 490 L560 500 L210 500 Z"/>
+    <path d="M206 394 L564 394 L564 410 L206 410 Z"/>
+    <path d="M206 400L564 400"/>
+    <path d="M210 394 L250 394 L250 500 L210 500 Z"/>
+    <path d="M365 394 L405 394 L405 500 L365 500 Z"/>
+    <path d="M520 394 L560 394 L560 500 L520 500 Z"/>
+    <path d="M255.38 490 L255.38 486.67 L258.38 483.33 L260.33 480 L259.15 476.67 L257.9 473.33 L256.72 470 L255.71 466.67 L254.95 463.33 L254.5 460 L254.41 456.67 L254.79 453.33 L255.47 450 L256.39 446.67 L257.48 443.33 L258.63 440 L259.75 436.67 L260.7 433.33 L259.38 430 L260.38 426.67 L259.04 423.33 L257.38 420 L256.38 416.67 L256.38 413.33 L256.38 410 L272.38 410 L272.38 413.33 L272.38 416.67 L271.38 420 L269.71 423.33 L268.38 426.67 L269.38 430 L268.05 433.33 L269 436.67 L270.12 440 L271.27 443.33 L272.36 446.67 L273.28 450 L273.96 453.33 L274.34 456.67 L274.25 460 L273.8 463.33 L273.04 466.67 L272.03 470 L270.85 473.33 L269.6 476.67 L268.42 480 L270.38 483.33 L273.38 486.67 L273.38 490 Z"/>
+    <path d="M284.13 490 L284.13 486.67 L287.13 483.33 L289.08 480 L287.9 476.67 L286.65 473.33 L285.47 470 L284.46 466.67 L283.7 463.33 L283.25 460 L283.16 456.67 L283.54 453.33 L284.22 450 L285.14 446.67 L286.23 443.33 L287.38 440 L288.5 436.67 L289.45 433.33 L288.13 430 L289.13 426.67 L287.79 423.33 L286.13 420 L285.13 416.67 L285.13 413.33 L285.13 410 L301.13 410 L301.13 413.33 L301.13 416.67 L300.13 420 L298.46 423.33 L297.13 426.67 L298.13 430 L296.8 433.33 L297.75 436.67 L298.87 440 L300.02 443.33 L301.11 446.67 L302.03 450 L302.71 453.33 L303.09 456.67 L303 460 L302.55 463.33 L301.79 466.67 L300.78 470 L299.6 473.33 L298.35 476.67 L297.17 480 L299.13 483.33 L302.13 486.67 L302.13 490 Z"/>
+    <path d="M312.88 490 L312.88 486.67 L315.88 483.33 L317.83 480 L316.65 476.67 L315.4 473.33 L314.22 470 L313.21 466.67 L312.45 463.33 L312 460 L311.91 456.67 L312.29 453.33 L312.97 450 L313.89 446.67 L314.98 443.33 L316.13 440 L317.25 436.67 L318.2 433.33 L316.88 430 L317.88 426.67 L316.54 423.33 L314.88 420 L313.88 416.67 L313.88 413.33 L313.88 410 L329.88 410 L329.88 413.33 L329.88 416.67 L328.88 420 L327.21 423.33 L325.88 426.67 L326.88 430 L325.55 433.33 L326.5 436.67 L327.62 440 L328.77 443.33 L329.86 446.67 L330.78 450 L331.46 453.33 L331.84 456.67 L331.75 460 L331.3 463.33 L330.54 466.67 L329.53 470 L328.35 473.33 L327.1 476.67 L325.92 480 L327.88 483.33 L330.88 486.67 L330.88 490 Z"/>
+    <path d="M341.63 490 L341.63 486.67 L344.63 483.33 L346.58 480 L345.4 476.67 L344.15 473.33 L342.97 470 L341.96 466.67 L341.2 463.33 L340.75 460 L340.66 456.67 L341.04 453.33 L341.72 450 L342.64 446.67 L343.73 443.33 L344.88 440 L346 436.67 L346.95 433.33 L345.63 430 L346.63 426.67 L345.29 423.33 L343.63 420 L342.63 416.67 L342.63 413.33 L342.63 410 L358.63 410 L358.63 413.33 L358.63 416.67 L357.63 420 L355.96 423.33 L354.63 426.67 L355.63 430 L354.3 433.33 L355.25 436.67 L356.37 440 L357.52 443.33 L358.61 446.67 L359.53 450 L360.21 453.33 L360.59 456.67 L360.5 460 L360.05 463.33 L359.29 466.67 L358.28 470 L357.1 473.33 L355.85 476.67 L354.67 480 L356.63 483.33 L359.63 486.67 L359.63 490 Z"/>
+    <path d="M410.38 490 L410.38 486.67 L413.38 483.33 L415.33 480 L414.15 476.67 L412.9 473.33 L411.72 470 L410.71 466.67 L409.95 463.33 L409.5 460 L409.41 456.67 L409.79 453.33 L410.47 450 L411.39 446.67 L412.48 443.33 L413.63 440 L414.75 436.67 L415.7 433.33 L414.38 430 L415.38 426.67 L414.04 423.33 L412.38 420 L411.38 416.67 L411.38 413.33 L411.38 410 L427.38 410 L427.38 413.33 L427.38 416.67 L426.38 420 L424.71 423.33 L423.38 426.67 L424.38 430 L423.05 433.33 L424 436.67 L425.12 440 L426.27 443.33 L427.36 446.67 L428.28 450 L428.96 453.33 L429.34 456.67 L429.25 460 L428.8 463.33 L428.04 466.67 L427.03 470 L425.85 473.33 L424.6 476.67 L423.42 480 L425.38 483.33 L428.38 486.67 L428.38 490 Z"/>
+    <path d="M439.13 490 L439.13 486.67 L442.13 483.33 L444.08 480 L442.9 476.67 L441.65 473.33 L440.47 470 L439.46 466.67 L438.7 463.33 L438.25 460 L438.16 456.67 L438.54 453.33 L439.22 450 L440.14 446.67 L441.23 443.33 L442.38 440 L443.5 436.67 L444.45 433.33 L443.13 430 L444.13 426.67 L442.79 423.33 L441.13 420 L440.13 416.67 L440.13 413.33 L440.13 410 L456.13 410 L456.13 413.33 L456.13 416.67 L455.13 420 L453.46 423.33 L452.13 426.67 L453.13 430 L451.8 433.33 L452.75 436.67 L453.87 440 L455.02 443.33 L456.11 446.67 L457.03 450 L457.71 453.33 L458.09 456.67 L458 460 L457.55 463.33 L456.79 466.67 L455.78 470 L454.6 473.33 L453.35 476.67 L452.17 480 L454.13 483.33 L457.13 486.67 L457.13 490 Z"/>
+    <path d="M467.88 490 L467.88 486.67 L470.88 483.33 L472.83 480 L471.65 476.67 L470.4 473.33 L469.22 470 L468.21 466.67 L467.45 463.33 L467 460 L466.91 456.67 L467.29 453.33 L467.97 450 L468.89 446.67 L469.98 443.33 L471.13 440 L472.25 436.67 L473.2 433.33 L471.88 430 L472.88 426.67 L471.54 423.33 L469.88 420 L468.88 416.67 L468.88 413.33 L468.88 410 L484.88 410 L484.88 413.33 L484.88 416.67 L483.88 420 L482.21 423.33 L480.88 426.67 L481.88 430 L480.55 433.33 L481.5 436.67 L482.62 440 L483.77 443.33 L484.86 446.67 L485.78 450 L486.46 453.33 L486.84 456.67 L486.75 460 L486.3 463.33 L485.54 466.67 L484.53 470 L483.35 473.33 L482.1 476.67 L480.92 480 L482.88 483.33 L485.88 486.67 L485.88 490 Z"/>
+    <path d="M496.63 490 L496.63 486.67 L499.63 483.33 L501.58 480 L500.4 476.67 L499.15 473.33 L497.97 470 L496.96 466.67 L496.2 463.33 L495.75 460 L495.66 456.67 L496.04 453.33 L496.72 450 L497.64 446.67 L498.73 443.33 L499.88 440 L501 436.67 L501.95 433.33 L500.63 430 L501.63 426.67 L500.29 423.33 L498.63 420 L497.63 416.67 L497.63 413.33 L497.63 410 L513.63 410 L513.63 413.33 L513.63 416.67 L512.63 420 L510.96 423.33 L509.63 426.67 L510.63 430 L509.3 433.33 L510.25 436.67 L511.37 440 L512.52 443.33 L513.61 446.67 L514.53 450 L515.21 453.33 L515.59 456.67 L515.5 460 L515.05 463.33 L514.29 466.67 L513.28 470 L512.1 473.33 L510.85 476.67 L509.67 480 L511.63 483.33 L514.63 486.67 L514.63 490 Z"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M264.38 540L293.13 540M260.38 544L268.38 536M289.13 544L297.13 536M264.38 534L264.38 546M293.13 534L293.13 546"/><text x="278.75" y="554" text-anchor="middle">SPACING</text>
+    <path d="M578 520L578 394M574 524L582 516M574 398L582 390M566 520L584 520M566 394L584 394"/><text x="586" y="460">HEIGHT</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M155.9 401.57L203.5 402"/><circle cx="203.5" cy="402" r="1.5" class="solid"/><text x="34" y="404.57">HANDRAIL (TOP RAIL)</text>
+    <path d="M119.3 416.57L174 416.57L311.38 414"/><circle cx="311.38" cy="414" r="1.5" class="solid"/><text x="34" y="419.57">BALUSTER: CAP</text>
+    <path d="M64.4 433.57L315.38 434"/><circle cx="315.38" cy="434" r="1.5" class="solid"/><text x="34" y="436.57">NECK</text>
+    <path d="M125.4 449.57L213.5 450"/><circle cx="213.5" cy="450" r="1.5" class="solid"/><text x="34" y="452.57">PEDESTAL (DIE)</text>
+    <path d="M70.5 465.57L338.13 466"/><circle cx="338.13" cy="466" r="1.5" class="solid"/><text x="34" y="468.57">BELLY</text>
+    <path d="M107.1 494.57L257.5 495"/><circle cx="257.5" cy="495" r="1.5" class="solid"/><text x="34" y="497.57">BOTTOM RAIL</text>
+    <path d="M76.6 509.57L201.5 510"/><circle cx="201.5" cy="510" r="1.5" class="solid"/><text x="34" y="512.57">PLINTH</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">BALUSTRADE</text>
+    <text class="t-sub" x="26" y="710">RAILING OF BALUSTERS BETWEEN PEDESTALS</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  FAC-01</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN UNITS (INDICATIVE)</text>
+    <rect x="416" y="730" width="27.66" height="5" class="solid"/><rect x="443.66" y="730" width="27.66" height="5" class="ink l-fine"/><rect x="471.32" y="730" width="27.66" height="5" class="solid"/><rect x="498.98" y="730" width="27.66" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="524.64" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

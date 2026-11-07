@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Béton Brut: elevation · section</title>
+  <desc id="d">Elevation of a raw concrete wall showing the marks of its making: board grain from the timber forms, a day joint between lifts, plywood panel joints and a grid of form-tie holes; the section shows the boards, walers and ties that left them. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(1.51 9.17) scale(0.94)">
+  <g class="layer-hatch ink l-hair">
+    <path d="M480 200 L520 200 L520 540 L480 540 Z" fill="url(#h-concrete)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <path d="M200 162H430M200 175H430M200 190H430M200 201H430M200 211H430M200 222H430M200 236H430M200 247H430M200 258H430M200 272H430M200 284H430M200 297H430M200 312H430M200 327H430M200 340H430M200 351H430M200 363H430M200 375H430M200 388H430M200 399H430M200 413H430M200 423H430M200 437H430M200 447H430M200 458H430M200 470H430M200 483H430M200 496H430M200 509H430M200 523H430M200 535H430M200 550H430M200 560H430"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M315 150L315 570"/>
+    <circle cx="225" cy="180" r="3"/>
+    <circle cx="225" cy="180" r="1"/>
+    <circle cx="285" cy="180" r="3"/>
+    <circle cx="285" cy="180" r="1"/>
+    <circle cx="345" cy="180" r="3"/>
+    <circle cx="345" cy="180" r="1"/>
+    <circle cx="405" cy="180" r="3"/>
+    <circle cx="405" cy="180" r="1"/>
+    <circle cx="225" cy="240" r="3"/>
+    <circle cx="225" cy="240" r="1"/>
+    <circle cx="285" cy="240" r="3"/>
+    <circle cx="285" cy="240" r="1"/>
+    <circle cx="345" cy="240" r="3"/>
+    <circle cx="345" cy="240" r="1"/>
+    <circle cx="405" cy="240" r="3"/>
+    <circle cx="405" cy="240" r="1"/>
+    <circle cx="225" cy="300" r="3"/>
+    <circle cx="225" cy="300" r="1"/>
+    <circle cx="285" cy="300" r="3"/>
+    <circle cx="285" cy="300" r="1"/>
+    <circle cx="345" cy="300" r="3"/>
+    <circle cx="345" cy="300" r="1"/>
+    <circle cx="405" cy="300" r="3"/>
+    <circle cx="405" cy="300" r="1"/>
+    <circle cx="225" cy="360" r="3"/>
+    <circle cx="225" cy="360" r="1"/>
+    <circle cx="285" cy="360" r="3"/>
+    <circle cx="285" cy="360" r="1"/>
+    <circle cx="345" cy="360" r="3"/>
+    <circle cx="345" cy="360" r="1"/>
+    <circle cx="405" cy="360" r="3"/>
+    <circle cx="405" cy="360" r="1"/>
+    <circle cx="225" cy="420" r="3"/>
+    <circle cx="225" cy="420" r="1"/>
+    <circle cx="285" cy="420" r="3"/>
+    <circle cx="285" cy="420" r="1"/>
+    <circle cx="345" cy="420" r="3"/>
+    <circle cx="345" cy="420" r="1"/>
+    <circle cx="405" cy="420" r="3"/>
+    <circle cx="405" cy="420" r="1"/>
+    <circle cx="225" cy="480" r="3"/>
+    <circle cx="225" cy="480" r="1"/>
+    <circle cx="285" cy="480" r="3"/>
+    <circle cx="285" cy="480" r="1"/>
+    <circle cx="345" cy="480" r="3"/>
+    <circle cx="345" cy="480" r="1"/>
+    <circle cx="405" cy="480" r="3"/>
+    <circle cx="405" cy="480" r="1"/>
+    <circle cx="225" cy="540" r="3"/>
+    <circle cx="225" cy="540" r="1"/>
+    <circle cx="285" cy="540" r="3"/>
+    <circle cx="285" cy="540" r="1"/>
+    <circle cx="345" cy="540" r="3"/>
+    <circle cx="345" cy="540" r="1"/>
+    <circle cx="405" cy="540" r="3"/>
+    <circle cx="405" cy="540" r="1"/>
+    <path d="M460 210 L474 210 L474 240 L460 240 Z"/>
+    <path d="M460 250 L474 250 L474 280 L460 280 Z"/>
+    <path d="M460 290 L474 290 L474 320 L460 320 Z"/>
+    <path d="M460 330 L474 330 L474 360 L460 360 Z"/>
+    <path d="M460 370 L474 370 L474 400 L460 400 Z"/>
+    <path d="M460 410 L474 410 L474 440 L460 440 Z"/>
+    <path d="M460 450 L474 450 L474 480 L460 480 Z"/>
+    <path d="M460 490 L474 490 L474 520 L460 520 Z"/>
+    <path d="M460 530 L474 530 L474 560 L460 560 Z"/>
+    <path d="M526 210 L540 210 L540 240 L526 240 Z"/>
+    <path d="M526 250 L540 250 L540 280 L526 280 Z"/>
+    <path d="M526 290 L540 290 L540 320 L526 320 Z"/>
+    <path d="M526 330 L540 330 L540 360 L526 360 Z"/>
+    <path d="M526 370 L540 370 L540 400 L526 400 Z"/>
+    <path d="M526 410 L540 410 L540 440 L526 440 Z"/>
+    <path d="M526 450 L540 450 L540 480 L526 480 Z"/>
+    <path d="M526 490 L540 490 L540 520 L526 520 Z"/>
+    <path d="M526 530 L540 530 L540 560 L526 560 Z"/>
+    <path d="M480 294l8 6l-8 6ZM520 294l-8 6l8 6Z"/>
+    <path d="M480 434l8 6l-8 6ZM520 434l-8 6l8 6Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M200 150 L430 150 L430 570 L200 570 Z"/>
+    <path d="M200 360L430 360"/>
+    <path d="M260 210 L370 210 L370 300 L260 300 Z"/>
+    <path d="M474 200 L480 200 L480 540 L474 540 Z"/>
+    <path d="M452 250 L460 250 L460 490 L452 490 Z"/>
+    <path d="M520 200 L526 200 L526 540 L520 540 Z"/>
+    <path d="M540 250 L548 250 L548 490 L540 490 Z"/>
+    <path d="M447 295 L453 295 L453 305 L447 305 Z"/>
+    <path d="M547 295 L553 295 L553 305 L547 305 Z"/>
+    <path d="M447 435 L453 435 L453 445 L447 445 Z"/>
+    <path d="M547 435 L553 435 L553 445 L547 445 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M480 200 L520 200 L520 540 L480 540 Z"/>
+    <path d="M450 300L550 300" class="l-fine"/>
+    <path d="M450 440L550 440" class="l-fine"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M225 592L285 592M221 596L229 588M281 596L289 588M225 586L225 598M285 586L285 598"/><text x="255" y="606" text-anchor="middle">TIE SPACING</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M162 250L257.5 250"/><circle cx="257.5" cy="250" r="1.5" class="solid"/><text x="34" y="253">WINDOW (SHARP ARRIS)</text>
+    <path d="M107.1 330L197.5 330"/><circle cx="197.5" cy="330" r="1.5" class="solid"/><text x="34" y="333">BOARD MARKS</text>
+    <path d="M168.1 360L197.5 360"/><circle cx="197.5" cy="360" r="1.5" class="solid"/><text x="34" y="363">LIFT LINE (DAY JOINT)</text>
+    <path d="M119.3 390L222.5 390"/><circle cx="222.5" cy="390" r="1.5" class="solid"/><text x="34" y="393">FORM-TIE HOLE</text>
+    <path d="M107.1 480L312.5 480"/><circle cx="312.5" cy="480" r="1.5" class="solid"/><text x="34" y="483">PANEL JOINT</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="450" y="190" class="t-small">FORMWORK SECTION</text>
+    <text x="562" y="300" class="t-small">TIE + CONE</text>
+    <text x="562" y="380" class="t-small">BOARDS</text>
+    <text x="562" y="480" class="t-small">WALER</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">BÉTON BRUT</text>
+    <text class="t-sub" x="26" y="710">RAW CONCRETE LEFT AS IT COMES OUT OF THE FORMWORK</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  FAC-18</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text><text class="t-small" x="416" y="709">SECTION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="28.12" height="5" class="solid"/><rect x="444.12" y="730" width="28.12" height="5" class="ink l-fine"/><rect x="472.23" y="730" width="28.12" height="5" class="solid"/><rect x="500.35" y="730" width="28.12" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="526.46" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

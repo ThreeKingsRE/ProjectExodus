@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="182 172 376 382" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Section through a ribbed concrete wall before and after bush-hammering: ribs cast against timber inserts are struck with a toothed hammer that breaks their tips into a rough, shadowed texture exposing the aggregate. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="182" y="172" width="376" height="382"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M200 300 L200 250 L210 220 L230 220 L239.99 250 L240 250 L250 220 L270 220 L279.99 250 L280 250 L290 220 L310 220 L319.99 250 L320 250 L330 220 L350 220 L359.99 250 L360 250 L370 220 L390 220 L399.99 250 L400 250 L410 220 L430 220 L439.99 250 L440 250 L450 220 L470 220 L479.99 250 L480 250 L490 220 L510 220 L519.99 250 L520 250 L530 220 L550 220 L559.99 250 L540 250 L540 300 Z" fill="url(#h-concrete)" stroke="none"/>
+    <path d="M200 510 L200 460 L210 436 L214 440 L218 432 L223 438 L227 434 L230 460 L240 460 L250 436 L254 440 L258 432 L263 438 L267 434 L270 460 L280 460 L290 436 L294 440 L298 432 L303 438 L307 434 L310 460 L320 460 L330 436 L334 440 L338 432 L343 438 L347 434 L350 460 L360 460 L370 436 L374 440 L378 432 L383 438 L387 434 L390 460 L400 460 L410 436 L414 440 L418 432 L423 438 L427 434 L430 460 L440 460 L450 436 L454 440 L458 432 L463 438 L467 434 L470 460 L480 460 L490 436 L494 440 L498 432 L503 438 L507 434 L510 460 L520 460 L530 436 L534 440 L538 432 L543 438 L547 434 L550 460 L540 460 L540 510 Z" fill="url(#h-concrete)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <circle cx="216" cy="442" r="2.5"/>
+    <circle cx="226" cy="446" r="2"/>
+    <circle cx="221" cy="452" r="1.8"/>
+    <circle cx="256" cy="442" r="2.5"/>
+    <circle cx="266" cy="446" r="2"/>
+    <circle cx="261" cy="452" r="1.8"/>
+    <circle cx="296" cy="442" r="2.5"/>
+    <circle cx="306" cy="446" r="2"/>
+    <circle cx="301" cy="452" r="1.8"/>
+    <circle cx="336" cy="442" r="2.5"/>
+    <circle cx="346" cy="446" r="2"/>
+    <circle cx="341" cy="452" r="1.8"/>
+    <circle cx="376" cy="442" r="2.5"/>
+    <circle cx="386" cy="446" r="2"/>
+    <circle cx="381" cy="452" r="1.8"/>
+    <circle cx="416" cy="442" r="2.5"/>
+    <circle cx="426" cy="446" r="2"/>
+    <circle cx="421" cy="452" r="1.8"/>
+    <circle cx="456" cy="442" r="2.5"/>
+    <circle cx="466" cy="446" r="2"/>
+    <circle cx="461" cy="452" r="1.8"/>
+    <circle cx="496" cy="442" r="2.5"/>
+    <circle cx="506" cy="446" r="2"/>
+    <circle cx="501" cy="452" r="1.8"/>
+    <circle cx="536" cy="442" r="2.5"/>
+    <circle cx="546" cy="446" r="2"/>
+    <circle cx="541" cy="452" r="1.8"/>
+    <path d="M240 220 L250 190 L270 190 L280 220" stroke-dasharray="4 3"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M350 330 L410 330 L410 360 L350 360 Z"/>
+    <path d="M374 280 L386 280 L386 330 L374 330 Z"/>
+    <path d="M352 360l4 8l4 -8M360 360l4 8l4 -8M368 360l4 8l4 -8M376 360l4 8l4 -8M384 360l4 8l4 -8M392 360l4 8l4 -8M400 360l4 8l4 -8"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M200 300 L200 250 L210 220 L230 220 L239.99 250 L240 250 L250 220 L270 220 L279.99 250 L280 250 L290 220 L310 220 L319.99 250 L320 250 L330 220 L350 220 L359.99 250 L360 250 L370 220 L390 220 L399.99 250 L400 250 L410 220 L430 220 L439.99 250 L440 250 L450 220 L470 220 L479.99 250 L480 250 L490 220 L510 220 L519.99 250 L520 250 L530 220 L550 220 L559.99 250 L540 250 L540 300 Z"/>
+    <path d="M200 510 L200 460 L210 436 L214 440 L218 432 L223 438 L227 434 L230 460 L240 460 L250 436 L254 440 L258 432 L263 438 L267 434 L270 460 L280 460 L290 436 L294 440 L298 432 L303 438 L307 434 L310 460 L320 460 L330 436 L334 440 L338 432 L343 438 L347 434 L350 460 L360 460 L370 436 L374 440 L378 432 L383 438 L387 434 L390 460 L400 460 L410 436 L414 440 L418 432 L423 438 L427 434 L430 460 L440 460 L450 436 L454 440 L458 432 L463 438 L467 434 L470 460 L480 460 L490 436 L494 440 L498 432 L503 438 L507 434 L510 460 L520 460 L530 436 L534 440 L538 432 L543 438 L547 434 L550 460 L540 460 L540 510 Z"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M380 372L380 420M377.27 413.55L380 420L382.73 413.55" stroke-dasharray="none"/>
+  </g>
+  <text class="t-credit" x="188" y="543">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+  <text class="t-credit" x="188" y="552">construction of this form; no external drawing reproduced.</text>
+</svg>

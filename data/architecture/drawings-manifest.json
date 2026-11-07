@@ -1270,5 +1270,167 @@
   "sheetNo": "DEC-23",
   "source": "After Victor Horta, Hôtel Tassel, Brussels (1893), and Hermann Obrist's \"Whiplash\" embroidery (c. 1895). Original drawing by Project Exodus.",
   "aspect": 0.825
+ },
+ "balustrade": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 2.761
+ },
+ "pediment": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.964
+ },
+ "portico": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.979
+ },
+ "propylaea": {
+  "view": "PLAN",
+  "sheetNo": "FAC-04",
+  "source": "After the Propylaea, Acropolis of Athens (437–432 BCE, Mnesicles). Simplified plan; not a survey. Original drawing by Project Exodus.",
+  "aspect": 0.85
+ },
+ "caryatid": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-05",
+  "source": "After the caryatids of the Erechtheion south porch, Athens (c. 421–406 BCE), as recorded in Stuart & Revett, The Antiquities of Athens, vol. 2 (1787; public domain). Simplified; not a tracing.",
+  "aspect": 0.52
+ },
+ "tympanum": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-06",
+  "source": "After French Romanesque portals such as Moissac (c. 1130). Generic; not a copy. Original drawing by Project Exodus.",
+  "aspect": 1.193
+ },
+ "decorative-spandrel": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-07",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.437
+ },
+ "string-course": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.863
+ },
+ "rustication": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-09",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.824
+ },
+ "quoins": {
+  "view": "ISOMETRIC",
+  "sheetNo": "FAC-10",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.737
+ },
+ "juliet-balcony": {
+  "view": "SECTION",
+  "sheetNo": "FAC-11",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.434
+ },
+ "heraldic-altarpiece-facade": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-12",
+  "source": "After Spanish retable-façades such as San Pablo and San Gregorio, Valladolid (late 15th c.). Generic; not a survey. Original drawing by Project Exodus.",
+  "aspect": 0.795
+ },
+ "isabelline-facade": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-13",
+  "source": "After Isabelline Gothic portals such as San Juan de los Reyes, Toledo (1477–1504). Generic; not a survey. Original drawing by Project Exodus.",
+  "aspect": 0.937
+ },
+ "rock-cut-facade": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-14",
+  "source": "After Al-Khazneh (the Treasury), Petra, Jordan (1st c. CE). Simplified; not a survey. Original drawing by Project Exodus.",
+  "aspect": 0.721
+ },
+ "loggia": {
+  "view": "OBLIQUE",
+  "sheetNo": "FAC-15",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.18
+ },
+ "porte-cochere": {
+  "view": "OBLIQUE",
+  "sheetNo": "FAC-16",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.477
+ },
+ "curved-facade": {
+  "view": "PLAN",
+  "sheetNo": "FAC-17",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.855
+ },
+ "beton-brut": {
+  "view": "ELEVATION · SECTION",
+  "sheetNo": "FAC-18",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.836
+ },
+ "bush-hammered-concrete": {
+  "view": "SECTION",
+  "sheetNo": "FAC-19",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.061
+ },
+ "double-skin-facade": {
+  "view": "SECTION",
+  "sheetNo": "FAC-20",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.691
+ },
+ "etfe-cushion": {
+  "view": "SECTION",
+  "sheetNo": "FAC-21",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.073
+ },
+ "green-wall": {
+  "view": "SECTION",
+  "sheetNo": "FAC-22",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.406
+ },
+ "parametric-facade": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-23",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.821
+ },
+ "external-ductwork": {
+  "view": "ELEVATION",
+  "sheetNo": "FAC-24",
+  "source": "After the east façade of the Centre Pompidou, Paris (Piano and Rogers, 1977). Simplified; not a survey. Original drawing by Project Exodus.",
+  "aspect": 0.812
+ },
+ "glass-elevator": {
+  "view": "SECTION",
+  "sheetNo": "FAC-25",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.552
+ },
+ "brise-soleil": {
+  "view": "SECTION",
+  "sheetNo": "FAC-26",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.189
+ },
+ "curtain-wall-modern": {
+  "view": "SECTION",
+  "sheetNo": "FAC-27",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.511
  }
 }

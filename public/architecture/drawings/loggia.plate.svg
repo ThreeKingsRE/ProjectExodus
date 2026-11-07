@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="153.5 252.61 438.09 401.39" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Oblique view of a palazzo whose upper floor is set back behind an open arcade: the loggia is a roofed room open to the outside, its back wall and floor visible through the arches above a balustrade. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern><pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
+  </defs>
+  <rect class="paper" x="153.5" y="252.61" width="438.09" height="401.39"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M171.5 610L551.5 610"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M245.29 441.21 L511.29 441.21 L511.29 336.71 L245.29 336.71 Z" style="fill: var(--_paper)"/>
+    <path d="M245.29 441.21 L511.29 441.21 L511.29 336.71 L245.29 336.71 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M245.29 441.21 L511.29 441.21 L511.29 336.71 L245.29 336.71 Z"/>
+    <path d="M228.5 458 L494.5 458 L511.29 441.21 L245.29 441.21 Z" style="fill: var(--_paper)"/>
+    <path d="M228.5 458 L494.5 458 L511.29 441.21 L245.29 441.21 Z"/>
+    <path d="M228.5 458 L245.29 441.21 L245.29 336.71 L228.5 353.5 Z" style="fill: var(--_paper)"/>
+    <path d="M228.5 458 L245.29 441.21 L245.29 336.71 L228.5 353.5 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M228.5 458 L245.29 441.21 L245.29 336.71 L228.5 353.5 Z"/>
+    <path d="M292.79 441.21 L292.79 384.21 L321.29 384.21 L321.29 441.21"/>
+    <path d="M378.29 441.21 L378.29 384.21 L406.79 384.21 L406.79 441.21"/>
+    <path d="M463.79 441.21 L463.79 384.21 L492.29 384.21 L492.29 441.21"/>
+    <path d="M523 610 L563.31 569.69 L563.31 284.69 L523 325 Z" style="fill: var(--_paper)"/>
+    <path d="M523 610 L563.31 569.69 L563.31 284.69 L523 325 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M523 610 L563.31 569.69 L563.31 284.69 L523 325 Z"/>
+    <path d="M200 325 L523 325 L563.31 284.69 L240.31 284.69 Z" style="fill: var(--_paper)"/>
+    <path d="M200 325 L523 325 L563.31 284.69 L240.31 284.69 Z"/>
+    <path d="M200 610 L523 610 L523 325 L200 325 ZM233.25 458 L233.25 381.05 L233.99 375.39 L236.18 370.13 L239.65 365.6 L244.18 362.13 L249.44 359.94 L255.1 359.2 L260.76 359.94 L266.02 362.13 L270.55 365.6 L274.02 370.13 L276.21 375.39 L276.95 381.05 L276.95 458 ZM286.45 458 L286.45 381.05 L287.19 375.39 L289.38 370.13 L292.85 365.6 L297.38 362.13 L302.64 359.94 L308.3 359.2 L313.96 359.94 L319.23 362.13 L323.75 365.6 L327.22 370.13 L329.41 375.39 L330.15 381.05 L330.15 458 ZM339.65 458 L339.65 381.05 L340.39 375.39 L342.58 370.13 L346.05 365.6 L350.58 362.13 L355.84 359.94 L361.5 359.2 L367.16 359.94 L372.42 362.13 L376.95 365.6 L380.42 370.13 L382.61 375.39 L383.35 381.05 L383.35 458 ZM392.85 458 L392.85 381.05 L393.59 375.39 L395.78 370.13 L399.25 365.6 L403.78 362.13 L409.04 359.94 L414.7 359.2 L420.36 359.94 L425.63 362.13 L430.15 365.6 L433.62 370.13 L435.81 375.39 L436.55 381.05 L436.55 458 ZM446.05 458 L446.05 381.05 L446.79 375.39 L448.98 370.13 L452.45 365.6 L456.98 362.13 L462.24 359.94 L467.9 359.2 L473.56 359.94 L478.83 362.13 L483.35 365.6 L486.82 370.13 L489.01 375.39 L489.75 381.05 L489.75 458 Z" fill-rule="evenodd" style="fill: var(--_paper)"/>
+    <path d="M200 610 L523 610 L523 325 L200 325 ZM233.25 458 L233.25 381.05 L233.99 375.39 L236.18 370.13 L239.65 365.6 L244.18 362.13 L249.44 359.94 L255.1 359.2 L260.76 359.94 L266.02 362.13 L270.55 365.6 L274.02 370.13 L276.21 375.39 L276.95 381.05 L276.95 458 ZM286.45 458 L286.45 381.05 L287.19 375.39 L289.38 370.13 L292.85 365.6 L297.38 362.13 L302.64 359.94 L308.3 359.2 L313.96 359.94 L319.23 362.13 L323.75 365.6 L327.22 370.13 L329.41 375.39 L330.15 381.05 L330.15 458 ZM339.65 458 L339.65 381.05 L340.39 375.39 L342.58 370.13 L346.05 365.6 L350.58 362.13 L355.84 359.94 L361.5 359.2 L367.16 359.94 L372.42 362.13 L376.95 365.6 L380.42 370.13 L382.61 375.39 L383.35 381.05 L383.35 458 ZM392.85 458 L392.85 381.05 L393.59 375.39 L395.78 370.13 L399.25 365.6 L403.78 362.13 L409.04 359.94 L414.7 359.2 L420.36 359.94 L425.63 362.13 L430.15 365.6 L433.62 370.13 L435.81 375.39 L436.55 381.05 L436.55 458 ZM446.05 458 L446.05 381.05 L446.79 375.39 L448.98 370.13 L452.45 365.6 L456.98 362.13 L462.24 359.94 L467.9 359.2 L473.56 359.94 L478.83 362.13 L483.35 365.6 L486.82 370.13 L489.01 375.39 L489.75 381.05 L489.75 458 Z" fill-rule="evenodd" fill="url(#h-tone)" stroke="none" opacity="0.6"/>
+    <path d="M200 610 L523 610 L523 325 L200 325 ZM233.25 458 L233.25 381.05 L233.99 375.39 L236.18 370.13 L239.65 365.6 L244.18 362.13 L249.44 359.94 L255.1 359.2 L260.76 359.94 L266.02 362.13 L270.55 365.6 L274.02 370.13 L276.21 375.39 L276.95 381.05 L276.95 458 ZM286.45 458 L286.45 381.05 L287.19 375.39 L289.38 370.13 L292.85 365.6 L297.38 362.13 L302.64 359.94 L308.3 359.2 L313.96 359.94 L319.23 362.13 L323.75 365.6 L327.22 370.13 L329.41 375.39 L330.15 381.05 L330.15 458 ZM339.65 458 L339.65 381.05 L340.39 375.39 L342.58 370.13 L346.05 365.6 L350.58 362.13 L355.84 359.94 L361.5 359.2 L367.16 359.94 L372.42 362.13 L376.95 365.6 L380.42 370.13 L382.61 375.39 L383.35 381.05 L383.35 458 ZM392.85 458 L392.85 381.05 L393.59 375.39 L395.78 370.13 L399.25 365.6 L403.78 362.13 L409.04 359.94 L414.7 359.2 L420.36 359.94 L425.63 362.13 L430.15 365.6 L433.62 370.13 L435.81 375.39 L436.55 381.05 L436.55 458 ZM446.05 458 L446.05 381.05 L446.79 375.39 L448.98 370.13 L452.45 365.6 L456.98 362.13 L462.24 359.94 L467.9 359.2 L473.56 359.94 L478.83 362.13 L483.35 365.6 L486.82 370.13 L489.01 375.39 L489.75 381.05 L489.75 458 Z"/>
+    <path d="M232.3 458L232.3 435.2M238.95 458L238.95 435.2M245.6 458L245.6 435.2M252.25 458L252.25 435.2M258.9 458L258.9 435.2M265.55 458L265.55 435.2M272.2 458L272.2 435.2M278.85 458L278.85 435.2M285.5 458L285.5 435.2M292.15 458L292.15 435.2M298.8 458L298.8 435.2M305.45 458L305.45 435.2M312.1 458L312.1 435.2M318.75 458L318.75 435.2M325.4 458L325.4 435.2M332.05 458L332.05 435.2M338.7 458L338.7 435.2M345.35 458L345.35 435.2M352 458L352 435.2M358.65 458L358.65 435.2M365.3 458L365.3 435.2M371.95 458L371.95 435.2M378.6 458L378.6 435.2M385.25 458L385.25 435.2M391.9 458L391.9 435.2M398.55 458L398.55 435.2M405.2 458L405.2 435.2M411.85 458L411.85 435.2M418.5 458L418.5 435.2M425.15 458L425.15 435.2M431.8 458L431.8 435.2M438.45 458L438.45 435.2M445.1 458L445.1 435.2M451.75 458L451.75 435.2M458.4 458L458.4 435.2M465.05 458L465.05 435.2M471.7 458L471.7 435.2M478.35 458L478.35 435.2M485 458L485 435.2M491.65 458L491.65 435.2" class="l-fine"/>
+    <path d="M228.5 433.3 L494.5 433.3"/>
+    <path d="M527.91 327.69 L573.59 282.01 L573.59 270.61 L527.91 316.29 Z" style="fill: var(--_paper)"/>
+    <path d="M527.91 327.69 L573.59 282.01 L573.59 270.61 L527.91 316.29 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M527.91 327.69 L573.59 282.01 L573.59 270.61 L527.91 316.29 Z"/>
+    <path d="M189.71 327.69 L527.91 327.69 L527.91 316.29 L189.71 316.29 Z" style="fill: var(--_paper)"/>
+    <path d="M189.71 327.69 L527.91 327.69 L527.91 316.29 L189.71 316.29 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M189.71 327.69 L527.91 327.69 L527.91 316.29 L189.71 316.29 Z"/>
+    <path d="M189.71 316.29 L527.91 316.29 L573.59 270.61 L235.39 270.61 Z" style="fill: var(--_paper)"/>
+    <path d="M189.71 316.29 L527.91 316.29 L573.59 270.61 L235.39 270.61 Z"/>
+    <path d="M238 610 L238 543.5 L272.2 543.5 L272.2 610"/>
+    <path d="M310.2 610 L310.2 524.5 L344.4 524.5 L344.4 610"/>
+    <path d="M382.4 610 L382.4 524.5 L416.6 524.5 L416.6 610"/>
+    <path d="M454.6 610 L454.6 543.5 L488.8 543.5 L488.8 610"/>
+  </g>
+  <text class="t-credit" x="159.5" y="643">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this</text>
+  <text class="t-credit" x="159.5" y="652">form; no external drawing reproduced.</text>
+</svg>

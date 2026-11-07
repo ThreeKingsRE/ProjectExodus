@@ -1,0 +1,247 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Parametric Façade: elevation</title>
+  <desc id="d">Elevation of a screen of identical panels whose openings vary smoothly in size according to a rule, here distance from an attractor standing for the strongest sun; the graph below is the rule that generated them. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(1.1 6.71) scale(0.95)">
+  <g class="layer-fine ink l-fine">
+    <path d="M210 150 L244 150 L244 184 L210 184 Z"/>
+    <path d="M210 184 L244 184 L244 218 L210 218 Z"/>
+    <path d="M210 218 L244 218 L244 252 L210 252 Z"/>
+    <path d="M210 252 L244 252 L244 286 L210 286 Z"/>
+    <path d="M210 286 L244 286 L244 320 L210 320 Z"/>
+    <path d="M210 320 L244 320 L244 354 L210 354 Z"/>
+    <path d="M210 354 L244 354 L244 388 L210 388 Z"/>
+    <path d="M210 388 L244 388 L244 422 L210 422 Z"/>
+    <path d="M244 150 L278 150 L278 184 L244 184 Z"/>
+    <path d="M244 184 L278 184 L278 218 L244 218 Z"/>
+    <path d="M244 218 L278 218 L278 252 L244 252 Z"/>
+    <path d="M244 252 L278 252 L278 286 L244 286 Z"/>
+    <path d="M244 286 L278 286 L278 320 L244 320 Z"/>
+    <path d="M244 320 L278 320 L278 354 L244 354 Z"/>
+    <path d="M244 354 L278 354 L278 388 L244 388 Z"/>
+    <path d="M244 388 L278 388 L278 422 L244 422 Z"/>
+    <path d="M278 150 L312 150 L312 184 L278 184 Z"/>
+    <path d="M278 184 L312 184 L312 218 L278 218 Z"/>
+    <path d="M278 218 L312 218 L312 252 L278 252 Z"/>
+    <path d="M278 252 L312 252 L312 286 L278 286 Z"/>
+    <path d="M278 286 L312 286 L312 320 L278 320 Z"/>
+    <path d="M278 320 L312 320 L312 354 L278 354 Z"/>
+    <path d="M278 354 L312 354 L312 388 L278 388 Z"/>
+    <path d="M278 388 L312 388 L312 422 L278 422 Z"/>
+    <path d="M312 150 L346 150 L346 184 L312 184 Z"/>
+    <path d="M312 184 L346 184 L346 218 L312 218 Z"/>
+    <path d="M312 218 L346 218 L346 252 L312 252 Z"/>
+    <path d="M312 252 L346 252 L346 286 L312 286 Z"/>
+    <path d="M312 286 L346 286 L346 320 L312 320 Z"/>
+    <path d="M312 320 L346 320 L346 354 L312 354 Z"/>
+    <path d="M312 354 L346 354 L346 388 L312 388 Z"/>
+    <path d="M312 388 L346 388 L346 422 L312 422 Z"/>
+    <path d="M346 150 L380 150 L380 184 L346 184 Z"/>
+    <path d="M346 184 L380 184 L380 218 L346 218 Z"/>
+    <path d="M346 218 L380 218 L380 252 L346 252 Z"/>
+    <path d="M346 252 L380 252 L380 286 L346 286 Z"/>
+    <path d="M346 286 L380 286 L380 320 L346 320 Z"/>
+    <path d="M346 320 L380 320 L380 354 L346 354 Z"/>
+    <path d="M346 354 L380 354 L380 388 L346 388 Z"/>
+    <path d="M346 388 L380 388 L380 422 L346 422 Z"/>
+    <path d="M380 150 L414 150 L414 184 L380 184 Z"/>
+    <path d="M380 184 L414 184 L414 218 L380 218 Z"/>
+    <path d="M380 218 L414 218 L414 252 L380 252 Z"/>
+    <path d="M380 252 L414 252 L414 286 L380 286 Z"/>
+    <path d="M380 286 L414 286 L414 320 L380 320 Z"/>
+    <path d="M380 320 L414 320 L414 354 L380 354 Z"/>
+    <path d="M380 354 L414 354 L414 388 L380 388 Z"/>
+    <path d="M380 388 L414 388 L414 422 L380 422 Z"/>
+    <path d="M414 150 L448 150 L448 184 L414 184 Z"/>
+    <path d="M414 184 L448 184 L448 218 L414 218 Z"/>
+    <path d="M414 218 L448 218 L448 252 L414 252 Z"/>
+    <path d="M414 252 L448 252 L448 286 L414 286 Z"/>
+    <path d="M414 286 L448 286 L448 320 L414 320 Z"/>
+    <path d="M414 320 L448 320 L448 354 L414 354 Z"/>
+    <path d="M414 354 L448 354 L448 388 L414 388 Z"/>
+    <path d="M414 388 L448 388 L448 422 L414 422 Z"/>
+    <path d="M448 150 L482 150 L482 184 L448 184 Z"/>
+    <path d="M448 184 L482 184 L482 218 L448 218 Z"/>
+    <path d="M448 218 L482 218 L482 252 L448 252 Z"/>
+    <path d="M448 252 L482 252 L482 286 L448 286 Z"/>
+    <path d="M448 286 L482 286 L482 320 L448 320 Z"/>
+    <path d="M448 320 L482 320 L482 354 L448 354 Z"/>
+    <path d="M448 354 L482 354 L482 388 L448 388 Z"/>
+    <path d="M448 388 L482 388 L482 422 L448 422 Z"/>
+    <path d="M482 150 L516 150 L516 184 L482 184 Z"/>
+    <path d="M482 184 L516 184 L516 218 L482 218 Z"/>
+    <path d="M482 218 L516 218 L516 252 L482 252 Z"/>
+    <path d="M482 252 L516 252 L516 286 L482 286 Z"/>
+    <path d="M482 286 L516 286 L516 320 L482 320 Z"/>
+    <path d="M482 320 L516 320 L516 354 L482 354 Z"/>
+    <path d="M482 354 L516 354 L516 388 L482 388 Z"/>
+    <path d="M482 388 L516 388 L516 422 L482 422 Z"/>
+    <path d="M516 150 L550 150 L550 184 L516 184 Z"/>
+    <path d="M516 184 L550 184 L550 218 L516 218 Z"/>
+    <path d="M516 218 L550 218 L550 252 L516 252 Z"/>
+    <path d="M516 252 L550 252 L550 286 L516 286 Z"/>
+    <path d="M516 286 L550 286 L550 320 L516 320 Z"/>
+    <path d="M516 320 L550 320 L550 354 L516 354 Z"/>
+    <path d="M516 354 L550 354 L550 388 L516 388 Z"/>
+    <path d="M516 388 L550 388 L550 422 L516 422 Z"/>
+    <path d="M210 552L410 552"/>
+    <path d="M210 552L210 462"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <circle cx="227" cy="167" r="14"/>
+    <circle cx="227" cy="201" r="14"/>
+    <circle cx="227" cy="235" r="14"/>
+    <circle cx="227" cy="269" r="14"/>
+    <circle cx="227" cy="303" r="14"/>
+    <circle cx="227" cy="337" r="14"/>
+    <circle cx="227" cy="371" r="14"/>
+    <circle cx="227" cy="405" r="14"/>
+    <circle cx="261" cy="167" r="13.17"/>
+    <circle cx="261" cy="201" r="12.96"/>
+    <circle cx="261" cy="235" r="13.1"/>
+    <circle cx="261" cy="269" r="13.58"/>
+    <circle cx="261" cy="303" r="14"/>
+    <circle cx="261" cy="337" r="14"/>
+    <circle cx="261" cy="371" r="14"/>
+    <circle cx="261" cy="405" r="14"/>
+    <circle cx="295" cy="167" r="11.09"/>
+    <circle cx="295" cy="201" r="10.84"/>
+    <circle cx="295" cy="235" r="11"/>
+    <circle cx="295" cy="269" r="11.57"/>
+    <circle cx="295" cy="303" r="12.47"/>
+    <circle cx="295" cy="337" r="13.64"/>
+    <circle cx="295" cy="371" r="14"/>
+    <circle cx="295" cy="405" r="14"/>
+    <circle cx="329" cy="167" r="9.02"/>
+    <circle cx="329" cy="201" r="8.72"/>
+    <circle cx="329" cy="235" r="8.92"/>
+    <circle cx="329" cy="269" r="9.6"/>
+    <circle cx="329" cy="303" r="10.67"/>
+    <circle cx="329" cy="337" r="12.02"/>
+    <circle cx="329" cy="371" r="13.58"/>
+    <circle cx="329" cy="405" r="14"/>
+    <circle cx="363" cy="167" r="6.99"/>
+    <circle cx="363" cy="201" r="6.59"/>
+    <circle cx="363" cy="235" r="6.86"/>
+    <circle cx="363" cy="269" r="7.73"/>
+    <circle cx="363" cy="303" r="9.02"/>
+    <circle cx="363" cy="337" r="10.59"/>
+    <circle cx="363" cy="371" r="12.32"/>
+    <circle cx="363" cy="405" r="14"/>
+    <circle cx="397" cy="167" r="5.04"/>
+    <circle cx="397" cy="201" r="4.47"/>
+    <circle cx="397" cy="235" r="4.86"/>
+    <circle cx="397" cy="269" r="6.02"/>
+    <circle cx="397" cy="303" r="7.61"/>
+    <circle cx="397" cy="337" r="9.41"/>
+    <circle cx="397" cy="371" r="11.33"/>
+    <circle cx="397" cy="405" r="13.31"/>
+    <circle cx="431" cy="167" r="3.31"/>
+    <circle cx="431" cy="201" r="2.35"/>
+    <circle cx="431" cy="235" r="3.02"/>
+    <circle cx="431" cy="269" r="4.67"/>
+    <circle cx="431" cy="303" r="6.59"/>
+    <circle cx="431" cy="337" r="8.61"/>
+    <circle cx="431" cy="371" r="10.67"/>
+    <circle cx="431" cy="405" r="12.75"/>
+    <circle cx="465" cy="167" r="2.35"/>
+    <circle cx="465" cy="201" r="2"/>
+    <circle cx="465" cy="235" r="2"/>
+    <circle cx="465" cy="269" r="4.04"/>
+    <circle cx="465" cy="303" r="6.17"/>
+    <circle cx="465" cy="337" r="8.29"/>
+    <circle cx="465" cy="371" r="10.41"/>
+    <circle cx="465" cy="405" r="12.54"/>
+    <circle cx="499" cy="167" r="3.02"/>
+    <circle cx="499" cy="201" r="2"/>
+    <circle cx="499" cy="235" r="2.7"/>
+    <circle cx="499" cy="269" r="4.47"/>
+    <circle cx="499" cy="303" r="6.45"/>
+    <circle cx="499" cy="337" r="8.51"/>
+    <circle cx="499" cy="371" r="10.59"/>
+    <circle cx="499" cy="405" r="12.68"/>
+    <circle cx="533" cy="167" r="4.67"/>
+    <circle cx="533" cy="201" r="4.04"/>
+    <circle cx="533" cy="235" r="4.47"/>
+    <circle cx="533" cy="269" r="5.71"/>
+    <circle cx="533" cy="303" r="7.37"/>
+    <circle cx="533" cy="337" r="9.22"/>
+    <circle cx="533" cy="371" r="11.17"/>
+    <circle cx="533" cy="405" r="13.17"/>
+    <path d="M210 150 L550 150 L550 422 L210 422 Z"/>
+    <path d="M210 548Q300 546 330 492T410 468"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <circle cx="468.4" cy="204.4" r="4" style="stroke: var(--_accent)"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <circle cx="468.4" cy="204.4" r="40"/>
+    <circle cx="468.4" cy="204.4" r="80"/>
+    <circle cx="468.4" cy="204.4" r="120"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M564 184L564 150M560 188L568 180M560 154L568 146M550 184L570 184M550 150L570 150"/><text x="572" y="170">PANEL</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M101 185.56L174 185.56L207.5 190"/><circle cx="207.5" cy="190" r="1.5" class="solid"/><text x="34" y="188.56">PANEL GRID</text>
+    <path d="M131.5 200.56L174 200.56L461.9 198.4"/><circle cx="461.9" cy="198.4" r="1.5" class="solid"/><text x="34" y="203.56">ATTRACTOR (SUN)</text>
+    <path d="M168.1 215.56L174 215.56L431.9 204.4"/><circle cx="431.9" cy="204.4" r="1.5" class="solid"/><text x="34" y="218.56">SMALL APERTURE (NEAR)</text>
+    <path d="M162 400.56L174 400.56L210.5 405"/><circle cx="210.5" cy="405" r="1.5" class="solid"/><text x="34" y="403.56">LARGE APERTURE (FAR)</text>
+    <path d="M186.4 487.56L174 487.56L327.5 492"/><circle cx="327.5" cy="492" r="1.5" class="solid"/><text x="34" y="490.56">RULE: SIZE = f(DISTANCE)</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="310" y="566" class="t-small" text-anchor="middle">DISTANCE FROM ATTRACTOR</text>
+    <text x="216" y="458" class="t-small">APERTURE</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">PARAMETRIC FAÇADE</text>
+    <text class="t-sub" x="26" y="710">PANELS VARIED BY A RULE RATHER THAN DRAWN ONE BY ONE</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  FAC-23</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN PANELS</text>
+    <rect x="416" y="730" width="32.44" height="5" class="solid"/><rect x="448.44" y="730" width="32.44" height="5" class="ink l-fine"/><rect x="480.87" y="730" width="32.44" height="5" class="solid"/><rect x="513.31" y="730" width="32.44" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="543.75" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="172 82 416 532" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a façade where the services are placed outside the structure: large air ducts, water pipes and cable risers run up the face of an exposed frame to rooftop air-handling units, freeing the floors inside. Source: After the east façade of the Centre Pompidou, Paris (Piano and Rogers, 1977). Simplified; not a survey. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="172" y="82" width="416" height="532"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M465 150L550 234"/>
+    <path d="M550 150L465 234"/>
+    <path d="M465 234L550 318"/>
+    <path d="M550 234L465 318"/>
+    <path d="M465 318L550 402"/>
+    <path d="M550 318L465 402"/>
+    <path d="M465 402L550 486"/>
+    <path d="M550 402L465 486"/>
+    <path d="M465 486L550 570"/>
+    <path d="M550 486L465 570"/>
+    <path d="M228 550L252 550"/>
+    <path d="M228 522L252 522"/>
+    <path d="M228 494L252 494"/>
+    <path d="M228 466L252 466"/>
+    <path d="M228 438L252 438"/>
+    <path d="M228 410L252 410"/>
+    <path d="M228 382L252 382"/>
+    <path d="M228 354L252 354"/>
+    <path d="M228 326L252 326"/>
+    <path d="M228 298L252 298"/>
+    <path d="M228 270L252 270"/>
+    <path d="M228 242L252 242"/>
+    <path d="M228 214L252 214"/>
+    <path d="M228 186L252 186"/>
+    <path d="M268 550L292 550"/>
+    <path d="M268 522L292 522"/>
+    <path d="M268 494L292 494"/>
+    <path d="M268 466L292 466"/>
+    <path d="M268 438L292 438"/>
+    <path d="M268 410L292 410"/>
+    <path d="M268 382L292 382"/>
+    <path d="M268 354L292 354"/>
+    <path d="M268 326L292 326"/>
+    <path d="M268 298L292 298"/>
+    <path d="M268 270L292 270"/>
+    <path d="M268 242L292 242"/>
+    <path d="M268 214L292 214"/>
+    <path d="M268 186L292 186"/>
+    <path d="M323 550L347 550"/>
+    <path d="M323 522L347 522"/>
+    <path d="M323 494L347 494"/>
+    <path d="M323 466L347 466"/>
+    <path d="M323 438L347 438"/>
+    <path d="M323 410L347 410"/>
+    <path d="M323 382L347 382"/>
+    <path d="M323 354L347 354"/>
+    <path d="M323 326L347 326"/>
+    <path d="M323 298L347 298"/>
+    <path d="M323 270L347 270"/>
+    <path d="M323 242L347 242"/>
+    <path d="M323 214L347 214"/>
+    <path d="M323 186L347 186"/>
+    <path d="M425 160L441 160"/>
+    <path d="M425 174L441 174"/>
+    <path d="M425 188L441 188"/>
+    <path d="M425 202L441 202"/>
+    <path d="M425 216L441 216"/>
+    <path d="M425 230L441 230"/>
+    <path d="M425 244L441 244"/>
+    <path d="M425 258L441 258"/>
+    <path d="M425 272L441 272"/>
+    <path d="M425 286L441 286"/>
+    <path d="M425 300L441 300"/>
+    <path d="M425 314L441 314"/>
+    <path d="M425 328L441 328"/>
+    <path d="M425 342L441 342"/>
+    <path d="M425 356L441 356"/>
+    <path d="M425 370L441 370"/>
+    <path d="M425 384L441 384"/>
+    <path d="M425 398L441 398"/>
+    <path d="M425 412L441 412"/>
+    <path d="M425 426L441 426"/>
+    <path d="M425 440L441 440"/>
+    <path d="M425 454L441 454"/>
+    <path d="M425 468L441 468"/>
+    <path d="M425 482L441 482"/>
+    <path d="M425 496L441 496"/>
+    <path d="M425 510L441 510"/>
+    <path d="M425 524L441 524"/>
+    <path d="M425 538L441 538"/>
+    <path d="M425 552L441 552"/>
+    <path d="M425 566L441 566"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M206 150 L214 150 L214 570 L206 570 Z"/>
+    <path d="M291 150 L299 150 L299 570 L291 570 Z"/>
+    <path d="M376 150 L384 150 L384 570 L376 570 Z"/>
+    <path d="M461 150 L469 150 L469 570 L461 570 Z"/>
+    <path d="M546 150 L554 150 L554 570 L546 570 Z"/>
+    <path d="M210 150L550 150"/>
+    <path d="M210 234L550 234"/>
+    <path d="M210 318L550 318"/>
+    <path d="M210 402L550 402"/>
+    <path d="M210 486L550 486"/>
+    <path d="M210 570L550 570"/>
+    <path d="M228 570V170Q228 146 252 146H266M252 570V174Q252 170 266 170" style="fill: var(--_paper)"/>
+    <path d="M268 570V170Q268 146 292 146H306M292 570V174Q292 170 306 170" style="fill: var(--_paper)"/>
+    <path d="M323 570V170Q323 146 347 146H361M347 570V174Q347 170 361 170" style="fill: var(--_paper)"/>
+    <path d="M400 570L400 140"/>
+    <path d="M406 570L406 140"/>
+    <path d="M414 570L414 140"/>
+    <path d="M420 570L420 140"/>
+    <path d="M428 570L428 140"/>
+    <path d="M434 570L434 140"/>
+    <path d="M425 150 L441 150 L441 570 L425 570 Z"/>
+    <path d="M230 100 L300 100 L300 140 L230 140 Z"/>
+    <path d="M315 100 L385 100 L385 140 L315 140 Z"/>
+    <path d="M190 570L570 570"/>
+  </g>
+  <text class="t-credit" x="178" y="603">SOURCE: After the east façade of the Centre Pompidou, Paris (Piano and Rogers, 1977).</text>
+  <text class="t-credit" x="178" y="612">Simplified; not a survey. Original drawing by Project Exodus.</text>
+</svg>

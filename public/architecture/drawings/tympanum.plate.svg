@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="162 238 436 396" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a Romanesque portal: the semicircular tympanum above the lintel holds a Christ in Majesty in a mandorla with the four evangelist symbols, framed by carved archivolts and divided below by a central trumeau. Source: After French Romanesque portals such as Moissac (c. 1130). Generic; not a copy. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="162" y="238" width="436" height="396"/>
+  <g class="layer-fine ink l-fine">
+    <circle cx="246.98" cy="403.85" r="4"/>
+    <path d="M227.12 401.44m-3 4l3 -8l3 8"/>
+    <circle cx="254.71" cy="372.48" r="4"/>
+    <path d="M236.01 365.39m-3 4l3 -8l3 8"/>
+    <circle cx="269.72" cy="343.88" r="4"/>
+    <path d="M253.26 332.52m-3 4l3 -8l3 8"/>
+    <circle cx="291.14" cy="319.7" r="4"/>
+    <path d="M277.88 304.73m-3 4l3 -8l3 8"/>
+    <circle cx="317.73" cy="301.35" r="4"/>
+    <path d="M308.43 283.64m-3 4l3 -8l3 8"/>
+    <circle cx="347.93" cy="289.89" r="4"/>
+    <path d="M343.15 270.47m-3 4l3 -8l3 8"/>
+    <circle cx="380" cy="286" r="4"/>
+    <path d="M380 266m-3 4l3 -8l3 8"/>
+    <circle cx="412.07" cy="289.89" r="4"/>
+    <path d="M416.85 270.47m-3 4l3 -8l3 8"/>
+    <circle cx="442.27" cy="301.35" r="4"/>
+    <path d="M451.57 283.64m-3 4l3 -8l3 8"/>
+    <circle cx="468.86" cy="319.7" r="4"/>
+    <path d="M482.12 304.73m-3 4l3 -8l3 8"/>
+    <circle cx="490.28" cy="343.88" r="4"/>
+    <path d="M506.74 332.52m-3 4l3 -8l3 8"/>
+    <circle cx="505.29" cy="372.48" r="4"/>
+    <path d="M523.99 365.39m-3 4l3 -8l3 8"/>
+    <circle cx="513.02" cy="403.85" r="4"/>
+    <path d="M532.88 401.44m-3 4l3 -8l3 8"/>
+    <circle cx="380" cy="348" r="7"/>
+    <path d="M372 356L366 394H394L388 356ZM366 394l-4 20M394 394l4 20M374 364l-10 6M386 364l10 -8"/>
+    <circle cx="318" cy="350" r="13"/>
+    <circle cx="318" cy="350" r="5"/>
+    <circle cx="442" cy="350" r="13"/>
+    <circle cx="442" cy="350" r="5"/>
+    <circle cx="306" cy="394" r="13"/>
+    <circle cx="306" cy="394" r="5"/>
+    <circle cx="454" cy="394" r="13"/>
+    <circle cx="454" cy="394" r="5"/>
+    <path d="M280 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M298 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M316 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M334 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M352 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M370 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M388 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M406 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M424 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M442 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M460 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M478 442v-10m-3 -4a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/>
+    <path d="M276 446 L371 446 L371 590 L276 590 Z"/>
+    <path d="M389 446 L484 446 L484 590 L389 590 Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M256 420A124 124 0 0 1 504 420"/>
+    <path d="M236 420A144 144 0 0 1 524 420"/>
+    <path d="M216 420A164 164 0 0 1 544 420"/>
+    <path d="M270 420A110 110 0 0 1 490 420Z"/>
+    <path d="M380 324Q420 372 380 420Q340 372 380 324Z"/>
+    <path d="M266 420 L494 420 L494 446 L266 446 Z"/>
+    <path d="M371 446 L389 446 L389 590 L371 590 Z"/>
+    <path d="M240 426 L252 426 L252 590 L240 590 Z"/>
+    <path d="M237 418 L255 418 L255 426 L237 426 Z"/>
+    <path d="M220 426 L232 426 L232 590 L220 590 Z"/>
+    <path d="M217 418 L235 418 L235 426 L217 426 Z"/>
+    <path d="M508 426 L520 426 L520 590 L508 590 Z"/>
+    <path d="M505 418 L523 418 L523 426 L505 426 Z"/>
+    <path d="M528 426 L540 426 L540 590 L528 590 Z"/>
+    <path d="M525 418 L543 418 L543 426 L525 426 Z"/>
+    <path d="M180 590L580 590"/>
+  </g>
+  <text class="t-credit" x="168" y="623">SOURCE: After French Romanesque portals such as Moissac (c. 1130). Generic; not a copy.</text>
+  <text class="t-credit" x="168" y="632">Original drawing by Project Exodus.</text>
+</svg>

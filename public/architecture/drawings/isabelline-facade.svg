@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Isabelline Façade: elevation</title>
+  <desc id="d">Elevation of an Isabelline Gothic portal: an ogee arch whose mouldings are studded with stone balls, flanked by slender pinnacles and the yoke-and-arrows emblems of the Catholic Monarchs, within a rectangular frame topped by cresting. Source: After Isabelline Gothic portals such as San Juan de los Reyes, Toledo (1477–1504). Generic; not a survey. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-fine ink l-fine">
+    <circle cx="313" cy="590" r="4"/>
+    <circle cx="447" cy="590" r="4"/>
+    <circle cx="313" cy="576.92" r="4"/>
+    <circle cx="447" cy="576.92" r="4"/>
+    <circle cx="313" cy="563.85" r="4"/>
+    <circle cx="447" cy="563.85" r="4"/>
+    <circle cx="313" cy="550.77" r="4"/>
+    <circle cx="447" cy="550.77" r="4"/>
+    <circle cx="313" cy="537.69" r="4"/>
+    <circle cx="447" cy="537.69" r="4"/>
+    <circle cx="313" cy="524.62" r="4"/>
+    <circle cx="447" cy="524.62" r="4"/>
+    <circle cx="313" cy="511.54" r="4"/>
+    <circle cx="447" cy="511.54" r="4"/>
+    <circle cx="313" cy="498.46" r="4"/>
+    <circle cx="447" cy="498.46" r="4"/>
+    <circle cx="313" cy="485.38" r="4"/>
+    <circle cx="447" cy="485.38" r="4"/>
+    <circle cx="313" cy="472.31" r="4"/>
+    <circle cx="447" cy="472.31" r="4"/>
+    <circle cx="313" cy="459.23" r="4"/>
+    <circle cx="447" cy="459.23" r="4"/>
+    <circle cx="313" cy="446.15" r="4"/>
+    <circle cx="447" cy="446.15" r="4"/>
+    <circle cx="313" cy="433.08" r="4"/>
+    <circle cx="447" cy="433.08" r="4"/>
+    <circle cx="313" cy="420" r="4"/>
+    <circle cx="447" cy="420" r="4"/>
+    <circle cx="321.38" cy="416.41" r="4"/>
+    <circle cx="438.63" cy="416.41" r="4"/>
+    <circle cx="329.75" cy="409.12" r="4"/>
+    <circle cx="430.25" cy="409.12" r="4"/>
+    <circle cx="338.13" cy="399.18" r="4"/>
+    <circle cx="421.88" cy="399.18" r="4"/>
+    <circle cx="346.5" cy="387.01" r="4"/>
+    <circle cx="413.5" cy="387.01" r="4"/>
+    <circle cx="354.88" cy="372.86" r="4"/>
+    <circle cx="405.13" cy="372.86" r="4"/>
+    <circle cx="363.25" cy="356.89" r="4"/>
+    <circle cx="396.75" cy="356.89" r="4"/>
+    <circle cx="371.63" cy="339.24" r="4"/>
+    <circle cx="388.38" cy="339.24" r="4"/>
+    <path d="M380 310v-24m-8 8h16"/>
+    <path d="M284 250q16 -12 32 0M284 256q16 -12 32 0"/>
+    <path d="M300 236v44M290 238l20 40M310 238l-20 40"/>
+    <path d="M444 250q16 -12 32 0M444 256q16 -12 32 0"/>
+    <path d="M460 236v44M450 238l20 40M470 238l-20 40"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M250 200 L510 200 L510 590 L250 590 Z"/>
+    <path d="M262 212 L498 212 L498 590 L262 590 Z"/>
+    <path d="M250 200l8 -16l8 16M266 200l8 -16l8 16M282 200l8 -16l8 16M298 200l8 -16l8 16M314 200l8 -16l8 16M330 200l8 -16l8 16M346 200l8 -16l8 16M362 200l8 -16l8 16M378 200l8 -16l8 16M394 200l8 -16l8 16M410 200l8 -16l8 16M426 200l8 -16l8 16M442 200l8 -16l8 16M458 200l8 -16l8 16M474 200l8 -16l8 16M490 200l8 -16l8 16M506 200l8 -16l8 16"/>
+    <path d="M320 590V420C320 366 370 375 380 330C390 375 440 366 440 420V590"/>
+    <path d="M307 590V420C307 354 370 365 380 310C390 365 453 354 453 420V590"/>
+    <path d="M280 280 L292 280 L292 590 L280 590 Z"/>
+    <path d="M277 280 L286 236 L295 280 Z"/>
+    <path d="M468 280 L480 280 L480 590 L468 590 Z"/>
+    <path d="M465 280 L474 236 L483 280 Z"/>
+    <path d="M358 228h44v26q0 22 -22 30q-22 -8 -22 -30Z" style="fill: var(--_paper)"/>
+    <path d="M190 590L570 590"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M320 612L440 612M316 616L324 608M436 616L444 608M320 606L320 618M440 606L440 618"/><text x="380" y="626" text-anchor="middle">DOOR</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M88.8 196L247.5 196"/><circle cx="247.5" cy="196" r="1.5" class="solid"/><text x="34" y="199">CRESTING</text>
+    <path d="M174.2 252L281.5 252"/><circle cx="281.5" cy="252" r="1.5" class="solid"/><text x="34" y="255">YOKE-AND-ARROWS EMBLEM</text>
+    <path d="M88.8 300L283.5 300"/><circle cx="283.5" cy="300" r="1.5" class="solid"/><text x="34" y="303">PINNACLE</text>
+    <path d="M162 350L347.5 350"/><circle cx="347.5" cy="350" r="1.5" class="solid"/><text x="34" y="353">OGEE (CONOPIAL) ARCH</text>
+    <path d="M119.3 480L306.5 480"/><circle cx="306.5" cy="480" r="1.5" class="solid"/><text x="34" y="483">BALL ORNAMENT</text>
+    <path d="M107.1 540L247.5 540"/><circle cx="247.5" cy="540" r="1.5" class="solid"/><text x="34" y="543">ALFIZ FRAME</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">ISABELLINE FAÇADE</text>
+    <text class="t-sub" x="26" y="710">SPANISH LATE-GOTHIC PORTAL UNDER THE CATHOLIC MONARCHS</text>
+    <text class="t-small" x="26" y="726">SOURCE: After Isabelline Gothic portals such as San Juan de los Reyes,</text>
+    <text class="t-small" x="26" y="736">Toledo (1477–1504). Generic; not a survey. Original drawing by Project</text>
+    <text class="t-small" x="26" y="746">Exodus.</text>
+    <text class="t-sub" x="416" y="684">SHEET  FAC-13</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

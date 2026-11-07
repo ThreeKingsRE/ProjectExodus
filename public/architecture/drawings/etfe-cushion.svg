@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">ETFE Cushion: section</title>
+  <desc id="d">Section through an ETFE cushion: three layers of thin fluoropolymer film clamped in aluminium extrusions on steel rafters, kept inflated at low pressure by a small air supply so that the outer and inner layers bulge into a stiff, insulating pillow. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M220 384 L240 384 L240 444 L220 444 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M520 384 L540 384 L540 444 L520 444 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M216 354q14 -10 28 0"/>
+    <path d="M516 354q14 -10 28 0"/>
+    <path d="M536 362C560 362 550 480 490 500"/>
+    <path d="M410 486 L490 486 L490 520 L410 520 Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M230 360Q380 210 530 360"/>
+    <path d="M230 360Q380 310 530 360" stroke-dasharray="4 3"/>
+    <path d="M230 360Q380 470 530 360"/>
+    <path d="M216 354 L244 354 L244 370 L216 370 Z"/>
+    <path d="M224 370 L236 370 L236 384 L224 384 Z"/>
+    <path d="M516 354 L544 354 L544 370 L516 370 Z"/>
+    <path d="M524 370 L536 370 L536 384 L524 384 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M220 384 L240 384 L240 444 L220 444 Z"/>
+    <path d="M520 384 L540 384 L540 444 L520 444 Z"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M542 420L538 370M541.23 376.21L538 370L535.8 376.64" stroke-dasharray="none"/>
+    <path d="M290 200L300 240"/>
+    <path d="M370 200L380 240"/>
+    <path d="M450 200L460 240"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M230 540L530 540M226 544L234 536M526 544L534 536M230 534L230 546M530 534L530 546"/><text x="380" y="554" text-anchor="middle">SPAN</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M101 283.86L174 283.86L337.5 288"/><circle cx="337.5" cy="288" r="1.5" class="solid"/><text x="34" y="286.86">OUTER FOIL</text>
+    <path d="M168.1 333.86L174 333.86L317.5 338"/><circle cx="317.5" cy="338" r="1.5" class="solid"/><text x="34" y="336.86">MIDDLE FOIL (PRINTED)</text>
+    <path d="M131.5 355.86L174 355.86L213.5 360"/><circle cx="213.5" cy="360" r="1.5" class="solid"/><text x="34" y="358.86">CLAMP EXTRUSION</text>
+    <path d="M113.2 375.86L174 375.86L357.5 380"/><circle cx="357.5" cy="380" r="1.5" class="solid"/><text x="34" y="378.86">AIR CHAMBERS</text>
+    <path d="M101 407.86L174 407.86L337.5 412"/><circle cx="337.5" cy="412" r="1.5" class="solid"/><text x="34" y="410.86">INNER FOIL</text>
+    <path d="M113.2 422.86L174 422.86L217.5 420"/><circle cx="217.5" cy="420" r="1.5" class="solid"/><text x="34" y="425.86">STEEL RAFTER</text>
+    <path d="M131.5 437.86L174 437.86L545.5 420"/><circle cx="545.5" cy="420" r="1.5" class="solid"/><text x="34" y="440.86">AIR SUPPLY HOSE</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="418" y="507" class="t-small">INFLATION UNIT</text>
+    <text x="380" y="320" class="t-small t-accent" text-anchor="middle">AIR ≈ 250 PA</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">ETFE CUSHION</text>
+    <text class="t-sub" x="26" y="710">INFLATED PILLOW OF THIN PLASTIC FILM</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  FAC-21</text>
+    <text class="t-small" x="416" y="699">SECTION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

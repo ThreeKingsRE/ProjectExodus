@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Curtain Wall: section</title>
+  <desc id="d">Section through a curtain wall at a floor edge: aluminium mullions and transoms hold double-glazed vision panels and an insulated opaque spandrel; the frame hangs from anchor brackets on the slab, with a fire stop sealing the gap between slab and wall. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M200 400 L390 400 L390 430 L200 430 Z" fill="url(#h-concrete)" stroke="none"/>
+    <path d="M390 400 L430 400 L430 430 L390 430 Z" fill="url(#h-earth)" stroke="none"/>
+    <path d="M432 384 L444 384 L444 456 L432 456 Z" fill="url(#h-earth)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <circle cx="360" cy="395" r="2.5"/>
+    <path d="M400 120 L426 120 L426 640 L400 640 Z"/>
+    <path d="M413 120L413 640" stroke-dasharray="4 3"/>
+    <path d="M200 470L400 470" stroke-dasharray="4 3"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M350 400 L350 390 L406 390" style="stroke-width: 3"/>
+    <path d="M428 384 L432 384 L432 456 L428 456 Z"/>
+    <path d="M400 376 L432 376 L432 384 L400 384 Z"/>
+    <path d="M444 372 L452 372 L452 388 L444 388 Z"/>
+    <path d="M452 370 L458 370 L458 390 L452 390 Z"/>
+    <path d="M400 456 L432 456 L432 464 L400 464 Z"/>
+    <path d="M444 452 L452 452 L452 468 L444 468 Z"/>
+    <path d="M452 450 L458 450 L458 470 L452 470 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M200 400 L390 400 L390 430 L200 430 Z"/>
+    <path d="M390 400 L430 400 L430 430 L390 430 Z"/>
+    <path d="M432 120L432 376" class="l-fine"/>
+    <path d="M444 120L444 376" class="l-fine"/>
+    <path d="M432 464L432 640" class="l-fine"/>
+    <path d="M444 464L444 640" class="l-fine"/>
+    <path d="M432 384 L444 384 L444 456 L432 456 Z"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M482 456L482 384M478 460L486 452M478 388L486 380M458 456L488 456M458 384L488 384"/><text x="490" y="423">SPANDREL</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M168.1 245.11L174 245.11L429.5 250"/><circle cx="429.5" cy="250" r="1.5" class="solid"/><text x="34" y="248.11">VISION GLASS (DOUBLE)</text>
+    <path d="M137.6 295.11L174 295.11L397.5 300"/><circle cx="397.5" cy="300" r="1.5" class="solid"/><text x="34" y="298.11">MULLION (BEYOND)</text>
+    <path d="M82.7 375.11L174 375.11L397.5 380"/><circle cx="397.5" cy="380" r="1.5" class="solid"/><text x="34" y="378.11">TRANSOM</text>
+    <path d="M125.4 390.11L347.5 390"/><circle cx="347.5" cy="390" r="1.5" class="solid"/><text x="34" y="393.11">ANCHOR BRACKET</text>
+    <path d="M94.9 410.11L174 410.11L391.5 415"/><circle cx="391.5" cy="415" r="1.5" class="solid"/><text x="34" y="413.11">FIRE STOP</text>
+    <path d="M101 425.11L174 425.11L217.5 415"/><circle cx="217.5" cy="415" r="1.5" class="solid"/><text x="34" y="428.11">FLOOR SLAB</text>
+    <path d="M143.7 440.11L174 440.11L429.5 430"/><circle cx="429.5" cy="430" r="1.5" class="solid"/><text x="34" y="443.11">SPANDREL (OPAQUE)</text>
+    <path d="M162 455.11L174 455.11L449.5 456"/><circle cx="449.5" cy="456" r="1.5" class="solid"/><text x="34" y="458.11">PRESSURE PLATE + CAP</text>
+    <path d="M82.7 470.11L217.5 470"/><circle cx="217.5" cy="470" r="1.5" class="solid"/><text x="34" y="473.11">CEILING</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">CURTAIN WALL</text>
+    <text class="t-sub" x="26" y="710">NON-LOADBEARING GLASS SKIN HUNG FROM THE FLOORS</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  FAC-27</text>
+    <text class="t-small" x="416" y="699">SECTION</text>
+    <text class="t-small" x="416" y="724">SCALE IN UNITS (INDICATIVE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>
