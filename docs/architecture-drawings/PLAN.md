@@ -13,7 +13,7 @@ Status: **redraw complete (239/239).** The data-load fix and every drawing are l
 |---|---|
 | Data load: summaries to the client, full text per element on demand | ✅ ~770 KB gz less JS per architecture page |
 | Drawing system: sheet + plate rendering, manifest, CI checks (coverage, credit, size, fit) | ✅ |
-| All 239 elements, in 12 families (orders, arches, vaults, floors, stairs, roofs, interiors, openings, structure, landscape, rooms, religious, decorative, façade) | ✅ avg 2.4 KB gz per file |
+| All 239 elements, in 14 families (orders, arches, vaults, floors, stairs, roofs, interiors, openings, structure, landscape, rooms, religious, decorative, façade) | ✅ avg 2.4 KB gz per file |
 | Paraline views (`axo`, `face`, `box`, `axoWall` in `kit.ts`) | ✅ |
 | Legacy inline SVG registry (`ArchitectureSVG`, ~900 KB of TSX) | ✅ deleted; only the comparison-page components remain |
 | Expansion toward 450+ elements | next |
