@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.38 1.69) scale(0.98)">
   <g class="layer-hatch ink l-hair">
     <path d="M155 140 L175 140 L175 470 L155 470 Z" fill="url(#h-stone)" stroke="none"/>
     <path d="M490 140 L510 140 L510 470 L490 470 Z" fill="url(#h-stone)" stroke="none"/>
@@ -86,6 +87,7 @@
   <g class="layer-notes ">
     <text x="360" y="235" text-anchor="middle" class="t-sub">PLENUM (SERVICES)</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">DROPPED CEILING</text>
@@ -95,9 +97,9 @@
     <text class="t-sub" x="416" y="684">SHEET  CLG-03</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN 600 MM TILES</text>
-    <rect x="416" y="730" width="60" height="5" class="solid"/><rect x="476" y="730" width="60" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="59.04" height="5" class="solid"/><rect x="475.04" y="730" width="59.04" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="534" y="749">2</text>
+    <text class="t-small" x="532.08" y="749">2</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

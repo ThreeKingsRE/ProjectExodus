@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.98 3.36) scale(0.96)">
   <g class="layer-hatch ink l-hair">
     <path d="M160 86 L500 86 L500 100 L160 100 Z" fill="url(#h-concrete)" stroke="none"/>
     <path d="M160 500 L500 500 L500 514 L160 514 Z" fill="url(#h-timber)" stroke="none"/>
@@ -73,6 +74,7 @@
     <path d="M64.4 400L167.5 400"/><circle cx="167.5" cy="400" r="1.5" class="solid"/><text x="34" y="403">DADO</text>
     <path d="M162 485L167.5 485"/><circle cx="167.5" cy="485" r="1.5" class="solid"/><text x="34" y="488">BASEBOARD (SKIRTING)</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">CROWN MOLDING</text>
@@ -82,9 +84,9 @@
     <text class="t-sub" x="416" y="684">SHEET  INT-04</text>
     <text class="t-small" x="416" y="699">INTERIOR ELEVATION</text>
     <text class="t-small" x="416" y="724">SCALE IN 300 MM (INDICATIVE)</text>
-    <rect x="416" y="730" width="37" height="5" class="solid"/><rect x="453" y="730" width="37" height="5" class="ink l-fine"/><rect x="490" y="730" width="37" height="5" class="solid"/><rect x="527" y="730" width="37" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="35.49" height="5" class="solid"/><rect x="451.49" y="730" width="35.49" height="5" class="ink l-fine"/><rect x="486.97" y="730" width="35.49" height="5" class="solid"/><rect x="522.46" y="730" width="35.49" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="562" y="749">4</text>
+    <text class="t-small" x="555.94" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

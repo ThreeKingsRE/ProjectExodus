@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.34 0.94) scale(0.99)">
   <g class="layer-hatch ink l-hair">
     <path d="M170 100 L176.8 100.18 L183.59 100.71 L190.34 101.6 L197.03 102.84 L203.65 104.43 L210.17 106.36 L216.59 108.63 L222.88 111.24 L229.02 114.17 L235 117.42 L240.8 120.97 L246.41 124.83 L251.81 128.97 L256.99 133.39 L261.92 138.08 L266.61 143.01 L271.03 148.19 L275.17 153.59 L279.03 159.2 L282.58 165 L285.83 170.98 L288.76 177.12 L291.37 183.41 L293.64 189.83 L295.57 196.35 L297.16 202.97 L298.4 209.66 L299.29 216.41 L299.82 223.2 L300 230 L312 230 L311.81 222.57 L311.22 215.16 L310.25 207.79 L308.9 200.48 L307.16 193.25 L305.05 186.12 L302.57 179.11 L299.72 172.24 L296.52 165.53 L292.98 159 L289.09 152.66 L284.88 146.53 L280.35 140.64 L275.53 134.98 L270.41 129.59 L265.02 124.47 L259.36 119.65 L253.47 115.12 L247.34 110.91 L241 107.02 L234.47 103.48 L227.76 100.28 L220.89 97.43 L213.88 94.95 L206.75 92.84 L199.52 91.1 L192.21 89.75 L184.84 88.78 L177.43 88.19 L170 88 Z" fill="url(#h-stone)" stroke="none"/>
     <path d="M300 110 L326 110 L326 500 L300 500 Z" fill="url(#h-stone)" stroke="none"/>
@@ -82,6 +83,7 @@
     <text x="464" y="490" text-anchor="end" class="t-small t-accent">THRUST TO GROUND</text>
     <text x="174" y="492" class="t-small t-accent">NAVE ℄</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">FLYING BUTTRESS</text>
@@ -91,9 +93,9 @@
     <text class="t-sub" x="416" y="684">SHEET  ROF-08</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN BAYS (INDICATIVE)</text>
-    <rect x="416" y="730" width="50" height="5" class="solid"/><rect x="466" y="730" width="50" height="5" class="ink l-fine"/><rect x="516" y="730" width="50" height="5" class="solid"/>
+    <rect x="416" y="730" width="49.29" height="5" class="solid"/><rect x="465.29" y="730" width="49.29" height="5" class="ink l-fine"/><rect x="514.57" y="730" width="49.29" height="5" class="solid"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="564" y="749">3</text>
+    <text class="t-small" x="561.86" y="749">3</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

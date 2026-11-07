@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Obelisk: elevation</title>
+  <desc id="d">Elevation of a single tall stone shaft, square in section and gently tapering, carved with inscriptions and ending in a small pyramid, set on a pedestal. Source: Ancient Egyptian type; proportions typical (height about ten times the base width). Generic original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.68 1.58) scale(0.97)">
+  <g class="layer-shading ink l-shading">
+    <path d="M345 110 L351 110 L351 118 L345 118 Z"/>
+    <path d="M345 124 L351 124 L351 132 L345 132 Z"/>
+    <path d="M345 138 L351 138 L351 146 L345 146 Z"/>
+    <path d="M345 152 L351 152 L351 160 L345 160 Z"/>
+    <path d="M345 166 L351 166 L351 174 L345 174 Z"/>
+    <path d="M345 180 L351 180 L351 188 L345 188 Z"/>
+    <path d="M345 194 L351 194 L351 202 L345 202 Z"/>
+    <path d="M345 208 L351 208 L351 216 L345 216 Z"/>
+    <path d="M345 222 L351 222 L351 230 L345 230 Z"/>
+    <path d="M345 236 L351 236 L351 244 L345 244 Z"/>
+    <path d="M345 250 L351 250 L351 258 L345 258 Z"/>
+    <path d="M345 264 L351 264 L351 272 L345 272 Z"/>
+    <path d="M345 278 L351 278 L351 286 L345 286 Z"/>
+    <path d="M345 292 L351 292 L351 300 L345 300 Z"/>
+    <path d="M345 306 L351 306 L351 314 L345 314 Z"/>
+    <path d="M345 320 L351 320 L351 328 L345 328 Z"/>
+    <path d="M345 334 L351 334 L351 342 L345 342 Z"/>
+    <path d="M345 348 L351 348 L351 356 L345 356 Z"/>
+    <path d="M345 362 L351 362 L351 370 L345 370 Z"/>
+    <path d="M345 376 L351 376 L351 384 L345 384 Z"/>
+    <path d="M345 390 L351 390 L351 398 L345 398 Z"/>
+    <path d="M345 404 L351 404 L351 412 L345 412 Z"/>
+    <path d="M345 418 L351 418 L351 426 L345 426 Z"/>
+    <path d="M345 432 L351 432 L351 440 L345 440 Z"/>
+    <path d="M357 110 L363 110 L363 118 L357 118 Z"/>
+    <path d="M357 124 L363 124 L363 132 L357 132 Z"/>
+    <path d="M357 138 L363 138 L363 146 L357 146 Z"/>
+    <path d="M357 152 L363 152 L363 160 L357 160 Z"/>
+    <path d="M357 166 L363 166 L363 174 L357 174 Z"/>
+    <path d="M357 180 L363 180 L363 188 L357 188 Z"/>
+    <path d="M357 194 L363 194 L363 202 L357 202 Z"/>
+    <path d="M357 208 L363 208 L363 216 L357 216 Z"/>
+    <path d="M357 222 L363 222 L363 230 L357 230 Z"/>
+    <path d="M357 236 L363 236 L363 244 L357 244 Z"/>
+    <path d="M357 250 L363 250 L363 258 L357 258 Z"/>
+    <path d="M357 264 L363 264 L363 272 L357 272 Z"/>
+    <path d="M357 278 L363 278 L363 286 L357 286 Z"/>
+    <path d="M357 292 L363 292 L363 300 L357 300 Z"/>
+    <path d="M357 306 L363 306 L363 314 L357 314 Z"/>
+    <path d="M357 320 L363 320 L363 328 L357 328 Z"/>
+    <path d="M357 334 L363 334 L363 342 L357 342 Z"/>
+    <path d="M357 348 L363 348 L363 356 L357 356 Z"/>
+    <path d="M357 362 L363 362 L363 370 L357 370 Z"/>
+    <path d="M357 376 L363 376 L363 384 L357 384 Z"/>
+    <path d="M357 390 L363 390 L363 398 L357 398 Z"/>
+    <path d="M357 404 L363 404 L363 412 L357 412 Z"/>
+    <path d="M357 418 L363 418 L363 426 L357 426 Z"/>
+    <path d="M357 432 L363 432 L363 440 L357 440 Z"/>
+    <path d="M369 110 L375 110 L375 118 L369 118 Z"/>
+    <path d="M369 124 L375 124 L375 132 L369 132 Z"/>
+    <path d="M369 138 L375 138 L375 146 L369 146 Z"/>
+    <path d="M369 152 L375 152 L375 160 L369 160 Z"/>
+    <path d="M369 166 L375 166 L375 174 L369 174 Z"/>
+    <path d="M369 180 L375 180 L375 188 L369 188 Z"/>
+    <path d="M369 194 L375 194 L375 202 L369 202 Z"/>
+    <path d="M369 208 L375 208 L375 216 L369 216 Z"/>
+    <path d="M369 222 L375 222 L375 230 L369 230 Z"/>
+    <path d="M369 236 L375 236 L375 244 L369 244 Z"/>
+    <path d="M369 250 L375 250 L375 258 L369 258 Z"/>
+    <path d="M369 264 L375 264 L375 272 L369 272 Z"/>
+    <path d="M369 278 L375 278 L375 286 L369 286 Z"/>
+    <path d="M369 292 L375 292 L375 300 L369 300 Z"/>
+    <path d="M369 306 L375 306 L375 314 L369 314 Z"/>
+    <path d="M369 320 L375 320 L375 328 L369 328 Z"/>
+    <path d="M369 334 L375 334 L375 342 L369 342 Z"/>
+    <path d="M369 348 L375 348 L375 356 L369 356 Z"/>
+    <path d="M369 362 L375 362 L375 370 L369 370 Z"/>
+    <path d="M369 376 L375 376 L375 384 L369 384 Z"/>
+    <path d="M369 390 L375 390 L375 398 L369 398 Z"/>
+    <path d="M369 404 L375 404 L375 412 L369 412 Z"/>
+    <path d="M369 418 L375 418 L375 426 L369 426 Z"/>
+    <path d="M369 432 L375 432 L375 440 L369 440 Z"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M330 86L390 86"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M316 460 L330 86 L360 60 L390 86 L404 460 Z"/>
+    <path d="M290 460 L430 460 L430 500 L290 500 Z"/>
+    <path d="M270 500 L450 500 L450 520 L270 520 Z"/>
+    <path d="M160 520L560 520"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M480 460L480 60M476 464L484 456M476 64L484 56M470 460L486 460M470 60L486 60"/><text x="488" y="263">SHAFT ≈ 10 × BASE</text>
+    <path d="M316 542L404 542M312 546L320 538M400 546L408 538M316 536L316 548M404 536L404 548"/><text x="360" y="556" text-anchor="middle">BASE</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M101 74L342.5 74"/><circle cx="342.5" cy="74" r="1.5" class="solid"/><text x="34" y="77">PYRAMIDION</text>
+    <path d="M113.2 180L342.5 180"/><circle cx="342.5" cy="180" r="1.5" class="solid"/><text x="34" y="183">INSCRIPTIONS</text>
+    <path d="M137.6 320L317.9 320"/><circle cx="317.9" cy="320" r="1.5" class="solid"/><text x="34" y="323">MONOLITHIC SHAFT</text>
+    <path d="M88.8 480L287.5 480"/><circle cx="287.5" cy="480" r="1.5" class="solid"/><text x="34" y="483">PEDESTAL</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">OBELISK</text>
+    <text class="t-sub" x="26" y="710">TALL TAPERING STONE SHAFT WITH A PYRAMIDAL TIP</text>
+    <text class="t-small" x="26" y="726">SOURCE: Ancient Egyptian type; proportions typical (height about ten times</text>
+    <text class="t-small" x="26" y="736">the base width). Generic original drawing by Project Exodus.</text>
+    <text class="t-sub" x="416" y="684">SHEET  URB-09</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="38.87" height="5" class="solid"/><rect x="454.87" y="730" width="38.87" height="5" class="ink l-fine"/><rect x="493.74" y="730" width="38.87" height="5" class="solid"/><rect x="532.61" y="730" width="38.87" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="569.48" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

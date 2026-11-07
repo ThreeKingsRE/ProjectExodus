@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.09 0.31) scale(1)">
   <g class="layer-hatch ink l-hair">
     <path d="M140 260 L580 260 L580 480 L140 480 Z" fill="url(#h-earth)" stroke="none"/>
     <path d="M230 360 L490 360 L490 430 L230 430 Z" style="fill: var(--_paper)"/>
@@ -100,6 +101,7 @@
     <text x="368" y="100" class="t-small t-accent">COLUMN LOAD</text>
     <text x="496" y="470" class="t-small t-accent">BEARING PRESSURE</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">SPREAD FOOTING</text>
@@ -109,9 +111,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STC-06</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN 0.25 M (INDICATIVE)</text>
-    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="29.89" height="5" class="solid"/><rect x="445.89" y="730" width="29.89" height="5" class="ink l-fine"/><rect x="475.78" y="730" width="29.89" height="5" class="solid"/><rect x="505.68" y="730" width="29.89" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="533.57" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

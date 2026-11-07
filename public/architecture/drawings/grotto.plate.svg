@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="82 222 556 312" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Section through a man-made cave set into a mound in a garden: rough rock walls studded with shells, dripping water and a pool, with a sculpture resting inside. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="82" y="222" width="556" height="312"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M132.16 470 L135.55 455.65 L139.52 441.63 L174.42 433.8 L135.02 410.61 L155 401.01 L168.45 390.7 L192.27 386.49 L163.67 354.1 L196.38 356.46 L211.69 349.5 L226.38 342.89 L216.28 309.28 L251.91 326.68 L265.24 318.89 L277.45 308.07 L285.4 283.45 L313.47 312.53 L326.83 299.83 L342.41 288.36 L360 279.89 L375.28 312.28 L394.19 294.6 L413.54 288.79 L429.18 297 L434.46 323.95 L462.73 306.18 L480.18 310.65 L485.45 329.7 L489.38 346.92 L524.66 336.22 L532.15 350.54 L525.87 372.09 L537.19 381.78 L570.47 382.87 L563.08 401.65 L550.65 419.67 L572.46 428.56 L592.18 440.12 L571.72 456.46 L560.56 470 L516.69 470 L525.41 459.59 L541.39 447.02 L525.98 438.12 L508.95 431.28 L518.66 417.43 L524.43 402.98 L498.43 402.14 L489.58 394.68 L494.5 378.1 L488.64 367.09 L461.08 375.32 L458.01 362.08 L453.89 347.42 L440.26 343.99 L418.17 357.65 L414.05 336.93 L401.83 330.61 L386.71 335.08 L371.94 348.67 L360 323.76 L346.25 330.27 L334.08 339.1 L323.65 348.87 L301.72 326.5 L295.5 345.44 L285.96 353.76 L275.55 359.76 L247.72 346.37 L255.61 372.22 L244.13 377.31 L232.17 382.66 L206.62 380.85 L228.96 405.76 L210.35 409 L199.84 416.93 L184.24 424.31 L215.02 442.15 L187.75 448.17 L184.65 458.96 L182 470 Z" fill="url(#h-earth)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M215.02 450.15q5 -8 10 0M210.35 417q5 -8 10 0M232.17 390.66q5 -8 10 0M247.72 354.37q5 -8 10 0M295.5 353.44q5 -8 10 0M334.08 347.1q5 -8 10 0M371.94 356.67q5 -8 10 0M414.05 344.93q5 -8 10 0M453.89 355.42q5 -8 10 0M488.64 375.09q5 -8 10 0M498.43 410.14q5 -8 10 0M508.95 439.28q5 -8 10 0"/>
+    <path d="M420 430q20 -30 50 -20q10 10 0 20z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M240 470q120 30 240 0"/>
+    <path d="M100 470L620 470"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M182 470 L184.65 458.96 L187.75 448.17 L215.02 442.15 L184.24 424.31 L199.84 416.93 L210.35 409 L228.96 405.76 L206.62 380.85 L232.17 382.66 L244.13 377.31 L255.61 372.22 L247.72 346.37 L275.55 359.76 L285.96 353.76 L295.5 345.44 L301.72 326.5 L323.65 348.87 L334.08 339.1 L346.25 330.27 L360 323.76 L371.94 348.67 L386.71 335.08 L401.83 330.61 L414.05 336.93 L418.17 357.65 L440.26 343.99 L453.89 347.42 L458.01 362.08 L461.08 375.32 L488.64 367.09 L494.5 378.1 L489.58 394.68 L498.43 402.14 L524.43 402.98 L518.66 417.43 L508.95 431.28 L525.98 438.12 L541.39 447.02 L525.41 459.59 L516.69 470"/>
+    <path d="M132.16 470 L135.55 455.65 L139.52 441.63 L174.42 433.8 L135.02 410.61 L155 401.01 L168.45 390.7 L192.27 386.49 L163.67 354.1 L196.38 356.46 L211.69 349.5 L226.38 342.89 L216.28 309.28 L251.91 326.68 L265.24 318.89 L277.45 308.07 L285.4 283.45 L313.47 312.53 L326.83 299.83 L342.41 288.36 L360 279.89 L375.28 312.28 L394.19 294.6 L413.54 288.79 L429.18 297 L434.46 323.95 L462.73 306.18 L480.18 310.65 L485.45 329.7 L489.38 346.92 L524.66 336.22 L532.15 350.54 L525.87 372.09 L537.19 381.78 L570.47 382.87 L563.08 401.65 L550.65 419.67 L572.46 428.56 L592.18 440.12 L571.72 456.46 L560.56 470"/>
+    <path d="M330 350v40M380 340v50" style="stroke: var(--_accent)" stroke-dasharray="3 4"/>
+  </g>
+  <text class="t-credit" x="88" y="523">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing</text>
+  <text class="t-credit" x="88" y="532">reproduced.</text>
+</svg>

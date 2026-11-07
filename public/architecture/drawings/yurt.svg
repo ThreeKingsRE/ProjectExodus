@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.51 2.26) scale(0.98)">
   <g class="layer-fine ink l-fine">
     <path d="M170 470L192 360M192 470L170 360M192 470L214 360M214 470L192 360M214 470L236 360M236 470L214 360M236 470L258 360M258 470L236 360M258 470L280 360M280 470L258 360M280 470L302 360M302 470L280 360M302 470L324 360M324 470L302 360M324 470L346 360M346 470L324 360M346 470L368 360M368 470L346 360M368 470L390 360M390 470L368 360M390 470L412 360M412 470L390 360M412 470L434 360M434 470L412 360M434 470L456 360M456 470L434 360M456 470L478 360M478 470L456 360M478 470L500 360M500 470L478 360M500 470L522 360M522 470L500 360M522 470L544 360M544 470L522 360M544 470L566 360M566 470L544 360"/>
   </g>
@@ -73,6 +74,7 @@
   <g class="layer-notes ">
     <text x="546" y="352" text-anchor="end" class="t-small t-accent">TENSION BAND</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">YURT</text>
@@ -82,9 +84,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STC-20</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
-    <rect x="416" y="730" width="38" height="5" class="solid"/><rect x="454" y="730" width="38" height="5" class="ink l-fine"/><rect x="492" y="730" width="38" height="5" class="solid"/><rect x="530" y="730" width="38" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="37.19" height="5" class="solid"/><rect x="453.19" y="730" width="37.19" height="5" class="ink l-fine"/><rect x="490.38" y="730" width="37.19" height="5" class="solid"/><rect x="527.57" y="730" width="37.19" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="566" y="749">4</text>
+    <text class="t-small" x="562.77" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

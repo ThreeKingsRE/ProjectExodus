@@ -796,5 +796,179 @@
   "sheetNo": "STC-22",
   "source": "Principle as used in Brunelleschi’s dome of Santa Maria del Fiore, Florence (1420–36). Simplified; not a survey. Original drawing by Project Exodus.",
   "aspect": 1.296
+ },
+ "allee": {
+  "view": "PLAN",
+  "sheetNo": "GDN-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.44
+ },
+ "canal": {
+  "view": "PLAN",
+  "sheetNo": "GDN-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.578
+ },
+ "terrace": {
+  "view": "SECTION",
+  "sheetNo": "GDN-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.354
+ },
+ "ha-ha": {
+  "view": "SECTION",
+  "sheetNo": "GDN-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.659
+ },
+ "cascade": {
+  "view": "SECTION",
+  "sheetNo": "GDN-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.23
+ },
+ "fountain": {
+  "view": "ELEVATION",
+  "sheetNo": "GDN-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.147
+ },
+ "pergola": {
+  "view": "ELEVATION",
+  "sheetNo": "GDN-07",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.738
+ },
+ "arbor": {
+  "view": "ELEVATION",
+  "sheetNo": "GDN-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.244
+ },
+ "folly": {
+  "view": "ELEVATION",
+  "sheetNo": "GDN-09",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.172
+ },
+ "gazebo": {
+  "view": "ELEVATION",
+  "sheetNo": "GDN-10",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.444
+ },
+ "belvedere": {
+  "view": "ELEVATION",
+  "sheetNo": "GDN-11",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.14
+ },
+ "grotto": {
+  "view": "SECTION",
+  "sheetNo": "GDN-12",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 2.047
+ },
+ "nymphaeum": {
+  "view": "PLAN",
+  "sheetNo": "GDN-13",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.789
+ },
+ "garden-wall": {
+  "view": "ELEVATION",
+  "sheetNo": "GDN-14",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.697
+ },
+ "roof-garden": {
+  "view": "SECTION",
+  "sheetNo": "GDN-15",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.427
+ },
+ "arcade": {
+  "view": "ELEVATION",
+  "sheetNo": "URB-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 2.008
+ },
+ "colonnade": {
+  "view": "ELEVATION",
+  "sheetNo": "URB-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 2.008
+ },
+ "aqueduct": {
+  "view": "ELEVATION",
+  "sheetNo": "URB-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.472
+ },
+ "bridge": {
+  "view": "ELEVATION",
+  "sheetNo": "URB-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 2.239
+ },
+ "city-gate": {
+  "view": "ELEVATION",
+  "sheetNo": "URB-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.302
+ },
+ "triumphal-arch": {
+  "view": "ELEVATION",
+  "sheetNo": "URB-06",
+  "source": "Three-bay Roman type (cf. the Arch of Constantine, Rome, 315 CE). Generic original drawing by Project Exodus; inscription illustrative, not a survey.",
+  "aspect": 1.325
+ },
+ "imperial-gate-bab-i-humayun": {
+  "view": "ELEVATION",
+  "sheetNo": "URB-07",
+  "source": "After the Bab-ı Hümayun, outer gate of Topkapı Palace, Istanbul (1478). Simplified; not a survey. Original drawing by Project Exodus.",
+  "aspect": 1.173
+ },
+ "clock-tower": {
+  "view": "ELEVATION",
+  "sheetNo": "URB-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.731
+ },
+ "obelisk": {
+  "view": "ELEVATION",
+  "sheetNo": "URB-09",
+  "source": "Ancient Egyptian type; proportions typical (height about ten times the base width). Generic original drawing by Project Exodus.",
+  "aspect": 0.872
+ },
+ "plaza": {
+  "view": "PLAN",
+  "sheetNo": "URB-10",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "layered-courtyard-system": {
+  "view": "PLAN",
+  "sheetNo": "URB-11",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.665
+ },
+ "market-hall": {
+  "view": "SECTION",
+  "sheetNo": "URB-12",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.955
+ },
+ "metro-entrance": {
+  "view": "ELEVATION",
+  "sheetNo": "URB-13",
+  "source": "In the manner of Hector Guimard’s Art Nouveau Paris Métro entrances (c. 1900). Generic; not a copy of a specific entrance. Original drawing by Project Exodus.",
+  "aspect": 1
+ },
+ "excavation-trench": {
+  "view": "SECTION",
+  "sheetNo": "URB-14",
+  "source": "Recording conventions of single-context archaeological section drawing (layer numbering, datum, scale). Illustrative, not a real site. Original drawing by Project Exodus.",
+  "aspect": 1.451
  }
 }

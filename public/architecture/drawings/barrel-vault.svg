@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(2.89 19.49) scale(0.88)">
   <g class="layer-hatch ink l-hair">
     <path d="M156 330 L225 330 L225 548.5 L156 548.5 Z" fill="url(#h-stone)" stroke="none"/>
     <path d="M455 330 L524 330 L524 548.5 L455 548.5 Z" fill="url(#h-stone)" stroke="none"/>
@@ -81,6 +82,7 @@
     <text x="380" y="169.4" class="t-small">ROOF OVER (INDICATIVE)</text>
     <text x="526" y="316" class="t-small t-accent">THRUST</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">BARREL VAULT</text>
@@ -90,9 +92,9 @@
     <text class="t-sub" x="416" y="684">SHEET  VLT-01</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN TENTHS OF SPAN</text>
-    <rect x="416" y="730" width="23" height="5" class="solid"/><rect x="439" y="730" width="23" height="5" class="ink l-fine"/><rect x="462" y="730" width="23" height="5" class="solid"/><rect x="485" y="730" width="23" height="5" class="ink l-fine"/><rect x="508" y="730" width="23" height="5" class="solid"/>
+    <rect x="416" y="730" width="20.23" height="5" class="solid"/><rect x="436.23" y="730" width="20.23" height="5" class="ink l-fine"/><rect x="456.46" y="730" width="20.23" height="5" class="solid"/><rect x="476.69" y="730" width="20.23" height="5" class="ink l-fine"/><rect x="496.92" y="730" width="20.23" height="5" class="solid"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="529" y="749">5</text>
+    <text class="t-small" x="515.15" y="749">5</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

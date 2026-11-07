@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.92 4.45) scale(0.96)">
   <g class="layer-hatch ink l-hair">
     <path d="M210 148 L490 148 L490 160 L210 160 Z" fill="url(#h-concrete)" stroke="none"/>
     <path d="M210 248 L490 248 L490 260 L210 260 Z" fill="url(#h-concrete)" stroke="none"/>
@@ -120,6 +121,7 @@
     <text x="160" y="526" class="t-small t-accent">SOIL REACTION</text>
     <text x="350" y="128" text-anchor="middle" class="t-small t-accent">SELF-WEIGHT OF EVERY PERMANENT PART</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">DEAD LOAD</text>
@@ -129,9 +131,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STC-05</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN ARROW SPACING (INDICATIVE)</text>
-    <rect x="416" y="730" width="26" height="5" class="solid"/><rect x="442" y="730" width="26" height="5" class="ink l-fine"/><rect x="468" y="730" width="26" height="5" class="solid"/><rect x="494" y="730" width="26" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="25" height="5" class="solid"/><rect x="441" y="730" width="25" height="5" class="ink l-fine"/><rect x="466.01" y="730" width="25" height="5" class="solid"/><rect x="491.01" y="730" width="25" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="518" y="749">4</text>
+    <text class="t-small" x="514.01" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

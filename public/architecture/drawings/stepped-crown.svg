@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0 22)">
   <g class="layer-fine ink l-fine">
     <path d="M231.82 378L231.82 514"/>
     <path d="M253.64 378L253.64 514"/>
@@ -102,6 +103,7 @@
   <g class="layer-notes ">
     <text x="330" y="548" text-anchor="middle" class="t-small">TOWER CONTINUES</text>
     <text x="430" y="300" class="t-small t-accent">ZONING ENVELOPE</text>
+  </g>
   </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>

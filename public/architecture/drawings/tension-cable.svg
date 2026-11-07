@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.51 1.4) scale(0.98)">
   <g class="layer-hatch ink l-hair">
     <path d="M222 110 L238 110 L238 470 L222 470 Z" fill="url(#h-stone)" stroke="none"/>
     <path d="M238 300 L568 300 L568 312 L238 312 Z" fill="url(#h-concrete)" stroke="none"/>
@@ -80,6 +81,7 @@
     <text x="126" y="370" class="t-small t-accent">TENSION</text>
     <text x="238" y="80" class="t-small t-accent">MAST IN COMPRESSION</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">TENSION CABLE</text>
@@ -89,9 +91,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STC-08</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
-    <rect x="416" y="730" width="40" height="5" class="solid"/><rect x="456" y="730" width="40" height="5" class="ink l-fine"/><rect x="496" y="730" width="40" height="5" class="solid"/><rect x="536" y="730" width="40" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="39.15" height="5" class="solid"/><rect x="455.15" y="730" width="39.15" height="5" class="ink l-fine"/><rect x="494.3" y="730" width="39.15" height="5" class="solid"/><rect x="533.45" y="730" width="39.15" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="574" y="749">4</text>
+    <text class="t-small" x="570.6" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

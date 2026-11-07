@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Plaza: plan</title>
+  <desc id="d">Plan of a public square enclosed by building frontages with streets entering at its edges, an arcade along one side, and paving radiating from a central fountain. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="plaza-open"><rect x="170" y="80" width="350" height="380"/></clipPath>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.09 0.17) scale(1)">
+  <g class="layer-hatch ink l-hair">
+    <path d="M140 50 L300 50 L300 80 L140 80 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M330 50 L580 50 L580 80 L330 80 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M140 460 L580 460 L580 490 L140 490 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M140 80 L170 80 L170 240 L140 240 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M140 300 L170 300 L170 460 L140 460 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M550 80 L580 80 L580 460 L550 460 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#plaza-open)"><path d="M400 270L760 270"/><path d="M396.96 285.31L729.55 423.07"/><path d="M388.28 298.28L642.84 552.84"/><path d="M375.31 306.96L513.07 639.55"/><path d="M360 310L360 670"/><path d="M344.69 306.96L206.93 639.55"/><path d="M331.72 298.28L77.16 552.84"/><path d="M323.04 285.31L-9.55 423.07"/><path d="M320 270L-40 270"/><path d="M323.04 254.69L-9.55 116.93"/><path d="M331.72 241.72L77.16 -12.84"/><path d="M344.69 233.04L206.93 -99.55"/><path d="M360 230L360 -130"/><path d="M375.31 233.04L513.07 -99.55"/><path d="M388.28 241.72L642.84 -12.84"/><path d="M396.96 254.69L729.55 116.93"/></g>
+    <g><circle cx="360" cy="270" r="90"/><circle cx="360" cy="270" r="140"/></g>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M396 270 L395.56 275.63 L394.24 281.12 L392.08 286.34 L389.12 291.16 L385.46 295.46 L381.16 299.12 L376.34 302.08 L371.12 304.24 L365.63 305.56 L360 306 L354.37 305.56 L348.88 304.24 L343.66 302.08 L338.84 299.12 L334.54 295.46 L330.88 291.16 L327.92 286.34 L325.76 281.12 L324.44 275.63 L324 270 L324.44 264.37 L325.76 258.88 L327.92 253.66 L330.88 248.84 L334.54 244.54 L338.84 240.88 L343.66 237.92 L348.88 235.76 L354.37 234.44 L360 234 L365.63 234.44 L371.12 235.76 L376.34 237.92 L381.16 240.88 L385.46 244.54 L389.12 248.84 L392.08 253.66 L394.24 258.88 L395.56 264.37 L396 270 Z" style="fill: var(--_paper)"/>
+    <circle cx="200" cy="110" r="2" class="solid"/>
+    <circle cx="490" cy="110" r="2" class="solid"/>
+    <circle cx="200" cy="430" r="2" class="solid"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <circle cx="532" cy="100" r="4"/>
+    <circle cx="532" cy="130" r="4"/>
+    <circle cx="532" cy="160" r="4"/>
+    <circle cx="532" cy="190" r="4"/>
+    <circle cx="532" cy="220" r="4"/>
+    <circle cx="532" cy="250" r="4"/>
+    <circle cx="532" cy="280" r="4"/>
+    <circle cx="532" cy="310" r="4"/>
+    <circle cx="532" cy="340" r="4"/>
+    <circle cx="532" cy="370" r="4"/>
+    <circle cx="532" cy="400" r="4"/>
+    <circle cx="532" cy="430" r="4"/>
+    <circle cx="360" cy="270" r="36"/>
+    <circle cx="360" cy="270" r="12"/>
+    <path d="M216 110 L213.29 113.56 L213.86 118 L209.73 119.73 L208 123.86 L203.56 123.29 L200 126 L196.44 123.29 L192 123.86 L190.27 119.73 L186.14 118 L186.71 113.56 L184 110 L186.71 106.44 L186.14 102 L190.27 100.27 L192 96.14 L196.44 96.71 L200 94 L203.56 96.71 L208 96.14 L209.73 100.27 L213.86 102 L213.29 106.44 L216 110 Z"/>
+    <path d="M506 110 L503.29 113.56 L503.86 118 L499.73 119.73 L498 123.86 L493.56 123.29 L490 126 L486.44 123.29 L482 123.86 L480.27 119.73 L476.14 118 L476.71 113.56 L474 110 L476.71 106.44 L476.14 102 L480.27 100.27 L482 96.14 L486.44 96.71 L490 94 L493.56 96.71 L498 96.14 L499.73 100.27 L503.86 102 L503.29 106.44 L506 110 Z"/>
+    <path d="M216 430 L213.29 433.56 L213.86 438 L209.73 439.73 L208 443.86 L203.56 443.29 L200 446 L196.44 443.29 L192 443.86 L190.27 439.73 L186.14 438 L186.71 433.56 L184 430 L186.71 426.44 L186.14 422 L190.27 420.27 L192 416.14 L196.44 416.71 L200 414 L203.56 416.71 L208 416.14 L209.73 420.27 L213.86 422 L213.29 426.44 L216 430 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M140 50 L300 50 L300 80 L140 80 Z"/>
+    <path d="M330 50 L580 50 L580 80 L330 80 Z"/>
+    <path d="M140 460 L580 460 L580 490 L140 490 Z"/>
+    <path d="M140 80 L170 80 L170 240 L140 240 Z"/>
+    <path d="M140 300 L170 300 L170 460 L140 460 Z"/>
+    <path d="M550 80 L580 80 L580 460 L550 460 Z"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M170 510L550 510M166 514L174 506M546 514L554 506M170 504L170 516M550 504L550 516"/><text x="360" y="524" text-anchor="middle">OPEN SQUARE</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M180.3 157L126 157L137.5 160"/><circle cx="137.5" cy="160" r="1.5" class="solid"/><text x="34" y="160">BUILDING FRONTAGE (CUT)</text>
+    <path d="M137.6 227L126 227L257.5 230"/><circle cx="257.5" cy="230" r="1.5" class="solid"/><text x="34" y="230">RADIATING PAVING</text>
+    <path d="M113.2 267L126 267L137.5 270"/><circle cx="137.5" cy="270" r="1.5" class="solid"/><text x="34" y="270">STREET ENTRY</text>
+    <path d="M88.8 282L126 282L321.5 270"/><circle cx="321.5" cy="270" r="1.5" class="solid"/><text x="34" y="285">FOUNTAIN</text>
+    <path d="M76.6 417L126 417L525.5 420"/><circle cx="525.5" cy="420" r="1.5" class="solid"/><text x="34" y="420">ARCADE</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">PLAZA</text>
+    <text class="t-sub" x="26" y="710">OPEN PUBLIC SQUARE FRAMED BY BUILDINGS</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  URB-10</text>
+    <text class="t-small" x="416" y="699">PLAN</text>
+    <text class="t-small" x="416" y="724">SCALE IN TENTHS OF WIDTH</text>
+    <rect x="416" y="730" width="37.86" height="5" class="solid"/><rect x="453.86" y="730" width="37.86" height="5" class="ink l-fine"/><rect x="491.73" y="730" width="37.86" height="5" class="solid"/><rect x="529.59" y="730" width="37.86" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="565.45" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

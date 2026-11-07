@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(1.88 10.36) scale(0.92)">
   <g class="layer-hatch ink l-hair">
     <path d="M325 160 L395 160 L395 500 L325 500 Z" fill="url(#h-brick)" stroke="none"/>
     <path d="M395 300 L615 300 L615 326 L395 326 Z" fill="url(#h-concrete)" stroke="none"/>
@@ -68,6 +69,7 @@
   <g class="layer-notes ">
     <text x="515" y="290" class="t-sub">ROOF</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">PARAPET</text>
@@ -77,9 +79,9 @@
     <text class="t-sub" x="416" y="684">SHEET  WAL-05</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN 100 MM</text>
-    <rect x="416" y="730" width="35" height="5" class="solid"/><rect x="451" y="730" width="35" height="5" class="ink l-fine"/><rect x="486" y="730" width="35" height="5" class="solid"/><rect x="521" y="730" width="35" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="32.25" height="5" class="solid"/><rect x="448.25" y="730" width="32.25" height="5" class="ink l-fine"/><rect x="480.51" y="730" width="32.25" height="5" class="solid"/><rect x="512.76" y="730" width="32.25" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="554" y="749">4</text>
+    <text class="t-small" x="543.02" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

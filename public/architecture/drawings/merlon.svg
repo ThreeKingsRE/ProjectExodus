@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.77 5.79) scale(0.97)">
   <g class="layer-hatch ink l-hair">
     <path d="M326 200 L374 200 L374 260 L326 260 Z" fill="url(#h-stone)" stroke="none"/>
   </g>
@@ -93,6 +94,7 @@
   <g class="layer-notes ">
     <text x="556" y="286" text-anchor="end" class="t-small">WALL WALK BEHIND</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">MERLON</text>
@@ -102,9 +104,9 @@
     <text class="t-sub" x="416" y="684">SHEET  FRT-02</text>
     <text class="t-small" x="416" y="699">ELEVATION</text>
     <text class="t-small" x="416" y="724">SCALE IN HALF BAYS</text>
-    <rect x="416" y="730" width="39" height="5" class="solid"/><rect x="455" y="730" width="39" height="5" class="ink l-fine"/><rect x="494" y="730" width="39" height="5" class="solid"/><rect x="533" y="730" width="39" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="37.75" height="5" class="solid"/><rect x="453.75" y="730" width="37.75" height="5" class="ink l-fine"/><rect x="491.51" y="730" width="37.75" height="5" class="solid"/><rect x="529.26" y="730" width="37.75" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="570" y="749">4</text>
+    <text class="t-small" x="565.01" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

@@ -132,14 +132,70 @@ function assertSource(spec: SheetSpec) {
   }
 }
 
+/**
+ * Fit the drawing into AREA. Drawings are authored in page px; if one runs past
+ * the right/bottom edge or above the top, scale it (uniformly, anchored at the
+ * left margin so the label column stays put) and shift it vertically.
+ * The scale bar is scaled with it, so dimensions stay honest.
+ */
+/** Approximate extents of the labels/dimension text on the drawing layers (monospace, so width ≈ chars). */
+function textExtents(spec: SheetSpec): [number, number, number, number] | null {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity
+  for (const n of LAYERS) {
+    for (const chunk of spec.layers[n] ?? []) {
+      for (const m of chunk.matchAll(/<text ([^>]*)>([^<]*)<\/text>/g)) {
+        const attrs = m[1]
+        const x = Number(/\bx="([-\d.]+)"/.exec(attrs)?.[1])
+        const y = Number(/\by="([-\d.]+)"/.exec(attrs)?.[1])
+        if (!Number.isFinite(x) || !Number.isFinite(y) || /transform=/.test(attrs)) continue
+        const size = /t-small|t-credit/.test(attrs) ? 7.5 : 9
+        const w = m[2].replace(/&[a-z#0-9]+;/g, '_').length * size * 0.68
+        const anchor = /text-anchor="(middle|end)"/.exec(attrs)?.[1]
+        const left = anchor === 'middle' ? x - w / 2 : anchor === 'end' ? x - w : x
+        x0 = Math.min(x0, left); x1 = Math.max(x1, left + w)
+        y0 = Math.min(y0, y - size); y1 = Math.max(y1, y + 2)
+      }
+    }
+  }
+  return Number.isFinite(x0) ? [x0, y0, x1, y1] : null
+}
+
+/**
+ * Fit the drawing into AREA. Drawings are authored in page px; if one (or its
+ * labels) runs past the right/bottom edge or above the top, scale it uniformly,
+ * anchored at the left margin so the label column stays put, and shift it
+ * vertically. The scale bar is scaled with it, so dimensions stay honest.
+ */
+export function sheetFit(spec: SheetSpec): { s: number; transform: string } {
+  const [, by0, bx1, by1] = spec.bounds
+  const tol = 6 // bounds carry a 4px pad; ignore overruns within it
+  const t = textExtents(spec)
+  const cx1 = Math.max(bx1 - tol, t ? t[2] : -Infinity)
+  const cy0 = Math.min(by0, t ? t[1] : Infinity)
+  const cy1 = Math.max(by1, t ? t[3] : -Infinity)
+  let s = 1
+  if (cx1 > AREA.x1) s = Math.min(s, (AREA.x1 - AREA.x0) / (cx1 - AREA.x0))
+  if (cy1 - cy0 > AREA.y1 - AREA.y0) s = Math.min(s, (AREA.y1 - AREA.y0) / (cy1 - cy0))
+  // vertical placement after scaling about the drawing's top edge
+  let top = cy0
+  if (cy0 < AREA.y0 - tol) top = AREA.y0
+  if (top + (cy1 - cy0) * s > AREA.y1 + tol) top = AREA.y1 - (cy1 - cy0) * s
+  const ty = top - cy0 * s
+  const tx = AREA.x0 * (1 - s)
+  if (s === 1 && Math.abs(ty) < 0.01) return { s, transform: '' }
+  return { s, transform: `translate(${f(tx)} ${f(ty)})${s === 1 ? '' : ` scale(${f(s)})`}` }
+}
+
 export function renderSheet(spec: SheetSpec): string {
   assertSource(spec)
+  const fit = sheetFit(spec)
   const tbTop = PAGE_H - 116
   const split = PAGE_W - 200
   // The credit is never truncated: wrap to the title block, fail the build if it can't fit
   const sourceLines = wrap(`SOURCE: ${spec.source}`, 74)
   if (sourceLines.length > 4) throw new Error(`${spec.id}: source credit too long for the title block (${sourceLines.length} lines; max 4)`)
-  const { unitPx, unitName } = spec.scale
+  const unitName = spec.scale.unitName
+  const unitPx = spec.scale.unitPx * fit.s
   // keep the scale bar inside the title block whatever the unit size
   const count = Math.max(1, Math.min(spec.scale.count, Math.floor(168 / unitPx)))
   const bar = Array.from({ length: count }, (_, i) =>
@@ -156,7 +212,7 @@ export function renderSheet(spec: SheetSpec): string {
   </defs>
   <rect class="paper" width="${PAGE_W}" height="${PAGE_H}"/>
   <rect class="ink l-fine" x="12" y="12" width="${PAGE_W - 24}" height="${PAGE_H - 24}"/>
-${layersSvg(spec, LAYERS)}
+${fit.transform ? `  <g transform="${fit.transform}">\n${layersSvg(spec, LAYERS)}\n  </g>` : layersSvg(spec, LAYERS)}
   <g class="title-block">
     <path class="ink l-fine" d="M12 ${tbTop}H${PAGE_W - 12}M${split} ${tbTop}V${PAGE_H - 12}"/>
     <text class="t-title" x="26" y="${tbTop + 28}">${esc(spec.title.toUpperCase())}</text>

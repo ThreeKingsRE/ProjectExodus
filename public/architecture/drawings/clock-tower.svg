@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Clock Tower: elevation</title>
+  <desc id="d">Elevation of a tall masonry tower with a large clock face near its top, a belfry with louvred openings above, and a pointed spire. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="ct"><path d="M315 170 L405 170 L405 520 L315 520 Z"/></clipPath>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0 62)">
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#ct)"><path d="M-1.39 -16.39L721.39 -16.39M-1.39 -2.39L721.39 -2.39M-1.39 11.61L721.39 11.61M-1.39 25.61L721.39 25.61M-1.39 39.61L721.39 39.61M-1.39 53.61L721.39 53.61M-1.39 67.61L721.39 67.61M-1.39 81.61L721.39 81.61M-1.39 95.61L721.39 95.61M-1.39 109.61L721.39 109.61M-1.39 123.61L721.39 123.61M-1.39 137.61L721.39 137.61M-1.39 151.61L721.39 151.61M-1.39 165.61L721.39 165.61M-1.39 179.61L721.39 179.61M-1.39 193.61L721.39 193.61M-1.39 207.61L721.39 207.61M-1.39 221.61L721.39 221.61M-1.39 235.61L721.39 235.61M-1.39 249.61L721.39 249.61M-1.39 263.61L721.39 263.61M-1.39 277.61L721.39 277.61M-1.39 291.61L721.39 291.61M-1.39 305.61L721.39 305.61M-1.39 319.61L721.39 319.61M-1.39 333.61L721.39 333.61M-1.39 347.61L721.39 347.61M-1.39 361.61L721.39 361.61M-1.39 375.61L721.39 375.61M-1.39 389.61L721.39 389.61M-1.39 403.61L721.39 403.61M-1.39 417.61L721.39 417.61M-1.39 431.61L721.39 431.61M-1.39 445.61L721.39 445.61M-1.39 459.61L721.39 459.61M-1.39 473.61L721.39 473.61M-1.39 487.61L721.39 487.61M-1.39 501.61L721.39 501.61M-1.39 515.61L721.39 515.61M-1.39 529.61L721.39 529.61M-1.39 543.61L721.39 543.61M-1.39 557.61L721.39 557.61M-1.39 571.61L721.39 571.61M-1.39 585.61L721.39 585.61M-1.39 599.61L721.39 599.61M-1.39 613.61L721.39 613.61M-1.39 627.61L721.39 627.61M-1.39 641.61L721.39 641.61M-1.39 655.61L721.39 655.61M-1.39 669.61L721.39 669.61M-1.39 683.61L721.39 683.61M-1.39 697.61L721.39 697.61"/></g>
+    <path d="M394 230 L393.58 235.32 L392.34 240.51 L390.29 245.44 L387.51 249.98 L384.04 254.04 L379.98 257.51 L375.44 260.29 L370.51 262.34 L365.32 263.58 L360 264 L354.68 263.58 L349.49 262.34 L344.56 260.29 L340.02 257.51 L335.96 254.04 L332.49 249.98 L329.71 245.44 L327.66 240.51 L326.42 235.32 L326 230 L326.42 224.68 L327.66 219.49 L329.71 214.56 L332.49 210.02 L335.96 205.96 L340.02 202.49 L344.56 199.71 L349.49 197.66 L354.68 196.42 L360 196 L365.32 196.42 L370.51 197.66 L375.44 199.71 L379.98 202.49 L384.04 205.96 L387.51 210.02 L390.29 214.56 L392.34 219.49 L393.58 224.68 L394 230 Z" style="fill: var(--_paper)"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M385 230L390 230"/>
+    <path d="M381.65 242.5L385.98 245"/>
+    <path d="M372.5 251.65L375 255.98"/>
+    <path d="M360 255L360 260"/>
+    <path d="M347.5 251.65L345 255.98"/>
+    <path d="M338.35 242.5L334.02 245"/>
+    <path d="M335 230L330 230"/>
+    <path d="M338.35 217.5L334.02 215"/>
+    <path d="M347.5 208.35L345 204.02"/>
+    <path d="M360 205L360 200"/>
+    <path d="M372.5 208.35L375 204.02"/>
+    <path d="M381.65 217.5L385.98 215"/>
+    <path d="M332 128L352 131"/>
+    <path d="M332 134L352 137"/>
+    <path d="M332 140L352 143"/>
+    <path d="M332 146L352 149"/>
+    <path d="M332 152L352 155"/>
+    <path d="M368 128L388 131"/>
+    <path d="M368 134L388 137"/>
+    <path d="M368 140L388 143"/>
+    <path d="M368 146L388 149"/>
+    <path d="M368 152L388 155"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M315 170 L405 170 L405 520 L315 520 Z"/>
+    <circle cx="360" cy="230" r="34"/>
+    <circle cx="360" cy="230" r="30"/>
+    <path d="M360 230L374 216" stroke-width="2"/>
+    <path d="M360 230L360 206" stroke-width="1.4"/>
+    <path d="M309 100 L411 100 L411 170 L309 170 Z"/>
+    <path d="M330 160v-36a12 12 0 0 1 24 0v36"/>
+    <path d="M366 160v-36a12 12 0 0 1 24 0v36"/>
+    <path d="M305 100 L360 -30 L415 100 Z"/>
+    <path d="M344 450 L376 450 L376 520 L344 520 Z"/>
+    <path d="M160 520L560 520"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M315 542L405 542M311 546L319 538M401 546L409 538M315 536L315 548M405 536L405 548"/><text x="360" y="556" text-anchor="middle">SHAFT</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M70.5 30L327.5 30"/><circle cx="327.5" cy="30" r="1.5" class="solid"/><text x="34" y="33">SPIRE</text>
+    <path d="M76.6 130L306.5 130"/><circle cx="306.5" cy="130" r="1.5" class="solid"/><text x="34" y="133">BELFRY</text>
+    <path d="M101 230L323.5 230"/><circle cx="323.5" cy="230" r="1.5" class="solid"/><text x="34" y="233">CLOCK FACE</text>
+    <path d="M70.5 370L312.5 370"/><circle cx="312.5" cy="370" r="1.5" class="solid"/><text x="34" y="373">SHAFT</text>
+    <path d="M64.4 485L341.5 485"/><circle cx="341.5" cy="485" r="1.5" class="solid"/><text x="34" y="488">DOOR</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">CLOCK TOWER</text>
+    <text class="t-sub" x="26" y="710">TOWER CARRYING A PUBLIC CLOCK AND BELLS</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  URB-08</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="40" height="5" class="solid"/><rect x="456" y="730" width="40" height="5" class="ink l-fine"/><rect x="496" y="730" width="40" height="5" class="solid"/><rect x="536" y="730" width="40" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="574" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

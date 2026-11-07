@@ -10,7 +10,7 @@
  */
 import { mkdirSync, readFileSync, writeFileSync, existsSync, readdirSync, unlinkSync } from 'fs'
 import { gzipSync } from 'zlib'
-import { renderSheet, renderPlate, type SheetSpec } from './sheet'
+import { renderSheet, renderPlate, sheetFit, type SheetSpec } from './sheet'
 import { ORDERS, buildOrder } from './families/orders'
 import { ARCHES, buildArch } from './families/arches'
 import { VAULT_SHEETS } from './families/vaults'
@@ -20,13 +20,14 @@ import { ROOF_SHEETS } from './families/roofs'
 import { INTERIOR_SHEETS } from './families/interiors'
 import { OPENING_SHEETS } from './families/openings'
 import { STRUCTURE_SHEETS } from './families/structure'
+import { LANDSCAPE_SHEETS } from './families/landscape'
 import { ELEMENT_SUMMARIES } from '../../../data/architecture/summary'
 
 const OUT_DIR = 'public/architecture/drawings'
 const MANIFEST = 'data/architecture/drawings-manifest.json'
 const MAX_GZIP = 14 * 1024 // per file budget
 
-const specs: SheetSpec[] = [...ORDERS.map(buildOrder), ...ARCHES.map(buildArch), ...VAULT_SHEETS.map((build) => build()), ...FLOOR_SHEETS.map((build) => build()), ...STAIR_SHEETS.map((build) => build()), ...ROOF_SHEETS.map((build) => build()), ...INTERIOR_SHEETS.map((build) => build()), ...OPENING_SHEETS.map((build) => build()), ...STRUCTURE_SHEETS.map((build) => build())]
+const specs: SheetSpec[] = [...ORDERS.map(buildOrder), ...ARCHES.map(buildArch), ...VAULT_SHEETS.map((build) => build()), ...FLOOR_SHEETS.map((build) => build()), ...STAIR_SHEETS.map((build) => build()), ...ROOF_SHEETS.map((build) => build()), ...INTERIOR_SHEETS.map((build) => build()), ...OPENING_SHEETS.map((build) => build()), ...STRUCTURE_SHEETS.map((build) => build()), ...LANDSCAPE_SHEETS.map((build) => build())]
 
 const known = new Set(ELEMENT_SUMMARIES.map((e) => e.id))
 const files = new Map<string, string>()
@@ -36,6 +37,10 @@ const problems: string[] = []
 for (const spec of specs) {
   if (!known.has(spec.id)) problems.push(`${spec.id}: not an element id in the summaries`)
   if (manifest[spec.id]) problems.push(`${spec.id}: built twice`)
+  {
+    const { s } = sheetFit(spec)
+    if (s < 0.8) problems.push(`${spec.id}: drawing had to shrink to ${Math.round(s * 100)}% to fit the sheet; redraw it smaller`)
+  }
   const sheet = renderSheet(spec)
   const plate = renderPlate(spec)
   for (const [name, svg] of [[`${spec.id}.svg`, sheet], [`${spec.id}.plate.svg`, plate]] as const) {

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="122 146 476 398" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a fortified entrance to a walled town: an arched gateway in a battlemented gatehouse flanked by two tall towers with arrow slits. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="cg"><path d="M190 180 L530 180 L530 500 L190 500 Z"/></clipPath>
+  </defs>
+  <rect class="paper" x="122" y="146" width="476" height="398"/>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#cg)"><path d="M-106.9 -126.9L826.9 -126.9M-106.9 -110.9L826.9 -110.9M-106.9 -94.9L826.9 -94.9M-106.9 -78.9L826.9 -78.9M-106.9 -62.9L826.9 -62.9M-106.9 -46.9L826.9 -46.9M-106.9 -30.9L826.9 -30.9M-106.9 -14.9L826.9 -14.9M-106.9 1.1L826.9 1.1M-106.9 17.1L826.9 17.1M-106.9 33.1L826.9 33.1M-106.9 49.1L826.9 49.1M-106.9 65.1L826.9 65.1M-106.9 81.1L826.9 81.1M-106.9 97.1L826.9 97.1M-106.9 113.1L826.9 113.1M-106.9 129.1L826.9 129.1M-106.9 145.1L826.9 145.1M-106.9 161.1L826.9 161.1M-106.9 177.1L826.9 177.1M-106.9 193.1L826.9 193.1M-106.9 209.1L826.9 209.1M-106.9 225.1L826.9 225.1M-106.9 241.1L826.9 241.1M-106.9 257.1L826.9 257.1M-106.9 273.1L826.9 273.1M-106.9 289.1L826.9 289.1M-106.9 305.1L826.9 305.1M-106.9 321.1L826.9 321.1M-106.9 337.1L826.9 337.1M-106.9 353.1L826.9 353.1M-106.9 369.1L826.9 369.1M-106.9 385.1L826.9 385.1M-106.9 401.1L826.9 401.1M-106.9 417.1L826.9 417.1M-106.9 433.1L826.9 433.1M-106.9 449.1L826.9 449.1M-106.9 465.1L826.9 465.1M-106.9 481.1L826.9 481.1M-106.9 497.1L826.9 497.1M-106.9 513.1L826.9 513.1M-106.9 529.1L826.9 529.1M-106.9 545.1L826.9 545.1M-106.9 561.1L826.9 561.1M-106.9 577.1L826.9 577.1M-106.9 593.1L826.9 593.1M-106.9 609.1L826.9 609.1M-106.9 625.1L826.9 625.1M-106.9 641.1L826.9 641.1M-106.9 657.1L826.9 657.1M-106.9 673.1L826.9 673.1M-106.9 689.1L826.9 689.1M-106.9 705.1L826.9 705.1M-106.9 721.1L826.9 721.1M-106.9 737.1L826.9 737.1M-106.9 753.1L826.9 753.1M-106.9 769.1L826.9 769.1M-106.9 785.1L826.9 785.1M-106.9 801.1L826.9 801.1"/></g>
+    <path d="M315 500 L315 360 L315 360 L315.55 352.96 L317.2 346.09 L319.9 339.57 L323.59 333.55 L328.18 328.18 L333.55 323.59 L339.57 319.9 L346.09 317.2 L352.96 315.55 L360 315 L367.04 315.55 L373.91 317.2 L380.43 319.9 L386.45 323.59 L391.82 328.18 L396.41 333.55 L400.1 339.57 L402.8 346.09 L404.45 352.96 L405 360 L405 500 Z" style="fill: var(--_paper)"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M236 260 L244 260 L244 290 L236 290 Z"/>
+    <path d="M476 260 L484 260 L484 290 L476 290 Z"/>
+    <path d="M320 380 L400 380 L400 500 L320 500 Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M190 180 L290 180 L290 500 L190 500 Z"/>
+    <path d="M190 164 L208 164 L208 180 L190 180 Z"/>
+    <path d="M218 164 L236 164 L236 180 L218 180 Z"/>
+    <path d="M246 164 L264 164 L264 180 L246 180 Z"/>
+    <path d="M274 164 L292 164 L292 180 L274 180 Z"/>
+    <path d="M430 180 L530 180 L530 500 L430 500 Z"/>
+    <path d="M430 164 L448 164 L448 180 L430 180 Z"/>
+    <path d="M458 164 L476 164 L476 180 L458 180 Z"/>
+    <path d="M486 164 L504 164 L504 180 L486 180 Z"/>
+    <path d="M514 164 L532 164 L532 180 L514 180 Z"/>
+    <path d="M290 500 L290 250 L430 250 L430 500"/>
+    <path d="M296 236 L316 236 L316 250 L296 250 Z"/>
+    <path d="M330 236 L350 236 L350 250 L330 250 Z"/>
+    <path d="M364 236 L384 236 L384 250 L364 250 Z"/>
+    <path d="M398 236 L418 236 L418 250 L398 250 Z"/>
+    <path d="M315 500 L315 360 L315 360 L315.55 352.96 L317.2 346.09 L319.9 339.57 L323.59 333.55 L328.18 328.18 L333.55 323.59 L339.57 319.9 L346.09 317.2 L352.96 315.55 L360 315 L367.04 315.55 L373.91 317.2 L380.43 319.9 L386.45 323.59 L391.82 328.18 L396.41 333.55 L400.1 339.57 L402.8 346.09 L404.45 352.96 L405 360 L405 500"/>
+    <path d="M140 500L580 500"/>
+  </g>
+  <text class="t-credit" x="128" y="533">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this form; no</text>
+  <text class="t-credit" x="128" y="542">external drawing reproduced.</text>
+</svg>

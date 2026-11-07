@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="122 108 476 436" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a tall marble palace gateway with a deep pointed arch, a band of calligraphic inscription above it, and a pointed niche on each side. Source: After the Bab-ı Hümayun, outer gate of Topkapı Palace, Istanbul (1478). Simplified; not a survey. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="bh"><path d="M230 140 L490 140 L490 500 L230 500 Z"/></clipPath>
+  </defs>
+  <rect class="paper" x="122" y="108" width="476" height="436"/>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#bh)"><path d="M-84.07 -124.07L804.07 -124.07M-84.07 -106.07L804.07 -106.07M-84.07 -88.07L804.07 -88.07M-84.07 -70.07L804.07 -70.07M-84.07 -52.07L804.07 -52.07M-84.07 -34.07L804.07 -34.07M-84.07 -16.07L804.07 -16.07M-84.07 1.93L804.07 1.93M-84.07 19.93L804.07 19.93M-84.07 37.93L804.07 37.93M-84.07 55.93L804.07 55.93M-84.07 73.93L804.07 73.93M-84.07 91.93L804.07 91.93M-84.07 109.93L804.07 109.93M-84.07 127.93L804.07 127.93M-84.07 145.93L804.07 145.93M-84.07 163.93L804.07 163.93M-84.07 181.93L804.07 181.93M-84.07 199.93L804.07 199.93M-84.07 217.93L804.07 217.93M-84.07 235.93L804.07 235.93M-84.07 253.93L804.07 253.93M-84.07 271.93L804.07 271.93M-84.07 289.93L804.07 289.93M-84.07 307.93L804.07 307.93M-84.07 325.93L804.07 325.93M-84.07 343.93L804.07 343.93M-84.07 361.93L804.07 361.93M-84.07 379.93L804.07 379.93M-84.07 397.93L804.07 397.93M-84.07 415.93L804.07 415.93M-84.07 433.93L804.07 433.93M-84.07 451.93L804.07 451.93M-84.07 469.93L804.07 469.93M-84.07 487.93L804.07 487.93M-84.07 505.93L804.07 505.93M-84.07 523.93L804.07 523.93M-84.07 541.93L804.07 541.93M-84.07 559.93L804.07 559.93M-84.07 577.93L804.07 577.93M-84.07 595.93L804.07 595.93M-84.07 613.93L804.07 613.93M-84.07 631.93L804.07 631.93M-84.07 649.93L804.07 649.93M-84.07 667.93L804.07 667.93M-84.07 685.93L804.07 685.93M-84.07 703.93L804.07 703.93M-84.07 721.93L804.07 721.93M-84.07 739.93L804.07 739.93M-84.07 757.93L804.07 757.93"/></g>
+    <path d="M305 500 L305 310 L305 310 L305.24 302.81 L305.94 295.64 L307.11 288.54 L308.75 281.53 L310.84 274.64 L313.37 267.9 L316.34 261.35 L319.74 255 L323.54 248.89 L327.73 243.04 L332.3 237.47 L337.22 232.22 L342.47 227.3 L348.04 222.73 L353.89 218.54 L360 214.74 L360 214.74 L366.11 218.54 L371.96 222.73 L377.53 227.3 L382.78 232.22 L387.7 237.47 L392.27 243.04 L396.46 248.89 L400.26 255 L403.66 261.35 L406.63 267.9 L409.16 274.64 L411.25 281.53 L412.89 288.54 L414.06 295.64 L414.76 302.81 L415 310 L415 500 Z" style="fill: var(--_paper)"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M230 140 L490 140 L490 500 L230 500 Z"/>
+    <path d="M305 500 L305 310 L305 310 L305.24 302.81 L305.94 295.64 L307.11 288.54 L308.75 281.53 L310.84 274.64 L313.37 267.9 L316.34 261.35 L319.74 255 L323.54 248.89 L327.73 243.04 L332.3 237.47 L337.22 232.22 L342.47 227.3 L348.04 222.73 L353.89 218.54 L360 214.74 L360 214.74 L366.11 218.54 L371.96 222.73 L377.53 227.3 L382.78 232.22 L387.7 237.47 L392.27 243.04 L396.46 248.89 L400.26 255 L403.66 261.35 L406.63 267.9 L409.16 274.64 L411.25 281.53 L412.89 288.54 L414.06 295.64 L414.76 302.81 L415 310 L415 500"/>
+    <path d="M270 180 L450 180 L450 210 L270 210 Z"/>
+    <path d="M247 450 L247 340 L247 340 L247.31 335.3 L248.23 330.68 L249.74 326.22 L251.82 322 L254.44 318.08 L257.54 314.54 L261.08 311.44 L265 308.82 L265 308.82 L268.92 311.44 L272.46 314.54 L275.56 318.08 L278.18 322 L280.26 326.22 L281.77 330.68 L282.69 335.3 L283 340 L283 450 Z"/>
+    <path d="M437 450 L437 340 L437 340 L437.31 335.3 L438.23 330.68 L439.74 326.22 L441.82 322 L444.44 318.08 L447.54 314.54 L451.08 311.44 L455 308.82 L455 308.82 L458.92 311.44 L462.46 314.54 L465.56 318.08 L468.18 322 L470.26 326.22 L471.77 330.68 L472.69 335.3 L473 340 L473 450 Z"/>
+    <path d="M220 126 L500 126 L500 140 L220 140 Z"/>
+    <path d="M140 500L580 500"/>
+  </g>
+  <text class="t-credit" x="128" y="533">SOURCE: After the Bab-ı Hümayun, outer gate of Topkapı Palace, Istanbul (1478). Simplified; not a</text>
+  <text class="t-credit" x="128" y="542">survey. Original drawing by Project Exodus.</text>
+</svg>

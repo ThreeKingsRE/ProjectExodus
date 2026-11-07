@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.51 2.04) scale(0.98)">
   <g class="layer-hatch ink l-hair">
     <path d="M286 100 L314 100 L314 500 L286 500 Z" fill="url(#h-stone)" stroke="none"/>
     <path d="M180 226 L316 200 L400 202 L400 230 L316 250 L180 240 Z" fill="url(#h-concrete)" stroke="none"/>
@@ -77,6 +78,7 @@
     <text x="496" y="148" class="t-small t-accent">FLOOR LOAD</text>
     <text x="490" y="290" text-anchor="middle" class="t-sub">MAIN TRUSS</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">GERBERETTE</text>
@@ -87,9 +89,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STC-12</text>
     <text class="t-small" x="416" y="699">ELEVATION</text>
     <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
-    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="29.36" height="5" class="solid"/><rect x="445.36" y="730" width="29.36" height="5" class="ink l-fine"/><rect x="474.72" y="730" width="29.36" height="5" class="solid"/><rect x="504.09" y="730" width="29.36" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="531.45" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

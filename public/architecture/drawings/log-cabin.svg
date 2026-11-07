@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.37 2.49) scale(0.98)">
   <g class="layer-hatch ink l-hair">
     <path d="M150 480 L520 480 L520 504 L150 504 Z" fill="url(#h-stone)" stroke="none"/>
   </g>
@@ -114,6 +115,7 @@
   <g class="layer-notes ">
     <text x="474" y="170" text-anchor="middle" class="t-small">SADDLE-NOTCHED CORNER</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">LOG CABIN</text>
@@ -123,9 +125,9 @@
     <text class="t-sub" x="416" y="684">SHEET  WAL-08</text>
     <text class="t-small" x="416" y="699">ELEVATION</text>
     <text class="t-small" x="416" y="724">SCALE IN LOG DIAMETERS</text>
-    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="29.54" height="5" class="solid"/><rect x="445.54" y="730" width="29.54" height="5" class="ink l-fine"/><rect x="475.08" y="730" width="29.54" height="5" class="solid"/><rect x="504.62" y="730" width="29.54" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="532.16" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

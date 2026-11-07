@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Excavation Trench: section</title>
+  <desc id="d">Section drawing of the side of an archaeological trench: layers of soil numbered from the topsoil down to natural ground, a pit cut through some of them, finds marked, with a datum line and a measuring pole. Source: Recording conventions of single-context archaeological section drawing (layer numbering, datum, scale). Illustrative, not a real site. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M170 160C270 154 430 166 550 160L550 190L170 190Z" fill="url(#h-earth)" stroke="none" opacity="0.7"/>
+    <path d="M170 190C270 184 430 196 550 190L550 240L170 240Z" fill="url(#h-concrete)" stroke="none" opacity="0.7"/>
+    <path d="M170 240C270 234 430 246 550 240L550 280L170 280Z" fill="url(#h-brick)" stroke="none" opacity="0.7"/>
+    <path d="M170 280C270 274 430 286 550 280L550 340L170 340Z" fill="url(#h-earth)" stroke="none" opacity="0.7"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M286 260l4 -6l4 6z"/>
+    <path d="M496 320l4 -6l4 6z"/>
+    <path d="M246 360l4 -6l4 6z"/>
+    <path d="M170 140 L550 140 L550 400 L170 400 Z"/>
+    <path d="M536 160 L544 160 L544 190 L536 190 Z"/>
+    <rect x="536" y="160" width="8" height="30" class="solid"/>
+    <path d="M536 190 L544 190 L544 220 L536 220 Z"/>
+    <path d="M536 220 L544 220 L544 250 L536 250 Z"/>
+    <rect x="536" y="220" width="8" height="30" class="solid"/>
+    <path d="M536 250 L544 250 L544 280 L536 280 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M170 160C270 154 430 166 550 160"/>
+    <path d="M170 190C270 184 430 196 550 190"/>
+    <path d="M170 240C270 234 430 246 550 240"/>
+    <path d="M170 280C270 274 430 286 550 280"/>
+    <path d="M170 340C270 334 430 346 550 340"/>
+    <path d="M390 190q30 120 90 0" stroke-dasharray="6 3"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M150 130L560 130"/>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M94.9 175L167.5 175"/><circle cx="167.5" cy="175" r="1.5" class="solid"/><text x="34" y="178">1 TOPSOIL</text>
+    <path d="M131.5 215L167.5 215"/><circle cx="167.5" cy="215" r="1.5" class="solid"/><text x="34" y="218">2 MEDIEVAL FILL</text>
+    <path d="M119.3 260L167.5 260"/><circle cx="167.5" cy="260" r="1.5" class="solid"/><text x="34" y="263">3 ROMAN FLOOR</text>
+    <path d="M155.9 310L167.5 310"/><circle cx="167.5" cy="310" r="1.5" class="solid"/><text x="34" y="313">4 PREHISTORIC LAYER</text>
+    <path d="M143.7 370L167.5 370"/><circle cx="167.5" cy="370" r="1.5" class="solid"/><text x="34" y="373">5 NATURAL SUBSOIL</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="435" y="260" text-anchor="middle" class="t-small">[6] PIT</text>
+    <text x="554" y="124" text-anchor="end" class="t-small t-accent">DATUM 24.50 m</text>
+    <text x="270" y="420" class="t-small">▲ FINDS</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">EXCAVATION TRENCH</text>
+    <text class="t-sub" x="26" y="710">ARCHAEOLOGICAL SECTION THROUGH NUMBERED LAYERS</text>
+    <text class="t-small" x="26" y="726">SOURCE: Recording conventions of single-context archaeological section</text>
+    <text class="t-small" x="26" y="736">drawing (layer numbering, datum, scale). Illustrative, not a real site.</text>
+    <text class="t-small" x="26" y="746">Original drawing by Project Exodus.</text>
+    <text class="t-sub" x="416" y="684">SHEET  URB-14</text>
+    <text class="t-small" x="416" y="699">SECTION</text>
+    <text class="t-small" x="416" y="724">SCALE IN 0.25 M (SCALE POLE)</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

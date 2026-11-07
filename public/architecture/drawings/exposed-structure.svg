@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.09 0.45) scale(1)">
   <g class="layer-shading ink l-shading">
     <path d="M218.33 140L218.33 500"/>
     <path d="M246.67 140L246.67 500"/>
@@ -103,6 +104,7 @@
     <path d="M94.9 320L264 320"/><circle cx="264" cy="320" r="1.5" class="solid"/><text x="34" y="323">PIN JOINT</text>
     <path d="M186.4 387.5L200 387.5"/><circle cx="200" cy="387.5" r="1.5" class="solid"/><text x="34" y="390.5">CROSS BRACING (TIE RODS)</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">EXPOSED STRUCTURE</text>
@@ -112,9 +114,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STC-11</text>
     <text class="t-small" x="416" y="699">ELEVATION</text>
     <text class="t-small" x="416" y="724">SCALE IN QUARTERS OF BAY</text>
-    <rect x="416" y="730" width="22.5" height="5" class="solid"/><rect x="438.5" y="730" width="22.5" height="5" class="ink l-fine"/><rect x="461" y="730" width="22.5" height="5" class="solid"/><rect x="483.5" y="730" width="22.5" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="22.42" height="5" class="solid"/><rect x="438.42" y="730" width="22.42" height="5" class="ink l-fine"/><rect x="460.84" y="730" width="22.42" height="5" class="solid"/><rect x="483.26" y="730" width="22.42" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="504" y="749">4</text>
+    <text class="t-small" x="503.68" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

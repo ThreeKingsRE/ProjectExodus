@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Colonnade: elevation</title>
+  <desc id="d">Elevation of a long row of evenly spaced columns, each with a base and capital, carrying a continuous horizontal beam. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(1.32 12.38) scale(0.95)">
+  <g class="layer-fine ink l-fine">
+    <path d="M136 245L594 245"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M151 280 L169 280 L169 454 L151 454 Z"/>
+    <path d="M147 454 L173 454 L173 470 L147 470 Z"/>
+    <path d="M146 268 L174 268 L174 280 L146 280 Z"/>
+    <path d="M233 280 L251 280 L251 454 L233 454 Z"/>
+    <path d="M229 454 L255 454 L255 470 L229 470 Z"/>
+    <path d="M228 268 L256 268 L256 280 L228 280 Z"/>
+    <path d="M315 280 L333 280 L333 454 L315 454 Z"/>
+    <path d="M311 454 L337 454 L337 470 L311 470 Z"/>
+    <path d="M310 268 L338 268 L338 280 L310 280 Z"/>
+    <path d="M397 280 L415 280 L415 454 L397 454 Z"/>
+    <path d="M393 454 L419 454 L419 470 L393 470 Z"/>
+    <path d="M392 268 L420 268 L420 280 L392 280 Z"/>
+    <path d="M479 280 L497 280 L497 454 L479 454 Z"/>
+    <path d="M475 454 L501 454 L501 470 L475 470 Z"/>
+    <path d="M474 268 L502 268 L502 280 L474 280 Z"/>
+    <path d="M561 280 L579 280 L579 454 L561 454 Z"/>
+    <path d="M557 454 L583 454 L583 470 L557 470 Z"/>
+    <path d="M556 268 L584 268 L584 280 L556 280 Z"/>
+    <path d="M136 230 L594 230 L594 268 L136 268 Z"/>
+    <path d="M120 470L610 470"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M160 492L242 492M156 496L164 488M238 496L246 488M160 486L160 498M242 486L242 498"/><text x="201" y="506" text-anchor="middle">BAY</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M107.1 249L133.5 249"/><circle cx="133.5" cy="249" r="1.5" class="solid"/><text x="34" y="252">ENTABLATURE</text>
+    <path d="M82.7 274L143.5 274"/><circle cx="143.5" cy="274" r="1.5" class="solid"/><text x="34" y="277">CAPITAL</text>
+    <path d="M76.6 380L148.5 380"/><circle cx="148.5" cy="380" r="1.5" class="solid"/><text x="34" y="383">COLUMN</text>
+    <path d="M64.4 462L144.5 462"/><circle cx="144.5" cy="462" r="1.5" class="solid"/><text x="34" y="465">BASE</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">COLONNADE</text>
+    <text class="t-sub" x="26" y="710">ROW OF COLUMNS CARRYING A STRAIGHT ENTABLATURE</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  URB-02</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN QUARTERS OF BAY</text>
+    <rect x="416" y="730" width="19.38" height="5" class="solid"/><rect x="435.38" y="730" width="19.38" height="5" class="ink l-fine"/><rect x="454.75" y="730" width="19.38" height="5" class="solid"/><rect x="474.13" y="730" width="19.38" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="491.51" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Arcade: elevation</title>
+  <desc id="d">Elevation of a covered walkway fronted by a continuous series of round arches springing from square piers, carrying a wall above. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(1.32 12.38) scale(0.95)">
+  <g class="layer-fine ink l-fine">
+    <path d="M140 270 L590 270 L590 300 L140 300 Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M151 340 L169 340 L169 470 L151 470 Z"/>
+    <path d="M233 340 L251 340 L251 470 L233 470 Z"/>
+    <path d="M315 340 L333 340 L333 470 L315 470 Z"/>
+    <path d="M397 340 L415 340 L415 470 L397 470 Z"/>
+    <path d="M479 340 L497 340 L497 470 L479 470 Z"/>
+    <path d="M561 340 L579 340 L579 470 L561 470 Z"/>
+    <path d="M169 340 L169.39 334.99 L170.57 330.11 L172.49 325.47 L175.11 321.19 L178.37 317.37 L182.19 314.11 L186.47 311.49 L191.11 309.57 L195.99 308.39 L201 308 L206.01 308.39 L210.89 309.57 L215.53 311.49 L219.81 314.11 L223.63 317.37 L226.89 321.19 L229.51 325.47 L231.43 330.11 L232.61 334.99 L233 340"/>
+    <path d="M156 340 L156.55 332.96 L158.2 326.09 L160.9 319.57 L164.59 313.55 L169.18 308.18 L174.55 303.59 L180.57 299.9 L187.09 297.2 L193.96 295.55 L201 295 L208.04 295.55 L214.91 297.2 L221.43 299.9 L227.45 303.59 L232.82 308.18 L237.41 313.55 L241.1 319.57 L243.8 326.09 L245.45 332.96 L246 340"/>
+    <path d="M251 340 L251.39 334.99 L252.57 330.11 L254.49 325.47 L257.11 321.19 L260.37 317.37 L264.19 314.11 L268.47 311.49 L273.11 309.57 L277.99 308.39 L283 308 L288.01 308.39 L292.89 309.57 L297.53 311.49 L301.81 314.11 L305.63 317.37 L308.89 321.19 L311.51 325.47 L313.43 330.11 L314.61 334.99 L315 340"/>
+    <path d="M238 340 L238.55 332.96 L240.2 326.09 L242.9 319.57 L246.59 313.55 L251.18 308.18 L256.55 303.59 L262.57 299.9 L269.09 297.2 L275.96 295.55 L283 295 L290.04 295.55 L296.91 297.2 L303.43 299.9 L309.45 303.59 L314.82 308.18 L319.41 313.55 L323.1 319.57 L325.8 326.09 L327.45 332.96 L328 340"/>
+    <path d="M333 340 L333.39 334.99 L334.57 330.11 L336.49 325.47 L339.11 321.19 L342.37 317.37 L346.19 314.11 L350.47 311.49 L355.11 309.57 L359.99 308.39 L365 308 L370.01 308.39 L374.89 309.57 L379.53 311.49 L383.81 314.11 L387.63 317.37 L390.89 321.19 L393.51 325.47 L395.43 330.11 L396.61 334.99 L397 340"/>
+    <path d="M320 340 L320.55 332.96 L322.2 326.09 L324.9 319.57 L328.59 313.55 L333.18 308.18 L338.55 303.59 L344.57 299.9 L351.09 297.2 L357.96 295.55 L365 295 L372.04 295.55 L378.91 297.2 L385.43 299.9 L391.45 303.59 L396.82 308.18 L401.41 313.55 L405.1 319.57 L407.8 326.09 L409.45 332.96 L410 340"/>
+    <path d="M415 340 L415.39 334.99 L416.57 330.11 L418.49 325.47 L421.11 321.19 L424.37 317.37 L428.19 314.11 L432.47 311.49 L437.11 309.57 L441.99 308.39 L447 308 L452.01 308.39 L456.89 309.57 L461.53 311.49 L465.81 314.11 L469.63 317.37 L472.89 321.19 L475.51 325.47 L477.43 330.11 L478.61 334.99 L479 340"/>
+    <path d="M402 340 L402.55 332.96 L404.2 326.09 L406.9 319.57 L410.59 313.55 L415.18 308.18 L420.55 303.59 L426.57 299.9 L433.09 297.2 L439.96 295.55 L447 295 L454.04 295.55 L460.91 297.2 L467.43 299.9 L473.45 303.59 L478.82 308.18 L483.41 313.55 L487.1 319.57 L489.8 326.09 L491.45 332.96 L492 340"/>
+    <path d="M497 340 L497.39 334.99 L498.57 330.11 L500.49 325.47 L503.11 321.19 L506.37 317.37 L510.19 314.11 L514.47 311.49 L519.11 309.57 L523.99 308.39 L529 308 L534.01 308.39 L538.89 309.57 L543.53 311.49 L547.81 314.11 L551.63 317.37 L554.89 321.19 L557.51 325.47 L559.43 330.11 L560.61 334.99 L561 340"/>
+    <path d="M484 340 L484.55 332.96 L486.2 326.09 L488.9 319.57 L492.59 313.55 L497.18 308.18 L502.55 303.59 L508.57 299.9 L515.09 297.2 L521.96 295.55 L529 295 L536.04 295.55 L542.91 297.2 L549.43 299.9 L555.45 303.59 L560.82 308.18 L565.41 313.55 L569.1 319.57 L571.8 326.09 L573.45 332.96 L574 340"/>
+    <path d="M140 230 L590 230 L590 270 L140 270 Z"/>
+    <path d="M120 470L610 470"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M160 492L242 492M156 496L164 488M238 496L246 488M160 486L160 498M242 486L242 498"/><text x="201" y="506" text-anchor="middle">BAY</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M101 250L137.5 250"/><circle cx="137.5" cy="250" r="1.5" class="solid"/><text x="34" y="253">WALL ABOVE</text>
+    <path d="M64.4 310L168.5 310"/><circle cx="168.5" cy="310" r="1.5" class="solid"/><text x="34" y="313">ARCH</text>
+    <path d="M64.4 420L148.5 420"/><circle cx="148.5" cy="420" r="1.5" class="solid"/><text x="34" y="423">PIER</text>
+  </g>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">ARCADE</text>
+    <text class="t-sub" x="26" y="710">ROW OF ARCHES CARRIED ON PIERS</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  URB-01</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN QUARTERS OF BAY</text>
+    <rect x="416" y="730" width="19.38" height="5" class="solid"/><rect x="435.38" y="730" width="19.38" height="5" class="ink l-fine"/><rect x="454.75" y="730" width="19.38" height="5" class="solid"/><rect x="474.13" y="730" width="19.38" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="491.51" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

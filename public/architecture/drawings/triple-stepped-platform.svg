@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(2.17 19.52) scale(0.91)">
   <g class="layer-hatch ink l-hair">
     <path d="M160 440 L560 440 L560 470 L160 470 Z" fill="url(#h-stone)" stroke="none"/>
     <path d="M190 410 L530 410 L530 440 L190 440 Z" fill="url(#h-stone)" stroke="none"/>
@@ -64,6 +65,7 @@
     <path d="M107.1 425L187.5 425"/><circle cx="187.5" cy="425" r="1.5" class="solid"/><text x="34" y="428">MIDDLE STEP</text>
     <path d="M101 455L157.5 455"/><circle cx="157.5" cy="455" r="1.5" class="solid"/><text x="34" y="458">LOWER STEP</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">TRIPLE-STEPPED PLATFORM</text>
@@ -73,9 +75,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STC-21</text>
     <text class="t-small" x="416" y="699">ELEVATION</text>
     <text class="t-small" x="416" y="724">SCALE IN STEP HEIGHTS (INDICATIVE)</text>
-    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="27.29" height="5" class="solid"/><rect x="443.29" y="730" width="27.29" height="5" class="ink l-fine"/><rect x="470.58" y="730" width="27.29" height="5" class="solid"/><rect x="497.87" y="730" width="27.29" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="523.16" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

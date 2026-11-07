@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.03 0.36) scale(1)">
   <g class="layer-hatch ink l-hair">
     <path d="M134.19 447.11 L175.11 447.11 L175.11 590 L134.19 590 Z" fill="url(#h-stone)" stroke="none"/>
     <path d="M460.89 447.11 L501.81 447.11 L501.81 590 L460.89 590 Z" fill="url(#h-stone)" stroke="none"/>
@@ -86,6 +87,7 @@
     <text x="409.06" y="582" class="t-small t-accent">SUNLIGHT</text>
     <text x="318" y="264.32" text-anchor="middle" class="t-small">OCULUS 8.2 M</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">OCULUS</text>
@@ -96,9 +98,9 @@
     <text class="t-sub" x="416" y="684">SHEET  VLT-07</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN 5 M</text>
-    <rect x="416" y="730" width="33" height="5" class="solid"/><rect x="449" y="730" width="33" height="5" class="ink l-fine"/><rect x="482" y="730" width="33" height="5" class="solid"/><rect x="515" y="730" width="33" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="32.95" height="5" class="solid"/><rect x="448.95" y="730" width="32.95" height="5" class="ink l-fine"/><rect x="481.91" y="730" width="32.95" height="5" class="solid"/><rect x="514.86" y="730" width="32.95" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="546" y="749">4</text>
+    <text class="t-small" x="545.82" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

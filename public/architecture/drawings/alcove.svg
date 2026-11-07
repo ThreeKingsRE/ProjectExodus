@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.16 0.17) scale(0.99)">
   <g class="layer-hatch ink l-hair">
     <path d="M147 112 L260 112 L260 130 L147 130 Z" fill="url(#h-stone)" stroke="none"/>
     <path d="M410 112 L523 112 L523 130 L410 130 Z" fill="url(#h-stone)" stroke="none"/>
@@ -76,6 +77,7 @@
     <path d="M94.9 250L222.5 250"/><circle cx="222.5" cy="250" r="1.5" class="solid"/><text x="34" y="253">MAIN ROOM</text>
     <path d="M101 330L144.5 330"/><circle cx="144.5" cy="330" r="1.5" class="solid"/><text x="34" y="333">WALL (CUT)</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">ALCOVE</text>
@@ -85,9 +87,9 @@
     <text class="t-sub" x="416" y="684">SHEET  WAL-10</text>
     <text class="t-small" x="416" y="699">PLAN</text>
     <text class="t-small" x="416" y="724">SCALE IN FIFTHS OF ALCOVE</text>
-    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/><rect x="536" y="730" width="30" height="5" class="solid"/>
+    <rect x="416" y="730" width="29.81" height="5" class="solid"/><rect x="445.81" y="730" width="29.81" height="5" class="ink l-fine"/><rect x="475.61" y="730" width="29.81" height="5" class="solid"/><rect x="505.42" y="730" width="29.81" height="5" class="ink l-fine"/><rect x="535.22" y="730" width="29.81" height="5" class="solid"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="564" y="749">5</text>
+    <text class="t-small" x="563.03" y="749">5</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

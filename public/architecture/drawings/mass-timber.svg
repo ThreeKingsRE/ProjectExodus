@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.11 1.06) scale(1)">
   <g class="layer-hatch ink l-hair">
     <rect x="170" y="260" width="360" height="14" fill="url(#h-timber)" stroke="none"/>
     <rect x="170" y="274" width="360" height="14" fill="url(#endgrain)" stroke="none"/>
@@ -87,6 +88,7 @@
   <g class="layer-notes ">
     <text x="335" y="526" text-anchor="middle" class="t-small">GLULAM COLUMN</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">MASS TIMBER</text>
@@ -96,9 +98,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STC-10</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN LAYER THICKNESS (≈ 40 MM)</text>
-    <rect x="416" y="730" width="14" height="5" class="solid"/><rect x="430" y="730" width="14" height="5" class="ink l-fine"/><rect x="444" y="730" width="14" height="5" class="solid"/><rect x="458" y="730" width="14" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="13.93" height="5" class="solid"/><rect x="429.93" y="730" width="13.93" height="5" class="ink l-fine"/><rect x="443.87" y="730" width="13.93" height="5" class="solid"/><rect x="457.8" y="730" width="13.93" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="470" y="749">4</text>
+    <text class="t-small" x="469.74" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

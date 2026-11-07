@@ -38,6 +38,7 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g transform="translate(0.53 5.7) scale(0.98)">
   <g class="layer-hatch ink l-hair">
     <path d="M139.2 330 L562.33 330 L562.33 340 L139.2 340 Z" fill="url(#h-earth)" stroke="none"/>
     <path d="M180 330 L490.08 304.16 L541.93 304.16 L541.93 330 Z" fill="url(#h-concrete)" stroke="none"/>
@@ -73,6 +74,7 @@
     <text x="319.54" y="308.37" class="t-sub t-accent">SLOPE 1:12 MAX</text>
     <text x="562.33" y="392" text-anchor="end" class="t-small">DIMENSIONS IN MM</text>
   </g>
+  </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">ACCESSIBILITY RAMP</text>
@@ -83,9 +85,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STR-12</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN METRES</text>
-    <rect x="416" y="730" width="34" height="5" class="solid"/><rect x="450" y="730" width="34" height="5" class="ink l-fine"/><rect x="484" y="730" width="34" height="5" class="solid"/><rect x="518" y="730" width="34" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="33.25" height="5" class="solid"/><rect x="449.25" y="730" width="33.25" height="5" class="ink l-fine"/><rect x="482.5" y="730" width="33.25" height="5" class="solid"/><rect x="515.76" y="730" width="33.25" height="5" class="ink l-fine"/><rect x="549.01" y="730" width="33.25" height="5" class="solid"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="550" y="749">4</text>
+    <text class="t-small" x="580.26" y="749">5</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>
