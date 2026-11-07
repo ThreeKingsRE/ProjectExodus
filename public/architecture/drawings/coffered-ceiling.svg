@@ -277,9 +277,9 @@
     <text class="t-sub" x="416" y="684">SHEET  CLG-07</text>
     <text class="t-small" x="416" y="699">REFLECTED CEILING PLAN</text>
     <text class="t-small" x="416" y="724">SCALE IN HALF COFFERS</text>
-    <rect x="416" y="730" width="43" height="5" class="solid"/><rect x="459" y="730" width="43" height="5" class="ink l-fine"/><rect x="502" y="730" width="43" height="5" class="solid"/><rect x="545" y="730" width="43" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="43" height="5" class="solid"/><rect x="459" y="730" width="43" height="5" class="ink l-fine"/><rect x="502" y="730" width="43" height="5" class="solid"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="586" y="749">4</text>
+    <text class="t-small" x="543" y="749">3</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

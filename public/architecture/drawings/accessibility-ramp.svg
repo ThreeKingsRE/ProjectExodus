@@ -83,9 +83,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STR-12</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN METRES</text>
-    <rect x="416" y="730" width="34" height="5" class="solid"/><rect x="450" y="730" width="34" height="5" class="ink l-fine"/><rect x="484" y="730" width="34" height="5" class="solid"/><rect x="518" y="730" width="34" height="5" class="ink l-fine"/><rect x="552" y="730" width="34" height="5" class="solid"/>
+    <rect x="416" y="730" width="34" height="5" class="solid"/><rect x="450" y="730" width="34" height="5" class="ink l-fine"/><rect x="484" y="730" width="34" height="5" class="solid"/><rect x="518" y="730" width="34" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="584" y="749">5</text>
+    <text class="t-small" x="550" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

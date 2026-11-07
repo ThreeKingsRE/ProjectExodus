@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Stained Glass: elevation</title>
+  <desc id="d">Elevation of a tall pointed window filled with small irregular pieces of coloured glass held in strips of lead, braced by iron bars, with a round picture panel at its centre. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="sg-stained-glass"><path d="M280 500 L280 180 L280 180 L280.34 169.54 L281.37 159.12 L283.07 148.79 L285.45 138.59 L288.49 128.57 L292.18 118.77 L296.5 109.23 L301.44 100 L306.96 91.11 L313.06 82.6 L319.71 74.5 L326.86 66.86 L334.5 59.71 L342.6 53.06 L351.11 46.96 L360 41.44 L360 41.44 L368.89 46.96 L377.4 53.06 L385.5 59.71 L393.14 66.86 L400.29 74.5 L406.94 82.6 L413.04 91.11 L418.56 100 L423.5 109.23 L427.82 118.77 L431.51 128.57 L434.55 138.59 L436.93 148.79 L438.63 159.12 L439.66 169.54 L440 180 L440 500 Z"/></clipPath>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <g clip-path="url(#sg-stained-glass)"><rect x="280" y="100" width="160" height="400" fill="url(#h-concrete)" opacity="0.5" stroke="none"/></g>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M280 500 L280 180 L280 180 L280.34 169.54 L281.37 159.12 L283.07 148.79 L285.45 138.59 L288.49 128.57 L292.18 118.77 L296.5 109.23 L301.44 100 L306.96 91.11 L313.06 82.6 L319.71 74.5 L326.86 66.86 L334.5 59.71 L342.6 53.06 L351.11 46.96 L360 41.44 L360 41.44 L368.89 46.96 L377.4 53.06 L385.5 59.71 L393.14 66.86 L400.29 74.5 L406.94 82.6 L413.04 91.11 L418.56 100 L423.5 109.23 L427.82 118.77 L431.51 128.57 L434.55 138.59 L436.93 148.79 L438.63 159.12 L439.66 169.54 L440 180 L440 500 Z"/>
+    <path d="M268 500 L268 170 L268 170 L268.34 159.54 L269.37 149.12 L271.07 138.79 L273.45 128.59 L276.49 118.57 L280.18 108.77 L284.5 99.23 L289.44 90 L294.96 81.11 L301.06 72.6 L307.71 64.5 L314.86 56.86 L322.5 49.71 L330.6 43.06 L339.11 36.96 L348 31.44 L372 31.44 L380.89 36.96 L389.4 43.06 L397.5 49.71 L405.14 56.86 L412.29 64.5 L418.94 72.6 L425.04 81.11 L430.56 90 L435.5 99.23 L439.82 108.77 L443.51 118.57 L446.55 128.59 L448.93 138.79 L450.63 149.12 L451.66 159.54 L452 170 L452 500"/>
+    <path d="M268 180L452 180" stroke-width="2.4"/>
+    <path d="M268 260L452 260" stroke-width="2.4"/>
+    <path d="M268 340L452 340" stroke-width="2.4"/>
+    <path d="M268 420L452 420" stroke-width="2.4"/>
+    <g clip-path="url(#sg-stained-glass)"><path d="M280 118.57 L300 126.22 L320 120.39 L340 125.02 L360 120.81 L380 118.08 L400 112.33 L420 114.47 L440 127.73 M280 153.15 L300 147.88 L320 158.01 L340 154.16 L360 159.69 L380 147.58 L400 156.02 L420 158.57 L440 153.12 M280 183.39 L300 185.2 L320 183.29 L340 190.96 L360 194.23 L380 192.75 L400 187.37 L420 194.33 L440 190.18 M280 229.31 L300 226.18 L320 216.24 L340 223.42 L360 228.44 L380 225.59 L400 226.4 L420 225.76 L440 226.91 M280 262.88 L300 258.83 L320 260.85 L340 255.56 L360 250.31 L380 250.09 L400 261.08 L420 256.86 L440 251.3 M280 288.13 L300 287.15 L320 289.13 L340 291.36 L360 295.85 L380 286.27 L400 295.44 L420 291.62 L440 283.36 M280 325.04 L300 331.14 L320 321.08 L340 318.83 L360 321.06 L380 322.1 L400 317.46 L420 318.05 L440 327.09 M280 361.62 L300 362.79 L320 360.7 L340 357.96 L360 361.93 L380 361.61 L400 363.15 L420 356.15 L440 354.48 M280 385.86 L300 386.11 L320 395.98 L340 396.76 L360 390.48 L380 392.78 L400 388.51 L420 393.92 L440 385.54 M280 433.78 L300 421.1 L320 430.93 L340 423.23 L360 426.68 L380 419.62 L400 429.53 L420 419.35 L440 424.27 M280 461.35 L300 455.75 L320 453.54 L340 457.36 L360 458.56 L380 462.12 L400 458.22 L420 452.44 L440 458.66 M280 488.6 L300 494.07 L320 499.83 L340 487.16 L360 490.1 L380 492.29 L400 494.58 L420 497.21 L440 492.72 M308.57 100 L298.55 124 L300.05 148 L306.05 172 L299.64 196 L303.86 220 L300.78 244 L299.93 268 L304.14 292 L298.58 316 L305.24 340 L306.72 364 L305.29 388 L307.41 412 L303.43 436 L298.75 460 L298.27 484 M326.11 100 L324.79 124 L323.65 148 L328.59 172 L323.24 196 L323.38 220 L328.7 244 L325.94 268 L329.31 292 L332.29 316 L324.72 340 L333.26 364 L331.17 388 L325.4 412 L327.07 436 L331.19 460 L333.84 484 M356.56 100 L350.17 124 L353.85 148 L347.58 172 L355.96 196 L353.27 220 L359.96 244 L352.38 268 L349.94 292 L357.52 316 L359.27 340 L349.69 364 L360.11 388 L354.45 412 L358.35 436 L359.55 460 L357.78 484 M379.75 100 L373.69 124 L373.07 148 L381.73 172 L384.35 196 L382.16 220 L382.13 244 L381.36 268 L374.89 292 L386.77 316 L384.57 340 L385.08 364 L373.49 388 L385.79 412 L376.57 436 L376.12 460 L376.88 484 M409.2 100 L412.5 124 L403.65 148 L408.8 172 L408.45 196 L405.95 220 L407.2 244 L409.82 268 L401.6 292 L410.23 316 L408.44 340 L410.44 364 L409.73 388 L410.13 412 L410.31 436 L411.53 460 L406.73 484 M433.03 100 L433.46 124 L430.08 148 L432.44 172 L429.36 196 L434.01 220 L426.38 244 L431.06 268 L436.35 292 L434.67 316 L430.4 340 L428.93 364 L435.15 388 L433.21 412 L431.6 436 L433.66 460 L431.31 484 M408 300 L407.41 307.51 L405.65 314.83 L402.77 321.79 L398.83 328.21 L393.94 333.94 L388.21 338.83 L381.79 342.77 L374.83 345.65 L367.51 347.41 L360 348 L352.49 347.41 L345.17 345.65 L338.21 342.77 L331.79 338.83 L326.06 333.94 L321.17 328.21 L317.23 321.79 L314.35 314.83 L312.59 307.51 L312 300 L312.59 292.49 L314.35 285.17 L317.23 278.21 L321.17 271.79 L326.06 266.06 L331.79 261.17 L338.21 257.23 L345.17 254.35 L352.49 252.59 L360 252 L367.51 252.59 L374.83 254.35 L381.79 257.23 L388.21 261.17 L393.94 266.06 L398.83 271.79 L402.77 278.21 L405.65 285.17 L407.41 292.49 L408 300 Z M374 280 L373.31 284.33 L371.33 288.23 L368.23 291.33 L364.33 293.31 L360 294 L355.67 293.31 L351.77 291.33 L348.67 288.23 L346.69 284.33 L346 280 L346.69 275.67 L348.67 271.77 L351.77 268.67 L355.67 266.69 L360 266 L364.33 266.69 L368.23 268.67 L371.33 271.77 L373.31 275.67 L374 280 Z M342 340Q360 300 378 340" stroke-width="1.6"/></g>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M280 524L440 524M276 528L284 520M436 528L444 520M280 518L280 530M440 518L440 530"/><text x="360" y="538" text-anchor="middle">LIGHT</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M94.9 160L299.5 160"/><circle cx="299.5" cy="160" r="1.5" class="solid"/><text x="34" y="163">LEAD CAME</text>
+    <path d="M101 260L265.5 260"/><circle cx="265.5" cy="260" r="1.5" class="solid"/><text x="34" y="263">SADDLE BAR</text>
+    <path d="M137.6 300L309.5 300"/><circle cx="309.5" cy="300" r="1.5" class="solid"/><text x="34" y="303">FIGURE MEDALLION</text>
+    <path d="M125.4 450L287.5 450"/><circle cx="287.5" cy="450" r="1.5" class="solid"/><text x="34" y="453">COLOURED GLASS</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">STAINED GLASS</text>
+    <text class="t-sub" x="26" y="710">COLOURED GLASS PIECES SET IN LEAD</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  WIN-10</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN QUARTERS OF LIGHT</text>
+    <rect x="416" y="730" width="40" height="5" class="solid"/><rect x="456" y="730" width="40" height="5" class="ink l-fine"/><rect x="496" y="730" width="40" height="5" class="solid"/><rect x="536" y="730" width="40" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="574" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

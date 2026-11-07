@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Window Shutter: elevation</title>
+  <desc id="d">Elevation of a window flanked by a pair of hinged louvred panels, opened back against the wall on either side. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="w-sh"><path d="M140 90 L580 90 L580 450 L140 450 Z"/></clipPath>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M234 150 L294 150 L294 370 L234 370 Z" fill="url(#h-timber)" stroke="none"/>
+    <path d="M426 150 L486 150 L486 370 L426 370 Z" fill="url(#h-timber)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#w-sh)"><path d="M-208.51 -298.51L928.51 -298.51M-208.51 -280.51L928.51 -280.51M-208.51 -262.51L928.51 -262.51M-208.51 -244.51L928.51 -244.51M-208.51 -226.51L928.51 -226.51M-208.51 -208.51L928.51 -208.51M-208.51 -190.51L928.51 -190.51M-208.51 -172.51L928.51 -172.51M-208.51 -154.51L928.51 -154.51M-208.51 -136.51L928.51 -136.51M-208.51 -118.51L928.51 -118.51M-208.51 -100.51L928.51 -100.51M-208.51 -82.51L928.51 -82.51M-208.51 -64.51L928.51 -64.51M-208.51 -46.51L928.51 -46.51M-208.51 -28.51L928.51 -28.51M-208.51 -10.51L928.51 -10.51M-208.51 7.49L928.51 7.49M-208.51 25.49L928.51 25.49M-208.51 43.49L928.51 43.49M-208.51 61.49L928.51 61.49M-208.51 79.49L928.51 79.49M-208.51 97.49L928.51 97.49M-208.51 115.49L928.51 115.49M-208.51 133.49L928.51 133.49M-208.51 151.49L928.51 151.49M-208.51 169.49L928.51 169.49M-208.51 187.49L928.51 187.49M-208.51 205.49L928.51 205.49M-208.51 223.49L928.51 223.49M-208.51 241.49L928.51 241.49M-208.51 259.49L928.51 259.49M-208.51 277.49L928.51 277.49M-208.51 295.49L928.51 295.49M-208.51 313.49L928.51 313.49M-208.51 331.49L928.51 331.49M-208.51 349.49L928.51 349.49M-208.51 367.49L928.51 367.49M-208.51 385.49L928.51 385.49M-208.51 403.49L928.51 403.49M-208.51 421.49L928.51 421.49M-208.51 439.49L928.51 439.49M-208.51 457.49L928.51 457.49M-208.51 475.49L928.51 475.49M-208.51 493.49L928.51 493.49M-208.51 511.49L928.51 511.49M-208.51 529.49L928.51 529.49M-208.51 547.49L928.51 547.49M-208.51 565.49L928.51 565.49M-208.51 583.49L928.51 583.49M-208.51 601.49L928.51 601.49M-208.51 619.49L928.51 619.49M-208.51 637.49L928.51 637.49M-208.51 655.49L928.51 655.49M-208.51 673.49L928.51 673.49M-208.51 691.49L928.51 691.49M-208.51 709.49L928.51 709.49M-208.51 727.49L928.51 727.49M-208.51 745.49L928.51 745.49M-208.51 763.49L928.51 763.49M-208.51 781.49L928.51 781.49M-208.51 799.49L928.51 799.49M-208.51 817.49L928.51 817.49M-208.51 835.49L928.51 835.49"/></g>
+    <path d="M232 140 L488 140 L488 390 L232 390 Z" style="fill: var(--_paper)"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M140 90 L580 90 L580 450 L140 450 Z" stroke-dasharray="2 4"/>
+    <path d="M360 156V364M306 208H414M306 260H414M306 312H414"/>
+    <path d="M240 160L288 163"/>
+    <path d="M240 167L288 170"/>
+    <path d="M240 174L288 177"/>
+    <path d="M240 181L288 184"/>
+    <path d="M240 188L288 191"/>
+    <path d="M240 195L288 198"/>
+    <path d="M240 202L288 205"/>
+    <path d="M240 209L288 212"/>
+    <path d="M240 216L288 219"/>
+    <path d="M240 223L288 226"/>
+    <path d="M240 230L288 233"/>
+    <path d="M240 237L288 240"/>
+    <path d="M240 244L288 247"/>
+    <path d="M240 251L288 254"/>
+    <path d="M240 258L288 261"/>
+    <path d="M240 265L288 268"/>
+    <path d="M240 272L288 275"/>
+    <path d="M240 279L288 282"/>
+    <path d="M240 286L288 289"/>
+    <path d="M240 293L288 296"/>
+    <path d="M240 300L288 303"/>
+    <path d="M240 307L288 310"/>
+    <path d="M240 314L288 317"/>
+    <path d="M240 321L288 324"/>
+    <path d="M240 328L288 331"/>
+    <path d="M240 335L288 338"/>
+    <path d="M240 342L288 345"/>
+    <path d="M240 349L288 352"/>
+    <path d="M240 356L288 359"/>
+    <path d="M240 363L288 366"/>
+    <path d="M432 160L480 163"/>
+    <path d="M432 167L480 170"/>
+    <path d="M432 174L480 177"/>
+    <path d="M432 181L480 184"/>
+    <path d="M432 188L480 191"/>
+    <path d="M432 195L480 198"/>
+    <path d="M432 202L480 205"/>
+    <path d="M432 209L480 212"/>
+    <path d="M432 216L480 219"/>
+    <path d="M432 223L480 226"/>
+    <path d="M432 230L480 233"/>
+    <path d="M432 237L480 240"/>
+    <path d="M432 244L480 247"/>
+    <path d="M432 251L480 254"/>
+    <path d="M432 258L480 261"/>
+    <path d="M432 265L480 268"/>
+    <path d="M432 272L480 275"/>
+    <path d="M432 279L480 282"/>
+    <path d="M432 286L480 289"/>
+    <path d="M432 293L480 296"/>
+    <path d="M432 300L480 303"/>
+    <path d="M432 307L480 310"/>
+    <path d="M432 314L480 317"/>
+    <path d="M432 321L480 324"/>
+    <path d="M432 328L480 331"/>
+    <path d="M432 335L480 338"/>
+    <path d="M432 342L480 345"/>
+    <path d="M432 349L480 352"/>
+    <path d="M432 356L480 359"/>
+    <path d="M432 363L480 366"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M300 150 L420 150 L420 370 L300 370 Z"/>
+    <path d="M238 257 L290 257 L290 263 L238 263 Z"/>
+    <path d="M430 257 L482 257 L482 263 L430 263 Z"/>
+    <path d="M230 372 L490 372 L490 382 L230 382 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M234 150 L294 150 L294 370 L234 370 Z" style="stroke: var(--_accent)"/>
+    <path d="M426 150 L486 150 L486 370 L426 370 Z" style="stroke: var(--_accent)"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M234 410L294 410M230 414L238 406M290 414L298 406M234 404L234 416M294 404L294 416"/><text x="264" y="424" text-anchor="middle">LEAF</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M131.5 190L231.5 190"/><circle cx="231.5" cy="190" r="1.5" class="solid"/><text x="34" y="193">LOUVRED SHUTTER</text>
+    <path d="M88.8 260L235.5 260"/><circle cx="235.5" cy="260" r="1.5" class="solid"/><text x="34" y="263">MID RAIL</text>
+    <path d="M76.6 330L303.5 330"/><circle cx="303.5" cy="330" r="1.5" class="solid"/><text x="34" y="333">WINDOW</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">WINDOW SHUTTER</text>
+    <text class="t-sub" x="26" y="710">HINGED LOUVRED LEAVES FOLDED BESIDE A WINDOW</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  WIN-03</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN QUARTERS OF WINDOW</text>
+    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

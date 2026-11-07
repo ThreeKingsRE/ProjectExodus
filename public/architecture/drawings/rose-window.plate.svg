@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="152 72 436 462" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation of a large round Gothic window whose stone tracery radiates from a central hub like the spokes of a wheel, with pointed lights between the spokes and four-lobed roundels around the rim. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="w-rose"><path d="M170 90 L570 90 L570 490 L170 490 Z"/></clipPath>
+  </defs>
+  <rect class="paper" x="152" y="72" width="436" height="462"/>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#w-rose)"><path d="M-195.69 -275.69L935.69 -275.69M-195.69 -257.69L935.69 -257.69M-195.69 -239.69L935.69 -239.69M-195.69 -221.69L935.69 -221.69M-195.69 -203.69L935.69 -203.69M-195.69 -185.69L935.69 -185.69M-195.69 -167.69L935.69 -167.69M-195.69 -149.69L935.69 -149.69M-195.69 -131.69L935.69 -131.69M-195.69 -113.69L935.69 -113.69M-195.69 -95.69L935.69 -95.69M-195.69 -77.69L935.69 -77.69M-195.69 -59.69L935.69 -59.69M-195.69 -41.69L935.69 -41.69M-195.69 -23.69L935.69 -23.69M-195.69 -5.69L935.69 -5.69M-195.69 12.31L935.69 12.31M-195.69 30.31L935.69 30.31M-195.69 48.31L935.69 48.31M-195.69 66.31L935.69 66.31M-195.69 84.31L935.69 84.31M-195.69 102.31L935.69 102.31M-195.69 120.31L935.69 120.31M-195.69 138.31L935.69 138.31M-195.69 156.31L935.69 156.31M-195.69 174.31L935.69 174.31M-195.69 192.31L935.69 192.31M-195.69 210.31L935.69 210.31M-195.69 228.31L935.69 228.31M-195.69 246.31L935.69 246.31M-195.69 264.31L935.69 264.31M-195.69 282.31L935.69 282.31M-195.69 300.31L935.69 300.31M-195.69 318.31L935.69 318.31M-195.69 336.31L935.69 336.31M-195.69 354.31L935.69 354.31M-195.69 372.31L935.69 372.31M-195.69 390.31L935.69 390.31M-195.69 408.31L935.69 408.31M-195.69 426.31L935.69 426.31M-195.69 444.31L935.69 444.31M-195.69 462.31L935.69 462.31M-195.69 480.31L935.69 480.31M-195.69 498.31L935.69 498.31M-195.69 516.31L935.69 516.31M-195.69 534.31L935.69 534.31M-195.69 552.31L935.69 552.31M-195.69 570.31L935.69 570.31M-195.69 588.31L935.69 588.31M-195.69 606.31L935.69 606.31M-195.69 624.31L935.69 624.31M-195.69 642.31L935.69 642.31M-195.69 660.31L935.69 660.31M-195.69 678.31L935.69 678.31M-195.69 696.31L935.69 696.31M-195.69 714.31L935.69 714.31M-195.69 732.31L935.69 732.31M-195.69 750.31L935.69 750.31M-195.69 768.31L935.69 768.31M-195.69 786.31L935.69 786.31M-195.69 804.31L935.69 804.31M-195.69 822.31L935.69 822.31M-195.69 840.31L935.69 840.31"/></g>
+    <path d="M552 290 L551.31 305.86 L549.24 321.6 L545.8 337.11 L541.02 352.25 L534.95 366.92 L527.62 381 L519.09 394.39 L509.42 406.99 L498.69 418.69 L486.99 429.42 L474.39 439.09 L461 447.62 L446.92 454.95 L432.25 461.02 L417.11 465.8 L401.6 469.24 L385.86 471.31 L370 472 L354.14 471.31 L338.4 469.24 L322.89 465.8 L307.75 461.02 L293.08 454.95 L279 447.62 L265.61 439.09 L253.01 429.42 L241.31 418.69 L230.58 406.99 L220.91 394.39 L212.38 381 L205.05 366.92 L198.98 352.25 L194.2 337.11 L190.76 321.6 L188.69 305.86 L188 290 L188.69 274.14 L190.76 258.4 L194.2 242.89 L198.98 227.75 L205.05 213.08 L212.38 199 L220.91 185.61 L230.58 173.01 L241.31 161.31 L253.01 150.58 L265.61 140.91 L279 132.38 L293.08 125.05 L307.75 118.98 L322.89 114.2 L338.4 110.76 L354.14 108.69 L370 108 L385.86 108.69 L401.6 110.76 L417.11 114.2 L432.25 118.98 L446.92 125.05 L461 132.38 L474.39 140.91 L486.99 150.58 L498.69 161.31 L509.42 173.01 L519.09 185.61 L527.62 199 L534.95 213.08 L541.02 227.75 L545.8 242.89 L549.24 258.4 L551.31 274.14 L552 290 Z" style="fill: var(--_paper)"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M170 90 L570 90 L570 490 L170 490 Z" stroke-dasharray="2 4"/>
+    <path d="M425.81 294.58L474.96 299.66Q491.51 322.56 465.73 334.11L420.62 313.94"/>
+    <circle cx="520.51" cy="328.28" r="7.65"/>
+    <circle cx="512.86" cy="335.93" r="7.65"/>
+    <circle cx="505.21" cy="328.28" r="7.65"/>
+    <circle cx="512.86" cy="320.63" r="7.65"/>
+    <path d="M416.05 321.87L456.06 350.85Q458.95 378.95 430.85 376.06L401.87 336.05"/>
+    <circle cx="482.23" cy="394.58" r="7.65"/>
+    <circle cx="474.58" cy="402.23" r="7.65"/>
+    <circle cx="466.93" cy="394.58" r="7.65"/>
+    <circle cx="474.58" cy="386.93" r="7.65"/>
+    <path d="M393.94 340.62L414.11 385.73Q402.56 411.51 379.66 394.96L374.58 345.81"/>
+    <circle cx="415.93" cy="432.86" r="7.65"/>
+    <circle cx="408.28" cy="440.51" r="7.65"/>
+    <circle cx="400.63" cy="432.86" r="7.65"/>
+    <circle cx="408.28" cy="425.21" r="7.65"/>
+    <path d="M365.42 345.81L360.34 394.96Q337.44 411.51 325.89 385.73L346.06 340.62"/>
+    <circle cx="339.37" cy="432.86" r="7.65"/>
+    <circle cx="331.72" cy="440.51" r="7.65"/>
+    <circle cx="324.07" cy="432.86" r="7.65"/>
+    <circle cx="331.72" cy="425.21" r="7.65"/>
+    <path d="M338.13 336.05L309.15 376.06Q281.05 378.95 283.94 350.85L323.95 321.87"/>
+    <circle cx="273.07" cy="394.58" r="7.65"/>
+    <circle cx="265.42" cy="402.23" r="7.65"/>
+    <circle cx="257.77" cy="394.58" r="7.65"/>
+    <circle cx="265.42" cy="386.93" r="7.65"/>
+    <path d="M319.38 313.94L274.27 334.11Q248.49 322.56 265.04 299.66L314.19 294.58"/>
+    <circle cx="234.79" cy="328.28" r="7.65"/>
+    <circle cx="227.14" cy="335.93" r="7.65"/>
+    <circle cx="219.49" cy="328.28" r="7.65"/>
+    <circle cx="227.14" cy="320.63" r="7.65"/>
+    <path d="M314.19 285.42L265.04 280.34Q248.49 257.44 274.27 245.89L319.38 266.06"/>
+    <circle cx="234.79" cy="251.72" r="7.65"/>
+    <circle cx="227.14" cy="259.37" r="7.65"/>
+    <circle cx="219.49" cy="251.72" r="7.65"/>
+    <circle cx="227.14" cy="244.07" r="7.65"/>
+    <path d="M323.95 258.13L283.94 229.15Q281.05 201.05 309.15 203.94L338.13 243.95"/>
+    <circle cx="273.07" cy="185.42" r="7.65"/>
+    <circle cx="265.42" cy="193.07" r="7.65"/>
+    <circle cx="257.77" cy="185.42" r="7.65"/>
+    <circle cx="265.42" cy="177.77" r="7.65"/>
+    <path d="M346.06 239.38L325.89 194.27Q337.44 168.49 360.34 185.04L365.42 234.19"/>
+    <circle cx="339.37" cy="147.14" r="7.65"/>
+    <circle cx="331.72" cy="154.79" r="7.65"/>
+    <circle cx="324.07" cy="147.14" r="7.65"/>
+    <circle cx="331.72" cy="139.49" r="7.65"/>
+    <path d="M374.58 234.19L379.66 185.04Q402.56 168.49 414.11 194.27L393.94 239.38"/>
+    <circle cx="415.93" cy="147.14" r="7.65"/>
+    <circle cx="408.28" cy="154.79" r="7.65"/>
+    <circle cx="400.63" cy="147.14" r="7.65"/>
+    <circle cx="408.28" cy="139.49" r="7.65"/>
+    <path d="M401.87 243.95L430.85 203.94Q458.95 201.05 456.06 229.15L416.05 258.13"/>
+    <circle cx="482.23" cy="185.42" r="7.65"/>
+    <circle cx="474.58" cy="193.07" r="7.65"/>
+    <circle cx="466.93" cy="185.42" r="7.65"/>
+    <circle cx="474.58" cy="177.77" r="7.65"/>
+    <path d="M420.62 266.06L465.73 245.89Q491.51 257.44 474.96 280.34L425.81 285.42"/>
+    <circle cx="520.51" cy="251.72" r="7.65"/>
+    <circle cx="512.86" cy="259.37" r="7.65"/>
+    <circle cx="505.21" cy="251.72" r="7.65"/>
+    <circle cx="512.86" cy="244.07" r="7.65"/>
+    <circle cx="381" cy="290" r="9"/>
+    <circle cx="375.5" cy="299.53" r="9"/>
+    <circle cx="364.5" cy="299.53" r="9"/>
+    <circle cx="359" cy="290" r="9"/>
+    <circle cx="364.5" cy="280.47" r="9"/>
+    <circle cx="375.5" cy="280.47" r="9"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <circle cx="370" cy="290" r="182"/>
+    <circle cx="370" cy="290" r="170"/>
+    <circle cx="370" cy="290" r="50"/>
+    <circle cx="370" cy="290" r="22"/>
+    <path d="M420 290L492.4 290"/>
+    <circle cx="512.86" cy="328.28" r="18.7"/>
+    <path d="M413.3 315L476 351.2"/>
+    <circle cx="474.58" cy="394.58" r="18.7"/>
+    <path d="M395 333.3L431.2 396"/>
+    <circle cx="408.28" cy="432.86" r="18.7"/>
+    <path d="M370 340L370 412.4"/>
+    <circle cx="331.72" cy="432.86" r="18.7"/>
+    <path d="M345 333.3L308.8 396"/>
+    <circle cx="265.42" cy="394.58" r="18.7"/>
+    <path d="M326.7 315L264 351.2"/>
+    <circle cx="227.14" cy="328.28" r="18.7"/>
+    <path d="M320 290L247.6 290"/>
+    <circle cx="227.14" cy="251.72" r="18.7"/>
+    <path d="M326.7 265L264 228.8"/>
+    <circle cx="265.42" cy="185.42" r="18.7"/>
+    <path d="M345 246.7L308.8 184"/>
+    <circle cx="331.72" cy="147.14" r="18.7"/>
+    <path d="M370 240L370 167.6"/>
+    <circle cx="408.28" cy="147.14" r="18.7"/>
+    <path d="M395 246.7L431.2 184"/>
+    <circle cx="474.58" cy="185.42" r="18.7"/>
+    <path d="M413.3 265L476 228.8"/>
+    <circle cx="512.86" cy="251.72" r="18.7"/>
+  </g>
+  <text class="t-credit" x="158" y="523">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this</text>
+  <text class="t-credit" x="158" y="532">form; no external drawing reproduced.</text>
+</svg>

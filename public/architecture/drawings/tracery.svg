@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Tracery: elevation</title>
+  <desc id="d">Elevation of a pointed Gothic window divided by a central stone bar into two pointed lights, with a circle holding a four-lobed shape in the head above them. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="w-tr"><path d="M160 60 L560 60 L560 530 L160 530 Z"/></clipPath>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M356 290 L364 290 L364 500 L356 500 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#w-tr)"><path d="M-257.17 -322.17L977.17 -322.17M-257.17 -304.17L977.17 -304.17M-257.17 -286.17L977.17 -286.17M-257.17 -268.17L977.17 -268.17M-257.17 -250.17L977.17 -250.17M-257.17 -232.17L977.17 -232.17M-257.17 -214.17L977.17 -214.17M-257.17 -196.17L977.17 -196.17M-257.17 -178.17L977.17 -178.17M-257.17 -160.17L977.17 -160.17M-257.17 -142.17L977.17 -142.17M-257.17 -124.17L977.17 -124.17M-257.17 -106.17L977.17 -106.17M-257.17 -88.17L977.17 -88.17M-257.17 -70.17L977.17 -70.17M-257.17 -52.17L977.17 -52.17M-257.17 -34.17L977.17 -34.17M-257.17 -16.17L977.17 -16.17M-257.17 1.83L977.17 1.83M-257.17 19.83L977.17 19.83M-257.17 37.83L977.17 37.83M-257.17 55.83L977.17 55.83M-257.17 73.83L977.17 73.83M-257.17 91.83L977.17 91.83M-257.17 109.83L977.17 109.83M-257.17 127.83L977.17 127.83M-257.17 145.83L977.17 145.83M-257.17 163.83L977.17 163.83M-257.17 181.83L977.17 181.83M-257.17 199.83L977.17 199.83M-257.17 217.83L977.17 217.83M-257.17 235.83L977.17 235.83M-257.17 253.83L977.17 253.83M-257.17 271.83L977.17 271.83M-257.17 289.83L977.17 289.83M-257.17 307.83L977.17 307.83M-257.17 325.83L977.17 325.83M-257.17 343.83L977.17 343.83M-257.17 361.83L977.17 361.83M-257.17 379.83L977.17 379.83M-257.17 397.83L977.17 397.83M-257.17 415.83L977.17 415.83M-257.17 433.83L977.17 433.83M-257.17 451.83L977.17 451.83M-257.17 469.83L977.17 469.83M-257.17 487.83L977.17 487.83M-257.17 505.83L977.17 505.83M-257.17 523.83L977.17 523.83M-257.17 541.83L977.17 541.83M-257.17 559.83L977.17 559.83M-257.17 577.83L977.17 577.83M-257.17 595.83L977.17 595.83M-257.17 613.83L977.17 613.83M-257.17 631.83L977.17 631.83M-257.17 649.83L977.17 649.83M-257.17 667.83L977.17 667.83M-257.17 685.83L977.17 685.83M-257.17 703.83L977.17 703.83M-257.17 721.83L977.17 721.83M-257.17 739.83L977.17 739.83M-257.17 757.83L977.17 757.83M-257.17 775.83L977.17 775.83M-257.17 793.83L977.17 793.83M-257.17 811.83L977.17 811.83M-257.17 829.83L977.17 829.83M-257.17 847.83L977.17 847.83M-257.17 865.83L977.17 865.83M-257.17 883.83L977.17 883.83M-257.17 901.83L977.17 901.83"/></g>
+    <path d="M258 500 L258 280 L258 280 L258.25 270.58 L258.99 261.18 L260.22 251.84 L261.93 242.58 L264.13 233.41 L266.81 224.38 L269.96 215.49 L273.56 206.79 L277.62 198.28 L282.12 190 L287.04 181.96 L292.38 174.2 L298.11 166.72 L304.23 159.56 L310.72 152.72 L317.56 146.23 L324.72 140.11 L332.2 134.38 L339.96 129.04 L348 124.12 L372 124.12 L380.04 129.04 L387.8 134.38 L395.28 140.11 L402.44 146.23 L409.28 152.72 L415.77 159.56 L421.89 166.72 L427.62 174.2 L432.96 181.96 L437.88 190 L442.38 198.28 L446.44 206.79 L450.04 215.49 L453.19 224.38 L455.87 233.41 L458.07 242.58 L459.78 251.84 L461.01 261.18 L461.75 270.58 L462 280 L462 500 Z" style="fill: var(--_paper)"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M160 60 L560 60 L560 530 L160 530 Z" stroke-dasharray="2 4"/>
+    <path d="M276 410L356 410"/>
+    <path d="M364 410L444 410"/>
+    <circle cx="370.18" cy="225.38" r="14.4"/>
+    <circle cx="349.82" cy="225.38" r="14.4"/>
+    <circle cx="349.82" cy="205.02" r="14.4"/>
+    <circle cx="370.18" cy="205.02" r="14.4"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M270 500 L270 280 L270 280 L270.25 270.58 L270.99 261.18 L272.22 251.84 L273.93 242.58 L276.13 233.41 L278.81 224.38 L281.96 215.49 L285.56 206.79 L289.62 198.28 L294.12 190 L299.04 181.96 L304.38 174.2 L310.11 166.72 L316.23 159.56 L322.72 152.72 L329.56 146.23 L336.72 140.11 L344.2 134.38 L351.96 129.04 L360 124.12 L360 124.12 L368.04 129.04 L375.8 134.38 L383.28 140.11 L390.44 146.23 L397.28 152.72 L403.77 159.56 L409.89 166.72 L415.62 174.2 L420.96 181.96 L425.88 190 L430.38 198.28 L434.44 206.79 L438.04 215.49 L441.19 224.38 L443.87 233.41 L446.07 242.58 L447.78 251.84 L449.01 261.18 L449.75 270.58 L450 280 L450 500"/>
+    <path d="M258 500 L258 280 L258 280 L258.25 260.58 L258.99 251.18 L260.22 241.84 L261.93 232.58 L264.13 223.41 L266.81 214.38 L269.96 205.49 L273.56 196.79 L277.62 188.28 L282.12 180 L287.04 171.96 L292.38 164.2 L298.11 156.72 L304.23 149.56 L310.72 142.72 L317.56 136.23 L324.72 130.11 L332.2 124.38 L339.96 119.04 L348 114.12 L372 114.12 L380.04 119.04 L387.8 124.38 L395.28 130.11 L402.44 136.23 L409.28 142.72 L415.77 149.56 L421.89 156.72 L427.62 164.2 L432.96 171.96 L437.88 180 L442.38 188.28 L446.44 196.79 L450.04 205.49 L453.19 214.38 L455.87 223.41 L458.07 232.58 L459.78 241.84 L461.01 251.18 L461.75 260.58 L462 280 L462 500"/>
+    <path d="M276 500 L276 290 L276 290 L276.11 285.81 L276.44 281.64 L276.98 277.49 L277.75 273.37 L278.73 269.29 L279.92 265.28 L281.31 261.33 L282.92 257.46 L284.72 253.68 L286.72 250 L288.91 246.43 L291.28 242.98 L293.83 239.65 L296.55 236.47 L299.43 233.43 L302.47 230.55 L305.65 227.83 L308.98 225.28 L312.43 222.91 L316 220.72 L316 220.72 L319.57 222.91 L323.02 225.28 L326.35 227.83 L329.53 230.55 L332.57 233.43 L335.45 236.47 L338.17 239.65 L340.72 242.98 L343.09 246.43 L345.28 250 L347.28 253.68 L349.08 257.46 L350.69 261.33 L352.08 265.28 L353.27 269.29 L354.25 273.37 L355.02 277.49 L355.56 281.64 L355.89 285.81 L356 290 L356 500"/>
+    <path d="M364 500 L364 290 L364 290 L364.11 285.81 L364.44 281.64 L364.98 277.49 L365.75 273.37 L366.73 269.29 L367.92 265.28 L369.31 261.33 L370.92 257.46 L372.72 253.68 L374.72 250 L376.91 246.43 L379.28 242.98 L381.83 239.65 L384.55 236.47 L387.43 233.43 L390.47 230.55 L393.65 227.83 L396.98 225.28 L400.43 222.91 L404 220.72 L404 220.72 L407.57 222.91 L411.02 225.28 L414.35 227.83 L417.53 230.55 L420.57 233.43 L423.45 236.47 L426.17 239.65 L428.72 242.98 L431.09 246.43 L433.28 250 L435.28 253.68 L437.08 257.46 L438.69 261.33 L440.08 265.28 L441.27 269.29 L442.25 273.37 L443.02 277.49 L443.56 281.64 L443.89 285.81 L444 290 L444 500"/>
+    <circle cx="360" cy="215.2" r="36"/>
+    <path d="M250 500 L470 500 L470 512 L250 512 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M356 290 L364 290 L364 500 L356 500 Z" style="stroke: var(--_accent)"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M270 530L450 530M266 534L274 526M446 534L454 526M270 524L270 536M450 524L450 536"/><text x="360" y="544" text-anchor="middle">OPENING</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M162 215.2L321.5 215.2"/><circle cx="321.5" cy="215.2" r="1.5" class="solid"/><text x="34" y="218.2">QUATREFOIL IN OCULUS</text>
+    <path d="M107.1 260L287.5 260"/><circle cx="287.5" cy="260" r="1.5" class="solid"/><text x="34" y="263">BAR TRACERY</text>
+    <path d="M76.6 360L273.5 360"/><circle cx="273.5" cy="360" r="1.5" class="solid"/><text x="34" y="363">LANCET</text>
+    <path d="M107.1 410L273.5 410"/><circle cx="273.5" cy="410" r="1.5" class="solid"/><text x="34" y="413">TRANSOM BAR</text>
+    <path d="M131.5 430L353.5 430"/><circle cx="353.5" cy="430" r="1.5" class="solid"/><text x="34" y="433">CENTRAL MULLION</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">TRACERY</text>
+    <text class="t-sub" x="26" y="710">STONE RIBS DIVIDING THE HEAD OF A GOTHIC WINDOW</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  WIN-07</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN QUARTERS OF OPENING</text>
+    <rect x="416" y="730" width="45" height="5" class="solid"/><rect x="461" y="730" width="45" height="5" class="ink l-fine"/><rect x="506" y="730" width="45" height="5" class="solid"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="549" y="749">3</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

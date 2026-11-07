@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Transom: elevation</title>
+  <desc id="d">Elevation of a stone cross-window with the horizontal bar dividing the opening into upper and lower lights highlighted. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="w-x-transom"><path d="M150 80 L570 80 L570 480 L150 480 Z"/></clipPath><clipPath id="q-transom-274-144"><rect x="274" y="144" width="75" height="68.19999999999999"/></clipPath><clipPath id="q-transom-371-144"><rect x="371" y="144" width="75" height="68.19999999999999"/></clipPath><clipPath id="q-transom-274-234.2"><rect x="274" y="234.2" width="75" height="161.8"/></clipPath><clipPath id="q-transom-371-234.2"><rect x="371" y="234.2" width="75" height="161.8"/></clipPath>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M270 216.2 L450 216.2 L450 230.2 L270 230.2 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#w-x-transom)"><path d="M-220 -300L940 -300M-220 -282L940 -282M-220 -264L940 -264M-220 -246L940 -246M-220 -228L940 -228M-220 -210L940 -210M-220 -192L940 -192M-220 -174L940 -174M-220 -156L940 -156M-220 -138L940 -138M-220 -120L940 -120M-220 -102L940 -102M-220 -84L940 -84M-220 -66L940 -66M-220 -48L940 -48M-220 -30L940 -30M-220 -12L940 -12M-220 6L940 6M-220 24L940 24M-220 42L940 42M-220 60L940 60M-220 78L940 78M-220 96L940 96M-220 114L940 114M-220 132L940 132M-220 150L940 150M-220 168L940 168M-220 186L940 186M-220 204L940 204M-220 222L940 222M-220 240L940 240M-220 258L940 258M-220 276L940 276M-220 294L940 294M-220 312L940 312M-220 330L940 330M-220 348L940 348M-220 366L940 366M-220 384L940 384M-220 402L940 402M-220 420L940 420M-220 438L940 438M-220 456L940 456M-220 474L940 474M-220 492L940 492M-220 510L940 510M-220 528L940 528M-220 546L940 546M-220 564L940 564M-220 582L940 582M-220 600L940 600M-220 618L940 618M-220 636L940 636M-220 654L940 654M-220 672L940 672M-220 690L940 690M-220 708L940 708M-220 726L940 726M-220 744L940 744M-220 762L940 762M-220 780L940 780M-220 798L940 798M-220 816L940 816M-220 834L940 834M-220 852L940 852"/></g>
+    <path d="M256 126 L464 126 L464 414 L256 414 Z" style="fill: var(--_paper)"/>
+    <g clip-path="url(#q-transom-274-144)"><path d="M134 144l68.2 68.2M202.2 144l-68.2 68.2M148 144l68.2 68.2M216.2 144l-68.2 68.2M162 144l68.2 68.2M230.2 144l-68.2 68.2M176 144l68.2 68.2M244.2 144l-68.2 68.2M190 144l68.2 68.2M258.2 144l-68.2 68.2M204 144l68.2 68.2M272.2 144l-68.2 68.2M218 144l68.2 68.2M286.2 144l-68.2 68.2M232 144l68.2 68.2M300.2 144l-68.2 68.2M246 144l68.2 68.2M314.2 144l-68.2 68.2M260 144l68.2 68.2M328.2 144l-68.2 68.2M274 144l68.2 68.2M342.2 144l-68.2 68.2M288 144l68.2 68.2M356.2 144l-68.2 68.2M302 144l68.2 68.2M370.2 144l-68.2 68.2M316 144l68.2 68.2M384.2 144l-68.2 68.2M330 144l68.2 68.2M398.2 144l-68.2 68.2M344 144l68.2 68.2M412.2 144l-68.2 68.2M358 144l68.2 68.2M426.2 144l-68.2 68.2M372 144l68.2 68.2M440.2 144l-68.2 68.2M386 144l68.2 68.2M454.2 144l-68.2 68.2M400 144l68.2 68.2M468.2 144l-68.2 68.2M414 144l68.2 68.2M482.2 144l-68.2 68.2M428 144l68.2 68.2M496.2 144l-68.2 68.2M442 144l68.2 68.2M510.2 144l-68.2 68.2M456 144l68.2 68.2M524.2 144l-68.2 68.2M470 144l68.2 68.2M538.2 144l-68.2 68.2M484 144l68.2 68.2M552.2 144l-68.2 68.2M498 144l68.2 68.2M566.2 144l-68.2 68.2M512 144l68.2 68.2M580.2 144l-68.2 68.2M526 144l68.2 68.2M594.2 144l-68.2 68.2M540 144l68.2 68.2M608.2 144l-68.2 68.2"/></g>
+    <g clip-path="url(#q-transom-371-144)"><path d="M231 144l68.2 68.2M299.2 144l-68.2 68.2M245 144l68.2 68.2M313.2 144l-68.2 68.2M259 144l68.2 68.2M327.2 144l-68.2 68.2M273 144l68.2 68.2M341.2 144l-68.2 68.2M287 144l68.2 68.2M355.2 144l-68.2 68.2M301 144l68.2 68.2M369.2 144l-68.2 68.2M315 144l68.2 68.2M383.2 144l-68.2 68.2M329 144l68.2 68.2M397.2 144l-68.2 68.2M343 144l68.2 68.2M411.2 144l-68.2 68.2M357 144l68.2 68.2M425.2 144l-68.2 68.2M371 144l68.2 68.2M439.2 144l-68.2 68.2M385 144l68.2 68.2M453.2 144l-68.2 68.2M399 144l68.2 68.2M467.2 144l-68.2 68.2M413 144l68.2 68.2M481.2 144l-68.2 68.2M427 144l68.2 68.2M495.2 144l-68.2 68.2M441 144l68.2 68.2M509.2 144l-68.2 68.2M455 144l68.2 68.2M523.2 144l-68.2 68.2M469 144l68.2 68.2M537.2 144l-68.2 68.2M483 144l68.2 68.2M551.2 144l-68.2 68.2M497 144l68.2 68.2M565.2 144l-68.2 68.2M511 144l68.2 68.2M579.2 144l-68.2 68.2M525 144l68.2 68.2M593.2 144l-68.2 68.2M539 144l68.2 68.2M607.2 144l-68.2 68.2M553 144l68.2 68.2M621.2 144l-68.2 68.2M567 144l68.2 68.2M635.2 144l-68.2 68.2M581 144l68.2 68.2M649.2 144l-68.2 68.2M595 144l68.2 68.2M663.2 144l-68.2 68.2M609 144l68.2 68.2M677.2 144l-68.2 68.2M623 144l68.2 68.2M691.2 144l-68.2 68.2M637 144l68.2 68.2M705.2 144l-68.2 68.2"/></g>
+    <g clip-path="url(#q-transom-274-234.2)"><path d="M134 234.2l161.8 161.8M295.8 234.2l-161.8 161.8M148 234.2l161.8 161.8M309.8 234.2l-161.8 161.8M162 234.2l161.8 161.8M323.8 234.2l-161.8 161.8M176 234.2l161.8 161.8M337.8 234.2l-161.8 161.8M190 234.2l161.8 161.8M351.8 234.2l-161.8 161.8M204 234.2l161.8 161.8M365.8 234.2l-161.8 161.8M218 234.2l161.8 161.8M379.8 234.2l-161.8 161.8M232 234.2l161.8 161.8M393.8 234.2l-161.8 161.8M246 234.2l161.8 161.8M407.8 234.2l-161.8 161.8M260 234.2l161.8 161.8M421.8 234.2l-161.8 161.8M274 234.2l161.8 161.8M435.8 234.2l-161.8 161.8M288 234.2l161.8 161.8M449.8 234.2l-161.8 161.8M302 234.2l161.8 161.8M463.8 234.2l-161.8 161.8M316 234.2l161.8 161.8M477.8 234.2l-161.8 161.8M330 234.2l161.8 161.8M491.8 234.2l-161.8 161.8M344 234.2l161.8 161.8M505.8 234.2l-161.8 161.8M358 234.2l161.8 161.8M519.8 234.2l-161.8 161.8M372 234.2l161.8 161.8M533.8 234.2l-161.8 161.8M386 234.2l161.8 161.8M547.8 234.2l-161.8 161.8M400 234.2l161.8 161.8M561.8 234.2l-161.8 161.8M414 234.2l161.8 161.8M575.8 234.2l-161.8 161.8M428 234.2l161.8 161.8M589.8 234.2l-161.8 161.8M442 234.2l161.8 161.8M603.8 234.2l-161.8 161.8M456 234.2l161.8 161.8M617.8 234.2l-161.8 161.8M470 234.2l161.8 161.8M631.8 234.2l-161.8 161.8M484 234.2l161.8 161.8M645.8 234.2l-161.8 161.8M498 234.2l161.8 161.8M659.8 234.2l-161.8 161.8M512 234.2l161.8 161.8M673.8 234.2l-161.8 161.8M526 234.2l161.8 161.8M687.8 234.2l-161.8 161.8M540 234.2l161.8 161.8M701.8 234.2l-161.8 161.8"/></g>
+    <g clip-path="url(#q-transom-371-234.2)"><path d="M231 234.2l161.8 161.8M392.8 234.2l-161.8 161.8M245 234.2l161.8 161.8M406.8 234.2l-161.8 161.8M259 234.2l161.8 161.8M420.8 234.2l-161.8 161.8M273 234.2l161.8 161.8M434.8 234.2l-161.8 161.8M287 234.2l161.8 161.8M448.8 234.2l-161.8 161.8M301 234.2l161.8 161.8M462.8 234.2l-161.8 161.8M315 234.2l161.8 161.8M476.8 234.2l-161.8 161.8M329 234.2l161.8 161.8M490.8 234.2l-161.8 161.8M343 234.2l161.8 161.8M504.8 234.2l-161.8 161.8M357 234.2l161.8 161.8M518.8 234.2l-161.8 161.8M371 234.2l161.8 161.8M532.8 234.2l-161.8 161.8M385 234.2l161.8 161.8M546.8 234.2l-161.8 161.8M399 234.2l161.8 161.8M560.8 234.2l-161.8 161.8M413 234.2l161.8 161.8M574.8 234.2l-161.8 161.8M427 234.2l161.8 161.8M588.8 234.2l-161.8 161.8M441 234.2l161.8 161.8M602.8 234.2l-161.8 161.8M455 234.2l161.8 161.8M616.8 234.2l-161.8 161.8M469 234.2l161.8 161.8M630.8 234.2l-161.8 161.8M483 234.2l161.8 161.8M644.8 234.2l-161.8 161.8M497 234.2l161.8 161.8M658.8 234.2l-161.8 161.8M511 234.2l161.8 161.8M672.8 234.2l-161.8 161.8M525 234.2l161.8 161.8M686.8 234.2l-161.8 161.8M539 234.2l161.8 161.8M700.8 234.2l-161.8 161.8M553 234.2l161.8 161.8M714.8 234.2l-161.8 161.8M567 234.2l161.8 161.8M728.8 234.2l-161.8 161.8M581 234.2l161.8 161.8M742.8 234.2l-161.8 161.8M595 234.2l161.8 161.8M756.8 234.2l-161.8 161.8M609 234.2l161.8 161.8M770.8 234.2l-161.8 161.8M623 234.2l161.8 161.8M784.8 234.2l-161.8 161.8M637 234.2l161.8 161.8M798.8 234.2l-161.8 161.8"/></g>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M150 80 L570 80 L570 480 L150 480 Z" stroke-dasharray="2 4"/>
+    <path d="M274 144 L349 144 L349 212.2 L274 212.2 Z"/>
+    <path d="M371 144 L446 144 L446 212.2 L371 212.2 Z"/>
+    <path d="M274 234.2 L349 234.2 L349 396 L274 396 Z"/>
+    <path d="M371 234.2 L446 234.2 L446 396 L371 396 Z"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M256 126 L464 126 L464 414 L256 414 Z"/>
+    <path d="M270 140 L450 140 L450 400 L270 400 Z"/>
+    <path d="M353 140 L367 140 L367 400 L353 400 Z"/>
+    <path d="M246 414 L474 414 L474 426 L246 426 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M270 216.2 L450 216.2 L450 230.2 L270 230.2 Z" style="stroke: var(--_accent)"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M270 450L450 450M266 454L274 446M446 454L454 446M270 444L270 456M450 444L450 456"/><text x="360" y="464" text-anchor="middle">OPENING</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M125.4 170L253.5 170"/><circle cx="253.5" cy="170" r="1.5" class="solid"/><text x="34" y="173">STONE SURROUND</text>
+    <path d="M82.7 223.2L267.5 223.2"/><circle cx="267.5" cy="223.2" r="1.5" class="solid"/><text x="34" y="226.2">TRANSOM</text>
+    <path d="M113.2 283.2L287.5 283.2"/><circle cx="287.5" cy="283.2" r="1.5" class="solid"/><text x="34" y="286.2">LEADED LIGHT</text>
+    <path d="M82.7 360L350.5 360"/><circle cx="350.5" cy="360" r="1.5" class="solid"/><text x="34" y="363">MULLION</text>
+    <path d="M64.4 420L243.5 420"/><circle cx="243.5" cy="420" r="1.5" class="solid"/><text x="34" y="423">SILL</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">TRANSOM</text>
+    <text class="t-sub" x="26" y="710">HORIZONTAL BAR DIVIDING A WINDOW</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  WIN-09</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN QUARTERS OF OPENING</text>
+    <rect x="416" y="730" width="45" height="5" class="solid"/><rect x="461" y="730" width="45" height="5" class="ink l-fine"/><rect x="506" y="730" width="45" height="5" class="solid"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="549" y="749">3</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

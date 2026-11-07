@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Portal: elevation</title>
+  <desc id="d">Elevation of a monumental church entrance: a series of arches stepping inward over column shafts frame a pair of doors under a carved semicircular panel. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="w-portal"><path d="M160 138 L560 138 L560 510 L160 510 Z"/></clipPath>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M300 330 L300.33 323.73 L301.31 317.53 L302.94 311.46 L305.19 305.6 L308.04 300 L311.46 294.73 L315.41 289.85 L319.85 285.41 L324.73 281.46 L330 278.04 L335.6 275.19 L341.46 272.94 L347.53 271.31 L353.73 270.33 L360 270 L366.27 270.33 L372.47 271.31 L378.54 272.94 L384.4 275.19 L390 278.04 L395.27 281.46 L400.15 285.41 L404.59 289.85 L408.54 294.73 L411.96 300 L414.81 305.6 L417.06 311.46 L418.69 317.53 L419.67 323.73 L420 330 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#w-portal)"><path d="M-186.25 -222.25L906.25 -222.25M-186.25 -204.25L906.25 -204.25M-186.25 -186.25L906.25 -186.25M-186.25 -168.25L906.25 -168.25M-186.25 -150.25L906.25 -150.25M-186.25 -132.25L906.25 -132.25M-186.25 -114.25L906.25 -114.25M-186.25 -96.25L906.25 -96.25M-186.25 -78.25L906.25 -78.25M-186.25 -60.25L906.25 -60.25M-186.25 -42.25L906.25 -42.25M-186.25 -24.25L906.25 -24.25M-186.25 -6.25L906.25 -6.25M-186.25 11.75L906.25 11.75M-186.25 29.75L906.25 29.75M-186.25 47.75L906.25 47.75M-186.25 65.75L906.25 65.75M-186.25 83.75L906.25 83.75M-186.25 101.75L906.25 101.75M-186.25 119.75L906.25 119.75M-186.25 137.75L906.25 137.75M-186.25 155.75L906.25 155.75M-186.25 173.75L906.25 173.75M-186.25 191.75L906.25 191.75M-186.25 209.75L906.25 209.75M-186.25 227.75L906.25 227.75M-186.25 245.75L906.25 245.75M-186.25 263.75L906.25 263.75M-186.25 281.75L906.25 281.75M-186.25 299.75L906.25 299.75M-186.25 317.75L906.25 317.75M-186.25 335.75L906.25 335.75M-186.25 353.75L906.25 353.75M-186.25 371.75L906.25 371.75M-186.25 389.75L906.25 389.75M-186.25 407.75L906.25 407.75M-186.25 425.75L906.25 425.75M-186.25 443.75L906.25 443.75M-186.25 461.75L906.25 461.75M-186.25 479.75L906.25 479.75M-186.25 497.75L906.25 497.75M-186.25 515.75L906.25 515.75M-186.25 533.75L906.25 533.75M-186.25 551.75L906.25 551.75M-186.25 569.75L906.25 569.75M-186.25 587.75L906.25 587.75M-186.25 605.75L906.25 605.75M-186.25 623.75L906.25 623.75M-186.25 641.75L906.25 641.75M-186.25 659.75L906.25 659.75M-186.25 677.75L906.25 677.75M-186.25 695.75L906.25 695.75M-186.25 713.75L906.25 713.75M-186.25 731.75L906.25 731.75M-186.25 749.75L906.25 749.75M-186.25 767.75L906.25 767.75M-186.25 785.75L906.25 785.75M-186.25 803.75L906.25 803.75M-186.25 821.75L906.25 821.75M-186.25 839.75L906.25 839.75M-186.25 857.75L906.25 857.75"/></g>
+    <path d="M228 510 L228 330 L228 330 L228.41 319.64 L229.63 309.35 L231.65 299.19 L234.46 289.21 L238.05 279.49 L242.39 270.07 L247.45 261.03 L253.21 252.41 L259.63 244.27 L266.66 236.66 L274.27 229.63 L282.41 223.21 L291.03 217.45 L300.07 212.39 L309.49 208.05 L319.21 204.46 L329.19 201.65 L339.35 199.63 L349.64 198.41 L360 198 L370.36 198.41 L380.65 199.63 L390.81 201.65 L400.79 204.46 L410.51 208.05 L419.93 212.39 L428.97 217.45 L437.59 223.21 L445.73 229.63 L453.34 236.66 L460.37 244.27 L466.79 252.41 L472.55 261.03 L477.61 270.07 L481.95 279.49 L485.54 289.21 L488.35 299.19 L490.37 309.35 L491.59 319.64 L492 330 L492 510 Z" style="fill: var(--_paper)"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M160 138 L560 138 L560 510 L160 510 Z" stroke-dasharray="2 4"/>
+    <path d="M237 510L237 330"/>
+    <path d="M483 510L483 330"/>
+    <path d="M241 330 L233.1 313.29 L245.05 299.2 L241.74 281.02 L256.94 270.5 L258.45 252.08 L275.85 245.85 L282.08 228.45 L300.5 226.94 L311.02 211.74 L329.2 215.05 L343.29 203.1 L360 211 L376.71 203.1 L390.8 215.05 L408.98 211.74 L419.5 226.94 L437.92 228.45 L444.15 245.85 L461.55 252.08 L463.06 270.5 L478.26 281.02 L474.95 299.2 L486.9 313.29 L479 330"/>
+    <path d="M255 510L255 330"/>
+    <path d="M465 510L465 330"/>
+    <path d="M273 510L273 330"/>
+    <path d="M447 510L447 330"/>
+    <path d="M277 330 L268.79 317.99 L279.83 308.52 L275 294.79 L288.12 288.5 L287.01 273.99 L301.31 271.31 L303.99 257.01 L318.5 258.12 L324.79 245 L338.52 249.83 L347.99 238.79 L360 247 L372.01 238.79 L381.48 249.83 L395.21 245 L401.5 258.12 L416.01 257.01 L418.69 271.31 L432.99 273.99 L431.88 288.5 L445 294.79 L440.17 308.52 L451.21 317.99 L443 330"/>
+    <path d="M291 510L291 330"/>
+    <path d="M429 510L429 330"/>
+    <path d="M304 348 L350 348 L350 510 L304 510 Z"/>
+    <path d="M370 348 L416 348 L416 510 L370 510 Z"/>
+    <circle cx="360" cy="300" r="18"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M228 510 L228 330 L228 330 L228.41 319.64 L229.63 309.35 L231.65 299.19 L234.46 289.21 L238.05 279.49 L242.39 270.07 L247.45 261.03 L253.21 252.41 L259.63 244.27 L266.66 236.66 L274.27 229.63 L282.41 223.21 L291.03 217.45 L300.07 212.39 L309.49 208.05 L319.21 204.46 L329.19 201.65 L339.35 199.63 L349.64 198.41 L360 198 L370.36 198.41 L380.65 199.63 L390.81 201.65 L400.79 204.46 L410.51 208.05 L419.93 212.39 L428.97 217.45 L437.59 223.21 L445.73 229.63 L453.34 236.66 L460.37 244.27 L466.79 252.41 L472.55 261.03 L477.61 270.07 L481.95 279.49 L485.54 289.21 L488.35 299.19 L490.37 309.35 L491.59 319.64 L492 330 L492 510"/>
+    <path d="M246 510 L246 330 L246 330 L246.35 321.06 L247.4 312.17 L249.15 303.39 L251.58 294.77 L254.68 286.37 L258.43 278.25 L262.8 270.44 L267.77 262.99 L273.31 255.96 L279.39 249.39 L285.96 243.31 L292.99 237.77 L300.44 232.8 L308.25 228.43 L316.37 224.68 L324.77 221.58 L333.39 219.15 L342.17 217.4 L351.06 216.35 L360 216 L368.94 216.35 L377.83 217.4 L386.61 219.15 L395.23 221.58 L403.63 224.68 L411.75 228.43 L419.56 232.8 L427.01 237.77 L434.04 243.31 L440.61 249.39 L446.69 255.96 L452.23 262.99 L457.2 270.44 L461.57 278.25 L465.32 286.37 L468.42 294.77 L470.85 303.39 L472.6 312.17 L473.65 321.06 L474 330 L474 510"/>
+    <path d="M264 510 L264 330 L264 330 L264.3 322.47 L265.18 314.98 L266.65 307.59 L268.7 300.33 L271.31 293.26 L274.46 286.42 L278.15 279.84 L282.33 273.57 L287 267.65 L292.12 262.12 L297.65 257 L303.57 252.33 L309.84 248.15 L316.42 244.46 L323.26 241.31 L330.33 238.7 L337.59 236.65 L344.98 235.18 L352.47 234.3 L360 234 L367.53 234.3 L375.02 235.18 L382.41 236.65 L389.67 238.7 L396.74 241.31 L403.58 244.46 L410.16 248.15 L416.43 252.33 L422.35 257 L427.88 262.12 L433 267.65 L437.67 273.57 L441.85 279.84 L445.54 286.42 L448.69 293.26 L451.3 300.33 L453.35 307.59 L454.82 314.98 L455.7 322.47 L456 330 L456 510"/>
+    <path d="M282 510 L282 330 L282 330 L282.24 323.88 L282.96 317.8 L284.16 311.79 L285.82 305.9 L287.94 300.15 L290.5 294.59 L293.49 289.25 L296.9 284.15 L300.69 279.34 L304.85 274.85 L309.34 270.69 L314.15 266.9 L319.25 263.49 L324.59 260.5 L330.15 257.94 L335.9 255.82 L341.79 254.16 L347.8 252.96 L353.88 252.24 L360 252 L366.12 252.24 L372.2 252.96 L378.21 254.16 L384.1 255.82 L389.85 257.94 L395.41 260.5 L400.75 263.49 L405.85 266.9 L410.66 270.69 L415.15 274.85 L419.31 279.34 L423.1 284.15 L426.51 289.25 L429.5 294.59 L432.06 300.15 L434.18 305.9 L435.84 311.79 L437.04 317.8 L437.76 323.88 L438 330 L438 510"/>
+    <path d="M300 510 L300 330 L300 330 L300.18 325.29 L300.74 320.61 L301.66 315.99 L302.94 311.46 L304.57 307.04 L306.54 302.76 L308.84 298.65 L311.46 294.73 L314.38 291.03 L317.57 287.57 L321.03 284.38 L324.73 281.46 L328.65 278.84 L332.76 276.54 L337.04 274.57 L341.46 272.94 L345.99 271.66 L350.61 270.74 L355.29 270.18 L360 270 L364.71 270.18 L369.39 270.74 L374.01 271.66 L378.54 272.94 L382.96 274.57 L387.24 276.54 L391.35 278.84 L395.27 281.46 L398.97 284.38 L402.43 287.57 L405.62 291.03 L408.54 294.73 L411.16 298.65 L413.46 302.76 L415.43 307.04 L417.06 311.46 L418.34 315.99 L419.26 320.61 L419.82 325.29 L420 330 L420 510"/>
+    <path d="M300 330 L420 330 L420 344 L300 344 Z"/>
+    <path d="M354 344 L366 344 L366 510 L354 510 Z"/>
+    <path d="M150 510L570 510"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M300 532L420 532M296 536L304 528M416 536L424 528M300 526L300 538M420 526L420 538"/><text x="360" y="546" text-anchor="middle">DOORWAY</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M155.9 250.2L277.7 250.2"/><circle cx="277.7" cy="250.2" r="1.5" class="solid"/><text x="34" y="253.2">ARCHIVOLTS (ORDERS)</text>
+    <path d="M88.8 306L321.5 306"/><circle cx="321.5" cy="306" r="1.5" class="solid"/><text x="34" y="309">TYMPANUM</text>
+    <path d="M76.6 337L297.5 337"/><circle cx="297.5" cy="337" r="1.5" class="solid"/><text x="34" y="340">LINTEL</text>
+    <path d="M107.1 430L270.5 430"/><circle cx="270.5" cy="430" r="1.5" class="solid"/><text x="34" y="433">JAMB SHAFTS</text>
+    <path d="M82.7 450L351.5 450"/><circle cx="351.5" cy="450" r="1.5" class="solid"/><text x="34" y="453">TRUMEAU</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">PORTAL</text>
+    <text class="t-sub" x="26" y="710">GRAND RECESSED ENTRANCE OF STEPPED ARCHES</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  DOR-07</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN ORDERS</text>
+    <rect x="416" y="730" width="18" height="5" class="solid"/><rect x="434" y="730" width="18" height="5" class="ink l-fine"/><rect x="452" y="730" width="18" height="5" class="solid"/><rect x="470" y="730" width="18" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="486" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

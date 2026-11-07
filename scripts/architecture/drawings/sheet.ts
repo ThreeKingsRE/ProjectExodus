@@ -139,7 +139,9 @@ export function renderSheet(spec: SheetSpec): string {
   // The credit is never truncated: wrap to the title block, fail the build if it can't fit
   const sourceLines = wrap(`SOURCE: ${spec.source}`, 74)
   if (sourceLines.length > 4) throw new Error(`${spec.id}: source credit too long for the title block (${sourceLines.length} lines; max 4)`)
-  const { unitPx, unitName, count } = spec.scale
+  const { unitPx, unitName } = spec.scale
+  // keep the scale bar inside the title block whatever the unit size
+  const count = Math.max(1, Math.min(spec.scale.count, Math.floor(168 / unitPx)))
   const bar = Array.from({ length: count }, (_, i) =>
     `<rect x="${f(split + 16 + i * unitPx)}" y="${tbTop + 66}" width="${f(unitPx)}" height="5" class="${i % 2 ? 'ink l-fine' : 'solid'}"/>`
   ).join('')

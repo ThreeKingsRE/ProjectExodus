@@ -122,9 +122,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STR-09</text>
     <text class="t-small" x="416" y="699">PLAN</text>
     <text class="t-small" x="416" y="724">SCALE IN TWO GOINGS</text>
-    <rect x="416" y="730" width="44" height="5" class="solid"/><rect x="460" y="730" width="44" height="5" class="ink l-fine"/><rect x="504" y="730" width="44" height="5" class="solid"/><rect x="548" y="730" width="44" height="5" class="ink l-fine"/>
+    <rect x="416" y="730" width="44" height="5" class="solid"/><rect x="460" y="730" width="44" height="5" class="ink l-fine"/><rect x="504" y="730" width="44" height="5" class="solid"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="590" y="749">4</text>
+    <text class="t-small" x="546" y="749">3</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

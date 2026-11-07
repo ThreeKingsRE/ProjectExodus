@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Pocket Door: plan</title>
+  <desc id="d">Plan through a wall where the door, instead of swinging, slides sideways into a hollow inside the wall itself, leaving the opening clear. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M160 300 L210 300 L210 326 L160 326 Z" fill="url(#h-timber)" stroke="none"/>
+    <path d="M210 300 L370 300 L370 305 L210 305 Z" fill="url(#h-timber)" stroke="none"/>
+    <path d="M210 321 L370 321 L370 326 L210 326 Z" fill="url(#h-timber)" stroke="none"/>
+    <path d="M510 300 L560 300 L560 326 L510 326 Z" fill="url(#h-timber)" stroke="none"/>
+    <path d="M272 309 L412 309 L412 317 L272 317 Z" fill="url(#h-timber)" stroke="none"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M210 300 L370 300 L370 326 L210 326 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M160 300 L210 300 L210 326 L160 326 Z"/>
+    <path d="M510 300 L560 300 L560 326 L510 326 Z"/>
+    <path d="M272 309 L412 309 L412 317 L272 317 Z" style="stroke: var(--_accent)"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M390 270L290 270M296.45 267.27L290 270L296.45 272.73" stroke-dasharray="none"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M370 356L510 356M366 360L374 352M506 360L514 352M370 350L370 362M510 350L510 362"/><text x="440" y="370" text-anchor="middle">CLEAR OPENING</text>
+    <path d="M210 382L370 382M206 386L214 378M366 386L374 378M210 376L210 388M370 376L370 388"/><text x="290" y="396" text-anchor="middle">POCKET</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M131.5 294.33L146 294.33L207.5 302"/><circle cx="207.5" cy="302" r="1.5" class="solid"/><text x="34" y="297.33">POCKET (CAVITY)</text>
+    <path d="M101 309.33L146 309.33L157.5 313"/><circle cx="157.5" cy="313" r="1.5" class="solid"/><text x="34" y="312.33">WALL (CUT)</text>
+    <path d="M113.2 324.33L146 324.33L269.5 313"/><circle cx="269.5" cy="313" r="1.5" class="solid"/><text x="34" y="327.33">SLIDING LEAF</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="340" y="262" text-anchor="middle" class="t-small t-accent">SLIDES INTO WALL</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">POCKET DOOR</text>
+    <text class="t-sub" x="26" y="710">LEAF THAT SLIDES INTO A CAVITY IN THE WALL</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  DOR-09</text>
+    <text class="t-small" x="416" y="699">PLAN</text>
+    <text class="t-small" x="416" y="724">SCALE IN QUARTERS OF OPENING</text>
+    <rect x="416" y="730" width="35" height="5" class="solid"/><rect x="451" y="730" width="35" height="5" class="ink l-fine"/><rect x="486" y="730" width="35" height="5" class="solid"/><rect x="521" y="730" width="35" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="554" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

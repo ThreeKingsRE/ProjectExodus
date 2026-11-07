@@ -99,9 +99,9 @@
     <text class="t-sub" x="416" y="684">SHEET  STR-10</text>
     <text class="t-small" x="416" y="699">PLAN</text>
     <text class="t-small" x="416" y="724">SCALE IN FIFTHS OF RADIUS</text>
-    <rect x="416" y="730" width="37" height="5" class="solid"/><rect x="453" y="730" width="37" height="5" class="ink l-fine"/><rect x="490" y="730" width="37" height="5" class="solid"/><rect x="527" y="730" width="37" height="5" class="ink l-fine"/><rect x="564" y="730" width="37" height="5" class="solid"/>
+    <rect x="416" y="730" width="37" height="5" class="solid"/><rect x="453" y="730" width="37" height="5" class="ink l-fine"/><rect x="490" y="730" width="37" height="5" class="solid"/><rect x="527" y="730" width="37" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="599" y="749">5</text>
+    <text class="t-small" x="562" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

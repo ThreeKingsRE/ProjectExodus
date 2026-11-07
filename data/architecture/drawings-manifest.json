@@ -502,5 +502,167 @@
   "sheetNo": "WAL-10",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 1.027
+ },
+ "sash-window": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.955
+ },
+ "casement-window": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.103
+ },
+ "window-shutter": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.217
+ },
+ "palladian-window": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-04",
+  "source": "Serliana form published by Sebastiano Serlio (1537) and popularised by Andrea Palladio. Original drawing by Project Exodus.",
+  "aspect": 1.207
+ },
+ "lunette": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.346
+ },
+ "rose-window": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "tracery": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-07",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.854
+ },
+ "mullion": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.049
+ },
+ "transom": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-09",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.049
+ },
+ "stained-glass": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-10",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.498
+ },
+ "stained-glass-nouveau": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-11",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.498
+ },
+ "ribbon-window": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-12",
+  "source": "Fenêtre en longueur, one of Le Corbusier’s Five Points of a New Architecture (1926/27). Generic original drawing by Project Exodus.",
+  "aspect": 1
+ },
+ "clerestory": {
+  "view": "SECTION",
+  "sheetNo": "WIN-13",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.05
+ },
+ "dormer": {
+  "view": "ELEVATION",
+  "sheetNo": "WIN-14",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.694
+ },
+ "oriel-window": {
+  "view": "SECTION",
+  "sheetNo": "WIN-15",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.951
+ },
+ "deep-window-recess": {
+  "view": "PLAN",
+  "sheetNo": "WIN-16",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.581
+ },
+ "paneled-door": {
+  "view": "ELEVATION",
+  "sheetNo": "DOR-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.049
+ },
+ "dutch-door": {
+  "view": "ELEVATION",
+  "sheetNo": "DOR-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.049
+ },
+ "architrave": {
+  "view": "ELEVATION",
+  "sheetNo": "DOR-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.049
+ },
+ "pediment-door": {
+  "view": "ELEVATION",
+  "sheetNo": "DOR-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.049
+ },
+ "door-transom": {
+  "view": "ELEVATION",
+  "sheetNo": "DOR-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.895
+ },
+ "lintel": {
+  "view": "ELEVATION",
+  "sheetNo": "DOR-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.049
+ },
+ "portal": {
+  "view": "ELEVATION",
+  "sheetNo": "DOR-07",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.074
+ },
+ "door-tympanum": {
+  "view": "ELEVATION",
+  "sheetNo": "DOR-08",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.074
+ },
+ "pocket-door": {
+  "view": "PLAN",
+  "sheetNo": "DOR-09",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 2.833
+ },
+ "revolving-door": {
+  "view": "PLAN",
+  "sheetNo": "DOR-10",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.244
+ },
+ "door-knocker": {
+  "view": "ELEVATION",
+  "sheetNo": "DOR-11",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.643
  }
 }

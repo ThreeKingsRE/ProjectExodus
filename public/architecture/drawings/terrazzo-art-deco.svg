@@ -73,9 +73,9 @@
     <text class="t-sub" x="416" y="684">SHEET  FLR-06</text>
     <text class="t-small" x="416" y="699">PLAN</text>
     <text class="t-small" x="416" y="724">SCALE IN FIFTHS OF OUTER RADIUS</text>
-    <rect x="416" y="730" width="54" height="5" class="solid"/><rect x="470" y="730" width="54" height="5" class="ink l-fine"/><rect x="524" y="730" width="54" height="5" class="solid"/><rect x="578" y="730" width="54" height="5" class="ink l-fine"/><rect x="632" y="730" width="54" height="5" class="solid"/>
+    <rect x="416" y="730" width="54" height="5" class="solid"/><rect x="470" y="730" width="54" height="5" class="ink l-fine"/><rect x="524" y="730" width="54" height="5" class="solid"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="684" y="749">5</text>
+    <text class="t-small" x="576" y="749">3</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Sash Window: elevation</title>
+  <desc id="d">Elevation of a tall window of two glazed frames, each divided into six panes, that slide up and down past each other in the frame. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="w-sash"><path d="M150 60 L570 60 L570 500 L150 500 Z"/></clipPath>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M291 264 L429 264 L429 274 L291 274 Z" fill="url(#h-timber)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#w-sash)"><path d="M-248.28 -328.28L968.28 -328.28M-248.28 -310.28L968.28 -310.28M-248.28 -292.28L968.28 -292.28M-248.28 -274.28L968.28 -274.28M-248.28 -256.28L968.28 -256.28M-248.28 -238.28L968.28 -238.28M-248.28 -220.28L968.28 -220.28M-248.28 -202.28L968.28 -202.28M-248.28 -184.28L968.28 -184.28M-248.28 -166.28L968.28 -166.28M-248.28 -148.28L968.28 -148.28M-248.28 -130.28L968.28 -130.28M-248.28 -112.28L968.28 -112.28M-248.28 -94.28L968.28 -94.28M-248.28 -76.28L968.28 -76.28M-248.28 -58.28L968.28 -58.28M-248.28 -40.28L968.28 -40.28M-248.28 -22.28L968.28 -22.28M-248.28 -4.28L968.28 -4.28M-248.28 13.72L968.28 13.72M-248.28 31.72L968.28 31.72M-248.28 49.72L968.28 49.72M-248.28 67.72L968.28 67.72M-248.28 85.72L968.28 85.72M-248.28 103.72L968.28 103.72M-248.28 121.72L968.28 121.72M-248.28 139.72L968.28 139.72M-248.28 157.72L968.28 157.72M-248.28 175.72L968.28 175.72M-248.28 193.72L968.28 193.72M-248.28 211.72L968.28 211.72M-248.28 229.72L968.28 229.72M-248.28 247.72L968.28 247.72M-248.28 265.72L968.28 265.72M-248.28 283.72L968.28 283.72M-248.28 301.72L968.28 301.72M-248.28 319.72L968.28 319.72M-248.28 337.72L968.28 337.72M-248.28 355.72L968.28 355.72M-248.28 373.72L968.28 373.72M-248.28 391.72L968.28 391.72M-248.28 409.72L968.28 409.72M-248.28 427.72L968.28 427.72M-248.28 445.72L968.28 445.72M-248.28 463.72L968.28 463.72M-248.28 481.72L968.28 481.72M-248.28 499.72L968.28 499.72M-248.28 517.72L968.28 517.72M-248.28 535.72L968.28 535.72M-248.28 553.72L968.28 553.72M-248.28 571.72L968.28 571.72M-248.28 589.72L968.28 589.72M-248.28 607.72L968.28 607.72M-248.28 625.72L968.28 625.72M-248.28 643.72L968.28 643.72M-248.28 661.72L968.28 661.72M-248.28 679.72L968.28 679.72M-248.28 697.72L968.28 697.72M-248.28 715.72L968.28 715.72M-248.28 733.72L968.28 733.72M-248.28 751.72L968.28 751.72M-248.28 769.72L968.28 769.72M-248.28 787.72L968.28 787.72M-248.28 805.72L968.28 805.72M-248.28 823.72L968.28 823.72M-248.28 841.72L968.28 841.72M-248.28 859.72L968.28 859.72M-248.28 877.72L968.28 877.72"/></g>
+    <path d="M275 110 L445 110 L445 440 L275 440 Z" style="fill: var(--_paper)"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M150 60 L570 60 L570 500 L150 500 Z" stroke-dasharray="2 4"/>
+    <path d="M339 132V268M381 132V268M297 200H423"/>
+    <path d="M339 278V408M381 278V408M297 343H423"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M275 110 L445 110 L445 430 L275 430 Z"/>
+    <path d="M285 120 L435 120 L435 420 L285 420 Z"/>
+    <path d="M291 126 L429 126 L429 274 L291 274 Z"/>
+    <path d="M291 266 L429 266 L429 414 L291 414 Z"/>
+    <path d="M265 430 L455 430 L455 442 L265 442 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M291 264 L429 264 L429 274 L291 274 Z" style="stroke: var(--_accent)"/>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M465 310L465 260M467.73 266.45L465 260L462.27 266.45" stroke-dasharray="none"/>
+    <path d="M479 230L479 280M476.27 273.55L479 280L481.73 273.55" stroke-dasharray="none"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M285 470L435 470M281 474L289 466M431 474L439 466M285 464L285 476M435 464L435 476"/><text x="360" y="484" text-anchor="middle">WIDTH</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M101 160L288.5 160"/><circle cx="288.5" cy="160" r="1.5" class="solid"/><text x="34" y="163">UPPER SASH</text>
+    <path d="M107.1 180L336.5 180"/><circle cx="336.5" cy="180" r="1.5" class="solid"/><text x="34" y="183">GLAZING BAR</text>
+    <path d="M113.2 270L288.5 270"/><circle cx="288.5" cy="270" r="1.5" class="solid"/><text x="34" y="273">MEETING RAIL</text>
+    <path d="M101 350L288.5 350"/><circle cx="288.5" cy="350" r="1.5" class="solid"/><text x="34" y="353">LOWER SASH</text>
+    <path d="M64.4 436L262.5 436"/><circle cx="262.5" cy="436" r="1.5" class="solid"/><text x="34" y="439">SILL</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="487" y="274" class="t-small t-accent">SLIDE</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">SASH WINDOW</text>
+    <text class="t-sub" x="26" y="710">TWO SASHES SLIDING VERTICALLY PAST EACH OTHER</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  WIN-01</text>
+    <text class="t-small" x="416" y="699">ELEVATION</text>
+    <text class="t-small" x="416" y="724">SCALE IN QUARTERS OF WIDTH</text>
+    <rect x="416" y="730" width="37.5" height="5" class="solid"/><rect x="453.5" y="730" width="37.5" height="5" class="ink l-fine"/><rect x="491" y="730" width="37.5" height="5" class="solid"/><rect x="528.5" y="730" width="37.5" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="564" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

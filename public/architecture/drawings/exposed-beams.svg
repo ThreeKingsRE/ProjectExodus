@@ -85,9 +85,9 @@
     <text class="t-sub" x="416" y="684">SHEET  CLG-04</text>
     <text class="t-small" x="416" y="699">SECTION</text>
     <text class="t-small" x="416" y="724">SCALE IN BEAM SPACINGS</text>
-    <rect x="416" y="730" width="64" height="5" class="solid"/><rect x="480" y="730" width="64" height="5" class="ink l-fine"/><rect x="544" y="730" width="64" height="5" class="solid"/>
+    <rect x="416" y="730" width="64" height="5" class="solid"/><rect x="480" y="730" width="64" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="606" y="749">3</text>
+    <text class="t-small" x="542" y="749">2</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>
