@@ -1,0 +1,262 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="160 36 408 434" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Plan of an inlaid stone floor: square panels each holding a lozenge and a round disc of contrasting stone, framed by bands of marble. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="fld-sectile"><rect x="200" y="76" width="350" height="350"/></clipPath>
+  </defs>
+  <rect class="paper" x="160" y="36" width="408" height="434"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M178 54 L550 54 L550 76 L200 76 L200 426 L178 426 Z" fill="url(#h-stone)" stroke="none"/>
+    <g clip-path="url(#fld-sectile)"><path d="M258 86 L306 134 L258 182 L210 134 Z" fill="url(#h-stone)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="258" cy="134" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 202 L306 250 L258 298 L210 250 Z" fill="url(#h-concrete)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="258" cy="250" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 318 L306 366 L258 414 L210 366 Z" fill="url(#h-stone)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="258" cy="366" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 434 L306 482 L258 530 L210 482 Z" fill="url(#h-concrete)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="258" cy="482" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 86 L422 134 L374 182 L326 134 Z" fill="url(#h-concrete)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="374" cy="134" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 202 L422 250 L374 298 L326 250 Z" fill="url(#h-stone)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="374" cy="250" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 318 L422 366 L374 414 L326 366 Z" fill="url(#h-concrete)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="374" cy="366" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 434 L422 482 L374 530 L326 482 Z" fill="url(#h-stone)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="374" cy="482" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 86 L538 134 L490 182 L442 134 Z" fill="url(#h-stone)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="490" cy="134" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 202 L538 250 L490 298 L442 250 Z" fill="url(#h-concrete)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="490" cy="250" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 318 L538 366 L490 414 L442 366 Z" fill="url(#h-stone)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="490" cy="366" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 434 L538 482 L490 530 L442 482 Z" fill="url(#h-concrete)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="490" cy="482" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 86 L654 134 L606 182 L558 134 Z" fill="url(#h-concrete)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="606" cy="134" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 202 L654 250 L606 298 L558 250 Z" fill="url(#h-stone)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="606" cy="250" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 318 L654 366 L606 414 L558 366 Z" fill="url(#h-concrete)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="606" cy="366" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 434 L654 482 L606 530 L558 482 Z" fill="url(#h-stone)" stroke="none"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="606" cy="482" r="23.2" fill="url(#h-brick)" stroke="none"/></g>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M550 76V426H200" stroke-dasharray="8 4"/>
+    <g clip-path="url(#fld-sectile)"><path d="M206 82 L310 82 L310 186 L206 186 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M281.2 134 L288.01 146.43 L274.4 150.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M274.4 150.4 L270.43 164.01 L258 157.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 157.2 L245.57 164.01 L241.6 150.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M241.6 150.4 L227.99 146.43 L234.8 134"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M234.8 134 L227.99 121.57 L241.6 117.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M241.6 117.6 L245.57 103.99 L258 110.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 110.8 L270.43 103.99 L274.4 117.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M274.4 117.6 L288.01 121.57 L281.2 134"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M206 198 L310 198 L310 302 L206 302 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M281.2 250 L288.01 262.43 L274.4 266.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M274.4 266.4 L270.43 280.01 L258 273.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 273.2 L245.57 280.01 L241.6 266.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M241.6 266.4 L227.99 262.43 L234.8 250"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M234.8 250 L227.99 237.57 L241.6 233.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M241.6 233.6 L245.57 219.99 L258 226.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 226.8 L270.43 219.99 L274.4 233.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M274.4 233.6 L288.01 237.57 L281.2 250"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M206 314 L310 314 L310 418 L206 418 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M281.2 366 L288.01 378.43 L274.4 382.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M274.4 382.4 L270.43 396.01 L258 389.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 389.2 L245.57 396.01 L241.6 382.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M241.6 382.4 L227.99 378.43 L234.8 366"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M234.8 366 L227.99 353.57 L241.6 349.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M241.6 349.6 L245.57 335.99 L258 342.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 342.8 L270.43 335.99 L274.4 349.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M274.4 349.6 L288.01 353.57 L281.2 366"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M206 430 L310 430 L310 534 L206 534 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M281.2 482 L288.01 494.43 L274.4 498.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M274.4 498.4 L270.43 512.01 L258 505.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 505.2 L245.57 512.01 L241.6 498.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M241.6 498.4 L227.99 494.43 L234.8 482"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M234.8 482 L227.99 469.57 L241.6 465.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M241.6 465.6 L245.57 451.99 L258 458.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 458.8 L270.43 451.99 L274.4 465.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M274.4 465.6 L288.01 469.57 L281.2 482"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M322 82 L426 82 L426 186 L322 186 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M397.2 134 L404.01 146.43 L390.4 150.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M390.4 150.4 L386.43 164.01 L374 157.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 157.2 L361.57 164.01 L357.6 150.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M357.6 150.4 L343.99 146.43 L350.8 134"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M350.8 134 L343.99 121.57 L357.6 117.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M357.6 117.6 L361.57 103.99 L374 110.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 110.8 L386.43 103.99 L390.4 117.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M390.4 117.6 L404.01 121.57 L397.2 134"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M322 198 L426 198 L426 302 L322 302 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M397.2 250 L404.01 262.43 L390.4 266.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M390.4 266.4 L386.43 280.01 L374 273.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 273.2 L361.57 280.01 L357.6 266.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M357.6 266.4 L343.99 262.43 L350.8 250"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M350.8 250 L343.99 237.57 L357.6 233.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M357.6 233.6 L361.57 219.99 L374 226.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 226.8 L386.43 219.99 L390.4 233.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M390.4 233.6 L404.01 237.57 L397.2 250"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M322 314 L426 314 L426 418 L322 418 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M397.2 366 L404.01 378.43 L390.4 382.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M390.4 382.4 L386.43 396.01 L374 389.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 389.2 L361.57 396.01 L357.6 382.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M357.6 382.4 L343.99 378.43 L350.8 366"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M350.8 366 L343.99 353.57 L357.6 349.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M357.6 349.6 L361.57 335.99 L374 342.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 342.8 L386.43 335.99 L390.4 349.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M390.4 349.6 L404.01 353.57 L397.2 366"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M322 430 L426 430 L426 534 L322 534 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M397.2 482 L404.01 494.43 L390.4 498.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M390.4 498.4 L386.43 512.01 L374 505.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 505.2 L361.57 512.01 L357.6 498.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M357.6 498.4 L343.99 494.43 L350.8 482"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M350.8 482 L343.99 469.57 L357.6 465.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M357.6 465.6 L361.57 451.99 L374 458.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 458.8 L386.43 451.99 L390.4 465.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M390.4 465.6 L404.01 469.57 L397.2 482"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M438 82 L542 82 L542 186 L438 186 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M513.2 134 L520.01 146.43 L506.4 150.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M506.4 150.4 L502.43 164.01 L490 157.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 157.2 L477.57 164.01 L473.6 150.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M473.6 150.4 L459.99 146.43 L466.8 134"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M466.8 134 L459.99 121.57 L473.6 117.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M473.6 117.6 L477.57 103.99 L490 110.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 110.8 L502.43 103.99 L506.4 117.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M506.4 117.6 L520.01 121.57 L513.2 134"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M438 198 L542 198 L542 302 L438 302 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M513.2 250 L520.01 262.43 L506.4 266.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M506.4 266.4 L502.43 280.01 L490 273.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 273.2 L477.57 280.01 L473.6 266.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M473.6 266.4 L459.99 262.43 L466.8 250"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M466.8 250 L459.99 237.57 L473.6 233.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M473.6 233.6 L477.57 219.99 L490 226.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 226.8 L502.43 219.99 L506.4 233.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M506.4 233.6 L520.01 237.57 L513.2 250"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M438 314 L542 314 L542 418 L438 418 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M513.2 366 L520.01 378.43 L506.4 382.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M506.4 382.4 L502.43 396.01 L490 389.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 389.2 L477.57 396.01 L473.6 382.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M473.6 382.4 L459.99 378.43 L466.8 366"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M466.8 366 L459.99 353.57 L473.6 349.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M473.6 349.6 L477.57 335.99 L490 342.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 342.8 L502.43 335.99 L506.4 349.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M506.4 349.6 L520.01 353.57 L513.2 366"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M438 430 L542 430 L542 534 L438 534 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M513.2 482 L520.01 494.43 L506.4 498.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M506.4 498.4 L502.43 512.01 L490 505.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 505.2 L477.57 512.01 L473.6 498.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M473.6 498.4 L459.99 494.43 L466.8 482"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M466.8 482 L459.99 469.57 L473.6 465.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M473.6 465.6 L477.57 451.99 L490 458.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 458.8 L502.43 451.99 L506.4 465.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M506.4 465.6 L520.01 469.57 L513.2 482"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M554 82 L658 82 L658 186 L554 186 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M629.2 134 L636.01 146.43 L622.4 150.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M622.4 150.4 L618.43 164.01 L606 157.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 157.2 L593.57 164.01 L589.6 150.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M589.6 150.4 L575.99 146.43 L582.8 134"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M582.8 134 L575.99 121.57 L589.6 117.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M589.6 117.6 L593.57 103.99 L606 110.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 110.8 L618.43 103.99 L622.4 117.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M622.4 117.6 L636.01 121.57 L629.2 134"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M554 198 L658 198 L658 302 L554 302 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M629.2 250 L636.01 262.43 L622.4 266.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M622.4 266.4 L618.43 280.01 L606 273.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 273.2 L593.57 280.01 L589.6 266.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M589.6 266.4 L575.99 262.43 L582.8 250"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M582.8 250 L575.99 237.57 L589.6 233.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M589.6 233.6 L593.57 219.99 L606 226.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 226.8 L618.43 219.99 L622.4 233.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M622.4 233.6 L636.01 237.57 L629.2 250"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M554 314 L658 314 L658 418 L554 418 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M629.2 366 L636.01 378.43 L622.4 382.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M622.4 382.4 L618.43 396.01 L606 389.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 389.2 L593.57 396.01 L589.6 382.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M589.6 382.4 L575.99 378.43 L582.8 366"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M582.8 366 L575.99 353.57 L589.6 349.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M589.6 349.6 L593.57 335.99 L606 342.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 342.8 L618.43 335.99 L622.4 349.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M622.4 349.6 L636.01 353.57 L629.2 366"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M554 430 L658 430 L658 534 L554 534 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M629.2 482 L636.01 494.43 L622.4 498.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M622.4 498.4 L618.43 512.01 L606 505.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 505.2 L593.57 512.01 L589.6 498.4"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M589.6 498.4 L575.99 494.43 L582.8 482"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M582.8 482 L575.99 469.57 L589.6 465.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M589.6 465.6 L593.57 451.99 L606 458.8"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 458.8 L618.43 451.99 L622.4 465.6"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M622.4 465.6 L636.01 469.57 L629.2 482"/></g>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <g clip-path="url(#fld-sectile)"><path d="M258 86 L306 134 L258 182 L210 134 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="258" cy="134" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 202 L306 250 L258 298 L210 250 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="258" cy="250" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 318 L306 366 L258 414 L210 366 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="258" cy="366" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M258 434 L306 482 L258 530 L210 482 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="258" cy="482" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 86 L422 134 L374 182 L326 134 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="374" cy="134" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 202 L422 250 L374 298 L326 250 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="374" cy="250" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 318 L422 366 L374 414 L326 366 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="374" cy="366" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M374 434 L422 482 L374 530 L326 482 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="374" cy="482" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 86 L538 134 L490 182 L442 134 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="490" cy="134" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 202 L538 250 L490 298 L442 250 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="490" cy="250" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 318 L538 366 L490 414 L442 366 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="490" cy="366" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M490 434 L538 482 L490 530 L442 482 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="490" cy="482" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 86 L654 134 L606 182 L558 134 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="606" cy="134" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 202 L654 250 L606 298 L558 250 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="606" cy="250" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 318 L654 366 L606 414 L558 366 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="606" cy="366" r="23.2"/></g>
+    <g clip-path="url(#fld-sectile)"><path d="M606 434 L654 482 L606 530 L558 482 Z"/></g>
+    <g clip-path="url(#fld-sectile)"><circle cx="606" cy="482" r="23.2"/></g>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M178 54 L550 54 L550 76 L200 76 L200 426 L178 426 Z"/>
+  </g>
+  <text class="t-credit" x="166" y="459">SOURCE: Original drawing by Project Exodus from the standard geometric construction of</text>
+  <text class="t-credit" x="166" y="468">this form; no external drawing reproduced.</text>
+</svg>

@@ -130,5 +130,59 @@
   "sheetNo": "VLT-09",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 0.676
+ },
+ "parquet": {
+  "view": "PLAN",
+  "sheetNo": "FLR-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "flagstone": {
+  "view": "PLAN",
+  "sheetNo": "FLR-02",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "mosaic-floor": {
+  "view": "PLAN",
+  "sheetNo": "FLR-03",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "opus-sectile": {
+  "view": "PLAN",
+  "sheetNo": "FLR-04",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "terrazzo": {
+  "view": "PLAN",
+  "sheetNo": "FLR-05",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "terrazzo-art-deco": {
+  "view": "PLAN",
+  "sheetNo": "FLR-06",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
+ },
+ "tatami": {
+  "view": "PLAN",
+  "sheetNo": "FLR-07",
+  "source": "Mat size per the Chūkyōma standard (910 × 1820 mm); traditional 4.5-mat layout. Original drawing by Project Exodus.",
+  "aspect": 0.826
+ },
+ "herringbone-brick-pattern": {
+  "view": "PLAN",
+  "sheetNo": "FLR-08",
+  "source": "Standard UK brick 215 × 102.5 mm; 45° herringbone bond. Original drawing by Project Exodus.",
+  "aspect": 1
+ },
+ "waffle-slab": {
+  "view": "REFLECTED CEILING PLAN",
+  "sheetNo": "FLR-09",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1
  }
 }

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="180 13.6 296 387.4" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Plan of a small Japanese room floored with straw mats: four full mats arranged in a pinwheel around a central half mat, with cloth edging on the long sides and an alcove in one wall. Source: Mat size per the Chūkyōma standard (910 × 1820 mm); traditional 4.5-mat layout. Original drawing by Project Exodus.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="180" y="13.6" width="296" height="387.4"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M198 88 L458 88 L458 110 L198 110 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M198 326 L458 326 L458 348 L198 348 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M198 110 L220 110 L220 326 L198 326 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M436 110 L458 110 L458 185.6 L436 185.6 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M256 37.6 L262 37.6 L262 88 L256 88 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M385.6 37.6 L391.6 37.6 L391.6 88 L385.6 88 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M256 31.6 L391.6 31.6 L391.6 37.6 L256 37.6 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <path d="M224 116V176M227.2 116V176M230.4 116V176M233.6 116V176M236.8 116V176M240 116V176M243.2 116V176M246.4 116V176M249.6 116V176M252.8 116V176M256 116V176M259.2 116V176M262.4 116V176M265.6 116V176M268.8 116V176M272 116V176M275.2 116V176M278.4 116V176M281.6 116V176M284.8 116V176M288 116V176M291.2 116V176M294.4 116V176M297.6 116V176M300.8 116V176M304 116V176M307.2 116V176M310.4 116V176M313.6 116V176M316.8 116V176M320 116V176M323.2 116V176M326.4 116V176M329.6 116V176M332.8 116V176M336 116V176M339.2 116V176M342.4 116V176M345.6 116V176M348.8 116V176M352 116V176M355.2 116V176M358.4 116V176M361.6 116V176"/>
+    <path d="M370 114H430M370 117.2H430M370 120.4H430M370 123.6H430M370 126.8H430M370 130H430M370 133.2H430M370 136.4H430M370 139.6H430M370 142.8H430M370 146H430M370 149.2H430M370 152.4H430M370 155.6H430M370 158.8H430M370 162H430M370 165.2H430M370 168.4H430M370 171.6H430M370 174.8H430M370 178H430M370 181.2H430M370 184.4H430M370 187.6H430M370 190.8H430M370 194H430M370 197.2H430M370 200.4H430M370 203.6H430M370 206.8H430M370 210H430M370 213.2H430M370 216.4H430M370 219.6H430M370 222.8H430M370 226H430M370 229.2H430M370 232.4H430M370 235.6H430M370 238.8H430M370 242H430M370 245.2H430M370 248.4H430M370 251.6H430"/>
+    <path d="M296 260V320M299.2 260V320M302.4 260V320M305.6 260V320M308.8 260V320M312 260V320M315.2 260V320M318.4 260V320M321.6 260V320M324.8 260V320M328 260V320M331.2 260V320M334.4 260V320M337.6 260V320M340.8 260V320M344 260V320M347.2 260V320M350.4 260V320M353.6 260V320M356.8 260V320M360 260V320M363.2 260V320M366.4 260V320M369.6 260V320M372.8 260V320M376 260V320M379.2 260V320M382.4 260V320M385.6 260V320M388.8 260V320M392 260V320M395.2 260V320M398.4 260V320M401.6 260V320M404.8 260V320M408 260V320M411.2 260V320M414.4 260V320M417.6 260V320M420.8 260V320M424 260V320M427.2 260V320M430.4 260V320M433.6 260V320"/>
+    <path d="M226 186H286M226 189.2H286M226 192.4H286M226 195.6H286M226 198.8H286M226 202H286M226 205.2H286M226 208.4H286M226 211.6H286M226 214.8H286M226 218H286M226 221.2H286M226 224.4H286M226 227.6H286M226 230.8H286M226 234H286M226 237.2H286M226 240.4H286M226 243.6H286M226 246.8H286M226 250H286M226 253.2H286M226 256.4H286M226 259.6H286M226 262.8H286M226 266H286M226 269.2H286M226 272.4H286M226 275.6H286M226 278.8H286M226 282H286M226 285.2H286M226 288.4H286M226 291.6H286M226 294.8H286M226 298H286M226 301.2H286M226 304.4H286M226 307.6H286M226 310.8H286M226 314H286M226 317.2H286M226 320.4H286M226 323.6H286"/>
+    <path d="M296 188V248M299.2 188V248M302.4 188V248M305.6 188V248M308.8 188V248M312 188V248M315.2 188V248M318.4 188V248M321.6 188V248M324.8 188V248M328 188V248M331.2 188V248M334.4 188V248M337.6 188V248M340.8 188V248M344 188V248M347.2 188V248M350.4 188V248M353.6 188V248M356.8 188V248M360 188V248"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M436 185.6L436 326"/>
+    <path d="M458 185.6L458 326"/>
+    <path d="M442 196.4L442 261.2"/>
+    <path d="M450 250.4L450 315.2"/>
+    <path d="M221 115L363 115"/>
+    <path d="M221 177L363 177"/>
+    <path d="M369 111L369 253"/>
+    <path d="M431 111L431 253"/>
+    <path d="M293 259L435 259"/>
+    <path d="M293 321L435 321"/>
+    <path d="M225 183L225 325"/>
+    <path d="M287 183L287 325"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M256 88L391.6 88"/>
+    <path d="M221 111 L363 111 L363 181 L221 181 Z"/>
+    <path d="M365 111 L435 111 L435 253 L365 253 Z"/>
+    <path d="M293 255 L435 255 L435 325 L293 325 Z"/>
+    <path d="M221 183 L291 183 L291 325 L221 325 Z"/>
+    <path d="M293 183 L363 183 L363 253 L293 253 Z"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M198 88 L458 88 L458 110 L198 110 Z"/>
+    <path d="M198 326 L458 326 L458 348 L198 348 Z"/>
+    <path d="M198 110 L220 110 L220 326 L198 326 Z"/>
+    <path d="M436 110 L458 110 L458 185.6 L436 185.6 Z"/>
+    <path d="M256 37.6 L262 37.6 L262 88 L256 88 Z"/>
+    <path d="M385.6 37.6 L391.6 37.6 L391.6 88 L385.6 88 Z"/>
+    <path d="M256 31.6 L391.6 31.6 L391.6 37.6 L256 37.6 Z"/>
+  </g>
+  <text class="t-credit" x="186" y="381">SOURCE: Mat size per the Chūkyōma standard (910 × 1820 mm);</text>
+  <text class="t-credit" x="186" y="390">traditional 4.5-mat layout. Original drawing by Project</text>
+  <text class="t-credit" x="186" y="399">Exodus.</text>
+</svg>

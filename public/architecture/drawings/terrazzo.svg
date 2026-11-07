@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Terrazzo: plan</title>
+  <desc id="d">Plan of a terrazzo floor: small chips of marble scattered through a cement base, ground smooth, divided into bays by thin metal strips. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="fld-terrazzo"><rect x="200" y="76" width="350" height="350"/></clipPath>
+    <pattern id="chips-21" width="64" height="64" patternUnits="userSpaceOnUse" patternTransform="rotate(17)"><path d="M29.54 29.16 L27.36 30.07 L25.93 29.27 L26.57 27.61 L28.6 27.46 ZM7.14 59.13 L6.23 59.82 L4.9 59.03 L5.04 57.67 L7.41 57.45 ZM42.68 37.97 L41.05 38.88 L39.96 37.33 L42.04 36.3 ZM22.78 56.42 L20.77 58 L17.93 58.67 L16.14 54.39 L19.07 52.51 L23.46 52.8 ZM3.45 2.03 L2.02 2.97 L0.9 1.4 L2.79 0.76 ZM16.7 1.17 L15.95 1.52 L15.08 1.43 L14.91 0.23 L15.45 -0.17 L16.43 0 ZM7.22 36.63 L3.72 38.59 L-0.67 36.51 L0.96 32.06 L4.89 33.42 ZM46.51 1.46 L43.28 3.01 L41.62 -0.97 L44.69 -2.37 ZM32.88 41.62 L28.25 43.55 L26.59 38.47 L31.44 36.36 ZM31.74 54.78 L29.42 56.01 L28.29 53.76 L31 53.07 ZM39.9 27.56 L38.81 28.06 L37.73 27.1 L39.67 26.29 ZM59.46 29.18 L57.13 31.26 L55.18 28.02 L57.65 25.96 ZM48.19 29.11 L45.24 30.41 L41.19 28.55 L43.66 24.85 L47.05 24.51 ZM43.39 45.51 L42.45 46.86 L40.63 45.99 L40.2 44.28 L41.91 43.59 L43.78 43.79 ZM12.66 60.57 L11.28 61.34 L10.11 60.84 L10.5 59.19 L12.38 59.17 ZM39.09 28.25 L36.2 30.82 L33.93 28.68 L35.54 26.38 L37.74 26.39 ZM29.13 26.63 L28.16 27.16 L26.37 26.83 L26.09 25.49 L27.4 24.74 L28.47 25.22 ZM57.55 41.01 L55.59 42.67 L53.84 40.54 L56.21 39.07 ZM25.26 5.16 L23.48 6.25 L22.66 4.78 L24.26 4.11 ZM22.06 7.85 L19.53 11.18 L15.24 9.95 L15.48 6.62 L18.3 4.75 L21.83 4.85 ZM27.79 53.84 L25.57 56.12 L21.86 54.98 L21.81 51.27 L24.95 49.12 L27.64 50.12 ZM1.21 7.94 L0.14 8.78 L-0.56 8 L-0.24 7.22 L0.59 7.07 ZM12.71 64.1 L10.78 65.5 L8.42 64.93 L8.89 61.15 L11.5 61.41 ZM28.8 12.04 L26.32 14.5 L22.16 11.93 L24.19 8.84 L27.4 7.43 ZM12.37 50.39 L10.85 50.98 L10.37 49.68 L11.38 49.26 ZM23.75 31.62 L20 33.16 L18.84 30.91 L20.91 29.21 ZM60.57 51.59 L59.05 55.36 L54.57 53.44 L53.94 51.24 L56.56 49 L60.72 49.14 ZM14.12 61.99 L10.94 65.29 L9.45 63.8 L7.43 60.4 L10.34 58.08 L13.65 59.25 ZM17.01 29.46 L14.32 31.31 L12.32 29 L13.86 26.01 L16.11 25.77 ZM8.06 63.87 L7.23 64.34 L6.49 63.7 L6.99 62.94 L7.76 62.85 ZM52.19 62.5 L50.81 63.24 L49.81 62.22 L49.79 60.79 L51.5 61 ZM31.1 18.09 L29.84 19.5 L28.81 18.74 L28.97 16.75 L31.16 16.98 ZM20.53 20.73 L18.26 21.39 L15.55 21.44 L14.62 17.98 L16.39 16.57 L19.33 17.97 ZM60.99 51.82 L59.38 52.72 L56.99 52.21 L56.57 50.01 L59.17 47.87 L60.48 48.79 ZM13.31 53.73 L11.43 54.6 L9.57 52.59 L12.04 51.55 ZM34.77 43.63 L32 45.32 L30.01 44.59 L29.08 42.05 L30.67 39.53 L33.38 40.63 ZM63.33 18.11 L61.92 18.78 L60.9 17.68 L62.56 16.85 ZM27.52 18.16 L26.15 20.07 L23.35 18.2 L24.88 16.09 L26.48 15.88 ZM25.87 9.79 L23.7 11.44 L21.38 10.65 L22.24 6.59 L25.4 7.46 ZM51.27 16.58 L46.61 20 L43.59 15.23 L49.28 12.45 ZM36.5 20.59 L35.5 21.03 L34.37 20.58 L34.25 19.37 L34.99 18.89 L35.91 18.81 ZM53.23 30.8 L49.95 32.91 L47.71 29 L51.33 27.12 ZM19.83 58.61 L16.25 60.49 L12.47 56.1 L17.63 54.6 ZM45.43 56.31 L41.15 57.8 L39.61 54.28 L43.58 52.48 ZM39.44 58.85 L38.46 60.03 L36.69 59.42 L37.04 57.79 L37.42 57.17 L39.39 57.04 ZM30.01 28.01 L26.8 29.87 L25.92 27.59 L28.55 24.98 Z" class="ink l-hair"/></pattern>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M178 54 L550 54 L550 76 L200 76 L200 426 L178 426 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <rect x="200" y="76" width="350" height="350" fill="url(#chips-21)" stroke="none"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M550 76V426H200" stroke-dasharray="8 4"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M316.67 76L316.67 426"/>
+    <path d="M200 192.67L550 192.67"/>
+    <path d="M433.33 76L433.33 426"/>
+    <path d="M200 309.33L550 309.33"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M178 54 L550 54 L550 76 L200 76 L200 426 L178 426 Z"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M200 448L316.67 448M196 452L204 444M312.67 452L320.67 444M200 442L200 454M316.67 442L316.67 454"/><text x="258.33" y="462" text-anchor="middle">BAY BETWEEN STRIPS</text>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M125.4 116L175.5 116"/><circle cx="175.5" cy="116" r="1.5" class="solid"/><text x="34" y="119">WALL (SECTION)</text>
+    <path d="M113.2 136L237.5 136"/><circle cx="237.5" cy="136" r="1.5" class="solid"/><text x="34" y="139">MARBLE CHIPS</text>
+    <path d="M119.3 192.67L197.5 192.67"/><circle cx="197.5" cy="192.67" r="1.5" class="solid"/><text x="34" y="195.67">DIVIDER STRIP</text>
+    <path d="M119.3 266L257.5 266"/><circle cx="257.5" cy="266" r="1.5" class="solid"/><text x="34" y="269">CEMENT MATRIX</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">TERRAZZO</text>
+    <text class="t-sub" x="26" y="710">MARBLE CHIPS IN A POLISHED CEMENT MATRIX</text>
+    <text class="t-small" x="26" y="730">SOURCE: Original drawing by Project Exodus from the standard</text>
+    <text class="t-small" x="26" y="741">geometric construction of this form; no external drawing</text>
+    <text class="t-small" x="26" y="752">reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  FLR-05</text>
+    <text class="t-small" x="416" y="699">PLAN</text>
+    <text class="t-small" x="416" y="724">SCALE IN FIFTHS OF A BAY</text>
+    <rect x="416" y="730" width="23.33" height="5" class="solid"/><rect x="439.33" y="730" width="23.33" height="5" class="ink l-fine"/><rect x="462.67" y="730" width="23.33" height="5" class="solid"/><rect x="486" y="730" width="23.33" height="5" class="ink l-fine"/><rect x="509.33" y="730" width="23.33" height="5" class="solid"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="530.67" y="749">5</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

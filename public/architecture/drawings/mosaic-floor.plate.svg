@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="160 36 408 434" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Plan of a mosaic floor made of small square stone pieces: a Greek key border, a background laid in a straight grid, and a central medallion with pieces following concentric rings. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <clipPath id="fld-mosaic"><rect x="200" y="76" width="350" height="350"/></clipPath>
+    <pattern id="tess" width="6.6" height="6.6" patternUnits="userSpaceOnUse" x="200" y="76"><rect x="0.7" y="0.7" width="5.2" height="5.2" class="ink l-hair"/></pattern>
+    <clipPath id="mos-in"><rect x="240" y="116" width="310" height="310"/></clipPath>
+  </defs>
+  <rect class="paper" x="160" y="36" width="408" height="434"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M178 54 L550 54 L550 76 L200 76 L200 426 L178 426 Z" fill="url(#h-stone)" stroke="none"/>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <g clip-path="url(#mos-in)"><rect x="200" y="76" width="350" height="350" fill="url(#tess)" stroke="none"/></g>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M550 76V426H200" stroke-dasharray="8 4"/>
+    <path d="M550 116H240V426"/>
+    <circle cx="384" cy="260" r="100" style="fill: var(--_paper); stroke: none"/>
+    <circle cx="384" cy="260" r="94.6"/>
+    <circle cx="384" cy="260" r="92" stroke-width="5.2" stroke-dasharray="0.45 6.19"/>
+    <circle cx="384" cy="260" r="88"/>
+    <circle cx="384" cy="260" r="85.4" stroke-width="5.2" stroke-dasharray="0.45 6.17"/>
+    <circle cx="384" cy="260" r="81.4"/>
+    <circle cx="384" cy="260" r="78.8" stroke-width="5.2" stroke-dasharray="0.45 6.15"/>
+    <circle cx="384" cy="260" r="74.8"/>
+    <circle cx="384" cy="260" r="72.2" stroke-width="5.2" stroke-dasharray="0.45 6.22"/>
+    <circle cx="384" cy="260" r="68.2"/>
+    <circle cx="384" cy="260" r="65.6" stroke-width="5.2" stroke-dasharray="0.45 6.2"/>
+    <circle cx="384" cy="260" r="61.6"/>
+    <circle cx="384" cy="260" r="59" stroke-width="5.2" stroke-dasharray="0.45 6.17"/>
+    <circle cx="384" cy="260" r="55"/>
+    <circle cx="384" cy="260" r="52.4" stroke-width="5.2" stroke-dasharray="0.45 6.27"/>
+    <circle cx="384" cy="260" r="48.4"/>
+    <circle cx="384" cy="260" r="45.8" stroke-width="5.2" stroke-dasharray="0.45 6.24"/>
+    <circle cx="384" cy="260" r="41.8"/>
+    <circle cx="384" cy="260" r="39.2" stroke-width="5.2" stroke-dasharray="0.45 6.21"/>
+    <circle cx="384" cy="260" r="35.2"/>
+    <circle cx="384" cy="260" r="32.6" stroke-width="5.2" stroke-dasharray="0.45 6.16"/>
+    <circle cx="384" cy="260" r="28.6"/>
+    <circle cx="384" cy="260" r="26" stroke-width="5.2" stroke-dasharray="0.45 6.36"/>
+    <circle cx="384" cy="260" r="22"/>
+    <circle cx="384" cy="260" r="19.4" stroke-width="5.2" stroke-dasharray="0.45 6.32"/>
+    <circle cx="384" cy="260" r="15.4"/>
+    <circle cx="384" cy="260" r="12.8" stroke-width="5.2" stroke-dasharray="0.45 6.25"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <g clip-path="url(#fld-mosaic)"><path d="M208 110 L208 84 L227.5 84 L227.5 103.5 L214.5 103.5 L214.5 90.5 L221 90.5 L221 110 L234 110 M234 110 L234 84 L253.5 84 L253.5 103.5 L240.5 103.5 L240.5 90.5 L247 90.5 L247 110 L260 110 M260 110 L260 84 L279.5 84 L279.5 103.5 L266.5 103.5 L266.5 90.5 L273 90.5 L273 110 L286 110 M286 110 L286 84 L305.5 84 L305.5 103.5 L292.5 103.5 L292.5 90.5 L299 90.5 L299 110 L312 110 M312 110 L312 84 L331.5 84 L331.5 103.5 L318.5 103.5 L318.5 90.5 L325 90.5 L325 110 L338 110 M338 110 L338 84 L357.5 84 L357.5 103.5 L344.5 103.5 L344.5 90.5 L351 90.5 L351 110 L364 110 M364 110 L364 84 L383.5 84 L383.5 103.5 L370.5 103.5 L370.5 90.5 L377 90.5 L377 110 L390 110 M390 110 L390 84 L409.5 84 L409.5 103.5 L396.5 103.5 L396.5 90.5 L403 90.5 L403 110 L416 110 M416 110 L416 84 L435.5 84 L435.5 103.5 L422.5 103.5 L422.5 90.5 L429 90.5 L429 110 L442 110 M442 110 L442 84 L461.5 84 L461.5 103.5 L448.5 103.5 L448.5 90.5 L455 90.5 L455 110 L468 110 M468 110 L468 84 L487.5 84 L487.5 103.5 L474.5 103.5 L474.5 90.5 L481 90.5 L481 110 L494 110 M494 110 L494 84 L513.5 84 L513.5 103.5 L500.5 103.5 L500.5 90.5 L507 90.5 L507 110 L520 110 M520 110 L520 84 L539.5 84 L539.5 103.5 L526.5 103.5 L526.5 90.5 L533 90.5 L533 110 L546 110 M234 110 L208 110 L208 129.5 L227.5 129.5 L227.5 116.5 L214.5 116.5 L214.5 123 L234 123 L234 136 M234 136 L208 136 L208 155.5 L227.5 155.5 L227.5 142.5 L214.5 142.5 L214.5 149 L234 149 L234 162 M234 162 L208 162 L208 181.5 L227.5 181.5 L227.5 168.5 L214.5 168.5 L214.5 175 L234 175 L234 188 M234 188 L208 188 L208 207.5 L227.5 207.5 L227.5 194.5 L214.5 194.5 L214.5 201 L234 201 L234 214 M234 214 L208 214 L208 233.5 L227.5 233.5 L227.5 220.5 L214.5 220.5 L214.5 227 L234 227 L234 240 M234 240 L208 240 L208 259.5 L227.5 259.5 L227.5 246.5 L214.5 246.5 L214.5 253 L234 253 L234 266 M234 266 L208 266 L208 285.5 L227.5 285.5 L227.5 272.5 L214.5 272.5 L214.5 279 L234 279 L234 292 M234 292 L208 292 L208 311.5 L227.5 311.5 L227.5 298.5 L214.5 298.5 L214.5 305 L234 305 L234 318 M234 318 L208 318 L208 337.5 L227.5 337.5 L227.5 324.5 L214.5 324.5 L214.5 331 L234 331 L234 344 M234 344 L208 344 L208 363.5 L227.5 363.5 L227.5 350.5 L214.5 350.5 L214.5 357 L234 357 L234 370 M234 370 L208 370 L208 389.5 L227.5 389.5 L227.5 376.5 L214.5 376.5 L214.5 383 L234 383 L234 396 M234 396 L208 396 L208 415.5 L227.5 415.5 L227.5 402.5 L214.5 402.5 L214.5 409 L234 409 L234 422"/></g>
+    <circle cx="384" cy="260" r="97"/>
+    <circle cx="384" cy="260" r="50.6"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M178 54 L550 54 L550 76 L200 76 L200 426 L178 426 Z"/>
+  </g>
+  <text class="t-credit" x="166" y="459">SOURCE: Original drawing by Project Exodus from the standard geometric construction of</text>
+  <text class="t-credit" x="166" y="468">this form; no external drawing reproduced.</text>
+</svg>
