@@ -17,7 +17,7 @@ setInterval(() => {
       delete store[key]
     }
   })
-}, 10 * 60 * 1000)
+}, 10 * 60 * 1000).unref?.()
 
 export interface RateLimitConfig {
   /**
@@ -34,19 +34,58 @@ export interface RateLimitConfig {
   windowSeconds: number
 }
 
+type RateLimitResult = { success: boolean; limit: number; remaining: number; reset: number }
+
 /**
- * Rate limiter using in-memory store
- * For production, consider using Redis or similar
+ * Fixed-window counter in Upstash Redis (REST API, no SDK needed), shared by
+ * every serverless instance. Returns null when Upstash isn't configured or
+ * can't be reached, so the caller falls back to the per-instance memory store.
+ */
+async function redisWindow(key: string, windowMs: number, limit: number): Promise<RateLimitResult | null> {
+  const url = process.env.UPSTASH_REDIS_REST_URL
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN
+  if (!url || !token) return null
+  try {
+    const res = await fetch(`${url.replace(/\/$/, '')}/pipeline`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify([
+        ['INCR', `rl:${key}`],
+        ['PEXPIRE', `rl:${key}`, String(windowMs), 'NX'],
+        ['PTTL', `rl:${key}`],
+      ]),
+      cache: 'no-store',
+      signal: AbortSignal.timeout(1500),
+    })
+    if (!res.ok) return null
+    const [incr, , pttl] = (await res.json()) as Array<{ result?: number; error?: string }>
+    if (typeof incr?.result !== 'number') return null
+    const count = incr.result
+    const ttl = typeof pttl?.result === 'number' && pttl.result > 0 ? pttl.result : windowMs
+    return { success: count <= limit, limit, remaining: Math.max(0, limit - count), reset: Date.now() + ttl }
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Rate limiter. Uses Upstash Redis when UPSTASH_REDIS_REST_URL and
+ * UPSTASH_REDIS_REST_TOKEN are set (limits hold across serverless instances);
+ * otherwise an in-memory store, which only limits per instance.
  */
 export async function rateLimit(
   request: NextRequest,
   config: RateLimitConfig
-): Promise<{ success: boolean; limit: number; remaining: number; reset: number }> {
+): Promise<RateLimitResult> {
   // Get identifier (IP address or user ID)
   const forwarded = request.headers.get('x-forwarded-for')
-  const ip = forwarded ? forwarded.split(',')[0] : request.headers.get('x-real-ip') || 'unknown'
+  const ip = forwarded ? forwarded.split(',')[0].trim() : request.headers.get('x-real-ip') || 'unknown'
 
   const key = `${config.id}:${ip}`
+  const windowMs0 = config.windowSeconds * 1000
+  const shared = await redisWindow(key, windowMs0, config.limit)
+  if (shared) return shared
+
   const now = Date.now()
   const windowMs = config.windowSeconds * 1000
 

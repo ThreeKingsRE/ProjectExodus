@@ -1,4 +1,6 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { generateMetadata as pageMetadata } from '@/lib/metadata'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Clock, User, Calendar, MessageCircle, Tag } from 'lucide-react'
@@ -28,6 +30,21 @@ async function getArticle(slug: string) {
     console.error('Error fetching article:', error)
     return null
   }
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const article = await getArticle(slug) // same cached fetch as the page
+  if (!article) return pageMetadata({ title: 'Article not found', noIndex: true })
+  const meta = pageMetadata({
+    title: article.seoTitle || article.title,
+    description: article.seoDescription || article.excerpt || undefined,
+    image: article.coverImage || undefined,
+    type: 'article',
+    publishedTime: article.publishedAt || undefined,
+    authors: article.author?.name ? [article.author.name] : undefined,
+  })
+  return { ...meta, alternates: { canonical: `/articles/${slug}` } }
 }
 
 export default async function ArticleDetailPage({
