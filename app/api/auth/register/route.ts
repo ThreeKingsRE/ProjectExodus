@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import bcrypt from 'bcryptjs'
+import { passwordSchema } from '@/lib/auth/password'
+import { buildVerifyEmail } from '@/lib/email/verify'
+import { sendEmail, siteUrl } from '@/lib/email/send'
 import { z } from 'zod'
 import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 
@@ -27,13 +30,7 @@ const registerSchema = z.object({
     .toLowerCase()
     .trim()
     .refine(isNotDisposableEmail, 'Disposable email addresses are not allowed'),
-  password: z.string()
-    .min(12, 'Password must be at least 12 characters')
-    .max(100)
-    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-    .regex(/[0-9]/, 'Password must contain at least one number')
-    .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
+  password: passwordSchema,
 })
 
 export async function POST(req: NextRequest) {
@@ -86,9 +83,20 @@ export async function POST(req: NextRequest) {
       }
     })
 
+    // Send the verification email; failure to send never blocks sign-up
+    let verificationSent = false
+    try {
+      const token = crypto.randomUUID()
+      await prisma.verificationToken.create({ data: { identifier: user.email!, token, expires: new Date(Date.now() + 24 * 60 * 60 * 1000) } })
+      verificationSent = (await sendEmail({ to: user.email!, ...buildVerifyEmail(`${siteUrl()}/auth/verify?token=${token}`) })).sent
+    } catch (err) {
+      console.error('Verification email error:', err)
+    }
+
     return NextResponse.json(
       {
         success: true,
+        verificationSent,
         message: 'User created successfully',
         user
       },

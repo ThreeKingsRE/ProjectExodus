@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
       where: { token },
     })
 
-    if (!verification) {
+    if (!verification || verification.identifier.startsWith('reset:')) {
       return NextResponse.json(
         { success: false, error: 'Invalid verification token' },
         { status: 404 }

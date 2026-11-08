@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 import { buildVerifyEmail } from '@/lib/email/verify'
+import { sendEmail, siteUrl } from '@/lib/email/send'
 
 export async function POST(request: NextRequest) {
   try {
@@ -58,13 +59,16 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    const baseUrl = new URL(request.url).origin
-    const confirmUrl = `${baseUrl}/auth/verify?token=${verifyToken}`
+    const confirmUrl = `${siteUrl()}/auth/verify?token=${verifyToken}`
     const emailTemplate = buildVerifyEmail(confirmUrl)
+    const result = await sendEmail({ to: email, ...emailTemplate })
+    if (!result.sent && process.env.NODE_ENV === 'production') {
+      return NextResponse.json({ success: false, error: 'Could not send the email right now. Please try again later.' }, { status: 503 })
+    }
 
     return NextResponse.json({
       success: true,
-      message: 'Verification email sent.',
+      message: result.sent ? 'Verification email sent.' : 'Email is not configured; use the link below (development only).',
       confirmUrl: process.env.NODE_ENV !== 'production' ? confirmUrl : undefined,
       emailPreview: process.env.NODE_ENV !== 'production' ? emailTemplate : undefined,
     })
