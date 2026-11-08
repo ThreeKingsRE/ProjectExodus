@@ -83,12 +83,6 @@
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 1.019
  },
- "groin-vault": {
-  "view": "REFLECTED CEILING PLAN",
-  "sheetNo": "VLT-02",
-  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1
- },
  "rib-vault": {
   "view": "REFLECTED CEILING PLAN",
   "sheetNo": "VLT-03",
@@ -701,12 +695,6 @@
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 1.126
  },
- "space-frame": {
-  "view": "PLAN",
-  "sheetNo": "STC-07",
-  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1
- },
  "tension-cable": {
   "view": "SECTION",
   "sheetNo": "STC-08",
@@ -779,12 +767,6 @@
   "source": "Badgir form of the Iranian plateau (e.g. Yazd). Generic original drawing by Project Exodus; not a survey.",
   "aspect": 0.848
  },
- "yurt": {
-  "view": "SECTION",
-  "sheetNo": "STC-20",
-  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1.272
- },
  "triple-stepped-platform": {
   "view": "ELEVATION",
   "sheetNo": "STC-21",
@@ -850,12 +832,6 @@
   "sheetNo": "GDN-09",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 1.172
- },
- "gazebo": {
-  "view": "ELEVATION",
-  "sheetNo": "GDN-10",
-  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1.444
  },
  "belvedere": {
   "view": "ELEVATION",
@@ -1193,12 +1169,6 @@
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 0.973
  },
- "muqarnas": {
-  "view": "ELEVATION",
-  "sheetNo": "DEC-11",
-  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 0.813
- },
  "volute": {
   "view": "CONSTRUCTION",
   "sheetNo": "DEC-12",
@@ -1432,5 +1402,35 @@
   "sheetNo": "FAC-27",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 0.511
+ },
+ "groin-vault": {
+  "view": "ISOMETRIC · WORM'S-EYE",
+  "sheetNo": "VLT-02",
+  "source": "Worm's-eye axonometric in the manner of Auguste Choisy, Histoire de l'architecture (1899, public domain). Original construction by Project Exodus.",
+  "aspect": 0.922
+ },
+ "muqarnas": {
+  "view": "SECTION · OBLIQUE FROM BELOW",
+  "sheetNo": "DEC-11",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.128
+ },
+ "gazebo": {
+  "view": "ISOMETRIC",
+  "sheetNo": "GDN-10",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.048
+ },
+ "yurt": {
+  "view": "ISOMETRIC · CUTAWAY",
+  "sheetNo": "STC-20",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.262
+ },
+ "space-frame": {
+  "view": "ISOMETRIC",
+  "sheetNo": "STC-07",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.781
  }
 }

@@ -935,7 +935,7 @@ function excavationTrench(): SheetSpec {
 
 export const LANDSCAPE_SHEETS: Array<() => SheetSpec> = [
   allee, canal, terrace, haHa, cascade, fountain, () => pergolaOrArbor('pergola'), () => pergolaOrArbor('arbor'),
-  () => pavilion('folly'), () => pavilion('gazebo'), () => pavilion('belvedere'), grotto, nymphaeum, gardenWall, roofGarden,
+  () => pavilion('folly'), () => pavilion('belvedere'), grotto, nymphaeum, gardenWall, roofGarden,
   () => arcadeRow('arcade'), () => arcadeRow('colonnade'), aqueduct, bridge,
   () => gate('city-gate'), () => gate('triumphal-arch'), () => gate('imperial-gate-bab-i-humayun'),
   clockTower, obelisk, plaza, courtyards, marketHall, metroEntrance, excavationTrench,

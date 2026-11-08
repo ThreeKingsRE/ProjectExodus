@@ -9,7 +9,8 @@ Running list of agreed next steps. Check items off in the PR that does them.
   - [ ] `PARTYKIT_SECRET`: same value in Vercel and PartyKit (live document collaboration stops without it)
   - [ ] `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` (free Upstash database; rate limits are per-instance until set)
   - [ ] Confirm `DATABASE_URL`, `AUTH_SECRET` and the OAuth keys are set for production
-- [ ] **Optional 3D redraws**: groin vault, space frame, muqarnas, gazebo, yurt as isometric views
+- [x] **3D redraws**: groin vault (worm's-eye), space frame, gazebo, yurt (cutaway), muqarnas (section seen from below)
+- [ ] **Muqarnas 3D polish**: legible but still reads a little like a dome from outside; try deeper niche shading or a true perspective
 
 ## Security and reliability
 - [ ] **Email provider** (Resend or Postmark): verification emails are never actually sent; add password reset and the newsletter emails

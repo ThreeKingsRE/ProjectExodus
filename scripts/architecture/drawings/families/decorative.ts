@@ -464,52 +464,6 @@ function gargoyle(): SheetSpec {
     'Section through a parapet gutter and gargoyle: rain runs off the roof into the gutter behind the parapet, then along a channel cut through a carved stone beast that projects far enough to throw the water clear of the wall.', 30, 'metres (indicative)'), L, B)
 }
 
-function muqarnas(): SheetSpec {
-  const L = newLayers()
-  const B = new Bounds()
-  const cx = 380
-  const spring = 520
-  const W = 300
-  // frame
-  L.profile.push(el(path(rect(cx - W / 2 - 20, 140, W + 40, spring - 140 + 40), true)), line([cx - W / 2, spring], [cx + W / 2, spring]))
-  L.profile.push(line([cx - W / 2, spring], [cx - W / 2, 220]), line([cx + W / 2, spring], [cx + W / 2, 220]))
-  // tiers of cells: each a small pointed niche, the lower part toned (concave, in shadow)
-  const tiers = [9, 8, 7, 6, 5, 4, 3]
-  const th = 44
-  const cell = (x: number, y: number, w: number) => {
-    const d = `M${f(x)} ${f(y)}V${f(y - th * 0.45)}Q${f(x)} ${f(y - th * 0.85)} ${f(x + w / 2)} ${f(y - th)}Q${f(x + w)} ${f(y - th * 0.85)} ${f(x + w)} ${f(y - th * 0.45)}V${f(y)}`
-    L.profile.push(el(d + 'Z', PAPER))
-    L.profile.push(`<path d="${d}Z" fill="url(#mq-tone)" stroke="none"/>`)
-    L.profile.push(el(d))
-    L.fine.push(line([x + w / 2, y], [x + w / 2, y - th * 0.4]))
-  }
-  tiers.forEach((n, i) => {
-    const w = W / tiers[0]
-    const rowW = n * w
-    const y = spring - i * th * 0.78
-    for (let k = 0; k < n; k++) cell(cx - rowW / 2 + k * w, y, w)
-    // pendants hang where tiers step in
-    if (i > 0) for (let k = 0; k <= n; k++) L.fine.push(el(`M${f(cx - rowW / 2 + k * w)} ${f(y)}l-3 8l3 4l3 -4Z`))
-  })
-  // crown: half-dome cell at the top
-  const yc = spring - tiers.length * th * 0.78
-  L.profile.push(el(`M${cx - 30} ${f(yc)}Q${cx - 30} ${f(yc - 50)} ${cx} ${f(yc - 56)}Q${cx + 30} ${f(yc - 50)} ${cx + 30} ${f(yc)}`))
-  rotated(L, 'fine', 'M0 0L0 -40', [cx, yc], 7, -67.5)
-  L.notes.push(text(cx, spring + 22, 'SPRINGING LINE', 'class="t-small" text-anchor="middle"'))
-  const defs = `<pattern id="mq-tone" width="2.6" height="2.6" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="2.6" y2="0" class="ink l-hair"/></pattern>`
-  B.add([cx - W / 2 - 20, 140], [cx + W / 2 + 20, spring + 40])
-  L.dims.push(hDim(spring + 60, cx - W / 2, cx + W / 2, 'NICHE'))
-  callouts(L, [
-    { text: 'CROWN CELL', at: [cx - 26, yc - 30] },
-    { text: 'TIER', at: [cx - 70, spring - 3 * th * 0.78 - 20] },
-    { text: 'PENDANT', at: [cx - 100, spring - th * 0.78] },
-    { text: 'CELL (IN SHADOW)', at: [cx - W / 2 + 10, spring - 10] },
-    { text: 'FRAME', at: [cx - W / 2 - 20, 300] },
-  ], cx - W / 2 - 20)
-  return finish(meta('muqarnas', 'Muqarnas', 'Honeycomb vaulting of tiered niches', 'ELEVATION', 'DEC-11',
-    'Elevation of a muqarnas hood: rows of small pointed niche-cells, each tier corbelled out over the one below with pendants at the steps, rising to a single crown cell, so a square frame is roofed by a cascade of tiny vaults.', 30, 'units (indicative)'), L, B, defs)
-}
-
 function volute(): SheetSpec {
   const L = newLayers()
   const B = new Bounds()
@@ -1014,6 +968,6 @@ function whiplash(): SheetSpec {
 }
 
 export const DECORATIVE_SHEETS: Array<() => SheetSpec> = [
-  cornice, dentil, eggDart, guilloche, zigzag, acanthus, rosette, boss, finial, gargoyle, muqarnas, volute,
+  cornice, dentil, eggDart, guilloche, zigzag, acanthus, rosette, boss, finial, gargoyle, volute,
   cartouche, arabesque, iznik, grotesque, plateresque, wildMen, astwerk, sunburst, floralIron, organic, whiplash,
 ]

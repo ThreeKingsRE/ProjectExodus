@@ -182,44 +182,6 @@ function spreadFooting(): SheetSpec {
     'Section through a reinforced concrete column standing on a wide, shallow concrete pad buried in the ground, which spreads the column’s load over enough soil to carry it.', 30, '0.25 m (indicative)'), L, B)
 }
 
-function spaceFrame(): SheetSpec {
-  const L = newLayers()
-  const B = new Bounds()
-  const x0 = 190
-  const y0 = 90
-  const m = 50
-  const n = 7
-  // top layer grid (solid), bottom layer offset half a module (dashed), web members linking them
-  const top: string[] = []
-  for (let i = 0; i <= n; i++) top.push(`M${x0 + i * m} ${y0}V${y0 + n * m}M${x0} ${y0 + i * m}H${x0 + n * m}`)
-  L.profile.push(el(top.join('')))
-  const bot: string[] = []
-  for (let i = 0; i < n; i++) bot.push(`M${x0 + (i + 0.5) * m} ${y0 + m / 2}V${y0 + (n - 0.5) * m}M${x0 + m / 2} ${y0 + (i + 0.5) * m}H${x0 + (n - 0.5) * m}`)
-  L.fine.push(el(bot.join(''), 'stroke-dasharray="5 3"'))
-  const web: string[] = []
-  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
-    const c: Pt = [x0 + (i + 0.5) * m, y0 + (j + 0.5) * m]
-    web.push(`M${c[0]} ${c[1]}L${c[0] - m / 2} ${c[1] - m / 2}M${c[0]} ${c[1]}L${c[0] + m / 2} ${c[1] - m / 2}M${c[0]} ${c[1]}L${c[0] + m / 2} ${c[1] + m / 2}M${c[0]} ${c[1]}L${c[0] - m / 2} ${c[1] + m / 2}`)
-  }
-  red(L, web.join(''), 0.8)
-  for (let i = 0; i <= n; i++) for (let j = 0; j <= n; j++) L.profile.push(circle([x0 + i * m, y0 + j * m], 2.6, 'class="solid"'))
-  // node detail
-  const nd: Pt = [x0 + 3 * m, y0 + 3 * m]
-  L.center.push(circle(nd, 22))
-  L.notes.push(text(nd[0] + 26, nd[1] - 22, 'BALL JOINT (NODE)', 'class="t-small t-accent"'))
-  for (const [cx, cy] of [[x0, y0], [x0 + n * m, y0], [x0, y0 + n * m], [x0 + n * m, y0 + n * m]] as Pt[]) hatched(L, rect(cx - 10, cy - 10, 20, 20))
-  B.add([x0 - 12, y0 - 12], [x0 + n * m + 12, y0 + n * m + 12])
-  L.dims.push(hDim(y0 + n * m + 28, x0, x0 + m, 'MODULE'))
-  callouts(L, [
-    { text: 'TOP CHORD GRID', at: [x0, y0 + m * 1] },
-    { text: 'BOTTOM GRID (DASHED)', at: [x0 + m / 2, y0 + m * 2.5] },
-    { text: 'DIAGONAL WEB', at: [x0 + m * 0.75, y0 + m * 4.25] },
-    { text: 'SUPPORT COLUMN', at: [x0 - 10, y0 + n * m] },
-  ], x0 - 12)
-  return finish(meta('space-frame', 'Space Frame', 'Two layers of grid joined by diagonals', 'PLAN', 'STC-07',
-    'Plan of a roof structure made of two parallel grids of short steel members, the lower one offset by half a bay and linked to the upper by diagonals into pyramids, meeting at spherical joints.', m, 'modules'), L, B)
-}
-
 function tensionCable(): SheetSpec {
   const L = newLayers()
   const B = new Bounds()
@@ -644,42 +606,6 @@ function windcatcher(): SheetSpec {
     'Badgir form of the Iranian plateau (e.g. Yazd). Generic original drawing by Project Exodus; not a survey.'), L, B)
 }
 
-function yurt(): SheetSpec {
-  const L = newLayers()
-  const B = new Bounds()
-  const cx = 360
-  const ground = 470
-  const r = 190
-  const wallH = 110
-  const crown = 300 - 150
-  // lattice wall (khana): criss-cross in elevation behind the section line
-  const lat: string[] = []
-  for (let x = cx - r; x < cx + r; x += 22) lat.push(`M${x} ${ground}L${x + 22} ${ground - wallH}M${x + 22} ${ground}L${x} ${ground - wallH}`)
-  L.fine.push(el(lat.join('')))
-  // roof poles from wall head to crown ring, crown ring, felt cover (cut)
-  for (let k = 0; k <= 10; k++) {
-    const x = cx - r + (k * 2 * r) / 10
-    L.profile.push(line([x, ground - wallH], [cx + (x - cx) * 0.15, crown + 20]))
-  }
-  L.profile.push(el(path(rect(cx - 30, crown, 60, 20), true)), el(`M${cx - 30} ${crown}Q${cx} ${crown - 30} ${cx + 30} ${crown}`))
-  const cover: Pt[] = [[cx - r - 8, ground], [cx - r - 8, ground - wallH - 6], [cx - 32, crown - 4], [cx + 32, crown - 4], [cx + r + 8, ground - wallH - 6], [cx + r + 8, ground]]
-  L.cut.push(el(path(cover), 'stroke-width="3"'))
-  // tension band at the wall head
-  L.cut.push(line([cx - r, ground - wallH], [cx + r, ground - wallH], ACCENT))
-  L.notes.push(text(cx + r - 4, ground - wallH - 8, 'TENSION BAND', 'text-anchor="end" class="t-small t-accent"'))
-  L.profile.push(line([cx - r - 40, ground], [cx + r + 40, ground]))
-  B.add([cx - r - 40, crown - 40], [cx + r + 40, ground])
-  L.dims.push(hDim(ground + 22, cx - r, cx + r, 'DIAMETER'))
-  callouts(L, [
-    { text: 'CROWN RING (TOONO)', at: [cx - 30, crown + 10] },
-    { text: 'ROOF POLES', at: [cx - r * 0.6, ground - wallH - 50] },
-    { text: 'FELT COVER', at: [cx - r - 8, ground - wallH] },
-    { text: 'LATTICE WALL (KHANA)', at: [cx - r, ground - 40] },
-  ], cx - r - 40)
-  return finish(meta('yurt', 'Yurt', 'Portable lattice-walled tent with a crown ring', 'SECTION', 'STC-20',
-    'Section through a round portable dwelling: a folding criss-cross timber lattice forms the wall, straight poles rise from its top to a central ring, a band around the wall head resists their outward push, and felt covers it all.', 38, 'metres (indicative)'), L, B)
-}
-
 function steppedPlatform(): SheetSpec {
   const L = newLayers()
   const B = new Bounds()
@@ -751,7 +677,7 @@ function chainHoops(): SheetSpec {
 
 export const STRUCTURE_SHEETS: Array<() => SheetSpec> = [
   () => bracedFrame('x-bracing'), () => bracedFrame('chevron-bracing'), () => bracedFrame('diagonal-bracing'),
-  prattTruss, deadLoad, spreadFooting, spaceFrame, tensionCable, diagrid, massTimber, exposedStructure,
-  gerberette, massiveCantilever, setbackTower, servedServant, piloti, stiltHouse, trullo, windcatcher, yurt,
+  prattTruss, deadLoad, spreadFooting, tensionCable, diagrid, massTimber, exposedStructure,
+  gerberette, massiveCantilever, setbackTower, servedServant, piloti, stiltHouse, trullo, windcatcher,
   steppedPlatform, chainHoops,
 ]

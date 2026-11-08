@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
-  <title id="t">Space Frame: plan</title>
-  <desc id="d">Plan of a roof structure made of two parallel grids of short steel members, the lower one offset by half a bay and linked to the upper by diagonals into pyramids, meeting at spherical joints. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <title id="t">Space Frame: isometric</title>
+  <desc id="d">Isometric of a double-layer space frame: a square top grid and a bottom grid offset by half a bay, tied together by diagonals into rows of half-octahedra, all meeting at ball joints, so a light roof can span widely on only four columns. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
   <style>
     svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
     .paper { fill: var(--_paper); }
@@ -38,103 +38,335 @@
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
-  <g class="layer-hatch ink l-hair">
-    <path d="M180 80 L200 80 L200 100 L180 100 Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M530 80 L550 80 L550 100 L530 100 Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M180 430 L200 430 L200 450 L180 450 Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M530 430 L550 430 L550 450 L530 450 Z" fill="url(#h-stone)" stroke="none"/>
-  </g>
   <g class="layer-fine ink l-fine">
-    <path d="M215 115V415M215 115H515M265 115V415M215 165H515M315 115V415M215 215H515M365 115V415M215 265H515M415 115V415M215 315H515M465 115V415M215 365H515M515 115V415M215 415H515" stroke-dasharray="5 3"/>
+    <path d="M360 560 L541.8 455.04 L360 350.08 L178.2 455.04 Z" stroke-dasharray="4 3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <path d="M190 90V440M190 90H540M240 90V440M190 140H540M290 90V440M190 190H540M340 90V440M190 240H540M390 90V440M190 290H540M440 90V440M190 340H540M490 90V440M190 390H540M540 90V440M190 440H540"/>
-    <circle cx="190" cy="90" r="2.6" class="solid"/>
-    <circle cx="190" cy="140" r="2.6" class="solid"/>
-    <circle cx="190" cy="190" r="2.6" class="solid"/>
-    <circle cx="190" cy="240" r="2.6" class="solid"/>
-    <circle cx="190" cy="290" r="2.6" class="solid"/>
-    <circle cx="190" cy="340" r="2.6" class="solid"/>
-    <circle cx="190" cy="390" r="2.6" class="solid"/>
-    <circle cx="190" cy="440" r="2.6" class="solid"/>
-    <circle cx="240" cy="90" r="2.6" class="solid"/>
-    <circle cx="240" cy="140" r="2.6" class="solid"/>
-    <circle cx="240" cy="190" r="2.6" class="solid"/>
-    <circle cx="240" cy="240" r="2.6" class="solid"/>
-    <circle cx="240" cy="290" r="2.6" class="solid"/>
-    <circle cx="240" cy="340" r="2.6" class="solid"/>
-    <circle cx="240" cy="390" r="2.6" class="solid"/>
-    <circle cx="240" cy="440" r="2.6" class="solid"/>
-    <circle cx="290" cy="90" r="2.6" class="solid"/>
-    <circle cx="290" cy="140" r="2.6" class="solid"/>
-    <circle cx="290" cy="190" r="2.6" class="solid"/>
-    <circle cx="290" cy="240" r="2.6" class="solid"/>
-    <circle cx="290" cy="290" r="2.6" class="solid"/>
-    <circle cx="290" cy="340" r="2.6" class="solid"/>
-    <circle cx="290" cy="390" r="2.6" class="solid"/>
-    <circle cx="290" cy="440" r="2.6" class="solid"/>
-    <circle cx="340" cy="90" r="2.6" class="solid"/>
-    <circle cx="340" cy="140" r="2.6" class="solid"/>
-    <circle cx="340" cy="190" r="2.6" class="solid"/>
-    <circle cx="340" cy="240" r="2.6" class="solid"/>
-    <circle cx="340" cy="290" r="2.6" class="solid"/>
-    <circle cx="340" cy="340" r="2.6" class="solid"/>
-    <circle cx="340" cy="390" r="2.6" class="solid"/>
-    <circle cx="340" cy="440" r="2.6" class="solid"/>
-    <circle cx="390" cy="90" r="2.6" class="solid"/>
-    <circle cx="390" cy="140" r="2.6" class="solid"/>
-    <circle cx="390" cy="190" r="2.6" class="solid"/>
-    <circle cx="390" cy="240" r="2.6" class="solid"/>
-    <circle cx="390" cy="290" r="2.6" class="solid"/>
-    <circle cx="390" cy="340" r="2.6" class="solid"/>
-    <circle cx="390" cy="390" r="2.6" class="solid"/>
-    <circle cx="390" cy="440" r="2.6" class="solid"/>
-    <circle cx="440" cy="90" r="2.6" class="solid"/>
-    <circle cx="440" cy="140" r="2.6" class="solid"/>
-    <circle cx="440" cy="190" r="2.6" class="solid"/>
-    <circle cx="440" cy="240" r="2.6" class="solid"/>
-    <circle cx="440" cy="290" r="2.6" class="solid"/>
-    <circle cx="440" cy="340" r="2.6" class="solid"/>
-    <circle cx="440" cy="390" r="2.6" class="solid"/>
-    <circle cx="440" cy="440" r="2.6" class="solid"/>
-    <circle cx="490" cy="90" r="2.6" class="solid"/>
-    <circle cx="490" cy="140" r="2.6" class="solid"/>
-    <circle cx="490" cy="190" r="2.6" class="solid"/>
-    <circle cx="490" cy="240" r="2.6" class="solid"/>
-    <circle cx="490" cy="290" r="2.6" class="solid"/>
-    <circle cx="490" cy="340" r="2.6" class="solid"/>
-    <circle cx="490" cy="390" r="2.6" class="solid"/>
-    <circle cx="490" cy="440" r="2.6" class="solid"/>
-    <circle cx="540" cy="90" r="2.6" class="solid"/>
-    <circle cx="540" cy="140" r="2.6" class="solid"/>
-    <circle cx="540" cy="190" r="2.6" class="solid"/>
-    <circle cx="540" cy="240" r="2.6" class="solid"/>
-    <circle cx="540" cy="290" r="2.6" class="solid"/>
-    <circle cx="540" cy="340" r="2.6" class="solid"/>
-    <circle cx="540" cy="390" r="2.6" class="solid"/>
-    <circle cx="540" cy="440" r="2.6" class="solid"/>
-  </g>
-  <g class="layer-cut ink l-cut">
-    <path d="M215 115L190 90M215 115L240 90M215 115L240 140M215 115L190 140M215 165L190 140M215 165L240 140M215 165L240 190M215 165L190 190M215 215L190 190M215 215L240 190M215 215L240 240M215 215L190 240M215 265L190 240M215 265L240 240M215 265L240 290M215 265L190 290M215 315L190 290M215 315L240 290M215 315L240 340M215 315L190 340M215 365L190 340M215 365L240 340M215 365L240 390M215 365L190 390M215 415L190 390M215 415L240 390M215 415L240 440M215 415L190 440M265 115L240 90M265 115L290 90M265 115L290 140M265 115L240 140M265 165L240 140M265 165L290 140M265 165L290 190M265 165L240 190M265 215L240 190M265 215L290 190M265 215L290 240M265 215L240 240M265 265L240 240M265 265L290 240M265 265L290 290M265 265L240 290M265 315L240 290M265 315L290 290M265 315L290 340M265 315L240 340M265 365L240 340M265 365L290 340M265 365L290 390M265 365L240 390M265 415L240 390M265 415L290 390M265 415L290 440M265 415L240 440M315 115L290 90M315 115L340 90M315 115L340 140M315 115L290 140M315 165L290 140M315 165L340 140M315 165L340 190M315 165L290 190M315 215L290 190M315 215L340 190M315 215L340 240M315 215L290 240M315 265L290 240M315 265L340 240M315 265L340 290M315 265L290 290M315 315L290 290M315 315L340 290M315 315L340 340M315 315L290 340M315 365L290 340M315 365L340 340M315 365L340 390M315 365L290 390M315 415L290 390M315 415L340 390M315 415L340 440M315 415L290 440M365 115L340 90M365 115L390 90M365 115L390 140M365 115L340 140M365 165L340 140M365 165L390 140M365 165L390 190M365 165L340 190M365 215L340 190M365 215L390 190M365 215L390 240M365 215L340 240M365 265L340 240M365 265L390 240M365 265L390 290M365 265L340 290M365 315L340 290M365 315L390 290M365 315L390 340M365 315L340 340M365 365L340 340M365 365L390 340M365 365L390 390M365 365L340 390M365 415L340 390M365 415L390 390M365 415L390 440M365 415L340 440M415 115L390 90M415 115L440 90M415 115L440 140M415 115L390 140M415 165L390 140M415 165L440 140M415 165L440 190M415 165L390 190M415 215L390 190M415 215L440 190M415 215L440 240M415 215L390 240M415 265L390 240M415 265L440 240M415 265L440 290M415 265L390 290M415 315L390 290M415 315L440 290M415 315L440 340M415 315L390 340M415 365L390 340M415 365L440 340M415 365L440 390M415 365L390 390M415 415L390 390M415 415L440 390M415 415L440 440M415 415L390 440M465 115L440 90M465 115L490 90M465 115L490 140M465 115L440 140M465 165L440 140M465 165L490 140M465 165L490 190M465 165L440 190M465 215L440 190M465 215L490 190M465 215L490 240M465 215L440 240M465 265L440 240M465 265L490 240M465 265L490 290M465 265L440 290M465 315L440 290M465 315L490 290M465 315L490 340M465 315L440 340M465 365L440 340M465 365L490 340M465 365L490 390M465 365L440 390M465 415L440 390M465 415L490 390M465 415L490 440M465 415L440 440M515 115L490 90M515 115L540 90M515 115L540 140M515 115L490 140M515 165L490 140M515 165L540 140M515 165L540 190M515 165L490 190M515 215L490 190M515 215L540 190M515 215L540 240M515 215L490 240M515 265L490 240M515 265L540 240M515 265L540 290M515 265L490 290M515 315L490 290M515 315L540 290M515 315L540 340M515 315L490 340M515 365L490 340M515 365L540 340M515 365L540 390M515 365L490 390M515 415L490 390M515 415L540 390M515 415L540 440M515 415L490 440" style="stroke: var(--_accent)" stroke-width="0.8"/>
-    <path d="M180 80 L200 80 L200 100 L180 100 Z"/>
-    <path d="M530 80 L550 80 L550 100 L530 100 Z"/>
-    <path d="M180 430 L200 430 L200 450 L180 450 Z"/>
-    <path d="M530 430 L550 430 L550 450 L530 450 Z"/>
-  </g>
-  <g class="layer-center ink l-center">
-    <circle cx="340" cy="240" r="22"/>
-  </g>
-  <g class="layer-dims ink l-dims">
-    <path d="M190 468L240 468M186 472L194 464M236 472L244 464M190 462L190 474M240 462L240 474"/><text x="215" y="482" text-anchor="middle">MODULE</text>
+    <path d="M360 376.32 L360 245.12" style="stroke: var(--_paper); stroke-width: 9"/>
+    <path d="M360 376.32 L360 245.12" style="stroke-width: 5"/>
+    <circle cx="360" cy="177.88" r="2.6" class="solid"/>
+    <path d="M360 241.84 L360 177.88" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 241.84 L360 177.88" class="l-fine"/>
+    <circle cx="360" cy="241.84" r="2" class="solid"/>
+    <path d="M314.55 204.12 L360 177.88" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 204.12 L360 177.88" style="stroke-width: 1.6"/>
+    <path d="M405.45 204.12 L360 177.88" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 204.12 L360 177.88" style="stroke-width: 1.6"/>
+    <path d="M360 241.84 L405.45 204.12" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 241.84 L405.45 204.12" class="l-fine"/>
+    <path d="M360 241.84 L314.55 204.12" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 241.84 L314.55 204.12" class="l-fine"/>
+    <path d="M314.55 268.08 L360 241.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 268.08 L360 241.84" class="l-fine"/>
+    <path d="M405.45 268.08 L360 241.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 268.08 L360 241.84" class="l-fine"/>
+    <circle cx="314.55" cy="204.12" r="2.6" class="solid"/>
+    <circle cx="405.45" cy="204.12" r="2.6" class="solid"/>
+    <path d="M314.55 268.08 L314.55 204.12" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 268.08 L314.55 204.12" class="l-fine"/>
+    <path d="M405.45 268.08 L405.45 204.12" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 268.08 L405.45 204.12" class="l-fine"/>
+    <path d="M360 241.84 L360 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 241.84 L360 230.36" class="l-fine"/>
+    <circle cx="314.55" cy="268.08" r="2" class="solid"/>
+    <circle cx="405.45" cy="268.08" r="2" class="solid"/>
+    <path d="M269.1 230.36 L314.55 204.12" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 230.36 L314.55 204.12" style="stroke-width: 1.6"/>
+    <path d="M360 230.36 L405.45 204.12" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 230.36 L405.45 204.12" style="stroke-width: 1.6"/>
+    <path d="M360 230.36 L314.55 204.12" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 230.36 L314.55 204.12" style="stroke-width: 1.6"/>
+    <path d="M450.9 230.36 L405.45 204.12" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 230.36 L405.45 204.12" style="stroke-width: 1.6"/>
+    <path d="M314.55 268.08 L360 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 268.08 L360 230.36" class="l-fine"/>
+    <path d="M314.55 268.08 L269.1 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 268.08 L269.1 230.36" class="l-fine"/>
+    <path d="M405.45 268.08 L450.9 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 268.08 L450.9 230.36" class="l-fine"/>
+    <path d="M405.45 268.08 L360 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 268.08 L360 230.36" class="l-fine"/>
+    <path d="M269.1 294.32 L314.55 268.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 294.32 L314.55 268.08" class="l-fine"/>
+    <path d="M360 294.32 L405.45 268.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 294.32 L405.45 268.08" class="l-fine"/>
+    <path d="M360 294.32 L314.55 268.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 294.32 L314.55 268.08" class="l-fine"/>
+    <path d="M450.9 294.32 L405.45 268.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 294.32 L405.45 268.08" class="l-fine"/>
+    <path d="M496.35 455.04 L496.35 323.84" style="stroke: var(--_paper); stroke-width: 9"/>
+    <path d="M496.35 455.04 L496.35 323.84" style="stroke-width: 5"/>
+    <path d="M223.65 455.04 L223.65 323.84" style="stroke: var(--_paper); stroke-width: 9"/>
+    <path d="M223.65 455.04 L223.65 323.84" style="stroke-width: 5"/>
+    <circle cx="269.1" cy="230.36" r="2.6" class="solid"/>
+    <circle cx="360" cy="230.36" r="2.6" class="solid"/>
+    <circle cx="450.9" cy="230.36" r="2.6" class="solid"/>
+    <path d="M269.1 294.32 L269.1 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 294.32 L269.1 230.36" class="l-fine"/>
+    <path d="M360 294.32 L360 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 294.32 L360 230.36" class="l-fine"/>
+    <path d="M314.55 268.08 L314.55 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 268.08 L314.55 256.6" class="l-fine"/>
+    <path d="M450.9 294.32 L450.9 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 294.32 L450.9 230.36" class="l-fine"/>
+    <path d="M405.45 268.08 L405.45 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 268.08 L405.45 256.6" class="l-fine"/>
+    <circle cx="269.1" cy="294.32" r="2" class="solid"/>
+    <circle cx="360" cy="294.32" r="2" class="solid"/>
+    <circle cx="450.9" cy="294.32" r="2" class="solid"/>
+    <path d="M223.65 256.6 L269.1 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M223.65 256.6 L269.1 230.36" style="stroke-width: 1.6"/>
+    <path d="M314.55 256.6 L360 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 256.6 L360 230.36" style="stroke-width: 1.6"/>
+    <path d="M314.55 256.6 L269.1 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 256.6 L269.1 230.36" style="stroke-width: 1.6"/>
+    <path d="M405.45 256.6 L450.9 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 256.6 L450.9 230.36" style="stroke-width: 1.6"/>
+    <path d="M405.45 256.6 L360 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 256.6 L360 230.36" style="stroke-width: 1.6"/>
+    <path d="M496.35 256.6 L450.9 230.36" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M496.35 256.6 L450.9 230.36" style="stroke-width: 1.6"/>
+    <path d="M269.1 294.32 L314.55 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 294.32 L314.55 256.6" class="l-fine"/>
+    <path d="M269.1 294.32 L223.65 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 294.32 L223.65 256.6" class="l-fine"/>
+    <path d="M360 294.32 L405.45 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 294.32 L405.45 256.6" class="l-fine"/>
+    <path d="M360 294.32 L314.55 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 294.32 L314.55 256.6" class="l-fine"/>
+    <path d="M450.9 294.32 L496.35 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 294.32 L496.35 256.6" class="l-fine"/>
+    <path d="M450.9 294.32 L405.45 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 294.32 L405.45 256.6" class="l-fine"/>
+    <path d="M223.65 320.56 L269.1 294.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M223.65 320.56 L269.1 294.32" class="l-fine"/>
+    <path d="M314.55 320.56 L360 294.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 320.56 L360 294.32" class="l-fine"/>
+    <path d="M314.55 320.56 L269.1 294.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 320.56 L269.1 294.32" class="l-fine"/>
+    <path d="M405.45 320.56 L450.9 294.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 320.56 L450.9 294.32" class="l-fine"/>
+    <path d="M405.45 320.56 L360 294.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 320.56 L360 294.32" class="l-fine"/>
+    <path d="M496.35 320.56 L450.9 294.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M496.35 320.56 L450.9 294.32" class="l-fine"/>
+    <circle cx="223.65" cy="256.6" r="2.6" class="solid"/>
+    <circle cx="314.55" cy="256.6" r="2.6" class="solid"/>
+    <circle cx="405.45" cy="256.6" r="2.6" class="solid"/>
+    <circle cx="496.35" cy="256.6" r="2.6" class="solid"/>
+    <path d="M223.65 320.56 L223.65 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M223.65 320.56 L223.65 256.6" class="l-fine"/>
+    <path d="M314.55 320.56 L314.55 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 320.56 L314.55 256.6" class="l-fine"/>
+    <path d="M269.1 294.32 L269.1 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 294.32 L269.1 282.84" class="l-fine"/>
+    <path d="M405.45 320.56 L405.45 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 320.56 L405.45 256.6" class="l-fine"/>
+    <path d="M360 294.32 L360 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 294.32 L360 282.84" class="l-fine"/>
+    <path d="M496.35 320.56 L496.35 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M496.35 320.56 L496.35 256.6" class="l-fine"/>
+    <path d="M450.9 294.32 L450.9 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 294.32 L450.9 282.84" class="l-fine"/>
+    <circle cx="223.65" cy="320.56" r="2" class="solid"/>
+    <circle cx="314.55" cy="320.56" r="2" class="solid"/>
+    <circle cx="405.45" cy="320.56" r="2" class="solid"/>
+    <circle cx="496.35" cy="320.56" r="2" class="solid"/>
+    <path d="M178.2 282.84 L223.65 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M178.2 282.84 L223.65 256.6" style="stroke-width: 1.6"/>
+    <path d="M269.1 282.84 L314.55 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 282.84 L314.55 256.6" style="stroke-width: 1.6"/>
+    <path d="M269.1 282.84 L223.65 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 282.84 L223.65 256.6" style="stroke-width: 1.6"/>
+    <path d="M360 282.84 L405.45 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 282.84 L405.45 256.6" style="stroke-width: 1.6"/>
+    <path d="M360 282.84 L314.55 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 282.84 L314.55 256.6" style="stroke-width: 1.6"/>
+    <path d="M450.9 282.84 L496.35 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 282.84 L496.35 256.6" style="stroke-width: 1.6"/>
+    <path d="M450.9 282.84 L405.45 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 282.84 L405.45 256.6" style="stroke-width: 1.6"/>
+    <path d="M541.8 282.84 L496.35 256.6" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M541.8 282.84 L496.35 256.6" style="stroke-width: 1.6"/>
+    <path d="M223.65 320.56 L269.1 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M223.65 320.56 L269.1 282.84" class="l-fine"/>
+    <path d="M223.65 320.56 L178.2 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M223.65 320.56 L178.2 282.84" class="l-fine"/>
+    <path d="M314.55 320.56 L360 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 320.56 L360 282.84" class="l-fine"/>
+    <path d="M314.55 320.56 L269.1 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 320.56 L269.1 282.84" class="l-fine"/>
+    <path d="M405.45 320.56 L450.9 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 320.56 L450.9 282.84" class="l-fine"/>
+    <path d="M405.45 320.56 L360 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 320.56 L360 282.84" class="l-fine"/>
+    <path d="M496.35 320.56 L541.8 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M496.35 320.56 L541.8 282.84" class="l-fine"/>
+    <path d="M496.35 320.56 L450.9 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M496.35 320.56 L450.9 282.84" class="l-fine"/>
+    <path d="M269.1 346.8 L314.55 320.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 346.8 L314.55 320.56" class="l-fine"/>
+    <path d="M269.1 346.8 L223.65 320.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 346.8 L223.65 320.56" class="l-fine"/>
+    <path d="M360 346.8 L405.45 320.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 346.8 L405.45 320.56" class="l-fine"/>
+    <path d="M360 346.8 L314.55 320.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 346.8 L314.55 320.56" class="l-fine"/>
+    <path d="M450.9 346.8 L496.35 320.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 346.8 L496.35 320.56" class="l-fine"/>
+    <path d="M450.9 346.8 L405.45 320.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 346.8 L405.45 320.56" class="l-fine"/>
+    <circle cx="178.2" cy="282.84" r="2.6" class="solid"/>
+    <circle cx="269.1" cy="282.84" r="2.6" class="solid"/>
+    <circle cx="360" cy="282.84" r="2.6" class="solid"/>
+    <circle cx="450.9" cy="282.84" r="2.6" class="solid"/>
+    <circle cx="541.8" cy="282.84" r="2.6" class="solid"/>
+    <path d="M269.1 346.8 L269.1 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 346.8 L269.1 282.84" class="l-fine"/>
+    <path d="M223.65 320.56 L223.65 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M223.65 320.56 L223.65 309.08" class="l-fine"/>
+    <path d="M360 346.8 L360 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 346.8 L360 282.84" class="l-fine"/>
+    <path d="M314.55 320.56 L314.55 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 320.56 L314.55 309.08" class="l-fine"/>
+    <path d="M450.9 346.8 L450.9 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 346.8 L450.9 282.84" class="l-fine"/>
+    <path d="M405.45 320.56 L405.45 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 320.56 L405.45 309.08" class="l-fine"/>
+    <path d="M496.35 320.56 L496.35 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M496.35 320.56 L496.35 309.08" class="l-fine"/>
+    <circle cx="269.1" cy="346.8" r="2" class="solid"/>
+    <circle cx="360" cy="346.8" r="2" class="solid"/>
+    <circle cx="450.9" cy="346.8" r="2" class="solid"/>
+    <path d="M223.65 309.08 L269.1 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M223.65 309.08 L269.1 282.84" style="stroke-width: 1.6"/>
+    <path d="M223.65 309.08 L178.2 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M223.65 309.08 L178.2 282.84" style="stroke-width: 1.6"/>
+    <path d="M314.55 309.08 L360 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 309.08 L360 282.84" style="stroke-width: 1.6"/>
+    <path d="M314.55 309.08 L269.1 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 309.08 L269.1 282.84" style="stroke-width: 1.6"/>
+    <path d="M405.45 309.08 L450.9 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 309.08 L450.9 282.84" style="stroke-width: 1.6"/>
+    <path d="M405.45 309.08 L360 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 309.08 L360 282.84" style="stroke-width: 1.6"/>
+    <path d="M496.35 309.08 L541.8 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M496.35 309.08 L541.8 282.84" style="stroke-width: 1.6"/>
+    <path d="M496.35 309.08 L450.9 282.84" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M496.35 309.08 L450.9 282.84" style="stroke-width: 1.6"/>
+    <path d="M269.1 346.8 L314.55 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 346.8 L314.55 309.08" class="l-fine"/>
+    <path d="M269.1 346.8 L223.65 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 346.8 L223.65 309.08" class="l-fine"/>
+    <path d="M360 346.8 L405.45 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 346.8 L405.45 309.08" class="l-fine"/>
+    <path d="M360 346.8 L314.55 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 346.8 L314.55 309.08" class="l-fine"/>
+    <path d="M450.9 346.8 L496.35 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 346.8 L496.35 309.08" class="l-fine"/>
+    <path d="M450.9 346.8 L405.45 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 346.8 L405.45 309.08" class="l-fine"/>
+    <path d="M314.55 373.04 L360 346.8" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 373.04 L360 346.8" class="l-fine"/>
+    <path d="M314.55 373.04 L269.1 346.8" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 373.04 L269.1 346.8" class="l-fine"/>
+    <path d="M405.45 373.04 L450.9 346.8" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 373.04 L450.9 346.8" class="l-fine"/>
+    <path d="M405.45 373.04 L360 346.8" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 373.04 L360 346.8" class="l-fine"/>
+    <path d="M360 533.76 L360 402.56" style="stroke: var(--_paper); stroke-width: 9"/>
+    <path d="M360 533.76 L360 402.56" style="stroke-width: 5"/>
+    <circle cx="223.65" cy="309.08" r="2.6" class="solid"/>
+    <circle cx="314.55" cy="309.08" r="2.6" class="solid"/>
+    <circle cx="405.45" cy="309.08" r="2.6" class="solid"/>
+    <circle cx="496.35" cy="309.08" r="2.6" class="solid"/>
+    <path d="M314.55 373.04 L314.55 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 373.04 L314.55 309.08" class="l-fine"/>
+    <path d="M269.1 346.8 L269.1 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 346.8 L269.1 335.32" class="l-fine"/>
+    <path d="M405.45 373.04 L405.45 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 373.04 L405.45 309.08" class="l-fine"/>
+    <path d="M360 346.8 L360 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 346.8 L360 335.32" class="l-fine"/>
+    <path d="M450.9 346.8 L450.9 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 346.8 L450.9 335.32" class="l-fine"/>
+    <circle cx="314.55" cy="373.04" r="2" class="solid"/>
+    <circle cx="405.45" cy="373.04" r="2" class="solid"/>
+    <path d="M269.1 335.32 L314.55 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 335.32 L314.55 309.08" style="stroke-width: 1.6"/>
+    <path d="M269.1 335.32 L223.65 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M269.1 335.32 L223.65 309.08" style="stroke-width: 1.6"/>
+    <path d="M360 335.32 L405.45 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 335.32 L405.45 309.08" style="stroke-width: 1.6"/>
+    <path d="M360 335.32 L314.55 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 335.32 L314.55 309.08" style="stroke-width: 1.6"/>
+    <path d="M450.9 335.32 L496.35 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 335.32 L496.35 309.08" style="stroke-width: 1.6"/>
+    <path d="M450.9 335.32 L405.45 309.08" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M450.9 335.32 L405.45 309.08" style="stroke-width: 1.6"/>
+    <path d="M314.55 373.04 L360 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 373.04 L360 335.32" class="l-fine"/>
+    <path d="M314.55 373.04 L269.1 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 373.04 L269.1 335.32" class="l-fine"/>
+    <path d="M405.45 373.04 L450.9 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 373.04 L450.9 335.32" class="l-fine"/>
+    <path d="M405.45 373.04 L360 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 373.04 L360 335.32" class="l-fine"/>
+    <path d="M360 399.28 L405.45 373.04" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 399.28 L405.45 373.04" class="l-fine"/>
+    <path d="M360 399.28 L314.55 373.04" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 399.28 L314.55 373.04" class="l-fine"/>
+    <circle cx="269.1" cy="335.32" r="2.6" class="solid"/>
+    <circle cx="360" cy="335.32" r="2.6" class="solid"/>
+    <circle cx="450.9" cy="335.32" r="2.6" class="solid"/>
+    <path d="M360 399.28 L360 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 399.28 L360 335.32" class="l-fine"/>
+    <path d="M314.55 373.04 L314.55 361.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 373.04 L314.55 361.56" class="l-fine"/>
+    <path d="M405.45 373.04 L405.45 361.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 373.04 L405.45 361.56" class="l-fine"/>
+    <circle cx="360" cy="399.28" r="2" class="solid"/>
+    <path d="M314.55 361.56 L360 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 361.56 L360 335.32" style="stroke-width: 1.6"/>
+    <path d="M314.55 361.56 L269.1 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M314.55 361.56 L269.1 335.32" style="stroke-width: 1.6"/>
+    <path d="M405.45 361.56 L450.9 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 361.56 L450.9 335.32" style="stroke-width: 1.6"/>
+    <path d="M405.45 361.56 L360 335.32" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M405.45 361.56 L360 335.32" style="stroke-width: 1.6"/>
+    <path d="M360 399.28 L405.45 361.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 399.28 L405.45 361.56" class="l-fine"/>
+    <path d="M360 399.28 L314.55 361.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 399.28 L314.55 361.56" class="l-fine"/>
+    <circle cx="314.55" cy="361.56" r="2.6" class="solid"/>
+    <circle cx="405.45" cy="361.56" r="2.6" class="solid"/>
+    <path d="M360 399.28 L360 387.8" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 399.28 L360 387.8" class="l-fine"/>
+    <path d="M360 387.8 L405.45 361.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 387.8 L405.45 361.56" style="stroke-width: 1.6"/>
+    <path d="M360 387.8 L314.55 361.56" style="stroke: var(--_paper); stroke-width: 4"/>
+    <path d="M360 387.8 L314.55 361.56" style="stroke-width: 1.6"/>
+    <circle cx="360" cy="387.8" r="2.6" class="solid"/>
+    <circle cx="520" cy="110" r="16"/>
+    <path d="M536 110L556 110"/>
+    <path d="M531.31 121.31L545.46 135.46"/>
+    <path d="M520 126L520 146"/>
+    <path d="M508.69 121.31L494.54 135.46"/>
+    <path d="M504 110L484 110"/>
+    <path d="M508.69 98.69L494.54 84.54"/>
+    <path d="M520 94L520 74"/>
+    <path d="M531.31 98.69L545.46 84.54"/>
   </g>
   <g class="layer-labels ink l-labels">
-    <path d="M125.4 140L187.5 140"/><circle cx="187.5" cy="140" r="1.5" class="solid"/><text x="34" y="143">TOP CHORD GRID</text>
-    <path d="M162 215L212.5 215"/><circle cx="212.5" cy="215" r="1.5" class="solid"/><text x="34" y="218">BOTTOM GRID (DASHED)</text>
-    <path d="M113.2 302.5L225 302.5"/><circle cx="225" cy="302.5" r="1.5" class="solid"/><text x="34" y="305.5">DIAGONAL WEB</text>
-    <path d="M125.4 440L177.5 440"/><circle cx="177.5" cy="440" r="1.5" class="solid"/><text x="34" y="443">SUPPORT COLUMN</text>
+    <path d="M125.4 320.07L160.2 320.07L243.88 322.2"/><circle cx="243.88" cy="322.2" r="1.5" class="solid"/><text x="34" y="323.07">TOP CHORD GRID</text>
+    <path d="M198.6 335.07L160.2 335.07L289.33 333.68"/><circle cx="289.33" cy="333.68" r="1.5" class="solid"/><text x="34" y="338.07">BOTTOM CHORD GRID (OFFSET)</text>
+    <path d="M64.4 359.43L160.2 359.43L312.05 361.56"/><circle cx="312.05" cy="361.56" r="1.5" class="solid"/><text x="34" y="362.43">NODE</text>
+    <path d="M125.4 374.43L160.2 374.43L312.05 367.3"/><circle cx="312.05" cy="367.3" r="1.5" class="solid"/><text x="34" y="377.43">DIAGONAL STRUT</text>
+    <path d="M76.6 474.23L160.2 474.23L357.5 476.36"/><circle cx="357.5" cy="476.36" r="1.5" class="solid"/><text x="34" y="477.23">COLUMN</text>
+    <path d="M149.8 505.39L160.2 505.39L266.6 507.52"/><circle cx="266.6" cy="507.52" r="1.5" class="solid"/><text x="34" y="508.39">FOOTPRINT (DASHED)</text>
   </g>
   <g class="layer-notes ">
-    <text x="366" y="218" class="t-small t-accent">BALL JOINT (NODE)</text>
+    <text x="520" y="162" class="t-small" text-anchor="middle">NODE (DETAIL)</text>
   </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
@@ -143,11 +375,11 @@
     <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
     <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
     <text class="t-sub" x="416" y="684">SHEET  STC-07</text>
-    <text class="t-small" x="416" y="699">PLAN</text>
-    <text class="t-small" x="416" y="724">SCALE IN MODULES</text>
-    <rect x="416" y="730" width="50" height="5" class="solid"/><rect x="466" y="730" width="50" height="5" class="ink l-fine"/><rect x="516" y="730" width="50" height="5" class="solid"/>
+    <text class="t-small" x="416" y="699">ISOMETRIC</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (INDICATIVE)</text>
+    <rect x="416" y="730" width="26" height="5" class="solid"/><rect x="442" y="730" width="26" height="5" class="ink l-fine"/><rect x="468" y="730" width="26" height="5" class="solid"/><rect x="494" y="730" width="26" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="564" y="749">3</text>
+    <text class="t-small" x="518" y="749">4</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

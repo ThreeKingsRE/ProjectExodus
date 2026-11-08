@@ -112,36 +112,6 @@ function bay(halfBay = 150, pier = 26, opts: { arches?: boolean } = {}): Bay {
   return { L, B, c, h, corners, defs: [] }
 }
 
-function groinVault(): SheetSpec {
-  const { L, B, c, h, corners, defs } = bay()
-  // groins: the intersections of two barrels, along the diagonals
-  L.profile.push(line(corners[0], corners[2]), line(corners[1], corners[3]))
-  // webs: each triangle's courses run perpendicular to its barrel axis
-  const tris: Array<[Pt[], number]> = [
-    [[corners[0], corners[1], c], 0], // north web: barrel runs N-S, courses E-W
-    [[corners[2], corners[3], c], 0],
-    [[corners[1], corners[2], c], Math.PI / 2],
-    [[corners[3], corners[0], c], Math.PI / 2],
-  ]
-  tris.forEach(([poly, ang], i) => defs.push(courses(L, `gv-${i}`, poly, ang, 12)))
-  // barrel directions
-  arrow(L, [c[0], c[1] - 30], [c[0], c[1] - h + 26])
-  arrow(L, [c[0] + 30, c[1]], [c[0] + h - 26, c[1]])
-  L.notes.push(text(c[0] + 6, c[1] - h + 46, 'BARREL A', 'class="t-small t-accent"'), text(c[0] + h - 70, c[1] - 6, 'BARREL B', 'class="t-small t-accent"'))
-  callouts(L, [
-    { text: 'TRANSVERSE ARCH', at: [c[0] - h * 0.55, corners[0][1] - 14] },
-    { text: 'WEB (COURSES)', at: [c[0] - h * 0.5, c[1] - h * 0.62] },
-    { text: 'GROIN', at: [c[0] - h * 0.5, c[1] - h * 0.5] },
-    { text: 'CROWN', at: [c[0] - 3, c[1]] },
-    { text: 'PIER', at: [corners[3][0] - 13, corners[3][1]] },
-  ], corners[0][0] - 20)
-  return finish({
-    id: 'groin-vault', title: 'Groin Vault', subtitle: 'Two barrel vaults intersecting at right angles', view: RCP, sheetNo: 'VLT-02',
-    source: ORIGINAL, scale: { unitPx: h / 5, unitName: 'tenths of bay', count: 5 },
-    description: 'Plan looking up at a square bay covered by two intersecting barrel vaults, with the diagonal groins where they meet and the stone courses of each web.',
-  }, L, B, defs.join('\n    '))
-}
-
 function ribVault(): SheetSpec {
   const { L, B, c, h, corners, defs } = bay()
   const rib = 5
@@ -520,7 +490,6 @@ function oculus(): SheetSpec {
 
 export const VAULT_SHEETS: Array<() => SheetSpec> = [
   barrelVault,
-  groinVault,
   ribVault,
   fanVault,
   pendentive,

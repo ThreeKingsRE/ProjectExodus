@@ -195,3 +195,81 @@ export function axoWall(L: Layers, P: Axo, plan: Array<[number, number]>, z0: nu
     for (const v of verts) L[layer].push(line(P([v[0], v[1], z0]), P([v[0], v[1], z0 + h])))
   }
 }
+
+// ---------------------------------------------------------------------------
+// Shaded solids: curved surfaces and mixed objects painted far-to-near
+// ---------------------------------------------------------------------------
+
+/** One paintable piece; larger key = farther from the viewer. */
+export type Item = { key: number; svg: string[] }
+export type Tone = 'light' | 'mid' | 'dark'
+
+/** Depth key for a model point: viewer above (normal isometric) or below (worm's-eye). */
+export const depthKey = (view: 'above' | 'below') => (p: P3) => (view === 'above' ? p[0] + p[1] - p[2] : p[0] + p[1] + p[2])
+
+/** Worm's-eye isometric: plan seen from below, z up the page (after Choisy). */
+export function wormsEye(origin: Pt, s = 1) {
+  const c = Math.cos(Math.PI / 6) * s
+  const k = Math.sin(Math.PI / 6) * s
+  return Object.assign((p: P3): Pt => [origin[0] + p[0] * c - p[1] * c, origin[1] + p[0] * k + p[1] * k - p[2] * s], { kind: 'isometric' as const })
+}
+
+const sub = (a: P3, b: P3): P3 => [a[0] - b[0], a[1] - b[1], a[2] - b[2]]
+const cross = (a: P3, b: P3): P3 => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]
+
+/** Tone from the angle between a face and the light (two-sided). */
+export function toneOf(pts: P3[], light: P3 = [-0.45, -0.25, 0.86]): Tone {
+  const n = cross(sub(pts[2], pts[0]), sub(pts[pts.length - 1], pts[1]))
+  const len = Math.hypot(...n) || 1
+  const d = Math.abs((n[0] * light[0] + n[1] * light[1] + n[2] * light[2]) / len)
+  return d > 0.72 ? 'light' : d > 0.4 ? 'mid' : 'dark'
+}
+
+/**
+ * A planar polygon as a paintable item. `edges` lists which sides to stroke
+ * (index i strokes pts[i] → pts[i+1]); default all. Seams between adjacent
+ * pieces are hidden by a hairline paper stroke.
+ */
+export function polyItem(P: (p: P3) => Pt, pts: P3[], key: number, tone: Tone | 'cut' = 'light', edges?: number[]): Item {
+  const scr = pts.map(P)
+  const d = path(scr, true)
+  const svg = [`<path d="${d}" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>`]
+  if (tone === 'cut') svg.push(`<path d="${d}" fill="url(#h-stone)" stroke="none"/>`)
+  else if (tone !== 'light') svg.push(`<path d="${d}" fill="url(#${tone === 'mid' ? 'h-tone' : 'h-tone-d'})" stroke="none"/>`)
+  const which = edges ?? pts.map((_, i) => i)
+  if (which.length === pts.length) svg.push(el(d))
+  else for (const i of which) svg.push(el(path([scr[i], scr[(i + 1) % scr.length]])))
+  return { key, svg }
+}
+
+/** A line segment (rib, strut, rail) as a paintable item. */
+export function lineItem(P: (p: P3) => Pt, a: P3, b: P3, key: number, attrs = ''): Item {
+  return { key, svg: [el(path([P(a), P(b)]), attrs)] }
+}
+
+/**
+ * Parametric surface f(u, v), u,v in [0,1], cut into nu × nv quads, each
+ * shaded by its own normal. Grid lines listed in uLines / vLines (by index)
+ * and the surface boundary are stroked, so ribs and edges hide correctly.
+ */
+export function surfaceItems(P: (p: P3) => Pt, f: (u: number, v: number) => P3, nu: number, nv: number, key: (p: P3) => number,
+  opts: { uLines?: number[]; vLines?: number[]; boundary?: boolean; tone?: (pts: P3[]) => Tone } = {}): Item[] {
+  const { uLines = [], vLines = [], boundary = true, tone = (pts: P3[]) => toneOf(pts) } = opts
+  const items: Item[] = []
+  for (let i = 0; i < nu; i++) for (let j = 0; j < nv; j++) {
+    const q: P3[] = [f(i / nu, j / nv), f((i + 1) / nu, j / nv), f((i + 1) / nu, (j + 1) / nv), f(i / nu, (j + 1) / nv)]
+    const edges: number[] = []
+    if (vLines.includes(j) || (boundary && j === 0)) edges.push(0)
+    if (uLines.includes(i + 1) || (boundary && i === nu - 1)) edges.push(1)
+    if (vLines.includes(j + 1) || (boundary && j === nv - 1)) edges.push(2)
+    if (uLines.includes(i) || (boundary && i === 0)) edges.push(3)
+    const c: P3 = [(q[0][0] + q[2][0]) / 2, (q[0][1] + q[2][1]) / 2, (q[0][2] + q[2][2]) / 2]
+    items.push(polyItem(P, q, key(c), tone(q), edges))
+  }
+  return items
+}
+
+/** Paint items far-to-near into one layer. */
+export function paint(L: Layers, items: Item[], layer: LayerName = 'profile') {
+  for (const it of [...items].sort((a, b) => b.key - a.key)) L[layer].push(...it.svg)
+}
