@@ -5,7 +5,7 @@ import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 import { SAGE_SYSTEM_PROMPT } from '@/lib/sage/prompt'
 import { SAGE_TOOLS, runSageTool } from '@/lib/sage/tools'
 import { generateFallbackResponse } from '@/lib/sage/fallback'
-import { callGroqChat, isGroqConfigured } from '@/lib/projects/ai/groqStructured'
+import { callGroqChat, isGroqConfigured, groqModel } from '@/lib/projects/ai/groqStructured'
 
 /**
  * POST /api/chat — Sage, the site assistant.
@@ -101,8 +101,10 @@ async function* fallbackEvents(lastUserMessage: string, conversation?: Anthropic
         return
       }
     } catch (err) {
-      console.warn('[Sage] Groq fallback failed:', err)
+      console.warn(`[Sage] Groq fallback failed (model ${groqModel()}):`, err instanceof Error ? err.message : err)
     }
+  } else if (conversation) {
+    console.warn('[Sage] no ANTHROPIC_API_KEY or GROQ_API_KEY on this deployment; using keyword replies')
   }
   yield { type: 'text', text: generateFallbackResponse(lastUserMessage) }
   yield { type: 'done' }
@@ -205,6 +207,22 @@ async function* sageEvents(
   }
 
   yield { type: 'done' }
+}
+
+/**
+ * Which AI providers this deployment can see (yes/no only, never the keys).
+ * Open /api/chat in a browser to check after changing environment variables.
+ */
+export async function GET() {
+  return NextResponse.json({
+    sage: {
+      claude: Boolean(process.env.ANTHROPIC_API_KEY),
+      claudeModel: process.env.ANTHROPIC_API_KEY ? MODEL : null,
+      groq: isGroqConfigured(),
+      groqModel: isGroqConfigured() ? groqModel() : null,
+      active: process.env.ANTHROPIC_API_KEY ? 'claude' : isGroqConfigured() ? 'groq' : 'keyword replies only',
+    },
+  }, { headers: { 'Cache-Control': 'no-store' } })
 }
 
 export async function POST(request: NextRequest) {

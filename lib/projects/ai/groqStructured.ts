@@ -4,7 +4,9 @@
 // for structured-JSON, callGroqChat for plain chat).
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY
-const GROQ_MODEL = 'llama-3.3-70b-versatile'
+// Override with GROQ_MODEL if Groq retires this model (see console.groq.com/docs/models)
+const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile'
+export const groqModel = () => GROQ_MODEL
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions'
 
 interface CallStructuredOpts {
