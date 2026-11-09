@@ -18,7 +18,7 @@ import {
   X,
 } from 'lucide-react'
 import Link from 'next/link'
-import { getPusherClient } from '@/lib/pusher'
+import { getPusherClient } from '@/lib/pusher-client'
 
 // Notification toast component
 function MessageNotification({

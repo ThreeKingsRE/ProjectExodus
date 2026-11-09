@@ -484,7 +484,7 @@ export function GuitarHeroFeed() {
 
     async function setupPusher() {
       try {
-        const { getPusherClient } = await import('@/lib/pusher')
+        const { getPusherClient } = await import('@/lib/pusher-client')
         pusherClient = getPusherClient()
         if (!pusherClient) return
         channel = pusherClient.subscribe('activity')

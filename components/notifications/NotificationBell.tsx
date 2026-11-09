@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Bell } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
-import { getPusherClient } from '@/lib/pusher'
+import { getPusherClient } from '@/lib/pusher-client'
 
 type NotificationType =
   | 'PRODUCT_APPROVED'

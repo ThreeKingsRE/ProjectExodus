@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from 'react'
-import { getPusherClient } from '@/lib/pusher'
+import { getPusherClient } from '@/lib/pusher-client'
 import type { Channel } from 'pusher-js'
 
 // Event types for admin real-time updates

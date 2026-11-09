@@ -51,7 +51,7 @@ import {
   Edit,
   Zap,
 } from 'lucide-react'
-import { getPusherClient } from '@/lib/pusher'
+import { getPusherClient } from '@/lib/pusher-client'
 import Link from 'next/link'
 import { JoinProjectButton } from '@/components/projects/JoinProjectButton'
 import { DocumentTemplateSelector } from '@/components/documents/DocumentTemplateSelector'

@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
+import { useState, useEffect, useMemo, useCallback, useRef, useSyncExternalStore } from 'react'
 import dynamic from 'next/dynamic'
 import GlobeTimeline from './GlobeTimeline'
+import MobileGlobeFallback from './MobileGlobeFallback'
 import { PeriodDetailPanel } from './PeriodDetailPanel'
 import { ConnectionInfoPanel } from './ConnectionInfoPanel'
 import { RegionArchitecturePanel } from './RegionArchitecturePanel'
@@ -21,6 +22,31 @@ const ArchitectureGlobe = dynamic(() => import('./ArchitectureGlobe'), {
   ssr: false,
   loading: () => <GlobeLoadingSkeleton />,
 })
+
+/**
+ * Phones (and devices without WebGL) get the flat map instead of the 3D globe,
+ * so they never download the ~2 MB of 3D libraries. null until mounted.
+ */
+const FLAT_QUERY = '(max-width: 767px)'
+function hasWebGL() {
+  try {
+    const c = document.createElement('canvas')
+    return Boolean(c.getContext('webgl2') || c.getContext('webgl'))
+  } catch {
+    return false
+  }
+}
+function useFlatMap(): boolean | null {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mq = window.matchMedia(FLAT_QUERY)
+      mq.addEventListener('change', onChange)
+      return () => mq.removeEventListener('change', onChange)
+    },
+    () => window.matchMedia(FLAT_QUERY).matches || !hasWebGL(),
+    () => null
+  )
+}
 
 // =============================================================================
 // CONSTANTS
@@ -94,6 +120,7 @@ function PageLoadingOverlay({ visible }: { visible: boolean }) {
 export default function GlobeLanding() {
   const [timelineYear, setTimelineYear] = useState(PRESENT_YEAR)
   const [isLoading, setIsLoading] = useState(true)
+  const flatMap = useFlatMap()
   const [showHints, setShowHints] = useState(true)
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodDefinition | null>(null)
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null)
@@ -124,6 +151,11 @@ export default function GlobeLanding() {
     const remaining = Math.max(0, MIN_LOADING_MS - elapsed)
     setTimeout(() => setIsLoading(false), remaining)
   }, [])
+
+  // The flat map is ready as soon as it renders
+  useEffect(() => {
+    if (flatMap) handleGlobeReady()
+  }, [flatMap, handleGlobeReady])
 
   // Fallback timeout
   useEffect(() => {
@@ -193,14 +225,22 @@ export default function GlobeLanding() {
           style={{ padding: '2vh 2vw 12vh 2vw' }}
           onPointerDown={() => setShowHints(false)}
         >
-          <ArchitectureGlobe
-            currentYear={timelineYear}
-            isDayTheme={isDay}
-            onReady={handleGlobeReady}
-            selectedPeriod={selectedPeriod}
-            onPointClick={handlePointClick}
-            showArcs={showArcs}
-          />
+          {flatMap === null ? null : flatMap ? (
+            <MobileGlobeFallback
+              currentYear={timelineYear}
+              selectedPeriod={selectedPeriod}
+              onRegionClick={(region) => setSelectedRegion((prev) => (prev === region ? null : region))}
+            />
+          ) : (
+            <ArchitectureGlobe
+              currentYear={timelineYear}
+              isDayTheme={isDay}
+              onReady={handleGlobeReady}
+              selectedPeriod={selectedPeriod}
+              onPointClick={handlePointClick}
+              showArcs={showArcs}
+            />
+          )}
         </div>
 
         {/* Drag hint — centered on globe, fades out */}

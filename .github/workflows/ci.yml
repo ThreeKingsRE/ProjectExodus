@@ -37,6 +37,9 @@ jobs:
       - name: Architecture drawings up to date
         run: npm run arch:drawings -- --check
 
+      - name: Home skyline images up to date
+        run: npm run skyline -- --check
+
       - name: Type check
         run: npx tsc --noEmit
 

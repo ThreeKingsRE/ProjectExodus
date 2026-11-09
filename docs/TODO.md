@@ -3,7 +3,7 @@
 Running list of agreed next steps. Check items off in the PR that does them.
 
 ## Bookmarked (next up)
-- [ ] **Merge this branch onto the July code first.** The production branch was fast-forwarded (Nov 8) to `claude/find-recent-branch-f4nVq` (July 5, 2026), the real current site. This branch was built on the older Feb 12 code, so its 28 commits must be merged on top of July (322 files differ; expect overlaps in architecture, community, auth) before anything here goes live.
+- [x] **Merged onto the July code** (Nov 9). The production branch was fast-forwarded (Nov 8) to `claude/find-recent-branch-f4nVq` (July 5, 2026), the real current site. This branch was built on the older Feb 12 code, so its 28 commits must be merged on top of July (322 files differ; expect overlaps in architecture, community, auth) before anything here goes live.
 - [ ] **Check `claude/update-exodus-site-D5jxe`** (Feb 17): 42 commits (Sage arc animation, newspaper-style community page) not in the July line. Decide whether they were superseded or should be brought over.
 - [ ] **Architecture expansion pack** toward 450+ elements (`docs/architecture-drawings/PLAN.md` §3). Adding an element is now one drawing function plus its data entry.
 - [ ] **Deployment setup (Vercel + PartyKit + keys)**: follow `docs/SETUP_GUIDE.md` step by step
@@ -31,6 +31,8 @@ Running list of agreed next steps. Check items off in the PR that does them.
 - [ ] **Digital textbook** (`DIGITAL_TEXTBOOK_PLAN.md`): only partial components exist
 
 ## Engineering
+- [x] **Speed pass 1** (Nov 9): home page HTML 2.9 MB → 154 KB (skyline is now a cached image), Pusher server SDK out of every page (~0.5 MB), architecture data on demand, phones get the flat map instead of the 3D globe (3.1 MB → 1.3 MB of code)
+- [ ] **Speed pass 2**: pages that fetch their own API over HTTP (articles, products, profiles, forum, vendors) should query the database directly (one less round trip, and no `NEXT_PUBLIC_API_URL` needed); Google Fonts via `next/font`; trim the 570 KB stylesheet
 - [x] **SEO basics**: titles and descriptions for every section, noindex on private areas, `robots.ts`, a default share image (the old one was a 404), per-article metadata with cover image
 - [ ] **SEO next**: per-product and per-architecture-element share images; fix `og:url` to point at each page instead of the home page
 - [ ] **Smoke tests** (Playwright): sign-up, publishing, documents, product directory; run in CI
