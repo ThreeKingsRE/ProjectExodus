@@ -3,6 +3,8 @@
 Running list of agreed next steps. Check items off in the PR that does them.
 
 ## Bookmarked (next up)
+- [ ] **Merge this branch onto the July code first.** The production branch was fast-forwarded (Nov 8) to `claude/find-recent-branch-f4nVq` (July 5, 2026), the real current site. This branch was built on the older Feb 12 code, so its 28 commits must be merged on top of July (322 files differ; expect overlaps in architecture, community, auth) before anything here goes live.
+- [ ] **Check `claude/update-exodus-site-D5jxe`** (Feb 17): 42 commits (Sage arc animation, newspaper-style community page) not in the July line. Decide whether they were superseded or should be brought over.
 - [ ] **Architecture expansion pack** toward 450+ elements (`docs/architecture-drawings/PLAN.md` §3). Adding an element is now one drawing function plus its data entry.
 - [ ] **Deployment setup (Vercel + PartyKit + keys)**: follow `docs/SETUP_GUIDE.md` step by step
   - [ ] `ANTHROPIC_API_KEY` in Vercel (turns on Sage 2.0; without it Sage uses keyword fallback answers)
