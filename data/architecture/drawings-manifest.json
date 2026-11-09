@@ -1432,5 +1432,41 @@
   "sheetNo": "STC-07",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
   "aspect": 0.781
+ },
+ "tower": {
+  "view": "SECTION",
+  "sheetNo": "FRT-01",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.89
+ },
+ "ambulatory": {
+  "view": "PLAN",
+  "sheetNo": "REL-18",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.91
+ },
+ "rafter": {
+  "view": "SECTION",
+  "sheetNo": "RF-17",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.39
+ },
+ "ridgepole": {
+  "view": "ISOMETRIC",
+  "sheetNo": "RF-18",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.149
+ },
+ "joist": {
+  "view": "ISOMETRIC",
+  "sheetNo": "STC-23",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.46
+ },
+ "masonry": {
+  "view": "ELEVATION",
+  "sheetNo": "WAL-11",
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 1.045
  }
 }

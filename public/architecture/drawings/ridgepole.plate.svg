@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="172.88 202 479.41 447" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Isometric of a roof frame: the ridgepole runs along the peak, carried by posts at each gable, and the rafters hang in pairs between it and the wall plates, with collar ties stiffening some pairs. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="172.88" y="202" width="479.41" height="447"/>
+  <g class="layer-fine ink l-fine">
+    <path d="M377.94 605 L603.11 475 L447.22 385 L222.06 515 Z" stroke-dasharray="4 3"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M525.17 430 L525.17 230" style="stroke: var(--_paper); stroke-width: 12; stroke-linecap: butt"/>
+    <path d="M525.17 430 L525.17 230" style="stroke-width: 8; stroke-linecap: butt"/>
+    <path d="M525.17 430 L525.17 230" style="stroke: var(--_paper); stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M603.11 355 L447.22 265" style="stroke: var(--_paper); stroke-width: 10; stroke-linecap: butt"/>
+    <path d="M603.11 355 L447.22 265" style="stroke-width: 6; stroke-linecap: butt"/>
+    <path d="M603.11 355 L447.22 265" style="stroke: var(--_paper); stroke-width: 3; stroke-linecap: butt"/>
+    <path d="M398.73 291.22 L490.53 250" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M398.73 291.22 L490.53 250" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M398.73 291.22 L490.53 250" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+    <path d="M222.06 395 L447.22 265" style="stroke: var(--_paper); stroke-width: 12; stroke-linecap: butt"/>
+    <path d="M222.06 395 L447.22 265" style="stroke-width: 8; stroke-linecap: butt"/>
+    <path d="M222.06 395 L447.22 265" style="stroke: var(--_paper); stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M364.09 311.22 L455.88 270" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M364.09 311.22 L455.88 270" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M364.09 311.22 L455.88 270" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+    <path d="M329.44 331.22 L421.24 290" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M329.44 331.22 L421.24 290" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M329.44 331.22 L421.24 290" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+    <path d="M494.86 332.5 L416.91 287.5" style="stroke: var(--_paper); stroke-width: 7; stroke-linecap: butt"/>
+    <path d="M494.86 332.5 L416.91 287.5" style="stroke-width: 3; stroke-linecap: butt"/>
+    <path d="M494.86 332.5 L416.91 287.5" style="stroke: var(--_paper); stroke-width: 0.5; stroke-linecap: butt"/>
+    <path d="M582.32 397.22 L490.53 250" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M582.32 397.22 L490.53 250" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M582.32 397.22 L490.53 250" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+    <path d="M294.8 351.22 L386.6 310" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M294.8 351.22 L386.6 310" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M294.8 351.22 L386.6 310" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+    <path d="M547.68 417.22 L455.88 270" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M547.68 417.22 L455.88 270" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M547.68 417.22 L455.88 270" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+    <path d="M260.16 371.22 L351.96 330" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M260.16 371.22 L351.96 330" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M260.16 371.22 L351.96 330" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+    <path d="M425.57 372.5 L347.63 327.5" style="stroke: var(--_paper); stroke-width: 7; stroke-linecap: butt"/>
+    <path d="M425.57 372.5 L347.63 327.5" style="stroke-width: 3; stroke-linecap: butt"/>
+    <path d="M425.57 372.5 L347.63 327.5" style="stroke: var(--_paper); stroke-width: 0.5; stroke-linecap: butt"/>
+    <path d="M513.04 437.22 L421.24 290" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M513.04 437.22 L421.24 290" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M513.04 437.22 L421.24 290" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+    <path d="M282.68 370 L542.49 220" style="stroke: var(--_paper); stroke-width: 14; stroke-linecap: butt"/>
+    <path d="M282.68 370 L542.49 220" style="stroke-width: 10; stroke-linecap: butt"/>
+    <path d="M282.68 370 L542.49 220" style="stroke: var(--_paper); stroke-width: 7; stroke-linecap: butt"/>
+    <path d="M225.52 391.22 L317.32 350" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M225.52 391.22 L317.32 350" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M225.52 391.22 L317.32 350" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+    <path d="M377.94 485 L603.11 355" style="stroke: var(--_paper); stroke-width: 12; stroke-linecap: butt"/>
+    <path d="M377.94 485 L603.11 355" style="stroke-width: 8; stroke-linecap: butt"/>
+    <path d="M377.94 485 L603.11 355" style="stroke: var(--_paper); stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M300 560 L300 360" style="stroke: var(--_paper); stroke-width: 12; stroke-linecap: butt"/>
+    <path d="M300 560 L300 360" style="stroke-width: 8; stroke-linecap: butt"/>
+    <path d="M300 560 L300 360" style="stroke: var(--_paper); stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M478.4 457.22 L386.6 310" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M478.4 457.22 L386.6 310" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M478.4 457.22 L386.6 310" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+    <path d="M377.94 485 L222.06 395" style="stroke: var(--_paper); stroke-width: 10; stroke-linecap: butt"/>
+    <path d="M377.94 485 L222.06 395" style="stroke-width: 6; stroke-linecap: butt"/>
+    <path d="M377.94 485 L222.06 395" style="stroke: var(--_paper); stroke-width: 3; stroke-linecap: butt"/>
+    <path d="M443.76 477.22 L351.96 330" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M443.76 477.22 L351.96 330" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M443.76 477.22 L351.96 330" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+    <path d="M409.12 497.22 L317.32 350" style="stroke: var(--_paper); stroke-width: 9; stroke-linecap: butt"/>
+    <path d="M409.12 497.22 L317.32 350" style="stroke-width: 5; stroke-linecap: butt"/>
+    <path d="M409.12 497.22 L317.32 350" style="stroke: var(--_paper); stroke-width: 2; stroke-linecap: butt"/>
+  </g>
+  <text class="t-credit" x="178.88" y="638">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this form; no</text>
+  <text class="t-credit" x="178.88" y="647">external drawing reproduced.</text>
+</svg>

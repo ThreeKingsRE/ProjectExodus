@@ -2,19 +2,22 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useSession } from 'next-auth/react'
+import { useHasMounted } from '@/lib/hooks/useHasMounted'
 import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { parseContent, type ParsedContent, type ParsedReference } from '@/lib/article/contentParser'
-import { sanitizeArticleContent } from '@/lib/sanitize'
+import { parseContent, type ParsedReference } from '@/lib/article/contentParser'
 import {
   quickValidatePastedContent,
   validateArticleContent,
   validateFileUpload,
   sanitizeHtml,
   CONTENT_LIMITS,
+  type ArticleFileType,
 } from '@/lib/article/contentSecurity'
+import { chunkedUpload, formatFileSize } from '@/lib/article/chunkedUpload'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
@@ -22,6 +25,7 @@ import { Select } from '@/components/ui/Select'
 import { Textarea } from '@/components/ui/Textarea'
 import CoverImageUpload from '@/components/article/CoverImageUpload'
 import PublishConfirmDialog from '@/components/article/PublishConfirmDialog'
+import { PublishLayoutGuide, type GuideAnnotation } from '@/components/article/PublishLayoutGuide'
 import {
   ArrowLeft,
   Upload,
@@ -59,6 +63,7 @@ import {
   MoreHorizontal,
   Image as ImageIcon,
   Link as LinkIcon,
+  AlertTriangle,
 } from 'lucide-react'
 import toast from 'react-hot-toast'
 
@@ -109,6 +114,7 @@ type ViewMode = 'paste' | 'preview'
 
 export default function WriteArticlePage() {
   const { data: session, status } = useSession()
+  const hasMounted = useHasMounted()
   const router = useRouter()
 
   // View mode
@@ -117,6 +123,17 @@ export default function WriteArticlePage() {
 
   // Paste content
   const [pastedContent, setPastedContent] = useState('')
+  // Rich HTML from formats that preserve structure (mammoth's DOCX output).
+  // When set, "Parse & Preview" uses this as the body instead of running
+  // pastedContent through textToHtml, so headers / footnotes / lists /
+  // bold / italic / links from the source document survive into the
+  // editor. Cleared whenever the user edits the textarea directly.
+  const [pastedHtml, setPastedHtml] = useState<string | null>(null)
+  // First-time preview guide overlay state.
+  const [showGuide, setShowGuide] = useState(false)
+  // Sage tag-suggestion state.
+  const [tagsLoading, setTagsLoading] = useState(false)
+  const [tagsError, setTagsError] = useState<string | null>(null)
 
   // Parsed article data
   const [articleData, setArticleData] = useState<{
@@ -127,6 +144,7 @@ export default function WriteArticlePage() {
     categoryId: string
     tags: string
     references: ParsedReference[]
+    correctionsNote: string
   }>({
     title: '',
     content: '',
@@ -135,6 +153,7 @@ export default function WriteArticlePage() {
     categoryId: '',
     tags: '',
     references: [],
+    correctionsNote: '',
   })
 
   // Sidebar widgets
@@ -227,7 +246,13 @@ export default function WriteArticlePage() {
     // Process with slight delay for UX
     setTimeout(() => {
       try {
-        const parsed = parseContent(pastedContent)
+        // If we have rich HTML from a structured source (DOCX via
+        // mammoth), pass it to parseContent so it keeps headers,
+        // footnotes, lists, bold/italic etc. instead of being
+        // flattened into plain text and re-rebuilt into paragraphs.
+        const parsed = pastedHtml
+          ? parseContent(pastedHtml)
+          : parseContent(pastedContent)
 
         // Sanitize the parsed content
         const sanitizedBody = sanitizeHtml(parsed.body)
@@ -266,9 +291,22 @@ export default function WriteArticlePage() {
           categoryId: parsed.suggestedCategory || '',
           tags: '',
           references: parsed.references.slice(0, CONTENT_LIMITS.MAX_REFERENCES),
+          correctionsNote: '',
         })
 
         setViewMode('preview')
+
+        // Auto-open the layout guide the first time a user lands in
+        // preview after pasting/uploading. After "Got it" we set a
+        // localStorage flag so we don't badger them on every parse.
+        try {
+          const seen = localStorage.getItem('article-preview-guide-seen-v1')
+          if (!seen) {
+            // Defer one tick so the preview DOM is mounted before the
+            // guide tries to measure anchors.
+            setTimeout(() => setShowGuide(true), 50)
+          }
+        } catch {}
 
         // Show success with stats
         const wordCount = validation.stats.wordCount
@@ -277,15 +315,7 @@ export default function WriteArticlePage() {
           { icon: <Sparkles className="w-4 h-4" /> }
         )
 
-        // Show word count warning if too short
-        if (wordCount < CONTENT_LIMITS.MIN_WORDS) {
-          setTimeout(() => {
-            toast(
-              `Article needs at least ${CONTENT_LIMITS.MIN_WORDS} words to publish (currently ${wordCount}).`,
-              { icon: '📝', duration: 6000 }
-            )
-          }, 1000)
-        }
+        // Note: no max word warning - papers of any length are accepted
       } catch (error) {
         console.error('Parse error:', error)
         toast.error('Failed to parse content. Please try again.')
@@ -293,9 +323,14 @@ export default function WriteArticlePage() {
         setIsParsing(false)
       }
     }, 500)
-  }, [pastedContent])
+  }, [pastedContent, pastedHtml])
 
-  // Handle file upload with security validation
+  // Upload progress state
+  const [uploadProgress, setUploadProgress] = useState<{ phase: string; percent: number } | null>(null)
+
+  // Handle file upload — supports all document types
+  // Uses direct single-request endpoints for PDFs and DOCX (serverless-safe),
+  // falls back to chunked upload only for very large files.
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
@@ -309,27 +344,150 @@ export default function WriteArticlePage() {
 
     if (!fileValidation.isValid) {
       toast.error(fileValidation.error || 'Invalid file')
-      // Clear the input
       e.target.value = ''
       return
     }
 
-    try {
-      const text = await file.text()
+    const fileType = fileValidation.fileType!
 
-      // Quick security check on file contents
-      const contentCheck = quickValidatePastedContent(text)
-      if (!contentCheck.isValid) {
-        toast.error(contentCheck.error || 'File contains invalid content')
-        e.target.value = ''
-        return
+    const sizeStr = formatFileSize(file.size)
+
+    try {
+      const useChunked = file.size > CONTENT_LIMITS.CHUNKED_UPLOAD_THRESHOLD
+
+      // ── Binary formats that need server-side parsing ──
+      if (fileType === 'pdf' || fileType === 'docx') {
+        // Small PDF/DOCX: direct single-request upload (fast, serverless-safe)
+        // Large: chunked upload
+        if (!useChunked && fileType === 'pdf') {
+          toast(`Processing ${file.name} (${sizeStr})...`, { duration: 6000 })
+          setUploadProgress({ phase: 'uploading', percent: 10 })
+
+          const formData = new FormData()
+          formData.append('pdf', file)
+          const res = await fetch('/api/articles/parse-pdf', { method: 'POST', body: formData })
+
+          if (!res.ok && res.status === 413) {
+            // Body too large for serverless — fall through to chunked
+            throw new Error('__USE_CHUNKED__')
+          }
+
+          const data = await res.json()
+          setUploadProgress(null)
+
+          if (!data.success) {
+            toast.error(data.error || 'Failed to process PDF. Try pasting your content directly.')
+            e.target.value = ''
+            return
+          }
+
+          setPastedContent(data.data.text)
+          const pages = data.data.numPages
+          const successMsg = pages
+            ? `${file.name} loaded! ${pages} page(s) extracted.`
+            : `${file.name} loaded!`
+          toast.success(`${successMsg} Click "Parse & Preview" to continue.`)
+        } else if (!useChunked && fileType === 'docx') {
+          toast(`Processing ${file.name} (${sizeStr})...`, { duration: 6000 })
+          setUploadProgress({ phase: 'uploading', percent: 10 })
+
+          const formData = new FormData()
+          formData.append('docx', file)
+          const res = await fetch('/api/articles/parse-docx', { method: 'POST', body: formData })
+
+          if (!res.ok && res.status === 413) {
+            throw new Error('__USE_CHUNKED__')
+          }
+
+          const data = await res.json()
+          setUploadProgress(null)
+
+          if (!data.success) {
+            toast.error(data.error || 'Failed to process document. Try pasting your content directly.')
+            e.target.value = ''
+            return
+          }
+
+          setPastedContent(data.data.text)
+          // Mammoth gives us structured HTML — keep it so Parse & Preview
+          // can preserve headers / footnotes / lists / formatting.
+          setPastedHtml(data.data.html ?? null)
+          toast.success(`${file.name} loaded with structure preserved! Click "Parse & Preview" to continue.`)
+        } else {
+          // Chunked upload for large files and .doc/.odt
+          throw new Error('__USE_CHUNKED__')
+        }
+      } else if (!useChunked) {
+        // Small text-based formats (txt, md, html, rtf, tex) — read client-side
+        const text = await file.text()
+
+        const contentCheck = quickValidatePastedContent(text)
+        if (!contentCheck.isValid) {
+          toast.error(contentCheck.error || 'File contains invalid content')
+          e.target.value = ''
+          return
+        }
+
+        setPastedContent(text)
+        toast.success(`${file.name} loaded! Click "Parse & Preview" to continue.`)
+      } else {
+        // Large text files go through chunked upload too
+        throw new Error('__USE_CHUNKED__')
+      }
+    } catch (error: any) {
+      // Sentinel: fall through to chunked upload for large files or 413 errors
+      if (error?.message === '__USE_CHUNKED__') {
+        try {
+          toast(`Processing ${file.name} (${sizeStr})...`, { duration: 8000 })
+          setUploadProgress({ phase: 'uploading', percent: 0 })
+
+          const result = await chunkedUpload({
+            file,
+            onProgress: (progress) => {
+              setUploadProgress({
+                phase: progress.phase,
+                percent: progress.percent,
+              })
+            },
+          })
+
+          setUploadProgress(null)
+
+          if (!result.success) {
+            toast.error(result.error || 'Failed to process file. Try pasting your content directly.')
+            e.target.value = ''
+            return
+          }
+
+          setPastedContent(result.data!.text)
+          // Chunked-DOCX path: mammoth's html survives finalize-upload too.
+          setPastedHtml(result.data!.html ?? null)
+
+          const pages = result.data!.numPages
+          const successMsg = pages
+            ? `${file.name} loaded! ${pages} page(s) extracted.`
+            : `${file.name} loaded!`
+          toast.success(`${successMsg} Click "Parse & Preview" to continue.`)
+          e.target.value = ''
+          return
+        } catch (chunkedErr: any) {
+          console.error('Chunked upload error:', chunkedErr)
+          setUploadProgress(null)
+          const msg = chunkedErr.name === 'AbortError'
+            ? 'Upload cancelled.'
+            : 'Failed to process file. Try pasting your content directly.'
+          toast.error(msg)
+          e.target.value = ''
+          return
+        }
       }
 
-      setPastedContent(text)
-      toast.success('File loaded! Click "Parse & Preview" to continue.')
-    } catch (error) {
-      console.error('File read error:', error)
-      toast.error('Failed to read file. Please try copying and pasting instead.')
+      console.error('File upload error:', error)
+      setUploadProgress(null)
+      const msg = error.name === 'AbortError'
+        ? 'Upload cancelled.'
+        : 'Failed to process file. Try pasting your content directly.'
+      toast.error(msg)
     }
 
     // Clear the input for re-upload
@@ -407,10 +565,13 @@ export default function WriteArticlePage() {
           references: articleData.references.slice(0, CONTENT_LIMITS.MAX_REFERENCES).map(r => ({
             title: (r.title || '').slice(0, CONTENT_LIMITS.MAX_REFERENCE_TITLE),
             url: (r.url || '').slice(0, CONTENT_LIMITS.MAX_REFERENCE_URL),
-            description: r.authors ? `${r.authors}${r.year ? ` (${r.year})` : ''}`.slice(0, 500) : '',
+            authors: r.authors || '',
+            year: r.year || '',
+            publisher: r.publisher || '',
+            format: r.format || '',
           })),
           tags: articleData.tags.split(',').map(t => t.trim()).filter(Boolean).slice(0, 20),
-          widgetOrder: widgets.filter(w => w.enabled).map(w => w.id),
+          correctionsNote: articleData.correctionsNote || null,
         }),
       })
 
@@ -436,7 +597,7 @@ export default function WriteArticlePage() {
   const readTime = Math.max(1, Math.ceil(wordCount / 200))
 
   // Loading state
-  if (status === 'loading') {
+  if (hasMounted && status === 'loading') {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[var(--background)]">
         <Loader2 className="w-12 h-12 text-[var(--primary)] animate-spin" />
@@ -485,6 +646,14 @@ export default function WriteArticlePage() {
 
             {viewMode === 'preview' && (
               <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowGuide(true)}
+                  className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold text-theme-muted hover:text-theme-primary hover:bg-[var(--muted)] transition-colors"
+                  title="What does each part of the article do?"
+                >
+                  <Sparkles className="w-3.5 h-3.5" /> Layout guide
+                </button>
                 <Button
                   variant="outline"
                   size="sm"
@@ -529,7 +698,8 @@ export default function WriteArticlePage() {
                   Paste Your Work
                 </h2>
                 <p className="text-lg text-[var(--muted-foreground)] max-w-2xl mx-auto">
-                  Copy and paste your research paper, essay, or article below.
+                  Copy and paste your research paper, essay, or article below, or upload a file.
+                  We support PDF, Word, RTF, HTML, Markdown, LaTeX, and more.
                   We'll automatically detect your title, content, and works cited section.
                 </p>
               </div>
@@ -539,7 +709,13 @@ export default function WriteArticlePage() {
                 <CardContent className="p-6">
                   <textarea
                     value={pastedContent}
-                    onChange={(e) => setPastedContent(e.target.value)}
+                    onChange={(e) => {
+                      setPastedContent(e.target.value)
+                      // User is editing the textarea directly — any rich
+                      // HTML from a prior upload is stale. Fall back to
+                      // text -> HTML conversion on the next parse.
+                      setPastedHtml(null)
+                    }}
                     placeholder="Paste your entire document here...
 
 Include your title, body content, and Works Cited / References section.
@@ -585,18 +761,122 @@ We support MLA, APA, and Chicago citation formats."
                 <input
                   ref={fileInputRef}
                   type="file"
-                  accept=".txt,.md"
+                  accept=".txt,.md,.pdf,.docx,.rtf,.html,.htm,.tex,.latex"
                   onChange={handleFileUpload}
                   className="hidden"
                 />
               </div>
 
+              {/* Format guidance — DOCX preserves the most structure. */}
+              <details className="mt-5 rounded-xl bg-[var(--muted)]/40 border border-[var(--border)] overflow-hidden text-sm">
+                <summary className="flex items-center gap-2 px-4 py-3 cursor-pointer font-bold hover:bg-[var(--muted)]/60">
+                  <Sparkles className="w-4 h-4 text-theme-primary shrink-0" />
+                  <span className="flex-1">
+                    <span className="text-theme-primary">Tip:</span>{' '}
+                    <span className="text-[var(--foreground)]">.docx</span>
+                    <span className="text-theme-muted"> preserves footnotes, headers, lists, and links best — </span>
+                    <span className="text-theme-primary underline">how to convert →</span>
+                  </span>
+                </summary>
+                <div className="px-4 pb-4 pt-1 space-y-3 text-theme-muted">
+                  <p>
+                    PDFs lose footnote structure (no font/position data reaches the parser).
+                    Word, Google Docs, and most editors export to .docx for free in 30 seconds:
+                  </p>
+                  <ol className="space-y-2 list-decimal list-inside ml-1">
+                    <li>
+                      <strong className="text-[var(--foreground)]">Google Docs</strong> (free, no install):
+                      drag your file into{' '}
+                      <a
+                        href="https://drive.google.com/drive/my-drive"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-theme-primary underline"
+                      >
+                        Drive
+                      </a>
+                      , right-click → <em>Open with → Google Docs</em>, then{' '}
+                      <em>File → Download → Microsoft Word (.docx)</em>.
+                    </li>
+                    <li>
+                      <strong className="text-[var(--foreground)]">Microsoft Word</strong>: open your
+                      file, <em>File → Save As</em>, pick <em>Word Document (.docx)</em>.
+                    </li>
+                    <li>
+                      <strong className="text-[var(--foreground)]">Online converter</strong> (no
+                      account):{' '}
+                      <a
+                        href="https://cloudconvert.com/pdf-to-docx"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-theme-primary underline"
+                      >
+                        CloudConvert
+                      </a>
+                      {' '}or{' '}
+                      <a
+                        href="https://www.ilovepdf.com/pdf_to_word"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-theme-primary underline"
+                      >
+                        ILovePDF
+                      </a>
+                      . Free for occasional use.
+                    </li>
+                  </ol>
+                  <p className="text-xs">
+                    Already have a .docx? Just use the <strong className="text-[var(--foreground)]">Upload File</strong>{' '}
+                    button above — footnotes and headers will carry over automatically.
+                  </p>
+                </div>
+              </details>
+
+              {/* Upload Progress */}
+              {uploadProgress && (
+                <div className="mt-6 p-4 bg-[var(--muted)]/50 rounded-xl">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium text-[var(--foreground)]">
+                      {uploadProgress.phase === 'uploading' ? 'Uploading...' : 'Processing document...'}
+                    </span>
+                    <span className="text-sm text-[var(--muted-foreground)]">{uploadProgress.percent}%</span>
+                  </div>
+                  <div className="w-full h-2 bg-[var(--border)] rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full transition-all duration-300"
+                      style={{ width: `${uploadProgress.percent}%` }}
+                    />
+                  </div>
+                </div>
+              )}
+
               {/* Supported Formats */}
               <div className="mt-12 p-6 bg-[var(--muted)]/50 rounded-xl">
                 <h3 className="font-bold text-[var(--foreground)] mb-4 flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-[var(--primary)]" />
-                  Supported Citation Formats
+                  Supported Formats
                 </h3>
+                <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                  <div className="p-4 bg-[var(--background)] rounded-lg">
+                    <h4 className="font-bold text-[var(--foreground)] mb-2">Documents (up to 20MB)</h4>
+                    <p className="text-sm text-[var(--muted-foreground)]">
+                      PDF, Word (.doc, .docx), OpenDocument (.odt) — full text extraction with formatting preserved.
+                    </p>
+                  </div>
+                  <div className="p-4 bg-[var(--background)] rounded-lg">
+                    <h4 className="font-bold text-[var(--foreground)] mb-2">Text Files (up to 10MB)</h4>
+                    <p className="text-sm text-[var(--muted-foreground)]">
+                      Plain Text (.txt), Markdown (.md), HTML (.html), Rich Text (.rtf), LaTeX (.tex).
+                    </p>
+                  </div>
+                </div>
+                <div className="p-4 bg-[var(--background)] rounded-lg mb-4">
+                  <h4 className="font-bold text-[var(--foreground)] mb-2">Images</h4>
+                  <p className="text-sm text-[var(--muted-foreground)]">
+                    Add images in the editor after parsing via upload or URL. JPEG, PNG, and WebP supported.
+                  </p>
+                </div>
+                <h4 className="font-semibold text-[var(--foreground)] mb-3 text-sm">Citation Formats (auto-detected)</h4>
                 <div className="grid sm:grid-cols-3 gap-4">
                   <div className="p-4 bg-[var(--background)] rounded-lg">
                     <h4 className="font-bold text-[var(--foreground)] mb-2">MLA</h4>
@@ -637,7 +917,7 @@ We support MLA, APA, and Chicago citation formats."
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="max-w-5xl mx-auto text-center space-y-6">
                     {/* Editable Title */}
-                    <div className="group relative">
+                    <div className="group relative" data-tour-id="title">
                       {editingField === 'title' ? (
                         <input
                           type="text"
@@ -659,7 +939,7 @@ We support MLA, APA, and Chicago citation formats."
                     </div>
 
                     {/* Editable Excerpt */}
-                    <div className="group relative max-w-4xl mx-auto">
+                    <div className="group relative max-w-4xl mx-auto" data-tour-id="excerpt">
                       {editingField === 'excerpt' ? (
                         <textarea
                           value={articleData.excerpt}
@@ -714,7 +994,7 @@ We support MLA, APA, and Chicago citation formats."
                   <div className="max-w-5xl mx-auto">
                     <div className="grid md:grid-cols-3 gap-8">
                       {/* Main Content */}
-                      <article className="md:col-span-2">
+                      <article className="md:col-span-2" data-tour-id="body">
                         <Card className="bg-[var(--card)] border-2 border-[var(--border)]">
                           <CardContent className="p-6 sm:p-8 md:p-12">
                             <TipTapEditor
@@ -750,18 +1030,61 @@ We support MLA, APA, and Chicago citation formats."
                                 ]}
                               />
                             </div>
-                            <div>
-                              <label className="text-xs font-medium text-[var(--muted-foreground)] mb-1 block">
-                                Tags
-                              </label>
+                            <div data-tour-id="tags">
+                              <div className="flex items-center justify-between mb-1">
+                                <label className="text-xs font-medium text-[var(--muted-foreground)]">
+                                  Tags
+                                </label>
+                                <button
+                                  type="button"
+                                  disabled={tagsLoading || (!articleData.title.trim() && !articleData.content.replace(/<[^>]+>/g, '').trim())}
+                                  onClick={async () => {
+                                    setTagsLoading(true)
+                                    setTagsError(null)
+                                    try {
+                                      const res = await fetch('/api/articles/suggest-tags', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({
+                                          title: articleData.title,
+                                          excerpt: articleData.excerpt,
+                                          content: articleData.content,
+                                        }),
+                                      })
+                                      const data = await res.json()
+                                      if (!res.ok) {
+                                        throw new Error(data.error || 'Couldn\'t suggest tags.')
+                                      }
+                                      const suggested: string[] = Array.isArray(data.tags) ? data.tags : []
+                                      // Merge with what's already in the field; dedupe.
+                                      const existing = articleData.tags
+                                        .split(',').map(t => t.trim()).filter(Boolean)
+                                      const merged = Array.from(new Set([...existing, ...suggested]))
+                                      setArticleData(prev => ({ ...prev, tags: merged.join(', ') }))
+                                    } catch (err) {
+                                      setTagsError(err instanceof Error ? err.message : 'Suggestion failed.')
+                                    } finally {
+                                      setTagsLoading(false)
+                                    }
+                                  }}
+                                  className="inline-flex items-center gap-1 text-[11px] font-bold text-theme-primary hover:opacity-80 disabled:opacity-40"
+                                  title="Let Sage suggest tags from your article"
+                                >
+                                  <Sparkles className="w-3 h-3" />
+                                  {tagsLoading ? 'Thinking…' : 'Suggest with Sage'}
+                                </button>
+                              </div>
                               <Input
                                 value={articleData.tags}
                                 onChange={(e) => setArticleData(prev => ({ ...prev, tags: e.target.value }))}
                                 placeholder="sustainability, research"
                                 className="text-sm"
                               />
+                              {tagsError && (
+                                <p className="mt-1 text-[11px] text-red-500">{tagsError}</p>
+                              )}
                             </div>
-                            <div>
+                            <div data-tour-id="cover">
                               <label className="text-xs font-medium text-[var(--muted-foreground)] mb-1 block">
                                 Cover Image
                               </label>
@@ -779,6 +1102,34 @@ We support MLA, APA, and Chicago citation formats."
                             references={articleData.references}
                             onUpdate={(refs) => setArticleData(prev => ({ ...prev, references: refs }))}
                           />
+
+                          {/* Editor's note / corrections — surfaced as a
+                              banner on the published article so readers
+                              can see when content has been amended
+                              after publish. Plain text only. */}
+                          <Card className="bg-[var(--card)] border-2 border-[var(--border)]">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-sm font-bold flex items-center gap-2">
+                                <AlertTriangle className="w-4 h-4 text-amber-500" />
+                                Editor&apos;s note (optional)
+                              </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                              <Textarea
+                                value={articleData.correctionsNote}
+                                onChange={(e) => setArticleData(prev => ({ ...prev, correctionsNote: e.target.value.slice(0, 1500) }))}
+                                placeholder="e.g. Corrected the figure cited in para 3 (was 47%, should be 74%) — 2024-03-15"
+                                rows={4}
+                                className="text-sm"
+                              />
+                              <p className="text-[11px] text-theme-muted mt-2 leading-relaxed">
+                                When set, this appears as an amber banner above
+                                the article body — used for transparency on
+                                post-publish corrections.
+                              </p>
+                            </CardContent>
+                          </Card>
+
                           <AuthorPreview session={session} />
                           <SharePreview />
                         </div>
@@ -813,9 +1164,59 @@ We support MLA, APA, and Chicago citation formats."
         title={articleData.title}
         isPublishing={saving}
       />
+
+      {/* First-time preview-mode layout guide. Annotated overlay
+          pointing at title, subtitle, body, cover, tags. */}
+      <PublishLayoutGuide
+        isOpen={showGuide && viewMode === 'preview'}
+        annotations={PUBLISH_LAYOUT_ANNOTATIONS}
+        onClose={() => {
+          setShowGuide(false)
+          try { localStorage.setItem('article-preview-guide-seen-v1', '1') } catch {}
+        }}
+      />
     </div>
   )
 }
+
+// Title and excerpt are locked to side: 'bottom' rather than autoSide
+// because their position relative to the viewport changes as the user
+// scrolls — autoSide would flip them between 'top' and 'bottom'
+// independently, occasionally inverting the visual order (subtitle
+// callout appearing above the title callout). Pinning both to bottom
+// keeps the natural stack title → title-callout → subtitle →
+// subtitle-callout no matter where the page is scrolled.
+const PUBLISH_LAYOUT_ANNOTATIONS: GuideAnnotation[] = [
+  {
+    id: 'title',
+    label: 'Title',
+    description: 'The first thing readers see. Big and bold. Tap to edit.',
+    side: 'bottom',
+  },
+  {
+    id: 'excerpt',
+    label: 'Subtitle / hook',
+    description: 'One or two sentences that pull readers into the article.',
+    side: 'bottom',
+  },
+  {
+    id: 'body',
+    label: 'Article body',
+    description: 'Your main content. Headers, lists, footnotes, and links all preserved from the original.',
+  },
+  {
+    id: 'cover',
+    label: 'Cover image',
+    description: 'The hero image shown at the top of the published page.',
+    side: 'left',
+  },
+  {
+    id: 'tags',
+    label: 'Tags',
+    description: 'Comma-separated. Helps readers find the article via search and topic pages.',
+    side: 'left',
+  },
+]
 
 // References Preview Widget
 function ReferencesPreview({
@@ -943,26 +1344,6 @@ function ReferencesPreview({
   )
 }
 
-// Discussion Preview Widget
-function DiscussionPreview() {
-  return (
-    <Card className="border-4 border-[var(--border)]">
-      <CardHeader>
-        <CardTitle className="text-base flex items-center gap-2 text-[var(--foreground)]">
-          <MessageCircle className="w-4 h-4 text-[var(--primary)]" />
-          Round Table Discussion
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="text-center py-6 text-[var(--muted-foreground)]">
-          <MessageCircle className="w-8 h-8 mx-auto mb-2 opacity-50" />
-          <p className="text-sm">Discussion will appear here after publishing</p>
-        </div>
-      </CardContent>
-    </Card>
-  )
-}
-
 // Author Preview Widget
 function AuthorPreview({ session }: { session: any }) {
   return (
@@ -972,9 +1353,9 @@ function AuthorPreview({ session }: { session: any }) {
       </CardHeader>
       <CardContent>
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] flex items-center justify-center">
+          <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] flex items-center justify-center">
             {session?.user?.image ? (
-              <img src={session.user.image} alt="" className="w-16 h-16 rounded-full" />
+              <Image src={session.user.image} alt="" fill unoptimized sizes="100%" className="rounded-full object-cover" />
             ) : (
               <User className="w-8 h-8 text-white" />
             )}

@@ -47,7 +47,7 @@ function ResetForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       <Input label="New password" type="password" name="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" />
       <Input label="Confirm new password" type="password" name="confirm" required value={confirm} onChange={(e) => setConfirm(e.target.value)} placeholder="••••••••" />
-      <p className="text-xs text-theme-muted">At least 12 characters, with upper- and lowercase letters, a number and a symbol.</p>
+      <p className="text-xs text-theme-muted">At least 8 characters, with upper- and lowercase letters, a number and a symbol.</p>
       <Button type="submit" className="w-full" disabled={loading}>{loading ? 'Saving...' : 'Set new password'}</Button>
       {error && <p className="text-sm text-theme-secondary font-semibold">{error}{error.includes('expired') && <> <Link className="text-theme-primary" href="/auth/forgot-password">Get a new link</Link>.</>}</p>}
     </form>

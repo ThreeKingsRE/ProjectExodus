@@ -5,6 +5,7 @@ import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 import { SAGE_SYSTEM_PROMPT } from '@/lib/sage/prompt'
 import { SAGE_TOOLS, runSageTool } from '@/lib/sage/tools'
 import { generateFallbackResponse } from '@/lib/sage/fallback'
+import { callGroqChat, isGroqConfigured } from '@/lib/projects/ai/groqStructured'
 
 /**
  * POST /api/chat — Sage, the site assistant.
@@ -81,7 +82,28 @@ function ndjson(events: AsyncIterable<SageEvent>): Response {
   })
 }
 
-async function* fallbackEvents(lastUserMessage: string): AsyncGenerator<SageEvent> {
+/**
+ * Without Claude: Groq if configured (free tier, no site-search tools), and
+ * the keyword replies as the last resort.
+ */
+async function* fallbackEvents(lastUserMessage: string, conversation?: Anthropic.Beta.BetaMessageParam[]): AsyncGenerator<SageEvent> {
+  if (conversation && isGroqConfigured()) {
+    try {
+      const text = await callGroqChat({
+        systemPrompt: SAGE_SYSTEM_PROMPT,
+        messages: conversation.map((m) => ({ role: m.role === 'assistant' ? ('assistant' as const) : ('user' as const), content: typeof m.content === 'string' ? m.content : '' })),
+        temperature: 0.6,
+        maxOutputTokens: 700,
+      })
+      if (text.trim()) {
+        yield { type: 'text', text }
+        yield { type: 'done' }
+        return
+      }
+    } catch (err) {
+      console.warn('[Sage] Groq fallback failed:', err)
+    }
+  }
   yield { type: 'text', text: generateFallbackResponse(lastUserMessage) }
   yield { type: 'done' }
 }
@@ -209,7 +231,7 @@ export async function POST(request: NextRequest) {
   const lastUser = parsed.messages.filter((m) => m.role === 'user').at(-1)!.content
 
   if (!process.env.ANTHROPIC_API_KEY) {
-    return ndjson(fallbackEvents(lastUser))
+    return ndjson(fallbackEvents(lastUser, conversation))
   }
 
   return ndjson(
@@ -233,7 +255,7 @@ export async function POST(request: NextRequest) {
         }
         // Nothing shown yet: degrade gracefully to the keyword reply
         if (!sentText) {
-          yield* fallbackEvents(lastUser)
+          yield* fallbackEvents(lastUser, conversation)
         } else {
           yield { type: 'error', message: 'Sage lost the connection mid-reply. Please try again.' }
         }

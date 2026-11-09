@@ -1,6 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { auth } from '@/auth'
+import { sanitizeHtml, isValidUrl } from '@/lib/article/contentSecurity'
+import {
+  resolveArticleContent,
+  isCloudStorageAvailable,
+  updateArticleContent,
+  deleteArticleContent,
+} from '@/lib/article/contentStorage'
+import { incrementStockScore, STOCK_POINTS } from '@/lib/stockScore'
+
+/** Strip HTML tags from plain-text fields */
+function stripHtml(text: string): string {
+  return text.replace(/<[^>]*>/g, '').trim()
+}
 
 // Type for peer review with like count
 interface PeerReviewWithCount {
@@ -22,11 +35,13 @@ export async function GET(
 ) {
   try {
     const { slug } = await params
+    // Get the session up front — we need to know who's asking so we can
+    // serve drafts to their author. The previous version hard-filtered on
+    // status: PUBLISHED which 404'd a user trying to see their own draft.
+    const session = await auth()
+
     const article = await prisma.article.findUnique({
-      where: {
-        slug: slug,
-        status: 'PUBLISHED',
-      },
+      where: { slug },
       include: {
         category: true,
         author: {
@@ -45,6 +60,11 @@ export async function GET(
             expertise: true,
             guardianArchetype: true,
             declaration: true,
+            // Used by the published article's minimal author card to
+            // render the user's fishbowl fish as the default avatar
+            // when they don't have a profile image set.
+            stockScore: true,
+            fishCustomization: true,
             _count: {
               select: {
                 followers: true,
@@ -86,11 +106,13 @@ export async function GET(
               orderBy: {
                 createdAt: 'asc',
               },
+              take: 10,
             },
           },
           orderBy: {
             createdAt: 'desc',
           },
+          take: 30,
         },
         peerReviews: {
           include: {
@@ -109,6 +131,11 @@ export async function GET(
             createdAt: 'desc',
           },
         },
+        references: {
+          orderBy: {
+            order: 'asc',
+          },
+        },
       },
     })
 
@@ -119,8 +146,16 @@ export async function GET(
       )
     }
 
-    // Get session for user's like status
-    const session = await auth()
+    // Access control: published articles are public. Anything else (DRAFT,
+    // ARCHIVED, etc.) is only visible to the author.
+    const isPublished = article.status === 'PUBLISHED'
+    const isAuthor = session?.user?.id && session.user.id === article.authorId
+    if (!isPublished && !isAuthor) {
+      return NextResponse.json(
+        { success: false, error: 'Article not found' },
+        { status: 404 }
+      )
+    }
 
     // Track unique user views - only increment if this user hasn't viewed before
     if (session?.user?.id) {
@@ -148,6 +183,14 @@ export async function GET(
             },
           }),
         ])
+
+        // Award stock points for every 5 articles read
+        const totalReads = await prisma.articleRead.count({
+          where: { userId: session.user.id },
+        })
+        if (totalReads % 5 === 0) {
+          incrementStockScore(session.user.id, STOCK_POINTS.ARTICLE_READS_PER_5).catch(() => {})
+        }
       }
     } else {
       // For anonymous users, still increment (but this is less precise)
@@ -179,9 +222,13 @@ export async function GET(
       _count: undefined
     }))
 
+    // Resolve content from cloud storage (CDN) or fall back to DB content
+    const resolvedContent = await resolveArticleContent(article)
+
     // Filter author's private data based on privacy settings
     const filteredArticle = {
       ...article,
+      content: resolvedContent, // Always return full content from best source
       peerReviews: processedPeerReviews,
       author: {
         ...article.author,
@@ -225,13 +272,13 @@ export async function PUT(
     // Find article by slug or ID
     let article = await prisma.article.findUnique({
       where: { id: slug },
-      select: { id: true, authorId: true }
+      select: { id: true, slug: true, authorId: true, contentPublicId: true }
     }).catch(() => null)
 
     if (!article) {
       article = await prisma.article.findUnique({
         where: { slug: slug },
-        select: { id: true, authorId: true }
+        select: { id: true, slug: true, authorId: true, contentPublicId: true }
       })
     }
 
@@ -257,18 +304,55 @@ export async function PUT(
       readTime = Math.max(1, Math.ceil(wordCount / 200))
     }
 
+    // If content changed, update cloud storage
+    let contentUrl: string | undefined
+    let contentPublicId: string | undefined
+    let dbContent: string | undefined
+
+    if (body.content) {
+      const sanitized = sanitizeHtml(body.content)
+      if (isCloudStorageAvailable()) {
+        try {
+          const cloudResult = await updateArticleContent(
+            article.slug,
+            sanitized,
+            article.contentPublicId
+          )
+          contentUrl = cloudResult.contentUrl
+          contentPublicId = cloudResult.publicId
+          dbContent = sanitized.slice(0, 500) // Truncated preview in DB
+        } catch {
+          dbContent = sanitized // Fallback to DB
+        }
+      } else {
+        dbContent = sanitized
+      }
+    }
+
     const updatedArticle = await prisma.article.update({
       where: { id: article.id },
       data: {
-        title: body.title,
-        excerpt: body.excerpt,
-        content: body.content,
-        coverImage: body.coverImage,
+        title: body.title ? stripHtml(body.title) : undefined,
+        excerpt: body.excerpt ? stripHtml(body.excerpt) : undefined,
+        content: dbContent,
+        contentUrl,
+        contentPublicId,
+        coverImage: body.coverImage ? (isValidUrl(body.coverImage) ? body.coverImage : null) : undefined,
         readTime,
         status: body.status,
         publishedAt: body.status === 'PUBLISHED' && !body.publishedAt ? new Date() : undefined,
-        seoTitle: body.seoTitle,
-        seoDescription: body.seoDescription,
+        seoTitle: body.seoTitle ? stripHtml(body.seoTitle) : undefined,
+        seoDescription: body.seoDescription ? stripHtml(body.seoDescription) : undefined,
+        // Editorial correction / editor's note. Always strip HTML —
+        // this surfaces as a banner, not free-form rich text. Empty
+        // string clears the note. The timestamp is set whenever the
+        // note text changes (including being cleared).
+        ...(body.correctionsNote !== undefined
+          ? {
+              correctionsNote: stripHtml(String(body.correctionsNote)).slice(0, 1500) || null,
+              correctionsNoteAt: new Date(),
+            }
+          : {}),
       },
       include: {
         category: true,
@@ -315,13 +399,13 @@ export async function DELETE(
     // Try to find by ID first, then by slug
     let article = await prisma.article.findUnique({
       where: { id: slug },
-      select: { id: true, authorId: true }
+      select: { id: true, authorId: true, contentPublicId: true }
     }).catch(() => null)
 
     if (!article) {
       article = await prisma.article.findUnique({
         where: { slug: slug },
-        select: { id: true, authorId: true }
+        select: { id: true, authorId: true, contentPublicId: true }
       })
     }
 
@@ -337,6 +421,13 @@ export async function DELETE(
         { success: false, error: 'Unauthorized - You can only delete your own articles' },
         { status: 403 }
       )
+    }
+
+    // Delete cloud content if it exists
+    if (article.contentPublicId) {
+      deleteArticleContent(article.contentPublicId).catch((err) => {
+        console.warn('Failed to delete cloud content:', err.message)
+      })
     }
 
     // Delete the article

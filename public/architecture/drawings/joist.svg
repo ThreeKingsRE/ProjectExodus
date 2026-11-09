@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
+  <title id="t">Joist: isometric</title>
+  <desc id="d">Isometric of floor framing: closely spaced joists span between two supporting beams, braced against twisting by criss-cross bridging at mid-span, with subfloor boards (shown only on the far half) nailed across their tops. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern><pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
+  </defs>
+  <rect class="paper" width="600" height="780"/>
+  <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
+  <g class="layer-profile ink l-profile">
+    <path d="M110.65 428 L96.79 420 L96.79 400 L110.65 408 Z" style="fill: var(--_paper)"/>
+    <path d="M110.65 428 L96.79 420 L96.79 400 L110.65 408 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M110.65 428 L96.79 420 L96.79 400 L110.65 408 Z"/>
+    <path d="M110.65 428 L370.46 278 L370.46 258 L110.65 408 Z" style="fill: var(--_paper)"/>
+    <path d="M110.65 428 L370.46 278 L370.46 258 L110.65 408 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M110.65 428 L370.46 278 L370.46 258 L110.65 408 Z"/>
+    <path d="M110.65 408 L370.46 258 L356.6 250 L96.79 400 Z" style="fill: var(--_paper)"/>
+    <path d="M110.65 408 L370.46 258 L356.6 250 L96.79 400 Z"/>
+    <path d="M521.15 355 L347.94 255 L347.94 231 L521.15 331 Z" style="fill: var(--_paper)"/>
+    <path d="M521.15 355 L347.94 255 L347.94 231 L521.15 331 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M521.15 355 L347.94 255 L347.94 231 L521.15 331 Z"/>
+    <path d="M521.15 355 L526.34 352 L526.34 328 L521.15 331 Z" style="fill: var(--_paper)"/>
+    <path d="M521.15 355 L526.34 352 L526.34 328 L521.15 331 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M521.15 355 L526.34 352 L526.34 328 L521.15 331 Z"/>
+    <path d="M521.15 331 L526.34 328 L353.14 228 L347.94 231 Z" style="fill: var(--_paper)"/>
+    <path d="M521.15 331 L526.34 328 L353.14 228 L347.94 231 Z"/>
+    <path d="M486.51 375 L313.3 275 L313.3 251 L486.51 351 Z" style="fill: var(--_paper)"/>
+    <path d="M486.51 375 L313.3 275 L313.3 251 L486.51 351 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M486.51 375 L313.3 275 L313.3 251 L486.51 351 Z"/>
+    <path d="M486.51 375 L491.7 372 L491.7 348 L486.51 351 Z" style="fill: var(--_paper)"/>
+    <path d="M486.51 375 L491.7 372 L491.7 348 L486.51 351 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M486.51 375 L491.7 372 L491.7 348 L486.51 351 Z"/>
+    <path d="M486.51 351 L491.7 348 L318.5 248 L313.3 251 Z" style="fill: var(--_paper)"/>
+    <path d="M486.51 351 L491.7 348 L318.5 248 L313.3 251 Z"/>
+    <path d="M451.87 395 L278.66 295 L278.66 271 L451.87 371 Z" style="fill: var(--_paper)"/>
+    <path d="M451.87 395 L278.66 295 L278.66 271 L451.87 371 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M451.87 395 L278.66 295 L278.66 271 L451.87 371 Z"/>
+    <path d="M451.87 395 L457.06 392 L457.06 368 L451.87 371 Z" style="fill: var(--_paper)"/>
+    <path d="M451.87 395 L457.06 392 L457.06 368 L451.87 371 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M451.87 395 L457.06 392 L457.06 368 L451.87 371 Z"/>
+    <path d="M451.87 371 L457.06 368 L283.86 268 L278.66 271 Z" style="fill: var(--_paper)"/>
+    <path d="M451.87 371 L457.06 368 L283.86 268 L278.66 271 Z"/>
+    <path d="M417.22 415 L244.02 315 L244.02 291 L417.22 391 Z" style="fill: var(--_paper)"/>
+    <path d="M417.22 415 L244.02 315 L244.02 291 L417.22 391 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M417.22 415 L244.02 315 L244.02 291 L417.22 391 Z"/>
+    <path d="M417.22 415 L422.42 412 L422.42 388 L417.22 391 Z" style="fill: var(--_paper)"/>
+    <path d="M417.22 415 L422.42 412 L422.42 388 L417.22 391 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M417.22 415 L422.42 412 L422.42 388 L417.22 391 Z"/>
+    <path d="M417.22 391 L422.42 388 L249.22 288 L244.02 291 Z" style="fill: var(--_paper)"/>
+    <path d="M417.22 391 L422.42 388 L249.22 288 L244.02 291 Z"/>
+    <path d="M382.58 435 L209.38 335 L209.38 311 L382.58 411 Z" style="fill: var(--_paper)"/>
+    <path d="M382.58 435 L209.38 335 L209.38 311 L382.58 411 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M382.58 435 L209.38 335 L209.38 311 L382.58 411 Z"/>
+    <path d="M382.58 435 L387.78 432 L387.78 408 L382.58 411 Z" style="fill: var(--_paper)"/>
+    <path d="M382.58 435 L387.78 432 L387.78 408 L382.58 411 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M382.58 435 L387.78 432 L387.78 408 L382.58 411 Z"/>
+    <path d="M382.58 411 L387.78 408 L214.57 308 L209.38 311 Z" style="fill: var(--_paper)"/>
+    <path d="M382.58 411 L387.78 408 L214.57 308 L209.38 311 Z"/>
+    <path d="M347.94 455 L174.74 355 L174.74 331 L347.94 431 Z" style="fill: var(--_paper)"/>
+    <path d="M347.94 455 L174.74 355 L174.74 331 L347.94 431 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M347.94 455 L174.74 355 L174.74 331 L347.94 431 Z"/>
+    <path d="M347.94 455 L353.14 452 L353.14 428 L347.94 431 Z" style="fill: var(--_paper)"/>
+    <path d="M347.94 455 L353.14 452 L353.14 428 L347.94 431 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M347.94 455 L353.14 452 L353.14 428 L347.94 431 Z"/>
+    <path d="M347.94 431 L353.14 428 L179.93 328 L174.74 331 Z" style="fill: var(--_paper)"/>
+    <path d="M347.94 431 L353.14 428 L179.93 328 L174.74 331 Z"/>
+    <path d="M313.3 475 L140.1 375 L140.1 351 L313.3 451 Z" style="fill: var(--_paper)"/>
+    <path d="M313.3 475 L140.1 375 L140.1 351 L313.3 451 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M313.3 475 L140.1 375 L140.1 351 L313.3 451 Z"/>
+    <path d="M313.3 475 L318.5 472 L318.5 448 L313.3 451 Z" style="fill: var(--_paper)"/>
+    <path d="M313.3 475 L318.5 472 L318.5 448 L313.3 451 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M313.3 475 L318.5 472 L318.5 448 L313.3 451 Z"/>
+    <path d="M313.3 451 L318.5 448 L145.29 348 L140.1 351 Z" style="fill: var(--_paper)"/>
+    <path d="M313.3 451 L318.5 448 L145.29 348 L140.1 351 Z"/>
+    <path d="M278.66 495 L105.46 395 L105.46 371 L278.66 471 Z" style="fill: var(--_paper)"/>
+    <path d="M278.66 495 L105.46 395 L105.46 371 L278.66 471 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M278.66 495 L105.46 395 L105.46 371 L278.66 471 Z"/>
+    <path d="M278.66 495 L283.86 492 L283.86 468 L278.66 471 Z" style="fill: var(--_paper)"/>
+    <path d="M278.66 495 L283.86 492 L283.86 468 L278.66 471 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M278.66 495 L283.86 492 L283.86 468 L278.66 471 Z"/>
+    <path d="M278.66 471 L283.86 468 L110.65 368 L105.46 371 Z" style="fill: var(--_paper)"/>
+    <path d="M278.66 471 L283.86 468 L110.65 368 L105.46 371 Z"/>
+    <path d="M197.25 442L226.7 401" class="l-fine"/>
+    <path d="M197.25 418L226.7 425" class="l-fine"/>
+    <path d="M231.89 422L261.34 381" class="l-fine"/>
+    <path d="M231.89 398L261.34 405" class="l-fine"/>
+    <path d="M266.54 402L295.98 361" class="l-fine"/>
+    <path d="M266.54 378L295.98 385" class="l-fine"/>
+    <path d="M301.18 382L330.62 341" class="l-fine"/>
+    <path d="M301.18 358L330.62 365" class="l-fine"/>
+    <path d="M335.82 362L365.26 321" class="l-fine"/>
+    <path d="M335.82 338L365.26 345" class="l-fine"/>
+    <path d="M370.46 342L399.9 301" class="l-fine"/>
+    <path d="M370.46 318L399.9 325" class="l-fine"/>
+    <path d="M405.1 322L434.54 281" class="l-fine"/>
+    <path d="M405.1 298L434.54 305" class="l-fine"/>
+    <path d="M270 520 L256.14 512 L256.14 492 L270 500 Z" style="fill: var(--_paper)"/>
+    <path d="M270 520 L256.14 512 L256.14 492 L270 500 Z" fill="url(#h-tone-d)" stroke="none"/>
+    <path d="M270 520 L256.14 512 L256.14 492 L270 500 Z"/>
+    <path d="M270 520 L529.81 370 L529.81 350 L270 500 Z" style="fill: var(--_paper)"/>
+    <path d="M270 520 L529.81 370 L529.81 350 L270 500 Z" fill="url(#h-tone)" stroke="none"/>
+    <path d="M270 520 L529.81 370 L529.81 350 L270 500 Z"/>
+    <path d="M270 500 L529.81 350 L515.95 342 L256.14 492 Z" style="fill: var(--_paper)"/>
+    <path d="M270 500 L529.81 350 L515.95 342 L256.14 492 Z"/>
+    <path d="M110.65 384 L370.46 234 L357.47 226.5 L97.66 376.5 Z" style="fill: var(--_paper)"/>
+    <path d="M110.65 384 L370.46 234 L357.47 226.5 L97.66 376.5 Z"/>
+    <path d="M124.51 392 L384.32 242 L371.32 234.5 L111.52 384.5 Z" style="fill: var(--_paper)"/>
+    <path d="M124.51 392 L384.32 242 L371.32 234.5 L111.52 384.5 Z"/>
+    <path d="M138.36 400 L398.17 250 L385.18 242.5 L125.37 392.5 Z" style="fill: var(--_paper)"/>
+    <path d="M138.36 400 L398.17 250 L385.18 242.5 L125.37 392.5 Z"/>
+    <path d="M152.22 408 L412.03 258 L399.04 250.5 L139.23 400.5 Z" style="fill: var(--_paper)"/>
+    <path d="M152.22 408 L412.03 258 L399.04 250.5 L139.23 400.5 Z"/>
+    <path d="M166.08 416 L425.88 266 L412.89 258.5 L153.09 408.5 Z" style="fill: var(--_paper)"/>
+    <path d="M166.08 416 L425.88 266 L412.89 258.5 L153.09 408.5 Z"/>
+    <path d="M179.93 424 L439.74 274 L426.75 266.5 L166.94 416.5 Z" style="fill: var(--_paper)"/>
+    <path d="M179.93 424 L439.74 274 L426.75 266.5 L166.94 416.5 Z"/>
+  </g>
+  <g class="layer-dims ink l-dims">
+    <path d="M330.62 461 L365.26 441" class="l-fine"/>
+  </g>
+  <g class="layer-labels ink l-labels">
+    <path d="M149.8 375.4L78.79 375.4L163.58 376"/><circle cx="163.58" cy="376" r="1.5" class="solid"/><text x="34" y="378.4">SUBFLOOR (CUTAWAY)</text>
+    <path d="M143.7 402.4L78.79 402.4L241.52 403"/><circle cx="241.52" cy="403" r="1.5" class="solid"/><text x="34" y="405.4">BRIDGING (STRUTS)</text>
+    <path d="M119.3 450.4L78.79 450.4L345.44 451"/><circle cx="345.44" cy="451" r="1.5" class="solid"/><text x="34" y="453.4">JOIST SPACING</text>
+    <path d="M70.5 465.4L78.79 465.4L241.52 463"/><circle cx="241.52" cy="463" r="1.5" class="solid"/><text x="34" y="468.4">JOIST</text>
+    <path d="M143.7 505.4L78.79 505.4L260.57 506"/><circle cx="260.57" cy="506" r="1.5" class="solid"/><text x="34" y="508.4">BEAM / WALL PLATE</text>
+  </g>
+  <g class="title-block">
+    <path class="ink l-fine" d="M12 664H588M400 664V768"/>
+    <text class="t-title" x="26" y="692">JOIST</text>
+    <text class="t-sub" x="26" y="710">PARALLEL BEAMS THAT CARRY A FLOOR OR CEILING</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
+    <text class="t-sub" x="416" y="684">SHEET  STC-23</text>
+    <text class="t-small" x="416" y="699">ISOMETRIC</text>
+    <text class="t-small" x="416" y="724">SCALE IN UNITS (INDICATIVE)</text>
+    <rect x="416" y="730" width="26" height="5" class="solid"/><rect x="442" y="730" width="26" height="5" class="ink l-fine"/><rect x="468" y="730" width="26" height="5" class="solid"/><rect x="494" y="730" width="26" height="5" class="ink l-fine"/>
+    <text class="t-small" x="414" y="749">0</text>
+    <text class="t-small" x="518" y="749">4</text>
+    <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
+  </g>
+</svg>

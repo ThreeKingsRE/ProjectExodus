@@ -241,7 +241,7 @@ function parseCitation(raw: string, index: number): ParsedReference {
   // If still no title, use a cleaned portion of raw text
   if (!title) {
     // Remove URL and author portion, use what's left
-    let remaining = trimmed
+    const remaining = trimmed
       .replace(/https?:\/\/[^\s]+/g, '')
       .replace(/^[^.]+\.\s*/, '')
       .trim()
@@ -489,6 +489,71 @@ function suggestCategory(content: string): string | undefined {
 }
 
 /**
+ * Normalize PDF-extracted text to restore paragraph structure.
+ * PDF text extraction often collapses paragraph breaks to single newlines
+ * and introduces artifacts like page numbers, headers/footers, and
+ * inconsistent spacing.
+ */
+function normalizePdfText(text: string): string {
+  let result = text
+
+  // Remove common PDF artifacts: standalone page numbers
+  result = result.replace(/^\s*\d{1,4}\s*$/gm, '')
+
+  // Remove page boundary markers (e.g. "-- 1 of 10 --")
+  result = result.replace(/^-{2,}\s*\d+\s*(?:of|\/)\s*\d+\s*-{2,}$/gm, '')
+
+  // Detect if text uses single newlines between paragraphs (no double newlines at all)
+  const hasDoubleNewlines = /\n\s*\n/.test(result)
+
+  if (!hasDoubleNewlines) {
+    // Heuristic: if a line ends with sentence-ending punctuation and the
+    // next line starts with a capital letter or indent, treat it as a paragraph break.
+    // Also treat short lines followed by longer lines as breaks (headings, etc).
+    const lines = result.split('\n')
+    const normalized: string[] = []
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i]
+      const trimmed = line.trim()
+      const nextLine = i + 1 < lines.length ? lines[i + 1]?.trim() : ''
+
+      normalized.push(trimmed)
+
+      if (!trimmed) continue
+
+      // Insert paragraph break if:
+      // 1. Line ends with sentence punctuation and next starts with uppercase
+      const endsWithPunctuation = /[.!?:]\s*$/.test(trimmed)
+      const nextStartsWithCap = /^[A-Z"'\u201C\u201D]/.test(nextLine)
+
+      // 2. Short line (likely heading) followed by longer content
+      const isShortLine = trimmed.length < 60 && !endsWithPunctuation
+      const nextIsLonger = nextLine.length > 80
+
+      // 3. Line is a likely section header (all caps, short, no punctuation)
+      const isAllCaps = trimmed === trimmed.toUpperCase() && /[A-Z]/.test(trimmed) && trimmed.length < 80
+
+      if (
+        nextLine &&
+        ((endsWithPunctuation && nextStartsWithCap) ||
+         (isShortLine && nextIsLonger) ||
+         isAllCaps)
+      ) {
+        normalized.push('') // Insert blank line = paragraph break
+      }
+    }
+
+    result = normalized.join('\n')
+  }
+
+  // Clean up excessive blank lines (3+ → 2)
+  result = result.replace(/\n{3,}/g, '\n\n')
+
+  return result.trim()
+}
+
+/**
  * Convert plain text to basic HTML
  */
 function textToHtml(text: string): string {
@@ -501,18 +566,51 @@ function textToHtml(text: string): string {
   const paragraphs = text.split(/\n\s*\n/)
 
   return paragraphs
-    .map(p => {
+    .map((p, index) => {
       const trimmed = p.trim()
       if (!trimmed) return ''
 
-      // Check if it's a heading (short line followed by longer content)
-      if (trimmed.length < 100 && !trimmed.endsWith('.')) {
-        // Could be a subheading
+      // Only treat as heading if it looks like an actual heading:
+      // - Single line (no line breaks within the block)
+      // - Short (under 80 chars)
+      // - No ending punctuation (., ?, !, :, ;)
+      // - Not a number-only line
+      // - Starts with a capital letter or markdown heading marker
+      const isSingleLine = !trimmed.includes('\n')
+      const isShort = trimmed.length < 80
+      const hasNoPunctuation = !/[.?!;:,]$/.test(trimmed)
+      const startsWithCapOrMarker = /^(?:#{1,3}\s+)?[A-Z]/.test(trimmed)
+      const isNotNumberOnly = !/^\d+\.?\s*$/.test(trimmed)
+      const hasMultipleWords = trimmed.split(/\s+/).length >= 2
+      // Known single-word section labels that should still be promoted
+      // to an <h2> even though they're only one word — without this
+      // "Footnotes" / "Notes" never become headings, and the footnotes
+      // extractor never finds the section in the published body.
+      const isKnownSectionLabel = /^(?:Footnotes?|Endnotes?|Notes?|References|Bibliography|Sources|Citations?|Acknowledg(?:e?)ments?|Appendix|Glossary|Introduction|Conclusion|Abstract|Summary)$/i.test(trimmed)
+
+      // Handle markdown-style headings explicitly
+      const markdownHeading = trimmed.match(/^(#{1,3})\s+(.+)$/)
+      if (markdownHeading) {
+        const level = markdownHeading[1].length
+        return `<h${level + 1}>${markdownHeading[2]}</h${level + 1}>`
+      }
+
+      if (isSingleLine && isShort && hasNoPunctuation && startsWithCapOrMarker && isNotNumberOnly && (hasMultipleWords || isKnownSectionLabel)) {
         return `<h2>${trimmed}</h2>`
       }
 
-      // Regular paragraph - preserve single line breaks as <br>
-      const withBreaks = trimmed.replace(/\n/g, '<br>')
+      // Regular paragraph. PDFs (and most plain-text sources) use a
+      // single \n for visual line wraps, NOT for author-intended
+      // breaks. Treating them as <br> made every wrap-line look like
+      // its own paragraph. We now join wrapped lines with a space
+      // (and stitch end-of-line hyphenation), while still respecting
+      // Markdown's two-trailing-spaces hard-break convention so
+      // hand-authored line breaks survive.
+      const withBreaks = trimmed
+        .replace(/([A-Za-z])-\n([A-Za-z])/g, '$1$2')   // de-hyphenate
+        .replace(/  +\n/g, '<br>')                       // Markdown hard break
+        .replace(/\n/g, ' ')                             // wrap -> space
+        .replace(/[ \t]+/g, ' ')                         // collapse runs
       return `<p>${withBreaks}</p>`
     })
     .filter(Boolean)
@@ -524,7 +622,21 @@ function textToHtml(text: string): string {
  */
 export function parseContent(rawContent: string): ParsedContent {
   // Normalize line endings
-  const normalized = rawContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+  let normalized = rawContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+
+  // Detect rich HTML sources (mammoth's DOCX output, hand-pasted HTML).
+  // We need a different pipeline for these — running normalizePdfText
+  // on HTML would mangle the tags, and we want to preserve the
+  // structural markup that the source carefully encoded (headers,
+  // footnotes, lists, links, sup/sub, bold/italic).
+  const looksLikeHtml = /<(p|h[1-6]|ul|ol|li|table|tr|td|sup|sub|a|strong|em|b|i|blockquote)\b[^>]*>/i.test(normalized)
+
+  if (looksLikeHtml) {
+    return parseHtmlContent(normalized)
+  }
+
+  // Normalize PDF-extracted text (restores paragraph breaks, removes artifacts)
+  normalized = normalizePdfText(normalized)
 
   // Extract works cited section
   const { body: bodyWithRefs, references } = extractWorksCited(normalized)
@@ -557,6 +669,100 @@ export function parseContent(rawContent: string): ParsedContent {
     wordCount,
     estimatedReadTime,
   }
+}
+
+/**
+ * Parse already-structured HTML (e.g. mammoth's DOCX output). Preserves
+ * the original markup wholesale — headers, lists, footnotes (mammoth
+ * emits <sup><a href="#..."> markers + an <ol class="footnotes"> block),
+ * tables, bold / italic, links — and just pulls out title + excerpt
+ * for the form fields.
+ */
+function parseHtmlContent(html: string): ParsedContent {
+  // Title: prefer the first <h1>, then <h2>, then the first paragraph.
+  const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)
+  const h2Match = html.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i)
+  const firstPara = html.match(/<p[^>]*>([\s\S]*?)<\/p>/i)
+  const titleHtml = h1Match?.[1] || h2Match?.[1] || firstPara?.[1] || 'Untitled'
+  const title = stripTags(titleHtml).trim().slice(0, 200) || 'Untitled'
+
+  // Body: keep the HTML, but drop the title element so it doesn't
+  // appear twice (once as the form title, once inside the body).
+  let body = html
+  if (h1Match) {
+    body = body.replace(h1Match[0], '')
+  } else if (h2Match) {
+    body = body.replace(h2Match[0], '')
+  }
+  body = body.trim()
+
+  // For excerpt + word count we want one giant string with no markup.
+  const plainBody = stripTags(body).replace(/\s+/g, ' ').trim()
+  const excerpt = plainBody.slice(0, 200) + (plainBody.length > 200 ? '...' : '')
+
+  // For reference detection we need the OPPOSITE: line-structured plain
+  // text where block elements become newlines and <a href> URLs survive
+  // (extractWorksCited splits on \n to find the header line, and
+  // parseCitation needs the URL string to fill the reference's url
+  // field). Collapsing whitespace like plainBody above would erase the
+  // line breaks that extractWorksCited depends on.
+  const refText = htmlToBlockedText(body)
+  const { references } = extractWorksCited(refText)
+
+  const wordCount = plainBody.split(/\s+/).filter(Boolean).length
+  const estimatedReadTime = Math.max(1, Math.ceil(wordCount / 200))
+  const suggestedCategory = suggestCategory(plainBody)
+
+  return {
+    title,
+    body,
+    excerpt,
+    references,
+    suggestedCategory,
+    wordCount,
+    estimatedReadTime,
+  }
+}
+
+function stripTags(html: string): string {
+  return html
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+}
+
+/**
+ * HTML -> plain text that preserves line structure (block elements
+ * become newlines) and keeps <a> link URLs inline so downstream
+ * reference detection can pick them up. Specifically built for the
+ * reference / works-cited detection path; not a general-purpose
+ * formatter.
+ */
+function htmlToBlockedText(html: string): string {
+  return html
+    // Preserve link URLs: <a href="X">label</a> -> "label (X)"
+    .replace(/<a\b[^>]*?\bhref=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, '$2 ($1)')
+    // Treat block-level tags (open or close) as newlines so each
+    // paragraph / heading / list item becomes its own line.
+    .replace(/<\s*\/?\s*(?:p|div|h[1-6]|li|tr|br|hr|blockquote|article|section)\b[^>]*>/gi, '\n')
+    // Drop any remaining tags
+    .replace(/<[^>]+>/g, '')
+    // Decode common entities
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    // Tidy whitespace: collapse runs of spaces, cap blank lines.
+    .replace(/[ \t]+/g, ' ')
+    .replace(/[ \t]*\n[ \t]*/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
 }
 
 /**

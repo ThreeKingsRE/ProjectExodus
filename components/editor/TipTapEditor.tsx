@@ -1,6 +1,7 @@
 'use client'
 
 import { useEditor, EditorContent } from '@tiptap/react'
+import { Extension, Node, mergeAttributes } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Link from '@tiptap/extension-link'
 import Image from '@tiptap/extension-image'
@@ -12,7 +13,7 @@ import Subscript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
 import { TextStyle } from '@tiptap/extension-text-style'
 import { Color } from '@tiptap/extension-color'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useRef } from 'react'
 import {
   Bold,
   Italic,
@@ -26,6 +27,7 @@ import {
   Heading3,
   Link as LinkIcon,
   Image as ImageIcon,
+  Upload,
   Undo,
   Redo,
   Code,
@@ -51,6 +53,96 @@ interface TipTapEditorProps {
   placeholder?: string
   onPaste?: (text: string) => void
 }
+
+// Figure / Figcaption nodes for journalism-style captioned images.
+// StarterKit doesn't ship these, so we add them minimally:
+//   <figure>
+//     <img ... />
+//     <figcaption>Caption text · <em>Photo credit</em></figcaption>
+//   </figure>
+// renderHTML passes attributes through, parseHTML matches the tags
+// directly so pasted HTML containing figures (e.g. mammoth's DOCX
+// output) is preserved.
+const Figure = Node.create({
+  name: 'figure',
+  group: 'block',
+  content: 'image figcaption?',
+  isolating: true,
+  parseHTML() {
+    return [{ tag: 'figure' }]
+  },
+  renderHTML({ HTMLAttributes }) {
+    return ['figure', mergeAttributes(HTMLAttributes), 0]
+  },
+})
+
+const Figcaption = Node.create({
+  name: 'figcaption',
+  content: 'inline*',
+  parseHTML() {
+    return [{ tag: 'figcaption' }]
+  },
+  renderHTML({ HTMLAttributes }) {
+    return ['figcaption', mergeAttributes(HTMLAttributes), 0]
+  },
+})
+
+// Pull-quote — a separate node from the regular Blockquote so toggling
+// it doesn't clobber existing block quotes. Renders as
+// <blockquote class="pull-quote">...</blockquote>; styled in globals.css
+// with the larger Playfair Display + border-top/bottom treatment.
+// Toggled from the toolbar via the built-in toggleWrap command, so
+// no custom addCommands needed.
+const PullQuote = Node.create({
+  name: 'pullquote',
+  group: 'block',
+  content: 'block+',
+  defining: true,
+  parseHTML() {
+    return [{ tag: 'blockquote.pull-quote' }]
+  },
+  renderHTML({ HTMLAttributes }) {
+    return ['blockquote', mergeAttributes(HTMLAttributes, { class: 'pull-quote' }), 0]
+  },
+})
+
+// Tab key handler. TipTap's StarterKit only binds Tab when the caret is
+// inside a list item (sink / lift the item). Outside lists it does
+// nothing, which lets the browser steal Tab and move focus to the next
+// form control — so a writer trying to indent a paragraph just loses
+// focus. This extension adds:
+//   • In a list      Tab/Shift+Tab nest/unnest the list item (unchanged).
+//   • Anywhere else  Tab inserts 4 non-breaking spaces (an indent that
+//                    survives HTML's whitespace collapsing) and Shift+Tab
+//                    deletes them when they precede the caret.
+const TabIndent = Extension.create({
+  name: 'tabIndent',
+  addKeyboardShortcuts() {
+    const INDENT = '    '
+    return {
+      Tab: () => {
+        if (this.editor.isActive('listItem')) {
+          return this.editor.commands.sinkListItem('listItem')
+        }
+        return this.editor.commands.insertContent(INDENT)
+      },
+      'Shift-Tab': () => {
+        if (this.editor.isActive('listItem')) {
+          return this.editor.commands.liftListItem('listItem')
+        }
+        // Best-effort outdent: if the four chars immediately before the
+        // caret are our indent block, delete them.
+        const { from } = this.editor.state.selection
+        const start = Math.max(0, from - INDENT.length)
+        const text = this.editor.state.doc.textBetween(start, from)
+        if (text === INDENT) {
+          return this.editor.chain().focus().deleteRange({ from: start, to: from }).run()
+        }
+        return false
+      },
+    }
+  },
+})
 
 // Citation format patterns
 const citationPatterns = {
@@ -133,7 +225,10 @@ export default function TipTapEditor({
   onPaste,
 }: TipTapEditorProps) {
   const [showColorPicker, setShowColorPicker] = useState(false)
+  const [showImageMenu, setShowImageMenu] = useState(false)
+  const [imageUploading, setImageUploading] = useState(false)
   const [citationNotification, setCitationNotification] = useState<ParsedCitation | null>(null)
+  const imageInputRef = useRef<HTMLInputElement>(null)
 
   const editor = useEditor({
     extensions: [
@@ -172,6 +267,10 @@ export default function TipTapEditor({
       Superscript,
       TextStyle,
       Color,
+      TabIndent,
+      Figure,
+      Figcaption,
+      PullQuote,
     ],
     content,
     onUpdate: ({ editor }) => {
@@ -199,6 +298,17 @@ export default function TipTapEditor({
     },
   })
 
+  // Sync editor content when the prop changes externally (e.g. re-parse)
+  useEffect(() => {
+    if (editor && content !== undefined) {
+      const currentContent = editor.getHTML()
+      // Only update if the content actually differs (avoids cursor reset on self-edits)
+      if (currentContent !== content) {
+        editor.commands.setContent(content, { emitUpdate: false })
+      }
+    }
+  }, [editor, content])
+
   // Dismiss citation notification
   const dismissCitation = useCallback(() => {
     setCitationNotification(null)
@@ -220,10 +330,80 @@ export default function TipTapEditor({
     }
   }
 
-  const addImage = () => {
+  // Escape user-supplied caption / credit text for safe HTML insertion.
+  // Used only for figure / figcaption text, which the schema-aware
+  // sanitizer will validate again on save.
+  const escapeForHtml = (s: string) =>
+    s
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+
+  const insertImageWithMetadata = (src: string) => {
+    const caption = (window.prompt('Caption (optional — leave blank to skip):') || '').trim()
+    const credit = (window.prompt('Photo credit (optional — e.g. "Photo: Jane Smith"):') || '').trim()
+    if (!caption && !credit) {
+      // No metadata — fall back to plain image insertion.
+      editor.chain().focus().setImage({ src }).run()
+      return
+    }
+    const captionParts: string[] = []
+    if (caption) captionParts.push(escapeForHtml(caption))
+    if (credit) captionParts.push(`<em>${escapeForHtml(credit)}</em>`)
+    const figureHtml = `<figure><img src="${escapeForHtml(src)}" alt="${escapeForHtml(caption)}" /><figcaption>${captionParts.join(' · ')}</figcaption></figure>`
+    editor.chain().focus().insertContent(figureHtml).run()
+  }
+
+  const addImageFromUrl = () => {
     const url = window.prompt('Enter image URL:')
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run()
+    if (url) insertImageWithMetadata(url)
+    setShowImageMenu(false)
+  }
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp']
+    if (!allowedTypes.includes(file.type)) {
+      alert('Only JPEG, PNG, and WebP images are allowed.')
+      e.target.value = ''
+      return
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image must be under 5MB.')
+      e.target.value = ''
+      return
+    }
+
+    setImageUploading(true)
+    setShowImageMenu(false)
+    try {
+      const reader = new FileReader()
+      const base64 = await new Promise<string>((resolve, reject) => {
+        reader.onload = () => resolve(reader.result as string)
+        reader.onerror = reject
+        reader.readAsDataURL(file)
+      })
+
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image: base64, folder: 'articles' }),
+      })
+
+      const data = await res.json()
+      if (data.success && data.data?.url) {
+        insertImageWithMetadata(data.data.url)
+      } else {
+        alert(data.error || 'Failed to upload image.')
+      }
+    } catch {
+      alert('Failed to upload image. Please try again.')
+    } finally {
+      setImageUploading(false)
+      e.target.value = ''
     }
   }
 
@@ -496,6 +676,19 @@ export default function TipTapEditor({
           </button>
           <button
             type="button"
+            onClick={() => {
+              // toggleWrap is built into TipTap; wraps the current
+              // block-level selection in a pullquote node (or unwraps
+              // if it's already inside one).
+              editor.chain().focus().toggleWrap('pullquote').run()
+            }}
+            className={`toolbar-btn ${editor.isActive('pullquote') ? 'active' : ''}`}
+            title="Pull-quote"
+          >
+            <Quote size={18} className="text-theme-primary" />
+          </button>
+          <button
+            type="button"
             onClick={() => editor.chain().focus().toggleCode().run()}
             className={`toolbar-btn ${editor.isActive('code') ? 'active' : ''}`}
             title="Inline Code"
@@ -532,14 +725,45 @@ export default function TipTapEditor({
           >
             <LinkIcon size={18} />
           </button>
-          <button
-            type="button"
-            onClick={addImage}
-            className="toolbar-btn"
-            title="Add Image"
-          >
-            <ImageIcon size={18} />
-          </button>
+          <div className="image-picker-wrapper">
+            <button
+              type="button"
+              onClick={() => setShowImageMenu(!showImageMenu)}
+              className={`toolbar-btn ${imageUploading ? 'active' : ''}`}
+              title="Add Image"
+              disabled={imageUploading}
+            >
+              {imageUploading ? <Upload size={18} className="animate-pulse" /> : <ImageIcon size={18} />}
+            </button>
+            {showImageMenu && (
+              <div className="image-picker-dropdown">
+                <button
+                  type="button"
+                  onClick={addImageFromUrl}
+                  className="image-picker-option"
+                >
+                  <LinkIcon size={14} />
+                  <span>From URL</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { imageInputRef.current?.click(); }}
+                  className="image-picker-option"
+                >
+                  <Upload size={14} />
+                  <span>Upload File</span>
+                </button>
+              </div>
+            )}
+            <input
+              ref={imageInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              onChange={handleImageUpload}
+              className="hidden"
+              style={{ display: 'none' }}
+            />
+          </div>
         </div>
 
         <div className="toolbar-divider" />
@@ -689,8 +913,45 @@ export default function TipTapEditor({
           cursor: not-allowed;
         }
 
-        .color-picker-wrapper {
+        .color-picker-wrapper,
+        .image-picker-wrapper {
           position: relative;
+        }
+
+        .image-picker-dropdown {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          z-index: 50;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          padding: 6px;
+          background: var(--card);
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          margin-top: 4px;
+          min-width: 140px;
+        }
+
+        .image-picker-option {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 12px;
+          font-size: 13px;
+          color: var(--foreground);
+          background: transparent;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          white-space: nowrap;
+          transition: background 0.15s ease;
+        }
+
+        .image-picker-option:hover {
+          background: var(--muted);
         }
 
         .color-picker-dropdown {
@@ -858,6 +1119,28 @@ export default function TipTapEditor({
           height: auto;
           border-radius: 8px;
           margin: 1em 0;
+        }
+
+        .editor-content .ProseMirror figure {
+          margin: 1.5em 0;
+        }
+
+        .editor-content .ProseMirror figure img {
+          margin: 0;
+        }
+
+        .editor-content .ProseMirror figcaption {
+          margin-top: 0.5em;
+          padding: 0 0.25em;
+          font-size: 0.875em;
+          color: var(--muted-foreground);
+          font-style: normal;
+          line-height: 1.5;
+        }
+
+        .editor-content .ProseMirror figcaption em {
+          font-style: italic;
+          opacity: 0.85;
         }
 
         .editor-content .ProseMirror a {

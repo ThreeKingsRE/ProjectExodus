@@ -1,12 +1,16 @@
 import Link from 'next/link'
-import { Button } from '@/components/ui/Button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Leaf, Droplet, Zap, Users, Heart, BookOpen, Award, Sprout } from 'lucide-react'
-import { NightSkyConstellations } from '@/components/theme/NightSkyConstellations'
-import { TreeBranches } from '@/components/decorative/TreeBranches'
-import { FlyingBirds } from '@/components/decorative/FlyingBirds'
-import { CircularCarousel } from '@/components/carousel/CircularCarousel'
-import { ProgressiveSkyline } from '@/components/decorative/ProgressiveSkyline'
+import { Suspense } from 'react'
+import dynamic from 'next/dynamic'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Users, Heart, BookOpen, Award } from 'lucide-react'
+import { FeatureShowcase } from '@/components/home/FeatureShowcase'
+import { OnboardingReminderBanner } from '@/components/onboarding/OnboardingReminderBanner'
+
+// Lazy-load heavy decorative components
+const TreeBranches = dynamic(() => import('@/components/decorative/TreeBranches').then(mod => ({ default: mod.TreeBranches })))
+const FlyingBirds = dynamic(() => import('@/components/decorative/FlyingBirds').then(mod => ({ default: mod.FlyingBirds })))
+const CircularCarousel = dynamic(() => import('@/components/carousel/CircularCarousel').then(mod => ({ default: mod.CircularCarousel })))
+const ProgressiveSkyline = dynamic(() => import('@/components/decorative/ProgressiveSkyline').then(mod => ({ default: mod.ProgressiveSkyline })))
 
 export default function Home() {
   const commandments = [
@@ -84,9 +88,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen overflow-hidden relative">
-      {/* Decorative Elements */}
-      <TreeBranches />
-      <FlyingBirds />
+      {/* Decorative Elements - loaded after main content */}
+      <Suspense fallback={null}>
+        <TreeBranches />
+      </Suspense>
+      <Suspense fallback={null}>
+        <FlyingBirds />
+      </Suspense>
 
       {/* Hero Section - BOLD & EXPERIMENTAL */}
       <section className="relative min-h-[60vh] h-[85vh] md:h-[85vh] flex items-start justify-center overflow-hidden pt-5">
@@ -144,11 +152,6 @@ export default function Home() {
                style={{ transform: 'translateZ(0)' }} />
         </div>
 
-        {/* Night Sky Constellations - Only at night */}
-        <div className="absolute inset-0 z-[1]">
-          <NightSkyConstellations starCount={1400} />
-        </div>
-
         {/* Main Hero Content - pointer-events-none allows constellation hover through text */}
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-4 pointer-events-none">
           <div className="max-w-6xl mx-auto">
@@ -201,140 +204,22 @@ export default function Home() {
         </div>
 
         {/* Progressive Skyline - Fixed to bottom of hero page */}
-        <ProgressiveSkyline />
+        <Suspense fallback={null}>
+          <ProgressiveSkyline />
+        </Suspense>
       </section>
 
-      {/* Mission Section - Asymmetric Layout */}
-      <section className="py-32 bg-[var(--background)] relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: 'radial-gradient(circle, var(--primary) 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }} />
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-7xl mx-auto">
-            {/* Section Title - Offset */}
-            <div className="mb-20">
-              <div className="inline-block transform -rotate-2 bg-theme-primary text-[var(--primary-foreground)] px-8 py-4 rounded-2xl mb-6">
-                <span className="text-sm font-bold tracking-wider">OUR MISSION</span>
-              </div>
-              <h2 className="text-[var(--foreground)]" style={{
-                fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-                fontWeight: 900,
-                lineHeight: 1.1,
-                maxWidth: '800px'
-              }}>
-                Building the FAMILY that loves sustainability as much as we do
-              </h2>
-            </div>
-
-            {/* Cards - Tilted & 3D */}
-            <div className="grid lg:grid-cols-3 gap-12 mb-20">
-              {/* Discover Card */}
-              <div className="group perspective transform hover:scale-105 transition-all duration-500" style={{ transform: 'rotate(-2deg)' }}>
-                <div className="relative p-10 rounded-3xl bg-gradient-to-br from-[color-mix(in_srgb,var(--primary)_20%,var(--background))] to-[color-mix(in_srgb,var(--primary)_30%,var(--background))] border-4 border-theme-primary hover:shadow-theme-2xl transition-shadow duration-300">
-                  <div className="w-20 h-20 mb-6 rounded-full bg-theme-primary flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-                    <div className="w-10 h-10 rounded-full bg-[var(--background)]" />
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-black mb-4 text-theme-primary">
-                    DISCOVER
-                  </h3>
-                  <p className="text-lg font-medium text-[var(--foreground)]">
-                    Thousands of sustainable products across every category imaginable
-                  </p>
-                </div>
-              </div>
-
-              {/* Learn Card */}
-              <div className="group perspective transform hover:scale-105 transition-all duration-500" style={{ transform: 'rotate(1deg)' }}>
-                <div className="relative p-10 rounded-3xl bg-gradient-to-br from-[color-mix(in_srgb,var(--accent)_20%,var(--background))] to-[color-mix(in_srgb,var(--accent)_30%,var(--background))] border-4 border-theme-accent hover:shadow-theme-2xl transition-shadow duration-300">
-                  <div className="w-20 h-20 mb-6 rounded-full bg-theme-accent flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-                    <div className="w-10 h-10 rounded-full bg-[var(--background)]" />
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-black mb-4 text-theme-accent">
-                    LEARN
-                  </h3>
-                  <p className="text-lg font-medium text-[var(--foreground)]">
-                    Deep-dive educational content that empowers informed decisions
-                  </p>
-                </div>
-              </div>
-
-              {/* Connect Card */}
-              <div className="group perspective transform hover:scale-105 transition-all duration-500" style={{ transform: 'rotate(-1deg)' }}>
-                <div className="relative p-10 rounded-3xl bg-gradient-to-br from-[color-mix(in_srgb,var(--secondary)_20%,var(--background))] to-[color-mix(in_srgb,var(--secondary)_30%,var(--background))] border-4 border-theme-secondary hover:shadow-theme-2xl transition-shadow duration-300">
-                  <div className="w-20 h-20 mb-6 rounded-full bg-theme-secondary flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-                    <div className="w-10 h-10 rounded-full bg-[var(--background)]" />
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-black mb-4 text-theme-secondary">
-                    CONNECT
-                  </h3>
-                  <p className="text-lg font-medium text-[var(--foreground)]">
-                    Join a vibrant community of changemakers building the future
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* Onboarding reminder banner — self-suppresses unless the
+          signed-in user is missing profile fields or a fish design,
+          and only shows once per device (localStorage dismiss). */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        <div className="max-w-4xl mx-auto">
+          <OnboardingReminderBanner />
         </div>
-      </section>
+      </div>
 
-      {/* About: Company Description with Food/Water/Energy */}
-      <section className="py-32 bg-gradient-to-br from-[color-mix(in_srgb,var(--primary)_15%,var(--background))] via-[color-mix(in_srgb,var(--accent)_15%,var(--background))] to-[var(--muted)] relative overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto text-center space-y-12">
-            <h2 style={{
-              fontSize: 'clamp(2rem, 6vw, 4rem)',
-              fontWeight: 900,
-              lineHeight: 1
-            }} className="text-[var(--foreground)]">
-              PROJECT EXODUS
-            </h2>
-            <p className="text-xl font-bold leading-relaxed text-[var(--foreground)]">
-              WE ARE DEVELOPING{' '}
-              <span style={{
-                background: 'linear-gradient(135deg, #36763d, #357777)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontWeight: 900
-              }}>SUSTAINABLE OFF-GRID SYSTEMS</span>{' '}
-              WITHIN BUILT ENVIRONMENTS
-            </p>
-
-            {/* Food, Water, Energy Icons */}
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto pt-8">
-              <Card className="border-4 border-theme-primary bg-gradient-to-br from-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[color-mix(in_srgb,var(--primary)_25%,var(--background))] shadow-theme-xl">
-                <CardContent className="p-8 text-center">
-                  <Leaf className="w-16 h-16 text-theme-primary mx-auto mb-4" />
-                  <h3 className="text-2xl font-black text-theme-primary">FOOD</h3>
-                  <p className="mt-3 text-base font-bold text-theme-muted">
-                    Sustainable agriculture and food systems
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="border-4 border-theme-accent bg-gradient-to-br from-[color-mix(in_srgb,var(--accent)_15%,var(--background))] to-[color-mix(in_srgb,var(--accent)_25%,var(--background))] shadow-theme-xl">
-                <CardContent className="p-8 text-center">
-                  <Droplet className="w-16 h-16 text-theme-accent mx-auto mb-4" />
-                  <h3 className="text-2xl font-black text-theme-accent">WATER</h3>
-                  <p className="mt-3 text-base font-bold text-theme-muted">
-                    Clean water access and conservation
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="border-4 border-theme-secondary bg-gradient-to-br from-[color-mix(in_srgb,var(--secondary)_15%,var(--background))] to-[color-mix(in_srgb,var(--secondary)_25%,var(--background))] shadow-theme-xl">
-                <CardContent className="p-8 text-center">
-                  <Zap className="w-16 h-16 text-theme-secondary mx-auto mb-4" />
-                  <h3 className="text-2xl font-black text-theme-secondary">ENERGY</h3>
-                  <p className="mt-3 text-base font-bold text-theme-muted">
-                    Renewable energy solutions
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Feature Showcase - Platform Overview */}
+      <FeatureShowcase />
 
       {/* Mission Statement */}
       <section className="py-32 bg-[var(--background)]">
@@ -372,7 +257,9 @@ export default function Home() {
               <p className="text-lg md:text-xl font-bold text-[var(--primary-foreground)]">OF SUSTAINABLE AGRICULTURE</p>
             </div>
 
-            <CircularCarousel items={commandments} />
+            <Suspense fallback={<div className="h-96" />}>
+              <CircularCarousel items={commandments} />
+            </Suspense>
           </div>
         </div>
       </section>
@@ -442,50 +329,92 @@ export default function Home() {
       </section>
 
       {/* Business Philosophy */}
-      <section className="py-32 bg-[var(--muted)]">
+      <section className="scroll-mt-24 py-32 bg-gradient-to-b from-[var(--background)] to-[var(--muted)]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-black mb-6 text-[var(--foreground)]">OUR PHILOSOPHY</h2>
-              <p className="text-xl font-semibold text-theme-muted">
-                Every action we take today becomes the foundation for tomorrow
-              </p>
+            {/* Sacred divider */}
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent" />
+              <span className="text-2xl text-[var(--primary)]">☥</span>
+              <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[var(--primary)] to-transparent" />
             </div>
 
-            <Card className="border-4 border-theme-primary shadow-theme-2xl">
-              <CardContent className="p-12">
-                <div className="space-y-8">
-                  <div className="text-center mb-8">
-                    <Sprout className="w-16 h-16 text-theme-primary mx-auto" />
-                  </div>
-                  <blockquote className="text-xl font-bold leading-relaxed text-center space-y-6 text-[var(--foreground)]">
-                    <p>
-                      When you <span style={{
-                        background: 'linear-gradient(135deg, #36763d, #357777)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        fontWeight: 900
-                      }}>plant a seed</span>, it grows into a tree.
-                    </p>
-                    <p className="text-theme-muted">
-                      Everyone who encounters that tree interacts with it differently.
-                    </p>
-                    <p className="text-theme-muted">
-                      Some find shade. Others find fruit. Some find shelter.
-                    </p>
-                    <p className="font-black text-theme-primary">
-                      But the tree stands as a testament to the seed that was planted with intention.
-                    </p>
-                  </blockquote>
-                </div>
-              </CardContent>
-            </Card>
+            <h2 className="text-3xl sm:text-4xl font-black text-center mb-8 text-[var(--foreground)]">OUR PHILOSOPHY</h2>
 
-            <div className="mt-12 text-center">
-              <p className="text-lg font-bold text-theme-muted">
-                This is how we build at Project Exodus. Every innovation, every partnership, every decision—
-                <span className="font-black text-theme-primary"> planted with purpose, grown with care, shared with all.</span>
-              </p>
+            {/* Decorative framed content */}
+            <div className="relative">
+              {/* Decorative corners */}
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[var(--primary)]/30" />
+              <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[var(--primary)]/30" />
+              <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[var(--primary)]/30" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[var(--primary)]/30" />
+
+              <div className="px-8 py-12 text-center space-y-6">
+                {/* Core message */}
+                <p className="text-xl sm:text-2xl font-serif italic text-[var(--foreground)] leading-relaxed">
+                  "Every action we take today becomes the foundation for tomorrow."
+                </p>
+
+                {/* The seed metaphor */}
+                <p className="text-lg text-[var(--muted-foreground)] leading-relaxed max-w-2xl mx-auto">
+                  When you <span className="font-bold text-[var(--foreground)]" style={{
+                    background: 'linear-gradient(135deg, #36763d, #357777)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    fontWeight: 900
+                  }}>plant a seed</span>, it grows into a tree.
+                  Everyone who encounters that tree interacts with it differently.
+                </p>
+
+                <p className="text-lg text-[var(--muted-foreground)] leading-relaxed max-w-2xl mx-auto">
+                  Some find shade. Others find fruit. Some find shelter.
+                  But the tree stands as a testament to <span className="font-bold text-[var(--foreground)]">the seed that was planted with intention</span>.
+                </p>
+
+                {/* The Covenant */}
+                <div className="pt-6 space-y-4">
+                  <h3 className="text-lg font-black text-[var(--primary)] uppercase tracking-wider">
+                    Our Covenant
+                  </h3>
+
+                  <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-left">
+                    <div className="p-4 bg-[var(--card)] rounded-xl border border-[var(--border)]">
+                      <p className="font-bold text-[var(--foreground)] mb-1">We Build With:</p>
+                      <ul className="text-sm text-[var(--muted-foreground)] space-y-1">
+                        <li>• Purpose in every innovation</li>
+                        <li>• Care in every partnership</li>
+                        <li>• Intention in every decision</li>
+                      </ul>
+                    </div>
+
+                    <div className="p-4 bg-[var(--card)] rounded-xl border border-[var(--border)]">
+                      <p className="font-bold text-[var(--foreground)] mb-1">We Share With:</p>
+                      <ul className="text-sm text-[var(--muted-foreground)] space-y-1">
+                        <li>• Transparency in every action</li>
+                        <li>• Generosity in every harvest</li>
+                        <li>• Vision for every tomorrow</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Final statement */}
+                <p className="text-base text-[var(--muted-foreground)] italic pt-4">
+                  Planted with purpose, grown with care, shared with all.
+                </p>
+
+                {/* Attribution */}
+                <p className="text-xs text-[var(--muted-foreground)]/60 tracking-widest uppercase pt-4">
+                  — The Project Exodus Vision
+                </p>
+              </div>
+            </div>
+
+            {/* Sacred divider */}
+            <div className="flex items-center justify-center gap-4 mt-8">
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent" />
+              <span className="text-2xl text-[var(--primary)]">✦</span>
+              <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[var(--primary)] to-transparent" />
             </div>
           </div>
         </div>

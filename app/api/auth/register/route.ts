@@ -6,6 +6,7 @@ import { buildVerifyEmail } from '@/lib/email/verify'
 import { sendEmail, siteUrl } from '@/lib/email/send'
 import { z } from 'zod'
 import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
+import { isPasswordPwned } from '@/lib/security/pwnedPassword'
 
 // List of known disposable/temporary email domains to block bots
 const DISPOSABLE_EMAIL_DOMAINS = [
@@ -59,6 +60,16 @@ export async function POST(req: NextRequest) {
     if (existingUser) {
       return NextResponse.json(
         { error: 'User with this email already exists' },
+        { status: 400 }
+      )
+    }
+
+    if (await isPasswordPwned(validatedData.password)) {
+      return NextResponse.json(
+        {
+          error: 'This password has appeared in a known data breach. Please choose a different one.',
+          field: 'password',
+        },
         { status: 400 }
       )
     }

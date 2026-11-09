@@ -1,0 +1,393 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="182 158 396 406" role="img" aria-labelledby="t d">
+  <title id="t">Architectural drawing</title>
+  <desc id="d">Elevation comparing three kinds of masonry: ashlar of squared, dressed stone in regular courses; rubble of rough, irregular stones; and brick in Flemish bond, with headers (ends) and stretchers (sides) alternating in each course. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <style>
+    svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
+    .paper { fill: var(--_paper); }
+    .ink { stroke: var(--_ink); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .solid { fill: var(--_ink); stroke: none; }
+    .l-profile { stroke-width: 1.5; }
+    .l-cut { stroke-width: 2.2; }
+    .l-fine { stroke-width: 0.6; }
+    .l-hair, .l-shading { stroke-width: 0.35; }
+    .l-dims, .l-labels { stroke-width: 0.45; }
+    .l-center { stroke-width: 0.5; stroke-dasharray: 14 3 2 3; stroke: var(--_accent); }
+    text { fill: var(--_ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 9px; letter-spacing: 0.08em; stroke: none; }
+    .t-title { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; }
+    .t-sub { font-size: 9px; opacity: 0.85; }
+    .t-small { font-size: 7.5px; opacity: 0.85; }
+    .t-accent { fill: var(--_accent); }
+    .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
+  </style>
+  <defs>
+    <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-brick" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H16M0 4H16M4 0V4M12 4V8" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="0.6" class="solid"/><circle cx="7" cy="7" r="0.5" class="solid"/><path d="M5 1l1.2 1.6h-2.4z" class="ink l-hair"/>
+    </pattern>
+    <pattern id="h-earth" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12L12 0M-3 3L3 -3M9 15L15 9" class="ink l-hair"/><path d="M0 6L6 0" class="ink l-hair" stroke-dasharray="2 2"/>
+    </pattern>
+    <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
+    </pattern>
+    
+  </defs>
+  <rect class="paper" x="182" y="158" width="396" height="406"/>
+  <g class="layer-shading ink l-shading">
+    <path d="M441 201 L451 201 L451 211 L441 211 Z"/>
+    <path d="M477 201 L487 201 L487 211 L477 211 Z"/>
+    <path d="M513 201 L523 201 L523 211 L513 211 Z"/>
+    <path d="M549 201 L559 201 L559 211 L549 211 Z"/>
+    <path d="M459 213 L469 213 L469 223 L459 223 Z"/>
+    <path d="M495 213 L505 213 L505 223 L495 223 Z"/>
+    <path d="M531 213 L541 213 L541 223 L531 223 Z"/>
+    <path d="M441 225 L451 225 L451 235 L441 235 Z"/>
+    <path d="M477 225 L487 225 L487 235 L477 235 Z"/>
+    <path d="M513 225 L523 225 L523 235 L513 235 Z"/>
+    <path d="M549 225 L559 225 L559 235 L549 235 Z"/>
+    <path d="M459 237 L469 237 L469 247 L459 247 Z"/>
+    <path d="M495 237 L505 237 L505 247 L495 247 Z"/>
+    <path d="M531 237 L541 237 L541 247 L531 247 Z"/>
+    <path d="M441 249 L451 249 L451 259 L441 259 Z"/>
+    <path d="M477 249 L487 249 L487 259 L477 259 Z"/>
+    <path d="M513 249 L523 249 L523 259 L513 259 Z"/>
+    <path d="M549 249 L559 249 L559 259 L549 259 Z"/>
+    <path d="M459 261 L469 261 L469 271 L459 271 Z"/>
+    <path d="M495 261 L505 261 L505 271 L495 271 Z"/>
+    <path d="M531 261 L541 261 L541 271 L531 271 Z"/>
+    <path d="M441 273 L451 273 L451 283 L441 283 Z"/>
+    <path d="M477 273 L487 273 L487 283 L477 283 Z"/>
+    <path d="M513 273 L523 273 L523 283 L513 283 Z"/>
+    <path d="M549 273 L559 273 L559 283 L549 283 Z"/>
+    <path d="M459 285 L469 285 L469 295 L459 295 Z"/>
+    <path d="M495 285 L505 285 L505 295 L495 295 Z"/>
+    <path d="M531 285 L541 285 L541 295 L531 295 Z"/>
+    <path d="M441 297 L451 297 L451 307 L441 307 Z"/>
+    <path d="M477 297 L487 297 L487 307 L477 307 Z"/>
+    <path d="M513 297 L523 297 L523 307 L513 307 Z"/>
+    <path d="M549 297 L559 297 L559 307 L549 307 Z"/>
+    <path d="M459 309 L469 309 L469 319 L459 319 Z"/>
+    <path d="M495 309 L505 309 L505 319 L495 319 Z"/>
+    <path d="M531 309 L541 309 L541 319 L531 319 Z"/>
+    <path d="M441 321 L451 321 L451 331 L441 331 Z"/>
+    <path d="M477 321 L487 321 L487 331 L477 331 Z"/>
+    <path d="M513 321 L523 321 L523 331 L513 331 Z"/>
+    <path d="M549 321 L559 321 L559 331 L549 331 Z"/>
+    <path d="M459 333 L469 333 L469 343 L459 343 Z"/>
+    <path d="M495 333 L505 333 L505 343 L495 343 Z"/>
+    <path d="M531 333 L541 333 L541 343 L531 343 Z"/>
+    <path d="M441 345 L451 345 L451 355 L441 355 Z"/>
+    <path d="M477 345 L487 345 L487 355 L477 355 Z"/>
+    <path d="M513 345 L523 345 L523 355 L513 355 Z"/>
+    <path d="M549 345 L559 345 L559 355 L549 355 Z"/>
+    <path d="M459 357 L469 357 L469 367 L459 367 Z"/>
+    <path d="M495 357 L505 357 L505 367 L495 367 Z"/>
+    <path d="M531 357 L541 357 L541 367 L531 367 Z"/>
+    <path d="M441 369 L451 369 L451 379 L441 379 Z"/>
+    <path d="M477 369 L487 369 L487 379 L477 379 Z"/>
+    <path d="M513 369 L523 369 L523 379 L513 379 Z"/>
+    <path d="M549 369 L559 369 L559 379 L549 379 Z"/>
+    <path d="M459 381 L469 381 L469 391 L459 391 Z"/>
+    <path d="M495 381 L505 381 L505 391 L495 391 Z"/>
+    <path d="M531 381 L541 381 L541 391 L531 391 Z"/>
+    <path d="M441 393 L451 393 L451 403 L441 403 Z"/>
+    <path d="M477 393 L487 393 L487 403 L477 403 Z"/>
+    <path d="M513 393 L523 393 L523 403 L513 403 Z"/>
+    <path d="M549 393 L559 393 L559 403 L549 403 Z"/>
+    <path d="M459 405 L469 405 L469 415 L459 415 Z"/>
+    <path d="M495 405 L505 405 L505 415 L495 415 Z"/>
+    <path d="M531 405 L541 405 L541 415 L531 415 Z"/>
+    <path d="M441 417 L451 417 L451 427 L441 427 Z"/>
+    <path d="M477 417 L487 417 L487 427 L477 427 Z"/>
+    <path d="M513 417 L523 417 L523 427 L513 427 Z"/>
+    <path d="M549 417 L559 417 L559 427 L549 427 Z"/>
+    <path d="M459 429 L469 429 L469 439 L459 439 Z"/>
+    <path d="M495 429 L505 429 L505 439 L495 439 Z"/>
+    <path d="M531 429 L541 429 L541 439 L531 439 Z"/>
+    <path d="M441 441 L451 441 L451 451 L441 451 Z"/>
+    <path d="M477 441 L487 441 L487 451 L477 451 Z"/>
+    <path d="M513 441 L523 441 L523 451 L513 451 Z"/>
+    <path d="M549 441 L559 441 L559 451 L549 451 Z"/>
+    <path d="M459 453 L469 453 L469 463 L459 463 Z"/>
+    <path d="M495 453 L505 453 L505 463 L495 463 Z"/>
+    <path d="M531 453 L541 453 L541 463 L531 463 Z"/>
+    <path d="M441 465 L451 465 L451 475 L441 475 Z"/>
+    <path d="M477 465 L487 465 L487 475 L477 475 Z"/>
+    <path d="M513 465 L523 465 L523 475 L513 475 Z"/>
+    <path d="M549 465 L559 465 L559 475 L549 475 Z"/>
+    <path d="M459 477 L469 477 L469 487 L459 487 Z"/>
+    <path d="M495 477 L505 477 L505 487 L495 487 Z"/>
+    <path d="M531 477 L541 477 L541 487 L531 487 Z"/>
+    <path d="M441 489 L451 489 L451 499 L441 499 Z"/>
+    <path d="M477 489 L487 489 L487 499 L477 499 Z"/>
+    <path d="M513 489 L523 489 L523 499 L513 499 Z"/>
+    <path d="M549 489 L559 489 L559 499 L549 499 Z"/>
+    <path d="M459 501 L469 501 L469 511 L459 511 Z"/>
+    <path d="M495 501 L505 501 L505 511 L495 511 Z"/>
+    <path d="M531 501 L541 501 L541 511 L531 511 Z"/>
+    <path d="M441 513 L451 513 L451 523 L441 523 Z"/>
+    <path d="M477 513 L487 513 L487 523 L477 523 Z"/>
+    <path d="M513 513 L523 513 L523 523 L513 523 Z"/>
+    <path d="M549 513 L559 513 L559 523 L549 523 Z"/>
+  </g>
+  <g class="layer-fine ink l-fine">
+    <path d="M200 200L320 200"/>
+    <path d="M260 200L260 240"/>
+    <path d="M200 240L320 240"/>
+    <path d="M230 240L230 280"/>
+    <path d="M290 240L290 280"/>
+    <path d="M200 280L320 280"/>
+    <path d="M260 280L260 320"/>
+    <path d="M200 320L320 320"/>
+    <path d="M230 320L230 360"/>
+    <path d="M290 320L290 360"/>
+    <path d="M200 360L320 360"/>
+    <path d="M260 360L260 400"/>
+    <path d="M200 400L320 400"/>
+    <path d="M230 400L230 440"/>
+    <path d="M290 400L290 440"/>
+    <path d="M200 440L320 440"/>
+    <path d="M260 440L260 480"/>
+    <path d="M200 480L320 480"/>
+    <path d="M230 480L230 520"/>
+    <path d="M290 480L290 520"/>
+    <path d="M324 212.07L332.11 204L348.33 206L351.03 222.82L340.22 230.89L327 228.2Z"/>
+    <path d="M355.03 211.84L363.9 204L381.62 206L384.57 222.3L372.76 230.14L358.03 227.53Z"/>
+    <path d="M388.57 210.54L397.61 204L415.68 206L418.69 219.26L406.64 225.8L391.57 223.62Z"/>
+    <path d="M422.69 209.86L426.68 204L434.67 206L436 217.68L430.68 223.55L425.69 221.59Z"/>
+    <path d="M324 240.74L335.89 234L359.66 236L363.62 249.73L347.77 256.47L327 254.22Z"/>
+    <path d="M367.62 241.65L373.8 234L386.15 236L388.2 251.85L379.97 259.5L370.62 256.95Z"/>
+    <path d="M392.2 241.97L400.97 234L418.5 236L421.42 252.59L409.73 260.55L395.2 257.9Z"/>
+    <path d="M425.42 241.28L428.59 234L434.94 236L436 250.98L431.77 258.26L428.42 255.83Z"/>
+    <path d="M324 270.74L334.59 264L355.76 266L359.28 279.72L345.17 286.45L327 284.21Z"/>
+    <path d="M363.28 270.37L370.08 264L383.68 266L385.95 278.87L376.88 285.25L366.28 283.12Z"/>
+    <path d="M389.95 271.45L396.71 264L410.22 266L412.47 281.39L403.46 288.85L392.95 286.36Z"/>
+    <path d="M416.47 271.79L422.33 264L434.05 266L436 282.18L428.19 289.97L419.47 287.37Z"/>
+    <path d="M324 302.09L332.44 294L349.32 296L352.14 312.87L340.88 320.96L327 318.26Z"/>
+    <path d="M356.14 302.27L365.74 294L384.93 296L388.13 313.3L375.34 321.57L359.14 318.81Z"/>
+    <path d="M392.13 299.82L402.56 294L423.41 296L426.88 307.58L412.98 313.4L395.13 311.46Z"/>
+    <path d="M324 332.11L333.29 324L351.86 326L354.96 342.92L342.58 351.02L327 348.32Z"/>
+    <path d="M358.96 331.72L369.14 324L389.5 326L392.9 342.02L379.32 349.75L361.96 347.17Z"/>
+    <path d="M396.9 331.82L407.15 324L427.65 326L431.07 342.25L417.4 350.07L399.9 347.46Z"/>
+    <path d="M324 361.43L335.54 354L358.62 356L362.47 371.34L347.08 378.77L327 376.29Z"/>
+    <path d="M366.47 360.82L377.17 354L398.57 356L402.14 369.91L387.87 376.72L369.47 374.45Z"/>
+    <path d="M406.14 359.79L412.49 354L425.2 356L427.31 367.52L418.84 373.31L409.14 371.38Z"/>
+    <path d="M324 391.06L334.8 384L356.39 386L359.99 400.48L345.59 407.54L327 405.18Z"/>
+    <path d="M363.99 390.55L370.75 384L384.27 386L386.53 399.28L377.51 405.83L366.99 403.65Z"/>
+    <path d="M390.53 390.74L398.05 384L413.1 386L415.61 399.72L405.58 406.46L393.53 404.21Z"/>
+    <path d="M419.61 392L424.53 384L434.36 386L436 402.66L429.45 410.66L422.61 407.99Z"/>
+    <path d="M324 421.92L331.16 414L345.48 416L347.87 432.48L338.32 440.4L327 437.76Z"/>
+    <path d="M351.87 419.65L361.24 414L379.98 416L383.1 427.19L370.61 432.85L354.87 430.96Z"/>
+    <path d="M387.1 422.24L396.23 414L414.49 416L417.53 433.22L405.36 441.46L390.1 438.72Z"/>
+    <path d="M421.53 419.93L425.87 414L434.55 416L436 427.84L430.21 433.77L424.53 431.79Z"/>
+    <path d="M324 450.54L331.49 444L346.46 446L348.96 459.27L338.97 465.81L327 463.63Z"/>
+    <path d="M352.96 449.79L358.96 444L370.97 446L372.97 457.5L364.96 463.28L355.96 461.36Z"/>
+    <path d="M376.97 451.58L386.94 444L406.89 446L410.21 461.68L396.92 469.26L379.97 466.74Z"/>
+    <path d="M414.21 451.41L420.75 444L433.82 446L436 461.28L427.29 468.69L417.21 466.22Z"/>
+    <path d="M324 481.64L332.68 474L350.05 476L352.95 491.82L341.37 499.46L327 496.91Z"/>
+    <path d="M356.95 481.87L367.13 474L387.51 476L390.91 492.35L377.32 500.22L359.95 497.6Z"/>
+    <path d="M394.91 480.24L402.84 474L418.72 476L421.36 488.56L410.78 494.8L397.91 492.72Z"/>
+    <path d="M425.36 479.8L428.56 474L434.94 476L436 487.52L431.75 493.32L428.36 491.39Z"/>
+    <path d="M440 200L560 200"/>
+    <path d="M452 200L452 212"/>
+    <path d="M476 200L476 212"/>
+    <path d="M488 200L488 212"/>
+    <path d="M512 200L512 212"/>
+    <path d="M524 200L524 212"/>
+    <path d="M548 200L548 212"/>
+    <path d="M440 212L560 212"/>
+    <path d="M458 212L458 224"/>
+    <path d="M470 212L470 224"/>
+    <path d="M494 212L494 224"/>
+    <path d="M506 212L506 224"/>
+    <path d="M530 212L530 224"/>
+    <path d="M542 212L542 224"/>
+    <path d="M440 224L560 224"/>
+    <path d="M452 224L452 236"/>
+    <path d="M476 224L476 236"/>
+    <path d="M488 224L488 236"/>
+    <path d="M512 224L512 236"/>
+    <path d="M524 224L524 236"/>
+    <path d="M548 224L548 236"/>
+    <path d="M440 236L560 236"/>
+    <path d="M458 236L458 248"/>
+    <path d="M470 236L470 248"/>
+    <path d="M494 236L494 248"/>
+    <path d="M506 236L506 248"/>
+    <path d="M530 236L530 248"/>
+    <path d="M542 236L542 248"/>
+    <path d="M440 248L560 248"/>
+    <path d="M452 248L452 260"/>
+    <path d="M476 248L476 260"/>
+    <path d="M488 248L488 260"/>
+    <path d="M512 248L512 260"/>
+    <path d="M524 248L524 260"/>
+    <path d="M548 248L548 260"/>
+    <path d="M440 260L560 260"/>
+    <path d="M458 260L458 272"/>
+    <path d="M470 260L470 272"/>
+    <path d="M494 260L494 272"/>
+    <path d="M506 260L506 272"/>
+    <path d="M530 260L530 272"/>
+    <path d="M542 260L542 272"/>
+    <path d="M440 272L560 272"/>
+    <path d="M452 272L452 284"/>
+    <path d="M476 272L476 284"/>
+    <path d="M488 272L488 284"/>
+    <path d="M512 272L512 284"/>
+    <path d="M524 272L524 284"/>
+    <path d="M548 272L548 284"/>
+    <path d="M440 284L560 284"/>
+    <path d="M458 284L458 296"/>
+    <path d="M470 284L470 296"/>
+    <path d="M494 284L494 296"/>
+    <path d="M506 284L506 296"/>
+    <path d="M530 284L530 296"/>
+    <path d="M542 284L542 296"/>
+    <path d="M440 296L560 296"/>
+    <path d="M452 296L452 308"/>
+    <path d="M476 296L476 308"/>
+    <path d="M488 296L488 308"/>
+    <path d="M512 296L512 308"/>
+    <path d="M524 296L524 308"/>
+    <path d="M548 296L548 308"/>
+    <path d="M440 308L560 308"/>
+    <path d="M458 308L458 320"/>
+    <path d="M470 308L470 320"/>
+    <path d="M494 308L494 320"/>
+    <path d="M506 308L506 320"/>
+    <path d="M530 308L530 320"/>
+    <path d="M542 308L542 320"/>
+    <path d="M440 320L560 320"/>
+    <path d="M452 320L452 332"/>
+    <path d="M476 320L476 332"/>
+    <path d="M488 320L488 332"/>
+    <path d="M512 320L512 332"/>
+    <path d="M524 320L524 332"/>
+    <path d="M548 320L548 332"/>
+    <path d="M440 332L560 332"/>
+    <path d="M458 332L458 344"/>
+    <path d="M470 332L470 344"/>
+    <path d="M494 332L494 344"/>
+    <path d="M506 332L506 344"/>
+    <path d="M530 332L530 344"/>
+    <path d="M542 332L542 344"/>
+    <path d="M440 344L560 344"/>
+    <path d="M452 344L452 356"/>
+    <path d="M476 344L476 356"/>
+    <path d="M488 344L488 356"/>
+    <path d="M512 344L512 356"/>
+    <path d="M524 344L524 356"/>
+    <path d="M548 344L548 356"/>
+    <path d="M440 356L560 356"/>
+    <path d="M458 356L458 368"/>
+    <path d="M470 356L470 368"/>
+    <path d="M494 356L494 368"/>
+    <path d="M506 356L506 368"/>
+    <path d="M530 356L530 368"/>
+    <path d="M542 356L542 368"/>
+    <path d="M440 368L560 368"/>
+    <path d="M452 368L452 380"/>
+    <path d="M476 368L476 380"/>
+    <path d="M488 368L488 380"/>
+    <path d="M512 368L512 380"/>
+    <path d="M524 368L524 380"/>
+    <path d="M548 368L548 380"/>
+    <path d="M440 380L560 380"/>
+    <path d="M458 380L458 392"/>
+    <path d="M470 380L470 392"/>
+    <path d="M494 380L494 392"/>
+    <path d="M506 380L506 392"/>
+    <path d="M530 380L530 392"/>
+    <path d="M542 380L542 392"/>
+    <path d="M440 392L560 392"/>
+    <path d="M452 392L452 404"/>
+    <path d="M476 392L476 404"/>
+    <path d="M488 392L488 404"/>
+    <path d="M512 392L512 404"/>
+    <path d="M524 392L524 404"/>
+    <path d="M548 392L548 404"/>
+    <path d="M440 404L560 404"/>
+    <path d="M458 404L458 416"/>
+    <path d="M470 404L470 416"/>
+    <path d="M494 404L494 416"/>
+    <path d="M506 404L506 416"/>
+    <path d="M530 404L530 416"/>
+    <path d="M542 404L542 416"/>
+    <path d="M440 416L560 416"/>
+    <path d="M452 416L452 428"/>
+    <path d="M476 416L476 428"/>
+    <path d="M488 416L488 428"/>
+    <path d="M512 416L512 428"/>
+    <path d="M524 416L524 428"/>
+    <path d="M548 416L548 428"/>
+    <path d="M440 428L560 428"/>
+    <path d="M458 428L458 440"/>
+    <path d="M470 428L470 440"/>
+    <path d="M494 428L494 440"/>
+    <path d="M506 428L506 440"/>
+    <path d="M530 428L530 440"/>
+    <path d="M542 428L542 440"/>
+    <path d="M440 440L560 440"/>
+    <path d="M452 440L452 452"/>
+    <path d="M476 440L476 452"/>
+    <path d="M488 440L488 452"/>
+    <path d="M512 440L512 452"/>
+    <path d="M524 440L524 452"/>
+    <path d="M548 440L548 452"/>
+    <path d="M440 452L560 452"/>
+    <path d="M458 452L458 464"/>
+    <path d="M470 452L470 464"/>
+    <path d="M494 452L494 464"/>
+    <path d="M506 452L506 464"/>
+    <path d="M530 452L530 464"/>
+    <path d="M542 452L542 464"/>
+    <path d="M440 464L560 464"/>
+    <path d="M452 464L452 476"/>
+    <path d="M476 464L476 476"/>
+    <path d="M488 464L488 476"/>
+    <path d="M512 464L512 476"/>
+    <path d="M524 464L524 476"/>
+    <path d="M548 464L548 476"/>
+    <path d="M440 476L560 476"/>
+    <path d="M458 476L458 488"/>
+    <path d="M470 476L470 488"/>
+    <path d="M494 476L494 488"/>
+    <path d="M506 476L506 488"/>
+    <path d="M530 476L530 488"/>
+    <path d="M542 476L542 488"/>
+    <path d="M440 488L560 488"/>
+    <path d="M452 488L452 500"/>
+    <path d="M476 488L476 500"/>
+    <path d="M488 488L488 500"/>
+    <path d="M512 488L512 500"/>
+    <path d="M524 488L524 500"/>
+    <path d="M548 488L548 500"/>
+    <path d="M440 500L560 500"/>
+    <path d="M458 500L458 512"/>
+    <path d="M470 500L470 512"/>
+    <path d="M494 500L494 512"/>
+    <path d="M506 500L506 512"/>
+    <path d="M530 500L530 512"/>
+    <path d="M542 500L542 512"/>
+    <path d="M440 512L560 512"/>
+    <path d="M452 512L452 524"/>
+    <path d="M476 512L476 524"/>
+    <path d="M488 512L488 524"/>
+    <path d="M512 512L512 524"/>
+    <path d="M524 512L524 524"/>
+    <path d="M548 512L548 524"/>
+  </g>
+  <g class="layer-profile ink l-profile">
+    <path d="M200 200 L320 200 L320 520 L200 520 Z"/>
+    <path d="M320 200 L440 200 L440 520 L320 520 Z"/>
+    <path d="M440 200 L560 200 L560 520 L440 520 Z"/>
+  </g>
+  <text class="t-credit" x="188" y="553">SOURCE: Original drawing by Project Exodus from the standard geometric construction</text>
+  <text class="t-credit" x="188" y="562">of this form; no external drawing reproduced.</text>
+</svg>

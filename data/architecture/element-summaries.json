@@ -3856,6 +3856,44 @@
   "teaser": "The portcullis is a heavy vertical sliding barrier, typically constructed of oak lattice reinforced with iron bands and terminating in pointed iron spikes."
  },
  {
+  "id": "tower",
+  "slug": "tower",
+  "name": "Tower",
+  "alternativeNames": [
+   "Keep",
+   "Donjon",
+   "Turris",
+   "Bergfried"
+  ],
+  "category": "FORTIFICATION",
+  "subcategory": "defensive_structures",
+  "periods": [
+   "ANCIENT",
+   "MEDIEVAL",
+   "RENAISSANCE",
+   "BAROQUE"
+  ],
+  "regions": [
+   "WESTERN_EUROPE",
+   "MIDDLE_EAST",
+   "EAST_ASIA",
+   "GLOBAL"
+  ],
+  "searchTags": [
+   "castle",
+   "keep",
+   "donjon",
+   "fortification",
+   "defense",
+   "medieval",
+   "watchtower",
+   "military"
+  ],
+  "difficultyScore": 2,
+  "phonetic": "TOW-er",
+  "teaser": "The fortification tower serves multiple military functions: elevated observation, flanking fire along curtain walls, and last-resort refuge (the keep or donjon)."
+ },
+ {
   "id": "allee",
   "slug": "allee",
   "name": "Allée",
@@ -4857,6 +4895,43 @@
   "teaser": "The altar functions as the focal point of Christian worship space, representing both table and sacrifice."
  },
  {
+  "id": "ambulatory",
+  "slug": "ambulatory",
+  "name": "Ambulatory",
+  "alternativeNames": [
+   "Deambulatory",
+   "Processional Aisle",
+   "Chevet Aisle",
+   "Walking Place"
+  ],
+  "category": "RELIGIOUS",
+  "subcategory": "church_plan",
+  "periods": [
+   "ROMANESQUE",
+   "GOTHIC",
+   "RENAISSANCE",
+   "BAROQUE"
+  ],
+  "regions": [
+   "WESTERN_EUROPE",
+   "GLOBAL"
+  ],
+  "searchTags": [
+   "church",
+   "cathedral",
+   "gothic",
+   "romanesque",
+   "pilgrimage",
+   "apse",
+   "chevet",
+   "aisle",
+   "chapel"
+  ],
+  "difficultyScore": 3,
+  "phonetic": "AM-byuh-luh-tor-ee",
+  "teaser": "The ambulatory is an aisle encircling the apse of a church, typically at the east end behind the high altar."
+ },
+ {
   "id": "apse",
   "slug": "apse",
   "name": "Apse",
@@ -5766,6 +5841,79 @@
   "difficultyScore": 3,
   "phonetic": "man-SARD",
   "teaser": "The mansard roof is a four-sided gambrel-style roof characterized by two distinct slopes on each side-a steep lower slope (often approaching vertical) and a shallower upper slope (sometimes nearly flat)."
+ },
+ {
+  "id": "rafter",
+  "slug": "rafter",
+  "name": "Rafter",
+  "alternativeNames": [
+   "Common Rafter",
+   "Roof Rafter",
+   "Spar",
+   "Couple"
+  ],
+  "category": "ROOF",
+  "subcategory": "framing",
+  "periods": [
+   "ANCIENT",
+   "MEDIEVAL",
+   "RENAISSANCE",
+   "COLONIAL",
+   "CONTEMPORARY"
+  ],
+  "regions": [
+   "GLOBAL"
+  ],
+  "searchTags": [
+   "roof",
+   "framing",
+   "timber",
+   "slope",
+   "pitch",
+   "structural",
+   "carpentry",
+   "construction"
+  ],
+  "difficultyScore": 2,
+  "phonetic": "RAF-ter",
+  "teaser": "Rafters are inclined framing members that transfer roof loads — dead load (roofing materials), live load (snow, maintenance), and wind — to the building's walls or beams."
+ },
+ {
+  "id": "ridgepole",
+  "slug": "ridgepole",
+  "name": "Ridgepole",
+  "alternativeNames": [
+   "Ridge Beam",
+   "Ridge Board",
+   "Ridge Piece",
+   "Rooftree"
+  ],
+  "category": "ROOF",
+  "subcategory": "framing",
+  "periods": [
+   "ANCIENT",
+   "MEDIEVAL",
+   "RENAISSANCE",
+   "COLONIAL",
+   "CONTEMPORARY"
+  ],
+  "regions": [
+   "GLOBAL"
+  ],
+  "searchTags": [
+   "ridge",
+   "beam",
+   "roof",
+   "timber",
+   "framing",
+   "apex",
+   "peak",
+   "structural",
+   "topping-out"
+  ],
+  "difficultyScore": 2,
+  "phonetic": "RIJ-pohl",
+  "teaser": "The ridgepole serves as the highest horizontal member in a roof system, running the full length of the building at the apex."
  },
  {
   "id": "decorative-spandrel",
@@ -7592,6 +7740,42 @@
   "teaser": "The herringbone brick pattern represents a revolutionary construction innovation solving specific structural and practical challenges."
  },
  {
+  "id": "joist",
+  "slug": "joist",
+  "name": "Joist",
+  "alternativeNames": [
+   "Floor Joist",
+   "Ceiling Joist",
+   "Common Joist",
+   "Binding Joist"
+  ],
+  "category": "STRUCTURAL",
+  "subcategory": "framing",
+  "periods": [
+   "ANCIENT",
+   "MEDIEVAL",
+   "RENAISSANCE",
+   "COLONIAL",
+   "CONTEMPORARY"
+  ],
+  "regions": [
+   "GLOBAL"
+  ],
+  "searchTags": [
+   "floor",
+   "framing",
+   "structural",
+   "beam",
+   "timber",
+   "construction",
+   "horizontal",
+   "span"
+  ],
+  "difficultyScore": 2,
+  "phonetic": "JOYST",
+  "teaser": "Joists are repetitive horizontal framing members that transfer floor and ceiling loads to supporting walls or beams."
+ },
+ {
   "id": "stone-and-chain-hoops",
   "slug": "stone-and-chain-hoops",
   "name": "Stone and Chain Hoops",
@@ -8690,6 +8874,44 @@
   "difficultyScore": 2,
   "phonetic": "DAY-doh",
   "teaser": "The dado represents the systematic tripartite division of interior walls, analogous to the base-shaft-capital organization of classical columns."
+ },
+ {
+  "id": "masonry",
+  "slug": "masonry",
+  "name": "Masonry",
+  "alternativeNames": [
+   "Stonework",
+   "Brickwork",
+   "Opus",
+   "Stone Masonry"
+  ],
+  "category": "WALL",
+  "subcategory": "construction_method",
+  "periods": [
+   "ANCIENT",
+   "MEDIEVAL",
+   "RENAISSANCE",
+   "BAROQUE",
+   "NEOCLASSICAL",
+   "CONTEMPORARY"
+  ],
+  "regions": [
+   "GLOBAL"
+  ],
+  "searchTags": [
+   "stone",
+   "brick",
+   "mortar",
+   "wall",
+   "ashlar",
+   "rubble",
+   "bond",
+   "construction",
+   "structural"
+  ],
+  "difficultyScore": 2,
+  "phonetic": "MAY-sun-ree",
+  "teaser": "Masonry construction encompasses a range of techniques from rough rubble to precisely cut ashlar."
  },
  {
   "id": "niche",

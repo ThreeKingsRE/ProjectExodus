@@ -2,16 +2,11 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import {
-  Sword,
-  MessageCircle,
-  Stethoscope,
-  Lightbulb,
-  HeartHandshake,
-  Flower2,
-  Scale,
   Mail,
+  MessageCircle,
   Phone,
   UserPlus,
   UserCheck,
@@ -19,90 +14,8 @@ import {
   Users,
   MapPin,
   Briefcase,
-  Infinity,
 } from 'lucide-react'
-
-const GUARDIAN_ARCHETYPES = {
-  michael: {
-    id: 'michael',
-    name: 'MICHAEL',
-    title: 'Guardian of Strength',
-    value: 'STRENGTH',
-    icon: Sword,
-    gradient: 'from-red-600 to-orange-500',
-    bgGradient: 'from-red-600/20 to-orange-500/10',
-    accentColor: 'text-red-500',
-    borderColor: 'border-red-500',
-  },
-  gabriel: {
-    id: 'gabriel',
-    name: 'GABRIEL',
-    title: 'Guardian of Revelation',
-    value: 'REVELATION',
-    icon: MessageCircle,
-    gradient: 'from-sky-500 to-blue-600',
-    bgGradient: 'from-sky-500/20 to-blue-600/10',
-    accentColor: 'text-sky-500',
-    borderColor: 'border-sky-500',
-  },
-  raphael: {
-    id: 'raphael',
-    name: 'RAPHAEL',
-    title: 'Guardian of Healing',
-    value: 'HEALING',
-    icon: Stethoscope,
-    gradient: 'from-emerald-500 to-green-600',
-    bgGradient: 'from-emerald-500/20 to-green-600/10',
-    accentColor: 'text-emerald-500',
-    borderColor: 'border-emerald-500',
-  },
-  uriel: {
-    id: 'uriel',
-    name: 'URIEL',
-    title: 'Guardian of Wisdom',
-    value: 'WISDOM',
-    icon: Lightbulb,
-    gradient: 'from-amber-500 to-yellow-500',
-    bgGradient: 'from-amber-500/20 to-yellow-500/10',
-    accentColor: 'text-amber-500',
-    borderColor: 'border-amber-500',
-  },
-  camael: {
-    id: 'camael',
-    name: 'CAMAEL',
-    title: 'Guardian of Love',
-    value: 'LOVE',
-    icon: HeartHandshake,
-    gradient: 'from-pink-500 to-rose-600',
-    bgGradient: 'from-pink-500/20 to-rose-600/10',
-    accentColor: 'text-pink-500',
-    borderColor: 'border-pink-500',
-  },
-  jophiel: {
-    id: 'jophiel',
-    name: 'JOPHIEL',
-    title: 'Guardian of Beauty',
-    value: 'BEAUTY',
-    icon: Flower2,
-    gradient: 'from-violet-500 to-purple-600',
-    bgGradient: 'from-violet-500/20 to-purple-600/10',
-    accentColor: 'text-violet-500',
-    borderColor: 'border-violet-500',
-  },
-  zadkiel: {
-    id: 'zadkiel',
-    name: 'ZADKIEL',
-    title: 'Guardian of Mercy',
-    value: 'MERCY',
-    icon: Scale,
-    gradient: 'from-indigo-500 to-blue-700',
-    bgGradient: 'from-indigo-500/20 to-blue-700/10',
-    accentColor: 'text-indigo-500',
-    borderColor: 'border-indigo-500',
-  },
-}
-
-type ArchetypeType = keyof typeof GUARDIAN_ARCHETYPES
+import { resolveCommandment } from '@/lib/commandments'
 
 interface UserPreviewCardProps {
   user: {
@@ -145,8 +58,9 @@ export function UserPreviewCard({
   isLoggedIn,
   variant = 'full',
 }: UserPreviewCardProps) {
-  const archetypeKey = (user.guardianArchetype || 'michael').toLowerCase() as ArchetypeType
-  const archetype = GUARDIAN_ARCHETYPES[archetypeKey] || GUARDIAN_ARCHETYPES.michael
+  // The DB column is still named guardianArchetype; legacy values like
+  // 'michael' / 'gabriel' map to their primary commandment.
+  const archetype = resolveCommandment(user.guardianArchetype)
   const ArchetypeIcon = archetype.icon
 
   // Calculate STOCK score
@@ -182,9 +96,9 @@ export function UserPreviewCard({
           <div className="flex items-start gap-3">
             {/* Avatar */}
             <Link href={`/profile/${user.id}`} className="flex-shrink-0">
-              <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${archetype.gradient} p-0.5 hover:scale-105 transition-transform`}>
+              <div className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${archetype.gradient} p-0.5 hover:scale-105 transition-transform`}>
                 {user.image ? (
-                  <img src={user.image} alt={user.name || 'User'} className="w-full h-full rounded-[10px] object-cover" />
+                  <Image src={user.image} alt={user.name || 'User'} fill unoptimized sizes="100%" className="rounded-[10px] object-cover" />
                 ) : (
                   <div className="w-full h-full rounded-[10px] bg-white/20 flex items-center justify-center">
                     <Users className="w-6 h-6 text-white" />
@@ -305,9 +219,9 @@ export function UserPreviewCard({
       {/* Avatar overlapping header */}
       <div className="relative -mt-10 sm:-mt-12 px-4 sm:px-6">
         <Link href={`/profile/${user.id}`}>
-          <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br ${archetype.gradient} p-1 hover:scale-105 transition-transform shadow-lg`}>
+          <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br ${archetype.gradient} p-1 hover:scale-105 transition-transform shadow-lg`}>
             {user.image ? (
-              <img src={user.image} alt={user.name || 'User'} className="w-full h-full rounded-xl object-cover" />
+              <Image src={user.image} alt={user.name || 'User'} fill unoptimized sizes="100%" className="rounded-xl object-cover" />
             ) : (
               <div className="w-full h-full rounded-xl bg-white/20 flex items-center justify-center">
                 <Users className="w-10 h-10 text-white" />

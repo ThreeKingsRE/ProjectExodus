@@ -1,17 +1,22 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { User, MessageCircle, Tag, Star, Users, Edit, Trash2, AlertTriangle } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { formatDistanceToNow } from 'date-fns'
 import { MarkdownContent } from '@/components/article/MarkdownContent'
 import { ReferencesWidget } from '@/components/article/ReferencesWidget'
+import { FootnotesWidget } from '@/components/article/FootnotesWidget'
+import { TableOfContents } from '@/components/article/TableOfContents'
+import { CorrectionsBanner } from '@/components/article/CorrectionsBanner'
+import { MinimalAuthorCard } from '@/components/article/MinimalAuthorCard'
 import { PeerReviewWidget } from '@/components/article/PeerReviewWidget'
-import { AuthorBusinessCard } from '@/components/article/AuthorBusinessCard'
+import { extractFootnotes } from '@/lib/article/extractFootnotes'
 
 interface ArticleClientWrapperProps {
   article: {
@@ -24,6 +29,10 @@ interface ArticleClientWrapperProps {
     peerReviews: any[]
     tags: any[]
     comments: any[]
+    // Optional fields surfaced in the published-article layout.
+    coverImage?: string | null
+    correctionsNote?: string | null
+    correctionsNoteAt?: string | null
     author: {
       id: string
       name: string | null
@@ -37,6 +46,10 @@ interface ArticleClientWrapperProps {
       expertise?: string[]
       guardianArchetype?: string | null
       declaration?: string | null
+      // Used by MinimalAuthorCard to render the author's fishbowl fish
+      // as a default avatar when they don't have a profile image.
+      stockScore?: number | null
+      fishCustomization?: import('@/components/fishbowl/FishSpecies').FishCustomization | null
       _count?: {
         followers: number
         following: number
@@ -78,6 +91,13 @@ export function ArticleClientWrapper({ article }: ArticleClientWrapperProps) {
 
   // Check if current user is the author
   const isAuthor = session?.user?.id === article.authorId
+
+  // Pull footnotes out of the article body so they render in a sidebar
+  // widget instead of getting buried at the bottom of the body content.
+  const { body: bodyWithoutFootnotes, footnotes } = useMemo(
+    () => extractFootnotes(article.content || ''),
+    [article.content],
+  )
 
   // Handle article deletion
   const handleDelete = async () => {
@@ -146,10 +166,20 @@ export function ArticleClientWrapper({ article }: ArticleClientWrapperProps) {
           </div>
         )}
 
+        {/* Editorial correction / editor's note — surfaced prominently
+            above the body when present. Drives reader trust by being
+            transparent about post-publish edits. */}
+        {article.correctionsNote && (
+          <CorrectionsBanner
+            note={article.correctionsNote}
+            noteAt={article.correctionsNoteAt || null}
+          />
+        )}
+
         <Card className="bg-[var(--card)] border-2 border-[var(--border)]">
           <CardContent className="p-6 sm:p-8 md:p-12 select-text">
-            {article.content ? (
-              <MarkdownContent content={article.content} />
+            {bodyWithoutFootnotes ? (
+              <MarkdownContent content={bodyWithoutFootnotes} />
             ) : (
               <p className="text-lg font-medium leading-relaxed text-theme-muted">
                 {article.excerpt || 'Article content coming soon...'}
@@ -247,9 +277,9 @@ export function ArticleClientWrapper({ article }: ArticleClientWrapperProps) {
                       {/* Main item */}
                       <div className="flex gap-4">
                         <div className="flex-shrink-0">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] flex items-center justify-center">
+                          <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] flex items-center justify-center">
                             {item.user?.image ? (
-                              <img src={item.user.image} alt="" className="w-10 h-10 rounded-full" />
+                              <Image src={item.user.image} alt="" fill unoptimized sizes="100%" className="rounded-full object-cover" />
                             ) : (
                               <User className="w-5 h-5 text-white" />
                             )}
@@ -332,9 +362,9 @@ export function ArticleClientWrapper({ article }: ArticleClientWrapperProps) {
                           {replies.map((reply: any) => (
                             <div key={reply.id} className="flex gap-4">
                               <div className="flex-shrink-0">
-                                <div className="w-8 h-8 rounded-full bg-[var(--muted)] flex items-center justify-center">
+                                <div className="relative w-8 h-8 rounded-full bg-[var(--muted)] flex items-center justify-center">
                                   {reply.user?.image ? (
-                                    <img src={reply.user.image} alt="" className="w-8 h-8 rounded-full" />
+                                    <Image src={reply.user.image} alt="" fill unoptimized sizes="100%" className="rounded-full object-cover" />
                                   ) : (
                                     <User className="w-4 h-4 text-[var(--foreground)]/60" />
                                   )}
@@ -366,8 +396,42 @@ export function ArticleClientWrapper({ article }: ArticleClientWrapperProps) {
 
       {/* Sidebar */}
       <aside className="md:col-span-1 space-y-6">
+        {/* Cover image — hero shot for the article. Sits at the top of
+            the sidebar so it's the first thing readers see alongside
+            the body. Squared off card so it matches the rest of the
+            sidebar widgets visually. */}
+        {article.coverImage && (
+          <div className="rounded-xl overflow-hidden border-2 border-[var(--border)] bg-[var(--card)]">
+            {/* Plain <img> rather than next/image so external URLs
+                (Cloudinary, etc.) don't need domain allow-listing. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={article.coverImage}
+              alt={article.title}
+              className="w-full h-auto block"
+              loading="lazy"
+            />
+          </div>
+        )}
+
+        {/* Minimal author card — name + avatar (or fishbowl fish as
+            default). Sits right below the cover so the byline pairs
+            with the hero image. */}
+        {article.author && <MinimalAuthorCard author={article.author} />}
+
+        {/* Table of contents — auto-derived from the body's h2/h3 tags.
+            Sticky on desktop so it follows the reader through long
+            articles. Self-suppresses on short articles. */}
+        <div className="md:sticky md:top-24 md:z-10">
+          <TableOfContents body={bodyWithoutFootnotes} />
+        </div>
+
+        {/* Footnotes Widget — sits above References so the in-line
+            citation markers in the body have an obvious anchor. */}
+        <FootnotesWidget footnotes={footnotes} />
+
         {/* References Widget */}
-        <ReferencesWidget references={article.references || []} articleContent={article.content} />
+        <ReferencesWidget references={article.references || []} articleContent={bodyWithoutFootnotes} />
 
         {/* Round Table Talk Widget - Single access point for discussions */}
         <PeerReviewWidget
@@ -375,11 +439,6 @@ export function ArticleClientWrapper({ article }: ArticleClientWrapperProps) {
           peerReviews={reviews}
           onReviewsChange={setReviews}
         />
-
-        {/* Author Business Card */}
-        {article.author && (
-          <AuthorBusinessCard author={article.author} />
-        )}
 
         {/* Share Card */}
         <Card className="bg-[var(--card)] border-2 border-[var(--border)]">

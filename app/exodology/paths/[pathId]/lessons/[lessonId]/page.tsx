@@ -203,7 +203,7 @@ function useNotes(pathId: string, lessonId: string) {
 // ============================================================================
 
 // The curriculum data uses flexible content structures
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 type LessonData = {
   id: string
   title: string
@@ -1120,7 +1120,7 @@ export default function LessonPage() {
   const lessonId = params.lessonId as string
 
   // Get the correct lesson data based on path
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   const lessonData: LessonData | undefined = pathId === 'foundations'
     ? (foundationsLessons as any)[lessonId]
     : pathId === 'applied'

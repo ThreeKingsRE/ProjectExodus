@@ -21,8 +21,6 @@ import { PageFlip, RapidPageFlip, usePageTurnSound } from './PageFlip'
 import { ScrollOpenAnimation } from './ScrollOpenAnimation'
 import { useScrollState } from './useScrollState'
 import { ScrollGameSelector, GradedQuiz } from './ScrollGames'
-import { CrosswordPuzzle } from './CrosswordPuzzle'
-import { ActivitySelector } from './ActivitySelector'
 
 // Game item type for interactive activities
 interface GameItem {
@@ -43,7 +41,7 @@ import {
 } from './scrollConstants'
 
 // Learning data
-import type { Module, TopicDefinition, CoreTopic } from '@/data/modules'
+import type { Module, TopicDefinition, CoreTopic } from '@/types/modules'
 import type { LearningLevel } from '@/types/learning'
 
 // ============================================
@@ -124,10 +122,10 @@ function AncientBorder({ className }: { className?: string }) {
   )
 }
 
-function HieroglyphicDivider({ color }: { color?: string }) {
-  // Ancient-inspired decorative symbols
+function HieroglyphicDivider({ color, index = 0 }: { color?: string; index?: number }) {
+  // Ancient-inspired decorative symbols — deterministic selection based on index
   const symbols = ['☥', '𓂀', '☀', '✦', '◈', '❋', '⚜']
-  const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)]
+  const randomSymbol = symbols[Math.abs(index) % symbols.length]
 
   return (
     <div className="flex items-center justify-center gap-4 my-6">
@@ -153,33 +151,6 @@ function HieroglyphicDivider({ color }: { color?: string }) {
   )
 }
 
-function AncientPageNumber({ number, total }: { number: number; total: number }) {
-  // Roman numeral conversion for page numbers
-  const toRoman = (num: number): string => {
-    const romanNumerals: [number, string][] = [
-      [1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'],
-      [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'],
-      [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']
-    ]
-    let result = ''
-    for (const [value, symbol] of romanNumerals) {
-      while (num >= value) {
-        result += symbol
-        num -= value
-      }
-    }
-    return result
-  }
-
-  return (
-    <div className="text-center text-xs text-[var(--muted-foreground)]/60 font-serif">
-      <span className="tracking-widest">{toRoman(number)}</span>
-      <span className="mx-2 opacity-30">·</span>
-      <span className="tracking-widest">{toRoman(total)}</span>
-    </div>
-  )
-}
-
 // ============================================
 // MAIN DIGITAL TEXTBOOK COMPONENT
 // ============================================
@@ -196,7 +167,8 @@ export function DigitalScroll({
   const [selectedLevel, setSelectedLevel] = useState<LearningLevel>(initialLevel)
   const [showOpenAnimation, setShowOpenAnimation] = useState(true)
   const [isRapidFlipping, setIsRapidFlipping] = useState(false)
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isFlipping, setIsFlipping] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(true)
 
   // Toggle body class to hide site header when expanded
   useEffect(() => {
@@ -292,35 +264,16 @@ export function DigitalScroll({
     chaptersToShow.forEach((module, chapterIndex) => {
       // ============================================
       // CHAPTER SPREAD LAYOUT (Learning Flow):
-      // 1. Chapter divider on LEFT page (even index)
-      // 2. Chapter intro on RIGHT page (same spread)
-      // 3. CONTENT PAGES (Information FIRST - read and learn)
-      // 4. Games page (reinforce and ingrain knowledge)
-      // 5. Graded Quiz (5 questions for assessment)
+      // 1. Chapter divider + intro (spread)
+      // 2. ONE full-width content page (all lessons, scrollable)
+      // 3. Review + Reflect (spread)
+      // 4. Games + Quiz (spread)
       // ============================================
 
-      // Ensure chapter divider lands on LEFT page (even index)
-      // Use previous chapter's review page as padding if needed
-      if (pages.length % 2 !== 0) {
-        const prevChapter = chapterIndex > 0 ? chapterIndex - 1 : 0
-        const prevModule = modules[prevChapter]
-        const prevGameItems = extractTermsFromModule(prevModule, selectedLevel, 6)
-        pages.push({
-          type: 'chapter-review',
-          chapterIndex: prevChapter,
-          module: prevModule,
-          keyTerms: prevGameItems.map(t => ({ term: t.term, definition: t.definition })),
-          funFacts: generateFunFacts(prevModule, selectedLevel, topic.id).slice(0, 2),
-          summaryPoints: generateSummaryPoints(prevModule, selectedLevel).slice(0, 2),
-        })
-      }
-
       // Generate game items from module content using term extraction
-      // First try to extract terms from actual content, then fall back to predefined terms
       const extractedTerms = extractTermsFromModule(module, selectedLevel, 12)
       const fallbackTerms = KEY_TERMS_BY_TOPIC[topic.id] || []
 
-      // Combine extracted terms with fallbacks, prioritizing extracted
       const chapterGameItems: GameItem[] = extractedTerms.length >= 5
         ? extractedTerms.map(t => ({
             id: t.id,
@@ -335,7 +288,7 @@ export function DigitalScroll({
             hint: t.hint || module.title,
           }))
 
-      // Chapter divider page - LEFT page of spread
+      // Chapter divider page (LEFT of spread)
       pages.push({
         type: 'chapter-divider',
         chapterIndex,
@@ -343,7 +296,7 @@ export function DigitalScroll({
         title: module.title,
       })
 
-      // Chapter intro page - RIGHT page of same spread
+      // Chapter intro page (RIGHT of spread)
       pages.push({
         type: 'chapter-intro',
         chapterIndex,
@@ -352,54 +305,30 @@ export function DigitalScroll({
       })
 
       // ============================================
-      // STEP 1: CONTENT PAGES (Information First!)
-      // Users read and absorb information before games
+      // SINGLE FULL-WIDTH CONTENT PAGE
+      // All lessons combined into one scrollable page
       // ============================================
-      module.lessons.forEach((lesson, verseIndex) => {
-        // Content pages for this verse
-        // Split long content into multiple pages
+      const allLessonContent = module.lessons.map((lesson, verseIndex) => {
         const content = lesson.content[selectedLevel] || lesson.content.HIGH_SCHOOL
-        // Use larger chunks (1800 chars ~300 words) to reduce page flips
-        // Internal scroll handles overflow for contextually related content
-        const contentChunks = splitContentIntoPages(content, 1800)
+        const verseHeader = `<div class="verse-header"><h2>${lesson.title}</h2></div>`
+        return verseHeader + content
+      }).join('<hr class="lesson-divider" />')
 
-        // First chunk gets verse header integrated
-        contentChunks.forEach((chunk, pageIndex) => {
-          pages.push({
-            type: 'content',
-            chapterIndex,
-            verseIndex,
-            pageIndex,
-            content: chunk,
-            title: pageIndex === 0 ? lesson.title : undefined,
-            module,
-          })
-        })
+      pages.push({
+        type: 'content',
+        chapterIndex,
+        verseIndex: 0,
+        pageIndex: 0,
+        content: allLessonContent,
+        title: module.title,
+        module,
       })
 
       // ============================================
-      // STEP 2: CHAPTER REVIEW + NOTES (Condensed Enrichment)
-      // Single review page combines: Key Terms, Fun Facts, Summary
-      // Enhanced notes page includes: Real World Actions + Notes
+      // REVIEW + NOTES SPREAD
       // ============================================
 
-      // Ensure review pages land on a good spread position
-      if (pages.length % 2 !== 0) {
-        // Add chapter review on odd page to make it land on left
-        pages.push({
-          type: 'chapter-review',
-          chapterIndex,
-          module,
-          keyTerms: chapterGameItems.slice(0, 6).map(item => ({
-            term: item.term,
-            definition: item.definition,
-          })),
-          funFacts: generateFunFacts(module, selectedLevel, topic.id).slice(0, 3),
-          summaryPoints: generateSummaryPoints(module, selectedLevel).slice(0, 3),
-        })
-      }
-
-      // Chapter Review page (LEFT) - combines Key Terms, Fun Facts, Summary
+      // Chapter Review page (LEFT)
       pages.push({
         type: 'chapter-review',
         chapterIndex,
@@ -412,7 +341,7 @@ export function DigitalScroll({
         summaryPoints: generateSummaryPoints(module, selectedLevel).slice(0, 3),
       })
 
-      // Enhanced Notes page (RIGHT) - includes Real World Actions + Notes + Discussion
+      // Enhanced Notes page (RIGHT)
       pages.push({
         type: 'notes-enhanced',
         chapterIndex,
@@ -421,11 +350,10 @@ export function DigitalScroll({
       })
 
       // ============================================
-      // STEP 3: GAMES (Reinforce & Ingrain)
-      // After reading, practice with interactive games
+      // GAMES + QUIZ SPREAD
       // ============================================
 
-      // Games page - RIGHT page (practice what you learned)
+      // Games page (LEFT)
       pages.push({
         type: 'games',
         chapterIndex,
@@ -433,22 +361,17 @@ export function DigitalScroll({
         gameItems: chapterGameItems,
       })
 
-      // ============================================
-      // STEP 4: GRADED QUIZ (Assessment)
-      // 5-question quiz graded for percentage accuracy
-      // ============================================
-
-      // Quiz page - graded assessment
+      // Quiz page (RIGHT)
       pages.push({
         type: 'quiz',
         chapterIndex,
         module,
-        gameItems: chapterGameItems, // Use same terms for quiz questions
+        gameItems: chapterGameItems,
       })
     })
 
     return pages
-  }, [modules, selectedLevel])
+  }, [modules, selectedLevel, topic.id])
 
   // ============================================
   // NAVIGATION STATE
@@ -466,34 +389,71 @@ export function DigitalScroll({
     : null
 
   // ============================================
+  // LAYOUT HELPERS
+  // Content pages display as full-width single pages on desktop
+  // All other pages display as two-page spreads
+  // ============================================
+
+  const isContentPage = useCallback((pageIndex: number): boolean => {
+    return bookPages[pageIndex]?.type === 'content'
+  }, [bookPages])
+
+  const isSinglePageMode = useMemo(() => {
+    return isDesktop && isContentPage(currentPageIndex)
+  }, [isDesktop, currentPageIndex, isContentPage])
+
+  // ============================================
   // NAVIGATION HANDLERS
+  // Dynamically adjusts increment based on current page layout
   // ============================================
 
   const goToPage = useCallback((pageIndex: number) => {
-    // On desktop, ensure we always land on an even index (left page of spread)
-    let targetIndex = pageIndex
-    if (isDesktop && pageIndex % 2 !== 0) {
-      targetIndex = pageIndex - 1 // Snap to left page of spread
-    }
-    const clampedIndex = Math.max(0, Math.min(targetIndex, totalPages - 1))
+    const clampedIndex = Math.max(0, Math.min(pageIndex, totalPages - 1))
     setCurrentPageIndex(clampedIndex)
     playPageTurn()
-  }, [totalPages, playPageTurn, isDesktop])
+  }, [totalPages, playPageTurn])
 
-  // Navigate by full spread on desktop (2 pages), single page on mobile
   const nextPage = useCallback(() => {
-    const increment = isDesktop ? 2 : 1
-    if (currentPageIndex < totalPages - increment) {
-      goToPage(currentPageIndex + increment)
+    if (!isDesktop) {
+      // Mobile: always advance by 1
+      if (currentPageIndex < totalPages - 1) {
+        goToPage(currentPageIndex + 1)
+      }
+      return
     }
-  }, [currentPageIndex, totalPages, goToPage, isDesktop])
+
+    if (isContentPage(currentPageIndex)) {
+      // Currently on a single content page → advance by 1
+      if (currentPageIndex < totalPages - 1) {
+        goToPage(currentPageIndex + 1)
+      }
+    } else {
+      // Currently on a spread → advance by 2
+      if (currentPageIndex < totalPages - 2) {
+        goToPage(currentPageIndex + 2)
+      }
+    }
+  }, [currentPageIndex, totalPages, goToPage, isDesktop, isContentPage])
 
   const prevPage = useCallback(() => {
-    const decrement = isDesktop ? 2 : 1
-    if (currentPageIndex >= decrement) {
-      goToPage(currentPageIndex - decrement)
+    if (!isDesktop) {
+      if (currentPageIndex > 0) {
+        goToPage(currentPageIndex - 1)
+      }
+      return
     }
-  }, [currentPageIndex, goToPage, isDesktop])
+
+    const prevIdx = currentPageIndex - 1
+    if (prevIdx < 0) return
+
+    if (isContentPage(prevIdx)) {
+      // Previous page is content (single) → go back by 1
+      goToPage(prevIdx)
+    } else {
+      // Previous page is part of a spread → go back by 2 to the spread start
+      goToPage(Math.max(currentPageIndex - 2, 0))
+    }
+  }, [currentPageIndex, goToPage, isDesktop, isContentPage])
 
   const goToChapter = useCallback((chapterIndex: number) => {
     // Find the chapter divider page for this chapter
@@ -501,18 +461,21 @@ export function DigitalScroll({
       (page) => page.type === 'chapter-divider' && page.chapterIndex === chapterIndex
     )
     if (pageIndex !== -1) {
+      // Chapter dividers are spread pages, so use directly
+      const clampedIndex = Math.max(0, Math.min(pageIndex, totalPages - 1))
+
       // Use rapid flip if jumping more than 5 pages
-      if (Math.abs(pageIndex - currentPageIndex) > 5) {
+      if (Math.abs(clampedIndex - currentPageIndex) > 5) {
         setIsRapidFlipping(true)
         setTimeout(() => {
-          setCurrentPageIndex(pageIndex)
+          setCurrentPageIndex(clampedIndex)
           setIsRapidFlipping(false)
         }, 1000)
       } else {
-        goToPage(pageIndex)
+        goToPage(clampedIndex)
       }
     }
-  }, [bookPages, currentPageIndex, goToPage])
+  }, [bookPages, currentPageIndex, goToPage, totalPages])
 
   const continueReading = useCallback(() => {
     const position = scrollState.getContinuePosition(topic.id)
@@ -560,12 +523,15 @@ export function DigitalScroll({
   // UNLOCK & OPEN ANIMATION
   // ============================================
 
+  // Unlock and open on mount — only depends on topic.id and stable function refs
+  // to avoid infinite re-render loops (scrollState object changes on every state update)
   useEffect(() => {
     if (!scrollState.unlockState.isUnlocked) {
       scrollState.unlockScroll(topic.id)
     }
     scrollState.openScroll(topic.id)
-  }, [topic.id, scrollState])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [topic.id])
 
   const handleAnimationComplete = useCallback(() => {
     setShowOpenAnimation(false)
@@ -649,47 +615,42 @@ export function DigitalScroll({
           <div className="w-full h-full flex flex-col px-2">
             <AncientBorder />
             {/* TOC Header */}
-            <div className="text-center py-4 shrink-0">
-              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[var(--book-text,var(--foreground))] mb-1">
+            <div className="text-center py-2 shrink-0">
+              <h2 className="text-xl sm:text-2xl font-serif font-bold text-[var(--book-text,var(--foreground))] mb-0.5">
                 Table of Contents
               </h2>
-              <p className="text-xs text-[var(--muted-foreground)] italic font-serif">
+              <p className="text-[10px] text-[var(--muted-foreground)] italic font-serif">
                 The Seven Paths of Knowledge
               </p>
             </div>
             <HieroglyphicDivider color={currentRibbon?.colors.from} />
-            {/* Chapter List - fills available space with scroll if needed */}
-            <div className="flex-1 overflow-y-auto space-y-2 py-2">
+            {/* Chapter List - compact to fit without scrolling */}
+            <div className="flex-1 min-h-0 flex flex-col justify-evenly py-1">
               {modules.slice(0, 7).map((module, i) => {
                 const ribbon = RIBBON_ORDER[i] ? GUARDIAN_RIBBONS[RIBBON_ORDER[i]] : null
                 return (
                   <button
                     key={module.id}
                     onClick={() => goToChapter(i)}
-                    className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--muted)] transition-colors text-left group border border-transparent hover:border-[var(--border)]"
+                    className="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-[var(--muted)] transition-colors text-left group"
                   >
                     <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold shadow-md shrink-0"
+                      className="w-6 h-6 rounded flex items-center justify-center text-white text-[10px] font-bold shadow-sm shrink-0"
                       style={{ background: ribbon?.colors.gradient }}
                     >
                       {i + 1}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <span className="text-[10px] uppercase tracking-wider text-[var(--muted-foreground)] block">
-                        Chapter {i + 1}
-                      </span>
-                      <span className="font-serif text-base text-[var(--book-text,var(--foreground))] group-hover:text-[var(--primary)] transition-colors truncate block">
-                        {module.title}
-                      </span>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-[var(--muted-foreground)] group-hover:text-[var(--primary)] transition-colors shrink-0" />
+                    <span className="flex-1 text-xs font-serif font-medium text-[var(--book-text,var(--foreground))] group-hover:text-[var(--primary)] transition-colors truncate">
+                      {module.title}
+                    </span>
+                    <ChevronRight className="w-3 h-3 text-[var(--muted-foreground)] group-hover:text-[var(--primary)] transition-colors shrink-0" />
                   </button>
                 )
               })}
             </div>
             {/* Footer */}
-            <div className="text-center py-2 border-t border-[var(--border)]/20 shrink-0">
-              <p className="text-[10px] text-[var(--muted-foreground)]">
+            <div className="text-center py-1 shrink-0">
+              <p className="text-[9px] text-[var(--muted-foreground)]">
                 Click a chapter to begin reading
               </p>
             </div>
@@ -819,7 +780,7 @@ export function DigitalScroll({
         )
 
       case 'chapter-intro':
-        // Right side of chapter spread - shows COMPLETE curriculum outline
+        // Right side of chapter spread - shows COMPLETE curriculum outline with accreditation info
         const introRibbon = page.chapterIndex !== undefined && RIBBON_ORDER[page.chapterIndex]
           ? GUARDIAN_RIBBONS[RIBBON_ORDER[page.chapterIndex]]
           : null
@@ -829,23 +790,55 @@ export function DigitalScroll({
         const allActivities = chapterModule?.activities || []
         const chapterGame = chapterModule?.game
         const chapterQuiz = chapterModule?.quiz
+        const chapterAccreditation = chapterModule?.accreditation
         const totalDuration = chapterModule?.duration?.[selectedLevel] ||
           allLessons.reduce((sum, l) => sum + (l.duration || 0), 0)
+        const showAccreditation = chapterAccreditation && (selectedLevel === 'UNDERGRADUATE' || selectedLevel === 'GRADUATE' || selectedLevel === 'PHD')
 
         return (
-          <div className="w-full h-full flex flex-col relative px-3 py-2">
+          <div className="w-full h-full flex flex-col relative px-4 py-3">
             <AncientBorder />
 
-            {/* Header */}
+            {/* Header with Accreditation Badge */}
             <div className="text-center pb-2 shrink-0">
-              <h3 className="text-lg font-serif font-bold text-[var(--book-text,var(--foreground))]">
-                Chapter {(page.chapterIndex ?? 0) + 1} Outline
-              </h3>
-              <p className="text-sm text-[var(--muted-foreground)]">
-                {totalDuration} min • {allLessons.length} lessons
-              </p>
+              {showAccreditation ? (
+                <>
+                  <h3 className="text-sm font-serif font-bold text-[var(--book-text,var(--foreground))] leading-tight">
+                    {chapterAccreditation.courseTitle}
+                  </h3>
+                  <div className="flex items-center justify-center gap-2 mt-1">
+                    <span
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold text-white"
+                      style={{ background: introColor }}
+                    >
+                      {chapterAccreditation.creditHours} Credit Hrs
+                    </span>
+                    <span className="text-[10px] text-[var(--muted-foreground)]">
+                      {chapterAccreditation.totalLearningHours}h total
+                    </span>
+                    <span
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold border"
+                      style={{ borderColor: introColor, color: introColor }}
+                    >
+                      {chapterAccreditation.academicLevel === 'graduate' ? 'Graduate' : 'Upper-Division'}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h3 className="text-lg font-serif font-bold text-[var(--book-text,var(--foreground))]">
+                    Chapter {(page.chapterIndex ?? 0) + 1}
+                  </h3>
+                  <p className="text-base font-medium text-[var(--book-text,var(--foreground))] mt-1">
+                    {chapterModule?.title}
+                  </p>
+                  <p className="text-sm text-[var(--muted-foreground)]">
+                    {totalDuration} min • {allLessons.length} lessons
+                  </p>
+                </>
+              )}
               <div
-                className="w-16 h-0.5 mx-auto mt-2"
+                className="w-16 h-0.5 mx-auto mt-3"
                 style={{
                   background: `linear-gradient(to right, transparent, ${introColor}, transparent)`,
                 }}
@@ -853,67 +846,127 @@ export function DigitalScroll({
             </div>
 
             {/* Full Curriculum Outline - fills available space */}
-            <div className="flex-1 min-h-0 flex flex-col justify-evenly overflow-hidden">
+            <div className="flex-1 min-h-0 flex flex-col justify-evenly overflow-hidden gap-1">
+
+              {/* LEARNING OBJECTIVES - shown for undergrad/graduate levels */}
+              {showAccreditation && chapterAccreditation.learningObjectives.length > 0 && (
+                <div className="min-h-0">
+                  <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                    <span className="text-xs">🎯</span> Learning Objectives
+                  </p>
+                  <div className="space-y-0.5">
+                    {chapterAccreditation.learningObjectives.slice(0, 4).map((objective, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-start gap-1 px-1 text-[9px] leading-tight"
+                      >
+                        <span
+                          className="w-3 h-3 rounded-full flex items-center justify-center text-white text-[7px] font-bold shrink-0 mt-px"
+                          style={{ background: introColor }}
+                        >
+                          {idx + 1}
+                        </span>
+                        <p className="text-[var(--book-text,var(--foreground))] line-clamp-2">
+                          {objective}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* LESSONS SECTION */}
-              <div>
-                <p className="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <span className="text-sm">📚</span> Lessons
+              <div className="min-h-0">
+                <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                  <span className="text-xs">📚</span> Lessons
                 </p>
-                <div className="space-y-1.5">
-                  {allLessons.slice(0, 5).map((lesson, idx) => (
+                <div className="space-y-0.5">
+                  {allLessons.slice(0, showAccreditation ? 4 : 5).map((lesson, idx) => (
                     <div
                       key={lesson.id || idx}
-                      className="flex items-center gap-2 py-1.5 px-2 rounded bg-[var(--muted)]/15"
+                      className="flex items-center gap-1.5 py-0.5 px-1.5 rounded bg-[var(--muted)]/15"
                     >
                       <div
-                        className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0"
+                        className="w-4 h-4 rounded-full flex items-center justify-center text-white text-[8px] font-bold shrink-0"
                         style={{ background: introColor }}
                       >
                         {idx + 1}
                       </div>
-                      <p className="flex-1 text-sm font-medium text-[var(--book-text,var(--foreground))] truncate">
+                      <p className="flex-1 text-[10px] font-medium text-[var(--book-text,var(--foreground))] truncate">
                         {lesson.title}
                       </p>
-                      <span className="text-xs text-[var(--muted-foreground)] shrink-0">
+                      <span className="text-[9px] text-[var(--muted-foreground)] shrink-0">
                         {lesson.duration}m
                       </span>
-                      {lesson.hasActivity && (
-                        <span className="text-sm" title="Includes activity">⚡</span>
-                      )}
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* GAME & QUIZ ROW */}
-              <div className="flex gap-3">
-                {/* Game */}
-                {chapterGame && (
-                  <div className="flex-1 p-3 rounded-lg bg-[var(--muted)]/20">
-                    <p className="text-xs font-bold text-[var(--muted-foreground)] uppercase flex items-center gap-1 mb-1">
-                      <span className="text-base">🎮</span> Game
+              {/* ASSESSMENT ROW - replaces game/quiz for accredited levels */}
+              {showAccreditation ? (
+                <div className="flex gap-2">
+                  <div className="flex-1 p-2 rounded-lg bg-[var(--muted)]/20">
+                    <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase flex items-center gap-1 mb-0.5">
+                      <span className="text-xs">📝</span> Assessment
                     </p>
-                    <p className="text-sm font-medium text-[var(--book-text,var(--foreground))]">
-                      {chapterGame.title}
-                    </p>
-                  </div>
-                )}
-
-                {/* Quiz */}
-                {chapterQuiz && (
-                  <div className="flex-1 p-3 rounded-lg bg-[var(--muted)]/20">
-                    <p className="text-xs font-bold text-[var(--muted-foreground)] uppercase flex items-center gap-1 mb-1">
-                      <span className="text-base">✅</span> Quiz
-                    </p>
-                    <p className="text-sm font-medium text-[var(--book-text,var(--foreground))]">
-                      {chapterQuiz.questions?.length || 0} questions
+                    <p className="text-[10px] text-[var(--book-text,var(--foreground))]">
+                      {chapterQuiz?.questions?.length || 10} questions • {chapterAccreditation.assessmentFramework.passingThreshold}% to pass
                     </p>
                   </div>
-                )}
-              </div>
+                  <div className="flex-1 p-2 rounded-lg bg-[var(--muted)]/20">
+                    <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase flex items-center gap-1 mb-0.5">
+                      <span className="text-xs">🔬</span> Project
+                    </p>
+                    <p className="text-[10px] text-[var(--book-text,var(--foreground))] truncate">
+                      {chapterAccreditation.finalProject.title}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex gap-3">
+                  {/* Game */}
+                  {chapterGame && (
+                    <div className="flex-1 p-3 rounded-lg bg-[var(--muted)]/20">
+                      <p className="text-xs font-bold text-[var(--muted-foreground)] uppercase flex items-center gap-1 mb-1">
+                        <span className="text-base">🎮</span> Game
+                      </p>
+                      <p className="text-sm font-medium text-[var(--book-text,var(--foreground))]">
+                        {chapterGame.title}
+                      </p>
+                    </div>
+                  )}
 
-              {/* Module Description */}
-              {chapterModule?.description && (
+                  {/* Quiz */}
+                  {chapterQuiz && (
+                    <div className="flex-1 p-3 rounded-lg bg-[var(--muted)]/20">
+                      <p className="text-xs font-bold text-[var(--muted-foreground)] uppercase flex items-center gap-1 mb-1">
+                        <span className="text-base">✅</span> Quiz
+                      </p>
+                      <p className="text-sm font-medium text-[var(--book-text,var(--foreground))]">
+                        {chapterQuiz.questions?.length || 0} questions
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Module Description / Course Info */}
+              {showAccreditation ? (
+                <div className="p-2 rounded-lg bg-[var(--muted)]/10 border-l-3" style={{ borderColor: introColor }}>
+                  <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-0.5">
+                    {chapterAccreditation.discipline}
+                  </p>
+                  <p className="text-[10px] italic text-[var(--muted-foreground)] leading-relaxed line-clamp-3">
+                    {chapterAccreditation.courseDescription.slice(0, 200)}...
+                  </p>
+                  {chapterAccreditation.institutionalPartner && (
+                    <p className="text-[9px] font-semibold mt-1" style={{ color: introColor }}>
+                      Partner: {chapterAccreditation.institutionalPartner}
+                    </p>
+                  )}
+                </div>
+              ) : chapterModule?.description ? (
                 <div className="p-3 rounded-lg bg-[var(--muted)]/10 border-l-3" style={{ borderColor: introColor }}>
                   <p className="text-sm italic text-[var(--muted-foreground)] leading-relaxed">
                     {typeof chapterModule.description === 'string'
@@ -921,13 +974,13 @@ export function DigitalScroll({
                       : chapterModule.description[selectedLevel] || chapterModule.description.HIGH_SCHOOL}
                   </p>
                 </div>
-              )}
+              ) : null}
             </div>
 
             {/* Footer */}
-            <div className="shrink-0 text-center pt-2 border-t border-[var(--border)]/20">
+            <div className="shrink-0 text-center pt-3 border-t border-[var(--border)]/20">
               <p className="text-xs text-[var(--muted-foreground)]">
-                Turn the page to begin →
+                {showAccreditation ? 'ACE Credit Recommended • Turn the page to begin →' : 'Turn the page to begin →'}
               </p>
             </div>
           </div>
@@ -943,10 +996,8 @@ export function DigitalScroll({
         const gamesCompleted = completedGames[chapterIdx] ?? false
         return (
           <div className="w-full h-full flex flex-col relative">
-            <AncientBorder />
-
             {/* Header - compact */}
-            <div className="text-center pt-2 pb-1 shrink-0">
+            <div className="text-center pt-1 pb-1 shrink-0">
               <div className="flex items-center justify-center gap-1.5 mb-0.5">
                 <span className="text-sm">{gamesCompleted ? '✅' : '🎮'}</span>
                 <h3 className="text-xs font-serif font-bold text-[var(--book-text,var(--foreground))]">
@@ -958,8 +1009,8 @@ export function DigitalScroll({
               </p>
             </div>
 
-            {/* Games selector - allows internal scroll */}
-            <div className="flex-1 min-h-0 px-2 pb-1 overflow-y-auto">
+            {/* Games selector - scrolls internally within ScrollPage's scroll area */}
+            <div className="flex-1 min-h-0 px-1 pb-1">
               {gameItems.length > 0 ? (
                 <ScrollGameSelector
                   items={gameItems}
@@ -968,7 +1019,7 @@ export function DigitalScroll({
                   onComplete={(score) => {
                     // Mark games as completed for this chapter
                     setCompletedGames(prev => ({ ...prev, [chapterIdx]: true }))
-                    console.log(`Game completed with score: ${score}`)
+                    // Game completed — score tracked in completedGames state
                   }}
                 />
               ) : (
@@ -1070,13 +1121,7 @@ export function DigitalScroll({
                 : undefined
 
         return (
-          <ScrollPage
-            pageNumber={currentPageIndex + 1}
-            totalPages={totalPages}
-            chapterIndex={page.chapterIndex ?? 0}
-            side={side}
-            allowScroll={true}
-          >
+          <div className="w-full h-full flex flex-col">
             {/* Cognitive load indicator */}
             <div className="flex justify-end mb-1 shrink-0">
               <div className="flex items-center gap-1.5">
@@ -1121,15 +1166,21 @@ export function DigitalScroll({
                 </div>
               </div>
             )}
-          </ScrollPage>
+          </div>
         )
 
       case 'chapter-review':
         // Combined Chapter Review: Key Terms + Fun Facts + Summary on ONE page
+        // For accredited levels: shows learning objectives achieved + assessment info
         const reviewRibbon = page.chapterIndex !== undefined && RIBBON_ORDER[page.chapterIndex]
           ? GUARDIAN_RIBBONS[RIBBON_ORDER[page.chapterIndex]]
           : null
         const reviewColor = reviewRibbon?.colors.from || 'var(--primary)'
+        const reviewModule = page.chapterIndex !== undefined && page.chapterIndex < modules.length
+          ? modules[page.chapterIndex]
+          : null
+        const reviewAccreditation = reviewModule?.accreditation
+        const showAccreditedReview = reviewAccreditation && (selectedLevel === 'UNDERGRADUATE' || selectedLevel === 'GRADUATE' || selectedLevel === 'PHD')
         return (
           <div className="w-full h-full flex flex-col relative px-3 py-2">
             <AncientBorder />
@@ -1137,7 +1188,8 @@ export function DigitalScroll({
             {/* Header */}
             <div className="text-center pb-2 shrink-0">
               <h3 className="text-lg font-serif font-bold text-[var(--book-text,var(--foreground))] flex items-center justify-center gap-2">
-                <span className="text-xl">📚</span> Chapter Review
+                <span className="text-xl">{showAccreditedReview ? '🎓' : '📚'}</span>
+                {showAccreditedReview ? 'Module Assessment' : 'Chapter Review'}
               </h3>
               <div
                 className="w-16 h-0.5 mx-auto mt-2"
@@ -1147,68 +1199,156 @@ export function DigitalScroll({
 
             {/* Content fills available space evenly */}
             <div className="flex-1 min-h-0 flex flex-col justify-evenly overflow-hidden">
-              {/* Key Terms Section */}
-              <div>
-                <p className="text-xs font-bold text-[var(--muted-foreground)] mb-2 flex items-center gap-1.5 uppercase tracking-wider">
-                  <span className="text-sm">📖</span> Key Terms
-                </p>
-                <div className="grid grid-cols-2 gap-2">
-                  {(page.keyTerms || []).slice(0, 4).map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="p-2 rounded-lg bg-[var(--muted)]/20"
-                    >
-                      <p className="text-sm font-bold text-[var(--book-text,var(--foreground))]">{item.term}</p>
-                      <p className="text-xs text-[var(--muted-foreground)] line-clamp-2">{item.definition}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* Fun Facts Section */}
-              <div>
-                <p className="text-xs font-bold text-[var(--muted-foreground)] mb-2 flex items-center gap-1.5 uppercase tracking-wider">
-                  <span className="text-sm">💡</span> Did You Know?
-                </p>
-                <div className="space-y-2">
-                  {(page.funFacts || []).slice(0, 2).map((fact, idx) => (
-                    <div
-                      key={idx}
-                      className="p-2 rounded-lg border-l-3 text-sm text-[var(--book-text,var(--foreground))] leading-relaxed"
-                      style={{ borderColor: reviewColor, background: `${reviewColor}10` }}
-                    >
-                      {fact}
+              {/* Accredited Review: Learning Objectives Achieved */}
+              {showAccreditedReview ? (
+                <>
+                  {/* Objectives Checklist */}
+                  <div>
+                    <p className="text-xs font-bold text-[var(--muted-foreground)] mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
+                      <span className="text-sm">🎯</span> Learning Objectives Demonstrated
+                    </p>
+                    <div className="space-y-1">
+                      {reviewAccreditation.learningObjectives.slice(0, 4).map((objective, idx) => (
+                        <div key={idx} className="flex items-start gap-1.5 py-0.5">
+                          <span
+                            className="w-4 h-4 rounded-full flex items-center justify-center text-white text-[8px] shrink-0 mt-0.5"
+                            style={{ background: reviewColor }}
+                          >
+                            ✓
+                          </span>
+                          <p className="text-[10px] text-[var(--book-text,var(--foreground))] leading-tight">{objective}</p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
 
-              {/* Summary Section */}
-              <div>
-                <p className="text-xs font-bold text-[var(--muted-foreground)] mb-2 flex items-center gap-1.5 uppercase tracking-wider">
-                  <span className="text-sm">✓</span> Key Takeaways
-                </p>
-                <div className="space-y-2">
-                  {(page.summaryPoints || []).slice(0, 2).map((point, idx) => (
-                    <div key={idx} className="flex items-start gap-2">
-                      <span
-                        className="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs shrink-0 mt-0.5"
-                        style={{ background: reviewColor }}
-                      >
-                        ✓
-                      </span>
-                      <p className="text-sm text-[var(--book-text,var(--foreground))] leading-relaxed">{point}</p>
+                  {/* Assessment Requirements */}
+                  <div>
+                    <p className="text-xs font-bold text-[var(--muted-foreground)] mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
+                      <span className="text-sm">📝</span> Assessment Requirements
+                    </p>
+                    <div className="space-y-1.5">
+                      {reviewAccreditation.assessmentFramework.summativeAssessments.map((assessment, idx) => (
+                        <div
+                          key={idx}
+                          className="p-2 rounded-lg border-l-3 text-[10px] text-[var(--book-text,var(--foreground))] leading-relaxed"
+                          style={{ borderColor: reviewColor, background: `${reviewColor}10` }}
+                        >
+                          {assessment}
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
+
+                  {/* Final Project Preview */}
+                  <div>
+                    <p className="text-xs font-bold text-[var(--muted-foreground)] mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
+                      <span className="text-sm">🔬</span> Applied Project
+                    </p>
+                    <div className="p-2 rounded-lg bg-[var(--muted)]/20">
+                      <p className="text-xs font-bold text-[var(--book-text,var(--foreground))]">
+                        {reviewAccreditation.finalProject.title}
+                      </p>
+                      <p className="text-[10px] text-[var(--muted-foreground)] mt-0.5 line-clamp-2">
+                        {reviewAccreditation.finalProject.description}
+                      </p>
+                      <p className="text-[9px] font-semibold mt-1" style={{ color: reviewColor }}>
+                        {reviewAccreditation.finalProject.deliverables.length} deliverables required
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Credit Info */}
+                  <div className="flex gap-2">
+                    <div className="flex-1 p-2 rounded-lg bg-[var(--muted)]/15 text-center">
+                      <p className="text-[10px] text-[var(--muted-foreground)]">Credit Hours</p>
+                      <p className="text-sm font-bold" style={{ color: reviewColor }}>{reviewAccreditation.creditHours}</p>
+                    </div>
+                    <div className="flex-1 p-2 rounded-lg bg-[var(--muted)]/15 text-center">
+                      <p className="text-[10px] text-[var(--muted-foreground)]">Pass Threshold</p>
+                      <p className="text-sm font-bold" style={{ color: reviewColor }}>{reviewAccreditation.assessmentFramework.passingThreshold}%</p>
+                    </div>
+                    <div className="flex-1 p-2 rounded-lg bg-[var(--muted)]/15 text-center">
+                      <p className="text-[10px] text-[var(--muted-foreground)]">Level</p>
+                      <p className="text-[10px] font-bold" style={{ color: reviewColor }}>
+                        {reviewAccreditation.academicLevel === 'graduate' ? 'Grad' : 'Upper-Div'}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Key Terms Section */}
+                  <div className="min-h-0">
+                    <p className="text-[10px] font-bold text-[var(--muted-foreground)] mb-1 flex items-center gap-1 uppercase tracking-wider">
+                      <span className="text-xs">📖</span> Key Terms
+                    </p>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {(page.keyTerms || []).slice(0, 4).map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="p-1.5 rounded-lg bg-[var(--muted)]/20"
+                        >
+                          <p className="text-xs font-bold text-[var(--book-text,var(--foreground))] leading-tight">{item.term}</p>
+                          <p className="text-[10px] text-[var(--muted-foreground)] line-clamp-2 leading-tight">{item.definition}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Fun Facts Section */}
+                  <div className="min-h-0">
+                    <p className="text-[10px] font-bold text-[var(--muted-foreground)] mb-1 flex items-center gap-1 uppercase tracking-wider">
+                      <span className="text-xs">💡</span> Did You Know?
+                    </p>
+                    <div className="space-y-1">
+                      {(page.funFacts || []).slice(0, 2).map((fact, idx) => (
+                        <div
+                          key={idx}
+                          className="p-1.5 rounded-lg border-l-2 text-[10px] text-[var(--book-text,var(--foreground))] leading-snug"
+                          style={{ borderColor: reviewColor, background: `${reviewColor}10` }}
+                        >
+                          {fact}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Summary Section */}
+                  <div className="min-h-0">
+                    <p className="text-[10px] font-bold text-[var(--muted-foreground)] mb-1 flex items-center gap-1 uppercase tracking-wider">
+                      <span className="text-xs">✓</span> Key Takeaways
+                    </p>
+                    <div className="space-y-1">
+                      {(page.summaryPoints || []).slice(0, 2).map((point, idx) => (
+                        <div key={idx} className="flex items-start gap-1.5">
+                          <span
+                            className="w-4 h-4 rounded-full flex items-center justify-center text-white text-[8px] shrink-0 mt-0.5"
+                            style={{ background: reviewColor }}
+                          >
+                            ✓
+                          </span>
+                          <p className="text-[10px] text-[var(--book-text,var(--foreground))] leading-snug">{point}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
 
-            {/* Footer Quote */}
+            {/* Footer */}
             <div className="shrink-0 px-3 pt-2 border-t border-[var(--border)]/20">
-              <p className="text-xs text-[var(--muted-foreground)] italic text-center leading-relaxed">
-                &ldquo;{getGuardianQuote(page.chapterIndex ?? 0)}&rdquo;
-              </p>
+              {showAccreditedReview ? (
+                <p className="text-[9px] text-[var(--muted-foreground)] text-center">
+                  ACE Credit Recommended • {reviewAccreditation.institutionalPartner || 'Institutional Review Pending'}
+                </p>
+              ) : (
+                <p className="text-xs text-[var(--muted-foreground)] italic text-center leading-relaxed">
+                  &ldquo;{getGuardianQuote(page.chapterIndex ?? 0)}&rdquo;
+                </p>
+              )}
             </div>
           </div>
         )
@@ -1224,34 +1364,34 @@ export function DigitalScroll({
           : 'General'
         const enhancedNoteKey = `chapter-${page.chapterIndex ?? 'general'}-notes`
         return (
-          <div className="w-full h-full flex flex-col relative px-3 py-2">
+          <div className="w-full h-full flex flex-col relative px-2 py-1">
             <AncientBorder />
 
-            {/* Header */}
-            <div className="text-center pb-2 shrink-0">
-              <h3 className="text-lg font-serif font-bold text-[var(--book-text,var(--foreground))]">
-                🎯 Apply & Reflect
+            {/* Header - compact */}
+            <div className="text-center pb-1 shrink-0">
+              <h3 className="text-sm font-serif font-bold text-[var(--book-text,var(--foreground))] flex items-center justify-center gap-1.5">
+                <span className="text-base">🎯</span> Apply & Reflect
               </h3>
-              <p className="text-sm text-[var(--muted-foreground)]">{enhancedChapterTitle}</p>
+              <p className="text-[10px] text-[var(--muted-foreground)]">{enhancedChapterTitle}</p>
               <div
-                className="w-16 h-0.5 mx-auto mt-2"
+                className="w-12 h-px mx-auto mt-1"
                 style={{ background: `linear-gradient(to right, transparent, ${enhancedColor}, transparent)` }}
               />
             </div>
 
-            {/* Real World Actions */}
-            <div className="mb-3 shrink-0">
-              <p className="text-xs font-bold text-[var(--muted-foreground)] mb-2 uppercase tracking-wider flex items-center gap-1.5">
-                <span className="text-sm">🌍</span> Try This:
+            {/* Real World Actions - compact */}
+            <div className="mb-2 shrink-0">
+              <p className="text-[10px] font-bold text-[var(--muted-foreground)] mb-1 uppercase tracking-wider flex items-center gap-1">
+                <span className="text-xs">🌍</span> Try This:
               </p>
-              <div className="flex gap-2">
+              <div className="flex gap-1.5">
                 {(page.realWorldExamples || []).slice(0, 3).map((ex, idx) => (
                   <div
                     key={idx}
-                    className="flex-1 p-3 rounded-lg bg-[var(--muted)]/20 text-center"
+                    className="flex-1 p-2 rounded-lg bg-[var(--muted)]/20 text-center"
                   >
-                    <span className="text-2xl block mb-1">{ex.icon}</span>
-                    <p className="text-sm font-medium text-[var(--book-text,var(--foreground))]">{ex.title}</p>
+                    <span className="text-lg block mb-0.5">{ex.icon}</span>
+                    <p className="text-[10px] font-medium text-[var(--book-text,var(--foreground))] leading-tight">{ex.title}</p>
                   </div>
                 ))}
               </div>
@@ -1259,15 +1399,15 @@ export function DigitalScroll({
 
             {/* Notes textarea - fills remaining space */}
             <div className="flex-1 min-h-0 flex flex-col">
-              <p className="text-xs font-bold text-[var(--muted-foreground)] mb-2 uppercase tracking-wider flex items-center gap-1.5 shrink-0">
-                <span className="text-sm">📝</span> Your Notes:
+              <p className="text-[10px] font-bold text-[var(--muted-foreground)] mb-1 uppercase tracking-wider flex items-center gap-1 shrink-0">
+                <span className="text-xs">📝</span> Your Notes:
               </p>
               <textarea
                 className={cn(
                   "flex-1 w-full resize-none",
                   "bg-transparent",
                   "border border-dashed border-[var(--border)]/40 rounded-lg",
-                  "p-3 text-sm font-serif",
+                  "p-2 text-xs font-serif",
                   "text-[var(--book-text,var(--foreground))]",
                   "placeholder:text-[var(--muted-foreground)]/50 placeholder:italic",
                   "focus:outline-none focus:border-[var(--primary)]/50"
@@ -1276,26 +1416,26 @@ export function DigitalScroll({
                 value={pageNotes[enhancedNoteKey] || ''}
                 onChange={(e) => saveNote(enhancedNoteKey, e.target.value)}
                 style={{
-                  lineHeight: '1.6em',
+                  lineHeight: '1.5em',
                   backgroundImage: 'linear-gradient(to bottom, transparent 90%, var(--border) 90%, var(--border) 92%, transparent 92%)',
-                  backgroundSize: '100% 1.6em',
+                  backgroundSize: '100% 1.5em',
                   backgroundPosition: '0 0.2em',
                 }}
               />
             </div>
 
-            {/* Discussion Button */}
-            <div className="shrink-0 pt-3 border-t border-[var(--border)]/20 mt-2">
+            {/* Discussion Button - compact */}
+            <div className="shrink-0 pt-1.5 mt-1">
               <button
                 className={cn(
-                  "w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg",
+                  "w-full flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg",
                   "bg-[var(--muted)]/30 hover:bg-[var(--muted)]/50",
-                  "text-[var(--book-text,var(--foreground))] text-sm font-medium",
+                  "text-[var(--book-text,var(--foreground))] text-[10px] font-medium",
                   "transition-colors"
                 )}
                 onClick={() => setShowDiscussion(true)}
               >
-                <MessageCircle className="w-4 h-4" />
+                <MessageCircle className="w-3 h-3" />
                 <span>Join Discussion</span>
               </button>
             </div>
@@ -1313,10 +1453,8 @@ export function DigitalScroll({
 
         return (
           <div className="w-full h-full flex flex-col relative">
-            <AncientBorder />
-
             {/* Header - compact */}
-            <div className="text-center pt-2 pb-1 shrink-0">
+            <div className="text-center pt-1 pb-1 shrink-0">
               <div className="flex items-center justify-center gap-1.5 mb-0.5">
                 <span className="text-sm">{isQuizUnlocked ? '📝' : '🔒'}</span>
                 <h3 className="text-xs font-serif font-bold text-[var(--book-text,var(--foreground))]">
@@ -1328,8 +1466,8 @@ export function DigitalScroll({
               </p>
             </div>
 
-            {/* Quiz Component - allows internal scroll */}
-            <div className="flex-1 min-h-0 px-2 pb-1 overflow-y-auto">
+            {/* Quiz Component - scrolls internally within ScrollPage's scroll area */}
+            <div className="flex-1 min-h-0 px-1 pb-1">
               {!isQuizUnlocked ? (
                 <div className="h-full flex flex-col items-center justify-center text-center p-3">
                   <div className="w-12 h-12 rounded-full bg-[var(--muted)] flex items-center justify-center mb-3">
@@ -1356,7 +1494,7 @@ export function DigitalScroll({
                   chapterIndex={quizChapterIdx}
                   onComplete={(score, total) => {
                     const percentage = Math.round((score / total) * 100)
-                    console.log(`Quiz completed: ${score}/${total} (${percentage}%)`)
+                    // Quiz completed — persist via API below
 
                     // Mark chapter as complete in local scroll state if passing score (>=70%)
                     if (percentage >= 70 && quizChapterIdx !== undefined) {
@@ -1394,15 +1532,17 @@ export function DigitalScroll({
   }
 
   // ============================================
-  // GET PAGES FOR CURRENT SPREAD
+  // GET PAGES FOR CURRENT SPREAD/SINGLE
+  // In single-page mode: only leftPage is shown (full-width)
+  // In spread mode: leftPage + rightPage shown side by side
   // ============================================
 
   const leftPage = bookPages[currentPageIndex]
-  const rightPage = isDesktop ? bookPages[currentPageIndex + 1] : null
+  const rightPage = (isDesktop && !isSinglePageMode) ? bookPages[currentPageIndex + 1] : null
   const prevLeftPage = bookPages[currentPageIndex - 2]
   const prevRightPage = bookPages[currentPageIndex - 1]
-  const nextLeftPage = bookPages[currentPageIndex + 2]
-  const nextRightPage = bookPages[currentPageIndex + 3]
+  const nextLeftPage = isSinglePageMode ? bookPages[currentPageIndex + 1] : bookPages[currentPageIndex + 2]
+  const nextRightPage = isSinglePageMode ? bookPages[currentPageIndex + 2] : bookPages[currentPageIndex + 3]
 
   // ============================================
   // COMPLETED CHAPTERS
@@ -1412,6 +1552,48 @@ export function DigitalScroll({
     const progress = scrollState.topicProgress[topic.id]
     return progress?.completedChapters || []
   }, [scrollState.topicProgress, topic.id])
+
+  // ============================================
+  // PAGE FRAME WRAPPER
+  // Wraps page content in ScrollPage for consistent framing
+  // Cover & inside-cover are full-bleed (no frame)
+  // ============================================
+
+  const wrapPageContent = (page: ScrollContent | undefined | null, side: 'left' | 'right', absolutePageIndex: number) => {
+    if (!page) return <div />
+
+    const content = renderPageContent(page, side)
+
+    // Cover and inside-cover: no page frame
+    if (page.type === 'cover' || page.type === 'inside-cover') {
+      return content
+    }
+
+    // Scroll behavior is context-aware:
+    // - Content pages (lessons): always scrollable (textbook content)
+    // - Games/quiz: scrollable only in minimized view
+    // - Everything else: never scrollable (must fit the page)
+    const isContent = page.type === 'content'
+    const isInteractive = page.type === 'games' || page.type === 'quiz'
+    const allowScroll = isContent || (isInteractive && !isExpanded)
+
+    return (
+      <ScrollPage
+        pageNumber={absolutePageIndex + 1}
+        totalPages={totalPages}
+        chapterIndex={page.chapterIndex ?? 0}
+        side={side}
+        allowScroll={allowScroll}
+        showWatermark={page.type !== 'toc' && page.type !== 'learning-mission'}
+        onPrevPage={prevPage}
+        onNextPage={nextPage}
+        isFirstPage={absolutePageIndex === 0}
+        isLastPage={absolutePageIndex >= totalPages - 1}
+      >
+        {content}
+      </ScrollPage>
+    )
+  }
 
   // ============================================
   // RENDER
@@ -1426,7 +1608,6 @@ export function DigitalScroll({
             topicSlug={topic.id}
             topicTitle={topic.title}
             topicDescription={topic.description}
-            targetPage={currentPageIndex}
             onAnimationComplete={handleAnimationComplete}
             reducedMotion={scrollState.preferences.reducedMotion}
           />
@@ -1437,10 +1618,11 @@ export function DigitalScroll({
       <AnimatePresence>
         {isRapidFlipping && (
           <motion.div
-            className="fixed inset-0 z-[60] bg-black/50 flex items-center justify-center"
+            className="fixed inset-0 z-[60] bg-[var(--book-paper,var(--card))]/70 backdrop-blur-sm flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
           >
             <RapidPageFlip
               fromSpread={Math.floor(currentPageIndex / 2)}
@@ -1469,90 +1651,76 @@ export function DigitalScroll({
               onContinueClick={continueReading}
               continuePosition={scrollState.currentPosition || undefined}
               isExpanded={isExpanded}
+              isFlipping={isFlipping || isRapidFlipping}
             />
 
             {/* Page Flip Container */}
             <PageFlip
+              singlePageMode={isSinglePageMode}
               leftPage={
-                <PageContainer side="left">
-                  {leftPage && renderPageContent(leftPage, 'left')}
-                </PageContainer>
+                isSinglePageMode ? (
+                  // Single page mode: full-width page with balanced padding
+                  <PageContainer side="left" className="!pl-6 !pr-6">
+                    {wrapPageContent(leftPage, 'left', currentPageIndex)}
+                  </PageContainer>
+                ) : (
+                  <PageContainer side="left">
+                    {wrapPageContent(leftPage, 'left', currentPageIndex)}
+                  </PageContainer>
+                )
               }
               rightPage={
                 <PageContainer side="right">
-                  {rightPage ? renderPageContent(rightPage, 'right') : <div />}
+                  {wrapPageContent(rightPage, 'right', currentPageIndex + 1)}
                 </PageContainer>
               }
               nextLeftPage={
                 nextLeftPage ? (
                   <PageContainer side="left">
-                    {renderPageContent(nextLeftPage, 'left')}
+                    {wrapPageContent(nextLeftPage, 'left', isSinglePageMode ? currentPageIndex + 1 : currentPageIndex + 2)}
                   </PageContainer>
                 ) : undefined
               }
               nextRightPage={
                 nextRightPage ? (
                   <PageContainer side="right">
-                    {renderPageContent(nextRightPage, 'right')}
+                    {wrapPageContent(nextRightPage, 'right', isSinglePageMode ? currentPageIndex + 2 : currentPageIndex + 3)}
                   </PageContainer>
                 ) : undefined
               }
               prevLeftPage={
                 prevLeftPage ? (
                   <PageContainer side="left">
-                    {renderPageContent(prevLeftPage, 'left')}
+                    {wrapPageContent(prevLeftPage, 'left', currentPageIndex - 2)}
                   </PageContainer>
                 ) : undefined
               }
               prevRightPage={
                 prevRightPage ? (
                   <PageContainer side="right">
-                    {renderPageContent(prevRightPage, 'right')}
+                    {wrapPageContent(prevRightPage, 'right', currentPageIndex - 1)}
                   </PageContainer>
                 ) : undefined
               }
-              currentSpread={Math.floor(currentPageIndex / 2)}
-              totalSpreads={Math.ceil(totalPages / 2)}
+              currentSpread={currentPageIndex}
+              totalSpreads={totalPages}
+              onFlipStart={() => setIsFlipping(true)}
               onFlipComplete={(direction) => {
+                setIsFlipping(false)
                 if (direction === 'next') {
-                  setCurrentPageIndex((prev) => Math.min(prev + (isDesktop ? 2 : 1), totalPages - 1))
+                  nextPage()
                 } else {
-                  setCurrentPageIndex((prev) => Math.max(prev - (isDesktop ? 2 : 1), 0))
+                  prevPage()
                 }
               }}
             />
 
-            {/* Book Spine */}
-            <ScrollSpine />
+            {/* Book Spine - hidden in single page mode */}
+            {!isSinglePageMode && <ScrollSpine />}
 
             {/* Page Edges */}
             <PageEdges pageCount={totalPages} />
           </ScrollWrapper>
-
-          {/* Navigation Footer - Minimal, shows on hover */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-30 opacity-30 hover:opacity-100 transition-opacity duration-300">
-            <button
-              onClick={prevPage}
-              disabled={currentPageIndex === 0}
-              className="p-1.5 rounded-full bg-[var(--card)]/80 text-[var(--book-text,var(--foreground))] hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)] disabled:opacity-20 transition-all border border-[var(--border)]/50"
-              aria-label="Previous page"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-
-            <span className="text-[var(--muted-foreground)] text-[10px] font-medium min-w-[50px] text-center">
-              {currentPageIndex + 1}/{totalPages}
-            </span>
-
-            <button
-              onClick={nextPage}
-              disabled={currentPageIndex >= totalPages - 1}
-              className="p-1.5 rounded-full bg-[var(--card)]/80 text-[var(--book-text,var(--foreground))] hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)] disabled:opacity-20 transition-all border border-[var(--border)]/50"
-              aria-label="Next page"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
 
           {/* Top Control Bar */}
           <div className="absolute top-4 sm:top-6 right-4 sm:right-6 flex items-center gap-2 z-30">
@@ -1621,6 +1789,14 @@ export function DigitalScroll({
                 y: prev.y + info.offset.y,
               }))
             }}
+            onKeyDown={(e: React.KeyboardEvent) => {
+              if (e.key === 'Escape') {
+                e.stopPropagation()
+                setShowDiscussion(false)
+              }
+            }}
+            role="dialog"
+            aria-label={`${topic.title} Discussion`}
           >
             {/* Drag Handle Header */}
             <div
@@ -1643,6 +1819,7 @@ export function DigitalScroll({
               <button
                 onClick={() => setShowDiscussion(false)}
                 className="p-1.5 rounded-lg hover:bg-[var(--background)] transition-colors"
+                aria-label="Close discussion"
               >
                 <X className="w-4 h-4 text-[var(--muted-foreground)]" />
               </button>
@@ -1673,11 +1850,13 @@ export function DigitalScroll({
                 <div className="flex gap-3">
                   <textarea
                     placeholder="Share your thoughts on this chapter..."
+                    aria-label="Discussion message"
                     className="flex-1 px-3 py-2 text-sm rounded-lg bg-[var(--background)] border border-[var(--border)] focus:outline-none focus:border-[var(--primary)] resize-none"
                     rows={2}
                   />
                   <div className="flex flex-col gap-2">
                     <button
+                      onClick={() => window.open(`/community/forum?topic=${topic.id}`, '_blank')}
                       className="px-4 py-2 text-xs font-medium rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)]"
                     >
                       Post

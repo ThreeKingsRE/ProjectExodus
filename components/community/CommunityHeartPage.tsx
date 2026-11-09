@@ -1,7 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
+import { COMMANDMENTS, resolveCommandmentSlug } from '@/lib/commandments'
+import { FishSVG, getTierFromScore, type FishCustomization } from '@/components/fishbowl/FishSpecies'
 import {
   Shield, Crown, Sparkles, TrendingUp,
   User, Briefcase, FileText, BookOpen, Users, MessageCircle, MessageSquare, Leaf,
@@ -15,8 +17,18 @@ import { AnimatedStatsBar } from './AnimatedStatsBar'
 import { LiveActivityStream } from './LiveActivityStream'
 import { AmbientBackground } from './AmbientBackground'
 
+export type FeaturedContributor = {
+  id: string
+  name: string | null
+  declaration: string | null
+  guardianArchetype: string | null
+  fishCustomization: unknown
+  stockScore: number
+}
+
 interface CommunityHeartPageProps {
   isAuthenticated: boolean
+  featuredContributors?: FeaturedContributor[]
 }
 
 // Decorative corner ornament component
@@ -115,16 +127,17 @@ const volitionLanes = [
   { icon: Leaf, label: 'Impact', color: 'text-green-400', desc: 'Your measurable environmental footprint and positive actions' },
 ]
 
-// The 7 Guardians - Archangel archetypes representing core values
-const guardianArchetypes = [
-  { emoji: '⚔️', name: 'MICHAEL', title: 'Strength', desc: 'You stand unwavering. Your strength protects those who cannot protect themselves.', color: 'from-red-600 to-orange-500' },
-  { emoji: '💬', name: 'GABRIEL', title: 'Revelation', desc: 'You bring truth to light. Your words reveal what must be known.', color: 'from-sky-500 to-blue-600' },
-  { emoji: '🩺', name: 'RAPHAEL', title: 'Healing', desc: 'You mend what is broken. Your presence restores and renews.', color: 'from-emerald-500 to-green-600' },
-  { emoji: '💡', name: 'URIEL', title: 'Wisdom', desc: 'You illuminate the path. Your wisdom guides those who seek understanding.', color: 'from-amber-500 to-yellow-500' },
-  { emoji: '💗', name: 'CAMAEL', title: 'Love', desc: 'You embody compassion. Your love connects all beings as one.', color: 'from-pink-500 to-rose-600' },
-  { emoji: '🌸', name: 'JOPHIEL', title: 'Beauty', desc: 'You see the divine in all things. Your vision transforms the ordinary into the sacred.', color: 'from-violet-500 to-purple-600' },
-  { emoji: '⚖️', name: 'ZADKIEL', title: 'Mercy', desc: 'You forgive the unforgivable. Your mercy grants second chances.', color: 'from-indigo-500 to-blue-700' },
-]
+// The 10 sustainability commandments — shape adapted from the legacy
+// guardian-archetype carousel so the surrounding JSX needs no changes
+// beyond what the linter forces.
+import { COMMANDMENT_LIST as _COMMANDMENT_LIST } from '@/lib/commandments'
+const guardianArchetypes = _COMMANDMENT_LIST.map((c) => ({
+  icon: c.icon,
+  name: c.name,
+  title: c.title,
+  desc: c.description,
+  color: c.gradient,
+}))
 
 // Business card features
 const businessCardFeatures = [
@@ -331,7 +344,42 @@ const fakeUserPreviews = [
   },
 ]
 
-export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps) {
+export function CommunityHeartPage({ isAuthenticated, featuredContributors }: CommunityHeartPageProps) {
+  // Map real top contributors → the shape the existing BizID carousel expects.
+  // Falls back to `fakeUserPreviews` if the DB returns nothing (fresh install
+  // or no opted-in contributors yet) so the card still renders.
+  const userPreviews = useMemo(() => {
+    if (!featuredContributors || featuredContributors.length === 0) return fakeUserPreviews
+    return featuredContributors.map((u, i) => {
+      const slug = resolveCommandmentSlug(u.guardianArchetype)
+      const c = COMMANDMENTS[slug]
+      return {
+        id: u.id,
+        name: u.name || 'Anonymous',
+        declaration: u.declaration?.trim() || 'Building a better tomorrow',
+        theme: `${slug}-${u.id}`, // unique key per user
+        gradient: c.gradient,
+        accentColor: c.accentColor,
+        stock: u.stockScore,
+        fishCustomization: u.fishCustomization as FishCustomization | null,
+        commandmentHex: c.hexAccent,
+      }
+    })
+  }, [featuredContributors])
+
+  // iOS Safari mishandles backface-visibility + preserve-3d on these cards,
+  // so on viewports below `lg` we skip the 3D flip entirely and render only
+  // the primary face of each card flat.
+  const [isDesktop, setIsDesktop] = useState(false)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const sync = () => setIsDesktop(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
   const [isVolitionFlipped, setIsVolitionFlipped] = useState(true)
   const [isBizIDFlipped, setIsBizIDFlipped] = useState(false)
   const [isLearningFlipped, setIsLearningFlipped] = useState(false)
@@ -342,14 +390,13 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
   const [activeToolIndex, setActiveToolIndex] = useState(0)
 
   // Synchronized wave effect - carousels change in right-to-left sequence
-  // Wave order: Volition (right) → Tools → Core Topics → BizID (left)
+  // Wave order: Volition (right) → Tools → Core Topics
   useEffect(() => {
     const WAVE_INTERVAL = 9000 // Time between waves (slower, more relaxed)
     const WAVE_DELAYS = {
       volition: 0,      // Right column - first
       tools: 700,       // Center-right - 0.7s later
       topics: 1400,     // Center-left - 1.4s later
-      bizId: 2100,      // Left column - 2.1s later
     }
 
     const waveInterval = setInterval(() => {
@@ -373,32 +420,37 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
           setActiveTopicIndex((prev) => (prev + 1) % coreLearnTopics.length)
         }, WAVE_DELAYS.topics)
       }
-
-      // BizID user preview (only when showing front side)
-      if (!isBizIDFlipped) {
-        setTimeout(() => {
-          setActiveUserIndex((prev) => (prev + 1) % fakeUserPreviews.length)
-        }, WAVE_DELAYS.bizId)
-      }
     }, WAVE_INTERVAL)
 
     return () => clearInterval(waveInterval)
-  }, [isVolitionFlipped, isLearningFlipped, isBizIDFlipped])
+  }, [isVolitionFlipped, isLearningFlipped])
+
+  // BizID contributor carousel rotates faster (every 4s) so the showcase
+  // feels lively and visitors see multiple real contributors quickly.
+  useEffect(() => {
+    if (isBizIDFlipped || userPreviews.length <= 1) return
+    const id = setInterval(() => {
+      setActiveUserIndex((prev) => (prev + 1) % userPreviews.length)
+    }, 4000)
+    return () => clearInterval(id)
+  }, [isBizIDFlipped, userPreviews.length])
 
   return (
     <div className="min-h-screen bg-[var(--background)] relative overflow-y-auto flex flex-col">
       {/* Ambient animated background */}
       <AmbientBackground />
 
-      {/* Tagline bar with ancient wisdom ticker */}
+      {/* Tagline bar with ancient wisdom ticker.
+          Mobile: ticker on top, tagline below (no overlap).
+          ≥sm:   tagline overlaid on top of the ticker (original look). */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative z-20 flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-[var(--primary)]/5 via-[var(--accent)]/10 to-[var(--secondary)]/5 border-b border-[var(--border)]/30 overflow-hidden"
+        className="relative z-20 flex flex-col sm:flex-row items-center sm:justify-center gap-2 sm:gap-0 px-4 py-2.5 bg-gradient-to-r from-[var(--primary)]/5 via-[var(--accent)]/10 to-[var(--secondary)]/5 border-b border-[var(--border)]/30 overflow-hidden"
       >
-        {/* Scrolling wisdom ticker - behind the tagline */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Scrolling wisdom ticker — own row on mobile, absolute fill on desktop */}
+        <div className="relative w-full h-6 overflow-hidden pointer-events-none sm:absolute sm:inset-0 sm:h-auto sm:w-auto">
           <motion.div
             className="flex items-center whitespace-nowrap h-full"
             animate={{ x: ['0%', '-50%'] }}
@@ -417,7 +469,7 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
           </motion.div>
         </div>
 
-        {/* Center tagline - on top */}
+        {/* Center tagline — stacked below the ticker on mobile, overlaid on desktop */}
         <motion.div
           className="relative z-10 flex items-center gap-3 px-4 py-1 bg-[var(--background)]/80 backdrop-blur-sm rounded-full border border-[var(--border)]/20"
           animate={{ opacity: [0.9, 1, 0.9] }}
@@ -447,20 +499,34 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-3 p-3 sm:p-4 flex-1 min-h-[calc(100vh-8rem)]">
         {/* Left column: BizID Showcase + Network Activity - Flip Card */}
         <div
-          className="lg:col-span-4 min-h-[260px] lg:min-h-[360px] h-full"
-          style={{ perspective: '1000px' }}
-          onMouseEnter={() => setIsBizIDFlipped(true)}
-          onMouseLeave={() => setIsBizIDFlipped(false)}
+          className="lg:col-span-4 min-h-[520px] lg:min-h-[360px] h-full cursor-pointer select-none"
+          style={{ perspective: '1000px', WebkitPerspective: '1000px' } as React.CSSProperties}
+          onMouseEnter={() => isDesktop && setIsBizIDFlipped(true)}
+          onMouseLeave={() => isDesktop && setIsBizIDFlipped(false)}
+          onClick={() => setIsBizIDFlipped((v) => !v)}
         >
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0, rotateY: isBizIDFlipped ? 180 : 0 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
             className="relative w-full h-full"
-            style={{ transformStyle: 'preserve-3d' }}
+            style={{ transformStyle: 'preserve-3d', WebkitTransformStyle: 'preserve-3d', willChange: 'transform' } as React.CSSProperties}
           >
             {/* Front Side - BizID Features + Network Activity */}
-            <GlowingBorder className="absolute inset-0" style={{ backfaceVisibility: 'hidden' }}>
+            {/* Explicit rotateY(0) + isolation: 'isolate' so the browser
+                can reliably cull this face when the parent flips 180°
+                (matches the back face which uses rotateY(180deg)).
+                Without an explicit transform here the front bled through
+                the back on mobile Safari. */}
+            <GlowingBorder
+              className="absolute inset-0"
+              style={{
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'rotateY(0deg)',
+                WebkitTransform: 'rotateY(0deg)',
+              } as React.CSSProperties}
+            >
               <div className="relative h-full flex flex-col gap-2">
                 {/* BizID Card - Top Section with Ivy Mural */}
                 <motion.div
@@ -564,20 +630,34 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
 
                   {/* User ID Card Preview - Compact */}
                   <div className="relative z-10 flex-1 min-h-0 flex flex-col">
-                    {/* Theme selector dots */}
-                    <div className="flex justify-center gap-1 mb-1">
-                      {fakeUserPreviews.map((user, index) => (
-                        <motion.button
-                          key={user.theme}
-                          onClick={() => setActiveUserIndex(index)}
-                          className={`w-2 h-2 rounded-full bg-gradient-to-r ${user.gradient} transition-all duration-300`}
-                          animate={{
-                            scale: index === activeUserIndex ? 1.3 : 1,
-                            opacity: index === activeUserIndex ? 1 : 0.4,
-                          }}
-                          whileHover={{ scale: 1.2, opacity: 0.8 }}
-                        />
-                      ))}
+                    {/* Carousel dots — solid colored dots. Explicit pixel
+                        sizing + p-0/border-0/appearance-none so mobile
+                        Safari's default button styling can't stretch them
+                        into vertical bars. */}
+                    <div className="flex justify-center items-center gap-1.5 mb-1.5">
+                      {userPreviews.map((user, index) => {
+                        const isActive = index === activeUserIndex
+                        const dotColor = (user as { commandmentHex?: string }).commandmentHex || '#fbbf24'
+                        return (
+                          <motion.button
+                            key={user.theme}
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); setActiveUserIndex(index) }}
+                            className="rounded-full transition-all duration-300 flex-shrink-0 p-0 border-0 appearance-none"
+                            style={{
+                              width: isActive ? 10 : 6,
+                              height: isActive ? 10 : 6,
+                              minWidth: isActive ? 10 : 6,
+                              minHeight: isActive ? 10 : 6,
+                              backgroundColor: isActive ? dotColor : 'rgba(148, 163, 184, 0.4)',
+                              boxShadow: isActive ? `0 0 6px ${dotColor}80` : undefined,
+                              lineHeight: 0,
+                            }}
+                            whileHover={{ scale: 1.25 }}
+                            aria-label={`Show contributor ${index + 1}`}
+                          />
+                        )
+                      })}
                     </div>
 
                     {/* User ID Card Preview */}
@@ -591,8 +671,8 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
                       >
                         {/* Card */}
                         <div className="relative bg-[var(--card)] border border-[var(--border)]/50 rounded-lg overflow-hidden shadow-lg">
-                          {/* Gradient header */}
-                          <div className={`h-8 bg-gradient-to-r ${fakeUserPreviews[activeUserIndex].gradient} relative overflow-hidden`}>
+                          {/* Gradient header — uses the current contributor's commandment colors */}
+                          <div className={`h-8 bg-gradient-to-r ${userPreviews[activeUserIndex].gradient} relative overflow-hidden`}>
                             <motion.div
                               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                               animate={{ x: ['-100%', '200%'] }}
@@ -600,22 +680,34 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
                             />
                           </div>
 
-                          {/* Avatar overlapping header */}
+                          {/* Avatar overlapping header — render the user's actual fish */}
                           <div className="relative -mt-4 px-2">
                             <motion.div
-                              className={`w-8 h-8 rounded-md bg-gradient-to-br ${fakeUserPreviews[activeUserIndex].gradient} p-0.5 shadow-md`}
+                              className={`w-10 h-10 rounded-md bg-gradient-to-br ${userPreviews[activeUserIndex].gradient} p-0.5 shadow-md`}
                             >
-                              <div className="w-full h-full rounded bg-[var(--card)] flex items-center justify-center">
-                                <User className={`w-3.5 h-3.5 ${fakeUserPreviews[activeUserIndex].accentColor}`} />
+                              <div className="w-full h-full rounded bg-[var(--card)] flex items-center justify-center overflow-hidden">
+                                {(() => {
+                                  const u = userPreviews[activeUserIndex] as typeof userPreviews[number] & { fishCustomization?: FishCustomization | null; stock?: number }
+                                  if (u.fishCustomization) {
+                                    return (
+                                      <FishSVG
+                                        tier={getTierFromScore(u.stock || 0)}
+                                        customization={u.fishCustomization}
+                                        size={32}
+                                      />
+                                    )
+                                  }
+                                  return <User className={`w-4 h-4 ${userPreviews[activeUserIndex].accentColor}`} />
+                                })()}
                               </div>
                             </motion.div>
                           </div>
 
                           {/* Content */}
                           <div className="p-2 pt-0.5">
-                            <p className="font-bold text-[10px] text-[var(--foreground)]">{fakeUserPreviews[activeUserIndex].name}</p>
-                            <p className={`text-[8px] ${fakeUserPreviews[activeUserIndex].accentColor} italic truncate`}>
-                              "{fakeUserPreviews[activeUserIndex].declaration}"
+                            <p className="font-bold text-[10px] text-[var(--foreground)] truncate">{userPreviews[activeUserIndex].name}</p>
+                            <p className={`text-[8px] ${userPreviews[activeUserIndex].accentColor} italic truncate`}>
+                              "{userPreviews[activeUserIndex].declaration}"
                             </p>
                           </div>
                         </div>
@@ -654,10 +746,21 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
             </GlowingBorder>
 
             {/* Back Side - Full Height BizID Philosophy with Ivy Mural - ENHANCED */}
+            {/* Solid `bg-[var(--card)]` underneath the gradient so even if
+                backface-visibility ever lets a sliver of the front through,
+                the back face is fully opaque (no see-through middle from
+                the previous `via-[var(--muted)]/50`). */}
             <div
-              className="absolute inset-0 bg-gradient-to-br from-[var(--card)] via-[var(--muted)]/50 to-[var(--card)] rounded-xl p-5 overflow-hidden border-2 border-[var(--primary)]/20 shadow-xl"
-              style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+              className="absolute inset-0 bg-[var(--card)] rounded-xl p-5 overflow-hidden border-2 border-[var(--primary)]/20 shadow-xl"
+              style={{
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'rotateY(180deg)',
+                WebkitTransform: 'rotateY(180deg)',
+              } as React.CSSProperties}
             >
+              {/* Subtle gradient overlay on top of the solid card bg */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 via-transparent to-[var(--accent)]/5 rounded-xl pointer-events-none" />
               {/* Ivy Mural Background - Enhanced with more depth */}
               <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
                 {/* Deep layered parchment texture */}
@@ -720,37 +823,45 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
               <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-3">
                 {/* Enhanced Header with backdrop for depth */}
                 <div className="mb-3 flex flex-col items-center px-4 py-2.5 rounded-xl bg-[var(--card)]/60 backdrop-blur-sm border border-[var(--border)]/20 shadow-lg">
-                  <h3 className="text-lg font-black text-[var(--foreground)] mb-1.5 tracking-tight drop-shadow-sm">Your Professional Identity</h3>
+                  <h3 className="text-base sm:text-lg font-black text-[var(--foreground)] mb-1.5 tracking-tight drop-shadow-sm">Your Professional Identity</h3>
                   <p className="text-xs text-[var(--muted-foreground)] max-w-[220px] leading-relaxed text-center">A verified business card representing your values and contributions</p>
                 </div>
 
-                {/* Archetype icons with hover reveal - enhanced with glow */}
-                <div className="relative flex items-center justify-center gap-2 mb-3">
-                  {guardianArchetypes.map((archetype, i) => (
-                    <motion.div
-                      key={i}
-                      className="relative"
-                      onMouseEnter={() => setHoveredArchetype(i)}
-                      onMouseLeave={() => setHoveredArchetype(null)}
-                    >
+                {/* Commandment icons with hover reveal.
+                    stopPropagation so clicking a commandment doesn't
+                    bubble up to the flip-card toggle on the parent. */}
+                <div
+                  className="relative flex items-center justify-center gap-1.5 mb-3 flex-wrap"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {guardianArchetypes.map((archetype, i) => {
+                    const Icon = archetype.icon
+                    return (
                       <motion.div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center text-lg border-2 cursor-pointer transition-all ${
-                          hoveredArchetype === i
-                            ? 'bg-[var(--primary)]/40 border-[var(--primary)]/70 scale-110 shadow-xl shadow-[var(--primary)]/20'
-                            : 'bg-[var(--card)]/80 border-[var(--border)]/50 shadow-md'
-                        }`}
-                        whileHover={{ y: -3 }}
+                        key={i}
+                        className="relative"
+                        onMouseEnter={() => setHoveredArchetype(i)}
+                        onMouseLeave={() => setHoveredArchetype(null)}
                       >
-                        {archetype.emoji}
+                        <motion.div
+                          className={`w-10 h-10 rounded-full flex items-center justify-center border-2 cursor-pointer transition-all ${
+                            hoveredArchetype === i
+                              ? 'bg-[var(--primary)]/40 border-[var(--primary)]/70 scale-110 shadow-xl shadow-[var(--primary)]/20'
+                              : 'bg-[var(--card)]/80 border-[var(--border)]/50 shadow-md'
+                          }`}
+                          whileHover={{ y: -3 }}
+                        >
+                          <Icon className="w-5 h-5 text-[var(--foreground)]" />
+                        </motion.div>
                       </motion.div>
-                    </motion.div>
-                  ))}
+                    )
+                  })}
                   {/* Hover tooltip - positioned below entire icon row */}
                   {hoveredArchetype !== null && (
                     <motion.div
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-72 p-4 bg-[var(--card)] border-2 border-[var(--primary)]/40 rounded-xl shadow-2xl z-20"
+                      className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[90vw] max-w-[18rem] sm:w-72 p-4 bg-[var(--card)] border-2 border-[var(--primary)]/40 rounded-xl shadow-2xl z-20"
                     >
                       <p className={`text-base font-black text-center bg-gradient-to-r ${guardianArchetypes[hoveredArchetype].color} bg-clip-text text-transparent`}>{guardianArchetypes[hoveredArchetype].title}</p>
                       <p className="text-sm text-[var(--muted-foreground)] leading-relaxed mt-2 text-center">{guardianArchetypes[hoveredArchetype].desc}</p>
@@ -760,9 +871,9 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
 
                 {/* Enhanced Quote with better contrast */}
                 <div className="relative px-5 py-2 mb-3 bg-[var(--card)]/70 backdrop-blur-sm rounded-xl border border-[var(--primary)]/20 shadow-lg">
-                  <div className="absolute -left-1 top-1/2 -translate-y-1/2 text-[var(--primary)]/50 text-xl font-serif">"</div>
-                  <p className="text-sm italic text-[var(--foreground)] font-semibold drop-shadow-sm">Your values define your identity</p>
-                  <div className="absolute -right-1 top-1/2 -translate-y-1/2 text-[var(--primary)]/50 text-xl font-serif">"</div>
+                  <div className="hidden sm:block absolute -left-1 top-1/2 -translate-y-1/2 text-[var(--primary)]/50 text-xl font-serif">"</div>
+                  <p className="text-xs sm:text-sm italic text-[var(--foreground)] font-semibold drop-shadow-sm">Your values define your identity</p>
+                  <div className="hidden sm:block absolute -right-1 top-1/2 -translate-y-1/2 text-[var(--primary)]/50 text-xl font-serif">"</div>
                 </div>
 
                 {/* Feature explanations - enhanced with better depth and readability */}
@@ -814,25 +925,26 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="lg:col-span-5 flex flex-col gap-3 min-h-[260px] lg:min-h-[360px]"
+          className="lg:col-span-5 flex flex-col gap-3 min-h-[500px] lg:min-h-[360px]"
         >
           {/* Learning Academy - Flip Card with Philosophy - Now Full Height */}
           <div
-            className="relative flex-1"
-            style={{ perspective: '1000px' }}
-            onMouseEnter={() => setIsLearningFlipped(true)}
-            onMouseLeave={() => setIsLearningFlipped(false)}
+            className="relative flex-1 cursor-pointer select-none"
+            style={{ perspective: '1000px', WebkitPerspective: '1000px' } as React.CSSProperties}
+            onMouseEnter={() => isDesktop && setIsLearningFlipped(true)}
+            onMouseLeave={() => isDesktop && setIsLearningFlipped(false)}
+            onClick={() => setIsLearningFlipped((v) => !v)}
           >
             <motion.div
               className="relative w-full h-full"
-              style={{ transformStyle: 'preserve-3d' }}
+              style={{ transformStyle: 'preserve-3d', WebkitTransformStyle: 'preserve-3d', willChange: 'transform' } as React.CSSProperties}
               animate={{ rotateY: isLearningFlipped ? 180 : 0 }}
               transition={{ duration: 0.6, ease: 'easeInOut' }}
             >
               {/* Front Side - Learning Features with Zen Garden Mural */}
               <div
                 className="absolute inset-0 bg-gradient-to-br from-[var(--card)]/90 via-[var(--muted)]/40 to-[var(--card)]/90 backdrop-blur-md border border-[var(--border)]/30 rounded-xl p-4 overflow-hidden flex flex-col"
-                style={{ backfaceVisibility: 'hidden' }}
+                style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' } as React.CSSProperties}
               >
                 {/* Zen Garden Mural Background - Theme Aware */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
@@ -1028,7 +1140,7 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
                                         ? `${t.color} scale-125`
                                         : 'text-[var(--muted-foreground)]/25 hover:text-[var(--muted-foreground)]/50'
                                     }`}
-                                    onClick={() => setActiveTopicIndex(i)}
+                                    onClick={(e) => { e.stopPropagation(); setActiveTopicIndex(i) }}
                                   >
                                     <DotIcon className="w-3 h-3" />
                                   </button>
@@ -1085,7 +1197,7 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
                                         ? `${t.color} scale-125`
                                         : 'text-[var(--muted-foreground)]/25 hover:text-[var(--muted-foreground)]/50'
                                     }`}
-                                    onClick={() => setActiveToolIndex(i)}
+                                    onClick={(e) => { e.stopPropagation(); setActiveToolIndex(i) }}
                                   >
                                     <DotIcon className="w-3 h-3" />
                                   </button>
@@ -1103,7 +1215,12 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
               {/* Back Side - Learning Philosophy with Zen Mural - ENHANCED */}
               <div
                 className="absolute inset-0 bg-gradient-to-br from-[var(--card)] via-[var(--muted)]/50 to-[var(--card)] rounded-xl p-5 overflow-hidden border-2 border-[var(--accent)]/20 shadow-xl"
-                style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                style={{
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                  transform: 'rotateY(180deg)',
+                  WebkitTransform: 'rotateY(180deg)',
+                } as React.CSSProperties}
               >
                 {/* Zen Mural Background for back - Enhanced with more depth */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
@@ -1178,12 +1295,12 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
                 <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
                   {/* Enhanced Header with backdrop for depth */}
                   <div className="mb-4 flex flex-col items-center px-5 py-3 rounded-xl bg-[var(--card)]/60 backdrop-blur-sm border border-[var(--border)]/20 shadow-lg">
-                    <h3 className="text-xl font-black text-[var(--foreground)] mb-1.5 tracking-tight drop-shadow-sm">Education Without Barriers</h3>
+                    <h3 className="text-base sm:text-xl font-black text-[var(--foreground)] mb-1.5 tracking-tight drop-shadow-sm">Education Without Barriers</h3>
                     <p className="text-sm text-[var(--muted-foreground)] max-w-[340px] leading-relaxed text-center">Free sustainability education for all ages</p>
                   </div>
 
                   {/* Visual learning journey - enhanced with better depth */}
-                  <div className="flex items-center justify-center gap-2.5 mb-4 px-3 py-2.5 rounded-xl bg-[var(--card)]/40 backdrop-blur-sm border border-[var(--border)]/20">
+                  <div className="flex items-center justify-center gap-1 sm:gap-2.5 mb-4 px-2 sm:px-3 py-2.5 rounded-xl bg-[var(--card)]/40 backdrop-blur-sm border border-[var(--border)]/20">
                     {[
                       { emoji: '🌱', label: 'Begin' },
                       { emoji: '📚', label: 'Study' },
@@ -1200,13 +1317,13 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
                         transition={{ delay: i * 0.06 }}
                         whileHover={{ y: -3, scale: 1.1 }}
                       >
-                        <div className="w-11 h-11 rounded-full bg-[var(--card)]/80 border-2 border-[var(--border)]/50 flex items-center justify-center shadow-md mb-1">
-                          <span className="text-xl">{stage.emoji}</span>
+                        <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-[var(--card)]/80 border-2 border-[var(--border)]/50 flex items-center justify-center shadow-md mb-1">
+                          <span className="text-sm sm:text-xl">{stage.emoji}</span>
                         </div>
                         <span className="text-[9px] font-semibold text-[var(--foreground)]/80 drop-shadow-sm">{stage.label}</span>
                         {i < 5 && (
                           <motion.div
-                            className="absolute w-5 h-0.5 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] right-[-12px] top-5 rounded-full shadow-sm"
+                            className="absolute w-2 sm:w-5 h-0.5 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] right-[-5px] sm:right-[-12px] top-4 sm:top-5 rounded-full shadow-sm"
                             initial={{ scaleX: 0 }}
                             animate={{ scaleX: 1 }}
                             transition={{ delay: i * 0.06 + 0.2 }}
@@ -1218,59 +1335,59 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
 
                   {/* Enhanced Philosophy statement with better contrast */}
                   <div className="relative px-6 py-3 mb-4 bg-[var(--card)]/70 backdrop-blur-sm rounded-xl border border-[var(--accent)]/20 shadow-lg">
-                    <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 text-[var(--accent)]/60 text-2xl font-serif">"</div>
-                    <p className="text-base italic text-[var(--foreground)] font-semibold drop-shadow-sm">Knowledge belongs to everyone</p>
-                    <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 text-[var(--accent)]/60 text-2xl font-serif">"</div>
+                    <div className="hidden sm:block absolute -left-1.5 top-1/2 -translate-y-1/2 text-[var(--accent)]/60 text-2xl font-serif">"</div>
+                    <p className="text-sm sm:text-base italic text-[var(--foreground)] font-semibold drop-shadow-sm">Knowledge belongs to everyone</p>
+                    <div className="hidden sm:block absolute -right-1.5 top-1/2 -translate-y-1/2 text-[var(--accent)]/60 text-2xl font-serif">"</div>
                   </div>
 
                   {/* Feature explanations - enhanced grid with better depth */}
                   <div className="w-full grid grid-cols-2 gap-2.5">
                     <motion.div
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-[var(--card)]/70 backdrop-blur-sm border border-[var(--border)]/40 shadow-md"
+                      className="flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-2.5 rounded-xl bg-[var(--card)]/70 backdrop-blur-sm border border-[var(--border)]/40 shadow-md min-w-0"
                       whileHover={{ scale: 1.03, x: 2, boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}
                     >
                       <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--primary)]/30 to-[var(--primary)]/10 flex items-center justify-center flex-shrink-0 shadow-inner border border-[var(--primary)]/20">
                         <GraduationCap className="w-4 h-4 text-[var(--primary)] drop-shadow-sm" />
                       </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-[var(--foreground)] drop-shadow-sm">6 Grade Levels</p>
-                        <p className="text-[10px] text-[var(--muted-foreground)] leading-snug">K-12 to PhD adapted</p>
+                      <div className="text-left min-w-0 flex-1">
+                        <p className="text-[10px] sm:text-xs font-bold text-[var(--foreground)] drop-shadow-sm leading-tight">6 Grade Levels</p>
+                        <p className="text-[9px] sm:text-[10px] text-[var(--muted-foreground)] leading-snug">K-12 to PhD adapted</p>
                       </div>
                     </motion.div>
                     <motion.div
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-[var(--card)]/70 backdrop-blur-sm border border-[var(--border)]/40 shadow-md"
+                      className="flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-2.5 rounded-xl bg-[var(--card)]/70 backdrop-blur-sm border border-[var(--border)]/40 shadow-md min-w-0"
                       whileHover={{ scale: 1.03, x: 2, boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}
                     >
                       <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500/30 to-purple-500/10 flex items-center justify-center flex-shrink-0 shadow-inner border border-purple-500/20">
                         <Gamepad2 className="w-4 h-4 text-purple-500 drop-shadow-sm" />
                       </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-[var(--foreground)] drop-shadow-sm">Interactive Games</p>
-                        <p className="text-[10px] text-[var(--muted-foreground)] leading-snug">Learn through play</p>
+                      <div className="text-left min-w-0 flex-1">
+                        <p className="text-[10px] sm:text-xs font-bold text-[var(--foreground)] drop-shadow-sm leading-tight">Interactive Games</p>
+                        <p className="text-[9px] sm:text-[10px] text-[var(--muted-foreground)] leading-snug">Learn through play</p>
                       </div>
                     </motion.div>
                     <motion.div
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-[var(--card)]/70 backdrop-blur-sm border border-[var(--border)]/40 shadow-md"
+                      className="flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-2.5 rounded-xl bg-[var(--card)]/70 backdrop-blur-sm border border-[var(--border)]/40 shadow-md min-w-0"
                       whileHover={{ scale: 1.03, x: 2, boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}
                     >
                       <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/30 to-cyan-500/10 flex items-center justify-center flex-shrink-0 shadow-inner border border-cyan-500/20">
                         <Brain className="w-4 h-4 text-cyan-500 drop-shadow-sm" />
                       </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-[var(--foreground)] drop-shadow-sm">Adaptive Learning</p>
-                        <p className="text-[10px] text-[var(--muted-foreground)] leading-snug">Adjusts to your pace</p>
+                      <div className="text-left min-w-0 flex-1">
+                        <p className="text-[10px] sm:text-xs font-bold text-[var(--foreground)] drop-shadow-sm leading-tight">Adaptive Learning</p>
+                        <p className="text-[9px] sm:text-[10px] text-[var(--muted-foreground)] leading-snug">Adjusts to your pace</p>
                       </div>
                     </motion.div>
                     <motion.div
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-[var(--card)]/70 backdrop-blur-sm border border-[var(--border)]/40 shadow-md"
+                      className="flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-2.5 rounded-xl bg-[var(--card)]/70 backdrop-blur-sm border border-[var(--border)]/40 shadow-md min-w-0"
                       whileHover={{ scale: 1.03, x: 2, boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}
                     >
                       <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent)]/30 to-[var(--accent)]/10 flex items-center justify-center flex-shrink-0 shadow-inner border border-[var(--accent)]/20">
                         <Award className="w-4 h-4 text-[var(--accent)] drop-shadow-sm" />
                       </div>
-                      <div className="text-left">
-                        <p className="text-xs font-bold text-[var(--foreground)] drop-shadow-sm">Certifications</p>
-                        <p className="text-[10px] text-[var(--muted-foreground)] leading-snug">Earn credentials</p>
+                      <div className="text-left min-w-0 flex-1">
+                        <p className="text-[10px] sm:text-xs font-bold text-[var(--foreground)] drop-shadow-sm leading-tight">Certifications</p>
+                        <p className="text-[9px] sm:text-[10px] text-[var(--muted-foreground)] leading-snug">Earn credentials</p>
                       </div>
                     </motion.div>
                   </div>
@@ -1286,25 +1403,35 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="lg:col-span-3 flex flex-col gap-3 min-h-[260px] lg:min-h-[360px]"
+          className="lg:col-span-3 flex flex-col gap-3 min-h-[560px] lg:min-h-[360px]"
         >
           {/* Volition Marketing Card - Flip Card with Philosophy */}
           <div
-            className="relative flex-1 min-h-0"
-            style={{ perspective: '1000px' }}
-            onMouseEnter={() => setIsVolitionFlipped(false)}
-            onMouseLeave={() => setIsVolitionFlipped(true)}
+            className="relative flex-1 min-h-0 cursor-pointer select-none"
+            style={{ perspective: '1000px', WebkitPerspective: '1000px' } as React.CSSProperties}
+            onMouseEnter={() => isDesktop && setIsVolitionFlipped(false)}
+            onMouseLeave={() => isDesktop && setIsVolitionFlipped(true)}
+            onClick={() => setIsVolitionFlipped((v) => !v)}
           >
             <motion.div
               className="absolute inset-0"
-              style={{ transformStyle: 'preserve-3d' }}
+              style={{ transformStyle: 'preserve-3d', WebkitTransformStyle: 'preserve-3d', willChange: 'transform' } as React.CSSProperties}
               animate={{ rotateY: isVolitionFlipped ? 180 : 0 }}
               transition={{ duration: 0.6, ease: 'easeInOut' }}
             >
               {/* Front Side - Features with Forest Mural */}
-              <motion.div
+              {/* Plain <div> + explicit rotateY(0) so framer-motion never
+                  injects a transform that breaks backface-visibility and
+                  lets the back face bleed through. Matches the pattern
+                  used on the back face below. */}
+              <div
                 className="absolute inset-0 bg-gradient-to-br from-[var(--card)]/90 via-[var(--muted)]/40 to-[var(--card)]/90 rounded-xl p-4 overflow-hidden border border-[var(--border)]/30"
-                style={{ backfaceVisibility: 'hidden' }}
+                style={{
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                  transform: 'rotateY(0deg)',
+                  WebkitTransform: 'rotateY(0deg)',
+                } as React.CSSProperties}
               >
                 {/* Forest Mural Background - Theme Aware */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
@@ -1480,12 +1607,20 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </div>
 
               {/* Back Side - Philosophy with Forest Mural (Larger text with internal scroll) */}
-              <motion.div
+              {/* Plain <div> (not motion.div) so framer-motion doesn't override the inline
+                  rotateY(180deg). That override was leaving the back face at rotation 0,
+                  so it showed through the front while no flip animation played. */}
+              <div
                 className="absolute inset-0 bg-gradient-to-br from-[var(--card)]/95 via-[var(--muted)]/30 to-[var(--card)]/95 rounded-xl p-4 border border-[var(--border)]/30 flex flex-col"
-                style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                style={{
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                  transform: 'rotateY(180deg)',
+                  WebkitTransform: 'rotateY(180deg)',
+                } as React.CSSProperties}
               >
                 {/* Forest Mural Background for back - theme aware */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
@@ -1530,20 +1665,33 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
 
                   {/* Lane Carousel */}
                   <div className="relative w-full mb-3">
-                    {/* Lane indicator dots */}
-                    <div className="flex items-center justify-center gap-1 mb-2">
-                      {volitionLanes.map((_, i) => (
-                        <motion.button
-                          key={i}
-                          className={`w-1.5 h-1.5 rounded-full transition-all ${
-                            activeLaneIndex === i
-                              ? 'bg-[var(--primary)] w-3'
-                              : 'bg-[var(--muted-foreground)]/30'
-                          }`}
-                          onClick={() => setActiveLaneIndex(i)}
-                          whileHover={{ scale: 1.3 }}
-                        />
-                      ))}
+                    {/* Lane indicator dots — explicit pixel sizing + button
+                        reset so mobile Safari's default button styling
+                        doesn't stretch them into vertical bars. */}
+                    <div className="flex items-center justify-center gap-1.5 mb-2">
+                      {volitionLanes.map((_, i) => {
+                        const active = activeLaneIndex === i
+                        return (
+                          <motion.button
+                            key={i}
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); setActiveLaneIndex(i) }}
+                            whileHover={{ scale: 1.25 }}
+                            className="rounded-full transition-all duration-300 flex-shrink-0 p-0 border-0 appearance-none block"
+                            style={{
+                              width: active ? 10 : 6,
+                              height: active ? 10 : 6,
+                              minWidth: active ? 10 : 6,
+                              minHeight: active ? 10 : 6,
+                              backgroundColor: active ? 'var(--primary)' : 'rgba(148, 163, 184, 0.35)',
+                              boxShadow: active ? '0 0 6px var(--primary)' : undefined,
+                              lineHeight: 0,
+                              padding: 0,
+                            }}
+                            aria-label={`Show lane ${i + 1}`}
+                          />
+                        )
+                      })}
                     </div>
 
                     {/* Active lane display */}
@@ -1594,7 +1742,7 @@ export function CommunityHeartPage({ isAuthenticated }: CommunityHeartPageProps)
                     <Sparkles className="w-3.5 h-3.5 text-[var(--primary)]" />
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           </div>
 
