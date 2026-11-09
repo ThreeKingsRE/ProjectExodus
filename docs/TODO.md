@@ -2,6 +2,30 @@
 
 Running list of agreed next steps. Check items off in the PR that does them.
 
+## Your manual steps (things only you can do)
+Most keys may already exist in your **old** Vercel project or in each service's dashboard. Paste them into the new project under Settings → Environment Variables (all environments), then redeploy once at the end.
+
+**Fix what's broken now**
+- [ ] Image uploads: `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` (Config), `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` (cloudinary.com → Dashboard)
+- [ ] Live messages and notifications: `NEXT_PUBLIC_PUSHER_KEY`, `NEXT_PUBLIC_PUSHER_CLUSTER` (Config), `PUSHER_APP_ID`, `PUSHER_SECRET` (pusher.com → your Channels app → App Keys)
+- [ ] Sage's AI: `GROQ_API_KEY` (free, console.groq.com) and/or `ANTHROPIC_API_KEY` (console.anthropic.com; best answers). Without either, Sage gives canned replies
+- [ ] Decide about old accounts: they're in your old database (probably TKRDB). Bring them back (with Claude), or keep the fresh start
+- [ ] Make your own account admin (with Claude; needs the database)
+
+**Protect the site**
+- [ ] `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` (upstash.com, free): real rate limits
+- [ ] Turn on 2FA for your Vercel account (Vercel keeps prompting for it)
+- [ ] `CRON_SECRET`: random string from generate-secret.vercel.app/32
+
+**Email (sign-up verification, password reset)**
+- [ ] Resend account + verify your domain's DNS records + `RESEND_API_KEY`, `EMAIL_FROM`, `NEXT_PUBLIC_SITE_URL=https://projxodus.com` (see `docs/SETUP_GUIDE.md` Part 4)
+
+**Optional / later**
+- [ ] Live document collaboration: PartyKit (do together with Claude)
+- [ ] Social sign-in: Google / GitHub / Facebook / Apple client IDs and secrets
+- [ ] `GOOGLE_AI_API_KEY` (Gemini, older backup for some AI features)
+- [ ] Old Vercel project: once nothing points at it any more, delete it so there's one source of truth
+
 ## Bookmarked (next up)
 - [x] **Merged onto the July code** (Nov 9). The production branch was fast-forwarded (Nov 8) to `claude/find-recent-branch-f4nVq` (July 5, 2026), the real current site. This branch was built on the older Feb 12 code, so its 28 commits must be merged on top of July (322 files differ; expect overlaps in architecture, community, auth) before anything here goes live.
 - [ ] **Check `claude/update-exodus-site-D5jxe`** (Feb 17): 42 commits (Sage arc animation, newspaper-style community page) not in the July line. Decide whether they were superseded or should be brought over.
