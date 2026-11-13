@@ -170,6 +170,8 @@ import { regenerativeAgricultureModules } from './regenerative-agriculture'
 import { zeroWasteModules } from './zero-waste'
 import { greenBuildingModules } from './green-building'
 import { foodSovereigntyModules } from './food-sovereignty'
+import { MODULE_EXPANSIONS } from './expanded'
+import { moduleProgressKeys } from '@/lib/learning/topicVolumes'
 
 // Topic Definitions
 export const TOPICS: TopicDefinition[] = [
@@ -267,6 +269,34 @@ export const TOPICS: TopicDefinition[] = [
     modules: foodSovereigntyModules
   }
 ]
+
+// ============================================
+// EXPANDED CONTENT
+// Modules that started as stubs get their full lessons and quizzes from
+// data/modules/expanded (one file per module). Applied once at load.
+// ============================================
+
+function applyExpansions() {
+  for (const topic of TOPICS) {
+    const keys = moduleProgressKeys(topic.modules)
+    for (const exp of MODULE_EXPANSIONS) {
+      if (exp.topicId !== topic.id) continue
+      const index = keys.indexOf(exp.moduleKey)
+      if (index === -1) throw new Error(`Expansion for unknown module ${exp.topicId}/${exp.moduleKey}`)
+      const mod = topic.modules[index]
+      mod.lessons = mod.lessons.map((lesson) => {
+        const expanded = exp.lessons.find((l) => l.id === lesson.id)
+        return expanded ? { ...lesson, title: expanded.title, content: expanded.content } : lesson
+      })
+      // Any extra lessons in the expansion are appended after the originals
+      for (const extra of exp.lessons.filter((l) => !mod.lessons.some((x) => x.id === l.id))) {
+        mod.lessons.push({ id: extra.id, title: extra.title, order: mod.lessons.length + 1, content: extra.content, duration: 15 })
+      }
+      mod.quiz = { ...mod.quiz, questions: exp.quiz }
+    }
+  }
+}
+applyExpansions()
 
 // Helper function to get topic by slug
 export function getTopic(slug: CoreTopic): TopicDefinition | undefined {

@@ -1,0 +1,1297 @@
+[
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "hydropower",
+  "lessonIds": [
+   "re-hydro-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "geothermal-energy",
+  "lessonIds": [
+   "re-geo-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "energy-storage",
+  "lessonIds": [
+   "re-storage-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "biomass-energy",
+  "lessonIds": [
+   "re-bio-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "ocean-energy",
+  "lessonIds": [
+   "re-ocean-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "smart-grids",
+  "lessonIds": [
+   "re-grid-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "microgrids",
+  "lessonIds": [
+   "re-micro-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "electric-vehicles",
+  "lessonIds": [
+   "re-ev-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "hydrogen-energy",
+  "lessonIds": [
+   "re-h2-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "energy-storage~2",
+  "lessonIds": [
+   "re-stor-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "community-solar",
+  "lessonIds": [
+   "re-cs-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "net-metering",
+  "lessonIds": [
+   "re-nm-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "energy-efficiency",
+  "lessonIds": [
+   "re-eff-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "geothermal-energy~2",
+  "lessonIds": [
+   "re-geo-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "offshore-wind",
+  "lessonIds": [
+   "re-osw-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "solar-plus-storage",
+  "lessonIds": [
+   "re-ss-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "clean-energy-finance",
+  "lessonIds": [
+   "re-fin-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "grid-decarbonization",
+  "lessonIds": [
+   "re-gd-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "electric-vehicles~2",
+  "lessonIds": [
+   "re-ev-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "smart-grids~2",
+  "lessonIds": [
+   "re-sg-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "microgrids~2",
+  "lessonIds": [
+   "re-mg-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "biomass-biofuels",
+  "lessonIds": [
+   "re-bio-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "building-electrification",
+  "lessonIds": [
+   "re-elec-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "ocean-energy~2",
+  "lessonIds": [
+   "re-ocean-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "green-hydrogen",
+  "lessonIds": [
+   "re-h2-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "energy-policy-regulation",
+  "lessonIds": [
+   "re-pol-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "energy-access-equity",
+  "lessonIds": [
+   "re-access-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "clean-energy-finance~2",
+  "lessonIds": [
+   "re-fin-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "energy-storage-technologies",
+  "lessonIds": [
+   "re-stor-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "distributed-energy-resources",
+  "lessonIds": [
+   "re-dist-1"
+  ]
+ },
+ {
+  "topicId": "renewable-energy",
+  "moduleKey": "energy-transition-masterclass",
+  "lessonIds": [
+   "re-trans-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "wetland-restoration",
+  "lessonIds": [
+   "ws-wet-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-conservation",
+  "lessonIds": [
+   "ws-cons-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "groundwater-management",
+  "lessonIds": [
+   "ws-gw-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "stormwater-management",
+  "lessonIds": [
+   "ws-sw-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-quality-monitoring",
+  "lessonIds": [
+   "ws-wq-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "aquaponics-systems",
+  "lessonIds": [
+   "ws-ap-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "desalination",
+  "lessonIds": [
+   "ws-desal-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "fog-harvesting",
+  "lessonIds": [
+   "ws-fog-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "wetland-conservation",
+  "lessonIds": [
+   "ws-wet-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-economics",
+  "lessonIds": [
+   "ws-econ-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-rights-law",
+  "lessonIds": [
+   "ws-law-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "climate-adaptation-water",
+  "lessonIds": [
+   "ws-clim-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-conservation~2",
+  "lessonIds": [
+   "ws-cons-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-reuse-recycling",
+  "lessonIds": [
+   "ws-reuse-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "green-infrastructure",
+  "lessonIds": [
+   "ws-gi-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-security",
+  "lessonIds": [
+   "ws-sec-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "integrated-water-management",
+  "lessonIds": [
+   "ws-iwm-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "desalination~2",
+  "lessonIds": [
+   "ws-desal-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-quality-monitoring~2",
+  "lessonIds": [
+   "ws-mon-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "aquifer-management",
+  "lessonIds": [
+   "ws-aq-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "watershed-protection",
+  "lessonIds": [
+   "ws-shed-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "traditional-water-harvesting",
+  "lessonIds": [
+   "ws-trad-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-conservation-technology",
+  "lessonIds": [
+   "ws-cons-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "urban-water-management",
+  "lessonIds": [
+   "ws-urban-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-policy-law",
+  "lessonIds": [
+   "ws-pol-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-energy-nexus",
+  "lessonIds": [
+   "ws-nexus-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "climate-and-water",
+  "lessonIds": [
+   "ws-clim-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "blue-economy",
+  "lessonIds": [
+   "ws-blue-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-technology-innovation",
+  "lessonIds": [
+   "ws-innov-1"
+  ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "water-future-masterclass",
+  "lessonIds": [
+   "ws-future-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "no-till-farming",
+  "lessonIds": [
+   "ra-notill-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "composting",
+  "lessonIds": [
+   "ra-compost-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "crop-rotation",
+  "lessonIds": [
+   "ra-rotation-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "agroforestry",
+  "lessonIds": [
+   "ra-af-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "holistic-grazing",
+  "lessonIds": [
+   "ra-gr-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "perennial-systems",
+  "lessonIds": [
+   "ra-per-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "integrated-pest-management",
+  "lessonIds": [
+   "ra-ipm-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "soil-carbon-sequestration",
+  "lessonIds": [
+   "ra-carb-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "water-smart-agriculture",
+  "lessonIds": [
+   "ra-ws-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "pollinator-habitat",
+  "lessonIds": [
+   "ra-poll-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "farm-diversification",
+  "lessonIds": [
+   "ra-div-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "seed-saving",
+  "lessonIds": [
+   "ra-seed-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "livestock-integration",
+  "lessonIds": [
+   "ra-live-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "biochar",
+  "lessonIds": [
+   "ra-bio-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "mycorrhizal-fungi",
+  "lessonIds": [
+   "ra-myc-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "no-till-farming~2",
+  "lessonIds": [
+   "ra-nt-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "farm-economics",
+  "lessonIds": [
+   "ra-econ-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "carbon-markets",
+  "lessonIds": [
+   "ra-carb-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "perennial-grains",
+  "lessonIds": [
+   "ra-per-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "agroecology",
+  "lessonIds": [
+   "ra-agro-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "farmer-networks",
+  "lessonIds": [
+   "ra-net-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "soil-testing",
+  "lessonIds": [
+   "ra-test-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "climate-smart-farming",
+  "lessonIds": [
+   "ra-clim-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "integrated-pest-management~2",
+  "lessonIds": [
+   "ra-ipm-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "pollinator-health",
+  "lessonIds": [
+   "ra-poll-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "silvopasture-systems",
+  "lessonIds": [
+   "ra-silvo-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "regenerative-ranching",
+  "lessonIds": [
+   "ra-ranch-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "farm-biodiversity",
+  "lessonIds": [
+   "ra-bio-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "landscape-integration",
+  "lessonIds": [
+   "ra-land-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "regenerative-business-models",
+  "lessonIds": [
+   "ra-bus-1"
+  ]
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "regenerative-agriculture-future",
+  "lessonIds": [
+   "ra-fut-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "circular-economy",
+  "lessonIds": [
+   "circular-lesson-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "zero-waste-masterclass",
+  "lessonIds": [
+   "master-zw-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "composting-fundamentals~2",
+  "lessonIds": [
+   "zw-comp-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "recycling-systems",
+  "lessonIds": [
+   "zw-rec-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "product-lifecycle-design",
+  "lessonIds": [
+   "zw-life-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "food-waste-reduction",
+  "lessonIds": [
+   "zw-food-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "plastic-free-living",
+  "lessonIds": [
+   "zw-pf-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "community-waste-solutions",
+  "lessonIds": [
+   "zw-comm-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "extended-producer-responsibility",
+  "lessonIds": [
+   "zw-epr-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "textile-waste",
+  "lessonIds": [
+   "zw-tex-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "e-waste",
+  "lessonIds": [
+   "zw-ew-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "upcycling-repair",
+  "lessonIds": [
+   "zw-up-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "industrial-ecology",
+  "lessonIds": [
+   "zw-ind-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "circular-economy~2",
+  "lessonIds": [
+   "zw-circ-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "packaging-innovation",
+  "lessonIds": [
+   "zw-pack-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "construction-waste",
+  "lessonIds": [
+   "zw-const-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "biomaterials",
+  "lessonIds": [
+   "zw-bio-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "product-lifecycle",
+  "lessonIds": [
+   "zw-life-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "zero-waste-communities",
+  "lessonIds": [
+   "zw-comm-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "food-waste-prevention",
+  "lessonIds": [
+   "zw-food-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "plastic-alternatives",
+  "lessonIds": [
+   "zw-plastic-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "sharing-economy",
+  "lessonIds": [
+   "zw-share-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "waste-to-energy",
+  "lessonIds": [
+   "zw-wte-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "extended-producer-responsibility~2",
+  "lessonIds": [
+   "zw-epr-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "textile-waste-fashion",
+  "lessonIds": [
+   "zw-text-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "electronic-waste",
+  "lessonIds": [
+   "zw-ew-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "hazardous-waste-management",
+  "lessonIds": [
+   "zw-haz-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "waste-data-measurement",
+  "lessonIds": [
+   "zw-data-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "zero-waste-careers",
+  "lessonIds": [
+   "zw-career-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "industrial-symbiosis",
+  "lessonIds": [
+   "zw-symb-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "circular-design-principles",
+  "lessonIds": [
+   "zw-circ-1"
+  ]
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "zero-waste-future",
+  "lessonIds": [
+   "zw-fut-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "sustainable-materials~2",
+  "lessonIds": [
+   "gb-mat-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "water-efficient-buildings",
+  "lessonIds": [
+   "gb-water-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "indoor-air-quality",
+  "lessonIds": [
+   "gb-iaq-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "building-integrated-renewables",
+  "lessonIds": [
+   "gb-ren-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "green-roofs-and-walls",
+  "lessonIds": [
+   "gb-gr-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "building-retrofits",
+  "lessonIds": [
+   "gb-ret-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "green-building-certifications",
+  "lessonIds": [
+   "gb-cert-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "net-zero-buildings",
+  "lessonIds": [
+   "gb-nz-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "biophilic-design",
+  "lessonIds": [
+   "gb-bio-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "healthy-buildings",
+  "lessonIds": [
+   "gb-health-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "embodied-carbon",
+  "lessonIds": [
+   "gb-ec-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "resilient-design",
+  "lessonIds": [
+   "gb-res-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "smart-buildings",
+  "lessonIds": [
+   "gb-sm-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "mass-timber",
+  "lessonIds": [
+   "gb-tm-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "green-retrofits",
+  "lessonIds": [
+   "gb-rt-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "sustainable-interiors",
+  "lessonIds": [
+   "gb-in-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "water-efficient-buildings~2",
+  "lessonIds": [
+   "gb-wt-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "daylighting-design",
+  "lessonIds": [
+   "gb-day-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "building-commissioning",
+  "lessonIds": [
+   "gb-cx-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "acoustic-design",
+  "lessonIds": [
+   "gb-ac-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "building-renewables",
+  "lessonIds": [
+   "gb-ren-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "adaptive-reuse",
+  "lessonIds": [
+   "gb-adapt-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "green-building-certification",
+  "lessonIds": [
+   "gb-cert-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "healthy-building-materials",
+  "lessonIds": [
+   "gb-healthy-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "green-roofs-walls",
+  "lessonIds": [
+   "gb-living-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "building-performance-monitoring",
+  "lessonIds": [
+   "gb-perf-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "climate-resilient-buildings",
+  "lessonIds": [
+   "gb-resil-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "net-zero-carbon-buildings",
+  "lessonIds": [
+   "gb-nz-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "biophilic-design~2",
+  "lessonIds": [
+   "gb-bio-1"
+  ]
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "green-building-future",
+  "lessonIds": [
+   "gb-fut-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "seed-saving",
+  "lessonIds": [
+   "fs-seed-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "farmers-markets",
+  "lessonIds": [
+   "fs-market-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "food-preservation",
+  "lessonIds": [
+   "fs-preserve-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "urban-farming",
+  "lessonIds": [
+   "fs-urban-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "food-cooperatives",
+  "lessonIds": [
+   "fs-coop-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "indigenous-food-systems",
+  "lessonIds": [
+   "fs-indig-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "agroecology",
+  "lessonIds": [
+   "fs-agro-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "food-justice",
+  "lessonIds": [
+   "fs-justice-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "local-food-systems",
+  "lessonIds": [
+   "fs-local-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "school-gardens",
+  "lessonIds": [
+   "fs-school-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "urban-agriculture-policy",
+  "lessonIds": [
+   "fs-urban-pol-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "food-processing-preservation",
+  "lessonIds": [
+   "fs-process-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "traditional-food-knowledge",
+  "lessonIds": [
+   "fs-trad-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "food-waste-reduction",
+  "lessonIds": [
+   "fs-waste-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "indigenous-food-systems~2",
+  "lessonIds": [
+   "fs-indig-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "climate-resilient-agriculture",
+  "lessonIds": [
+   "fs-clim-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "food-access-equity",
+  "lessonIds": [
+   "fs-access-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "cooperative-food-models",
+  "lessonIds": [
+   "fs-coop-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "farm-to-school",
+  "lessonIds": [
+   "fs-school-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "agroforestry-food-forests",
+  "lessonIds": [
+   "fs-agf-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "nutrition-education",
+  "lessonIds": [
+   "fs-nut-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "sustainable-fisheries",
+  "lessonIds": [
+   "fs-fish-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "urban-farming~2",
+  "lessonIds": [
+   "fs-urban-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "food-preservation-storage",
+  "lessonIds": [
+   "fs-pres-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "seed-saving-biodiversity",
+  "lessonIds": [
+   "fs-seed-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "food-policy-governance",
+  "lessonIds": [
+   "fs-pol-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "regenerative-food-systems",
+  "lessonIds": [
+   "fs-regen-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "food-system-resilience",
+  "lessonIds": [
+   "fs-resil-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "indigenous-food-ways",
+  "lessonIds": [
+   "fs-indig-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "food-system-finance",
+  "lessonIds": [
+   "fs-fin-1"
+  ]
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "future-of-food",
+  "lessonIds": [
+   "fs-future-1"
+  ]
+ }
+]
