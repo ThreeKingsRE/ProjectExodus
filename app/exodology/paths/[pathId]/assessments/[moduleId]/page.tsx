@@ -11,7 +11,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { notFound, useParams, useRouter } from 'next/navigation'
-import { moduleAssessments } from '@/data/exodology-curriculum'
+import { getModuleAssessment } from '@/lib/exodology/assessments'
 
 // ============================================================================
 // TYPE DEFINITIONS
@@ -79,9 +79,8 @@ export default function AssessmentPage() {
 
   const meta = pathMeta[pathId as keyof typeof pathMeta]
 
-  // Get assessment data
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const assessmentData: Assessment | undefined = (moduleAssessments as any)?.[moduleId]
+  // Get assessment data (the adapter handles both key styles and data shapes)
+  const assessmentData: Assessment | undefined = getModuleAssessment(moduleId)
 
   if (!meta) {
     notFound()
