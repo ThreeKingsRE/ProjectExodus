@@ -2689,3 +2689,120 @@ body.textbook-fullscreen .fixed.inset-0.z-50 {
   }
 }
 
+
+/* ============================================
+   DIGITAL SCROLL — DRAFTING STYLE
+   Ink-on-paper treatment shared with the architecture technical sheets
+   (public/architecture/drawings): cream paper, charcoal ink, oxide accent,
+   hairline rules, monospace labels. Scoped to the scroll only.
+   ============================================ */
+.digital-scroll {
+  --ds-paper: #f4efe3;
+  --ds-paper-deep: #ece5d4;
+  --ds-ink: #1f2a37;
+  --ds-ink-soft: #4a5565;
+  --ds-accent: #9a3412;
+  --ds-rule: rgba(31, 42, 55, 0.22);
+  --ds-hair: rgba(31, 42, 55, 0.12);
+  --ds-grid: rgba(31, 42, 55, 0.035);
+  --ds-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Re-point the shared tokens the scroll's components already use */
+  --book-paper: var(--ds-paper);
+  --book-text: var(--ds-ink);
+  --primary: var(--ds-accent);
+  --primary-foreground: #fbf8f1;
+  --foreground: var(--ds-ink);
+  --muted-foreground: var(--ds-ink-soft);
+  --muted: var(--ds-paper-deep);
+  --border: var(--ds-rule);
+  --card: var(--ds-paper);
+}
+
+/* Night: the same sheet as a blueprint-dark drawing */
+.night .digital-scroll,
+.dark .digital-scroll,
+.midnight .digital-scroll {
+  --ds-paper: #1b2230;
+  --ds-paper-deep: #232c3c;
+  --ds-ink: #e9e3d4;
+  --ds-ink-soft: #b3ad9f;
+  --ds-accent: #e8956b;
+  --ds-rule: rgba(233, 227, 212, 0.25);
+  --ds-hair: rgba(233, 227, 212, 0.12);
+  --ds-grid: rgba(233, 227, 212, 0.04);
+  --primary-foreground: #1b2230;
+}
+
+/* Drafting paper: faint 8px grid with a heavier line every 40px */
+.digital-scroll .ds-sheet {
+  background-color: var(--ds-paper);
+  background-image:
+    linear-gradient(var(--ds-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ds-grid) 1px, transparent 1px),
+    linear-gradient(var(--ds-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ds-grid) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+}
+
+/* Sheet labels: uppercase, letter-spaced monospace like the title blocks */
+.digital-scroll .ds-label {
+  font-family: var(--ds-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+
+/* Lesson typography inside the scroll: ink headings over a hairline rule */
+.digital-scroll .lesson-content {
+  color: var(--ds-ink);
+  /* Lora is already loaded site-wide (app/layout.tsx); a proper book face */
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+}
+.digital-scroll .lesson-content h2,
+.digital-scroll .lesson-content .verse-header h2 {
+  color: var(--ds-ink);
+  background: none;
+  border-bottom: 1px solid var(--ds-rule);
+  letter-spacing: 0.01em;
+}
+.digital-scroll .lesson-content .verse-header h2 {
+  border-bottom: 1.5px solid var(--ds-ink);
+}
+.digital-scroll .lesson-content h3,
+.digital-scroll .lesson-content h4 {
+  color: var(--ds-ink);
+}
+.digital-scroll .lesson-content blockquote,
+.digital-scroll .lesson-content .scavenger-quote {
+  background: transparent;
+  border-left: 1.5px solid var(--ds-accent);
+  border-right: none;
+  box-shadow: none;
+}
+.digital-scroll .lesson-content blockquote::before,
+.digital-scroll .lesson-content .scavenger-quote::before {
+  display: none;
+}
+.digital-scroll .lesson-content table {
+  border: 1px solid var(--ds-rule);
+}
+.digital-scroll .lesson-content th {
+  background: transparent;
+  font-family: var(--ds-mono);
+  font-size: 0.72em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1.5px solid var(--ds-ink);
+}
+.digital-scroll .lesson-content td {
+  border-bottom: 1px solid var(--ds-hair);
+}
+.digital-scroll .lesson-content hr.lesson-divider {
+  border: none;
+  height: 1px;
+  margin: 2.5rem 0;
+  background: repeating-linear-gradient(90deg, var(--ds-accent) 0 14px, transparent 14px 17px, var(--ds-accent) 17px 19px, transparent 19px 22px);
+  opacity: 0.55;
+}

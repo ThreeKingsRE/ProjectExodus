@@ -12,7 +12,6 @@ import { forwardRef, ReactNode, useState, useEffect, useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils/cn'
 import {
-  WATERMARK_CONFIG,
   GUARDIAN_RIBBONS,
   RIBBON_ORDER,
   A11Y_CONFIG,
@@ -31,6 +30,7 @@ interface ScrollPageProps {
   /** Chapter number shown in the footer (defaults to chapterIndex + 1; differs in later volumes) */
   chapterNumber?: number
   side: 'left' | 'right'
+  /** Kept for compatibility; the sheet frame replaced the watermark */
   showWatermark?: boolean
   allowScroll?: boolean // For lesson content, quizzes/games - other pages should fit
   onPrevPage?: () => void
@@ -89,7 +89,7 @@ interface Illustration {
 
 export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
   function ScrollPage(
-    { children, pageNumber, totalPages, chapterIndex, chapterNumber, side, showWatermark = true, allowScroll = false, onPrevPage, onNextPage, isFirstPage = false, isLastPage = false, className },
+    { children, pageNumber, totalPages, chapterIndex, chapterNumber, side, allowScroll = false, onPrevPage, onNextPage, isFirstPage = false, isLastPage = false, className },
     ref
   ) {
     const [deviceType, setDeviceType] = useState<'desktop' | 'tablet' | 'mobile'>('desktop')
@@ -114,24 +114,16 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
     const isDesktop = deviceType === 'desktop'
     const isMobile = deviceType !== 'desktop'
     const ribbon = RIBBON_ORDER[chapterIndex] ? GUARDIAN_RIBBONS[RIBBON_ORDER[chapterIndex]] : null
-    const WatermarkIcon = ribbon?.icon
 
     return (
       <div
         ref={ref}
         className={cn(
-          'relative w-full h-full',
+          'ds-sheet relative w-full h-full',
           'flex flex-col',
-          'bg-[var(--book-paper,var(--card))]',
           'text-[var(--book-text,var(--foreground))]',
           className
         )}
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 100% 0%, rgba(0,0,0,0.02) 0%, transparent 50%),
-            radial-gradient(circle at 0% 100%, rgba(0,0,0,0.01) 0%, transparent 50%)
-          `,
-        }}
         role="article"
         aria-label={A11Y_CONFIG.ariaLabels.pageNumber(pageNumber, totalPages)}
       >
@@ -150,7 +142,7 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
         {/* Footer: page number in corner + turn arrows */}
         <div
           className={cn(
-            'shrink-0 py-1 border-t border-[var(--border)]/20',
+            'shrink-0 py-1 border-t border-[var(--ds-rule,var(--border))]',
             'flex items-center',
             'text-[10px] text-[var(--muted-foreground)]'
           )}
@@ -169,17 +161,11 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
                     <ChevronLeft className="w-3.5 h-3.5" />
                   </button>
                 )}
-                <span className="font-medium tabular-nums">{pageNumber}</span>
+                <span className="ds-label text-[9px] tabular-nums">P. {String(pageNumber).padStart(2, '0')} / {String(totalPages).padStart(2, '0')}</span>
               </div>
               <div className="flex-1" />
               {ribbon && (
-                <span className="flex items-center gap-1 opacity-60">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full"
-                    style={{ background: ribbon.colors.gradient }}
-                  />
-                  <span className="text-[9px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
-                </span>
+                <ChapterMark color={ribbon.colors.from} number={chapterNumber ?? chapterIndex + 1} />
               )}
             </>
           )}
@@ -188,17 +174,11 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
           {isDesktop && side === 'right' && (
             <>
               {ribbon && (
-                <span className="flex items-center gap-1 opacity-60">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full"
-                    style={{ background: ribbon.colors.gradient }}
-                  />
-                  <span className="text-[9px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
-                </span>
+                <ChapterMark color={ribbon.colors.from} number={chapterNumber ?? chapterIndex + 1} />
               )}
               <div className="flex-1" />
               <div className="flex items-center gap-1.5">
-                <span className="font-medium tabular-nums">{pageNumber}</span>
+                <span className="ds-label text-[9px] tabular-nums">P. {String(pageNumber).padStart(2, '0')} / {String(totalPages).padStart(2, '0')}</span>
                 {onNextPage && (
                   <button
                     onClick={onNextPage}
@@ -227,17 +207,11 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                 )}
-                <span className="font-medium tabular-nums">{pageNumber}</span>
+                <span className="ds-label text-[9px] tabular-nums">P. {String(pageNumber).padStart(2, '0')} / {String(totalPages).padStart(2, '0')}</span>
               </div>
               <div className="flex-1 flex justify-center">
                 {ribbon && (
-                  <span className="flex items-center gap-1 opacity-60">
-                    <span
-                      className="w-1.5 h-1.5 rounded-full"
-                      style={{ background: ribbon.colors.gradient }}
-                    />
-                    <span className="text-[9px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
-                  </span>
+                  <ChapterMark color={ribbon.colors.from} number={chapterNumber ?? chapterIndex + 1} />
                 )}
               </div>
               {onNextPage && (
@@ -254,25 +228,8 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
           )}
         </div>
 
-        {/* Guardian Watermark */}
-        {showWatermark && WatermarkIcon && (
-          <div
-            className="absolute bottom-10 right-6 pointer-events-none"
-            style={{
-              width: WATERMARK_CONFIG.size,
-              height: WATERMARK_CONFIG.size,
-              opacity: WATERMARK_CONFIG.opacity,
-              transform: `rotate(${WATERMARK_CONFIG.rotation}deg)`,
-              filter: `blur(${WATERMARK_CONFIG.blur})`,
-            }}
-          >
-            <WatermarkIcon
-              className="w-full h-full"
-              style={{ color: ribbon?.colors.from }}
-              strokeWidth={0.5}
-            />
-          </div>
-        )}
+        {/* Sheet frame: hairline border with corner ticks, as on the technical sheets */}
+        <SheetFrame />
 
         {/* Page fold shadow */}
         {isDesktop && (
@@ -293,6 +250,30 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
     )
   }
 )
+
+// Chapter mark for the footer title block: a flat colour swatch + mono label
+function ChapterMark({ color, number }: { color: string; number: number }) {
+  return (
+    <span className="flex items-center gap-1.5 opacity-80">
+      <span className="h-2 w-2" style={{ background: color }} aria-hidden />
+      <span className="ds-label text-[9px]">Ch. {String(number).padStart(2, '0')}</span>
+    </span>
+  )
+}
+
+// Hairline sheet border with short registration ticks at each corner
+function SheetFrame() {
+  const tick = 'absolute h-2.5 w-2.5 border-[var(--ds-ink,#1f2a37)]'
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-[5px]">
+      <div className="absolute inset-0 border border-[var(--ds-hair,rgba(0,0,0,0.12))]" />
+      <span className={`${tick} -left-px -top-px border-l border-t opacity-50`} />
+      <span className={`${tick} -right-px -top-px border-r border-t opacity-50`} />
+      <span className={`${tick} -left-px -bottom-px border-l border-b opacity-50`} />
+      <span className={`${tick} -right-px -bottom-px border-r border-b opacity-50`} />
+    </div>
+  )
+}
 
 // ============================================
 // PAGE CONTENT RENDERER
@@ -732,14 +713,22 @@ export function VerseHeader({ verseNumber, verseName, chapterIndex, animated = t
 
 interface ChapterDividerProps {
   chapterIndex: number
+  /** Chapter number shown to the reader (global across volumes) */
+  chapterNumber?: number
   chapterTitle: string
   versesCount: number
   guardianQuote?: string
   animated?: boolean
 }
 
+/**
+ * Chapter opener drawn as a technical plate: the chapter's emblem inside a
+ * ruled circle with dash-dot centre lines and compass ticks, mono labels,
+ * ink title. Lines draw on once, like a pen plotter.
+ */
 export function ChapterDivider({
   chapterIndex,
+  chapterNumber,
   chapterTitle,
   versesCount,
   guardianQuote,
@@ -747,329 +736,87 @@ export function ChapterDivider({
 }: ChapterDividerProps) {
   const ribbon = RIBBON_ORDER[chapterIndex] ? GUARDIAN_RIBBONS[RIBBON_ORDER[chapterIndex]] : null
   const Icon = ribbon?.icon
-  const color = ribbon?.colors.from || 'var(--primary)'
+  const color = ribbon?.colors.from || 'var(--ds-accent, #9a3412)'
+  const number = String(chapterNumber ?? chapterIndex + 1).padStart(2, '0')
+  const draw = (delay: number) =>
+    animated
+      ? { initial: { pathLength: 0, opacity: 0 }, animate: { pathLength: 1, opacity: 1 }, transition: { duration: 0.9, delay, ease: 'easeInOut' as const } }
+      : {}
+  const fade = (delay: number) =>
+    animated ? { initial: { opacity: 0, y: 6 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.5, delay } } : {}
 
-  const MotionWrapper = animated ? motion.div : 'div'
-  const wrapperProps = animated ? {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    transition: { duration: 0.6 },
-  } : {}
+  // 24 compass ticks, longer every 90°
+  const ticks = Array.from({ length: 24 }, (_, k) => {
+    const a = (k * 15 * Math.PI) / 180
+    const long = k % 6 === 0
+    const r1 = 58
+    const r2 = long ? 66 : 62
+    return { x1: 80 + r1 * Math.cos(a), y1: 80 + r1 * Math.sin(a), x2: 80 + r2 * Math.cos(a), y2: 80 + r2 * Math.sin(a), long }
+  })
 
   return (
-    <MotionWrapper
-      className="w-full h-full flex flex-col items-center justify-evenly text-center relative px-4 py-6 overflow-hidden"
-      {...wrapperProps}
-    >
-      {/* Corner decorations - smaller */}
-      {animated && (
-        <>
-          <motion.svg
-            className="absolute top-2 left-2 w-10 h-10"
-            viewBox="0 0 64 64"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            <motion.path
-              d="M4 40 L4 4 L40 4"
-              fill="none"
-              stroke={color}
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              opacity={0.3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            />
-            <circle cx="8" cy="8" r="3" fill={color} opacity={0.4} />
-          </motion.svg>
-          <motion.svg
-            className="absolute top-2 right-2 w-10 h-10"
-            viewBox="0 0 64 64"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            <motion.path
-              d="M60 40 L60 4 L24 4"
-              fill="none"
-              stroke={color}
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              opacity={0.3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            />
-            <circle cx="56" cy="8" r="3" fill={color} opacity={0.4} />
-          </motion.svg>
-          <motion.svg
-            className="absolute bottom-2 left-2 w-10 h-10"
-            viewBox="0 0 64 64"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            <motion.path
-              d="M4 24 L4 60 L40 60"
-              fill="none"
-              stroke={color}
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              opacity={0.3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            />
-            <circle cx="8" cy="56" r="3" fill={color} opacity={0.4} />
-          </motion.svg>
-          <motion.svg
-            className="absolute bottom-2 right-2 w-10 h-10"
-            viewBox="0 0 64 64"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            <motion.path
-              d="M60 24 L60 60 L24 60"
-              fill="none"
-              stroke={color}
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              opacity={0.3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            />
-            <circle cx="56" cy="56" r="3" fill={color} opacity={0.4} />
-          </motion.svg>
-        </>
-      )}
+    <div className="w-full h-full flex flex-col items-center justify-evenly text-center relative px-6 py-6 overflow-hidden">
+      <motion.div className="ds-label text-[10px] text-[var(--ds-ink-soft)]" {...fade(0.1)}>
+        Sheet CH-{number}
+      </motion.div>
 
-      {/* Top section: decorative border */}
-      <div className="shrink-0">
-        {animated ? (
-          <motion.svg
-            className="w-48 h-4"
-            viewBox="0 0 256 24"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+      {/* Emblem plate */}
+      <div className="relative shrink-0" style={{ width: 160, height: 160 }}>
+        <svg viewBox="0 0 160 160" className="absolute inset-0 h-full w-full" fill="none" strokeLinecap="round" aria-hidden>
+          {/* centre lines, dash-dot in the accent like the sheets */}
+          <motion.path d="M80 4 L80 156" stroke="var(--ds-accent, #9a3412)" strokeWidth={0.5} strokeDasharray="10 3 2 3" {...draw(0.1)} />
+          <motion.path d="M4 80 L156 80" stroke="var(--ds-accent, #9a3412)" strokeWidth={0.5} strokeDasharray="10 3 2 3" {...draw(0.1)} />
+          {/* outer profile + inner hairline */}
+          <motion.circle cx={80} cy={80} r={56} stroke="var(--ds-ink, #1f2a37)" strokeWidth={1.5} {...draw(0.25)} />
+          <motion.circle cx={80} cy={80} r={42} stroke="var(--ds-ink, #1f2a37)" strokeWidth={0.5} opacity={0.6} {...draw(0.4)} />
+          {/* compass ticks */}
+          {ticks.map((t, k) => (
+            <motion.line key={k} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke="var(--ds-ink, #1f2a37)" strokeWidth={t.long ? 1 : 0.5} opacity={t.long ? 0.8 : 0.45} {...draw(0.5 + k * 0.01)} />
+          ))}
+          {/* chapter colour as a single fine arc segment */}
+          <motion.path d="M 80 24 A 56 56 0 0 1 136 80" stroke={color} strokeWidth={2.5} {...draw(0.7)} />
+        </svg>
+        {Icon && (
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center"
+            initial={animated ? { opacity: 0 } : undefined}
+            animate={animated ? { opacity: 1 } : undefined}
+            transition={{ delay: 0.8, duration: 0.5 }}
           >
-            <motion.path
-              d="M8 12 L80 12"
-              stroke={color}
-              strokeWidth="1"
-              opacity={0.3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            />
-            <motion.circle
-              cx="128" cy="12" r="4"
-              fill={color}
-              opacity={0.5}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.6, type: 'spring' }}
-            />
-            <motion.path
-              d="M176 12 L248 12"
-              stroke={color}
-              strokeWidth="1"
-              opacity={0.3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            />
-          </motion.svg>
-        ) : (
-          <div className="w-48 h-4" />
+            <Icon className="h-9 w-9 text-[var(--ds-ink,#1f2a37)]" strokeWidth={1.25} />
+          </motion.div>
         )}
       </div>
-
-      {/* Guardian Icon - smaller */}
-      {Icon && (
-        <div className="shrink-0">
-          {animated ? (
-            <motion.div
-              className="relative"
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, type: 'spring' }}
-            >
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: `radial-gradient(circle, ${color}40 0%, transparent 70%)`,
-                  transform: 'scale(1.5)',
-                }}
-                animate={{ opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
-              <div
-                className="relative w-16 h-16 rounded-full flex items-center justify-center shadow-xl"
-                style={{ background: ribbon?.colors.gradient }}
-              >
-                <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
-              </div>
-            </motion.div>
-          ) : (
-            <div
-              className="w-16 h-16 rounded-full flex items-center justify-center shadow-xl"
-              style={{ background: ribbon?.colors.gradient }}
-            >
-              <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
-            </div>
-          )}
-        </div>
-      )}
 
       {/* Chapter number and title */}
-      <div className="shrink-0 space-y-1">
-        {animated ? (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
-            <span className="inline-flex items-center gap-2">
-              <span className="text-base opacity-40" style={{ color }}>✦</span>
-              <span className="text-xs tracking-[0.2em] uppercase font-medium text-[var(--muted-foreground)]">
-                Chapter {chapterIndex + 1}
-              </span>
-              <span className="text-base opacity-40" style={{ color }}>✦</span>
-            </span>
-          </motion.div>
-        ) : (
-          <div className="text-xs text-[var(--muted-foreground)] tracking-[0.2em] uppercase">
-            Chapter {chapterIndex + 1}
+      <motion.div className="shrink-0 space-y-2" {...fade(0.5)}>
+        <div className="ds-label text-[11px] text-[var(--ds-ink-soft)]">Chapter {number}</div>
+        <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ds-ink,#1f2a37)] leading-tight">
+          {chapterTitle}
+        </h2>
+        <div className="mx-auto h-[2px] w-10" style={{ background: color }} aria-hidden />
+        {ribbon && (
+          <div className="ds-label text-[10px] text-[var(--ds-ink-soft)]">
+            The way of <span style={{ color }}>{ribbon.value}</span>
           </div>
         )}
+      </motion.div>
 
-        {animated ? (
-          <motion.h2
-            className="text-2xl font-serif font-bold"
-            style={{ color }}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
-            {chapterTitle}
-          </motion.h2>
-        ) : (
-          <h2 className="text-2xl font-serif font-bold" style={{ color }}>
-            {chapterTitle}
-          </h2>
-        )}
-
-        {ribbon && (
-          animated ? (
-            <motion.div
-              className="text-sm text-[var(--muted-foreground)]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-            >
-              The Way of <span className="font-bold" style={{ color }}>{ribbon.value}</span>
-            </motion.div>
-          ) : (
-            <div className="text-sm text-[var(--muted-foreground)]">
-              The Way of <span className="font-bold" style={{ color }}>{ribbon.value}</span>
-            </div>
-          )
-        )}
-      </div>
-
-      {/* Decorative divider */}
-      <div className="shrink-0">
-        {animated ? (
-          <motion.div
-            className="flex items-center gap-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.75 }}
-          >
-            <motion.div
-              className="w-10 h-px"
-              style={{ background: `linear-gradient(to right, transparent, ${color})` }}
-              initial={{ scaleX: 0, originX: 1 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 0.8, duration: 0.4 }}
-            />
-            <motion.div
-              className="w-2 h-2 rotate-45 border"
-              style={{ borderColor: color, opacity: 0.5 }}
-              initial={{ scale: 0, rotate: 0 }}
-              animate={{ scale: 1, rotate: 45 }}
-              transition={{ delay: 0.85, type: 'spring' }}
-            />
-            <motion.div
-              className="w-10 h-px"
-              style={{ background: `linear-gradient(to left, transparent, ${color})` }}
-              initial={{ scaleX: 0, originX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 0.8, duration: 0.4 }}
-            />
-          </motion.div>
-        ) : (
-          <div
-            className="w-24 h-0.5"
-            style={{ background: `linear-gradient(to right, transparent, ${color}, transparent)` }}
-          />
-        )}
-      </div>
-
-      {/* Guardian quote - compact */}
+      {/* Quote */}
       {guardianQuote && (
-        <div className="shrink-0 max-w-xs">
-          {animated ? (
-            <motion.blockquote
-              className="text-sm italic text-[var(--muted-foreground)] font-serif leading-relaxed"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-            >
-              <span className="text-lg opacity-30 mr-0.5" style={{ color }}>"</span>
-              {guardianQuote}
-              <span className="text-lg opacity-30 ml-0.5" style={{ color }}>"</span>
-            </motion.blockquote>
-          ) : (
-            <blockquote className="text-sm italic text-[var(--muted-foreground)] font-serif">
-              "{guardianQuote}"
-            </blockquote>
-          )}
-        </div>
+        <motion.blockquote
+          className="shrink-0 max-w-xs border-t border-[var(--ds-hair)] pt-3 text-sm italic font-serif leading-relaxed text-[var(--ds-ink-soft)]"
+          {...fade(0.7)}
+        >
+          &ldquo;{guardianQuote}&rdquo;
+        </motion.blockquote>
       )}
 
-      {/* Verse count badge */}
-      <div className="shrink-0">
-        {animated ? (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-          >
-            <span
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium"
-              style={{
-                background: `${color}15`,
-                color: color,
-                border: `1px solid ${color}30`,
-              }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: color }} />
-              {versesCount} Verses to explore
-            </span>
-          </motion.div>
-        ) : (
-          <div className="text-xs text-[var(--muted-foreground)]">
-            {versesCount} Verses to explore
-          </div>
-        )}
-      </div>
-    </MotionWrapper>
+      {/* Lesson count */}
+      <motion.div className="ds-label shrink-0 border border-[var(--ds-rule)] px-3 py-1 text-[10px] text-[var(--ds-ink)]" {...fade(0.85)}>
+        {versesCount} {versesCount === 1 ? 'lesson' : 'lessons'} in this chapter
+      </motion.div>
+    </div>
   )
 }
 

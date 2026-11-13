@@ -325,114 +325,86 @@ export function InsideCover({
   onStartReading,
   className,
 }: InsideCoverProps) {
-  const topicIcon = CORE_TOPIC_ICONS[topicSlug] || '📖'
-
   const levels = [
-    { id: 'ELEMENTARY', label: 'Elementary', icon: '🌱' },
-    { id: 'MIDDLE_SCHOOL', label: 'Middle', icon: '📚' },
-    { id: 'HIGH_SCHOOL', label: 'High School', icon: '🎓' },
-    { id: 'UNDERGRADUATE', label: 'College', icon: '🔬' },
-    { id: 'GRADUATE', label: 'Graduate', icon: '📊' },
-    { id: 'PHD', label: 'Pro', icon: '🧬' },
+    { id: 'ELEMENTARY', code: 'L1', label: 'Elementary' },
+    { id: 'MIDDLE_SCHOOL', code: 'L2', label: 'Middle School' },
+    { id: 'HIGH_SCHOOL', code: 'L3', label: 'High School' },
+    { id: 'UNDERGRADUATE', code: 'L4', label: 'College' },
+    { id: 'GRADUATE', code: 'L5', label: 'Graduate' },
+    { id: 'PHD', code: 'L6', label: 'Expert' },
   ]
+  const pad = (n: number) => String(n).padStart(2, '0')
 
+  // Laid out like a drawing's title block: label, title, a ruled level table,
+  // a ruled stats strip and one ink button
   return (
     <div
       className={cn(
-        'w-full h-full flex flex-col items-center justify-center px-4 py-4',
-        'text-center overflow-hidden',
+        'ds-sheet relative w-full h-full flex flex-col items-center justify-center px-6 py-5',
+        'text-center overflow-hidden text-[var(--ds-ink)]',
         className
       )}
-      style={{
-        color: 'var(--foreground)',
-      }}
+      data-topic={topicSlug}
     >
-      {/* Decorative stars */}
-      <div className="flex items-center gap-2 mb-3 shrink-0">
-        <span className="text-amber-500/60 text-sm">✦</span>
-        <span className="text-3xl">{topicIcon}</span>
-        <span className="text-amber-500/60 text-sm">✦</span>
-      </div>
+      <div aria-hidden className="pointer-events-none absolute inset-[5px] border border-[var(--ds-hair)]" />
 
-      {/* Title */}
-      <h2
-        className="text-xl sm:text-2xl font-serif font-bold tracking-wide mb-1 shrink-0"
-        style={{ color: 'var(--primary)' }}
-      >
-        THE BOOK OF
+      <p className="ds-label text-[9px] text-[var(--ds-ink-soft)] mb-4 shrink-0">Project Exodus · Learning Academy</p>
+      <p className="ds-label text-[10px] text-[var(--ds-accent)] mb-1 shrink-0">The book of</p>
+      <h2 className="text-2xl sm:text-3xl font-serif font-semibold leading-tight mb-2 shrink-0">
+        {topicTitle.charAt(0) + topicTitle.slice(1).toLowerCase()}
       </h2>
-      <h3
-        className="text-lg sm:text-xl font-serif font-bold tracking-wider mb-2 shrink-0"
-        style={{ color: 'var(--foreground)' }}
-      >
-        {topicTitle.toUpperCase()}
-      </h3>
-
-      {/* Dedication quote */}
-      <p className="text-xs italic text-[var(--muted-foreground)] mb-4 max-w-[200px] shrink-0">
-        "A sustainability journey for those who seek"
+      <p className="text-xs italic font-serif text-[var(--ds-ink-soft)] mb-5 max-w-[240px] shrink-0">
+        A sustainability journey for those who seek
       </p>
 
-      {/* Divider */}
-      <div
-        className="w-32 h-px mb-4 shrink-0"
-        style={{
-          background: 'linear-gradient(to right, transparent, var(--border), transparent)',
-        }}
-      />
-
       {/* Level selection */}
-      <div className="mb-4 w-full max-w-[280px] shrink-0">
-        <h3 className="text-[10px] font-bold text-[var(--muted-foreground)] mb-2 tracking-wider uppercase">
-          Select Your Path
-        </h3>
-        <div className="grid grid-cols-3 gap-1.5">
-          {levels.map((level) => (
-            <button
-              key={level.id}
-              onClick={() => onLevelSelect?.(level.id)}
-              className={cn(
-                'px-2 py-1.5 rounded text-[10px] font-medium transition-all',
-                'border',
-                selectedLevel === level.id
-                  ? 'border-[var(--primary)] bg-[var(--primary)] text-[var(--primary-foreground)]'
-                  : 'border-[var(--border)] hover:border-[var(--primary)] hover:bg-[var(--muted)]'
-              )}
-            >
-              <span className="block text-base mb-0.5">{level.icon}</span>
-              {level.label}
-            </button>
-          ))}
+      <div className="mb-5 w-full max-w-[320px] shrink-0" style={{ maxWidth: 320 }}>
+        <p className="ds-label text-[9px] text-[var(--ds-ink-soft)] mb-2">Select your level</p>
+        <div className="grid grid-cols-3 border-l border-t border-[var(--ds-rule)]" role="radiogroup" aria-label="Learning level">
+          {levels.map((level) => {
+            const selected = selectedLevel === level.id
+            return (
+              <button
+                key={level.id}
+                type="button"
+                role="radio"
+                aria-checked={selected}
+                onClick={() => onLevelSelect?.(level.id)}
+                className={cn(
+                  'border-r border-b border-[var(--ds-rule)] px-2 py-2 text-left transition-colors',
+                  selected ? 'bg-[var(--ds-ink)] text-[var(--ds-paper)]' : 'hover:bg-[var(--ds-paper-deep)]'
+                )}
+              >
+                <span className={cn('ds-label block text-[9px]', selected ? 'opacity-80' : 'text-[var(--ds-accent)]')}>
+                  {level.code}
+                </span>
+                <span className="block text-[11px] font-medium leading-tight">{level.label}</span>
+              </button>
+            )
+          })}
         </div>
       </div>
 
-      {/* Divider */}
-      <div
-        className="w-32 h-px mb-3 shrink-0"
-        style={{
-          background: 'linear-gradient(to right, transparent, var(--border), transparent)',
-        }}
-      />
+      {/* Stats strip */}
+      <div className="mb-5 grid w-full max-w-[320px] grid-cols-3 border border-[var(--ds-rule)] shrink-0" style={{ maxWidth: 320 }}>
+        {[
+          ['Chapters', chapterCount],
+          ['Lessons', verseCount],
+          ['Pages', pageCount],
+        ].map(([label, value], k) => (
+          <div key={label as string} className={cn('px-2 py-1.5', k > 0 && 'border-l border-[var(--ds-rule)]')}>
+            <div className="ds-label text-[8px] text-[var(--ds-ink-soft)]">{label}</div>
+            <div className="font-mono text-sm tabular-nums">{pad(value as number)}</div>
+          </div>
+        ))}
+      </div>
 
-      {/* Book stats */}
-      <p className="text-[10px] text-[var(--muted-foreground)] mb-4 shrink-0">
-        {chapterCount} Chapters • {verseCount} Verses • {pageCount} Pages
-      </p>
-
-      {/* Start reading button */}
       <motion.button
         onClick={onStartReading}
-        className={cn(
-          'px-6 py-2 rounded-lg text-xs font-bold tracking-wider shrink-0',
-          'bg-[var(--primary)] text-[var(--primary-foreground)]',
-          'hover:opacity-90 transition-opacity',
-          'flex items-center gap-2'
-        )}
-        whileHover={{ scale: 1.02 }}
+        className="ds-label shrink-0 flex items-center gap-2 border border-[var(--ds-ink)] bg-[var(--ds-ink)] px-5 py-2 text-[10px] text-[var(--ds-paper)] hover:bg-transparent hover:text-[var(--ds-ink)] transition-colors"
         whileTap={{ scale: 0.98 }}
       >
-        BEGIN JOURNEY
-        <span>→</span>
+        Begin reading <span aria-hidden>→</span>
       </motion.button>
     </div>
   )

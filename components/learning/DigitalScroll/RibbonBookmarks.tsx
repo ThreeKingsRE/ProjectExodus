@@ -2,19 +2,22 @@
 
 // ============================================
 // RIBBON BOOKMARKS
-// The Seven Guardian Ribbons + Yin-Yang Continue
-// Each ribbon = one chapter, colors match Guardian Archetypes
+// One sewn-in ribbon per chapter (Guardian colours) plus a Continue ribbon.
+//
+// Ribbons hang down from the top edge of the book, centred over the spine,
+// like real bookmark ribbons. Each one shows the chapter number; the
+// current chapter's ribbon hangs longest to mark the reader's place.
+// Hovering or focusing a ribbon opens a small drafting card with the
+// chapter's title, its status, and jump links to each part of the chapter.
 // ============================================
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { Check } from 'lucide-react'
 import { cn } from '@/lib/utils/cn'
 import {
   GUARDIAN_RIBBONS,
   RIBBON_ORDER,
-  YIN_YANG_RIBBON,
-  SCROLL_DIMENSIONS,
-  ANIMATION_TIMINGS,
   A11Y_CONFIG,
   getDeviceType,
   type GuardianRibbon,
@@ -23,6 +26,9 @@ import {
 // ============================================
 // TYPES
 // ============================================
+
+export type ChapterStatus = 'none' | 'started' | 'practiced' | 'passed'
+export type ChapterSection = 'opener' | 'lesson' | 'review' | 'practice'
 
 interface RibbonBookmarksProps {
   currentChapter: number
@@ -37,10 +43,40 @@ interface RibbonBookmarksProps {
   isExpanded?: boolean
   isFlipping?: boolean
   className?: string
+  /** Added to ribbon numbers (Volume II starts at chapter 8) */
+  chapterOffset?: number
+  /** Chapters in this volume; the last volume can have fewer than 7 */
+  chapterCount?: number
+  /** Chapter titles, in order, for the hover card */
+  chapterTitles?: string[]
+  /** Progress per chapter, in order */
+  chapterStatus?: ChapterStatus[]
+  /** Jump to a part of a chapter */
+  onSectionClick?: (chapterIndex: number, section: ChapterSection) => void
+  /** Where Continue goes, e.g. "Ch. 08 · Lesson"; null when there's nothing to resume */
+  continueLabel?: string | null
 }
 
+const MONO = 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+// Swallowtail end, like a sewn-in bookmark ribbon
+const RIBBON_CLIP = 'polygon(0 0, 100% 0, 100% 100%, 50% 84%, 0 100%)'
+
+const STATUS_TEXT: Record<ChapterStatus, string> = {
+  none: 'Not started',
+  started: 'In progress',
+  practiced: 'Practice done · quiz unlocked',
+  passed: 'Quiz passed · complete',
+}
+
+const SECTIONS: { id: ChapterSection; label: string }[] = [
+  { id: 'opener', label: 'Opener' },
+  { id: 'lesson', label: 'Lesson' },
+  { id: 'review', label: 'Review' },
+  { id: 'practice', label: 'Practice & quiz' },
+]
+
 // ============================================
-// MAIN COMPONENT
+// RIBBON ROW
 // ============================================
 
 export function RibbonBookmarks({
@@ -48,13 +84,19 @@ export function RibbonBookmarks({
   completedChapters,
   onChapterClick,
   onContinueClick,
-  continuePosition,
   isExpanded = false,
   isFlipping = false,
   className,
+  chapterOffset = 0,
+  chapterCount = RIBBON_ORDER.length,
+  chapterTitles = [],
+  chapterStatus = [],
+  onSectionClick,
+  continueLabel = null,
 }: RibbonBookmarksProps) {
   const [deviceType, setDeviceType] = useState<'desktop' | 'tablet' | 'mobile'>('desktop')
-  const [hoveredRibbon, setHoveredRibbon] = useState<string | null>(null)
+  const [openRibbon, setOpenRibbon] = useState<string | null>(null)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     function updateDevice() {
@@ -65,346 +107,336 @@ export function RibbonBookmarks({
     return () => window.removeEventListener('resize', updateDevice)
   }, [])
 
-  const dimensions = SCROLL_DIMENSIONS[deviceType]
+  // Close the card while pages are turning
+  useEffect(() => {
+    if (isFlipping) setOpenRibbon(null)
+  }, [isFlipping])
+
   const isDesktop = deviceType === 'desktop'
 
-  // ============================================
-  // RENDER
-  // ============================================
+  // Small delay so the pointer can travel from ribbon to card without it closing
+  const open = (id: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setOpenRibbon(id)
+  }
+  const scheduleClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    closeTimer.current = setTimeout(() => setOpenRibbon(null), 160)
+  }
 
   return (
     <div
       className={cn(
         'z-40',
-        // Desktop: ribbons at top of book, extending upward
-        isDesktop && 'absolute top-0 left-8 flex flex-row gap-1.5',
-        // Tablet: horizontal strip at top
-        deviceType === 'tablet' && 'flex flex-row justify-center gap-1 py-2 bg-[var(--muted)]',
-        // Mobile: compact horizontal strip
-        deviceType === 'mobile' && 'flex flex-row justify-between gap-0.5 px-2 py-1 bg-[var(--muted)]',
+        isDesktop
+          ? 'absolute top-0 left-1/2 -translate-x-1/2 flex flex-row items-start gap-1.5'
+          : 'flex flex-row items-start justify-center gap-1 px-2 bg-[var(--ds-paper-deep,var(--muted))] border-b border-[var(--ds-rule,var(--border))]',
         className
       )}
-      style={isDesktop ? {
-        // Position ribbons so they extend upward from the top edge of the book
-        // -75% means 75% sticks out above, 25% is "inside" the book
-        transform: isExpanded ? 'translateY(-85%)' : 'translateY(-75%)',
-      } : undefined}
       role="navigation"
       aria-label="Chapter bookmarks"
+      onKeyDown={(e) => {
+        if (e.key === 'Escape' && openRibbon) {
+          e.stopPropagation()
+          setOpenRibbon(null)
+        }
+      }}
     >
-      {/* Seven Guardian Ribbons */}
-      {RIBBON_ORDER.map((ribbonKey, index) => {
+      {RIBBON_ORDER.slice(0, chapterCount).map((ribbonKey, index) => {
         const ribbon = GUARDIAN_RIBBONS[ribbonKey]
-        const isActive = currentChapter === index
-        const isCompleted = completedChapters.includes(index)
-
+        const status: ChapterStatus = completedChapters.includes(index)
+          ? 'passed'
+          : chapterStatus[index] ?? 'none'
         return (
           <Ribbon
             key={ribbon.id}
             ribbon={ribbon}
-            isActive={isActive}
-            isCompleted={isCompleted}
-            isHovered={hoveredRibbon === ribbon.id}
-            deviceType={deviceType}
-            onClick={() => onChapterClick(index)}
-            onMouseEnter={() => setHoveredRibbon(ribbon.id)}
-            onMouseLeave={() => setHoveredRibbon(null)}
+            chapterIndex={index}
+            chapterNumber={chapterOffset + index + 1}
+            title={chapterTitles[index]}
+            status={status}
+            isActive={currentChapter === index}
+            isOpen={openRibbon === ribbon.id}
+            isDesktop={isDesktop}
             isExpanded={isExpanded}
-            isFlipping={isFlipping}
+            onOpen={() => open(ribbon.id)}
+            onClose={scheduleClose}
+            onClick={() => {
+              setOpenRibbon(null)
+              onChapterClick(index)
+            }}
+            onSectionClick={
+              onSectionClick
+                ? (section) => {
+                    setOpenRibbon(null)
+                    onSectionClick(index, section)
+                  }
+                : undefined
+            }
           />
         )
       })}
 
-      {/* Yin-Yang Continue Ribbon */}
-      <YinYangRibbon
-        isActive={false}
-        deviceType={deviceType}
-        continuePosition={continuePosition}
-        onClick={onContinueClick}
-        onMouseEnter={() => setHoveredRibbon('continue')}
-        onMouseLeave={() => setHoveredRibbon(null)}
-        isHovered={hoveredRibbon === 'continue'}
+      <ContinueRibbon
+        label={continueLabel}
+        isDesktop={isDesktop}
         isExpanded={isExpanded}
-        isFlipping={isFlipping}
+        isOpen={openRibbon === 'continue'}
+        onOpen={() => open('continue')}
+        onClose={scheduleClose}
+        onClick={() => {
+          setOpenRibbon(null)
+          onContinueClick()
+        }}
       />
     </div>
   )
 }
 
 // ============================================
-// SINGLE RIBBON COMPONENT
+// SINGLE RIBBON
 // ============================================
 
 interface RibbonProps {
   ribbon: GuardianRibbon
+  chapterIndex: number
+  chapterNumber: number
+  title?: string
+  status: ChapterStatus
   isActive: boolean
-  isCompleted: boolean
-  isHovered: boolean
-  deviceType: 'desktop' | 'tablet' | 'mobile'
+  isOpen: boolean
+  isDesktop: boolean
+  isExpanded: boolean
+  onOpen: () => void
+  onClose: () => void
   onClick: () => void
-  onMouseEnter: () => void
-  onMouseLeave: () => void
-  isExpanded?: boolean
-  isFlipping?: boolean
+  onSectionClick?: (section: ChapterSection) => void
+}
+
+function ribbonLength(isDesktop: boolean, isExpanded: boolean, isActive: boolean, isOpen: boolean) {
+  if (!isDesktop) return isActive ? 40 : 32
+  const rest = isExpanded ? 40 : 34
+  if (isActive) return rest + 26 // the current chapter marks your place
+  if (isOpen) return rest + 12
+  return rest
 }
 
 function Ribbon({
   ribbon,
+  chapterIndex,
+  chapterNumber,
+  title,
+  status,
   isActive,
-  isCompleted,
-  isHovered,
-  deviceType,
+  isOpen,
+  isDesktop,
+  isExpanded,
+  onOpen,
+  onClose,
   onClick,
-  onMouseEnter,
-  onMouseLeave,
-  isExpanded = false,
-  isFlipping = false,
+  onSectionClick,
 }: RibbonProps) {
   const Icon = ribbon.icon
-  const isDesktop = deviceType === 'desktop'
-
-  // Enhanced dimensions - taller for expanded view
-  const ribbonWidth = isDesktop ? (isExpanded ? 32 : 28) : 32
-  const ribbonHeight = isDesktop ? (isExpanded ? 120 : 90) : 40
+  const number = String(chapterNumber).padStart(2, '0')
+  const cardId = `ribbon-card-${chapterIndex}`
+  const height = ribbonLength(isDesktop, isExpanded, isActive, isOpen)
 
   return (
-    <motion.button
-      className={cn(
-        'relative flex',
-        'transition-all duration-300',
-        'focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black',
-        // Desktop: vertical ribbon with icon toward bottom
-        isDesktop && 'flex-col items-center justify-end pb-4',
-        // Tablet/Mobile: square buttons centered
-        !isDesktop && 'rounded-md items-center justify-center'
-      )}
-      style={{
-        width: ribbonWidth,
-        height: ribbonHeight,
-        background: ribbon.colors.gradient,
-        // Desktop: pointed ribbon shape with folded top effect
-        ...(isDesktop && {
-          clipPath: 'polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)',
-        }),
-        // Active glow - enhanced with depth shadows
-        boxShadow: isActive
-          ? `0 0 25px ${ribbon.colors.from}, 0 0 50px ${ribbon.colors.from}50, inset 0 0 10px rgba(255,255,255,0.2), 0 8px 16px rgba(0,0,0,0.4)`
-          : isHovered
-          ? `0 6px 20px ${ribbon.colors.from}80, inset 0 0 8px rgba(255,255,255,0.15), 0 6px 12px rgba(0,0,0,0.3)`
-          : '2px 4px 10px rgba(0,0,0,0.4), inset 0 -2px 4px rgba(0,0,0,0.2)',
+    <div
+      className="relative"
+      onMouseEnter={onOpen}
+      onMouseLeave={onClose}
+      onFocus={onOpen}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) onClose()
       }}
-      onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      whileHover={isDesktop ? { y: isExpanded ? 12 : 8 } : { scale: 1.08 }}
-      whileTap={{ scale: 0.95 }}
-      animate={
-        isActive && !isFlipping
-          ? {
-              y: isDesktop ? [0, 4, 0] : 0,
-              transition: {
-                y: {
-                  duration: 1.2,
-                  repeat: 0,
-                  ease: 'easeOut',
-                },
-              },
-            }
-          : {}
-      }
-      aria-label={A11Y_CONFIG.ariaLabels.ribbon(ribbon.name)}
-      aria-current={isActive ? 'page' : undefined}
-      title={`${ribbon.title} - ${ribbon.value}`}
     >
-      {/* Icon - more visible */}
-      {isDesktop ? (
-        <Icon className="w-4 h-4 text-white drop-shadow-md mb-0.5" strokeWidth={2.5} />
-      ) : (
-        <Icon className="w-5 h-5 text-white drop-shadow-md" strokeWidth={2.5} />
-      )}
-
-      {/* Chapter number (desktop only) - more visible */}
-      {isDesktop && (
-        <span className="text-[9px] font-bold text-white drop-shadow-sm">
-          {ribbon.chapterIndex + 1}
+      <motion.button
+        type="button"
+        className={cn(
+          'relative flex flex-col items-center justify-end pb-2.5',
+          'focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ds-accent,#9a3412)] focus-visible:ring-offset-1'
+        )}
+        style={{
+          width: isDesktop ? (isExpanded ? 26 : 24) : 26,
+          background: ribbon.colors.gradient,
+          clipPath: RIBBON_CLIP,
+          filter: isActive ? 'drop-shadow(0 2px 2px rgba(0,0,0,0.28))' : 'drop-shadow(0 1px 1px rgba(0,0,0,0.18))',
+        }}
+        initial={false}
+        animate={{ height }}
+        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+        whileTap={{ scale: 0.96 }}
+        onClick={onClick}
+        aria-label={`${A11Y_CONFIG.ariaLabels.ribbon(`Chapter ${number}`)}${title ? `: ${title}` : ''}. ${STATUS_TEXT[status]}`}
+        aria-current={isActive ? 'page' : undefined}
+        aria-expanded={onSectionClick ? isOpen : undefined}
+        aria-controls={onSectionClick ? cardId : undefined}
+      >
+        {/* Stitching: a dashed hairline just inside each edge */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 left-[3px] right-[3px] border-x border-dashed border-white/35"
+          style={{ clipPath: RIBBON_CLIP }}
+        />
+        {/* Icon shows once the ribbon is long enough to carry it */}
+        {height >= 52 && <Icon className="w-3 h-3 text-white/90 mb-1" strokeWidth={1.5} aria-hidden />}
+        <span className="text-[9px] leading-none text-white/95 tabular-nums" style={{ fontFamily: MONO }}>
+          {number}
         </span>
-      )}
+        {/* Status mark on the ribbon: tick when passed, small dot when practice is done */}
+        {status === 'passed' && (
+          <span className="absolute top-1.5 left-1/2 -translate-x-1/2 flex h-3 w-3 items-center justify-center rounded-full bg-white/95" aria-hidden>
+            <Check className="h-2 w-2" style={{ color: ribbon.colors.from }} strokeWidth={3} />
+          </span>
+        )}
+        {status === 'practiced' && (
+          <span className="absolute top-2 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-white/90" aria-hidden />
+        )}
+      </motion.button>
 
-      {/* Completed checkmark */}
-      {isCompleted && (
-        <motion.div
-          className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-        >
-          <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </motion.div>
-      )}
-
-      {/* Enhanced Tooltip with Archetype Logo on hover (desktop only) */}
+      {/* Drafting card: title, status, jump links */}
       <AnimatePresence>
-        {isHovered && isDesktop && (
+        {isOpen && (
           <motion.div
-            className="absolute left-full ml-3 top-1/2 -translate-y-1/2 z-50"
-            initial={{ opacity: 0, x: -8, scale: 0.95 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -8, scale: 0.95 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            id={cardId}
+            className={cn(
+              'absolute top-full mt-2 z-50 w-56 border border-[var(--ds-ink,#1f2a37)]/25 bg-[var(--ds-paper,#f4efe3)] text-left shadow-md',
+              chapterIndex < 4 ? 'left-0' : 'right-0'
+            )}
+            // Inline: the global `div { max-width: 100% }` rule would squeeze the card to the ribbon's width
+            style={{ marginTop: 6, width: 224, maxWidth: 'none' }}
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.15 }}
           >
-            {/* Archetype Card with Logo */}
-            <div
-              className="px-4 py-3 rounded-xl backdrop-blur-md border border-white/20 shadow-2xl min-w-[140px]"
-              style={{
-                background: `linear-gradient(135deg, ${ribbon.colors.from}dd, ${ribbon.colors.to}dd)`,
-              }}
-            >
-              {/* Large Archetype Icon */}
-              <div className="flex items-center justify-center mb-2">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center"
-                  style={{
-                    background: 'rgba(255,255,255,0.2)',
-                    boxShadow: `0 0 20px ${ribbon.colors.from}60`,
-                  }}
-                >
-                  <Icon className="w-6 h-6 text-white drop-shadow-lg" strokeWidth={2} />
-                </div>
+            <div className="h-[2px] w-full" style={{ background: ribbon.colors.from }} />
+            <div className="px-3 pt-2 pb-2">
+              <div className="flex items-center gap-1.5">
+                <Icon className="w-3.5 h-3.5" style={{ color: ribbon.colors.from }} strokeWidth={1.5} aria-hidden />
+                <span className="text-[9px] uppercase tracking-[0.14em] text-[var(--ds-ink-soft,#4a5565)]" style={{ fontFamily: MONO }}>
+                  Chapter {number} · {ribbon.value}
+                </span>
               </div>
-
-              {/* Guardian Name */}
-              <div className="text-center">
-                <div className="font-black text-white text-sm tracking-wider drop-shadow-md">
-                  {ribbon.name}
-                </div>
-                <div className="text-white/80 text-[10px] font-medium mt-0.5">
-                  {ribbon.title}
-                </div>
-                <div
-                  className="text-[9px] font-bold mt-1 px-2 py-0.5 rounded-full inline-block"
-                  style={{ background: 'rgba(255,255,255,0.2)' }}
-                >
-                  {ribbon.value}
-                </div>
+              {title && (
+                <div className="mt-1 font-serif text-sm font-semibold leading-snug text-[var(--ds-ink,#1f2a37)]">{title}</div>
+              )}
+              <div
+                className={cn('mt-1 text-[9px] uppercase tracking-[0.12em]', status === 'passed' ? 'text-[var(--ds-accent,#9a3412)]' : 'text-[var(--ds-ink-soft,#4a5565)]')}
+                style={{ fontFamily: MONO }}
+              >
+                {STATUS_TEXT[status]}
               </div>
             </div>
-
-            {/* Arrow pointing to ribbon */}
-            <div
-              className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 rotate-45"
-              style={{ background: `${ribbon.colors.from}dd` }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.button>
-  )
-}
-
-// ============================================
-// YIN-YANG CONTINUE RIBBON
-// ============================================
-
-interface YinYangRibbonProps {
-  isActive: boolean
-  deviceType: 'desktop' | 'tablet' | 'mobile'
-  continuePosition?: {
-    chapter: number
-    verse: number
-    page: number
-  }
-  onClick: () => void
-  onMouseEnter: () => void
-  onMouseLeave: () => void
-  isHovered: boolean
-  isExpanded?: boolean
-  isFlipping?: boolean
-}
-
-function YinYangRibbon({
-  isActive,
-  deviceType,
-  continuePosition,
-  onClick,
-  onMouseEnter,
-  onMouseLeave,
-  isHovered,
-  isExpanded = false,
-  isFlipping = false,
-}: YinYangRibbonProps) {
-  const dimensions = SCROLL_DIMENSIONS[deviceType]
-  const isDesktop = deviceType === 'desktop'
-
-  return (
-    <motion.button
-      className={cn(
-        'relative flex items-center justify-center',
-        'transition-all duration-300',
-        'focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black',
-        // Separator before yin-yang
-        isDesktop && 'ml-4',
-        !isDesktop && 'ml-2 rounded-md',
-        // CSS-based gradient animation instead of JS interval (was 20 re-renders/sec)
-        'animate-[yinyang-rotate_7s_linear_infinite]'
-      )}
-      style={{
-        width: dimensions.ribbonWidth,
-        height: dimensions.ribbonHeight,
-        // Use CSS custom property for the animated gradient
-        background: 'linear-gradient(var(--yinyang-angle, 0deg), #000000, #ffffff, #000000)',
-        // Desktop: pointed ribbon shape
-        ...(isDesktop && {
-          clipPath: 'polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)',
-        }),
-        boxShadow: isHovered
-          ? '0 0 15px rgba(255,255,255,0.3), 0 0 30px rgba(0,0,0,0.3)'
-          : '2px 2px 8px rgba(0,0,0,0.3)',
-      }}
-      onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      whileHover={isDesktop ? { y: 8 } : { scale: 1.06 }}
-      whileTap={{ scale: 0.95 }}
-      aria-label={A11Y_CONFIG.ariaLabels.continueRibbon}
-      title={
-        continuePosition
-          ? `Continue: Chapter ${continuePosition.chapter + 1}, Verse ${continuePosition.verse + 1}, Page ${continuePosition.page + 1}`
-          : 'Continue Reading'
-      }
-    >
-      {/* Yin-Yang Symbol */}
-      <div className="relative w-4 h-4">
-        <svg viewBox="0 0 24 24" className="w-full h-full">
-          <circle cx="12" cy="12" r="11" fill="#000" />
-          <path
-            d="M12 1 A11 11 0 0 1 12 23 A5.5 5.5 0 0 1 12 12 A5.5 5.5 0 0 0 12 1"
-            fill="#fff"
-          />
-          <circle cx="12" cy="6.5" r="2" fill="#000" />
-          <circle cx="12" cy="17.5" r="2" fill="#fff" />
-        </svg>
-      </div>
-
-      {/* Tooltip on hover (desktop only) */}
-      <AnimatePresence>
-        {isHovered && isDesktop && (
-          <motion.div
-            className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-2 rounded-lg bg-black/90 text-white text-xs whitespace-nowrap z-50"
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -10 }}
-          >
-            <div className="font-bold">CONTINUE</div>
-            {continuePosition && (
-              <div className="text-white/70">
-                Ch.{continuePosition.chapter + 1} • V.{continuePosition.verse + 1} • P.{continuePosition.page + 1}
+            {onSectionClick && (
+              <div className="grid grid-cols-2 border-t border-[var(--ds-ink,#1f2a37)]/15">
+                {SECTIONS.map((section, k) => (
+                  <button
+                    key={section.id}
+                    type="button"
+                    onClick={() => onSectionClick(section.id)}
+                    className={cn(
+                      'px-3 py-1.5 text-left text-[10px] uppercase tracking-[0.1em] text-[var(--ds-ink,#1f2a37)] hover:bg-[var(--ds-paper-deep,#ece5d4)] focus:outline-none focus-visible:bg-[var(--ds-paper-deep,#ece5d4)]',
+                      k % 2 === 1 && 'border-l border-[var(--ds-ink,#1f2a37)]/15',
+                      k >= 2 && 'border-t border-[var(--ds-ink,#1f2a37)]/15'
+                    )}
+                    style={{ fontFamily: MONO }}
+                  >
+                    {section.label}
+                  </button>
+                ))}
               </div>
             )}
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.button>
+    </div>
+  )
+}
+
+// ============================================
+// CONTINUE RIBBON
+// ============================================
+
+function ContinueRibbon({
+  label,
+  isDesktop,
+  isExpanded,
+  isOpen,
+  onOpen,
+  onClose,
+  onClick,
+}: {
+  label: string | null
+  isDesktop: boolean
+  isExpanded: boolean
+  isOpen: boolean
+  onOpen: () => void
+  onClose: () => void
+  onClick: () => void
+}) {
+  const disabled = !label
+  const height = ribbonLength(isDesktop, isExpanded, false, isOpen && !disabled) + (isDesktop ? 6 : 0)
+  return (
+    <div className={cn('relative', isDesktop ? 'ml-3' : 'ml-2')} onMouseEnter={onOpen} onMouseLeave={onClose} onFocus={onOpen} onBlur={onClose}>
+      <motion.button
+        type="button"
+        disabled={disabled}
+        className={cn(
+          'relative flex flex-col items-center justify-end pb-2.5',
+          'focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ds-accent,#9a3412)] focus-visible:ring-offset-1',
+          disabled && 'cursor-not-allowed'
+        )}
+        style={{
+          width: isDesktop ? (isExpanded ? 26 : 24) : 26,
+          background: 'linear-gradient(180deg, #34404f 0%, #1f2a37 100%)',
+          clipPath: RIBBON_CLIP,
+          filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.2))',
+          opacity: disabled ? 0.45 : 1,
+        }}
+        initial={false}
+        animate={{ height }}
+        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+        onClick={onClick}
+        aria-label={label ? `${A11Y_CONFIG.ariaLabels.continueRibbon}: ${label}` : 'Nothing to continue yet'}
+      >
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 left-[3px] right-[3px] border-x border-dashed border-white/30"
+          style={{ clipPath: RIBBON_CLIP }}
+        />
+        {/* Yin-yang drawn in line: the continuity motif */}
+        <svg viewBox="0 0 24 24" className="w-3 h-3 text-white/90" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden>
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 2 A5 5 0 0 1 12 12 A5 5 0 0 0 12 22" />
+          <circle cx="12" cy="7" r="1.2" fill="currentColor" stroke="none" />
+          <circle cx="12" cy="17" r="1.2" />
+        </svg>
+      </motion.button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="absolute top-full right-0 z-50 whitespace-nowrap border border-[var(--ds-ink,#1f2a37)]/25 bg-[var(--ds-paper,#f4efe3)] px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-[var(--ds-ink,#1f2a37)] shadow-md"
+            style={{ fontFamily: MONO, marginTop: 6, maxWidth: 'none' }}
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.15 }}
+          >
+            {label ? (
+              <>
+                <div className="font-semibold">Continue reading</div>
+                <div className="opacity-70">{label}</div>
+              </>
+            ) : (
+              <div className="opacity-70">Start a lesson to save your place</div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
