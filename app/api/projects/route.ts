@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { auth } from '@/auth'
 import { incrementStockScore, STOCK_POINTS } from '@/lib/stockScore'
+import riverknoll from '@/data/riverknoll-renewal.json'
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,9 +10,12 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1')
     const limit = Math.min(parseInt(searchParams.get('limit') || '20'), 50)
     const skip = (page - 1) * limit
+    const slug = searchParams.get('slug')
+    const where = slug ? { slug } : {}
 
     const [projects, total] = await Promise.all([
       prisma.project.findMany({
+        where,
         include: {
           creator: {
             select: {
@@ -40,7 +44,7 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit,
       }),
-      prisma.project.count(),
+      prisma.project.count({ where }),
     ])
 
     return NextResponse.json({
@@ -71,6 +75,14 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
 
+    // The canonical initiative is initialized atomically by the site-admin route.
+    if (body.slug === riverknoll.slug) {
+      return NextResponse.json(
+        { success: false, error: 'Riverknoll Renewal has a dedicated initiative page. A site administrator can activate its community workspace there; choose another slug for a separate project.' },
+        { status: 409 }
+      )
+    }
+
     // Validate required fields
     if (!body.name || !body.slug || !body.description) {
       return NextResponse.json(
@@ -86,7 +98,18 @@ export async function POST(request: NextRequest) {
         description: body.description,
         goal: body.goal || null,
         status: body.status || 'PLANNING',
+        visibility: body.visibility === 'UNLISTED' ? 'UNLISTED' : 'PUBLIC',
         coverImage: body.coverImage || null,
+        layoutConfig: {
+          tagline: typeof body.tagline === 'string' ? body.tagline : '',
+          mission: typeof body.mission === 'string' ? body.mission : '',
+          category: typeof body.category === 'string' ? body.category : '',
+          tags: Array.isArray(body.tags) ? body.tags.filter((tag: unknown) => typeof tag === 'string') : [],
+          theme: typeof body.theme === 'string' ? body.theme : 'nature',
+          settings: body.settings && typeof body.settings === 'object' ? body.settings : {},
+          templateId: typeof body.templateId === 'string' ? body.templateId : null,
+          publicAttribution: typeof body.publicAttribution === 'string' ? body.publicAttribution : null,
+        },
         creatorId: session.user.id,
       },
       include: {

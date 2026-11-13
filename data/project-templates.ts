@@ -8,6 +8,7 @@ import {
   Lightbulb, Sprout, Home, Heart, GraduationCap, Megaphone,
   Building2, Mountain, Fish, Bird, Flower2, Apple
 } from 'lucide-react'
+import riverknoll from './riverknoll-renewal.json'
 
 export interface ProjectTemplate {
   id: string
@@ -32,6 +33,8 @@ export interface ProjectTemplate {
     title: string
     content: string
   }>
+  coverImage?: string
+  publicAttribution?: string
   popularity: number // For sorting
 }
 
@@ -105,6 +108,29 @@ export const PROJECT_TEMPLATES: ProjectTemplate[] = [
       }
     ],
     popularity: 88,
+  },
+  {
+    id: riverknoll.slug,
+    name: riverknoll.title,
+    tagline: riverknoll.tagline,
+    description: riverknoll.summary,
+    mission: riverknoll.mission,
+    category: 'advocacy',
+    tags: ['student-housing', 'RIT', 'affordability', 'System-3E', 'phased-construction', 'community-garden', 'stormwater', 'wildlife'],
+    theme: 'nature',
+    icon: Building2,
+    gradient: 'from-emerald-600 to-teal-700',
+    color: '#16836d',
+    suggestedGoal: 'Gather resident feedback and expertise, then refine a reviewable concept, phased schedule, code path and 20-year life-cycle estimate for RIT to consider.',
+    features: {
+      enableDiscussions: true,
+      enableResearch: true,
+      enableLearning: false,
+      requireApproval: false,
+    },
+    coverImage: riverknoll.coverImage,
+    publicAttribution: riverknoll.attribution,
+    popularity: 100,
   },
   {
     id: 'zero-waste',

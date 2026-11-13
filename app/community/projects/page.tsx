@@ -12,6 +12,7 @@ import {
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { JoinProjectButton } from '@/components/projects/JoinProjectButton'
+import riverknoll from '@/data/riverknoll-renewal.json'
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 
@@ -993,7 +994,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           <div className="flex items-center gap-2 mt-1 text-[11px] text-[var(--muted-foreground)]">
             <span className="flex items-center gap-1">
               <User className="w-3 h-3" />
-              {project.creator?.name || 'Anonymous'}
+              {project.layoutConfig?.publicAttribution || project.creator?.name || 'Anonymous'}
             </span>
             {project.goal && (
               <>
@@ -1331,27 +1332,21 @@ export default function ProjectsPage() {
 
   if (projects.length === 0) {
     return (
-      <div className="min-h-screen bg-[var(--background)] flex items-center justify-center">
-        <div className="text-center space-y-5 px-4 max-w-md">
-          <EmptyLandscape />
-          <div>
-            <h2 className="text-2xl font-black text-[var(--foreground)]">No Initiatives Yet</h2>
-            <p className="text-sm text-[var(--muted-foreground)] mt-2 leading-relaxed">
-              The land is open. Be the first to plant a seed and start building.
-            </p>
-          </div>
-          <div className="flex items-center gap-3 mt-1">
-            <Link href="/community/projects/new">
-              <Button className="font-bold text-sm uppercase tracking-wider rounded-full px-6 gap-2">
-                <Plus className="w-4 h-4" />
-                Create Initiative
-              </Button>
-            </Link>
-            <Link href="/community">
-              <Button variant="outline" className="font-bold text-sm uppercase tracking-wider rounded-full px-6">
-                Go to Community
-              </Button>
-            </Link>
+      <div className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4 py-12">
+        <div className="grid max-w-5xl items-center gap-8 overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--card)] shadow-xl md:grid-cols-2">
+          <img src={riverknoll.coverImage} alt="Illustrative concept rendering of a Riverknoll Renewal courtyard with gardens and shared paths" className="h-full min-h-64 w-full object-cover" />
+          <div className="space-y-5 p-7 md:p-10">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--primary)]">First community initiative</p>
+            <div>
+              <h1 className="text-3xl font-black text-[var(--foreground)]">{riverknoll.title}</h1>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--muted-foreground)]">{riverknoll.summary}</p>
+              <p className="mt-3 text-xs leading-relaxed text-[var(--muted-foreground)]">{riverknoll.status} · {riverknoll.attribution}. Student-originated; not approved or funded by RIT.</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/community/projects/riverknoll-renewal"><Button className="gap-2 rounded-full px-6 font-bold">Explore Riverknoll Renewal</Button></Link>
+              <Link href="/community/projects/new"><Button variant="outline" className="rounded-full px-6 font-bold">Create another initiative</Button></Link>
+              <Link href="/community"><Button variant="outline" className="rounded-full px-6 font-bold">Go to Community</Button></Link>
+            </div>
           </div>
         </div>
       </div>
@@ -1429,6 +1424,12 @@ export default function ProjectsPage() {
 
       {/* ═══ THE JOURNEY ═══ */}
       <main id="initiatives" className="relative py-10">
+        <div className="relative mx-auto mb-10 max-w-6xl px-6">
+          <Link href="/community/projects/riverknoll-renewal" className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 hover:border-[var(--primary)]">
+            <div><p className="text-xs font-bold uppercase tracking-widest text-[var(--primary)]">First Exodus design · {riverknoll.status}</p><h2 className="mt-2 text-2xl font-bold">{riverknoll.title}</h2><p className="mt-2 max-w-2xl text-sm text-[var(--muted-foreground)]">{riverknoll.summary}</p></div>
+            <span className="text-sm font-bold text-[var(--primary)]">Explore the proposal →</span>
+          </Link>
+        </div>
         {/* Heat wave / frequency lines — subtle atmospheric shimmer */}
         <HeatWaveEffect />
 
