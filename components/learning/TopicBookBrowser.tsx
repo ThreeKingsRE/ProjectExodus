@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import type { Module, CoreTopic, TopicDefinition } from '@/types/modules'
 import { LearningLevel, LEARNING_LEVELS } from '@/types/learning'
+import { moduleProgressKeys } from '@/lib/learning/topicVolumes'
 
 // Handwritten font
 const handwritten = "font-['Caveat',_cursive]"
@@ -28,8 +29,10 @@ interface TopicBookProps {
   topicSlug: CoreTopic
   topic: TopicDefinition
   selectedLevel: LearningLevel
+  /** Progress keys (see moduleProgressKeys) of modules the user has completed */
   completedModules?: string[]
-  onOpenDigitalScroll?: (chapterIndex: number) => void
+  /** Opens the Digital Scroll at a module, by its index in topic.modules */
+  onOpenDigitalScroll?: (moduleIndex: number) => void
 }
 
 // Learning Module definitions for each core topic - exactly 7 modules per topic
@@ -91,7 +94,7 @@ const LEARNING_MODULE_MAPPING: Record<string, { name: string; categories: string
 }
 
 // Group lessons (modules in code) into exactly 7 Learning Modules
-function groupLessonsIntoLearningModules(modules: Module[], topicSlug: string): { learningModule: string; lessons: Module[] }[] {
+export function groupLessonsIntoLearningModules(modules: Module[], topicSlug: string): { learningModule: string; lessons: Module[] }[] {
   const mapping = LEARNING_MODULE_MAPPING[topicSlug]
 
   if (!mapping) {
@@ -145,7 +148,8 @@ function LearningModuleSection({
   moduleIndex,
   selectedLevel,
   topicSlug,
-  completedLessons = [],
+  isCompleted,
+  getModuleIndex,
   isExpanded,
   onToggle,
   onOpenDigitalScroll
@@ -156,15 +160,16 @@ function LearningModuleSection({
   moduleIndex: number
   selectedLevel: LearningLevel
   topicSlug: CoreTopic
-  completedLessons: string[]
+  isCompleted: (module: Module) => boolean
+  getModuleIndex: (module: Module) => number
   isExpanded: boolean
   onToggle: () => void
-  onOpenDigitalScroll?: (chapterIndex: number) => void
+  onOpenDigitalScroll?: (moduleIndex: number) => void
 }) {
   const colors = MODULE_COLORS[moduleIndex % MODULE_COLORS.length]
 
   // Calculate progress for this learning module
-  const completedCount = lessons.filter(m => completedLessons.includes(m.id)).length
+  const completedCount = lessons.filter(isCompleted).length
   const totalPages = lessons.reduce((acc, m) => acc + m.lessons.length, 0)
   const progress = lessons.length > 0 ? Math.round((completedCount / lessons.length) * 100) : 0
   const isModuleComplete = progress === 100
@@ -237,7 +242,7 @@ function LearningModuleSection({
             <div className={`mt-2 ${colors.light} ${colors.border} border-2 rounded-xl p-3 sm:p-4`}>
               <div className="grid gap-3">
                 {lessons.map((lesson, lessonIdx) => {
-                  const isLessonCompleted = completedLessons.includes(lesson.id)
+                  const isLessonCompleted = isCompleted(lesson)
                   const lessonPages = lesson.lessons.length
                   const lessonDuration = lesson.duration[selectedLevel]
                   const cardClassName = `${colors.bg} border ${colors.border} rounded-lg p-3 sm:p-4 hover:shadow-md transition-all group ${isLessonCompleted ? 'ring-1 ring-green-400' : ''} w-full text-left block`
@@ -289,8 +294,8 @@ function LearningModuleSection({
                   if (onOpenDigitalScroll) {
                     return (
                       <button
-                        key={lesson.id}
-                        onClick={() => onOpenDigitalScroll(moduleIndex)}
+                        key={`${getModuleIndex(lesson)}-${lesson.id}`}
+                        onClick={() => onOpenDigitalScroll(getModuleIndex(lesson))}
                         type="button"
                         className={cardClassName}
                       >
@@ -301,7 +306,7 @@ function LearningModuleSection({
 
                   return (
                     <Link
-                      key={lesson.id}
+                      key={`${getModuleIndex(lesson)}-${lesson.id}`}
                       href={`/learn/modules/${lesson.slug}?level=${selectedLevel.toLowerCase()}&topic=${topicSlug}`}
                       className={cardClassName}
                     >
@@ -326,15 +331,21 @@ export function TopicBookBrowser({ topicSlug, topic, selectedLevel, completedMod
 
   const learningModules = groupLessonsIntoLearningModules(topic.modules, topicSlug)
 
+  // Progress is keyed per module position (some topics reuse a slug for different modules)
+  const progressKeys = moduleProgressKeys(topic.modules)
+  const completedSet = new Set(completedModules)
+  const getModuleIndex = (module: Module) => topic.modules.indexOf(module)
+  const isCompleted = (module: Module) => completedSet.has(progressKeys[getModuleIndex(module)])
+
   // Calculate total stats
   const totalLessons = topic.modules.length
   const totalPages = topic.modules.reduce((acc, m) => acc + m.lessons.length, 0)
-  const completedLessonCount = completedModules.filter(id => topic.modules.some(m => m.id === id)).length
+  const completedLessonCount = topic.modules.filter(isCompleted).length
   const progressPercent = totalLessons > 0 ? Math.round((completedLessonCount / totalLessons) * 100) : 0
 
   // Calculate completed learning modules
   const completedLearningModules = learningModules.filter(lm =>
-    lm.lessons.every(lesson => completedModules.includes(lesson.id))
+    lm.lessons.every(isCompleted)
   ).length
 
   return (
@@ -363,8 +374,8 @@ export function TopicBookBrowser({ topicSlug, topic, selectedLevel, completedMod
         </p>
         <div className="flex items-center justify-center gap-1 flex-wrap">
           {learningModules.map((lm, idx) => {
-            const isComplete = lm.lessons.every(lesson => completedModules.includes(lesson.id))
-            const isInProgress = lm.lessons.some(lesson => completedModules.includes(lesson.id))
+            const isComplete = lm.lessons.every(isCompleted)
+            const isInProgress = lm.lessons.some(isCompleted)
             return (
               <div key={lm.learningModule} className="flex items-center">
                 <div
@@ -399,7 +410,8 @@ export function TopicBookBrowser({ topicSlug, topic, selectedLevel, completedMod
             moduleIndex={idx}
             selectedLevel={selectedLevel}
             topicSlug={topicSlug}
-            completedLessons={completedModules}
+            isCompleted={isCompleted}
+            getModuleIndex={getModuleIndex}
             isExpanded={expandedModule === group.learningModule}
             onToggle={() => setExpandedModule(
               expandedModule === group.learningModule ? null : group.learningModule

@@ -28,6 +28,8 @@ interface ScrollPageProps {
   pageNumber: number
   totalPages: number
   chapterIndex: number
+  /** Chapter number shown in the footer (defaults to chapterIndex + 1; differs in later volumes) */
+  chapterNumber?: number
   side: 'left' | 'right'
   showWatermark?: boolean
   allowScroll?: boolean // For lesson content, quizzes/games - other pages should fit
@@ -87,7 +89,7 @@ interface Illustration {
 
 export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
   function ScrollPage(
-    { children, pageNumber, totalPages, chapterIndex, side, showWatermark = true, allowScroll = false, onPrevPage, onNextPage, isFirstPage = false, isLastPage = false, className },
+    { children, pageNumber, totalPages, chapterIndex, chapterNumber, side, showWatermark = true, allowScroll = false, onPrevPage, onNextPage, isFirstPage = false, isLastPage = false, className },
     ref
   ) {
     const [deviceType, setDeviceType] = useState<'desktop' | 'tablet' | 'mobile'>('desktop')
@@ -176,7 +178,7 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
                     className="w-1.5 h-1.5 rounded-full"
                     style={{ background: ribbon.colors.gradient }}
                   />
-                  <span className="text-[9px]">Ch. {chapterIndex + 1}</span>
+                  <span className="text-[9px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
                 </span>
               )}
             </>
@@ -191,7 +193,7 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
                     className="w-1.5 h-1.5 rounded-full"
                     style={{ background: ribbon.colors.gradient }}
                   />
-                  <span className="text-[9px]">Ch. {chapterIndex + 1}</span>
+                  <span className="text-[9px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
                 </span>
               )}
               <div className="flex-1" />
@@ -234,7 +236,7 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
                       className="w-1.5 h-1.5 rounded-full"
                       style={{ background: ribbon.colors.gradient }}
                     />
-                    <span className="text-[9px]">Ch. {chapterIndex + 1}</span>
+                    <span className="text-[9px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
                   </span>
                 )}
               </div>

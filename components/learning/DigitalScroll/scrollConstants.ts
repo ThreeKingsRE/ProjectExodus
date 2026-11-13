@@ -326,8 +326,8 @@ export const A11Y_CONFIG = {
     instantTransitions: true,
   },
   keyboardNav: {
-    nextPage: ['ArrowRight', 'ArrowDown', 'Space'],
-    prevPage: ['ArrowLeft', 'ArrowUp'],
+    nextPage: ['ArrowRight', ' '],
+    prevPage: ['ArrowLeft'],
     closeScroll: ['Escape'],
     jumpToChapter: ['1', '2', '3', '4', '5', '6', '7'],
     continueReading: ['0', 'c'],

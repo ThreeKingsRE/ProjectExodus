@@ -6,10 +6,11 @@
 // Ancient manuscript meets digital revelation
 // ============================================
 
-import { useState, useEffect, useCallback, useMemo, ReactNode } from 'react'
+import { useState, useEffect, useCallback, useMemo, useRef, ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils/cn'
 import { sanitizeHtml } from '@/lib/utils/sanitize'
+import { ACCREDITATION_ENABLED } from '@/lib/learning/accreditation'
 import { X, Volume2, VolumeX, Maximize2, Minimize2, ChevronLeft, ChevronRight, GripVertical, MessageCircle } from 'lucide-react'
 
 // Scroll components
@@ -31,7 +32,8 @@ interface GameItem {
 }
 
 // Import term extraction utilities
-import { extractTermsFromModule, KEY_TERMS_BY_TOPIC } from '@/lib/learning/termExtractor'
+import { extractTermsFromModule, isQuizWorthyTerm, KEY_TERMS_BY_TOPIC } from '@/lib/learning/termExtractor'
+import { volumeLabel } from '@/lib/learning/topicVolumes'
 import {
   GUARDIAN_RIBBONS,
   RIBBON_ORDER,
@@ -53,12 +55,28 @@ interface DigitalScrollProps {
   modules: Module[]
   initialLevel?: LearningLevel
   initialChapter?: number
+  /** Which 7-chapter volume of the topic this book shows (0-based) */
+  volumeIndex?: number
+  /** Total number of volumes for this topic */
+  volumeCount?: number
+  /** Switch to another volume without closing the book */
+  onVolumeChange?: (volumeIndex: number) => void
+  /** Level change inside the book (lets the parent refetch content for that level) */
+  onLevelChange?: (level: LearningLevel) => void
+  /** True while the parent is fetching this volume's content */
+  isLoadingContent?: boolean
+  /** Progress key for each module in `modules` (same order) */
+  moduleKeys?: string[]
+  /** Saved progress for this topic (signed-in users) */
+  moduleProgress?: Array<{ moduleKey: string; practiceCompleted: boolean; quizPassed: boolean }>
+  /** Called after progress is saved so the parent can refresh */
+  onProgressSaved?: () => void
   onClose: () => void
   className?: string
 }
 
 interface ScrollContent {
-  type: 'cover' | 'inside-cover' | 'toc' | 'learning-mission' | 'chapter-divider' | 'chapter-intro' | 'verse' | 'content' | 'chapter-review' | 'notes-enhanced' | 'games' | 'quiz'
+  type: 'cover' | 'inside-cover' | 'toc' | 'learning-mission' | 'chapter-divider' | 'chapter-intro' | 'content' | 'chapter-review' | 'notes-enhanced' | 'games' | 'quiz'
   chapterIndex?: number
   verseIndex?: number
   pageIndex?: number
@@ -160,13 +178,31 @@ export function DigitalScroll({
   modules,
   initialLevel = 'HIGH_SCHOOL',
   initialChapter,
+  volumeIndex = 0,
+  volumeCount = 1,
+  onVolumeChange,
+  onLevelChange,
+  isLoadingContent = false,
+  moduleKeys = [],
+  moduleProgress = [],
+  onProgressSaved,
   onClose,
   className,
 }: DigitalScrollProps) {
+  // Positions and chapter progress are stored per volume. Volume 0 keeps the
+  // bare topic id so reading positions saved before volumes existed still work.
+  const bookKey = volumeIndex === 0 ? topic.id : `${topic.id}:v${volumeIndex}`
+  // Chapter numbers shown to the reader are global across volumes (Volume II starts at Chapter 8)
+  const chapterOffset = volumeIndex * 7
   const [deviceType, setDeviceType] = useState<'desktop' | 'tablet' | 'mobile'>('desktop')
   const [selectedLevel, setSelectedLevel] = useState<LearningLevel>(initialLevel)
   const [showOpenAnimation, setShowOpenAnimation] = useState(true)
   const [isRapidFlipping, setIsRapidFlipping] = useState(false)
+  const [rapidFlip, setRapidFlip] = useState<{ from: number; to: number } | null>(null)
+  const rapidFlipTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  useEffect(() => () => {
+    if (rapidFlipTimer.current) clearTimeout(rapidFlipTimer.current)
+  }, [])
   const [isFlipping, setIsFlipping] = useState(false)
   const [isExpanded, setIsExpanded] = useState(true)
 
@@ -183,13 +219,45 @@ export function DigitalScroll({
   }, [isExpanded])
 
   const scrollState = useScrollState()
+  // Stable callbacks from the hook (the scrollState object itself changes every render)
+  const { goToPosition: saveReadingPosition, closeScroll, openScroll, unlockScroll } = scrollState
   const playPageTurn = usePageTurnSound(scrollState.preferences.soundEnabled)
 
   // Notes state - persisted to localStorage
   const [pageNotes, setPageNotes] = useState<Record<string, string>>({})
 
-  // Game completion tracking per chapter (required to unlock quiz)
-  const [completedGames, setCompletedGames] = useState<Record<number, boolean>>({})
+  // Practice completion per module key (required to unlock that chapter's quiz).
+  // Seeded from saved progress so unlocked quizzes stay unlocked between visits.
+  const [completedGames, setCompletedGames] = useState<Record<string, boolean>>({})
+  const savedPractice = useMemo(() => {
+    const done: Record<string, boolean> = {}
+    for (const p of moduleProgress) if (p.practiceCompleted || p.quizPassed) done[p.moduleKey] = true
+    return done
+  }, [moduleProgress])
+  const keyForChapter = useCallback(
+    (chapterIndex: number) => moduleKeys[chapterIndex] ?? `${topic.id}-${volumeIndex}-${chapterIndex}`,
+    [moduleKeys, topic.id, volumeIndex]
+  )
+  const isPracticeDone = (chapterIndex: number) => {
+    const key = keyForChapter(chapterIndex)
+    return Boolean(completedGames[key] || savedPractice[key])
+  }
+
+  // Save progress for a chapter (signed-in users; fire-and-forget otherwise)
+  const saveProgress = useCallback(
+    (chapterIndex: number, body: { action: 'practice_complete' | 'submit_quiz'; score?: number }) => {
+      const moduleKey = moduleKeys[chapterIndex]
+      if (!moduleKey) return
+      fetch('/api/learn/progress', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...body, topicId: topic.id, moduleKey, level: selectedLevel }),
+      })
+        .then((res) => { if (res.ok) onProgressSaved?.() })
+        .catch((err) => console.error('Failed to save progress:', err))
+    },
+    [moduleKeys, topic.id, selectedLevel, onProgressSaved]
+  )
 
   // Discussion modal state
   const [showDiscussion, setShowDiscussion] = useState(false)
@@ -271,8 +339,12 @@ export function DigitalScroll({
       // ============================================
 
       // Generate game items from module content using term extraction
-      const extractedTerms = extractTermsFromModule(module, selectedLevel, 12)
-      const fallbackTerms = KEY_TERMS_BY_TOPIC[topic.id] || []
+      // Only well-formed term/definition pairs (table values like "Concrete" → "2,400" are dropped)
+      const extractedTerms = extractTermsFromModule(module, selectedLevel, 40)
+        .filter(isQuizWorthyTerm)
+        .slice(0, 12)
+      const extractedIds = new Set(extractedTerms.map(t => t.id))
+      const fallbackTerms = (KEY_TERMS_BY_TOPIC[topic.id] || []).filter(t => !extractedIds.has(t.id))
 
       const chapterGameItems: GameItem[] = extractedTerms.length >= 5
         ? extractedTerms.map(t => ({
@@ -309,8 +381,9 @@ export function DigitalScroll({
       // All lessons combined into one scrollable page
       // ============================================
       const allLessonContent = module.lessons.map((lesson, verseIndex) => {
-        const content = lesson.content[selectedLevel] || lesson.content.HIGH_SCHOOL
-        const verseHeader = `<div class="verse-header"><h2>${lesson.title}</h2></div>`
+        // Content arrives for one level at a time; while another level loads, show what we have
+        const content = lesson.content[selectedLevel] ?? Object.values(lesson.content)[0] ?? ''
+        const verseHeader = `<div class="verse-header"><h2>${escapeHtml(lesson.title)}</h2></div>`
         return verseHeader + content
       }).join('<hr class="lesson-divider" />')
 
@@ -379,6 +452,15 @@ export function DigitalScroll({
 
   const [currentPageIndex, setCurrentPageIndex] = useState(0)
   const totalPages = bookPages.length
+
+  // Switching volumes inside the book lands on that volume's table of contents
+  const previousVolume = useRef(volumeIndex)
+  useEffect(() => {
+    if (previousVolume.current !== volumeIndex) {
+      previousVolume.current = volumeIndex
+      setCurrentPageIndex(2)
+    }
+  }, [volumeIndex])
 
   const currentPage = bookPages[currentPageIndex]
   const currentChapter = currentPage?.chapterIndex ?? 0
@@ -466,8 +548,10 @@ export function DigitalScroll({
 
       // Use rapid flip if jumping more than 5 pages
       if (Math.abs(clampedIndex - currentPageIndex) > 5) {
+        setRapidFlip({ from: Math.floor(currentPageIndex / 2), to: Math.floor(clampedIndex / 2) })
         setIsRapidFlipping(true)
-        setTimeout(() => {
+        if (rapidFlipTimer.current) clearTimeout(rapidFlipTimer.current)
+        rapidFlipTimer.current = setTimeout(() => {
           setCurrentPageIndex(clampedIndex)
           setIsRapidFlipping(false)
         }, 1000)
@@ -477,8 +561,13 @@ export function DigitalScroll({
     }
   }, [bookPages, currentPageIndex, goToPage, totalPages])
 
+  const handleClose = useCallback(() => {
+    closeScroll()
+    onClose()
+  }, [closeScroll, onClose])
+
   const continueReading = useCallback(() => {
-    const position = scrollState.getContinuePosition(topic.id)
+    const position = scrollState.getContinuePosition(bookKey)
     // Convert position to page index
     const pageIndex = bookPages.findIndex(
       (page) =>
@@ -490,16 +579,31 @@ export function DigitalScroll({
     if (pageIndex !== -1) {
       goToPage(pageIndex)
     }
-  }, [scrollState, topic.id, bookPages, goToPage])
+  }, [scrollState, bookKey, bookPages, goToPage])
 
   // ============================================
   // KEYBOARD NAVIGATION
   // ============================================
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    // Never treat keystrokes as shortcuts while the reader is typing (notes,
+    // intentions, game answers) or holding a modifier (browser shortcuts).
+    const target = e.target as HTMLElement
+    const isTyping =
+      target.isContentEditable ||
+      ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)
+    if (isTyping) {
+      // Escape leaves the field instead of closing the whole book
+      if (e.key === 'Escape') target.blur()
+      return
+    }
+    if (e.metaKey || e.ctrlKey || e.altKey) return
+    // Space/Enter on a focused button should press the button, not turn the page
+    if ((e.key === ' ' || e.key === 'Enter') && target.closest('button, a, [role="button"]')) return
+
     if (A11Y_CONFIG.keyboardNav.closeScroll.includes(e.key)) {
       e.preventDefault()
-      onClose()
+      handleClose()
     } else if (A11Y_CONFIG.keyboardNav.nextPage.includes(e.key)) {
       e.preventDefault()
       nextPage()
@@ -517,7 +621,7 @@ export function DigitalScroll({
         goToChapter(chapterNum - 1)
       }
     }
-  }, [onClose, nextPage, prevPage, continueReading, goToChapter])
+  }, [handleClose, nextPage, prevPage, continueReading, goToChapter])
 
   // ============================================
   // UNLOCK & OPEN ANIMATION
@@ -525,13 +629,15 @@ export function DigitalScroll({
 
   // Unlock and open on mount — only depends on topic.id and stable function refs
   // to avoid infinite re-render loops (scrollState object changes on every state update)
+  const isUnlocked = scrollState.unlockState.isUnlocked
   useEffect(() => {
-    if (!scrollState.unlockState.isUnlocked) {
-      scrollState.unlockScroll(topic.id)
+    if (!isUnlocked) {
+      unlockScroll(topic.id)
     }
-    scrollState.openScroll(topic.id)
+    openScroll(bookKey)
+    // Re-run only when the book (topic + volume) changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [topic.id])
+  }, [bookKey])
 
   const handleAnimationComplete = useCallback(() => {
     setShowOpenAnimation(false)
@@ -540,38 +646,36 @@ export function DigitalScroll({
     // - initialChapter > 0: navigate to that specific chapter
     // - initialChapter === 0: explicitly go to first page (cover), ignore continue position
     if (initialChapter !== undefined) {
-      if (initialChapter > 0) {
-        goToChapter(initialChapter)
-      } else {
-        // initialChapter === 0 means "start fresh from cover page"
-        setCurrentPageIndex(0)
-      }
+      // Opened from a specific lesson card: go straight to that chapter
+      goToChapter(initialChapter)
     } else {
-      // No initialChapter specified - use continue position if exists
-      const position = scrollState.getContinuePosition(topic.id)
-      if (position.chapter > 0 || position.verse > 0 || position.page > 0) {
+      // Opened from the main button: resume where the reader left off, if anywhere
+      // A saved position at chapter 0 / page 0 is still a real position (first chapter)
+      if (scrollState.readingPositions[bookKey]) {
         continueReading()
       } else {
         // Start at cover page (spread shows cover + level selection)
         setCurrentPageIndex(0)
       }
     }
-  }, [scrollState, topic.id, continueReading, initialChapter, goToChapter])
+  }, [scrollState, bookKey, continueReading, initialChapter, goToChapter])
 
   // ============================================
   // SAVE POSITION ON PAGE CHANGE
   // ============================================
 
+  // Depends only on the stable goToPosition callback. Depending on the whole
+  // scrollState object (a new object every render) caused an infinite render loop.
   useEffect(() => {
     const page = bookPages[currentPageIndex]
     if (page && page.type === 'content') {
-      scrollState.goToPosition({
+      saveReadingPosition({
         chapter: page.chapterIndex ?? 0,
         verse: page.verseIndex ?? 0,
         page: page.pageIndex ?? 0,
       })
     }
-  }, [currentPageIndex, bookPages, scrollState])
+  }, [currentPageIndex, bookPages, saveReadingPosition])
 
   // ============================================
   // RENDER PAGE CONTENT
@@ -604,7 +708,10 @@ export function DigitalScroll({
               verseCount={modules.reduce((acc, m) => acc + m.lessons.length, 0)}
               pageCount={totalPages}
               selectedLevel={selectedLevel}
-              onLevelSelect={(level) => setSelectedLevel(level as LearningLevel)}
+              onLevelSelect={(level) => {
+                setSelectedLevel(level as LearningLevel)
+                onLevelChange?.(level as LearningLevel)
+              }}
               onStartReading={() => goToPage(4)}
             />
           </div>
@@ -620,7 +727,7 @@ export function DigitalScroll({
                 Table of Contents
               </h2>
               <p className="text-[10px] text-[var(--muted-foreground)] italic font-serif">
-                The Seven Paths of Knowledge
+                {volumeCount > 1 ? `${volumeLabel(volumeIndex)} of ${volumeCount}` : 'The Seven Paths of Knowledge'}
               </p>
             </div>
             <HieroglyphicDivider color={currentRibbon?.colors.from} />
@@ -630,7 +737,7 @@ export function DigitalScroll({
                 const ribbon = RIBBON_ORDER[i] ? GUARDIAN_RIBBONS[RIBBON_ORDER[i]] : null
                 return (
                   <button
-                    key={module.id}
+                    key={`${i}-${module.id}`}
                     onClick={() => goToChapter(i)}
                     className="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-[var(--muted)] transition-colors text-left group"
                   >
@@ -638,7 +745,7 @@ export function DigitalScroll({
                       className="w-6 h-6 rounded flex items-center justify-center text-white text-[10px] font-bold shadow-sm shrink-0"
                       style={{ background: ribbon?.colors.gradient }}
                     >
-                      {i + 1}
+                      {chapterOffset + i + 1}
                     </div>
                     <span className="flex-1 text-xs font-serif font-medium text-[var(--book-text,var(--foreground))] group-hover:text-[var(--primary)] transition-colors truncate">
                       {module.title}
@@ -648,11 +755,35 @@ export function DigitalScroll({
                 )
               })}
             </div>
-            {/* Footer */}
+            {/* Footer: volume navigation */}
             <div className="text-center py-1 shrink-0">
-              <p className="text-[9px] text-[var(--muted-foreground)]">
-                Click a chapter to begin reading
-              </p>
+              {volumeCount > 1 && onVolumeChange ? (
+                <div className="flex items-center justify-center gap-2">
+                  <button
+                    type="button"
+                    disabled={volumeIndex === 0 || isLoadingContent}
+                    onClick={() => onVolumeChange(volumeIndex - 1)}
+                    className="px-2 py-0.5 rounded text-[10px] font-medium hover:bg-[var(--muted)] disabled:opacity-30"
+                  >
+                    ← {volumeIndex > 0 ? volumeLabel(volumeIndex - 1) : 'Previous'}
+                  </button>
+                  <span className="text-[9px] text-[var(--muted-foreground)]">
+                    {isLoadingContent ? 'Loading…' : `${volumeIndex + 1} / ${volumeCount}`}
+                  </span>
+                  <button
+                    type="button"
+                    disabled={volumeIndex >= volumeCount - 1 || isLoadingContent}
+                    onClick={() => onVolumeChange(volumeIndex + 1)}
+                    className="px-2 py-0.5 rounded text-[10px] font-medium hover:bg-[var(--muted)] disabled:opacity-30"
+                  >
+                    {volumeIndex < volumeCount - 1 ? volumeLabel(volumeIndex + 1) : 'Next'} →
+                  </button>
+                </div>
+              ) : (
+                <p className="text-[9px] text-[var(--muted-foreground)]">
+                  Click a chapter to begin reading
+                </p>
+              )}
             </div>
           </div>
         )
@@ -761,7 +892,7 @@ export function DigitalScroll({
             {/* Footer hint */}
             <div className="shrink-0 text-center py-1.5 border-t border-[var(--border)]/20">
               <p className="text-[8px] text-[var(--muted-foreground)]">
-                Turn the page to begin Chapter 1 →
+                Turn the page to begin Chapter {chapterOffset + 1} →
               </p>
             </div>
           </div>
@@ -793,7 +924,7 @@ export function DigitalScroll({
         const chapterAccreditation = chapterModule?.accreditation
         const totalDuration = chapterModule?.duration?.[selectedLevel] ||
           allLessons.reduce((sum, l) => sum + (l.duration || 0), 0)
-        const showAccreditation = chapterAccreditation && (selectedLevel === 'UNDERGRADUATE' || selectedLevel === 'GRADUATE' || selectedLevel === 'PHD')
+        const showAccreditation = ACCREDITATION_ENABLED && chapterAccreditation && (selectedLevel === 'UNDERGRADUATE' || selectedLevel === 'GRADUATE' || selectedLevel === 'PHD')
 
         return (
           <div className="w-full h-full flex flex-col relative px-4 py-3">
@@ -827,7 +958,7 @@ export function DigitalScroll({
               ) : (
                 <>
                   <h3 className="text-lg font-serif font-bold text-[var(--book-text,var(--foreground))]">
-                    Chapter {(page.chapterIndex ?? 0) + 1}
+                    Chapter {chapterOffset + (page.chapterIndex ?? 0) + 1}
                   </h3>
                   <p className="text-base font-medium text-[var(--book-text,var(--foreground))] mt-1">
                     {chapterModule?.title}
@@ -993,7 +1124,7 @@ export function DigitalScroll({
           : null
         const gameItems = page.gameItems || []
         const chapterIdx = page.chapterIndex ?? 0
-        const gamesCompleted = completedGames[chapterIdx] ?? false
+        const gamesCompleted = isPracticeDone(chapterIdx)
         return (
           <div className="w-full h-full flex flex-col relative">
             {/* Header - compact */}
@@ -1005,7 +1136,7 @@ export function DigitalScroll({
                 </h3>
               </div>
               <p className="text-[8px] text-[var(--muted-foreground)]">
-                {gamesCompleted ? 'Completed! Quiz unlocked →' : `Complete to unlock Chapter ${chapterIdx + 1} Quiz`}
+                {gamesCompleted ? 'Completed! Quiz unlocked →' : `Score 50%+ on Match, Scramble or Fill In to unlock the Chapter ${chapterOffset + chapterIdx + 1} quiz`}
               </p>
             </div>
 
@@ -1016,10 +1147,14 @@ export function DigitalScroll({
                   items={gameItems}
                   topicColor={gamesRibbon?.colors.from}
                   level={selectedLevel}
-                  onComplete={(score) => {
-                    // Mark games as completed for this chapter
-                    setCompletedGames(prev => ({ ...prev, [chapterIdx]: true }))
-                    // Game completed — score tracked in completedGames state
+                  onComplete={(score, game) => {
+                    // Only a scored activity unlocks the quiz. Flashcards are self-graded
+                    // ("I know it"), so they're for study and don't count.
+                    if (game === 'flashcards' || score < PRACTICE_UNLOCK_SCORE) return
+                    const key = keyForChapter(chapterIdx)
+                    if (completedGames[key] || savedPractice[key]) return
+                    setCompletedGames(prev => ({ ...prev, [key]: true }))
+                    saveProgress(chapterIdx, { action: 'practice_complete' })
                   }}
                 />
               ) : (
@@ -1029,74 +1164,6 @@ export function DigitalScroll({
                   </p>
                 </div>
               )}
-            </div>
-          </div>
-        )
-
-      case 'verse':
-        const verseRibbon = RIBBON_ORDER[page.chapterIndex ?? 0] ? GUARDIAN_RIBBONS[RIBBON_ORDER[page.chapterIndex ?? 0]] : null
-        return (
-          <div className="w-full h-full flex flex-col items-center justify-center px-4">
-            <AncientBorder />
-            {/* Verse presentation - centered on page */}
-            <div className="text-center w-full max-w-sm">
-              {/* Chapter indicator */}
-              <div
-                className="inline-block px-3 py-1 rounded-full text-[10px] uppercase tracking-wider mb-4"
-                style={{
-                  background: verseRibbon ? `${verseRibbon.colors.from}20` : 'var(--muted)',
-                  color: verseRibbon?.colors.from || 'var(--muted-foreground)',
-                }}
-              >
-                Chapter {(page.chapterIndex ?? 0) + 1}
-              </div>
-
-              {/* Decorative element */}
-              <div
-                className="w-12 h-0.5 mx-auto mb-6"
-                style={{
-                  background: verseRibbon
-                    ? `linear-gradient(to right, transparent, ${verseRibbon.colors.from}, transparent)`
-                    : 'var(--border)',
-                }}
-              />
-
-              {/* Verse number */}
-              <div className="text-xs text-[var(--muted-foreground)] tracking-[0.3em] uppercase mb-3">
-                Verse {(page.verseIndex ?? 0) + 1}
-              </div>
-
-              {/* Verse title */}
-              <h2
-                className="text-2xl sm:text-3xl font-serif font-bold mb-4"
-                style={{ color: verseRibbon?.colors.from || 'var(--foreground)' }}
-              >
-                {page.title}
-              </h2>
-
-              {/* Description if available */}
-              {page.module && (
-                <p className="text-sm text-[var(--muted-foreground)] font-serif italic leading-relaxed mb-6">
-                  {typeof page.module.description === 'string'
-                    ? page.module.description
-                    : page.module.description[selectedLevel] || page.module.description.HIGH_SCHOOL}
-                </p>
-              )}
-
-              {/* Decorative element */}
-              <div
-                className="w-12 h-0.5 mx-auto"
-                style={{
-                  background: verseRibbon
-                    ? `linear-gradient(to right, transparent, ${verseRibbon.colors.from}, transparent)`
-                    : 'var(--border)',
-                }}
-              />
-
-              {/* Continue prompt */}
-              <p className="mt-6 text-xs text-[var(--muted-foreground)]">
-                Turn the page to begin →
-              </p>
             </div>
           </div>
         )
@@ -1180,7 +1247,7 @@ export function DigitalScroll({
           ? modules[page.chapterIndex]
           : null
         const reviewAccreditation = reviewModule?.accreditation
-        const showAccreditedReview = reviewAccreditation && (selectedLevel === 'UNDERGRADUATE' || selectedLevel === 'GRADUATE' || selectedLevel === 'PHD')
+        const showAccreditedReview = ACCREDITATION_ENABLED && reviewAccreditation && (selectedLevel === 'UNDERGRADUATE' || selectedLevel === 'GRADUATE' || selectedLevel === 'PHD')
         return (
           <div className="w-full h-full flex flex-col relative px-3 py-2">
             <AncientBorder />
@@ -1362,7 +1429,8 @@ export function DigitalScroll({
         const enhancedChapterTitle = page.chapterIndex !== undefined && page.chapterIndex < modules.length
           ? modules[page.chapterIndex].title
           : 'General'
-        const enhancedNoteKey = `chapter-${page.chapterIndex ?? 'general'}-notes`
+        const enhancedNoteKey = page.module ? `module-${page.module.id}-notes` : 'general-notes'
+        const legacyNoteKey = volumeIndex === 0 ? `chapter-${page.chapterIndex ?? 'general'}-notes` : null
         return (
           <div className="w-full h-full flex flex-col relative px-2 py-1">
             <AncientBorder />
@@ -1413,7 +1481,7 @@ export function DigitalScroll({
                   "focus:outline-none focus:border-[var(--primary)]/50"
                 )}
                 placeholder="Write your reflections and thoughts here..."
-                value={pageNotes[enhancedNoteKey] || ''}
+                value={pageNotes[enhancedNoteKey] ?? (legacyNoteKey ? pageNotes[legacyNoteKey] : '') ?? ''}
                 onChange={(e) => saveNote(enhancedNoteKey, e.target.value)}
                 style={{
                   lineHeight: '1.5em',
@@ -1449,7 +1517,18 @@ export function DigitalScroll({
           : null
         const quizItems = page.gameItems || []
         const quizChapterIdx = page.chapterIndex ?? 0
-        const isQuizUnlocked = completedGames[quizChapterIdx] ?? false
+        const isQuizUnlocked = isPracticeDone(quizChapterIdx)
+        const quizModule = page.module
+        const presetQuestions = (quizModule?.quiz?.questions ?? [])
+          .map(q => ({
+            id: q.id,
+            question: q.question[selectedLevel] ?? Object.values(q.question)[0] ?? '',
+            options: q.options[selectedLevel] ?? Object.values(q.options)[0] ?? [],
+            correctIndex: q.correctIndex,
+            explanation: q.explanation?.[selectedLevel] ?? Object.values(q.explanation ?? {})[0],
+          }))
+          .filter(q => q.question && q.options.length >= 2)
+        const quizPassingScore = quizModule?.quiz?.passingScore ?? 80
 
         return (
           <div className="w-full h-full flex flex-col relative">
@@ -1462,7 +1541,7 @@ export function DigitalScroll({
                 </h3>
               </div>
               <p className="text-[8px] text-[var(--muted-foreground)]">
-                {isQuizUnlocked ? '5 Questions • Graded Assessment' : 'Complete Practice Activities to unlock'}
+                {isQuizUnlocked ? `5 Questions • ${quizPassingScore}% to pass` : 'Complete Practice Activities to unlock'}
               </p>
             </div>
 
@@ -1477,7 +1556,7 @@ export function DigitalScroll({
                     Quiz Locked
                   </h4>
                   <p className="text-[9px] text-[var(--muted-foreground)] mb-3 max-w-[180px]">
-                    Complete at least one Practice Activity to unlock this chapter&apos;s graded quiz.
+                    Score 50% or more on Match, Scramble or Fill In to unlock this chapter&apos;s quiz.
                   </p>
                   <button
                     onClick={() => prevPage()}
@@ -1486,39 +1565,26 @@ export function DigitalScroll({
                     ← Go to Practice Activities
                   </button>
                 </div>
-              ) : quizItems.length >= 5 ? (
+              ) : presetQuestions.length + quizItems.length >= 3 ? (
                 <GradedQuiz
                   items={quizItems}
+                  presetQuestions={presetQuestions}
+                  passingScore={quizPassingScore}
+                  chapterNumber={chapterOffset + quizChapterIdx + 1}
                   topicColor={quizRibbon?.colors.from}
                   level={selectedLevel}
-                  chapterIndex={quizChapterIdx}
                   onComplete={(score, total) => {
                     const percentage = Math.round((score / total) * 100)
-                    // Quiz completed — persist via API below
-
-                    // Mark chapter as complete in local scroll state if passing score (>=70%)
-                    if (percentage >= 70 && quizChapterIdx !== undefined) {
+                    if (percentage >= quizPassingScore) {
                       scrollState.markChapterComplete(quizChapterIdx)
                     }
-
-                    // Persist quiz result to the progress API (fire-and-forget)
-                    fetch('/api/learn/progress', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({
-                        action: 'submit_quiz',
-                        moduleId: modules[quizChapterIdx]?.slug,
-                        quizId: `${topic.id}-ch${quizChapterIdx}-quiz`,
-                        score: percentage,
-                        passed: percentage >= 70,
-                      }),
-                    }).catch((err) => console.error('Failed to save quiz progress:', err))
+                    saveProgress(quizChapterIdx, { action: 'submit_quiz', score: percentage })
                   }}
                 />
               ) : (
                 <div className="h-full flex items-center justify-center">
                   <p className="text-[10px] text-[var(--muted-foreground)]">
-                    Quiz requires at least 5 terms...
+                    This chapter&apos;s quiz isn&apos;t ready yet.
                   </p>
                 </div>
               )}
@@ -1539,6 +1605,10 @@ export function DigitalScroll({
 
   const leftPage = bookPages[currentPageIndex]
   const rightPage = (isDesktop && !isSinglePageMode) ? bookPages[currentPageIndex + 1] : null
+  // Phones/tablets: PageFlip's swipe layout shows its `rightPage` slot as the one
+  // visible page, with next/prev peeking one page away. (Previously the current
+  // page went in `leftPage`, so mobile readers saw a blank page.)
+  const isMobileLayout = !isDesktop
   const prevLeftPage = bookPages[currentPageIndex - 2]
   const prevRightPage = bookPages[currentPageIndex - 1]
   const nextLeftPage = isSinglePageMode ? bookPages[currentPageIndex + 1] : bookPages[currentPageIndex + 2]
@@ -1549,9 +1619,11 @@ export function DigitalScroll({
   // ============================================
 
   const completedChapters = useMemo(() => {
-    const progress = scrollState.topicProgress[topic.id]
-    return progress?.completedChapters || []
-  }, [scrollState.topicProgress, topic.id])
+    const local = scrollState.topicProgress[bookKey]?.completedChapters || []
+    const passedKeys = new Set(moduleProgress.filter(p => p.quizPassed).map(p => p.moduleKey))
+    const saved = moduleKeys.flatMap((key, i) => (passedKeys.has(key) ? [i] : []))
+    return [...new Set([...local, ...saved])]
+  }, [scrollState.topicProgress, bookKey, moduleProgress, moduleKeys])
 
   // ============================================
   // PAGE FRAME WRAPPER
@@ -1571,17 +1643,19 @@ export function DigitalScroll({
 
     // Scroll behavior is context-aware:
     // - Content pages (lessons): always scrollable (textbook content)
-    // - Games/quiz: scrollable only in minimized view
+    // - Games/quiz: always scrollable, so their controls are never cut off
+    //   (in full-screen the flashcard grew past the page and hid its buttons)
     // - Everything else: never scrollable (must fit the page)
     const isContent = page.type === 'content'
     const isInteractive = page.type === 'games' || page.type === 'quiz'
-    const allowScroll = isContent || (isInteractive && !isExpanded)
+    const allowScroll = isContent || isInteractive
 
     return (
       <ScrollPage
         pageNumber={absolutePageIndex + 1}
         totalPages={totalPages}
         chapterIndex={page.chapterIndex ?? 0}
+        chapterNumber={chapterOffset + (page.chapterIndex ?? 0) + 1}
         side={side}
         allowScroll={allowScroll}
         showWatermark={page.type !== 'toc' && page.type !== 'learning-mission'}
@@ -1625,8 +1699,8 @@ export function DigitalScroll({
             transition={{ duration: 0.3, ease: 'easeOut' }}
           >
             <RapidPageFlip
-              fromSpread={Math.floor(currentPageIndex / 2)}
-              toSpread={Math.floor(currentPageIndex / 2)}
+              fromSpread={rapidFlip?.from ?? Math.floor(currentPageIndex / 2)}
+              toSpread={rapidFlip?.to ?? Math.floor(currentPageIndex / 2)}
               onComplete={() => setIsRapidFlipping(false)}
             />
           </motion.div>
@@ -1670,9 +1744,15 @@ export function DigitalScroll({
                 )
               }
               rightPage={
-                <PageContainer side="right">
-                  {wrapPageContent(rightPage, 'right', currentPageIndex + 1)}
-                </PageContainer>
+                isMobileLayout ? (
+                  <PageContainer side="right">
+                    {wrapPageContent(leftPage, 'right', currentPageIndex)}
+                  </PageContainer>
+                ) : (
+                  <PageContainer side="right">
+                    {wrapPageContent(rightPage, 'right', currentPageIndex + 1)}
+                  </PageContainer>
+                )
               }
               nextLeftPage={
                 nextLeftPage ? (
@@ -1682,7 +1762,13 @@ export function DigitalScroll({
                 ) : undefined
               }
               nextRightPage={
-                nextRightPage ? (
+                isMobileLayout ? (
+                  bookPages[currentPageIndex + 1] ? (
+                    <PageContainer side="right">
+                      {wrapPageContent(bookPages[currentPageIndex + 1], 'right', currentPageIndex + 1)}
+                    </PageContainer>
+                  ) : undefined
+                ) : nextRightPage ? (
                   <PageContainer side="right">
                     {wrapPageContent(nextRightPage, 'right', isSinglePageMode ? currentPageIndex + 2 : currentPageIndex + 3)}
                   </PageContainer>
@@ -1696,7 +1782,13 @@ export function DigitalScroll({
                 ) : undefined
               }
               prevRightPage={
-                prevRightPage ? (
+                isMobileLayout ? (
+                  bookPages[currentPageIndex - 1] ? (
+                    <PageContainer side="right">
+                      {wrapPageContent(bookPages[currentPageIndex - 1], 'right', currentPageIndex - 1)}
+                    </PageContainer>
+                  ) : undefined
+                ) : prevRightPage ? (
                   <PageContainer side="right">
                     {wrapPageContent(prevRightPage, 'right', currentPageIndex - 1)}
                   </PageContainer>
@@ -1752,10 +1844,7 @@ export function DigitalScroll({
 
             {/* Close Button */}
             <button
-              onClick={() => {
-                scrollState.closeScroll()
-                onClose()
-              }}
+              onClick={handleClose}
               className="p-2 rounded-full bg-red-500/90 text-white hover:bg-red-600 transition-all"
               aria-label="Close scroll"
             >
@@ -1839,35 +1928,13 @@ export function DigitalScroll({
                   <p className="text-sm text-[var(--muted-foreground)] max-w-[300px] mb-4">
                     Share insights, ask questions, and connect with others studying {topic.title}.
                   </p>
-                  <p className="text-xs text-[var(--muted-foreground)]/70">
-                    Discussions sync with the community forum
-                  </p>
-                </div>
-              </div>
-
-              {/* Input Area */}
-              <div className="p-4 border-t border-[var(--border)] bg-[var(--muted)]/30">
-                <div className="flex gap-3">
-                  <textarea
-                    placeholder="Share your thoughts on this chapter..."
-                    aria-label="Discussion message"
-                    className="flex-1 px-3 py-2 text-sm rounded-lg bg-[var(--background)] border border-[var(--border)] focus:outline-none focus:border-[var(--primary)] resize-none"
-                    rows={2}
-                  />
-                  <div className="flex flex-col gap-2">
-                    <button
-                      onClick={() => window.open(`/community/forum?topic=${topic.id}`, '_blank')}
-                      className="px-4 py-2 text-xs font-medium rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)]"
-                    >
-                      Post
-                    </button>
-                    <button
-                      onClick={() => window.open(`/community/forum?topic=${topic.id}`, '_blank')}
-                      className="px-4 py-2 text-xs font-medium rounded-lg border border-[var(--border)] text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)]"
-                    >
-                      Open Forum
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => window.open('/community/forum', '_blank', 'noopener')}
+                    className="px-4 py-2 text-xs font-medium rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)]"
+                  >
+                    Open the Community Forum
+                  </button>
                 </div>
               </div>
             </div>
@@ -1882,61 +1949,15 @@ export function DigitalScroll({
 // HELPER FUNCTIONS
 // ============================================
 
-function splitContentIntoPages(content: string, charsPerPage: number): string[] {
-  if (!content) return ['']
+/** Minimum practice-activity score (percent) that unlocks a chapter's quiz */
+const PRACTICE_UNLOCK_SCORE = 50
 
-  const pages: string[] = []
-  let remaining = content
-
-  while (remaining.length > 0) {
-    if (remaining.length <= charsPerPage) {
-      pages.push(remaining)
-      break
-    }
-
-    // Priority 1: Find section breaks (headers like <h2>, <h3>, <h4>)
-    // These represent major topic changes - ideal split points
-    let breakPoint = -1
-    const headerMatch = remaining.slice(0, charsPerPage).match(/<\/h[2-4]>[^]*?(?=<h[2-4])/i)
-    if (headerMatch && headerMatch.index !== undefined) {
-      const afterHeader = headerMatch.index + headerMatch[0].length
-      if (afterHeader > charsPerPage * 0.4) {
-        breakPoint = afterHeader
-      }
-    }
-
-    // Priority 2: Find paragraph breaks (multiple paragraphs together)
-    // Try to break after 2+ complete paragraphs for better context grouping
-    if (breakPoint === -1 || breakPoint < charsPerPage * 0.4) {
-      // Find the last </p> within our limit
-      const lastParagraph = remaining.lastIndexOf('</p>', charsPerPage)
-      if (lastParagraph !== -1 && lastParagraph > charsPerPage * 0.4) {
-        breakPoint = lastParagraph + 4 // Include </p>
-      }
-    }
-
-    // Priority 3: Break at sentence boundary
-    if (breakPoint === -1 || breakPoint < charsPerPage * 0.4) {
-      breakPoint = remaining.lastIndexOf('. ', charsPerPage)
-      if (breakPoint !== -1) breakPoint += 2 // Include the period and space
-    }
-
-    // Priority 4: Last resort - break at word boundary
-    if (breakPoint === -1 || breakPoint < charsPerPage * 0.4) {
-      breakPoint = remaining.lastIndexOf(' ', charsPerPage)
-    }
-    if (breakPoint === -1 || breakPoint < charsPerPage * 0.4) {
-      breakPoint = charsPerPage
-    }
-
-    const pageContent = remaining.slice(0, breakPoint).trim()
-    if (pageContent) {
-      pages.push(pageContent)
-    }
-    remaining = remaining.slice(breakPoint).trim()
-  }
-
-  return pages.length > 0 ? pages : ['']
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
 }
 
 function getGuardianQuote(chapterIndex: number): string {

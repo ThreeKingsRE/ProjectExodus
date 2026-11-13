@@ -32,15 +32,15 @@ const features: Feature[] = [
   {
     id: 'learn',
     title: 'Learning Academy',
-    tagline: 'ACE Credit Recommended',
-    description: 'Interactive Digital Scrolls with deep-dive courses across 6 sustainability topics. Real academic credit potential.',
+    tagline: 'Interactive Digital Scrolls',
+    description: 'Interactive Digital Scrolls with deep-dive courses across 6 sustainability topics, from elementary to PhD level.',
     href: '/learn',
     icon: GraduationCap,
     accentColor: '#36763d',
     accentRgb: '54,118,61',
     gridClass: 'md:col-span-2 lg:col-span-2 md:row-span-2 lg:row-span-2',
     hero: true,
-    stats: ['330+ Questions', '6 Topics', 'ACE Accredited'],
+    stats: ['330+ Questions', '6 Topics', '6 Learning Levels'],
   },
   {
     id: 'products',

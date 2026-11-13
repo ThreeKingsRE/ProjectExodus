@@ -1,4 +1,5 @@
 import { Card, CardContent } from '@/components/ui/Card'
+import { ACCREDITATION_ENABLED } from '@/lib/learning/accreditation'
 import { Button } from '@/components/ui/Button'
 import { Citation } from '@/components/learn/Citation'
 import { BackButton } from '@/components/navigation/BackButton'
@@ -93,7 +94,8 @@ export default function RenewableEnergyPage() {
         </div>
       </section>
 
-      {/* ACE Accreditation & Course Information */}
+      {/* ACE Accreditation & Course Information — paused until accreditation is finalized (see lib/learning/accreditation.ts) */}
+      {ACCREDITATION_ENABLED && (
       <section className="py-20 bg-gradient-to-br from-[color-mix(in_srgb,var(--secondary)_8%,var(--background))] to-[var(--background)]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
@@ -347,6 +349,7 @@ export default function RenewableEnergyPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Solar Energy */}
       <section className="py-20 bg-[var(--muted)]">

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db/prisma'
 import { TOPICS, CoreTopic } from '@/data/modules'
+import { moduleProgressKeys } from '@/lib/learning/topicVolumes'
 
 // Type for topic structure
 type TopicModule = { slug: string }
@@ -37,36 +38,16 @@ export async function GET() {
 
     const userId = session.user.id
 
-    // Get all completed learning progress for this user
-    // We consider a module "completed" when quizPassed is true
-    const completedProgress = await prisma.userLearningProgress.findMany({
-      where: {
-        userId,
-        quizPassed: true
-      },
-      select: {
-        articleId: true,
-        article: {
-          select: {
-            slug: true
-          }
-        }
-      }
+    // A module counts as completed once its quiz has been passed (Digital Scroll or module viewer)
+    const completed: { topicId: string; moduleKey: string }[] = await prisma.topicModuleProgress.findMany({
+      where: { userId, quizPassed: true },
+      select: { topicId: true, moduleKey: true },
     })
+    const completedKeys = new Set(completed.map((p) => `${p.topicId}:${p.moduleKey}`))
 
-    // Create a set of completed module slugs
-    const completedSlugs = new Set(
-      completedProgress
-        .map((p: { article: { slug: string } | null }) => p.article?.slug)
-        .filter((slug: string | undefined): slug is string => Boolean(slug))
-    )
-
-    // Calculate progress for each topic
-    const topicProgress: TopicProgress[] = TOPICS.map((topic: Topic) => {
-      const completedInTopic = topic.modules.filter((m: TopicModule) =>
-        completedSlugs.has(m.slug)
-      ).length
-
+    const topicProgress: TopicProgress[] = TOPICS.map((topic) => {
+      const keys = moduleProgressKeys(topic.modules)
+      const completedInTopic = keys.filter((key) => completedKeys.has(`${topic.id}:${key}`)).length
       const progressPercent = Math.round((completedInTopic / topic.modules.length) * 100)
 
       return {

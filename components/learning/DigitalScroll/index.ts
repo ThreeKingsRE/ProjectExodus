@@ -6,49 +6,6 @@
 // Main Component
 export { DigitalScroll, default } from './DigitalScroll'
 
-// Scroll Illustrations
-export {
-  IlluminatedLetter,
-  CircularEconomyDiagram,
-  CarbonCycleDiagram,
-  EnergyFlowDiagram,
-  EcosystemDiagram,
-  OrnamentalDivider,
-  AnimatedQuote,
-  StepFlowDiagram,
-  StatCard,
-  type IlluminatedLetterProps,
-  type CircularDiagramProps,
-  type OrnamentalDividerProps,
-  type AnimatedQuoteProps,
-  type StepFlowProps,
-  type StatCardProps,
-} from './ScrollIllustrations'
-
-// Page Content Animations
-export {
-  AnimatedParagraph,
-  StaggeredContent,
-  ScrollTitle,
-  MarginOrnament,
-  GlowingEmphasis,
-  AnimatedList,
-  VerseNumberBadge,
-  PageCornerFlourish,
-  AnimatedDivider,
-  ContentFade,
-  type AnimatedParagraphProps,
-  type StaggeredContentProps,
-  type ScrollTitleProps,
-  type MarginOrnamentProps,
-  type GlowingEmphasisProps,
-  type AnimatedListProps,
-  type VerseNumberBadgeProps,
-  type PageCornerFlourishProps,
-  type AnimatedDividerProps,
-  type ContentFadeProps,
-} from './PageAnimations'
-
 // Scroll Container & Structure
 export {
   ScrollContainer,
@@ -90,16 +47,6 @@ export {
   FillInBlank,
   ScrollGameSelector,
 } from './ScrollGames'
-export { CrosswordPuzzle } from './CrosswordPuzzle'
-
-// Inline Activity Selector
-export {
-  ActivitySelector,
-  ActivityCompletionBadge,
-  type ActivityItem,
-  type ActivityType,
-} from './ActivitySelector'
-
 // State Management
 export { useScrollState, type UseScrollStateReturn } from './useScrollState'
 

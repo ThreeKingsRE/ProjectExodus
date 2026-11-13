@@ -16,6 +16,28 @@ export interface ExtractedTerm {
 }
 
 /**
+ * Whether an extracted term/definition pair is good enough for games and quizzes.
+ *
+ * Table rows often produce pairs like "Concrete" → "2,400" (a density value)
+ * or "Winter" → "Altitude = 90 - Latitude - 23.5 degrees". Those make
+ * meaningless questions, so require a definition that reads like words.
+ */
+export function isQuizWorthyTerm(t: Pick<ExtractedTerm, 'term' | 'definition'>): boolean {
+  const term = t.term.trim()
+  const definition = t.definition.trim()
+  if (term.length < 2 || term.length > 60) return false
+  if (definition.length < 15) return false
+  const words = definition.split(/\s+/).filter((w) => /[a-z]{2,}/i.test(w))
+  if (words.length < 3) return false
+  const letters = (definition.match(/[a-z]/gi) ?? []).length
+  if (letters / definition.length < 0.6) return false // mostly numbers or symbols
+  if (/[=]/.test(definition)) return false // formulas
+  // The definition shouldn't just repeat the term
+  if (definition.toLowerCase() === term.toLowerCase()) return false
+  return true
+}
+
+/**
  * Extract key terms from HTML lesson content
  * Looks for patterns like:
  * - <strong>Term:</strong> definition

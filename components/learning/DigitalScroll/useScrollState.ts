@@ -238,6 +238,20 @@ export function useScrollState() {
     setState(prev => {
       if (!prev.currentTopic) return prev
 
+      const chapter = position.chapter ?? prev.currentPosition?.chapter ?? 0
+      const verse = position.verse ?? prev.currentPosition?.verse ?? 0
+      const page = position.page ?? prev.currentPosition?.page ?? 0
+      // Same position as before: return the same state object so nothing re-renders
+      if (
+        prev.currentPosition &&
+        prev.currentPosition.chapter === chapter &&
+        prev.currentPosition.verse === verse &&
+        prev.currentPosition.page === page &&
+        prev.readingPositions[prev.currentTopic]
+      ) {
+        return prev
+      }
+
       const newPosition: ReadingPosition = {
         chapter: position.chapter ?? prev.currentPosition?.chapter ?? 0,
         verse: position.verse ?? prev.currentPosition?.verse ?? 0,

@@ -423,7 +423,7 @@ function ImagePlaceholder({ caption }: { caption: string }) {
 
 // Scavenger Hunt Quiz component
 function ScavengerHuntQuiz({
-  questions,
+  questions: rawQuestions,
   foundQuotes,
   onComplete
 }: {
@@ -438,6 +438,21 @@ function ScavengerHuntQuiz({
   foundQuotes: Set<string>
   onComplete: (score: number, passed: boolean) => void
 }) {
+  // Question data lists the correct answer first, so shuffle each question's
+  // options once per mount (and remap correctIndex) to stop "always pick A"
+  const questions = useMemo(
+    () =>
+      rawQuestions.map((q) => {
+        const order = q.options.map((_, i) => i)
+        for (let i = order.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1))
+          ;[order[i], order[j]] = [order[j], order[i]]
+        }
+        return { ...q, options: order.map((i) => q.options[i]), correctIndex: order.indexOf(q.correctIndex) }
+      }),
+    [rawQuestions]
+  )
+
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [showResults, setShowResults] = useState(false)

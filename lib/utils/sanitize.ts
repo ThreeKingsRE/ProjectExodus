@@ -27,6 +27,11 @@ export function sanitizeHtml(html: string): string {
       'img', 'figure', 'figcaption',
       // Inline formatting often used in long-form journalism
       'sup', 'sub', 'mark', 'small',
+      // Tables — learning content uses them heavily for data, timelines and
+      // comparisons; without these the cells collapse into run-on text.
+      'table', 'caption', 'colgroup', 'col', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td',
+      // Code and definition lists
+      'pre', 'code', 'dl', 'dt', 'dd',
     ],
     ALLOWED_ATTR: [
       'href', 'title', 'class', 'id',
@@ -36,6 +41,8 @@ export function sanitizeHtml(html: string): string {
       'target', 'rel',
       // Quote / cite metadata
       'cite', 'datetime',
+      // Table cell spanning / header scope
+      'colspan', 'rowspan', 'scope',
     ],
     ALLOW_DATA_ATTR: false,
     // Block javascript: URLs and other dangerous protocols

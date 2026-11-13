@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/Button'
 import {
   Clock, BookOpen,
@@ -14,10 +14,23 @@ import { TopicBookBrowser } from '@/components/learning/TopicBookBrowser'
 import { AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import { useDigitalScrollContext } from '@/components/learning/DigitalScroll/DigitalScrollContext'
+import {
+  getVolumeCount,
+  locateModule,
+  moduleProgressKeys,
+  type TopicVolume,
+} from '@/lib/learning/topicVolumes'
+
+export interface ModuleProgressSummary {
+  moduleKey: string
+  practiceCompleted: boolean
+  quizPassed: boolean
+  bestQuizScore: number | null
+}
 
 // Dynamically import the DigitalScroll to reduce initial bundle size
 const DigitalScroll = dynamic(
-  () => import('@/components/learning/DigitalScroll').then(mod => mod.DigitalScroll),
+  () => import('@/components/learning/DigitalScroll/DigitalScroll').then(mod => mod.DigitalScroll),
   { ssr: false }
 )
 
@@ -43,52 +56,114 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
   // Digital Scroll state
   const [isScrollOpen, setIsScrollOpen] = useState(false)
   const [isScrollUnlocked, setIsScrollUnlocked] = useState(false)
-  const [initialChapter, setInitialChapter] = useState<number>(0)
+  // undefined = resume where the reader left off; a number = open at that chapter
+  const [initialChapter, setInitialChapter] = useState<number | undefined>(undefined)
+  const [volumeIndex, setVolumeIndex] = useState(0)
+  const [contentLevel, setContentLevel] = useState<LearningLevel>(initialLevel)
+  const [volumeData, setVolumeData] = useState<TopicVolume | null>(null)
+  const [isLoadingVolume, setIsLoadingVolume] = useState(false)
+  const [volumeError, setVolumeError] = useState<string | null>(null)
   const { setScrollOpen } = useDigitalScrollContext()
 
-  // Handler for opening Digital Scroll to a specific chapter
-  const handleOpenDigitalScroll = (chapterIndex: number = 0) => {
-    setInitialChapter(chapterIndex)
+  const volumeCount = getVolumeCount(topic.modules.length)
+  const lastVolumeKey = `exodus_scroll_volume_${slug}`
+
+  // Open the scroll at a module (index into topic.modules), or resume (no index)
+  const handleOpenDigitalScroll = (moduleIndex?: number) => {
+    if (moduleIndex === undefined) {
+      let lastVolume = 0
+      try {
+        lastVolume = Number(localStorage.getItem(lastVolumeKey) ?? 0) || 0
+      } catch { /* storage unavailable */ }
+      setVolumeIndex(Math.min(Math.max(lastVolume, 0), volumeCount - 1))
+      setInitialChapter(undefined)
+    } else {
+      const { volume, chapter } = locateModule(moduleIndex)
+      setVolumeIndex(volume)
+      setInitialChapter(chapter)
+    }
+    setContentLevel(selectedLevel)
+    // Drop content from a previous session unless it's exactly what we're about to show
+    const targetVolume = moduleIndex === undefined ? null : locateModule(moduleIndex).volume
+    setVolumeData((prev) =>
+      prev && prev.level === selectedLevel && (targetVolume === null || prev.volume === targetVolume) ? prev : null
+    )
+    setVolumeError(null)
     setIsScrollOpen(true)
     setScrollOpen(true)
   }
 
+  const handleCloseDigitalScroll = () => {
+    setIsScrollOpen(false)
+    setIsScrollUnlocked(true)
+    setInitialChapter(undefined)
+    setScrollOpen(false)
+    try {
+      localStorage.setItem('exodus_book_experience_unlocked', 'true')
+    } catch { /* storage unavailable */ }
+  }
+
   // Check if scroll experience is unlocked
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const unlocked = localStorage.getItem('exodus_book_experience_unlocked') === 'true'
-      setIsScrollUnlocked(unlocked)
-    }
+    try {
+      setIsScrollUnlocked(localStorage.getItem('exodus_book_experience_unlocked') === 'true')
+    } catch { /* storage unavailable */ }
   }, [])
 
-  // User's completed modules for this topic, fetched from the progress API
-  const [completedModules, setCompletedModules] = useState<string[]>([])
+  // Fetch the open volume's content at the reader's level (same pattern as
+  // architecture elements: summaries up front, full content on demand)
+  useEffect(() => {
+    if (!isScrollOpen) return
+    const controller = new AbortController()
+    setIsLoadingVolume(true)
+    fetch(`/api/learn/topics/${slug}/volume?v=${volumeIndex}&level=${contentLevel}`, {
+      signal: controller.signal,
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success) {
+          setVolumeData(json.data as TopicVolume)
+          setVolumeError(null)
+          try {
+            localStorage.setItem(lastVolumeKey, String(volumeIndex))
+          } catch { /* storage unavailable */ }
+        } else {
+          setVolumeError(json.error || 'Could not load this volume')
+        }
+      })
+      .catch((err) => {
+        if (err.name !== 'AbortError') setVolumeError('Could not load this volume')
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setIsLoadingVolume(false)
+      })
+    return () => controller.abort()
+  }, [isScrollOpen, slug, volumeIndex, contentLevel, lastVolumeKey])
+
+  // The user's saved progress for this topic (signed-in users only)
+  const [moduleProgress, setModuleProgress] = useState<ModuleProgressSummary[]>([])
+
+  const refreshProgress = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/learn/progress?topic=${slug}`)
+      if (!res.ok) return // signed out: nothing saved
+      const json = await res.json()
+      if (json.success && Array.isArray(json.data?.modules)) {
+        setModuleProgress(json.data.modules)
+      }
+    } catch (error) {
+      console.error('Failed to fetch learning progress:', error)
+    }
+  }, [slug])
 
   useEffect(() => {
-    async function fetchProgress() {
-      try {
-        const res = await fetch('/api/learn/topic-progress')
-        const data = await res.json()
-        if (data.success && Array.isArray(data.data)) {
-          const topicData = data.data.find(
-            (tp: { topicId: string }) => tp.topicId === slug
-          )
-          if (topicData && topicData.completedModules > 0) {
-            const progressRes = await fetch('/api/learn/progress')
-            const progressData = await progressRes.json()
-            if (progressData.success && Array.isArray(progressData.data?.completed)) {
-              setCompletedModules(
-                progressData.data.completed.map((m: { moduleId: string }) => m.moduleId)
-              )
-            }
-          }
-        }
-      } catch (error) {
-        console.error('Failed to fetch learning progress:', error)
-      }
-    }
-    fetchProgress()
-  }, [slug])
+    refreshProgress()
+  }, [refreshProgress])
+
+  const progressKeys = moduleProgressKeys(topic.modules)
+  const completedModules = moduleProgress
+    .filter((p) => p.quizPassed && progressKeys.includes(p.moduleKey))
+    .map((p) => p.moduleKey)
 
   const heroEmoji = heroEmojis[topic.id]
   const totalModules = topic.modules.length
@@ -151,7 +226,7 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
             {/* Prominent Digital Scroll Button - Centered */}
             <div className="mt-8 flex justify-center">
               <Button
-                onClick={() => handleOpenDigitalScroll(0)}
+                onClick={() => handleOpenDigitalScroll()}
                 className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-600 hover:via-orange-600 hover:to-amber-700 text-white font-black shadow-2xl shadow-amber-500/30 text-lg px-8 py-6 rounded-2xl border-2 border-amber-400/50 transition-all duration-300 hover:scale-105 hover:shadow-amber-500/50"
                 size="lg"
               >
@@ -166,24 +241,43 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
 
       {/* Digital Scroll Modal */}
       <AnimatePresence>
-        {isScrollOpen && topic && (
+        {isScrollOpen && volumeData && (
           <DigitalScroll
             topic={topic}
-            modules={topic.modules.slice(0, 7)}
-            initialLevel={selectedLevel}
+            modules={volumeData.modules}
+            moduleKeys={volumeData.progressKeys}
+            moduleProgress={moduleProgress}
+            onProgressSaved={refreshProgress}
+            initialLevel={contentLevel}
             initialChapter={initialChapter}
-            onClose={() => {
-              setIsScrollOpen(false)
-              setIsScrollUnlocked(true)
-              setInitialChapter(0)
-              setScrollOpen(false)
-              if (typeof window !== 'undefined') {
-                localStorage.setItem('exodus_book_experience_unlocked', 'true')
-              }
+            volumeIndex={volumeData.volume}
+            volumeCount={volumeCount}
+            onVolumeChange={(v) => {
+              setInitialChapter(undefined)
+              setVolumeIndex(v)
             }}
+            onLevelChange={setContentLevel}
+            isLoadingContent={isLoadingVolume}
+            onClose={handleCloseDigitalScroll}
           />
         )}
       </AnimatePresence>
+
+      {/* First load of a volume, or a load error */}
+      {isScrollOpen && (!volumeData || volumeError) && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="rounded-2xl bg-[var(--card)] px-8 py-6 text-center shadow-2xl">
+            {volumeError ? (
+              <>
+                <p className="font-bold text-[var(--foreground)] mb-3">{volumeError}</p>
+                <Button onClick={handleCloseDigitalScroll}>Close</Button>
+              </>
+            ) : (
+              <p className="font-serif text-[var(--foreground)]">Unrolling the scroll…</p>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-6xl mx-auto">

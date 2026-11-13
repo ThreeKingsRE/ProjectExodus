@@ -16,6 +16,31 @@ import type { LearningLevel } from '@/types/learning'
 // TYPES
 // ============================================
 
+/** Escape a string for literal use inside a RegExp */
+function escapeRegExp(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+/** Lowercase, strip punctuation and extra spaces for answer comparison */
+function normalizeAnswer(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim()
+}
+
+/**
+ * Accepted answers for a term: the full term, the term without a trailing
+ * parenthetical ("Depth of discharge"), and the parenthetical itself ("DOD").
+ */
+function acceptedAnswers(term: string): string[] {
+  const answers = new Set<string>([normalizeAnswer(term)])
+  const paren = term.match(/^(.*?)\s*\(([^)]+)\)\s*$/)
+  if (paren) {
+    answers.add(normalizeAnswer(paren[1]))
+    answers.add(normalizeAnswer(paren[2]))
+  }
+  answers.delete('')
+  return [...answers]
+}
+
 interface GameItem {
   id: string
   term: string
@@ -403,6 +428,9 @@ export function ScrollFlashcards({
       <div className="flex-1 flex items-center justify-center p-2 min-h-0">
         <motion.div
           className="w-full max-w-[200px] aspect-[3/4] cursor-pointer perspective-1000"
+          // Inline: the global `div { max-width: 100% }` rule in globals.css is unlayered and
+          // overrides Tailwind's max-w-* utilities, which made the card cover its own buttons
+          style={{ maxWidth: 200, maxHeight: '100%' }}
           onClick={handleFlip}
         >
           <motion.div
@@ -562,6 +590,7 @@ export function WordScramble({
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
   const [score, setScore] = useState(0)
   const [showHint, setShowHint] = useState(false)
+  const [finished, setFinished] = useState(false)
 
   const currentItem = eligibleItems[currentIndex]
 
@@ -597,6 +626,7 @@ export function WordScramble({
         if (currentIndex < eligibleItems.length - 1) {
           setCurrentIndex(prev => prev + 1)
         } else {
+          setFinished(true)
           onComplete?.(Math.round((score + 1) / eligibleItems.length * 100))
         }
       }, 1000)
@@ -606,6 +636,10 @@ export function WordScramble({
   const skipWord = () => {
     if (currentIndex < eligibleItems.length - 1) {
       setCurrentIndex(prev => prev + 1)
+    } else {
+      // Skipping the last word ends the game instead of leaving the player stuck
+      setFinished(true)
+      onComplete?.(Math.round(score / eligibleItems.length * 100))
     }
   }
 
@@ -614,9 +648,10 @@ export function WordScramble({
     setScore(0)
     setUserInput('')
     setIsCorrect(null)
+    setFinished(false)
   }
 
-  const isComplete = currentIndex >= eligibleItems.length - 1 && isCorrect === true
+  const isComplete = finished
 
   if (eligibleItems.length === 0) {
     return (
@@ -787,28 +822,15 @@ export function FillInBlank({
   const blankSentence = useMemo(() => {
     if (!currentQuestion) return ''
     const term = currentQuestion.term
-    const def = currentQuestion.definition
-    // Replace the term with blanks in the definition if it appears
-    const regex = new RegExp(term, 'gi')
-    if (regex.test(def)) {
-      return def.replace(regex, '_'.repeat(term.length))
-    }
-    // Otherwise create a simple "X is ___" format
-    return `${term}: ${'_'.repeat(Math.min(def.length, 20))}...`
+    // Hide any appearance of the term (escaped: terms can contain parentheses etc.)
+    return currentQuestion.definition.replace(new RegExp(escapeRegExp(term), 'gi'), '_____')
   }, [currentQuestion])
 
   const checkAnswer = () => {
     if (!currentQuestion) return
 
-    // Check if answer contains key words from definition
-    const answer = userInput.trim().toLowerCase()
-    const defWords = currentQuestion.definition.toLowerCase().split(' ')
-    const keyWords = defWords.filter(w => w.length > 4)
-    const requiredMatches = keyWords.length > 0 ? Math.min(2, keyWords.length) : 1
-    const matches = keyWords.filter(w => answer.includes(w))
-
-    const isRight = (keyWords.length > 0 && matches.length >= requiredMatches) ||
-      answer === currentQuestion.term.toLowerCase()
+    // The answer is the term itself (full name, or its abbreviation in parentheses)
+    const isRight = acceptedAnswers(currentQuestion.term).includes(normalizeAnswer(userInput))
 
     setIsCorrect(isRight)
     if (isRight) {
@@ -823,9 +845,8 @@ export function FillInBlank({
       setIsCorrect(null)
       setShowAnswer(false)
     } else {
-      // Use isCorrect from current render to compute correct final score
-      const finalScore = score + (isCorrect ? 0 : 0) // score already includes current answer
-      onComplete?.(Math.round(finalScore / questions.length * 100))
+      // score already includes the current answer (updated in checkAnswer)
+      onComplete?.(Math.round(score / questions.length * 100))
     }
   }
 
@@ -850,22 +871,22 @@ export function FillInBlank({
       <div className="flex-1 flex flex-col items-center justify-center p-3">
         <div className="text-center mb-4">
           <p className="text-[10px] text-[var(--muted-foreground)] uppercase tracking-wider mb-2">
-            Complete the definition
+            Which term matches this definition?
           </p>
-          <p className="text-sm text-[var(--foreground)] font-medium mb-1">
-            {currentQuestion?.term}
-          </p>
-          <p className="text-xs text-[var(--muted-foreground)] italic max-w-[200px]">
+          <p className="text-xs text-[var(--foreground)] italic max-w-[220px]">
             {blankSentence}
           </p>
         </div>
 
-        <textarea
+        <input
+          type="text"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          placeholder="Type your answer..."
+          onKeyDown={(e) => e.key === 'Enter' && userInput.trim() && isCorrect === null && checkAnswer()}
+          placeholder="Type the term..."
+          aria-label="Your answer"
           className={cn(
-            'w-full max-w-[200px] h-20 px-3 py-2 rounded border text-xs resize-none',
+            'w-full max-w-[200px] px-3 py-2 rounded border text-xs',
             'bg-[var(--background)] focus:outline-none focus:ring-2',
             isCorrect === true && 'border-green-500 bg-green-500/10',
             isCorrect === false && 'border-red-500 bg-red-500/10',
@@ -893,8 +914,8 @@ export function FillInBlank({
               </button>
             )}
             {showAnswer && (
-              <p className="text-[10px] text-[var(--muted-foreground)] mt-1 max-w-[180px]">
-                {currentQuestion?.definition}
+              <p className="text-[10px] font-medium text-[var(--foreground)] mt-1 max-w-[180px]">
+                {currentQuestion?.term}
               </p>
             )}
           </div>
@@ -929,13 +950,14 @@ export function FillInBlank({
 // Randomly selects a game type for variety
 // ============================================
 
-type GameType = 'matching' | 'flashcards' | 'scramble' | 'fill-blank'
+export type GameType = 'matching' | 'flashcards' | 'scramble' | 'fill-blank'
 
 interface GameSelectorProps {
   items: GameItem[]
   topicColor?: string
   level: LearningLevel
-  onComplete?: (score: number) => void
+  /** Called when an activity finishes. Flashcards are self-graded, so callers may want to ignore them. */
+  onComplete?: (score: number, game: GameType) => void
   className?: string
   defaultGame?: GameType
 }
@@ -1005,7 +1027,7 @@ export function ScrollGameSelector({
         items={items}
         topicColor={topicColor}
         level={level}
-        onComplete={onComplete}
+        onComplete={(score: number) => onComplete?.(score, selectedGame)}
       />
     </div>
   )
@@ -1016,21 +1038,37 @@ export function ScrollGameSelector({
 // 5-question assessment with percentage scoring
 // ============================================
 
+/** A hand-written question from the module's own quiz, at one level */
+export interface PresetQuizQuestion {
+  id: string
+  question: string
+  options: string[]
+  correctIndex: number
+  explanation?: string
+}
+
 interface GradedQuizProps {
   items: GameItem[]
+  /** Hand-written questions; used first, topped up with term questions */
+  presetQuestions?: PresetQuizQuestion[]
+  /** Percentage needed to pass (the module's own passing score) */
+  passingScore?: number
+  /** Chapter number shown to the reader (1-based, global across volumes) */
+  chapterNumber: number
   topicColor?: string
   level: LearningLevel
-  chapterIndex: number
   onComplete?: (score: number, total: number) => void
   className?: string
 }
+
+const QUIZ_LENGTH = 5
 
 interface QuizQuestion {
   id: string
   question: string
   correctAnswer: string
   options: string[]
-  type: 'definition' | 'term'
+  explanation?: string
 }
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -1044,9 +1082,11 @@ function shuffleArray<T>(array: T[]): T[] {
 
 export function GradedQuiz({
   items,
+  presetQuestions = [],
+  passingScore = 80,
+  chapterNumber,
   topicColor = 'var(--primary)',
   level,
-  chapterIndex,
   onComplete,
   className,
 }: GradedQuizProps) {
@@ -1056,37 +1096,45 @@ export function GradedQuiz({
   const [answers, setAnswers] = useState<{ correct: boolean; questionId: string }[]>([])
   const [quizComplete, setQuizComplete] = useState(false)
 
-  // Generate 5 quiz questions from the items
+  // Hand-written questions first, then term questions to make up QUIZ_LENGTH
   const questions = useMemo((): QuizQuestion[] => {
-    if (items.length < 5) return []
+    const preset: QuizQuestion[] = presetQuestions
+      .filter(q => q.options[q.correctIndex] !== undefined)
+      .map(q => ({
+        id: q.id,
+        question: q.question,
+        correctAnswer: q.options[q.correctIndex],
+        // Hand-written data always lists the correct answer first, so shuffle
+        options: shuffleArray([...new Set(q.options)]),
+        explanation: q.explanation,
+      }))
+      .slice(0, QUIZ_LENGTH)
 
-    // Shuffle and take 5 items
-    const selectedItems = shuffleArray(items).slice(0, 5)
+    const needed = QUIZ_LENGTH - preset.length
+    const termQuestions: QuizQuestion[] = items.length >= 4
+      ? shuffleArray(items).slice(0, needed).map((item, idx) => {
+          // Alternate between asking for definition and asking for term
+          const askForDefinition = idx % 2 === 0
+          const correctAnswer = askForDefinition ? item.definition : item.term
+          const wrongOptions = shuffleArray(items.filter(i => i.id !== item.id))
+            .map(i => (askForDefinition ? i.definition : i.term))
+            .filter(option => option !== correctAnswer)
+          const options = shuffleArray([correctAnswer, ...[...new Set(wrongOptions)].slice(0, 3)])
+          return {
+            id: item.id,
+            question: askForDefinition
+              ? `What is the definition of "${item.term}"?`
+              : `Which term matches: "${item.definition.length > 80 ? item.definition.slice(0, 80) + '...' : item.definition}"`,
+            correctAnswer,
+            options,
+          }
+        })
+      : []
 
-    return selectedItems.map((item, idx) => {
-      // Alternate between asking for definition and asking for term
-      const askForDefinition = idx % 2 === 0
+    return [...preset, ...termQuestions]
+  }, [items, presetQuestions])
 
-      // Generate wrong options from other items
-      const otherItems = items.filter(i => i.id !== item.id)
-      const wrongOptions = shuffleArray(otherItems)
-        .slice(0, 3)
-        .map(i => askForDefinition ? i.definition : i.term)
-
-      const correctAnswer = askForDefinition ? item.definition : item.term
-      const options = shuffleArray([correctAnswer, ...wrongOptions])
-
-      return {
-        id: item.id,
-        question: askForDefinition
-          ? `What is the definition of "${item.term}"?`
-          : `Which term matches: "${item.definition.length > 80 ? item.definition.slice(0, 80) + '...' : item.definition}"`,
-        correctAnswer,
-        options,
-        type: askForDefinition ? 'definition' : 'term',
-      }
-    })
-  }, [items])
+  const total = questions.length
 
   const handleAnswer = useCallback((answer: string) => {
     if (showResult) return
@@ -1106,9 +1154,9 @@ export function GradedQuiz({
       setQuizComplete(true)
       // answers already includes the current answer (added in handleAnswer)
       const score = answers.filter(a => a.correct).length
-      onComplete?.(score, 5)
+      onComplete?.(score, total)
     }
-  }, [currentQuestion, questions.length, answers, onComplete])
+  }, [currentQuestion, questions.length, answers, onComplete, total])
 
   const restartQuiz = useCallback(() => {
     setCurrentQuestion(0)
@@ -1118,7 +1166,7 @@ export function GradedQuiz({
     setQuizComplete(false)
   }, [])
 
-  if (questions.length < 5) {
+  if (questions.length < 3) {
     return (
       <div className={cn('h-full flex items-center justify-center', className)}>
         <p className="text-xs text-[var(--muted-foreground)]">
@@ -1131,12 +1179,11 @@ export function GradedQuiz({
   // Show final results
   if (quizComplete) {
     const finalScore = answers.filter(a => a.correct).length
-    const percentage = Math.round((finalScore / 5) * 100)
-    // Tier thresholds: Gold 90%+, Silver 70-89%, Bronze 60-69%
-    const isGold = percentage >= 90
-    const isSilver = percentage >= 70 && percentage < 90
-    const isBronze = percentage >= 60 && percentage < 70
-    const passed = percentage >= 60
+    const percentage = Math.round((finalScore / total) * 100)
+    // Passing uses the module's own passing score; Gold for 90%+ on top of that
+    const passed = percentage >= passingScore
+    const isGold = passed && percentage >= 90
+    const isSilver = passed && !isGold
 
     return (
       <div className={cn('h-full flex flex-col items-center justify-center p-4', className)}>
@@ -1152,7 +1199,6 @@ export function GradedQuiz({
               'border-4',
               isGold ? 'border-yellow-500 bg-yellow-500/10' :
               isSilver ? 'border-slate-400 bg-slate-400/10' :
-              isBronze ? 'border-amber-600 bg-amber-600/10' :
               'border-red-500 bg-red-500/10'
             )}
           >
@@ -1160,7 +1206,6 @@ export function GradedQuiz({
               'text-2xl font-bold',
               isGold ? 'text-yellow-600' :
               isSilver ? 'text-slate-500' :
-              isBronze ? 'text-amber-700' :
               'text-red-600'
             )}>
               {percentage}%
@@ -1171,14 +1216,13 @@ export function GradedQuiz({
           <h3 className="text-sm font-bold text-[var(--foreground)] mb-1">
             {isGold ? '🥇 Gold!' :
              isSilver ? '🥈 Silver!' :
-             isBronze ? '🥉 Bronze!' :
              '📚 Keep Learning!'}
           </h3>
           <p className="text-[10px] text-[var(--muted-foreground)] mb-1">
-            {finalScore}/5 Correct Answers
+            {finalScore}/{total} Correct Answers
           </p>
           <p className="text-[10px] text-[var(--muted-foreground)] mb-3">
-            Chapter {chapterIndex + 1} Quiz
+            Chapter {chapterNumber} Quiz • {passed ? 'Passed — chapter complete' : `${passingScore}% needed to pass`}
           </p>
 
           {/* Badge Progress Hint */}
@@ -1190,11 +1234,6 @@ export function GradedQuiz({
           {isSilver && (
             <div className="text-[9px] text-slate-600 bg-slate-400/10 px-2 py-1 rounded mb-3">
               🥈 Badge progress: Silver tier earned!
-            </div>
-          )}
-          {isBronze && (
-            <div className="text-[9px] text-amber-700 bg-amber-600/10 px-2 py-1 rounded mb-3">
-              🥉 Badge progress: Bronze tier earned!
             </div>
           )}
           {!passed && (
@@ -1226,11 +1265,11 @@ export function GradedQuiz({
             className="h-full rounded-full"
             style={{ backgroundColor: topicColor }}
             initial={{ width: 0 }}
-            animate={{ width: `${((currentQuestion + 1) / 5) * 100}%` }}
+            animate={{ width: `${((currentQuestion + 1) / total) * 100}%` }}
           />
         </div>
         <span className="text-[10px] font-medium text-[var(--muted-foreground)]">
-          {currentQuestion + 1}/5
+          {currentQuestion + 1}/{total}
         </span>
       </div>
 
@@ -1285,6 +1324,13 @@ export function GradedQuiz({
         })}
       </div>
 
+      {/* Explanation for hand-written questions */}
+      {showResult && question.explanation && (
+        <p className="mt-2 text-[10px] text-[var(--muted-foreground)] italic leading-relaxed">
+          {question.explanation}
+        </p>
+      )}
+
       {/* Next Button */}
       {showResult && (
         <motion.div
@@ -1296,7 +1342,7 @@ export function GradedQuiz({
             onClick={nextQuestion}
             className="px-4 py-1.5 rounded text-[10px] font-medium bg-[var(--primary)] text-[var(--primary-foreground)]"
           >
-            {currentQuestion < 4 ? 'Next Question →' : 'See Results'}
+            {currentQuestion < total - 1 ? 'Next Question →' : 'See Results'}
           </button>
         </motion.div>
       )}
