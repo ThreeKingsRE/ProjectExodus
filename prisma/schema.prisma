@@ -112,6 +112,8 @@ model User {
   receivedConnections   Connection[]     @relation("ReceivedConnections")
   learningProgress      UserLearningProgress[]
   topicModuleProgress   TopicModuleProgress[]
+  learnerProfile        LearnerProfile?
+  scrollNotes           ScrollNote[]
   articlePeerReviews    ArticlePeerReview[] @relation("ArticlePeerReviews")
   reviewLikes           ReviewLike[]       @relation("ReviewLikes")
   adminAlerts           AdminAlert[]       @relation("AdminAlerts")
@@ -875,6 +877,50 @@ model TopicModuleProgress {
   @@unique([userId, topicId, moduleKey])
   @@index([userId])
   @@index([userId, topicId])
+}
+
+// Digital Scroll learner settings. Age band separates teens from adults when
+// learners connect; Project Exodus is 13+ (a separate kids' site is planned).
+enum LearnerAgeBand {
+  TEEN   // 13-17
+  ADULT  // 18+
+}
+
+model LearnerProfile {
+  id              String          @id @default(cuid())
+  userId          String          @unique
+  ageBand         LearnerAgeBand? // self-declared; required before sharing or seeing peers
+  syncScrollNotes Boolean         @default(false) // notes are device-local unless this is on
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum ScrollNoteVisibility {
+  PRIVATE // only the author (stored on the server only when they sync notes)
+  PEERS   // learners in the same module, at the same level and age band
+}
+
+// A Digital Scroll note that has left the device: either synced (author chose
+// to sync notes to their account) or shared with peers via the eye icon.
+model ScrollNote {
+  id          String               @id @default(cuid())
+  userId      String
+  topicId     String               // CoreTopic id
+  noteKey     String               // e.g. "mission-hope-to-learn", "module-<moduleKey>-notes"
+  moduleKey   String?              // null for topic-wide notes (intentions)
+  level       LearningLevel        @default(HIGH_SCHOOL) // level the author was reading at
+  content     String               @db.Text
+  visibility  ScrollNoteVisibility @default(PRIVATE)
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  user        User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, topicId, noteKey])
+  @@index([userId])
+  @@index([topicId, moduleKey, level, visibility])
 }
 
 model UserLearningProgress {

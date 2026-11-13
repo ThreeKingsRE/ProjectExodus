@@ -311,6 +311,18 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
             </div>
           </div>
 
+          {/* Elementary content is open to read; accounts and networking for young
+              learners will live on a separate kids' site */}
+          {selectedLevel === 'ELEMENTARY' && (
+            <div className="mb-8 rounded-2xl border-2 border-dashed border-theme-primary bg-[var(--card)] p-5 text-center">
+              <p className="font-black text-theme-primary">🧒 A kids&apos; site is coming soon</p>
+              <p className="mt-1 text-sm text-theme-muted">
+                We&apos;re building a separate, safer Project Exodus just for young learners. Parents and teachers
+                can read these Elementary lessons with kids today.
+              </p>
+            </div>
+          )}
+
           {/* Book Browser - Shows lessons as book covers, opens Digital Scroll on click */}
           <TopicBookBrowser
             topicSlug={slug}

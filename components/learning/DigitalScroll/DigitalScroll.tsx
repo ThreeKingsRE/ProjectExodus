@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react'
 import { cn } from '@/lib/utils/cn'
 import { sanitizeHtml } from '@/lib/utils/sanitize'
 import { ACCREDITATION_ENABLED } from '@/lib/learning/accreditation'
-import { X, Volume2, VolumeX, Maximize2, Minimize2, ChevronLeft, ChevronRight, GripVertical, MessageCircle } from 'lucide-react'
+import { X, Volume2, VolumeX, Maximize2, Minimize2, ChevronLeft, ChevronRight, GripVertical, Users, Cloud, CloudOff } from 'lucide-react'
 
 // Scroll components
 import ScrollContainer, { ScrollWrapper, PageContainer, ScrollSpine, PageEdges } from './ScrollContainer'
@@ -35,7 +35,9 @@ interface GameItem {
 // Import term extraction utilities
 import { extractTermsFromModule, isQuizWorthyTerm, KEY_TERMS_BY_TOPIC } from '@/lib/learning/termExtractor'
 import { volumeLabel } from '@/lib/learning/topicVolumes'
-import { readScoped, writeScoped, storageScopeFor } from '@/lib/learning/scrollStorage'
+import { storageScopeFor } from '@/lib/learning/scrollStorage'
+import { useScrollNotes, type NoteVisibility, type AgeBand } from './useScrollNotes'
+import { NoteVisibilityToggle, AgeBandPrompt, PeersPanel } from './ScrollSharing'
 import {
   GUARDIAN_RIBBONS,
   RIBBON_ORDER,
@@ -229,8 +231,42 @@ export function DigitalScroll({
   const { goToPosition: saveReadingPosition, closeScroll, openScroll, unlockScroll } = scrollState
   const playPageTurn = usePageTurnSound(scrollState.preferences.soundEnabled)
 
-  // Notes state - persisted to localStorage
-  const [pageNotes, setPageNotes] = useState<Record<string, string>>({})
+  // Notes: on this device per account; synced or shared only when the learner chooses
+  const isSignedIn = sessionStatus === 'authenticated' && Boolean(session?.user?.id)
+  const scrollNotes = useScrollNotes({ topicId: topic.id, scope: storageScope, isSignedIn, level: selectedLevel })
+  const pageNotes = scrollNotes.notes
+  const saveNote = scrollNotes.saveNote
+
+  // Sharing: eye toggles, one-time age-group prompt, learners-in-this-chapter panel
+  const [ageBandPrompt, setAgeBandPrompt] = useState<{ retry?: () => void } | null>(null)
+  const [ageBandError, setAgeBandError] = useState<string | null>(null)
+  const [peersRefresh, setPeersRefresh] = useState(0)
+  const [notice, setNotice] = useState<string | null>(null)
+  const toggleNoteVisibility = (noteKey: string, moduleKey: string | null) => {
+    const next: NoteVisibility = scrollNotes.visibilityOf(noteKey) === 'PEERS' ? 'PRIVATE' : 'PEERS'
+    const result = scrollNotes.setVisibility(noteKey, next, moduleKey)
+    if (result === 'NEED_SIGN_IN') setNotice('Sign in to share notes with other learners.')
+    else if (result === 'NEED_AGE_BAND') setAgeBandPrompt({ retry: () => scrollNotes.setVisibility(noteKey, 'PEERS', moduleKey) })
+    else setNotice(next === 'PEERS' ? 'Shared with learners in this module at your level and age group.' : 'Note is private again.')
+  }
+  const chooseAgeBand = async (band: AgeBand) => {
+    const result = await scrollNotes.updateSettings({ ageBand: band })
+    if (!result.ok) {
+      setAgeBandError(result.error)
+      return
+    }
+    const retry = ageBandPrompt?.retry
+    setAgeBandPrompt(null)
+    setAgeBandError(null)
+    setPeersRefresh((n) => n + 1)
+    // Settings state updates on the next render; share then
+    if (retry) setTimeout(retry, 0)
+  }
+  useEffect(() => {
+    if (!notice) return
+    const t = setTimeout(() => setNotice(null), 3500)
+    return () => clearTimeout(t)
+  }, [notice])
 
   // Practice completion per module key (required to unlock that chapter's quiz).
   // Seeded from saved progress so unlocked quizzes stay unlocked between visits.
@@ -251,7 +287,7 @@ export function DigitalScroll({
 
   // Save progress for a chapter (signed-in users; fire-and-forget otherwise)
   const saveProgress = useCallback(
-    (chapterIndex: number, body: { action: 'practice_complete' | 'submit_quiz'; score?: number }) => {
+    (chapterIndex: number, body: { action: 'start' | 'practice_complete' | 'submit_quiz'; score?: number }) => {
       const moduleKey = moduleKeys[chapterIndex]
       if (!moduleKey) return
       fetch('/api/learn/progress', {
@@ -265,30 +301,12 @@ export function DigitalScroll({
     [moduleKeys, topic.id, selectedLevel, onProgressSaved]
   )
 
-  // Discussion modal state
-  const [showDiscussion, setShowDiscussion] = useState(false)
+  // Learners-in-this-chapter panel: which chapter it's showing (null = closed)
+  const [peersChapter, setPeersChapter] = useState<number | null>(null)
+  const showDiscussion = peersChapter !== null
+  const setShowDiscussion = (open: boolean) => { if (!open) setPeersChapter(null) }
   const [discussionPosition, setDiscussionPosition] = useState({ x: 100, y: 100 })
   const [isDragging, setIsDragging] = useState(false)
-
-  // Load this account's notes for the topic (device-local)
-  useEffect(() => {
-    if (!storageScope) return
-    const savedNotes = readScoped(storageScope, `book-notes-${topic.id}`)
-    try {
-      setPageNotes(savedNotes ? JSON.parse(savedNotes) : {})
-    } catch {
-      setPageNotes({})
-    }
-  }, [topic.id, storageScope])
-
-  // Save note for a specific page
-  const saveNote = useCallback((pageKey: string, content: string) => {
-    setPageNotes(prev => {
-      const updated = { ...prev, [pageKey]: content }
-      if (storageScope) writeScoped(storageScope, `book-notes-${topic.id}`, JSON.stringify(updated))
-      return updated
-    })
-  }, [topic.id, storageScope])
 
   // ============================================
   // RESPONSIVE
@@ -682,6 +700,18 @@ export function DigitalScroll({
     }
   }, [currentPageIndex, bookPages, saveReadingPosition])
 
+  // Reading a chapter's lesson enrolls the learner in that module (self-enrolled),
+  // which is what lets them see and share notes with its other learners
+  const startedChapters = useRef<Set<string>>(new Set())
+  useEffect(() => {
+    const page = bookPages[currentPageIndex]
+    if (!isSignedIn || page?.type !== 'content' || page.chapterIndex === undefined) return
+    const key = moduleKeys[page.chapterIndex]
+    if (!key || startedChapters.current.has(key)) return
+    startedChapters.current.add(key)
+    saveProgress(page.chapterIndex, { action: 'start' })
+  }, [currentPageIndex, bookPages, isSignedIn, moduleKeys, saveProgress])
+
   // ============================================
   // RENDER PAGE CONTENT
   // ============================================
@@ -828,6 +858,10 @@ export function DigitalScroll({
                   <p className="text-[9px] font-medium text-[var(--book-text,var(--foreground))]">
                     By studying {topic.title}, I hope to learn...
                   </p>
+                  <NoteVisibilityToggle
+                    visibility={scrollNotes.visibilityOf('mission-hope-to-learn')}
+                    onToggle={() => toggleNoteVisibility('mission-hope-to-learn', null)}
+                  />
                 </div>
                 <input
                   type="text"
@@ -852,6 +886,10 @@ export function DigitalScroll({
                   <p className="text-[9px] font-medium text-[var(--book-text,var(--foreground))]">
                     What I already know about this topic is...
                   </p>
+                  <NoteVisibilityToggle
+                    visibility={scrollNotes.visibilityOf('mission-already-know')}
+                    onToggle={() => toggleNoteVisibility('mission-already-know', null)}
+                  />
                 </div>
                 <input
                   type="text"
@@ -876,6 +914,10 @@ export function DigitalScroll({
                   <p className="text-[9px] font-medium text-[var(--book-text,var(--foreground))]">
                     I plan to apply this knowledge by...
                   </p>
+                  <NoteVisibilityToggle
+                    visibility={scrollNotes.visibilityOf('mission-apply-knowledge')}
+                    onToggle={() => toggleNoteVisibility('mission-apply-knowledge', null)}
+                  />
                 </div>
                 <input
                   type="text"
@@ -1434,7 +1476,8 @@ export function DigitalScroll({
         const enhancedChapterTitle = page.chapterIndex !== undefined && page.chapterIndex < modules.length
           ? modules[page.chapterIndex].title
           : 'General'
-        const enhancedNoteKey = page.module ? `module-${page.module.id}-notes` : 'general-notes'
+        const notesModuleKey = page.chapterIndex !== undefined ? moduleKeys[page.chapterIndex] ?? null : null
+        const enhancedNoteKey = notesModuleKey ? `module-${notesModuleKey}-notes` : 'general-notes'
         const legacyNoteKey = volumeIndex === 0 ? `chapter-${page.chapterIndex ?? 'general'}-notes` : null
         return (
           <div className="w-full h-full flex flex-col relative px-2 py-1">
@@ -1472,9 +1515,16 @@ export function DigitalScroll({
 
             {/* Notes textarea - fills remaining space */}
             <div className="flex-1 min-h-0 flex flex-col">
-              <p className="text-[10px] font-bold text-[var(--muted-foreground)] mb-1 uppercase tracking-wider flex items-center gap-1 shrink-0">
-                <span className="text-xs">📝</span> Your Notes:
-              </p>
+              {/* Eye sits beside the label: the page edge has an invisible page-turn strip */}
+              <div className="flex items-center gap-1.5 mb-1 shrink-0">
+                <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider flex items-center gap-1">
+                  <span className="text-xs">📝</span> Your Notes:
+                </p>
+                <NoteVisibilityToggle
+                  visibility={scrollNotes.visibilityOf(enhancedNoteKey)}
+                  onToggle={() => toggleNoteVisibility(enhancedNoteKey, notesModuleKey)}
+                />
+              </div>
               <textarea
                 className={cn(
                   "flex-1 w-full resize-none",
@@ -1506,10 +1556,10 @@ export function DigitalScroll({
                   "text-[var(--book-text,var(--foreground))] text-[10px] font-medium",
                   "transition-colors"
                 )}
-                onClick={() => setShowDiscussion(true)}
+                onClick={() => setPeersChapter(page.chapterIndex ?? 0)}
               >
-                <MessageCircle className="w-3 h-3" />
-                <span>Join Discussion</span>
+                <Users className="w-3 h-3" />
+                <span>Learners in this chapter</span>
               </button>
             </div>
           </div>
@@ -1822,6 +1872,36 @@ export function DigitalScroll({
           {/* Top Control Bar */}
           {/* On phones the ribbons span the full width, so sit below them */}
           <div className="absolute top-16 sm:top-6 right-3 sm:right-6 flex items-center gap-2 z-30">
+            {/* Notes sync: notes stay on this device unless the learner turns this on */}
+            <button
+              type="button"
+              onClick={async () => {
+                if (!isSignedIn) {
+                  setNotice('Sign in to sync your notes across devices. Until then they stay on this device.')
+                  return
+                }
+                const turnOn = !scrollNotes.settings?.syncScrollNotes
+                const result = await scrollNotes.updateSettings({ syncScrollNotes: turnOn })
+                setNotice(
+                  !result.ok
+                    ? result.error
+                    : turnOn
+                      ? 'Notes now sync to your account and follow you to any device.'
+                      : 'Notes stay on this device only. Copies on your account were removed (shared notes stay shared).'
+                )
+              }}
+              className="p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
+              aria-label={scrollNotes.settings?.syncScrollNotes ? 'Notes sync to your account. Click to keep them on this device only.' : 'Notes are on this device only. Click to sync them to your account.'}
+              aria-pressed={Boolean(scrollNotes.settings?.syncScrollNotes)}
+              title={scrollNotes.settings?.syncScrollNotes ? 'Syncing notes to your account' : 'Notes on this device only'}
+            >
+              {scrollNotes.settings?.syncScrollNotes ? (
+                <Cloud className="w-4 h-4 sm:w-5 sm:h-5" />
+              ) : (
+                <CloudOff className="w-4 h-4 sm:w-5 sm:h-5" />
+              )}
+            </button>
+
             {/* Sound Toggle */}
             <button
               onClick={() => scrollState.updatePreferences({ soundEnabled: !scrollState.preferences.soundEnabled })}
@@ -1866,15 +1946,15 @@ export function DigitalScroll({
           <motion.div
             className="fixed z-[60] bg-[var(--card)] rounded-xl shadow-2xl border border-[var(--border)] overflow-hidden"
             style={{
-              left: discussionPosition.x,
-              top: discussionPosition.y,
-              width: 'min(600px, 60vw)',
-              height: 'min(500px, 60vh)',
+              left: isDesktop ? discussionPosition.x : 16,
+              top: isDesktop ? discussionPosition.y : 80,
+              width: isDesktop ? 'min(600px, 60vw)' : 'calc(100vw - 32px)',
+              height: isDesktop ? 'min(500px, 60vh)' : 'calc(100vh - 120px)',
             }}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            drag
+            drag={isDesktop}
             dragMomentum={false}
             onDragStart={() => setIsDragging(true)}
             onDragEnd={(_, info) => {
@@ -1891,7 +1971,7 @@ export function DigitalScroll({
               }
             }}
             role="dialog"
-            aria-label={`${topic.title} Discussion`}
+            aria-label="Learners in this chapter"
           >
             {/* Drag Handle Header */}
             <div
@@ -1904,49 +1984,55 @@ export function DigitalScroll({
                 <GripVertical className="w-5 h-5 text-[var(--muted-foreground)]" />
                 <div>
                   <span className="text-sm font-bold text-[var(--book-text,var(--foreground))]">
-                    {topic.title} Discussion
+                    Learners in this chapter
                   </span>
                   <p className="text-[10px] text-[var(--muted-foreground)]">
-                    Connect with fellow Digital Scroll learners
+                    Same module, same level, your age group
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setShowDiscussion(false)}
                 className="p-1.5 rounded-lg hover:bg-[var(--background)] transition-colors"
-                aria-label="Close discussion"
+                aria-label="Close learners panel"
               >
                 <X className="w-4 h-4 text-[var(--muted-foreground)]" />
               </button>
             </div>
 
-            {/* Discussion Content */}
-            <div className="flex flex-col h-[calc(100%-60px)]">
-              {/* Messages Area - Empty state for real discussions */}
-              <div className="flex-1 overflow-y-auto p-4">
-                <div className="h-full flex flex-col items-center justify-center text-center">
-                  <div className="w-16 h-16 rounded-full bg-[var(--muted)] flex items-center justify-center mb-4">
-                    <MessageCircle className="w-8 h-8 text-[var(--muted-foreground)]" />
-                  </div>
-                  <h4 className="text-base font-bold text-[var(--book-text,var(--foreground))] mb-2">
-                    Digital Scroll Discussions
-                  </h4>
-                  <p className="text-sm text-[var(--muted-foreground)] max-w-[300px] mb-4">
-                    Share insights, ask questions, and connect with others studying {topic.title}.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => window.open('/community/forum', '_blank', 'noopener')}
-                    className="px-4 py-2 text-xs font-medium rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)]"
-                  >
-                    Open the Community Forum
-                  </button>
-                </div>
-              </div>
+            {/* Shared notes from this chapter's learners */}
+            <div className="h-[calc(100%-60px)]">
+              {peersChapter !== null && (
+                <PeersPanel
+                  topicId={topic.id}
+                  moduleKey={moduleKeys[peersChapter] ?? null}
+                  level={selectedLevel}
+                  chapterTitle={modules[peersChapter]?.title ?? topic.title}
+                  onNeedAgeBand={() => setAgeBandPrompt({})}
+                  refreshKey={peersRefresh}
+                />
+              )}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {ageBandPrompt && (
+        <AgeBandPrompt
+          onChoose={chooseAgeBand}
+          onClose={() => { setAgeBandPrompt(null); setAgeBandError(null) }}
+          error={ageBandError}
+        />
+      )}
+
+      {(notice || scrollNotes.syncError) && (
+        <div
+          role="status"
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] max-w-[90vw] rounded-lg bg-[var(--card)] px-4 py-2 text-xs shadow-xl border border-[var(--border)]"
+        >
+          {notice ?? scrollNotes.syncError}
+        </div>
+      )}
     </>
   )
 }

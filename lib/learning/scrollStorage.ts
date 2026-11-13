@@ -47,3 +47,6 @@ export function writeScoped(scope: string, key: string, value: string): void {
     console.error('Failed to save to storage:', e)
   }
 }
+
+/** Longest note that can be synced or shared (characters) */
+export const MAX_NOTE_LENGTH = 2000
