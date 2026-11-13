@@ -8,6 +8,7 @@
 
 import { useState, useEffect, useCallback, useMemo, useRef, ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useSession } from 'next-auth/react'
 import { cn } from '@/lib/utils/cn'
 import { sanitizeHtml } from '@/lib/utils/sanitize'
 import { ACCREDITATION_ENABLED } from '@/lib/learning/accreditation'
@@ -34,6 +35,7 @@ interface GameItem {
 // Import term extraction utilities
 import { extractTermsFromModule, isQuizWorthyTerm, KEY_TERMS_BY_TOPIC } from '@/lib/learning/termExtractor'
 import { volumeLabel } from '@/lib/learning/topicVolumes'
+import { readScoped, writeScoped, storageScopeFor } from '@/lib/learning/scrollStorage'
 import {
   GUARDIAN_RIBBONS,
   RIBBON_ORDER,
@@ -218,7 +220,11 @@ export function DigitalScroll({
     }
   }, [isExpanded])
 
-  const scrollState = useScrollState()
+  // Everything the reader writes stays on this device, kept separately per account
+  const { data: session, status: sessionStatus } = useSession()
+  const storageScope = sessionStatus === 'loading' ? null : storageScopeFor(session?.user?.id)
+
+  const scrollState = useScrollState(storageScope)
   // Stable callbacks from the hook (the scrollState object itself changes every render)
   const { goToPosition: saveReadingPosition, closeScroll, openScroll, unlockScroll } = scrollState
   const playPageTurn = usePageTurnSound(scrollState.preferences.soundEnabled)
@@ -264,26 +270,25 @@ export function DigitalScroll({
   const [discussionPosition, setDiscussionPosition] = useState({ x: 100, y: 100 })
   const [isDragging, setIsDragging] = useState(false)
 
-  // Load notes from localStorage on mount
+  // Load this account's notes for the topic (device-local)
   useEffect(() => {
-    const savedNotes = localStorage.getItem(`book-notes-${topic.id}`)
-    if (savedNotes) {
-      try {
-        setPageNotes(JSON.parse(savedNotes))
-      } catch (e) {
-        // Ignore parse errors
-      }
+    if (!storageScope) return
+    const savedNotes = readScoped(storageScope, `book-notes-${topic.id}`)
+    try {
+      setPageNotes(savedNotes ? JSON.parse(savedNotes) : {})
+    } catch {
+      setPageNotes({})
     }
-  }, [topic.id])
+  }, [topic.id, storageScope])
 
   // Save note for a specific page
   const saveNote = useCallback((pageKey: string, content: string) => {
     setPageNotes(prev => {
       const updated = { ...prev, [pageKey]: content }
-      localStorage.setItem(`book-notes-${topic.id}`, JSON.stringify(updated))
+      if (storageScope) writeScoped(storageScope, `book-notes-${topic.id}`, JSON.stringify(updated))
       return updated
     })
-  }, [topic.id])
+  }, [topic.id, storageScope])
 
   // ============================================
   // RESPONSIVE
@@ -1713,7 +1718,7 @@ export function DigitalScroll({
           isOpen={scrollState.isScrollOpen}
           isExpanded={isExpanded}
           onKeyDown={handleKeyDown}
-          className={className}
+          className={cn('digital-scroll', className)}
         >
           {/* Book Wrapper */}
           <ScrollWrapper>
@@ -1815,7 +1820,8 @@ export function DigitalScroll({
           </ScrollWrapper>
 
           {/* Top Control Bar */}
-          <div className="absolute top-4 sm:top-6 right-4 sm:right-6 flex items-center gap-2 z-30">
+          {/* On phones the ribbons span the full width, so sit below them */}
+          <div className="absolute top-16 sm:top-6 right-3 sm:right-6 flex items-center gap-2 z-30">
             {/* Sound Toggle */}
             <button
               onClick={() => scrollState.updatePreferences({ soundEnabled: !scrollState.preferences.soundEnabled })}

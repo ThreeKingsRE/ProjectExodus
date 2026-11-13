@@ -2378,6 +2378,12 @@ body.textbook-fullscreen .fixed.inset-0.z-50 {
 }
 
 /* Image placeholders */
+/* Unfinished "[Image: …]" placeholders stay visible to authors in other viewers,
+   but readers of the Digital Scroll shouldn't see them */
+.digital-scroll .lesson-content .image-placeholder {
+  display: none;
+}
+
 .lesson-content .image-placeholder {
   margin: 1rem 0;
   padding: 1.5rem;

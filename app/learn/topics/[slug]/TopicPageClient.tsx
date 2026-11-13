@@ -13,6 +13,8 @@ import { LearningLevel, LEARNING_LEVELS, LEARNING_LEVEL_ORDER } from '@/types/le
 import { TopicBookBrowser } from '@/components/learning/TopicBookBrowser'
 import { AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
+import { useSession } from 'next-auth/react'
+import { readScoped, writeScoped, storageScopeFor } from '@/lib/learning/scrollStorage'
 import { useDigitalScrollContext } from '@/components/learning/DigitalScroll/DigitalScrollContext'
 import {
   getVolumeCount,
@@ -67,14 +69,14 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
 
   const volumeCount = getVolumeCount(topic.modules.length)
   const lastVolumeKey = `exodus_scroll_volume_${slug}`
+  const { data: session } = useSession()
+  const storageScope = storageScopeFor(session?.user?.id)
 
   // Open the scroll at a module (index into topic.modules), or resume (no index)
   const handleOpenDigitalScroll = (moduleIndex?: number) => {
     if (moduleIndex === undefined) {
       let lastVolume = 0
-      try {
-        lastVolume = Number(localStorage.getItem(lastVolumeKey) ?? 0) || 0
-      } catch { /* storage unavailable */ }
+      lastVolume = Number(readScoped(storageScope, lastVolumeKey) ?? 0) || 0
       setVolumeIndex(Math.min(Math.max(lastVolume, 0), volumeCount - 1))
       setInitialChapter(undefined)
     } else {
@@ -124,9 +126,7 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
         if (json.success) {
           setVolumeData(json.data as TopicVolume)
           setVolumeError(null)
-          try {
-            localStorage.setItem(lastVolumeKey, String(volumeIndex))
-          } catch { /* storage unavailable */ }
+          writeScoped(storageScope, lastVolumeKey, String(volumeIndex))
         } else {
           setVolumeError(json.error || 'Could not load this volume')
         }
@@ -138,7 +138,7 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
         if (!controller.signal.aborted) setIsLoadingVolume(false)
       })
     return () => controller.abort()
-  }, [isScrollOpen, slug, volumeIndex, contentLevel, lastVolumeKey])
+  }, [isScrollOpen, slug, volumeIndex, contentLevel, lastVolumeKey, storageScope])
 
   // The user's saved progress for this topic (signed-in users only)
   const [moduleProgress, setModuleProgress] = useState<ModuleProgressSummary[]>([])

@@ -3,8 +3,9 @@
 // Tracks reading position, progress, and unlock state
 // ============================================
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { STORAGE_KEYS } from './scrollConstants'
+import { readScoped, writeScoped, type StorageScope } from '@/lib/learning/scrollStorage'
 
 // ============================================
 // TYPES
@@ -93,55 +94,61 @@ const INITIAL_STATE: ScrollState = {
 // STORAGE HELPERS
 // ============================================
 
-function getFromStorage<T>(key: string, defaultValue: T): T {
-  if (typeof window === 'undefined') return defaultValue
+// Storage is scoped per signed-in account (see lib/learning/scrollStorage.ts).
+// A null scope means the session is still loading: nothing is read or written.
+
+function getFromStorage<T>(scope: StorageScope, key: string, defaultValue: T): T {
+  if (typeof window === 'undefined' || !scope) return defaultValue
   try {
-    const stored = localStorage.getItem(key)
+    const stored = readScoped(scope, key)
     return stored ? JSON.parse(stored) : defaultValue
   } catch {
     return defaultValue
   }
 }
 
-function setToStorage<T>(key: string, value: T): void {
-  if (typeof window === 'undefined') return
-  try {
-    localStorage.setItem(key, JSON.stringify(value))
-  } catch (e) {
-    console.error('Failed to save to storage:', e)
-  }
+function setToStorage<T>(scope: StorageScope, key: string, value: T): void {
+  if (typeof window === 'undefined' || !scope) return
+  writeScoped(scope, key, JSON.stringify(value))
 }
 
 // ============================================
 // THE HOOK
 // ============================================
 
-export function useScrollState() {
+export function useScrollState(scope: StorageScope) {
   const [state, setState] = useState<ScrollState>(INITIAL_STATE)
   const [isHydrated, setIsHydrated] = useState(false)
+  // Read inside stable callbacks so they never need to be recreated
+  const scopeRef = useRef(scope)
+  scopeRef.current = scope
 
   // ============================================
   // HYDRATION - Load from storage on mount
   // ============================================
 
   useEffect(() => {
+    if (!scope) return // wait until we know who is signed in
     const unlockState: ScrollUnlockState = {
-      isUnlocked: getFromStorage(STORAGE_KEYS.bookUnlocked, false),
-      unlockedAt: getFromStorage(STORAGE_KEYS.unlockedAt, null),
-      unlockedFromTopic: getFromStorage(STORAGE_KEYS.unlockedFromTopic, null),
+      isUnlocked: getFromStorage(scope, STORAGE_KEYS.bookUnlocked, false),
+      unlockedAt: getFromStorage(scope, STORAGE_KEYS.unlockedAt, null),
+      unlockedFromTopic: getFromStorage(scope, STORAGE_KEYS.unlockedFromTopic, null),
     }
 
     const readingPositions = getFromStorage<Record<string, ReadingPosition>>(
+      scope,
       STORAGE_KEYS.readingPositions,
       {}
     )
 
     const topicProgress = getFromStorage<Record<string, TopicProgress>>(
+      scope,
       'exodus_book_topic_progress',
       {}
     )
 
     const preferences = getFromStorage<ScrollPreferences>(
+      scope,
       STORAGE_KEYS.preferences,
       DEFAULT_PREFERENCES
     )
@@ -161,7 +168,7 @@ export function useScrollState() {
     }))
 
     setIsHydrated(true)
-  }, [])
+  }, [scope])
 
   // ============================================
   // UNLOCK THE BOOK EXPERIENCE
@@ -171,9 +178,9 @@ export function useScrollState() {
   const unlockScroll = useCallback((fromTopic: string) => {
     const now = new Date().toISOString()
 
-    setToStorage(STORAGE_KEYS.bookUnlocked, true)
-    setToStorage(STORAGE_KEYS.unlockedAt, now)
-    setToStorage(STORAGE_KEYS.unlockedFromTopic, fromTopic)
+    setToStorage(scopeRef.current, STORAGE_KEYS.bookUnlocked, true)
+    setToStorage(scopeRef.current, STORAGE_KEYS.unlockedAt, now)
+    setToStorage(scopeRef.current, STORAGE_KEYS.unlockedFromTopic, fromTopic)
 
     setState(prev => ({
       ...prev,
@@ -219,7 +226,7 @@ export function useScrollState() {
             lastRead: new Date().toISOString(),
           },
         }
-        setToStorage(STORAGE_KEYS.readingPositions, updatedPositions)
+        setToStorage(scopeRef.current, STORAGE_KEYS.readingPositions, updatedPositions)
       }
 
       return {
@@ -264,7 +271,7 @@ export function useScrollState() {
         ...prev.readingPositions,
         [prev.currentTopic]: newPosition,
       }
-      setToStorage(STORAGE_KEYS.readingPositions, updatedPositions)
+      setToStorage(scopeRef.current, STORAGE_KEYS.readingPositions, updatedPositions)
 
       return {
         ...prev,
@@ -285,7 +292,7 @@ export function useScrollState() {
         lastRead: new Date().toISOString(),
       }
       const updatedPositions = { ...prev.readingPositions, [prev.currentTopic]: newPosition }
-      setToStorage(STORAGE_KEYS.readingPositions, updatedPositions)
+      setToStorage(scopeRef.current, STORAGE_KEYS.readingPositions, updatedPositions)
       return { ...prev, currentPosition: newPosition, readingPositions: updatedPositions }
     })
   }, [])
@@ -302,7 +309,7 @@ export function useScrollState() {
         lastRead: new Date().toISOString(),
       }
       const updatedPositions = { ...prev.readingPositions, [prev.currentTopic]: newPosition }
-      setToStorage(STORAGE_KEYS.readingPositions, updatedPositions)
+      setToStorage(scopeRef.current, STORAGE_KEYS.readingPositions, updatedPositions)
       return { ...prev, currentPosition: newPosition, readingPositions: updatedPositions }
     })
   }, [])
@@ -364,7 +371,7 @@ export function useScrollState() {
       }
 
       // Persist to localStorage
-      setToStorage('exodus_book_topic_progress', newTopicProgress)
+      setToStorage(scopeRef.current, 'exodus_book_topic_progress', newTopicProgress)
 
       return { ...prev, topicProgress: newTopicProgress }
     })
@@ -394,7 +401,7 @@ export function useScrollState() {
       }
 
       // Persist to localStorage
-      setToStorage('exodus_book_topic_progress', newTopicProgress)
+      setToStorage(scopeRef.current, 'exodus_book_topic_progress', newTopicProgress)
 
       return { ...prev, topicProgress: newTopicProgress }
     })
@@ -415,7 +422,7 @@ export function useScrollState() {
   const updatePreferences = useCallback((updates: Partial<ScrollPreferences>) => {
     setState(prev => {
       const newPreferences = { ...prev.preferences, ...updates }
-      setToStorage(STORAGE_KEYS.preferences, newPreferences)
+      setToStorage(scopeRef.current, STORAGE_KEYS.preferences, newPreferences)
       return { ...prev, preferences: newPreferences }
     })
   }, [])
