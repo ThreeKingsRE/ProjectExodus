@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test:community": "node --import tsx --test scripts/community-access.test.mjs scripts/public-initiative.test.mjs",
     "dev": "next dev",
     "build": "next build",
     "vercel-build": "prisma db push && prisma generate && next build",

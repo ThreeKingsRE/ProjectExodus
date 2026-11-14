@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
+import { projectPublication } from '@/lib/projects/public-view'
 
 export async function GET(
   request: Request,
@@ -77,7 +78,7 @@ export async function PUT(
     // Check if user is the creator
     const project = await prisma.project.findUnique({
       where: { id: projectId },
-      select: { creatorId: true }
+      select: { creatorId: true, visibility: true, layoutConfig: true }
     })
 
     if (!project) {
@@ -96,6 +97,8 @@ export async function PUT(
 
     const body = await request.json()
     const { name, description, goal, status } = body
+    const previousLayout = (project.layoutConfig || {}) as Record<string, unknown>
+    const publication = projectPublication(project.visibility, body.allowPublicView)
 
     const updated = await prisma.project.update({
       where: { id: projectId },
@@ -103,7 +106,14 @@ export async function PUT(
         name: name?.trim() || undefined,
         description: description?.trim() || undefined,
         goal: goal?.trim() || undefined,
-        status: status || undefined
+        status: status || undefined,
+        ...(typeof body.allowPublicView === 'boolean' || typeof body.publicStory === 'string' ? {
+          layoutConfig: {
+            ...previousLayout,
+            ...(typeof body.allowPublicView === 'boolean' ? { allowPublicView: publication.allowPublicView } : {}),
+            ...(typeof body.publicStory === 'string' ? { publicStory: body.publicStory.slice(0, 16000) } : {}),
+          },
+        } : {}),
       },
       include: {
         creator: {

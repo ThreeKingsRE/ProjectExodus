@@ -1,82 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { auth } from '@/auth'
+import { participate, ParticipationError } from '@/lib/projects/participation'
 
-// POST /api/projects/join - Join a project
+// POST /api/projects/join - explicit follow or collaboration
 export async function POST(request: NextRequest) {
+  const origin = request.headers.get('origin')
+  if (origin && origin !== new URL(request.url).origin) return NextResponse.json({ success: false, error: 'Invalid request origin.' }, { status: 403 })
+  const session = await auth()
+  if (!session?.user?.id) return NextResponse.json({ success: false, error: 'Please sign in.' }, { status: 401 })
   try {
-    // Check authentication
-    const session = await auth()
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized - Please sign in to join projects' },
-        { status: 401 }
-      )
-    }
-
     const body = await request.json()
-    const { projectId } = body
-
-    if (!projectId) {
-      return NextResponse.json(
-        { success: false, error: 'Missing required field: projectId' },
-        { status: 400 }
-      )
-    }
-
-    // Check if already a member
-    const existingMember = await prisma.projectMember.findUnique({
-      where: {
-        projectId_userId: {
-          projectId,
-          userId: session.user.id,
-        },
-      },
-    })
-
-    if (existingMember) {
-      return NextResponse.json(
-        { success: false, error: 'You are already a member of this project' },
-        { status: 400 }
-      )
-    }
-
-    // Add user as member
-    const member = await prisma.projectMember.create({
-      data: {
-        projectId,
-        userId: session.user.id,
-        role: 'MEMBER', // Default role for new joiners
-      },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            image: true,
-          },
-        },
-        project: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-          },
-        },
-      },
-    })
-
-    return NextResponse.json({
-      success: true,
-      data: member,
-      message: 'Successfully joined the project!',
-    })
+    const intent = body.intent || 'collaborate'
+    if (typeof body.projectId !== 'string' || !body.projectId || !['follow', 'collaborate'].includes(intent)) return NextResponse.json({ success: false, error: 'A valid initiative and participation choice are required.' }, { status: 400 })
+    const result = await participate(prisma, session.user.id, body.projectId, intent)
+    return NextResponse.json({ success: true, data: result.member, approvalRequired: result.approvalRequired })
   } catch (error) {
-    console.error('Error joining project:', error)
-    return NextResponse.json(
-      { success: false, error: 'Failed to join project' },
-      { status: 500 }
-    )
+    if (error instanceof ParticipationError) return NextResponse.json({ success: false, error: error.message }, { status: error.status })
+    if (error instanceof SyntaxError) return NextResponse.json({ success: false, error: 'Invalid JSON.' }, { status: 400 })
+    console.error('Initiative participation failed:', error)
+    return NextResponse.json({ success: false, error: 'Could not save participation. Please try again.' }, { status: 500 })
   }
 }
 
