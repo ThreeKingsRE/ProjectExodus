@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "riverknoll:sync": "node scripts/riverknoll/sync.mjs",
+    "riverknoll:check": "node scripts/riverknoll/sync.mjs --check && node --test scripts/riverknoll/model.test.mjs",
     "dev": "next dev",
     "build": "next build",
     "vercel-build": "prisma db push && prisma generate && next build",

@@ -1,0 +1,77 @@
+{
+  "slug": "riverknoll-renewal",
+  "title": "Riverknoll Renewal",
+  "revision": "2026-11-12.1",
+  "updated": "November 12, 2026",
+  "attribution": "Riverknoll Student",
+  "status": "Proposal in development",
+  "tagline": "A future for student housing. Shaped by the people who live there.",
+  "summary": "A student-led proposal for affordable upperclass housing at RIT, connecting thoughtful homes, a practical construction transition, shared gardens, and responsible use of food, water, and energy.",
+  "mission": "Bring residents, designers, builders, and the RIT community together to develop an evidence-based housing proposal. Compare System 3E and conventional construction, protect affordability and existing neighbors, and make the design, costs, and decisions open to review.",
+  "coverImage": "/projects/riverknoll-renewal/courtyard.webp",
+  "context": "Reporter covered Riverknoll’s planned closure on November 9, 2026. This proposal asks how RIT can preserve an affordable upperclass housing community while planning the transition with its residents. It is a student-originated initiative, not an RIT-approved or funded project.",
+  "exodology": "Riverknoll Renewal is the creator’s first Exodus design: a developing application of Exodology, the discipline Mr. Nobody is working to establish. Housing, ecology, technology, institutional decisions, and community participation are studied together. This proposal will document its methods and decisions as it develops; outcomes remain to be tested.",
+  "design": [
+    {"title": "Homes that work for students", "text": "Study private-bedroom rowhouses and a genuinely spacious shared-bedroom alternative. Keep shared kitchens and living rooms usable. Include an accessible ground-level option and evaluate the circulation and fire-safety implications of added stories."},
+    {"title": "Keep the neighborhood connected", "text": "Preserve Greek Row on Charters Way, Riverknoll 516–536, mature trees where feasible, and resident and emergency access. Survey buildings, root zones, utilities, grades, and routes before fixing new footprints."},
+    {"title": "A courtyard with a working water path", "text": "Trace roof runoff through gutters, screened inlets, sediment treatment, a planted basin, and a designed overflow. Study irrigation and winter safety. Keep salted pavement runoff separate unless treatment is validated; fish are an optional engineered study, not a promised feature."},
+    {"title": "Build a community, then keep it usable", "text": "Connect small private café patios, accessible shared paths, gardens, and hardy fruit trees. Place habitat away from foundations and ventilation. Homes are unfurnished apart from fixed kitchen and bathroom fixtures and appliances."}
+  ],
+  "phases": [
+    {"title": "Understand the site", "text": "Verify current capacity, retained beds, conditions, trees, utilities, hazardous materials, access, and resident priorities."},
+    {"title": "Compare and price", "text": "Test the same housing design with System 3E and conventional assemblies. Obtain local code, supply, crew, cost, and whole-building energy review."},
+    {"title": "Test a summer package", "text": "Ask a construction manager to resource two-building and four-building packages, including utilities, temporary works, inspections, commissioning, and fall occupancy. Compare a full-closure alternative and swing housing."},
+    {"title": "Finish each courtyard once", "text": "Complete the buildings, underground work, and heavy delivery routes affecting that zone before permanent paths, pond, and planting. Open accepted replacement housing before releasing the next occupied zone, where safe and feasible."}
+  ],
+  "questions": [
+    {"title": "What should future Riverknoll preserve?", "text": "Tell us what affordability, privacy, accessibility, kitchens, shared spaces, and campus proximity mean in daily life."},
+    {"title": "What would make a summer phase credible?", "text": "Help identify crew sizes, procurement lead times, utility shutdowns, inspection gates, safe access, and temporary housing needs."},
+    {"title": "What evidence would change the design?", "text": "Contribute current bed counts, local pricing, utility and maintenance records, building-system expertise, and stormwater review. Do not post private resident information."}
+  ],
+  "openItems": [
+    "Reconcile 513 historic beds with the 444-bed campus-plan figure and the current housing inventory.",
+    "Verify how many beds remain at 516–536; retained beds count toward the gross target.",
+    "Confirm System 3E’s project-specific New York code path, assemblies, supply, installer requirements, and installed price.",
+    "Obtain Riverknoll-specific utility and maintenance records; campuswide budgets cannot stand in for them.",
+    "Develop measured plans, an accessible circulation strategy, drainage engineering, and contractor-tested phasing."
+  ],
+  "finance": {
+    "targetBeds": 513,
+    "retainedBeds": null,
+    "grossAreaPerNewBed": 350,
+    "academicYearRent": 6762,
+    "occupancy": 0.95,
+    "operatingExpenseRatio": 0.4,
+    "debtRate": 0.05,
+    "debtYears": 30,
+    "debtServiceCoverage": 1.2,
+    "annualWallSavingsAt513NewBeds": 4628,
+    "discountRate": 0.05,
+    "energyEscalation": 0.02,
+    "years": 20,
+    "maintenanceSavings": 0,
+    "system3ePremium": null,
+    "cases": [
+      {"name": "Low", "perGsf": 350, "siteRatio": 0.08, "demolitionPerBed": 6000, "abatementPerBed": 0, "temporaryWorks": 0, "softRatio": 0.2, "contingencyRatio": 0.15, "escalationRatio": 0.03, "financeRatio": 0.03},
+      {"name": "Base", "perGsf": 425, "siteRatio": 0.12, "demolitionPerBed": 10000, "abatementPerBed": 5000, "temporaryWorks": 2000000, "softRatio": 0.25, "contingencyRatio": 0.2, "escalationRatio": 0.06, "financeRatio": 0.05},
+      {"name": "High", "perGsf": 525, "siteRatio": 0.18, "demolitionPerBed": 16000, "abatementPerBed": 15000, "temporaryWorks": 6000000, "softRatio": 0.3, "contingencyRatio": 0.25, "escalationRatio": 0.1, "financeRatio": 0.07}
+    ],
+    "notes": "2026-dollar concept allowances carried from feasibility workbook v11, not contractor bids. A blank retained count prices every target bed as new for screening only. Demolition, abatement, and temporary works require independent scope quantities; per-bed scaling is an early proxy. The rent reference is an academic-year room rate, not a twelve-month lease. Debt capacity uses the gross target’s rent, assumes retained revenue is available, excludes existing debt and retained-building renewal costs, and is therefore optimistic. DSCR 1.20 is a new illustrative lending constraint; workbook v11 did not apply it."
+  },
+  "sources": [
+    {"id": "closure", "label": "Closure reporting · Reporter, November 9, 2026", "url": "https://reporter.rit.edu/8904/showcase/riverknoll-to-be-permanently-closed-after-2027-academic-year/", "use": "Closure context and student response. Reporting on RIT’s emails; not an approved replacement plan."},
+    {"id": "rit-housing", "label": "RIT Housing · Riverknoll", "url": "https://www.rit.edu/housing/riverknoll", "use": "Current room types, amenities, and published rates. Compare matching occupancy and contract periods."},
+    {"id": "campus-plan", "label": "RIT · 2022 Campus Plan", "url": "https://www.rit.edu/sites/rit.edu/files/docs/campus-plan/2022%20RIT%20Campus%20Plan%20Final.pdf", "use": "Earlier capacity and campus-planning context; does not certify today’s inventory."},
+    {"id": "historic-inventory", "label": "DASNY / RIT · 2019 project document", "url": "https://www.dasny.org/sites/default/files/inline-files/RIT%202019%20Financing%20Type%20I%2009.10.19%20SES.pdf", "use": "Historic capacity and renovation context; verify current conditions and retained beds."},
+    {"id": "system3e", "label": "System 3E USA · manufacturer technical claims", "url": "https://system3e.us/technology.html", "use": "Published house-scale schedule and wall-performance examples. Manufacturer claims, not independent multifamily predictions or local code approval."}
+  ],
+  "materials": [
+    {"title": "Student proposal", "version": "Pitch deck v18", "href": "/projects/riverknoll-renewal/riverknoll-pitch-v18.pptx", "kind": "PPTX"},
+    {"title": "Architecture study", "version": "Pin-up v10", "href": "/projects/riverknoll-renewal/riverknoll-architecture-v10.pptx", "kind": "PPTX"},
+    {"title": "Detailed feasibility", "version": "Workbook v11 · prior assumptions", "href": "/projects/riverknoll-renewal/riverknoll-feasibility-v11.xlsx", "kind": "XLSX"},
+    {"title": "Schematic technical set", "version": "CAD study v1", "href": "/projects/riverknoll-renewal/riverknoll-technical-v1.dxf", "kind": "DXF"}
+  ],
+  "updates": [
+    {"date": "November 12, 2026", "title": "One connected proposal", "text": "Design, research, costs, and community input now share a revisioned public overview. Added retained-bed sensitivity, an explicit debt-coverage assumption, a complete stormwater sequence, and a decision record. The downloadable v18/v10/v11 package is the earlier review baseline; use the current page and assumptions for this revision."}
+  ]
+}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { redirect, useRouter } from 'next/navigation'
 import Step0Picker from '@/components/projects/create/Step0Picker'
@@ -23,7 +23,7 @@ import {
 import { BackButton } from '@/components/navigation/BackButton'
 import Link from 'next/link'
 import { ProjectTemplateGallery } from '@/components/projects/ProjectTemplateGallery'
-import { ProjectTemplate } from '@/data/project-templates'
+import { PROJECT_TEMPLATES, ProjectTemplate } from '@/data/project-templates'
 
 // Guardian-themed steps
 const STEPS = [
@@ -135,8 +135,13 @@ interface Subproject {
 export default function NewProjectPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
+  const [templateId, setTemplateId] = useState<string | null>(null)
 
   const hasMounted = useHasMounted()
+
+  useEffect(() => {
+    setTemplateId(new URLSearchParams(window.location.search).get('template'))
+  }, [])
 
   // Step management
   const [showStep0, setShowStep0] = useState(true)
@@ -200,7 +205,7 @@ export default function NewProjectPage() {
   const [goal, setGoal] = useState('')
 
   // Handle template selection
-  const handleTemplateSelection = (template: ProjectTemplate | null) => {
+  const handleTemplateSelection = useCallback((template: ProjectTemplate | null) => {
     setSelectedTemplate(template)
 
     if (template) {
@@ -217,11 +222,18 @@ export default function NewProjectPage() {
       setEnableResearch(template.features.enableResearch)
       setEnableLearning(template.features.enableLearning)
       setRequireApproval(template.features.requireApproval)
+      setCoverImage(template.coverImage || null)
     }
 
     // Hide template gallery and show wizard
     setShowTemplateGallery(false)
-  }
+  }, [])
+
+  useEffect(() => {
+    if (!templateId) return
+    const template = PROJECT_TEMPLATES.find((item) => item.id === templateId)
+    if (template) handleTemplateSelection(template)
+  }, [templateId, handleTemplateSelection])
 
   // Fetch user's projects for nesting
   useEffect(() => {
@@ -423,6 +435,7 @@ export default function NewProjectPage() {
       const projectData = {
         name,
         description,
+        coverImage,
         tagline,
         mission,
         goal,
@@ -432,6 +445,8 @@ export default function NewProjectPage() {
         tags,
         parentProjectId,
         theme,
+        templateId: selectedTemplate?.id,
+        publicAttribution: selectedTemplate?.publicAttribution,
         slug,
         settings: {
           enableDiscussions,

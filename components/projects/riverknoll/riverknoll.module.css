@@ -1,0 +1,17 @@
+.page a {
+  color: inherit;
+}
+
+.page a[data-tone='dark'],
+.page a[class*='bg-[#d6e6b3]'] {
+  color: #203a2e;
+}
+
+.page :is(a, button, input, summary):focus-visible {
+  outline: 3px solid #8ea863;
+  outline-offset: 4px;
+}
+
+.page input {
+  color-scheme: light;
+}

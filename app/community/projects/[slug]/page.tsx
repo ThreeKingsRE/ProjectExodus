@@ -172,7 +172,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
   const fetchProject = useCallback(async () => {
     try {
-      const res = await fetch(`/api/projects`)
+      const res = await fetch(`/api/projects?slug=${encodeURIComponent(slug)}`)
       const data = await res.json()
       if (data.success) {
         const proj = data.data.find((p: any) => p.slug === slug)
@@ -330,6 +330,13 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   useEffect(() => {
     fetchProject()
   }, [fetchProject])
+
+  useEffect(() => {
+    const tab = searchParams.get('tab')
+    if (tab && ['overview', 'learning', 'research', 'discussions', 'members', 'mindmaps', 'documents', 'settings'].includes(tab)) {
+      setActiveTab(tab as TabType)
+    }
+  }, [searchParams])
 
   // Replace polling with Pusher real-time updates
   useEffect(() => {
@@ -762,6 +769,23 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   <p className="text-lg font-semibold text-theme-muted mb-4">
                     {project.description}
                   </p>
+                )}
+
+                {project.layoutConfig?.tagline && (
+                  <p className="mb-3 text-base font-bold text-theme-primary">
+                    {project.layoutConfig.tagline}
+                  </p>
+                )}
+                {project.layoutConfig?.mission && (
+                  <Card className="mb-5 border border-theme-primary/30 bg-[var(--card)]/70">
+                    <CardContent className="p-5">
+                      <p className="mb-2 text-xs font-black uppercase tracking-widest text-theme-primary">Initiative &amp; invitation</p>
+                      <p className="whitespace-pre-line text-sm leading-relaxed text-theme-muted">{project.layoutConfig.mission}</p>
+                      {project.layoutConfig.publicAttribution && (
+                        <p className="mt-3 text-xs font-semibold text-theme-muted">{project.layoutConfig.publicAttribution}</p>
+                      )}
+                    </CardContent>
+                  </Card>
                 )}
 
                 <div className="flex flex-wrap gap-4 text-sm font-bold text-theme-muted">

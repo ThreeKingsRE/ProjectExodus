@@ -1,0 +1,28 @@
+name: Riverknoll plan consistency
+on:
+  pull_request:
+    paths:
+      - 'data/riverknoll-renewal.json'
+      - 'lib/riverknoll-model.ts'
+      - 'scripts/riverknoll/**'
+      - 'docs/riverknoll/**'
+      - 'public/projects/riverknoll-renewal/current-plan.md'
+      - '.github/workflows/riverknoll.yml'
+  push:
+    paths:
+      - 'data/riverknoll-renewal.json'
+      - 'lib/riverknoll-model.ts'
+      - 'scripts/riverknoll/**'
+      - 'docs/riverknoll/**'
+      - 'public/projects/riverknoll-renewal/current-plan.md'
+      - '.github/workflows/riverknoll.yml'
+jobs:
+  consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/riverknoll/sync.mjs --check
+      - run: node --test scripts/riverknoll/model.test.mjs
