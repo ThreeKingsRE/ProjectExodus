@@ -2,16 +2,25 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { auth } from '@/auth'
 import { incrementStockScore, STOCK_POINTS } from '@/lib/stockScore'
+import { projectPublication } from '@/lib/projects/public-view'
 
 export async function GET(request: NextRequest) {
   try {
+    const session = await auth()
+    if (!session?.user?.id) return NextResponse.json({ success: false, error: 'Please sign in.' }, { status: 401 })
     const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
     const limit = Math.min(parseInt(searchParams.get('limit') || '20'), 50)
     const skip = (page - 1) * limit
+    const slug = searchParams.get('slug')
+    const where = {
+      ...(slug ? { slug } : {}),
+      OR: [{ visibility: 'PUBLIC' }, { creatorId: session.user.id }, { members: { some: { userId: session.user.id } } }],
+    }
 
     const [projects, total] = await Promise.all([
       prisma.project.findMany({
+        where,
         include: {
           creator: {
             select: {
@@ -40,7 +49,7 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit,
       }),
-      prisma.project.count(),
+      prisma.project.count({ where }),
     ])
 
     return NextResponse.json({
@@ -71,6 +80,11 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
 
+    if (typeof body.slug !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(body.slug) || body.slug.length > 120) {
+      return NextResponse.json({ success: false, error: 'Use a short URL with lowercase letters, numbers, and hyphens.' }, { status: 400 })
+    }
+    const publication = projectPublication(body.visibility, body.allowPublicView)
+
     // Validate required fields
     if (!body.name || !body.slug || !body.description) {
       return NextResponse.json(
@@ -86,7 +100,20 @@ export async function POST(request: NextRequest) {
         description: body.description,
         goal: body.goal || null,
         status: body.status || 'PLANNING',
+        visibility: publication.visibility,
         coverImage: body.coverImage || null,
+        layoutConfig: {
+          allowPublicView: publication.allowPublicView,
+          publication: publication.publication,
+          publicStory: typeof body.publicStory === 'string' ? body.publicStory.slice(0, 16000) : '',
+          tagline: typeof body.tagline === 'string' ? body.tagline : '',
+          mission: typeof body.mission === 'string' ? body.mission : '',
+          category: typeof body.category === 'string' ? body.category : '',
+          tags: Array.isArray(body.tags) ? body.tags.filter((tag: unknown) => typeof tag === 'string') : [],
+          theme: typeof body.theme === 'string' ? body.theme : 'nature',
+          settings: body.settings && typeof body.settings === 'object' ? body.settings : {},
+          templateId: typeof body.templateId === 'string' ? body.templateId : null,
+        },
         creatorId: session.user.id,
       },
       include: {
@@ -242,6 +269,7 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     console.error('Error creating project:', error)
+    if ((error as { code?: string }).code === 'P2002') return NextResponse.json({ success: false, error: 'That public link is already in use. Choose another slug.' }, { status: 409 })
     return NextResponse.json(
       { success: false, error: 'Failed to create project' },
       { status: 500 }

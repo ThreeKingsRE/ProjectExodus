@@ -43,6 +43,9 @@ jobs:
       - name: Type check
         run: npx tsc --noEmit
 
+      - name: Community guest access
+        run: npm run test:community
+
       - name: Type check drawing scripts
         run: npx tsc -p scripts/architecture/tsconfig.json
 

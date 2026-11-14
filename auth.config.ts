@@ -69,6 +69,27 @@ export const authConfig = {
         return true
       }
 
+      // Tab introductions are public. Individual initiative pages verify an
+      // explicit creator opt-in before rendering their limited public overview.
+      const publicCommunityPages = [
+        '/community',
+        '/community/discussions',
+        '/community/projects',
+        '/fishbowl',
+      ]
+      const pathname = nextUrl.pathname.replace(/\/$/, '') || '/'
+      if (publicCommunityPages.includes(pathname)) return true
+      if (/^\/community\/projects\/[^/]+$/.test(pathname) && pathname !== '/community/projects/new') return true
+      if (/^\/community\/projects\/[^/]+\/opengraph-image$/.test(pathname)) return true
+
+      // API callers receive a clear denial, never a sign-in HTML response.
+      if (!isLoggedIn && pathname.startsWith('/api/')) {
+        return Response.json(
+          { success: false, error: 'Sign in to access community content.' },
+          { status: 401, headers: { 'Cache-Control': 'no-store' } },
+        )
+      }
+
       // All other matched routes require authentication
       // The proxy matcher in proxy.ts controls which routes reach this point
       if (!isLoggedIn) {

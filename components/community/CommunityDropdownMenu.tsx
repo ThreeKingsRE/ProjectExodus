@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ChevronDown, MessageSquare, Rocket, Users, BookOpen, Lock,
@@ -40,7 +39,6 @@ const menuItems = [
 ]
 
 export function CommunityDropdownMenu({ isAuthenticated }: CommunityDropdownMenuProps) {
-  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -87,14 +85,14 @@ export function CommunityDropdownMenu({ isAuthenticated }: CommunityDropdownMenu
                 const Icon = item.icon
                 const handleClick = () => {
                   setIsOpen(false)
-                  router.push(isAuthenticated ? item.href : '/auth/signin')
                 }
 
                 if (isAuthenticated) {
                   // Unlocked state - fully functional
                   return (
-                    <motion.div
+                    <motion.a
                       key={item.label}
+                      href={item.href}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
@@ -112,13 +110,14 @@ export function CommunityDropdownMenu({ isAuthenticated }: CommunityDropdownMenu
                           {item.description}
                         </div>
                       </div>
-                    </motion.div>
+                    </motion.a>
                   )
                 } else {
                   // Locked state - ghost appearance
                   return (
-                    <motion.div
+                    <motion.a
                       key={item.label}
+                      href={item.href === '/community/users' ? '/fishbowl' : item.href}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
@@ -136,10 +135,10 @@ export function CommunityDropdownMenu({ isAuthenticated }: CommunityDropdownMenu
                           {item.label}
                         </div>
                         <div className="text-xs text-[var(--muted-foreground)]/70">
-                          Sign in to access
+                          Explore · sign in to participate
                         </div>
                       </div>
-                    </motion.div>
+                    </motion.a>
                   )
                 }
               })}

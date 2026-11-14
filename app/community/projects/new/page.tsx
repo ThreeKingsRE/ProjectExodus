@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { redirect, useRouter } from 'next/navigation'
 import Step0Picker from '@/components/projects/create/Step0Picker'
@@ -23,7 +23,7 @@ import {
 import { BackButton } from '@/components/navigation/BackButton'
 import Link from 'next/link'
 import { ProjectTemplateGallery } from '@/components/projects/ProjectTemplateGallery'
-import { ProjectTemplate } from '@/data/project-templates'
+import { PROJECT_TEMPLATES, ProjectTemplate } from '@/data/project-templates'
 
 // Guardian-themed steps
 const STEPS = [
@@ -135,8 +135,13 @@ interface Subproject {
 export default function NewProjectPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
+  const [templateId, setTemplateId] = useState<string | null>(null)
 
   const hasMounted = useHasMounted()
+
+  useEffect(() => {
+    setTemplateId(new URLSearchParams(window.location.search).get('template'))
+  }, [])
 
   // Step management
   const [showStep0, setShowStep0] = useState(true)
@@ -169,6 +174,9 @@ export default function NewProjectPage() {
 
   // Step 2: Foundation
   const [visibility, setVisibility] = useState('PUBLIC')
+  const [allowPublicView, setAllowPublicView] = useState(false)
+  const [publicStory, setPublicStory] = useState('')
+  const [publicSlug, setPublicSlug] = useState('')
   const [category, setCategory] = useState('')
   const [tags, setTags] = useState<string[]>([])
   const [newTag, setNewTag] = useState('')
@@ -198,9 +206,41 @@ export default function NewProjectPage() {
   // Step 6: Launch
   const [projectStatus, setProjectStatus] = useState('PLANNING')
   const [goal, setGoal] = useState('')
+  const [draftLoaded, setDraftLoaded] = useState(false)
+  const [draftSaveFailed, setDraftSaveFailed] = useState(false)
+  const draftKey = session?.user?.id ? `projxodus:initiative-draft:${session.user.id}` : null
+
+  useEffect(() => {
+    if (!draftKey) return
+    try {
+      const saved = JSON.parse(localStorage.getItem(draftKey) || 'null')
+      if (saved?.version === 1 && typeof saved.name === 'string') {
+        setName(saved.name); setTagline(saved.tagline || ''); setDescription(saved.description || '')
+        setMission(saved.mission || ''); setGoal(saved.goal || '')
+        setVisibility(saved.visibility || 'PUBLIC'); setCategory(saved.category || '')
+        setTags(Array.isArray(saved.tags) ? saved.tags : []); setTheme(saved.theme || 'nature')
+        setPublicSlug(saved.publicSlug || ''); setPublicStory(saved.publicStory || '')
+        setAllowPublicView(saved.allowPublicView === true)
+        setEnableDiscussions(saved.enableDiscussions !== false); setEnableResearch(saved.enableResearch !== false)
+        setEnableLearning(saved.enableLearning !== false); setRequireApproval(saved.requireApproval === true)
+        setProjectStatus(saved.projectStatus || 'PLANNING')
+        setCurrentStep(Math.max(1, Math.min(6, Number(saved.currentStep) || 1)))
+        setShowStep0(false); setShowTemplateGallery(false)
+      }
+    } catch { setDraftSaveFailed(true) }
+    setDraftLoaded(true)
+  }, [draftKey])
+
+  useEffect(() => {
+    if (!draftLoaded || !draftKey || !name.trim()) return
+    try {
+      localStorage.setItem(draftKey, JSON.stringify({ version: 1, name, tagline, description, mission, goal, visibility, category, tags, theme, publicSlug, publicStory, allowPublicView, enableDiscussions, enableResearch, enableLearning, requireApproval, projectStatus, currentStep }))
+      setDraftSaveFailed(false)
+    } catch { setDraftSaveFailed(true) }
+  }, [draftLoaded, draftKey, name, tagline, description, mission, goal, visibility, category, tags, theme, publicSlug, publicStory, allowPublicView, enableDiscussions, enableResearch, enableLearning, requireApproval, projectStatus, currentStep])
 
   // Handle template selection
-  const handleTemplateSelection = (template: ProjectTemplate | null) => {
+  const handleTemplateSelection = useCallback((template: ProjectTemplate | null) => {
     setSelectedTemplate(template)
 
     if (template) {
@@ -221,7 +261,13 @@ export default function NewProjectPage() {
 
     // Hide template gallery and show wizard
     setShowTemplateGallery(false)
-  }
+  }, [])
+
+  useEffect(() => {
+    if (!templateId) return
+    const template = PROJECT_TEMPLATES.find((item) => item.id === templateId)
+    if (template) handleTemplateSelection(template)
+  }, [templateId, handleTemplateSelection])
 
   // Fetch user's projects for nesting
   useEffect(() => {
@@ -412,26 +458,31 @@ export default function NewProjectPage() {
 
     try {
       // Generate slug
-      const slug = name
+      const generatedSlug = name
         .toLowerCase()
         .replace(/[^a-z0-9\s-]/g, '')
         .replace(/\s+/g, '-')
         .replace(/-+/g, '-')
         .trim()
         + '-' + Date.now().toString(36)
+      const slug = publicSlug.trim() || generatedSlug
 
       const projectData = {
         name,
         description,
+        coverImage,
         tagline,
         mission,
         goal,
         status: projectStatus,
         visibility,
+        allowPublicView,
+        publicStory,
         category,
         tags,
         parentProjectId,
         theme,
+        templateId: selectedTemplate?.id,
         slug,
         settings: {
           enableDiscussions,
@@ -466,6 +517,7 @@ export default function NewProjectPage() {
 
       if (data.success) {
         setSubmitMessage('Project created successfully! Launching your ecosystem...')
+        try { if (draftKey) localStorage.removeItem(draftKey) } catch { /* Publishing succeeded even if device storage is unavailable. */ }
         setTimeout(() => {
           router.push(`/community/projects/${slug}`)
         }, 1500)
@@ -997,6 +1049,11 @@ export default function NewProjectPage() {
                             })}
                           </div>
                         </div>
+
+                        <label className="flex items-start gap-3 rounded-xl border-2 border-[var(--border)] p-4">
+                          <input type="checkbox" checked={allowPublicView && visibility === 'PUBLIC'} disabled={visibility !== 'PUBLIC'} onChange={event => setAllowPublicView(event.target.checked)} className="mt-1 h-4 w-4" />
+                          <span><strong className="block text-sm">Allow public web view</strong><span className="mt-1 block text-xs leading-5 text-theme-muted">Anyone with the link can read your overview and public story without an account. Discussions, research, documents, and member tools stay behind sign-in. Available for Public initiatives only.</span></span>
+                        </label>
 
                         {/* Category */}
                         <div>
@@ -1733,6 +1790,7 @@ export default function NewProjectPage() {
                           </select>
                         </div>
 
+                        <p role="status" className="rounded-lg border border-[var(--border)] p-3 text-xs text-theme-muted">{draftSaveFailed ? 'Device draft saving is unavailable. Keep this page open until you publish.' : 'Your text draft is saved on this device. Images and optional team diagrams may need to be added again if you reload.'}</p>
                         {/* Goal */}
                         <div>
                           <label className="flex items-center gap-1.5 text-xs font-bold text-[var(--foreground)] mb-1.5">
@@ -1747,6 +1805,15 @@ export default function NewProjectPage() {
                             maxLength={150}
                             className="w-full px-3 py-2 rounded-lg border-2 border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] text-sm font-semibold focus:border-theme-primary focus:outline-none"
                           />
+                        </div>
+
+                        <div className="space-y-2">
+                          <label htmlFor="initiative-public-slug" className="block text-xs font-bold">Public link slug (optional)</label>
+                          <input id="initiative-public-slug" value={publicSlug} onChange={event => setPublicSlug(event.target.value.toLowerCase())} maxLength={120} pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="e.g. riverknoll-renewal" className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm" />
+                          <p className="text-xs text-theme-muted">Use lowercase letters, numbers, and hyphens. Your initiative opens at /community/projects/your-slug.</p>
+                          <label htmlFor="initiative-public-story" className="block pt-3 text-xs font-bold">Public story (optional)</label>
+                          <textarea id="initiative-public-story" value={publicStory} onChange={event => setPublicStory(event.target.value)} maxLength={16000} rows={10} placeholder="Tell visitors why this matters, what you propose, where the evidence comes from, and how they can help. Separate paragraphs with a blank line. HTTPS source links are clickable." className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] p-3 text-sm leading-6" />
+                          <p className="text-xs text-theme-muted">{publicStory.length}/16000 characters. This story is published only when public web view is enabled.</p>
                         </div>
 
                         {/* Preview */}
