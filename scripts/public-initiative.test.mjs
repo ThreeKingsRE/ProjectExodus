@@ -1,7 +1,9 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { projectPublication, publicProjectFields } from '../lib/projects/public-view.ts'
-import { participate } from '../lib/projects/participation.ts'
+const publicViewModule = await import('../lib/projects/public-view.ts')
+const { projectPublication, publicProjectFields } = publicViewModule.default || publicViewModule
+const participationModule = await import('../lib/projects/participation.ts')
+const { participate } = participationModule.default || participationModule
 
 const project = {
   id: 'project', slug: 'a-user-initiative', name: 'A user initiative', description: 'An overview',
