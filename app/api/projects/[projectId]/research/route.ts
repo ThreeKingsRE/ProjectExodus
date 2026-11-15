@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
+import type { Prisma } from '@prisma/client'
 
 // GET - Fetch all research posts for a project
 export async function GET(
@@ -150,7 +151,7 @@ export async function POST(
       )
     }
 
-    const post = await prisma.$transaction(async (tx) => {
+    const post = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const created = await tx.projectResearch.create({
         data: {
           projectId,
