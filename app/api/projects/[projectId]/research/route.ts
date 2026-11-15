@@ -150,50 +150,53 @@ export async function POST(
       )
     }
 
-    const post = await prisma.projectResearch.create({
-      data: {
-        projectId,
-        authorId: session.user.id,
-        heading: heading.trim(),
-        summary: summary.trim(),
-        fullContent: fullContent?.trim() || null,
-        sourceUrl: sourceUrl?.trim() || null,
-        sourceTitle: sourceTitle?.trim() || null,
-        tags: tags || [],
-      },
-      include: {
-        author: {
-          select: {
-            id: true,
-            name: true,
+    const post = await prisma.$transaction(async (tx) => {
+      const created = await tx.projectResearch.create({
+        data: {
+          projectId,
+          authorId: session.user.id,
+          heading: heading.trim(),
+          summary: summary.trim(),
+          fullContent: fullContent?.trim() || null,
+          sourceUrl: sourceUrl?.trim() || null,
+          sourceTitle: sourceTitle?.trim() || null,
+          tags: tags || [],
+        },
+        include: {
+          author: {
+            select: {
+              id: true,
+              name: true,
             
-            image: true,
+              image: true,
+            },
           },
         },
-      },
-    })
+      })
 
-    // Award contribution points
-    await prisma.projectContribution.create({
-      data: {
-        projectId,
-        userId: session.user.id,
-        type: 'RESEARCH',
-        description: `Posted research: ${heading.substring(0, 50)}`,
-        points: 15, // Research posts are worth more
-        referenceId: post.id,
-      },
-    })
-
-    // Update member's contribution score
-    if (membership) {
-      await prisma.projectMember.update({
-        where: { id: membership.id },
+      // Award contribution points
+      await tx.projectContribution.create({
         data: {
-          contributionScore: { increment: 15 },
+          projectId,
+          userId: session.user.id,
+          type: 'RESEARCH_POSTED',
+          points: 15, // Research posts are worth more
+          referenceId: created.id,
         },
       })
-    }
+
+      // Update member's contribution score
+      if (membership) {
+        await tx.projectMember.update({
+          where: { id: membership.id },
+          data: {
+            contributionScore: { increment: 15 },
+          },
+        })
+      }
+
+      return created
+    })
 
     return NextResponse.json({
       success: true,
@@ -207,3 +210,4 @@ export async function POST(
     )
   }
 }
+
