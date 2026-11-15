@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db/prisma'
 
+async function initiativeOwner(projectId: string, userId: string) {
+  const project = await prisma.project.findUnique({ where: { id: projectId }, select: { creatorId: true } })
+  return project?.creatorId === userId
+}
+
 // GET /api/documents/[documentId]/collaborators - Get all collaborators
 export async function GET(
   request: NextRequest,
@@ -32,7 +37,7 @@ export async function GET(
     const isCreator = document.creatorId === session.user.id
     const isCollaborator = document.collaborators.length > 0
 
-    if (!isCreator && !isCollaborator && !document.isPublic) {
+    if (!isCreator && !isCollaborator && !document.isPublic && !(await initiativeOwner(document.projectId, session.user.id))) {
       return NextResponse.json({ success: false, error: 'Access denied' }, { status: 403 })
     }
 
@@ -109,7 +114,7 @@ export async function POST(
 
     const isCreator = document.creatorId === session.user.id
     const collaborator = document.collaborators[0]
-    const canManage = isCreator || (collaborator && collaborator.permission === 'ADMIN')
+    const canManage = isCreator || (await initiativeOwner(document.projectId, session.user.id)) || (collaborator && collaborator.permission === 'ADMIN')
 
     if (!canManage) {
       return NextResponse.json({ success: false, error: 'Access denied' }, { status: 403 })
@@ -225,15 +230,20 @@ export async function PATCH(
 
     const isCreator = document.creatorId === session.user.id
     const currentUserCollaborator = document.collaborators[0]
-    const canManage = isCreator || (currentUserCollaborator && currentUserCollaborator.permission === 'ADMIN')
+    const canManage = isCreator || (await initiativeOwner(document.projectId, session.user.id)) || (currentUserCollaborator && currentUserCollaborator.permission === 'ADMIN')
 
     if (!canManage) {
       return NextResponse.json({ success: false, error: 'Access denied' }, { status: 403 })
     }
 
-    // Update collaborator
+    const target = await prisma.documentCollaborator.findUnique({ where: { id: collaboratorId } })
+    if (!target || target.documentId !== documentId) {
+      return NextResponse.json({ success: false, error: 'Collaborator not found in this document' }, { status: 404 })
+    }
+
+    // Update only a collaborator belonging to the authorized document.
     const updatedCollaborator = await prisma.documentCollaborator.update({
-      where: { id: collaboratorId },
+      where: { id: collaboratorId, documentId },
       data: { permission },
       include: {
         user: {
@@ -295,14 +305,17 @@ export async function DELETE(
 
     const isCreator = document.creatorId === session.user.id
     const currentUserCollaborator = document.collaborators[0]
-    const canManage = isCreator || (currentUserCollaborator && currentUserCollaborator.permission === 'ADMIN')
+    const canManage = isCreator || (await initiativeOwner(document.projectId, session.user.id)) || (currentUserCollaborator && currentUserCollaborator.permission === 'ADMIN')
 
     // Users can remove themselves
     const collaboratorToRemove = await prisma.documentCollaborator.findUnique({
       where: { id: collaboratorId },
     })
 
-    const isSelf = collaboratorToRemove?.userId === session.user.id
+    if (!collaboratorToRemove || collaboratorToRemove.documentId !== documentId) {
+      return NextResponse.json({ success: false, error: 'Collaborator not found in this document' }, { status: 404 })
+    }
+    const isSelf = collaboratorToRemove.userId === session.user.id
 
     if (!canManage && !isSelf) {
       return NextResponse.json({ success: false, error: 'Access denied' }, { status: 403 })
@@ -310,7 +323,7 @@ export async function DELETE(
 
     // Remove collaborator
     await prisma.documentCollaborator.delete({
-      where: { id: collaboratorId },
+      where: { id: collaboratorId, documentId },
     })
 
     return NextResponse.json({ success: true, message: 'Collaborator removed' })

@@ -95,4 +95,16 @@ assert.equal((await token()).data.canEdit, true)
 document.collaborators = []
 session = { user: { id: 'owner' } }
 assert.equal((await token()).data.canEdit, true)
+let targetCollaborator = { id: 'collaborator', documentId: 'another-document' }
+documentPrisma.documentCollaborator = { findUnique: async () => targetCollaborator, update: async args => ({ ...targetCollaborator, ...args.data }) }
+const collaboratorsSandbox = { ...documentSandbox, exports: {} }
+const collaboratorsSource = readFileSync(new URL('../app/api/documents/[documentId]/collaborators/route.ts', import.meta.url), 'utf8')
+vm.runInNewContext(ts.transpileModule(collaboratorsSource, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, collaboratorsSandbox)
+const grant = () => collaboratorsSandbox.exports.PATCH({ json: async () => ({ collaboratorId: 'collaborator', permission: 'EDIT' }) }, { params: Promise.resolve({ documentId: 'document' }) })
+session = { user: { id: 'author' } }
+assert.equal((await grant()).status, 404, 'Authority over one document cannot change a collaborator on another document')
+targetCollaborator = { ...targetCollaborator, documentId: 'document' }
+assert.equal((await grant()).status, 200)
+session = { user: { id: 'owner' } }
+assert.equal((await grant()).status, 200, 'The initiative owner can grant access to project documents')
 console.log('Message editing: authentication, membership, ownership, project boundary, validation, and paragraph preservation passed.')

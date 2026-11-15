@@ -170,7 +170,7 @@ export default function DocumentPage({
           )
           const permission = collaborator?.permission
 
-          setIsOwner(isCreator)
+          setIsOwner(isCreator || isInitiativeOwner)
           setCanEdit(isCreator || isInitiativeOwner || permission === 'EDIT' || permission === 'ADMIN')
           setCanComment(isCreator || ['COMMENT', 'SUGGEST', 'EDIT', 'ADMIN'].includes(permission) || docData.data.allowComments)
           setCanSuggest(isCreator || ['SUGGEST', 'EDIT', 'ADMIN'].includes(permission) || docData.data.allowSuggestions)
