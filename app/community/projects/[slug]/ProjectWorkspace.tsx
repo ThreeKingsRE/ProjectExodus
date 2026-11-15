@@ -57,6 +57,7 @@ import { JoinProjectButton } from '@/components/projects/JoinProjectButton'
 import { InitiativeStory } from '@/components/projects/PublicInitiativeOverview'
 import { InitiativeParticipation } from '@/components/projects/InitiativeParticipation'
 import { ResearchComposer } from '@/components/projects/ResearchComposer'
+import { MessageEditor } from '@/components/projects/MessageEditor'
 import { DocumentTemplateSelector } from '@/components/documents/DocumentTemplateSelector'
 import type { DocumentTemplate } from '@/data/document-templates'
 
@@ -141,6 +142,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   const [learningModules, setLearningModules] = useState<LearningModule[]>([])
   const [researchPosts, setResearchPosts] = useState<ResearchPost[]>([])
   const [showResearchComposer, setShowResearchComposer] = useState(false)
+  const [editingResearch, setEditingResearch] = useState<ResearchPost | null>(null)
   const [subgroups, setSubgroups] = useState<Subgroup[]>([])
   const [membersWithBadges, setMembersWithBadges] = useState<MemberWithBadges[]>([])
   const [mindMapData, setMindMapData] = useState<any>(null)
@@ -1320,6 +1322,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 </div>
 
                 {showResearchComposer && <ResearchComposer projectId={project.id} onCancel={() => setShowResearchComposer(false)} onSaved={() => { setShowResearchComposer(false); fetchResearchPosts() }} />}
+                {editingResearch && <ResearchComposer key={editingResearch.id} projectId={project.id} initialPost={editingResearch} onCancel={() => setEditingResearch(null)} onSaved={() => { setEditingResearch(null); fetchResearchPosts() }} />}
                 {loadingResearch ? (
                   <div className="flex items-center justify-center py-12">
                     <Loader2 className="w-8 h-8 animate-spin text-theme-primary" />
@@ -1356,6 +1359,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                                 ))}
                               </div>
                               <h3 className="font-black text-lg mb-2">{post.heading}</h3>
+                              {post.author.id === session?.user?.id && <Button variant="outline" size="sm" className="mb-3" onClick={() => { setShowResearchComposer(false); setEditingResearch(post) }}>Edit research note: {post.heading}</Button>}
                               <p className="text-theme-muted line-clamp-2">{post.summary}</p>
                               <details className="mt-4"><summary className="cursor-pointer font-bold text-theme-primary">Read research note</summary><div className="mt-4">{post.fullContent && <InitiativeStory text={post.fullContent} />}{post.sourceUrl && /^https?:\/\//i.test(post.sourceUrl) && <a href={post.sourceUrl} target="_blank" rel="noreferrer" className="mt-4 inline-block font-semibold underline">{post.sourceTitle || 'Open source'} ↗</a>}</div></details>
                               <div className="flex items-center gap-4 mt-4 text-sm text-theme-muted">
@@ -1592,10 +1596,11 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                                     isOwnMessage
                                       ? 'bg-[var(--primary)] text-[var(--primary-foreground)]'
                                       : 'bg-[var(--background)] text-[var(--foreground)]'
-                                  } font-semibold`}
+                                  } font-semibold whitespace-pre-wrap text-left`}
                                 >
                                   {msg.content}
                                 </div>
+                                {isOwnMessage && <MessageEditor projectId={project.id} message={msg} onSaved={fetchMessages} />}
                                 <p className="text-xs font-medium text-theme-muted mt-1">
                                   {new Date(msg.createdAt).toLocaleTimeString()}
                                 </p>
@@ -1609,8 +1614,9 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
                     {/* Message Input */}
                     <form onSubmit={handleSendMessage} className="flex gap-3">
-                      <input
-                        type="text"
+                      <textarea
+                        rows={3}
+                        maxLength={10000}
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                         onFocus={() => setHasInteractedWithChat(true)}

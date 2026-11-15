@@ -3,6 +3,30 @@ import { prisma } from '@/lib/db'
 import { auth } from '@/auth'
 import { pusherServer } from '@/lib/pusher'
 
+// Authors may correct their own messages while they remain project members.
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ projectId: string }> }) {
+  try {
+    const session = await auth()
+    if (!session?.user?.id) return NextResponse.json({ success: false, error: 'Please sign in.' }, { status: 401 })
+    const { projectId } = await params
+    const { messageId, content } = await request.json()
+    if (typeof messageId !== 'string' || typeof content !== 'string' || !content.trim() || content.length > 10000) {
+      return NextResponse.json({ success: false, error: 'Enter a message of 1 to 10,000 characters.' }, { status: 400 })
+    }
+    const [message, membership] = await Promise.all([
+      prisma.projectMessage.findUnique({ where: { id: messageId } }),
+      prisma.projectMember.findUnique({ where: { projectId_userId: { projectId, userId: session.user.id } } }),
+    ])
+    if (!message || message.projectId !== projectId) return NextResponse.json({ success: false, error: 'Message not found.' }, { status: 404 })
+    if (!membership || message.userId !== session.user.id) return NextResponse.json({ success: false, error: 'You can only edit your own messages as a project member.' }, { status: 403 })
+    const updated = await prisma.projectMessage.update({ where: { id: messageId }, data: { content: content.trim() } })
+    return NextResponse.json({ success: true, data: updated })
+  } catch (error) {
+    console.error('Error updating project message:', error)
+    return NextResponse.json({ success: false, error: 'Could not save your message.' }, { status: 500 })
+  }
+}
+
 // GET /api/projects/[projectId]/messages - Get all messages for a project
 export async function GET(
   request: NextRequest,
