@@ -122,15 +122,11 @@ export async function PUT(
       select: { creatorId: true },
     })
 
-    const isAdmin =
-      project?.creatorId === session.user.id ||
-      membership?.role === 'ADMIN' ||
-      membership?.role === 'OWNER' ||
-      membership?.role === 'MODERATOR'
+    const isAdmin = project?.creatorId === session.user.id
 
-    if (!isAuthor && !isAdmin) {
+    if (!isAdmin && (!isAuthor || !membership)) {
       return NextResponse.json(
-        { success: false, error: 'Only the author or admins can edit this post' },
+        { success: false, error: 'Only the initiative owner or the author as a current member can edit this post' },
         { status: 403 }
       )
     }
@@ -139,7 +135,7 @@ export async function PUT(
     const updateData: any = {}
 
     // Authors can edit content
-    if (isAuthor) {
+    if (isAuthor || isAdmin) {
       if (heading) updateData.heading = heading.trim()
       if (summary) updateData.summary = summary.trim()
       if (fullContent !== undefined) updateData.fullContent = fullContent?.trim() || null
@@ -224,41 +220,27 @@ export async function DELETE(
       select: { creatorId: true },
     })
 
-    const isAdmin =
-      project?.creatorId === session.user.id ||
-      membership?.role === 'ADMIN' ||
-      membership?.role === 'OWNER' ||
-      membership?.role === 'MODERATOR'
+    const isAdmin = project?.creatorId === session.user.id
 
-    if (!isAuthor && !isAdmin) {
+    if (!isAdmin && (!isAuthor || !membership)) {
       return NextResponse.json(
-        { success: false, error: 'Only the author or admins can delete this post' },
+        { success: false, error: 'Only the initiative owner or the author as a current member can delete this post' },
         { status: 403 }
       )
     }
 
-    // Delete comments first, then post
-    await prisma.$transaction([
-      prisma.projectResearchComment.deleteMany({
-        where: { researchId },
-      }),
-      prisma.projectContribution.deleteMany({
-        where: { referenceId: researchId, type: 'RESEARCH' },
-      }),
-      prisma.projectResearch.delete({
-        where: { id: researchId },
-      }),
-    ])
-
-    // Deduct contribution points if author is deleting
-    if (isAuthor && membership) {
-      await prisma.projectMember.update({
-        where: { id: membership.id },
-        data: {
-          contributionScore: { decrement: 15 },
-        },
+    await prisma.$transaction(async (tx: any) => {
+      const credit = await tx.projectContribution.aggregate({
+        where: { projectId, userId: post.authorId, referenceId: researchId, type: 'RESEARCH_POSTED' },
+        _sum: { points: true },
       })
-    }
+      await tx.projectResearchComment.deleteMany({ where: { researchId } })
+      await tx.projectContribution.deleteMany({ where: { projectId, referenceId: researchId, type: 'RESEARCH_POSTED' } })
+      await tx.projectResearch.delete({ where: { id: researchId } })
+      if (credit._sum.points) {
+        await tx.projectMember.updateMany({ where: { projectId, userId: post.authorId }, data: { contributionScore: { decrement: credit._sum.points } } })
+      }
+    })
 
     return NextResponse.json({
       success: true,

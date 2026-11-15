@@ -164,18 +164,19 @@ export default function DocumentPage({
           // Determine permissions
           const isMember = currentProject?.members?.some((m: any) => m.userId === session.user?.id)
           const isCreator = docData.data.creatorId === session.user?.id
+          const isInitiativeOwner = currentProject?.creatorId === session.user?.id
           const collaborator = docData.data.collaborators?.find(
             (c: any) => c.userId === session.user?.id
           )
           const permission = collaborator?.permission
 
           setIsOwner(isCreator)
-          setCanEdit(isCreator || permission === 'EDIT' || permission === 'ADMIN' || isMember)
+          setCanEdit(isCreator || isInitiativeOwner || permission === 'EDIT' || permission === 'ADMIN')
           setCanComment(isCreator || ['COMMENT', 'SUGGEST', 'EDIT', 'ADMIN'].includes(permission) || docData.data.allowComments)
           setCanSuggest(isCreator || ['SUGGEST', 'EDIT', 'ADMIN'].includes(permission) || docData.data.allowSuggestions)
 
           // Set initial mode based on permissions
-          if (isCreator || permission === 'EDIT' || permission === 'ADMIN') {
+          if (isCreator || isInitiativeOwner || permission === 'EDIT' || permission === 'ADMIN') {
             setEditorMode('edit')
           } else if (['SUGGEST'].includes(permission)) {
             setEditorMode('suggest')

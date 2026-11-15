@@ -57,6 +57,8 @@ import { JoinProjectButton } from '@/components/projects/JoinProjectButton'
 import { InitiativeStory } from '@/components/projects/PublicInitiativeOverview'
 import { InitiativeParticipation } from '@/components/projects/InitiativeParticipation'
 import { ResearchComposer } from '@/components/projects/ResearchComposer'
+import { MessageEditor } from '@/components/projects/MessageEditor'
+import { RemoveContribution } from '@/components/projects/RemoveContribution'
 import { DocumentTemplateSelector } from '@/components/documents/DocumentTemplateSelector'
 import type { DocumentTemplate } from '@/data/document-templates'
 
@@ -141,6 +143,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   const [learningModules, setLearningModules] = useState<LearningModule[]>([])
   const [researchPosts, setResearchPosts] = useState<ResearchPost[]>([])
   const [showResearchComposer, setShowResearchComposer] = useState(false)
+  const [editingResearch, setEditingResearch] = useState<ResearchPost | null>(null)
   const [subgroups, setSubgroups] = useState<Subgroup[]>([])
   const [membersWithBadges, setMembersWithBadges] = useState<MemberWithBadges[]>([])
   const [mindMapData, setMindMapData] = useState<any>(null)
@@ -888,6 +891,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       </section>
 
       {/* Tab Navigation */}
+      {project.coverImage && <figure className="mx-auto max-w-7xl px-4 pb-6"><img src={project.coverImage} alt={`${project.name} initiative cover`} className="max-h-[500px] w-full rounded-2xl object-cover" /><figcaption className="mt-2 text-sm text-theme-muted">Initiative cover image</figcaption></figure>}
       <section className="border-b-2 border-[var(--border)] bg-[var(--background)] sticky top-0 z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
@@ -1320,6 +1324,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 </div>
 
                 {showResearchComposer && <ResearchComposer projectId={project.id} onCancel={() => setShowResearchComposer(false)} onSaved={() => { setShowResearchComposer(false); fetchResearchPosts() }} />}
+                {editingResearch && <ResearchComposer key={editingResearch.id} projectId={project.id} initialPost={editingResearch} onCancel={() => setEditingResearch(null)} onSaved={() => { setEditingResearch(null); fetchResearchPosts() }} />}
                 {loadingResearch ? (
                   <div className="flex items-center justify-center py-12">
                     <Loader2 className="w-8 h-8 animate-spin text-theme-primary" />
@@ -1356,6 +1361,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                                 ))}
                               </div>
                               <h3 className="font-black text-lg mb-2">{post.heading}</h3>
+                              {(isCreator || post.author.id === session?.user?.id) && <Button variant="outline" size="sm" className="mb-3" onClick={() => { setShowResearchComposer(false); setEditingResearch(post) }}>Edit research note: {post.heading}</Button>}
+                              {isCreator && <RemoveContribution endpoint={`/api/projects/${project.id}/research/${post.id}`} label="Remove research note" onRemoved={fetchResearchPosts} />}
                               <p className="text-theme-muted line-clamp-2">{post.summary}</p>
                               <details className="mt-4"><summary className="cursor-pointer font-bold text-theme-primary">Read research note</summary><div className="mt-4">{post.fullContent && <InitiativeStory text={post.fullContent} />}{post.sourceUrl && /^https?:\/\//i.test(post.sourceUrl) && <a href={post.sourceUrl} target="_blank" rel="noreferrer" className="mt-4 inline-block font-semibold underline">{post.sourceTitle || 'Open source'} ↗</a>}</div></details>
                               <div className="flex items-center gap-4 mt-4 text-sm text-theme-muted">
@@ -1592,10 +1599,12 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                                     isOwnMessage
                                       ? 'bg-[var(--primary)] text-[var(--primary-foreground)]'
                                       : 'bg-[var(--background)] text-[var(--foreground)]'
-                                  } font-semibold`}
+                                  } font-semibold whitespace-pre-wrap text-left`}
                                 >
                                   {msg.content}
                                 </div>
+                                {(isOwnMessage || isCreator) && <MessageEditor projectId={project.id} message={msg} onSaved={fetchMessages} />}
+                                {isCreator && <RemoveContribution endpoint={`/api/projects/${project.id}/messages`} messageId={msg.id} label="Remove message" onRemoved={fetchMessages} />}
                                 <p className="text-xs font-medium text-theme-muted mt-1">
                                   {new Date(msg.createdAt).toLocaleTimeString()}
                                 </p>
@@ -1609,8 +1618,9 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
                     {/* Message Input */}
                     <form onSubmit={handleSendMessage} className="flex gap-3">
-                      <input
-                        type="text"
+                      <textarea
+                        rows={3}
+                        maxLength={10000}
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                         onFocus={() => setHasInteractedWithChat(true)}

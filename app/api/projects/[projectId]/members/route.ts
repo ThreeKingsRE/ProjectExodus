@@ -178,14 +178,11 @@ export async function POST(
       select: { creatorId: true },
     })
 
-    const isAdmin =
-      project?.creatorId === session.user.id ||
-      membership?.role === 'ADMIN' ||
-      membership?.role === 'OWNER'
+    const isAdmin = project?.creatorId === session.user.id
 
     if (!isAdmin) {
       return NextResponse.json(
-        { success: false, error: 'Only admins can invite members' },
+        { success: false, error: 'Only the initiative owner can invite members and assign roles' },
         { status: 403 }
       )
     }

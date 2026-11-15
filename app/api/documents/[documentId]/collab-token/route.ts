@@ -40,6 +40,7 @@ export async function GET(
       status: true,
       project: {
         select: {
+          creatorId: true,
           members: { where: { userId }, select: { role: true } },
         },
       },
@@ -60,12 +61,13 @@ export async function GET(
 
   const canEdit =
     isCreator ||
-    isMember ||
+    document.project.creatorId === userId ||
     collaborator?.permission === 'EDIT' ||
     collaborator?.permission === 'ADMIN'
 
   const canView =
     canEdit ||
+    isMember ||
     !!collaborator ||
     (document.isPublic && document.status === 'PUBLISHED')
 
