@@ -13,17 +13,36 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     if (typeof messageId !== 'string' || typeof content !== 'string' || !content.trim() || content.length > 10000) {
       return NextResponse.json({ success: false, error: 'Enter a message of 1 to 10,000 characters.' }, { status: 400 })
     }
-    const [message, membership] = await Promise.all([
+    const [message, membership, project] = await Promise.all([
       prisma.projectMessage.findUnique({ where: { id: messageId } }),
       prisma.projectMember.findUnique({ where: { projectId_userId: { projectId, userId: session.user.id } } }),
+      prisma.project.findUnique({ where: { id: projectId }, select: { creatorId: true } }),
     ])
     if (!message || message.projectId !== projectId) return NextResponse.json({ success: false, error: 'Message not found.' }, { status: 404 })
-    if (!membership || message.userId !== session.user.id) return NextResponse.json({ success: false, error: 'You can only edit your own messages as a project member.' }, { status: 403 })
+    if (project?.creatorId !== session.user.id && (!membership || message.userId !== session.user.id)) return NextResponse.json({ success: false, error: 'Only the initiative owner or the message author can edit this message.' }, { status: 403 })
     const updated = await prisma.projectMessage.update({ where: { id: messageId }, data: { content: content.trim() } })
     return NextResponse.json({ success: true, data: updated })
   } catch (error) {
     console.error('Error updating project message:', error)
     return NextResponse.json({ success: false, error: 'Could not save your message.' }, { status: 500 })
+  }
+}
+
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ projectId: string }> }) {
+  try {
+    const session = await auth()
+    if (!session?.user?.id) return NextResponse.json({ success: false, error: 'Please sign in.' }, { status: 401 })
+    const { projectId } = await params
+    const { messageId } = await request.json()
+    if (typeof messageId !== 'string') return NextResponse.json({ success: false, error: 'Message ID is required.' }, { status: 400 })
+    const project = await prisma.project.findUnique({ where: { id: projectId }, select: { creatorId: true } })
+    if (project?.creatorId !== session.user.id) return NextResponse.json({ success: false, error: 'Only the initiative owner can remove messages.' }, { status: 403 })
+    const result = await prisma.projectMessage.deleteMany({ where: { id: messageId, projectId } })
+    if (!result.count) return NextResponse.json({ success: false, error: 'Message not found.' }, { status: 404 })
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('Error removing project message:', error)
+    return NextResponse.json({ success: false, error: 'Could not remove the message.' }, { status: 500 })
   }
 }
 

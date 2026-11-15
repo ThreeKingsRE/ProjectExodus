@@ -122,15 +122,11 @@ export async function PUT(
       select: { creatorId: true },
     })
 
-    const isAdmin =
-      project?.creatorId === session.user.id ||
-      membership?.role === 'ADMIN' ||
-      membership?.role === 'OWNER' ||
-      membership?.role === 'MODERATOR'
+    const isAdmin = project?.creatorId === session.user.id
 
-    if (!isAuthor && !isAdmin) {
+    if (!isAdmin && (!isAuthor || !membership)) {
       return NextResponse.json(
-        { success: false, error: 'Only the author or admins can edit this post' },
+        { success: false, error: 'Only the initiative owner or the author as a current member can edit this post' },
         { status: 403 }
       )
     }
@@ -139,7 +135,7 @@ export async function PUT(
     const updateData: any = {}
 
     // Authors can edit content
-    if (isAuthor) {
+    if (isAuthor || isAdmin) {
       if (heading) updateData.heading = heading.trim()
       if (summary) updateData.summary = summary.trim()
       if (fullContent !== undefined) updateData.fullContent = fullContent?.trim() || null
@@ -224,15 +220,11 @@ export async function DELETE(
       select: { creatorId: true },
     })
 
-    const isAdmin =
-      project?.creatorId === session.user.id ||
-      membership?.role === 'ADMIN' ||
-      membership?.role === 'OWNER' ||
-      membership?.role === 'MODERATOR'
+    const isAdmin = project?.creatorId === session.user.id
 
-    if (!isAuthor && !isAdmin) {
+    if (!isAdmin && (!isAuthor || !membership)) {
       return NextResponse.json(
-        { success: false, error: 'Only the author or admins can delete this post' },
+        { success: false, error: 'Only the initiative owner or the author as a current member can delete this post' },
         { status: 403 }
       )
     }
@@ -243,7 +235,7 @@ export async function DELETE(
         where: { researchId },
       }),
       prisma.projectContribution.deleteMany({
-        where: { referenceId: researchId, type: 'RESEARCH' },
+        where: { referenceId: researchId, type: 'RESEARCH_POSTED' },
       }),
       prisma.projectResearch.delete({
         where: { id: researchId },
