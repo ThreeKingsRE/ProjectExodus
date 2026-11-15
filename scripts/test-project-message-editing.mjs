@@ -81,4 +81,18 @@ assert.equal((await editDocument()).status, 200, 'An explicitly granted document
 document.collaborators = []
 session = { user: { id: 'owner' } }
 assert.equal((await editDocument()).status, 200, 'The initiative creator retains document moderation authority')
+mocks['@/lib/collaboration'] = { getDocumentName: (_type, id) => id }
+mocks['@/lib/collab-token'] = { COLLAB_TOKEN_TTL_SECONDS: 60, signCollabToken: async claims => JSON.stringify(claims) }
+document.project.creatorId = 'owner'
+const tokenSandbox = { ...documentSandbox, exports: {}, process: { env: { PARTYKIT_SECRET: 'test-only' } } }
+const tokenSource = readFileSync(new URL('../app/api/documents/[documentId]/collab-token/route.ts', import.meta.url), 'utf8')
+vm.runInNewContext(ts.transpileModule(tokenSource, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, tokenSandbox)
+const token = () => tokenSandbox.exports.GET({}, { params: Promise.resolve({ documentId: 'document' }) })
+session = { user: { id: 'other' } }
+assert.equal((await token()).data.canEdit, false, 'Ordinary members receive read-only collaboration tokens')
+document.collaborators = [{ permission: 'EDIT' }]
+assert.equal((await token()).data.canEdit, true)
+document.collaborators = []
+session = { user: { id: 'owner' } }
+assert.equal((await token()).data.canEdit, true)
 console.log('Message editing: authentication, membership, ownership, project boundary, validation, and paragraph preservation passed.')
