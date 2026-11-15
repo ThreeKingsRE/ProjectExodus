@@ -68,4 +68,17 @@ session = { user: { id: 'owner' } }
 const ownerResearch = await editResearch()
 assert.equal(ownerResearch.status, 200)
 assert.equal(ownerResearch.data.data.heading, 'Corrected title')
+const documentSource = readFileSync(new URL('../app/api/documents/[documentId]/route.ts', import.meta.url), 'utf8')
+let document = { id: 'document', creatorId: 'author', projectId: 'project', content: 'Unchanged', project: { members: [{ role: 'CONTRIBUTOR' }] }, collaborators: [] }
+const documentPrisma = { ...mocks['@/lib/db'].prisma, document: { findUnique: async () => document, update: async args => ({ ...document, ...args.data }) }, $transaction: async callback => callback(documentPrisma) }
+const documentSandbox = { ...sandbox, exports: {}, require: name => name === '@/lib/db/prisma' ? { prisma: documentPrisma } : sandbox.require(name) }
+vm.runInNewContext(ts.transpileModule(documentSource, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, documentSandbox)
+const editDocument = () => documentSandbox.exports.PATCH({ json: async () => ({ title: 'Corrected title' }) }, { params: Promise.resolve({ documentId: 'document' }) })
+session = { user: { id: 'other' } }
+assert.equal((await editDocument()).status, 403, 'Membership alone must not allow editing someone else’s document')
+document.collaborators = [{ permission: 'EDIT' }]
+assert.equal((await editDocument()).status, 200, 'An explicitly granted document permission permits editing')
+document.collaborators = []
+session = { user: { id: 'owner' } }
+assert.equal((await editDocument()).status, 200, 'The initiative creator retains document moderation authority')
 console.log('Message editing: authentication, membership, ownership, project boundary, validation, and paragraph preservation passed.')

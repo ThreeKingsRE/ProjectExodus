@@ -221,11 +221,7 @@ export async function PUT(
       select: { creatorId: true },
     })
 
-    const isAdmin =
-      project?.creatorId === session.user.id ||
-      membership?.role === 'ADMIN' ||
-      membership?.role === 'OWNER' ||
-      membership?.role === 'MODERATOR'
+    const isAdmin = project?.creatorId === session.user.id
 
     if (!isAuthor && !isAdmin) {
       return NextResponse.json(
@@ -237,7 +233,7 @@ export async function PUT(
     const updateData: any = {}
 
     // Author can edit content
-    if (isAuthor) {
+    if (isAuthor || isAdmin) {
       if (title) updateData.title = title.trim()
       if (content !== undefined) updateData.content = content?.trim() || null
       if (category) updateData.category = category
@@ -320,11 +316,7 @@ export async function DELETE(
       select: { creatorId: true },
     })
 
-    const isAdmin =
-      project?.creatorId === session.user.id ||
-      membership?.role === 'ADMIN' ||
-      membership?.role === 'OWNER' ||
-      membership?.role === 'MODERATOR'
+    const isAdmin = project?.creatorId === session.user.id
 
     if (!isAuthor && !isAdmin) {
       return NextResponse.json(

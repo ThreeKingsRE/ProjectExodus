@@ -46,6 +46,9 @@ jobs:
       - name: Community guest access
         run: npm run test:community
 
+      - name: Initiative ownership and contribution permissions
+        run: node scripts/test-project-message-editing.mjs
+
       - name: Type check drawing scripts
         run: npx tsc -p scripts/architecture/tsconfig.json
 

@@ -139,14 +139,16 @@ export async function PATCH(
       return NextResponse.json({ success: false, error: 'Document not found' }, { status: 404 })
     }
 
-    // Check edit permissions
+    const initiative = await prisma.project.findUnique({ where: { id: document.projectId }, select: { creatorId: true } })
+
+    // Membership alone never grants permission to edit another author's document.
     const isCreator = document.creatorId === session.user.id
     const collaborator = document.collaborators[0]
     const canEdit =
       isCreator ||
       collaborator?.permission === 'EDIT' ||
       collaborator?.permission === 'ADMIN' ||
-      document.project.members.length > 0
+      initiative?.creatorId === session.user.id
 
     if (!canEdit) {
       return NextResponse.json(
@@ -262,11 +264,12 @@ export async function DELETE(
       return NextResponse.json({ success: false, error: 'Document not found' }, { status: 404 })
     }
 
-    // Only creator or ADMIN collaborators can delete
+    const initiative = await prisma.project.findUnique({ where: { id: document.projectId }, select: { creatorId: true } })
+    // The initiative owner retains moderation authority over shared documents.
     const isCreator = document.creatorId === session.user.id
     const isAdmin = document.collaborators[0]?.permission === 'ADMIN'
 
-    if (!isCreator && !isAdmin) {
+    if (!isCreator && !isAdmin && initiative?.creatorId !== session.user.id) {
       return NextResponse.json(
         { success: false, error: 'You do not have permission to delete this document' },
         { status: 403 }

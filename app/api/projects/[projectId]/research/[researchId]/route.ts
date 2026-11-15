@@ -229,28 +229,18 @@ export async function DELETE(
       )
     }
 
-    // Delete comments first, then post
-    await prisma.$transaction([
-      prisma.projectResearchComment.deleteMany({
-        where: { researchId },
-      }),
-      prisma.projectContribution.deleteMany({
-        where: { referenceId: researchId, type: 'RESEARCH_POSTED' },
-      }),
-      prisma.projectResearch.delete({
-        where: { id: researchId },
-      }),
-    ])
-
-    // Deduct contribution points if author is deleting
-    if (isAuthor && membership) {
-      await prisma.projectMember.update({
-        where: { id: membership.id },
-        data: {
-          contributionScore: { decrement: 15 },
-        },
+    await prisma.$transaction(async (tx: any) => {
+      const credit = await tx.projectContribution.aggregate({
+        where: { projectId, userId: post.authorId, referenceId: researchId, type: 'RESEARCH_POSTED' },
+        _sum: { points: true },
       })
-    }
+      await tx.projectResearchComment.deleteMany({ where: { researchId } })
+      await tx.projectContribution.deleteMany({ where: { projectId, referenceId: researchId, type: 'RESEARCH_POSTED' } })
+      await tx.projectResearch.delete({ where: { id: researchId } })
+      if (credit._sum.points) {
+        await tx.projectMember.updateMany({ where: { projectId, userId: post.authorId }, data: { contributionScore: { decrement: credit._sum.points } } })
+      }
+    })
 
     return NextResponse.json({
       success: true,
