@@ -24,7 +24,11 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     return NextResponse.json({ success: true, data: updated })
   } catch (error) {
     console.error('Error updating project message:', error)
-    return NextResponse.json({ success: false, error: 'Could not save your message.' }, { status: 500 …27 tokens truncated…d: string }> }) {
+    return NextResponse.json({ success: false, error: 'Could not save your message.' }, { status: 500 })
+  }
+}
+
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ projectId: string }> }) {
   try {
     const session = await auth()
     if (!session?.user?.id) return NextResponse.json({ success: false, error: 'Please sign in.' }, { status: 401 })
