@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+  <title id="title">Riverknoll Renewal courtyard water sequence</title>
+  <desc id="desc">Concept diagram connecting roof collection, screening, sediment treatment, planted storage, and an engineered overflow. Salted pavement drains separately. Irrigation and winter operation require engineering.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#47766c"/></marker></defs>
+  <rect width="1200" height="480" rx="20" fill="#edf0e4"/>
+  <g font-family="Arial,sans-serif" fill="#243d32">
+    <text x="36" y="43" font-size="13" letter-spacing="2">DESIGN STUDY 01 / WATER, LANDSCAPE &amp; WINTER OPERATION</text>
+    <text x="36" y="82" font-size="29" font-weight="bold">Give every drop a complete path.</text>
+    <text x="36" y="112" font-size="15" fill="#53655b">Roof runoff is the candidate source. Grade, treatment, capacity, access, and overflow must be designed together.</text>
+    <g stroke="#47766c" stroke-width="2" fill="none" marker-end="url(#arrow)">
+      <path d="M222 223H262"/><path d="M442 223H482"/><path d="M662 223H702"/><path d="M882 223H922"/>
+      <path d="M792 279V322H592" stroke-dasharray="6 5"/>
+    </g>
+    <g stroke="#b6c4aa" fill="#fafbf5">
+      <rect x="42" y="164" width="180" height="115" rx="12"/><rect x="262" y="164" width="180" height="115" rx="12"/>
+      <rect x="482" y="164" width="180" height="115" rx="12"/><rect x="702" y="164" width="180" height="115" rx="12"/>
+      <rect x="922" y="164" width="230" height="115" rx="12"/>
+    </g>
+    <g font-size="17" font-weight="bold"><text x="60" y="196">01 Roof &amp; gutter</text><text x="280" y="196">02 Screened inlet</text><text x="500" y="196">03 Pretreatment</text><text x="720" y="196">04 Planted basin</text><text x="940" y="196">05 Safe overflow</text></g>
+    <g font-size="14" fill="#53655b">
+      <text x="60" y="226">Check roof materials</text><text x="60" y="249">and clean-out access.</text>
+      <text x="280" y="226">Catch leaves; provide</text><text x="280" y="249">maintenance access.</text>
+      <text x="500" y="226">Accessible sediment</text><text x="500" y="249">capture before storage.</text>
+      <text x="720" y="226">Size for local rainfall,</text><text x="720" y="249">snowmelt, and soils.</text>
+      <text x="940" y="226">Engineered discharge route;</text><text x="940" y="249">verify infiltration or outfall.</text>
+    </g>
+    <text x="315" y="329" font-size="14" fill="#47766c">Irrigation study: test water quality, demand, and delivery.</text>
+    <rect x="42" y="360" width="1110" height="69" rx="10" fill="#e3e6d5"/>
+    <text x="60" y="386" font-size="15" font-weight="bold">Keep salted pavement runoff separate. Provide a winter and extreme-storm bypass.</text>
+    <text x="60" y="409" font-size="14" fill="#53655b">Protect accessible paths from icing. Fish habitat requires a separate water-quality and winter-refuge design.</text>
+    <text x="42" y="457" font-size="12" fill="#63735e">Schematic process only · Not a grading plan, hydraulic calculation, or approved drainage design · Revision 2026-11-12.1</text>
+  </g>
+</svg>
