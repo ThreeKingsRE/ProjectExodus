@@ -116,288 +116,288 @@ export const additionalAssessments: Record<string, SimpleAssessment> = {
   "a-m2": {
     "moduleId": "a-m2",
     "title": "Module 2 Knowledge Check",
-    "description": "Test your understanding of designing parallel systems and building food, energy, and water alternatives.",
+    "description": "Test your understanding of decentralized food system principles, parallel systems, food alternatives, fair distribution and access, and lessons from community food networks.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "What are parallel systems in Exodology?",
+        "question": "According to the module, what distinguishes a decentralized or distributed food system?",
         "options": [
-          "Systems that replace existing ones in a single sudden switch",
-          "Systems built alongside existing ones that meet real needs now and can eventually replace them",
-          "Backup copies of existing systems kept in storage",
-          "Systems that compete with existing ones to make them collapse faster"
+          "It cuts all trade with other regions so the community is fully self-sufficient",
+          "No single node or route is indispensable, even though it still trades with other regions",
+          "All food is grown at household scale rather than on farms",
+          "It replaces supermarkets with a single large community-owned food hub"
         ],
         "correctAnswer": 1,
-        "explanation": "Parallel systems operate now, meeting real needs, while the old system continues, which allows gradual transition rather than sudden rupture."
+        "explanation": "Decentralization is neither isolation nor self-sufficiency. Its distinguishing feature is that no single node or route is indispensable, so the system keeps functioning if a major node fails."
       },
       {
-        "question": "According to the design principles, why is community-owned solar interesting?",
+        "question": "What is the Exodological position on going local with food?",
         "options": [
-          "Because solar is the newest technology available",
-          "Because it is the most optimized form of energy production",
-          "Because it provides energy without fossil fuels",
-          "Because it looks different from conventional infrastructure"
+          "Local food is inherently more sustainable, just and democratic",
+          "Distance traveled is the main factor in a food's environmental impact",
+          "The aim is no single point of failure and fair control, sometimes keeping regional and global links while adding local capacity",
+          "Regions should cut external food links entirely to avoid dependence"
         ],
         "correctAnswer": 2,
-        "explanation": "Design starts with function, not form: community-owned solar is interesting not because it is solar but because it provides energy without fossil fuels."
+        "explanation": "The module warns against the local trap and notes that local harvests can fail. The position is not that local is good, but no single point of failure and fair control, often while keeping useful outside links."
       },
       {
-        "question": "Which of these is given as an example of a minimum viable food system?",
+        "question": "When designing a parallel system, which principle does the module recommend?",
         "options": [
-          "A CSA with 10 members",
-          "A regional food hub serving thousands of households",
-          "A fully self-sufficient farm",
-          "A detailed plan for a future food cooperative"
+          "Start with function, not form, and design for resilience and maintainability",
+          "Optimize for maximum efficiency before anything else",
+          "Launch at full scale so the old system can be abandoned immediately",
+          "Choose the most advanced technology available regardless of who will run it"
         ],
         "correctAnswer": 0,
-        "explanation": "Like minimum viable products, you start with the smallest system that actually functions; a CSA with 10 members is a minimum viable food system."
+        "explanation": "Parallel systems should start with function rather than form, favor resilience over optimization, and be maintainable by the community that will use them. Starting with a minimum viable system allows learning and expansion."
       },
       {
-        "question": "Seed libraries, seed exchanges, and mentorship programs belong to which category of food system alternatives?",
+        "question": "Seed libraries, seed exchanges and farming mentorship programs belong to which category of food system alternatives?",
         "options": [
           "Distribution alternatives",
           "Preservation and processing",
           "Production alternatives",
-          "Seed and knowledge systems"
+          "Seed and knowledge systems that preserve the foundational resources of food sovereignty"
         ],
         "correctAnswer": 3,
-        "explanation": "Seed and knowledge systems, including seed libraries and farming mentorship, preserve the foundational resources of food sovereignty."
+        "explanation": "Seed libraries, exchanges, community seed banks and knowledge sharing form the seed and knowledge systems stage. They preserve the foundational resources of food sovereignty."
       },
       {
-        "question": "What does the energy lesson identify as often more cost-effective than adding generation?",
+        "question": "What did Amartya Sen's entitlement approach teach about designing food distribution?",
         "options": [
-          "Building larger battery banks",
-          "Demand reduction through efficiency, passive design, and behavior change",
-          "Going completely off-grid",
-          "Switching from solar to biomass"
-        ],
-        "correctAnswer": 1,
-        "explanation": "The cheapest watt is the one you don't use; demand reduction is often more cost-effective than generation."
-      },
-      {
-        "question": "Which statement about energy storage matches the lesson?",
-        "options": [
-          "Storage is rarely a concern once generation is installed",
-          "Batteries are best for long-duration storage",
-          "Storage is often more challenging than generation and is often the limiting factor",
-          "Pumped hydro is suited to individual households"
+          "Famines are always caused by a large fall in overall food availability",
+          "Success should be measured by tons of food grown locally",
+          "Success should be measured by whether every household can reliably obtain enough suitable food, not just by output",
+          "Food access is purely a matter of physical distance to shops"
         ],
         "correctAnswer": 2,
-        "explanation": "Batteries serve short-term storage, while thermal mass, ice, and hydrogen cover longer durations and pumped hydro suits community scale; storage is often more challenging than generation."
+        "explanation": "Sen showed that hunger often results from people losing the means to obtain food rather than from a lack of food. Distribution design should therefore measure access, not just output, and watch entitlements during transition."
       },
       {
-        "question": "Why does the water lesson recommend multi-barrier treatment approaches?",
+        "question": "Why does the module caution against lowering food prices by squeezing growers?",
         "options": [
-          "They provide redundancy, with treatment matched to contamination risks",
-          "They eliminate the need for any water source alternatives",
-          "They are always the cheapest option",
-          "They remove the need to assess contamination risks"
+          "It simply moves the transition burden from eaters to farmers, many of whom already work on thin margins",
+          "It makes food too cheap for cooperatives to manage",
+          "It violates the principle of appropriate scale",
+          "It always leads to food deserts"
         ],
         "correctAnswer": 0,
-        "explanation": "Multi-barrier approaches provide redundancy, and treatment should be matched to contamination risks."
+        "explanation": "Affordability is where fair prices for producers and fair access for households are in sharpest tension. Squeezing growers shifts the transition burden onto farmers rather than solving the access problem."
       },
       {
-        "question": "Which statement about water source alternatives is consistent with the lesson?",
+        "question": "What does the case of Cuba after 1990 primarily teach, according to the module?",
         "options": [
-          "Wells work anywhere regardless of groundwater",
-          "Springs are the most universally applicable source",
-          "Community scale increases per-household cost",
-          "Rainwater is universally applicable but volume-limited"
+          "That a country can become fully self-sufficient through urban agriculture",
+          "That decentralized capacity built under collapse comes at great human cost, so exit capability should be built while the dominant system still functions",
+          "That organic methods spread only by deliberate government design",
+          "That public food programs are immune to changes in political leadership"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Cuba sits at the collapse end of the response spectrum: it built distributed food capacity during hardship rather than before it. The case teaches by contrast that capacity built in advance could have allowed a managed exit."
+      },
+      {
+        "question": "In the Design Your System exercise, what is asked when identifying integration points?",
+        "options": [
+          "Which existing system should be shut down first",
+          "How to avoid any contact with existing systems",
+          "Which single technology will meet every function",
+          "How the new system will work alongside existing systems during transition"
         ],
         "correctAnswer": 3,
-        "explanation": "Rainwater is universally applicable but volume-limited; wells require groundwater and springs need specific geography. Community scale reduces per-household cost."
+        "explanation": "The exercise asks learners to identify integration points: how the parallel system will work alongside existing systems during transition. This reflects the parallel systems lesson's call for graceful interoperability."
       }
     ]
   },
   "a-m3": {
     "moduleId": "a-m3",
     "title": "Module 3 Knowledge Check",
-    "description": "Test your understanding of transition path design, transition risk, transition teams, and timeline development.",
+    "description": "Test your understanding of water autonomy principles, water system alternatives, rainwater harvesting, greywater and blackwater management, and commons-based water governance.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "What does mapping the gap involve in transition path design?",
+        "question": "How does the module define the aim of water autonomy?",
         "options": [
-          "Listing only the financial cost of the desired state",
-          "Comparing current state to desired state across resources, skills, infrastructure, and relationships",
-          "Identifying which existing systems will collapse first",
-          "Choosing a single technology to replace the current system"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Mapping the gap means comparing current state to desired state and identifying the resources, skills, infrastructure, and relationships needed."
-      },
-      {
-        "question": "What is the purpose of fallback points in a transition path?",
-        "options": [
-          "To speed up the transition by skipping intermediate stages",
-          "To guarantee that every step is completed on schedule",
-          "To provide stable intermediate states and off-ramps where you can pause if the transition stalls",
-          "To mark the moment when you leave the old system for good"
+          "Disconnecting completely from the public water system as soon as possible",
+          "Owning a private well so that no neighbor can affect your supply",
+          "Exit capability: the structural capacity to meet essential water needs if the existing system fails or becomes unjust",
+          "Replacing public water treatment with household filters for everyone"
         ],
         "correctAnswer": 2,
-        "explanation": "Fallback points are stable intermediate states and off-ramps; never burn bridges before alternatives are proven."
+        "explanation": "Water autonomy is a matter of exit capability, not disconnection. It is a degree rather than a state, and it recognizes that water is shared and that public water systems are a genuine public health achievement."
       },
       {
-        "question": "How should transition risks be prioritized according to the lesson?",
+        "question": "In the staged approach to water autonomy, what should come first?",
         "options": [
-          "By detection time alone",
-          "By how recently the risk was identified",
-          "By which team member raised the risk",
-          "By expected impact, calculated as probability times impact"
-        ],
-        "correctAnswer": 3,
-        "explanation": "For each risk you assess probability, impact, and detection time, then prioritize by expected impact (probability x impact)."
-      },
-      {
-        "question": "\"Will the window stay open?\" describes which type of transition risk?",
-        "options": [
-          "Timing risk",
-          "Technical risk",
-          "Financial risk",
-          "Social risk"
+          "Reducing demand through efficient fixtures and fixing leaks",
+          "Adding a treated potable backup supply",
+          "Building a community-scale treatment system",
+          "Drilling a private well"
         ],
         "correctAnswer": 0,
-        "explanation": "Technical risk asks whether the alternative will work, financial whether you can afford it, social whether relationships will survive, and timing whether the window will stay open."
+        "explanation": "The staged approach begins by reducing demand, which cuts the volume any alternative must supply. Emergency storage, shifting productive uses, treated potable backup and community systems follow."
       },
       {
-        "question": "What does the commitment curve describe?",
+        "question": "According to Water System Alternatives, what is the main trade-off of rainwater as a source?",
         "options": [
-          "Teams become more committed the longer they work together",
-          "Risk changes as commitment deepens: early stages are easy to reverse, later stages are difficult to reverse",
-          "Commitment should be maximized at the start to reduce risk",
-          "Financial commitments always decrease over the course of a transition"
+          "It requires groundwater to be present",
+          "It needs specific geography such as a hillside spring",
+          "It can only be used at community scale",
+          "It is universally applicable but volume-limited"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Rainwater is universally applicable but volume-limited. Wells require groundwater and springs need specific geography."
+      },
+      {
+        "question": "Why does the module recommend a first-flush diverter in a rainwater system?",
+        "options": [
+          "It sterilizes water so it is safe to drink without further treatment",
+          "It sends the first portion of each rainfall, which carries most of the roof's dust, droppings and debris, to waste before it reaches the tank",
+          "It increases the runoff coefficient of a rough roof",
+          "It prevents rainwater from flowing back into the public supply"
         ],
         "correctAnswer": 1,
-        "explanation": "Early stages are low commitment and easy to reverse; later stages are high commitment and difficult to reverse, so risk is managed differently at each stage."
+        "explanation": "Most contamination enters at the catchment, and the first flush of each rainfall carries most of it. Diverting it is part of keeping the catchment clean, the cheapest form of treatment."
       },
       {
-        "question": "Which approach to team formation does the lesson recommend?",
+        "question": "Why must rainwater storage be sized for the dry season rather than the annual average?",
         "options": [
-          "Recruit as many people as possible before the first project",
-          "Ask new members for large commitments to test their dedication",
-          "Wait until a crisis to see who is reliable",
-          "Start with trusted relationships and vet through small commitments before large ones"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Teams start with trusted relationships, expand through shared work, and vet through small commitments before large ones, building trust before crisis."
-      },
-      {
-        "question": "Why does the lesson say to build networks, not just teams?",
-        "options": [
-          "Teams connected to other teams multiply capacity and share learning",
-          "Networks remove the need for clear decision-making processes",
-          "Individual teams always fail without outside leadership",
-          "Networks allow teams to skip conflict resolution"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Teams connected to other teams multiply capacity, so the lesson recommends building networks and sharing learning across groups."
-      },
-      {
-        "question": "In transition timeline development, what does identifying the critical path tell you?",
-        "options": [
-          "Which milestone is the most expensive",
-          "Which team member is most important",
-          "Which sequence of milestones determines the minimum timeline",
-          "Which fallback to use if a delay occurs"
+          "Because annual rainfall figures are usually inaccurate",
+          "Because tanks lose most of their water to evaporation each year",
+          "Because rain arrives in pulses while demand is steady, so storage must carry the household through the longest dry spell planned for",
+          "Because health codes require a full year of storage"
         ],
         "correctAnswer": 2,
-        "explanation": "The critical path is the sequence that determines the minimum timeline; buffers and fallbacks are then added where you are vulnerable to delays."
+        "explanation": "Annual totals hide the real constraint. Sizing is a stock-and-flow problem: inflows arrive in pulses, outflows are steady, and the tank must never empty when it matters."
+      },
+      {
+        "question": "Which practice does the module give as a principle of safe greywater reuse?",
+        "options": [
+          "Store greywater in a tank for several days before use",
+          "Spray greywater with sprinklers for even coverage",
+          "Use it to irrigate leafy greens eaten raw",
+          "Send it promptly to subsurface irrigation, with a diversion valve back to the sewer or septic system"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Untreated greywater should not be stored, should be kept below the surface rather than sprayed, and should not be used on raw-eaten crops. A diversion valve lets it go to the sewer or septic system when it contains bleach, the soil is saturated, or someone is ill."
+      },
+      {
+        "question": "What did Elinor Ostrom's research show, in contrast to Hardin's tragedy of the commons argument?",
+        "options": [
+          "User communities can govern common-pool resources sustainably for generations through rules they devise and enforce themselves",
+          "Common-pool resources must always be privatized to avoid overuse",
+          "Only central state control can prevent depletion of shared water",
+          "Commons succeed only when every user is fully self-sufficient"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Hardin argued commons would be overused unless privatized or placed under state control. Ostrom documented many communities, including irrigation systems, that governed shared resources durably, showing the choice is not simply between market and state."
+      },
+      {
+        "question": "Which of the following reflects the commons design principle of graduated sanctions?",
+        "options": [
+          "Expelling any member for a first breach to deter others",
+          "Starting with a reminder or modest fee and escalating only for repeated or serious breaches",
+          "Letting the most powerful members decide penalties privately",
+          "Avoiding any response to rule-breaking to preserve goodwill"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Graduated sanctions begin mildly and escalate only for repeated or serious violations. Harsh first penalties destroy trust."
       }
     ]
   },
   "a-m4": {
     "moduleId": "a-m4",
     "title": "Module 4 Knowledge Check",
-    "description": "Test your understanding of organizing for collective exit, cooperative structures, and commons governance.",
+    "description": "Covers microgrid fundamentals and islanding, renewable generation options, storage and distribution, and the economics and governance of community microgrids.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "Which reason for collective exit is given in the lesson?",
+        "question": "What is the defining feature that distinguishes a microgrid from a building with rooftop solar or a fully off-grid cabin?",
         "options": [
-          "Collective exit removes the need for individual skills",
-          "Shared infrastructure reduces per-person costs and collective action changes systems individuals can't",
-          "Collective exit is always faster than individual exit",
-          "Collective exit avoids the need for any legal structures"
+          "It generates all of its electricity from renewable sources",
+          "It can operate connected to the grid and also disconnect to run in island mode",
+          "It is owned by a cooperative of local residents",
+          "It sells all of its surplus power back to the utility"
         ],
         "correctAnswer": 1,
-        "explanation": "Shared infrastructure reduces per-person costs, collective action changes systems individuals can't, and many exits only make sense at community scale."
+        "explanation": "The ability to connect and disconnect is the defining feature: a microgrid shares power with the main grid in normal times and can stand alone when needed."
       },
       {
-        "question": "Which organizing principle does the lesson state?",
+        "question": "Why is a household with standard grid-tied rooftop solar often without power during a blackout?",
         "options": [
-          "Lead with ideology to attract committed members",
-          "Ask for commitment first, then build relationships",
-          "Start with shared concerns and move at the speed of trust",
-          "Power comes from ideas rather than relationships"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Organizing starts with shared concerns, not ideology, builds relationships before asking for commitment, and moves at the speed of trust."
-      },
-      {
-        "question": "What is the sequence of graduated engagement described in the lesson?",
-        "options": [
-          "Attend, participate, contribute, lead",
-          "Lead, contribute, participate, attend",
-          "Contribute, attend, lead, participate",
-          "Participate, lead, attend, contribute"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Graduated engagement moves from attend to participate to contribute to lead, without asking for large commitments before small ones."
-      },
-      {
-        "question": "In a worker cooperative, who are the members?",
-        "options": [
-          "The customers",
-          "The residents",
-          "The producers",
-          "The employees"
+          "Solar panels cannot produce electricity when grid voltage drops",
+          "Utilities remotely disconnect all solar systems during storms",
+          "Rooftop panels are too small to power a home",
+          "Grid-tied systems must shut down when the grid fails, and without islanding capability they cannot run on their own"
         ],
         "correctAnswer": 3,
-        "explanation": "Consumer co-op members are customers, worker co-op members are employees, producer co-op members are producers, and housing co-op members are residents."
+        "explanation": "Grid-tied solar is required to shut down in an outage so it does not energize lines workers believe are dead. Generation alone does not create exit capability; the ability to island safely does."
       },
       {
-        "question": "Which of the following is NOT listed as a cooperative principle?",
+        "question": "Using the reform-versus-exit test, how is a microgrid that can carry its critical loads through an extended outage while keeping its grid connection best classified?",
         "options": [
-          "Voluntary membership",
-          "Democratic control",
-          "Maximizing returns to outside investors",
-          "Concern for community"
+          "A partial exit, or soft exodus, that builds a parallel system without burning bridges",
+          "Optimization, because it still uses the grid",
+          "A hard exodus from the grid",
+          "Collapse, because the grid connection becomes unnecessary"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Such a microgrid passes the test for its critical loads, making it a partial exit: a soft exodus that keeps the grid connection while building a functional alternative."
+      },
+      {
+        "question": "According to the Energy System Alternatives lesson, which approach is often the most cost-effective way to improve energy independence?",
+        "options": [
+          "Installing pumped hydro storage",
+          "Adding a larger solar array",
+          "Demand reduction through efficiency, passive design and behavior change",
+          "Going completely off-grid"
         ],
         "correctAnswer": 2,
-        "explanation": "Cooperative principles include voluntary membership, democratic control, member economic participation, autonomy, education, cooperation among cooperatives, and concern for community."
+        "explanation": "The cheapest watt is the one you do not use; demand reduction is often more cost-effective than adding generation."
       },
       {
-        "question": "How does the lesson describe commons?",
+        "question": "Why does the lesson warn against comparing generation sources by nameplate rating alone?",
         "options": [
-          "Unregulated resources that anyone can use freely",
-          "Resources managed collectively by user communities, with rules made by the users",
-          "Resources owned and managed by the state",
-          "Private resources rented to communities"
+          "Nameplate ratings are usually exaggerated by manufacturers",
+          "Rated power only matters for fuel-based generators",
+          "A source with large rated power may deliver little energy if its capacity factor is low or it produces at the wrong times",
+          "Nameplate ratings measure energy rather than power"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Power is a rate while energy is a total over time; capacity factor and timing determine how much useful energy a source actually delivers at a site."
+      },
+      {
+        "question": "What is the main concern Exodology raises about relying on a diesel generator for long outages?",
+        "options": [
+          "It keeps a dependency on fuel delivery that may fail in the same disaster that caused the outage",
+          "Diesel generators cannot serve as a grid-forming source",
+          "Diesel generators are too expensive to buy",
+          "Diesel generators cannot be turned on when needed"
+        ],
+        "correctAnswer": 0,
+        "explanation": "A microgrid that depends on a diesel generator still depends on fuel delivery, which may itself fail during the crisis; generators can be a bridge, but the dependency should appear clearly on the map."
+      },
+      {
+        "question": "A storage system has large energy capacity but a low power rating. What does the lesson say this means in practice?",
+        "options": [
+          "It can start a well pump but will be empty within an hour",
+          "It needs no battery management system",
+          "It provides many days of autonomy for any set of loads",
+          "It can run a small load such as a refrigerator for days but cannot start a well pump"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Energy capacity determines how long a load can be carried, while power rating determines how much load can be carried at once, so both must be specified."
+      },
+      {
+        "question": "In Exodology terms, what is the main risk of financing a community microgrid through third-party ownership or a power purchase agreement?",
+        "options": [
+          "It always raises the cost of capital above private loans",
+          "A key asset sits in outside hands for many years, so a critical node may simply move from one external actor to another",
+          "It prevents the microgrid from keeping its grid connection",
+          "It requires members to buy community shares"
         ],
         "correctAnswer": 1,
-        "explanation": "Commons are resources managed collectively by user communities. They are not unregulated; they have rules, but the rules are made by users."
-      },
-      {
-        "question": "Which of these is one of Ostrom's 8 principles for successful commons?",
-        "options": [
-          "Centralized ownership",
-          "Unlimited access",
-          "Market pricing",
-          "Graduated sanctions"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Ostrom's principles are defined boundaries, fit between rules and conditions, collective choice, monitoring, graduated sanctions, conflict resolution, recognition by external authorities, and nested enterprises."
-      },
-      {
-        "question": "In the food co-op scenario, why is starting a buying club with 5-10 committed people the recommended first step?",
-        "options": [
-          "It applies graduated engagement and builds proof of concept before expansion",
-          "It avoids the need for any governance structure later",
-          "It allows founders to decide the structure themselves",
-          "It secures funding before any organizing"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Starting a buying club applies graduated engagement and builds proof of concept, whereas a public meeting is too early and a business plan first may produce plans nobody owns."
+        "explanation": "Third-party ownership lowers the upfront burden but places a key asset in outside hands, which can amount to a change of landlord rather than an increase in exit capability."
       }
     ]
   },
@@ -2132,148 +2132,192 @@ export const additionalAssessments: Record<string, SimpleAssessment> = {
   "s-m4": {
     "moduleId": "s-m4",
     "title": "Module 4 Knowledge Check",
-    "description": "Test your understanding of designing regional transitions and the dynamics of national and global transitions.",
+    "description": "Test your understanding of transition risk typology, sources of backlash, mitigating unintended consequences, and honest communication with stakeholders.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "What does a regional assessment include, according to the lesson?",
+        "question": "Why does the lesson insist that a risk typology must also assess the risks of staying?",
         "options": [
-          "Only a survey of individual household dependencies",
-          "A review of international trade agreements alone",
-          "Regional dependency mapping, critical infrastructure analysis, stakeholder mapping and political landscape assessment",
-          "Choosing a governance model before any analysis"
+          "Because staying in a system is always more dangerous than leaving it",
+          "Because a typology that lists only the dangers of leaving will always favor the status quo",
+          "Because the risks of staying are easier to measure precisely",
+          "Because the Principle of Precaution forbids any change to existing systems"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A typology that only lists the dangers of leaving will always favor the status quo. Honest analysis compares the risks of the transition with the risks of remaining in a failing system, often revealing a choice between managed risk now and unmanaged risk later."
+      },
+      {
+        "question": "According to the lesson, what does it usually mean when a listed risk has no named carrier?",
+        "options": [
+          "The risk is too small to matter",
+          "The risk falls only on the system as a whole",
+          "Someone else has quietly been assigned the risk, usually those with the least voice",
+          "The risk has already been fully mitigated"
         ],
         "correctAnswer": 2,
-        "explanation": "Regional assessment covers dependency mapping, critical infrastructure, stakeholders and the political landscape to find a region's unique vulnerabilities and opportunities."
+        "explanation": "Every listed risk should name a carrier. Risks with no named carrier are usually risks someone else has quietly been assigned, often those with the least voice."
       },
       {
-        "question": "What should a regional strategy aim to create by sequencing interventions?",
+        "question": "How does the lesson on backlash suggest strategic exodologists should treat resistance to a transition?",
         "options": [
-          "Cascade effects",
-          "Immediate region-wide exit in a single step",
-          "Isolation of early adopter communities from one another",
-          "Dependence on national policy before acting"
+          "As information about who expects to carry the burden, which promises are not believed and where people lacked a voice",
+          "As proof that the transition has been badly designed and should be abandoned",
+          "As an obstacle to be overcome through better messaging",
+          "As opposition to the goal of the transition in nearly every case"
         ],
         "correctAnswer": 0,
-        "explanation": "Regional strategy identifies early adopters, builds demonstration projects and networks, develops scalable models and sequences interventions for cascade effects."
+        "explanation": "Backlash is also information: it tells us who expects to carry the transition burden, which promises are not believed and where the process has failed to give people a voice. Many who resist oppose the process or distribution of costs rather than the goal."
       },
       {
-        "question": "What is the role of regional infrastructure planning in the lesson?",
+        "question": "Which pair describes the two failures the lesson says should be avoided when responding to backlash?",
         "options": [
-          "Replacing all individual and community exits with a single regional system",
-          "Building what individuals and communities cannot, such as regional energy, water and food networks",
-          "Focusing only on communication infrastructure",
-          "Leaving infrastructure to national governments"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Regional infrastructure planning builds what individuals and communities cannot, and regional infrastructure enables local exits."
-      },
-      {
-        "question": "How does the lesson describe political strategy for regional transitions?",
-        "options": [
-          "Avoid local government to keep the transition independent",
-          "Work only through formal channels",
-          "Postpone politics until infrastructure is complete",
-          "Engage local government and work both within and outside formal channels"
+          "Compensation and phasing",
+          "Perversity and futility",
+          "Consultation and participation",
+          "Capitulation, abandoning a justified transition because opposition is loud, and override, pushing it through regardless of those who bear its costs"
         ],
         "correctAnswer": 3,
-        "explanation": "Political strategy involves engaging local government, building relationships with key actors, navigating opposition, creating policy frameworks and working within and outside formal channels."
+        "explanation": "Capitulation leaves those harmed by the status quo without relief, while override violates procedural justice and often produces reversal later. Durable transitions change the design in response to legitimate grievance while holding to the goal."
       },
       {
-        "question": "How does the lesson frame climate agreements in the context of global transition dynamics?",
+        "question": "What is the pattern the lesson calls unravelling of the remaining system?",
         "options": [
-          "As obstacles to local exits",
-          "As exit frameworks",
-          "As purely symbolic gestures",
-          "As substitutes for national industrial policy"
+          "Efficiency gains lowering the cost of a resource and increasing its use",
+          "The departure of some participants leaving the system more expensive or less viable for those who stay, triggering further departures",
+          "A harm reduced in one place reappearing in another jurisdiction",
+          "People optimizing a measure rather than the outcome it was meant to indicate"
         ],
         "correctAnswer": 1,
-        "explanation": "Among global transition dynamics, the lesson lists climate agreements as exit frameworks, alongside international coordination, supply chains, technology transfer and international justice."
+        "explanation": "Unravelling occurs when departures make the system more expensive or less viable for those who stay, prompting further departures. This is where a managed exit risks becoming collapse and where residual duty becomes urgent."
       },
       {
-        "question": "What does multi-level alignment involve?",
+        "question": "In a pre-mortem, what does the team do?",
         "options": [
-          "Understanding how local exits contribute to national and global transition and how larger frameworks enable local exits",
-          "Letting national policy determine all local action",
-          "Pursuing local exits without regard to larger frameworks",
-          "Concentrating action at the global level only"
+          "Reviews a transition after it has finished to assign blame",
+          "Asks a separate group to find ways people might game the plan",
+          "Imagines before the decision is final that the transition has failed badly and writes down why",
+          "Tests the transition in a limited area before full rollout"
+        ],
+        "correctAnswer": 2,
+        "explanation": "In a pre-mortem, before a decision is final, the team imagines that the transition has failed badly and writes down the reasons why, which makes it socially acceptable to raise doubts."
+      },
+      {
+        "question": "Before sharing an important transition message, the lesson recommends sorting it into which three categories?",
+        "options": [
+          "What is known, what is uncertain, and what is not yet decided",
+          "Good news, bad news, and neutral news",
+          "Facts for funders, facts for workers, and facts for supporters",
+          "Short-term, medium-term, and long-term effects"
         ],
         "correctAnswer": 0,
-        "explanation": "Multi-level alignment means understanding how local exits contribute to national and global transition, how national and global frameworks enable local exits, and aligning action across scales."
+        "explanation": "Honest communication separates what is known, what is uncertain (with the range of plausible outcomes), and what is not yet decided, including how and when it will be decided and who will have a say."
+      },
+      {
+        "question": "What does consistency across audiences require, according to the lesson?",
+        "options": [
+          "Identical wording and format for every group",
+          "Telling each audience the aspects of the plan it most wants to hear",
+          "Releasing information only through official spokespeople",
+          "The same substance for everyone, including the same goal, timeline, account of costs and acknowledgment of uncertainty, even if format and detail differ"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Consistency does not mean identical wording. Different groups may need different detail, formats and languages, but the substance must be the same for everyone."
       }
     ]
   },
   "s-m5": {
     "moduleId": "s-m5",
     "title": "Module 5 Knowledge Check",
-    "description": "Test your understanding of the Exit Steward role, steward ethics, and facilitation and coaching practice.",
+    "description": "Test your understanding of mass transition dynamics, maintaining stability during change, coordination at scale, and infrastructure continuity.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "Which of the following is one of the steward ethics described in the lesson?",
+        "question": "Why does the lesson say a mass transition is not simply many individual exits added together?",
         "options": [
-          "Never push exit on those not ready",
-          "Encourage every client to exit as quickly as possible",
-          "Share client details within the steward network by default",
-          "Always provide an answer rather than referring elsewhere"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Steward ethics include never pushing exit on those not ready, respecting autonomy, maintaining confidentiality, acknowledging limits of knowledge and referring when appropriate."
-      },
-      {
-        "question": "Why does the lesson say steward networks matter?",
-        "options": [
-          "Networks let stewards avoid needing personal exit experience",
-          "Networks ensure all stewards give clients identical advice",
-          "No steward knows everything, so networks provide mutual support, referral and collective learning",
-          "Networks replace the need for facilitation skills"
+          "Because mass transitions are always planned by a central authority",
+          "Because individual exits involve no risk while mass exits do",
+          "Because each decision depends on what others do, alternatives can become congested, and the system left behind changes as people depart",
+          "Because mass transitions always proceed at a steady, predictable pace"
         ],
         "correctAnswer": 2,
-        "explanation": "No steward knows everything; networks of mutual support and referral, with collective learning and knowledge sharing, extend individual capacity."
+        "explanation": "At scale, decisions are interdependent, departures feed back on the system being left, and alternatives face capacity limits. Together these make mass transitions non-linear."
       },
       {
-        "question": "What is the central aim of exit coaching?",
+        "question": "What does the lesson identify as often the most useful single indicator when stewarding mass dynamics?",
         "options": [
-          "Telling clients which systems they should exit",
-          "Eliciting the client's own wisdom, such as helping them identify their own motivations",
-          "Designing a transition plan on the client's behalf",
-          "Judging whether a client's motivations are correct"
+          "The gap between how fast people are leaving and how fast alternatives can serve them",
+          "The total number of people who have exited",
+          "The average attitude of the population toward the alternative",
+          "The number of late adopters remaining"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Watching the gap between departure and capacity matters most. Where departure outpaces capacity, effort belongs in expanding capacity, pacing or bridging arrangements rather than further encouraging exit."
+      },
+      {
+        "question": "When defining what must not fail during a transition, why does the lesson distinguish functions from forms?",
+        "options": [
+          "Because institutions matter more than the services they provide",
+          "So that stability concerns protect safe water, heat and care rather than becoming an argument for preserving the status quo indefinitely",
+          "Because forms are easier to measure than functions",
+          "So that minimum service levels can be set around the average user"
         ],
         "correctAnswer": 1,
-        "explanation": "Coaching elicits client wisdom: it helps clients identify their own motivations and provides accountability without judgment, without imposing solutions."
+        "explanation": "What must be protected is the function, not necessarily the institution or technology that currently provides it. Keeping this clear prevents stability concerns from becoming an argument for keeping the status quo indefinitely."
       },
       {
-        "question": "Which is listed as a common challenge stewards face?",
+        "question": "Which sequencing practice does the lesson recommend for essential services?",
         "options": [
-          "Clients who refuse any dependency mapping",
-          "Having too many alternatives to choose from",
-          "Communities that decide too quickly to need facilitation",
-          "Groups stuck in analysis paralysis"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Common challenges include clients who want to be told what to do, groups stuck in analysis paralysis, derailing conflict, unrealistic expectations and burnout."
-      },
-      {
-        "question": "A client with debt and no savings wants to quit their job and move to an ecovillage they have never visited. What is the recommended steward response?",
-        "options": [
-          "Support their excitement and help them plan the move",
-          "Tell them it's a bad idea and they should wait",
-          "Ask questions that help them examine their readiness",
-          "Refer them to an ecovillage immediately"
+          "Retire old capacity first to create pressure for the new system to succeed",
+          "Switch the whole population at once to avoid running two systems",
+          "Prove replacement capacity under realistic conditions, including peak demand, before retiring old capacity",
+          "Rely on pilot results alone before withdrawing the old system"
         ],
         "correctAnswer": 2,
-        "explanation": "The coaching approach helps them discover what they need; supporting the move ignores red flags, and telling them to wait imposes judgment."
+        "explanation": "Old capacity should be withdrawn only after replacement capacity has been shown to work under realistic conditions, including peak demand and stress, not only in pilot settings."
       },
       {
-        "question": "A community group has discussed a food co-op for two years without deciding anything. Why is presenting them a detailed plan to adopt not recommended?",
+        "question": "According to the lesson, what is the real problem with central coordination of a mass exit?",
         "options": [
-          "It takes over rather than facilitating and may create dependence",
-          "Detailed plans are always unrealistic",
-          "The group should be told to just start instead",
-          "Food co-ops are outside a steward's scope"
+          "Central control of detail in a system too complex to be seen whole",
+          "Any action taken by central institutions",
+          "Central institutions setting legal frameworks and protecting rights",
+          "Central funding of what local units cannot afford"
         ],
         "correctAnswer": 0,
-        "explanation": "Presenting a plan takes over rather than facilitating; helping them identify what would make them ready to decide facilitates their process while addressing the block."
+        "explanation": "Central actors still do things nobody else can, such as setting legal frameworks, funding and protecting rights. The problem is not central action as such but central control of detail."
+      },
+      {
+        "question": "What are conditional commitments, as described in the lesson on coordination at scale?",
+        "options": [
+          "Rules requiring everyone to switch on a single date",
+          "Subsidies paid only after an exit is complete",
+          "Agreements that local units may ignore overarching rules",
+          "Pledges to move once a stated number of others have also committed, so no one is exposed alone"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Conditional commitments are one response to the first-mover penalty: actors pledge to move once a stated number of others have also committed, so no one is exposed alone."
+      },
+      {
+        "question": "What is the utility death spiral discussed in the infrastructure lesson?",
+        "options": [
+          "The gradual failure of new infrastructure built too quickly",
+          "A cycle in which departing users raise fixed costs for those remaining, prompting further departures",
+          "The loss of skilled workers from a growing industry",
+          "A cascade of failures caused by tight coupling between water and electricity systems"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Because networked infrastructure has high fixed costs, departing users leave those costs spread over fewer remaining users, raising charges and pushing more to leave. Those left paying often have the least exit capability."
+      },
+      {
+        "question": "Why does the lesson say workforce transition should be treated as part of infrastructure continuity rather than a separate social program?",
+        "options": [
+          "Because workers are less important than hardware",
+          "Because new systems never require trained people",
+          "Because the old system can lose needed expertise too early and the new one may lack trained people, so retraining and retaining skills serve both continuity and justice",
+          "Because retraining programs are cheaper when run by infrastructure operators"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Mass exits risk losing the knowledge needed to run and safely close old assets while the new system lacks skilled labor. Retraining, retaining expertise and documenting knowledge serve continuity and justice at the same time."
       }
     ]
   },
