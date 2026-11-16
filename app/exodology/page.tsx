@@ -132,7 +132,7 @@ export default function ExodologyPage() {
               transition={{ delay: 0.2 }}
               className="text-xl sm:text-2xl font-semibold text-[var(--muted-foreground)] mb-8"
             >
-              The Science of Ethical Exits
+              Exodology, the study of ethical exits.
             </motion.p>
 
             {/* Philosophy statement */}

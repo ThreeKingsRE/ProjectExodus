@@ -20,74 +20,96 @@ export const additionalAssessments: Record<string, SimpleAssessment> = {
   "a-m1": {
     "moduleId": "a-m1",
     "title": "Module 1 Knowledge Check",
-    "description": "Test your understanding of dependency mapping, critical nodes, exit friction, leverage points and dependency classification.",
+    "description": "Test your understanding of dependency mapping, lock-in mechanisms and how to prioritize exit targets.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "What makes a dependency map different from an organizational chart or process flow?",
+        "question": "What distinguishes a dependency map from an organizational chart or process flow?",
         "options": [
-          "It focuses on who holds authority within a system",
           "It focuses specifically on what would need to be replaced or provided independently for exit to succeed",
-          "It focuses on the order in which tasks are completed",
-          "It focuses on reducing a system's operating costs"
+          "It shows who reports to whom inside a system",
+          "It records only the physical goods a household consumes",
+          "It ranks systems by how sustainable they are"
         ],
-        "correctAnswer": 1,
+        "correctAnswer": 0,
         "explanation": "Unlike organizational charts or process flows, dependency maps focus specifically on what would need to be replaced or provided independently for exit to succeed."
       },
       {
-        "question": "When identifying the core function of a system, which description best follows the mapping guidance?",
+        "question": "Which of the following best describes a critical node on a dependency map?",
         "options": [
-          "Food",
-          "Groceries from the store",
-          "Daily calories, protein, and micronutrients",
-          "Anything the household eats"
+          "Any dependency with an exit friction score of 1",
+          "A point where alternatives already exist and are cheap to build",
+          "A point where no alternative path exists, failure affects multiple downstream functions, or recovery time is long relative to need",
+          "The most visible or symbolic dependency in a community"
         ],
         "correctAnswer": 2,
-        "explanation": "Step 1 asks you to be specific: \"food\" is too broad, while \"daily calories, protein, and micronutrients\" is more useful."
-      },
-      {
-        "question": "Which of the following is NOT one of the conditions that marks a point as a critical node?",
-        "options": [
-          "No alternative path exists",
-          "Failure affects multiple downstream functions",
-          "Recovery time is long relative to need",
-          "The dependency is expensive to maintain"
-        ],
-        "correctAnswer": 3,
-        "explanation": "A critical node is any point where no alternative path exists, failure affects multiple downstream functions, or recovery time is long relative to need. Cost alone is not one of the criteria."
+        "explanation": "A critical node is a point where failure would cascade: no alternative path exists, failure affects multiple downstream functions, or recovery time is long relative to need."
       },
       {
         "question": "A map that ends at \"grocery store\" illustrates which common mapping mistake?",
         "options": [
+          "Mapping alone",
           "Stopping too early",
-          "Ignoring soft dependencies",
           "Assuming stability",
-          "Mapping alone"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Stopping too early means you have not traced far enough; you still need to ask where the grocery store gets its food."
-      },
-      {
-        "question": "What is an exit leverage point?",
-        "options": [
-          "The single most expensive dependency in a household",
-          "A point where failure would cascade through the whole system",
-          "A dependency that can be addressed to significantly increase exit capability, often reducing multiple dependencies at once",
-          "The final layer of a map where fundamental inputs like sunlight and water appear"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Leverage points are places where one intervention could address multiple vulnerabilities, such as solar panels addressing several energy dependencies at once."
-      },
-      {
-        "question": "In the dependency classification exercise, how should Critical / Low Friction dependencies be treated?",
-        "options": [
-          "Deferred until resources allow",
-          "Prioritized, because they are urgent and addressable",
-          "Ignored, because they are easy wins with little value",
-          "Addressed last, after the most difficult dependencies"
+          "Forgetting yourself"
         ],
         "correctAnswer": 1,
-        "explanation": "Critical / Low Friction dependencies are urgent and addressable, so they should be prioritized; Non-Critical / High Friction ones can be deferred until resources allow."
+        "explanation": "Stopping too early means not tracing far enough upstream; the mapper still needs to ask where the grocery store gets its food."
+      },
+      {
+        "question": "How does Exodology frame lock-in?",
+        "options": [
+          "As a failure of individual willpower that people can overcome by wanting to leave badly enough",
+          "As proof that the dominant system serves people best",
+          "As a permanent condition that cannot be weakened or redesigned",
+          "As usually a structural property of a system, produced by how its parts fit together, how it has grown and who benefits from it"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Exodology rejects treating lock-in as a matter of willpower; it is usually a structural property of a system. Lock-in is neither proof that a system is good nor permanent."
+      },
+      {
+        "question": "A dependency whose value comes mainly from other people's participation, such as a communication platform, is shaped by coordination effects. What does the lesson say this calls for?",
+        "options": [
+          "Leaving alone as quickly as possible",
+          "Raising the exit friction score to 5 and deferring it",
+          "Collective exit or keeping a bridge to the old system",
+          "Paying the switching costs through a data export plan"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Dependencies whose value comes mainly from others' participation cannot be exited individually without loss; they call for collective exit or for keeping a bridge to the old system."
+      },
+      {
+        "question": "How does the lesson distinguish designed lock-in from emergent lock-in, and what response does designed lock-in add?",
+        "options": [
+          "Designed lock-in is created deliberately to retain participants, and may also call for voice such as advocacy, regulation and collective bargaining",
+          "Designed lock-in develops without anyone intending it, and is best addressed only by building alternatives",
+          "Designed lock-in is always harmless, so it needs no response",
+          "Designed lock-in comes from infrastructure, so it can only be addressed by one household at a time"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Designed lock-in is created deliberately, such as proprietary formats or punitive exit fees. While emergent lock-in is often addressed by building alternatives, designed lock-in may also call for voice."
+      },
+      {
+        "question": "In the criticality and friction classification, how should a dependency that is critical and high friction usually be treated?",
+        "options": [
+          "As the first priority, because it is the most important",
+          "As something to defer until resources and capacity allow",
+          "As an easy win that builds momentum",
+          "As the most important long-term work, with preparation begun early but rarely as the first project"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Critical and high-friction dependencies are the most important long-term work; preparation should begin early, but they are rarely the first project, since starting with the hardest problem often exhausts resources."
+      },
+      {
+        "question": "Why do many sensible exit plans begin by adding buffers such as stored water or a second supplier to tightly coupled dependencies?",
+        "options": [
+          "Because buffers fully exit the dependency",
+          "Because buffers buy time, turning a potential collapse into a manageable disruption, while being low friction and reversible",
+          "Because buffers are a lasting substitute for building genuine alternatives",
+          "Because tightly coupled systems never fail"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A buffer does not exit the dependency, but it loosens tight coupling and buys time. Buffers are usually low friction and reversible, though they are not a substitute for genuine alternatives."
       }
     ]
   },
@@ -382,370 +404,480 @@ export const additionalAssessments: Record<string, SimpleAssessment> = {
   "a-m5": {
     "moduleId": "a-m5",
     "title": "Module 5 Knowledge Check",
-    "description": "Test your understanding of personal economic transition, alternative economies, and financial planning for exit.",
+    "description": "Test your understanding of partial exit, hybrid arrangements, dual dependency, transition paths and economic transition.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "Which strategy does the lesson identify for reducing exit costs?",
+        "question": "What distinguishes deliberate partial exit from drift?",
         "options": [
-          "Taking on debt to buy equipment quickly",
-          "Raising fixed costs to secure stable services",
-          "Debt reduction and lowering fixed costs",
-          "Concentrating income in a single reliable source"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Debt reduction expands exit options and lower fixed costs reduce income requirements; transferable skills and relationship capital also help."
-      },
-      {
-        "question": "How does the lesson recommend approaching income during transition?",
-        "options": [
-          "Diversify income, earning some from exited systems and some from alternative systems, and gradually shift the balance",
-          "Stop all income from existing systems immediately",
-          "Rely only on income from alternative systems from day one",
-          "Keep all income in existing systems until the transition is complete"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Multiple income streams reduce dependence on any single source, with some income from exited systems and some from alternatives, gradually shifting the balance."
-      },
-      {
-        "question": "According to expense restructuring, which expense opposes exit?",
-        "options": [
-          "Tools",
-          "Skill development",
-          "Equipment for self-provisioning",
-          "Debt service"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Expenses like tools and skills support exit, while debt service and high fixed costs oppose it; the goal is to restructure toward exit-supporting expenses."
-      },
-      {
-        "question": "What does the solidarity economy prioritize?",
-        "options": [
-          "Profit over community",
-          "People and planet over profit",
-          "Individual savings over mutual aid",
-          "Global trade over local exchange"
+          "Deliberate partial exit always ends in full exit, while drift never does",
+          "In deliberate partial exit the boundary between old and new systems is chosen and understood; drift is ending up between systems without a plan",
+          "Drift is a moral failure, while deliberate partial exit is a planning technique",
+          "Drift means keeping voice in the existing system, while deliberate partial exit means giving it up"
         ],
         "correctAnswer": 1,
-        "explanation": "The solidarity economy prioritizes people and planet over profit and includes cooperatives, community land trusts, local currencies, time banks, and mutual aid."
+        "explanation": "Deliberate partial exit means you know which functions each system carries and why. Drift is ending up between systems without a plan; it is a planning gap, not a moral failure."
       },
       {
-        "question": "Which description matches the gift economy as presented in the lesson?",
+        "question": "A household believes its grid-tied solar panels make it independent, but has no power during a grid outage. Which hybrid failure pattern does this illustrate?",
         "options": [
-          "Exchanging labor hours directly through a ledger",
-          "Creating credit within a community through a trading system",
-          "Giving without expectation of direct return, building relationships at neighborhood scale",
-          "Producing collectively and sharing freely through open source"
+          "Cost stacking",
+          "Complexity overload",
+          "Hidden common dependencies",
+          "Unclear roles"
         ],
         "correctAnswer": 2,
-        "explanation": "The gift economy is giving without expectation of direct return; it builds relationships and works at neighborhood scale, facilitated by platforms like Buy Nothing groups."
+        "explanation": "Most standard grid-tied inverters switch off when the grid goes down, so the alternative quietly relies on the same critical node as the existing system, a hidden common dependency."
       },
       {
-        "question": "In the financial planning exercise, what is the purpose of designing an income bridge?",
+        "question": "According to the lesson on managing dual dependencies, what are sunset criteria?",
         "options": [
-          "To plan how income will flow during the transition and from which systems",
-          "To eliminate the need for financial reserves",
-          "To calculate the total value of current assets",
-          "To decide which debts to take on"
+          "Conditions defined in advance that would allow reliance on the existing system for a function to be reduced or ended",
+          "Dates by which the alternative system must be abandoned if it has not succeeded",
+          "The point at which a household stops reviewing its transition",
+          "Criteria the alternative must meet before it takes on more load"
         ],
         "correctAnswer": 0,
-        "explanation": "The income bridge step asks how income will flow during transition and from which systems, alongside planning transition capital and milestones."
+        "explanation": "Sunset criteria define what would allow you to reduce or end reliance on the existing system for a function, and what you would keep, such as an emergency fallback. Readiness criteria are what the alternative must demonstrate before taking more load."
+      },
+      {
+        "question": "Which principle does Transition Path Design state about fallback points?",
+        "options": [
+          "Leave the existing system as soon as the alternative is started, to avoid cost stacking",
+          "Fallback points are only needed once the transition is complete",
+          "Avoid intermediate states because they encourage drift",
+          "Never burn bridges before alternatives are proven; identify stable intermediate states where you can pause"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Fallback points are stable intermediate states and off-ramps where a stalled transition can pause, and you should never burn bridges before alternatives are proven."
+      },
+      {
+        "question": "In Transition Timeline Development, what does identifying the critical path tell you?",
+        "options": [
+          "Which milestones can safely be skipped",
+          "Which sequence of milestones determines the minimum timeline",
+          "Which dependencies are most critical on your dependency map",
+          "Which fallbacks to remove to speed up the transition"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The critical path is the sequence of milestones that determines the minimum timeline for the transition."
+      },
+      {
+        "question": "According to Personal Economic Transition, how does income diversification support exit?",
+        "options": [
+          "By moving all income to alternative systems immediately",
+          "By relying on a single, stable employer throughout the transition",
+          "By using multiple income streams to reduce dependence on any single source, with a gradual shift of balance from exited systems to alternatives",
+          "By increasing fixed costs so more income is required"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Multiple income streams reduce dependence on any single source; some income comes from exited systems during transition and some from alternatives, with the balance shifting gradually."
+      },
+      {
+        "question": "Which description matches commons-based production in the Alternative Economies lesson?",
+        "options": [
+          "Giving without expectation of direct return at neighborhood scale",
+          "Community currencies that keep wealth local",
+          "Exchanging labor directly through time banks",
+          "Producing collectively and sharing freely, as with open source, creative commons and community-owned infrastructure"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Commons-based production means producing collectively and sharing freely, with Wikipedia and Linux given as examples."
+      },
+      {
+        "question": "In the Financial Planning for Exit exercise, what is the income bridge?",
+        "options": [
+          "A plan for how income will flow during transition and from which systems",
+          "A loan taken out to pay for transition costs",
+          "A reserve that replaces all income during the transition",
+          "A milestone marking the end of the transition"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Designing the income bridge means planning how income will flow during transition and from which systems, with income from existing systems sustaining the build-out of alternatives."
       }
     ]
   },
   "a-m6": {
     "moduleId": "a-m6",
     "title": "Module 6 Knowledge Check",
-    "description": "Test your understanding of skill categories, skill assessment, skill development, and community skill networks for exit.",
+    "description": "Test your understanding of how exit systems fail, how to manage transition risk, designing for resilience, re-entry planning and skills for exit.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "Why does the lesson describe skills as the ultimate portable asset?",
+        "question": "According to Common Exit System Failures, why do alternatives such as a community solar array most often fail?",
         "options": [
-          "They can be sold for cash at any time",
-          "Building them reduces dependence and creates value in alternative systems",
-          "They never need to be updated",
-          "They replace the need for community"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Skills are the ultimate portable asset because building them reduces dependence and creates value in alternative systems."
-      },
-      {
-        "question": "Repair and preservation fall into which skill category?",
-        "options": [
-          "Production skills",
-          "Social skills",
-          "Maintenance skills",
-          "Systems skills"
+          "Because the underlying technology, such as solar, does not work",
+          "Because alternatives are always larger and harder to manage than dominant systems",
+          "For social, financial and organizational reasons, such as no one maintaining the inverter, a spent reserve fund or a key person moving away",
+          "Because failure proves the exit was a mistake from the start"
         ],
         "correctAnswer": 2,
-        "explanation": "The categories are production (growing, making, building), maintenance (repair, preservation), social (organizing, teaching, mediating), and systems (design, planning, troubleshooting)."
+        "explanation": "The reasons alternatives fail are often not technical. A solar array rarely fails because solar does not work, but because no one was assigned to maintain it, the reserve was spent, or the person who understood it left."
       },
       {
-        "question": "Organizing, teaching, and mediating are examples of which skill category?",
+        "question": "An alternative keeps running, but a funder's conditions have gradually changed its direction so it no longer builds exit capability. Which failure category does this belong to?",
         "options": [
-          "Social skills",
-          "Production skills",
-          "Maintenance skills",
-          "Systems skills"
+          "Drift, capture and exclusion",
+          "Capacity failure",
+          "Scale mismatch",
+          "Maintenance neglect"
         ],
         "correctAnswer": 0,
-        "explanation": "Social skills include organizing, teaching, and mediating."
+        "explanation": "Capture and co-optation, along with mission drift and exclusion, can leave an alternative running in name while the exit capability it was meant to create disappears."
       },
       {
-        "question": "In skill assessment, how should learning priorities be set after gap analysis?",
+        "question": "In Managing Transition Risk, what does the commitment curve describe?",
         "options": [
-          "By whichever skill is easiest to learn first",
-          "By personal interest alone",
-          "By whatever skills neighbors already have",
-          "By criticality and difficulty"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Skill assessment compares the skills you have to those exit requires, then prioritizes by criticality and difficulty."
-      },
-      {
-        "question": "What does the lesson say about learning pathways?",
-        "options": [
-          "Formal training is the only reliable pathway",
-          "Self-teaching should be avoided",
-          "Different skills require different approaches, such as formal training, apprenticeship, self-teaching, or learning-by-doing",
-          "All skills should be learned through apprenticeship"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Learning pathways include formal training, apprenticeship, self-teaching, and learning-by-doing, and different skills require different approaches."
-      },
-      {
-        "question": "What is the core idea behind community skill networks?",
-        "options": [
-          "Each person should master every skill exit requires",
-          "No one needs all skills; communities share skills and develop complementary ones",
-          "Skills should be kept private to preserve their value",
-          "Only experts should teach within a community"
+          "Risk is highest at the start of a transition and disappears once commitment deepens",
+          "Early stages are low commitment with easy reversal, later stages are high commitment with difficult reversal, so risk is managed differently at each stage",
+          "Commitment should be maximized early to reduce detection time",
+          "The probability of each risk multiplied by its impact"
         ],
         "correctAnswer": 1,
-        "explanation": "No one needs all skills; community skill networks share skills, develop complementary ones, and encourage people to teach what they know."
+        "explanation": "Risk changes as commitment deepens: early stages are low commitment and easy to reverse, later stages are high commitment and hard to reverse, so risk is managed differently at each stage."
+      },
+      {
+        "question": "According to Designing for Resilience, where does redundancy pay most?",
+        "options": [
+          "Evenly across every function, regardless of criticality",
+          "Mainly in equipment, since people are hard to duplicate",
+          "Only in conveniences, since critical needs are already protected by the dominant system",
+          "At the critical nodes on the dependency map, and especially in people and skills"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Redundancy pays most at critical nodes, where no alternative path exists and failure cascades. People are the most important place for redundancy, addressed through training, documentation and shared roles."
+      },
+      {
+        "question": "What is graceful degradation, and how is it planned for an exit system?",
+        "options": [
+          "Continuing to provide reduced service when parts fail, planned by sorting functions into essential, important and deferrable tiers in advance",
+          "Shutting the whole system down safely whenever one component fails",
+          "Gradually replacing the alternative with the dominant system over time",
+          "Deciding during a crisis, by whoever is present, which functions to protect"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Graceful degradation means a system keeps providing reduced service when parts fail. Functions are sorted into essential, important and deferrable tiers, and these choices are made before the crisis through a fair process."
+      },
+      {
+        "question": "Why does the Re-entry Planning lesson argue that planning a way back strengthens rather than undermines exit?",
+        "options": [
+          "Because exit is an end in itself and re-entry plans prevent it from being abandoned",
+          "Because returning is always better than staying in an alternative",
+          "Because a planned route back keeps the exit reversible, in line with the Principle of Precaution, so a single failure will not be catastrophic",
+          "Because re-entry plans remove the need for fallback points"
+        ],
+        "correctAnswer": 2,
+        "explanation": "People who know they can return are often able to take larger, more thoughtful steps. A planned route back is what makes an exit reversible, as the Principle of Precaution asks."
+      },
+      {
+        "question": "According to Skills for Exit, how do community skill networks help?",
+        "options": [
+          "They ensure each person learns every skill exit requires",
+          "No one needs all skills; sharing and developing complementary skills within a community reduces individual burden",
+          "They replace the need for skill gap analysis",
+          "They focus only on production skills such as growing and building"
+        ],
+        "correctAnswer": 1,
+        "explanation": "No one needs all skills. Skill sharing within communities, developing complementary skills and teaching what you know reduce the individual burden."
+      },
+      {
+        "question": "In the Failure Scenario Analysis exercise, which set of scenarios are you asked to write?",
+        "options": [
+          "One best case, one worst case and one most likely scenario",
+          "Three scenarios that all involve key-person dependence",
+          "One technical, one financial and one timing scenario",
+          "One sudden, one slow and one external failure scenario, each specific about timing, scale and conditions"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The exercise asks for one sudden scenario, one slow scenario and one external scenario, each specific about timing, scale and conditions."
       }
     ]
   },
   "a-m7": {
     "moduleId": "a-m7",
     "title": "Module 7 Knowledge Check",
-    "description": "Test your understanding of conflict sources, conflict resolution, community resilience, and external challenges in exit communities.",
+    "description": "Test your understanding of autonomy metrics, resilience assessment methods and tracking progress toward exit over time.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "What is the lesson's stance on conflict in exit communities?",
+        "question": "How does Exodology define autonomy in the Autonomy Metrics Framework?",
         "options": [
-          "Conflict is a sign the community has failed",
-          "Conflict should be avoided at all costs",
-          "Conflict is normal; unaddressed conflict is dangerous",
-          "Conflict only comes from outside pressures"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Conflict is normal; unaddressed conflict is dangerous, so it should be addressed proactively."
-      },
-      {
-        "question": "Which of the following is listed as a source of conflict?",
-        "options": [
-          "Resource allocation",
-          "Excess redundancy",
-          "Too many celebrations",
-          "Shared documentation"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Sources of conflict include resource allocation, decision-making processes, values differences, personality clashes, burnout and stress, and external pressures."
-      },
-      {
-        "question": "How should a conflict resolution method be chosen?",
-        "options": [
-          "Always use mediation regardless of the situation",
-          "Match the method to the conflict type and severity",
-          "Use restorative circles only for external conflicts",
-          "Let the most senior member decide"
+          "Total self-sufficiency, producing everything a household needs without outside help",
+          "The degree to which a household or community can meet an essential need without being forced to remain in a particular system",
+          "Isolation from all systems and from neighbors",
+          "The total income a household earns outside the dominant economy"
         ],
         "correctAnswer": 1,
-        "explanation": "Methods include direct communication, mediation, group processes, and restorative circles, matched to conflict type and severity."
+        "explanation": "Autonomy is not isolation or total self-sufficiency. It is the degree to which a household or community can meet an essential need without being forced to remain in a particular system, the practical expression of exit capability."
       },
       {
-        "question": "Which practice does the lesson list for building resilience?",
+        "question": "Why does the lesson advise against adding all autonomy scores into a single total too early?",
         "options": [
-          "Concentrating key skills in one trusted person",
-          "Spending down reserves to grow faster",
-          "Avoiding rituals to keep focus on work",
-          "Redundancy in skills and relationships"
+          "Because single totals are too difficult to calculate",
+          "Because totals overstate weaknesses in social systems",
+          "Because the Charter forbids numerical scores",
+          "Because totals hide the pattern; a high food score cannot compensate for having no safe water, so a profile across systems should be kept and the lowest score reported"
         ],
         "correctAnswer": 3,
-        "explanation": "Resilience is built through redundancy in skills and relationships, reserves of resources, wellbeing practices, and rituals and celebrations that build bonds."
+        "explanation": "Totals hide the pattern. Keep a profile across systems first, and if you do summarize, report the lowest system score alongside any average."
       },
       {
-        "question": "What role do rituals and celebrations play according to the lesson?",
+        "question": "How does the Resilience Assessment Methods lesson distinguish resilience from autonomy?",
         "options": [
-          "They distract from practical work",
-          "They are a source of conflict to be minimized",
-          "They build bonds and contribute to resilience",
-          "They replace the need for conflict resolution"
+          "Autonomy is measured under ordinary conditions, while resilience asks what happens during disruption: whether a household or community can absorb, recover and adapt",
+          "Resilience and autonomy are the same thing measured at different scales",
+          "A highly autonomous household is always resilient",
+          "Resilience means returning quickly to a single equilibrium after a small disturbance"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Autonomy is measured under ordinary conditions; resilience is the capacity to absorb disruption, recover and adapt. A household can be autonomous yet fragile, or reliant on dominant systems yet fairly resilient."
+      },
+      {
+        "question": "In resilience assessment reporting, what does it mean to label a finding \"walked through\"?",
+        "options": [
+          "It has been verified in an actual outage or drill",
+          "It is believed true but has not yet been examined",
+          "It has been examined in a scenario exercise but not tested in practice",
+          "It has been rejected after testing"
         ],
         "correctAnswer": 2,
-        "explanation": "Rituals and celebrations that build bonds are listed among the ways to build community resilience."
+        "explanation": "Findings are labeled tested (verified in practice), walked through (examined in a scenario exercise but not tested) or assumed (believed true but not yet examined)."
       },
       {
-        "question": "Which of these is identified as an external challenge?",
+        "question": "Which of the following is an outcome indicator rather than an activity or capacity indicator?",
         "options": [
-          "Personality clashes",
-          "Values differences",
-          "Burnout within the group",
-          "Resistance from exited systems"
+          "Number of workshops held",
+          "Number of people who can maintain the water filter",
+          "Liters of rainwater storage installed",
+          "Share of food from community sources over a season"
         ],
         "correctAnswer": 3,
-        "explanation": "External challenges include resistance from exited systems, skepticism from outsiders, resource constraints, and setbacks; communities should prepare emotionally and practically."
+        "explanation": "Outcome indicators show that structural dependence has actually changed, such as the share of food from community sources. Workshops are activity indicators; skills and storage are capacity indicators."
+      },
+      {
+        "question": "A buying club redefines \"community-sourced\" to include anything bought in bulk so its food coverage appears to rise. What does this illustrate?",
+        "options": [
+          "Adaptive management",
+          "Goodhart's observation that when a measure becomes a target it ceases to be a good measure",
+          "Non-linearity in transitions",
+          "The commitment curve"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Gaming the definition is one of the distortions that occur when a measure becomes a target, as in Goodhart's observation. Pairing numbers with narrative and reviewing the indicators themselves reduce this risk."
       }
     ]
   },
   "a-m8": {
     "moduleId": "a-m8",
     "title": "Module 8 Knowledge Check",
-    "description": "Test your understanding of why, what, and how to document and share Exodology knowledge.",
+    "description": "Test your understanding of advising community-scale exits, from community assessment and stakeholder engagement through organizing, cooperatives, commons, teams, conflict, implementation planning and documentation.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "Which reason for documenting is given in the lesson?",
+        "question": "When assessing a community's readiness to act, how should an adviser use the response spectrum?",
         "options": [
-          "To keep knowledge private within one group",
-          "To enable others to replicate your work",
-          "To replace the need for teaching",
-          "To prove that no mistakes were made"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Documentation captures lessons, enables others to replicate, builds collective knowledge, maintains institutional memory, and creates teaching resources."
-      },
-      {
-        "question": "What should documentation include according to the lesson?",
-        "options": [
-          "Only the successes, so others are encouraged",
-          "Only final designs without context",
-          "What worked, what didn't, and why, along with the context that shaped decisions",
-          "Only cost figures"
+          "Assume exit is the goal and use the spectrum only to choose how fast to leave",
+          "Skip it, since the community already asked for help with exit",
+          "Ask honestly whether optimization or reform would serve better before recommending exit",
+          "Apply it only after a parallel system has been built"
         ],
         "correctAnswer": 2,
-        "explanation": "You should document what worked, what didn't, and why, plus designs, processes, costs, mistakes, and the context that shaped decisions."
+        "explanation": "Not every community problem calls for exit. An adviser who assumes exit is always the answer has stopped doing assessment; if reforms are working, building a parallel system may waste scarce effort."
       },
       {
-        "question": "How should a documentation method be chosen?",
+        "question": "What was Sherry Arnstein's central warning about citizen participation, as applied to community exits?",
         "options": [
-          "Match the method to the audience and content",
-          "Always use video because it is most engaging",
-          "Always use written guides because they are most permanent",
-          "Use whatever method takes the least time"
+          "Participation without redistribution of power can be an empty ritual that lets those in charge claim everyone was involved",
+          "Participation always slows decisions and should be kept to a minimum",
+          "Only elected officials should take part in decisions about exit",
+          "Consultation and partnership are the same thing and can be used interchangeably"
         ],
         "correctAnswer": 0,
-        "explanation": "Methods include written guides, video, case studies, and templates and tools, matched to audience and content."
+        "explanation": "Arnstein distinguished symbolic participation from forms that share real power. Advisers should say honestly which kind of decision each one is, because mislabelling a consultation as a partnership damages trust."
       },
       {
-        "question": "Why does the lesson say to include mistakes in documentation?",
+        "question": "Which of these is one of the organizing principles for collective exit?",
         "options": [
-          "Mistakes are the only useful part of documentation",
-          "Including them fulfills legal requirements",
-          "Mistakes should be hidden to protect reputations",
-          "Lessons learned and mistakes made help others learn from your experience"
+          "Start with ideology so that members share a clear worldview",
+          "Ask for large commitments early to test who is serious",
+          "Move as fast as possible before opposition forms",
+          "Build relationships before asking for commitment and move at the speed of trust"
         ],
         "correctAnswer": 3,
-        "explanation": "Documentation enables others to learn from your experience, which includes lessons learned and mistakes made, not just successes."
+        "explanation": "The lesson's organizing principles are to start with shared concerns rather than ideology, build relationships before asking for commitment, move at the speed of trust, and recognize that power comes from relationships, not just ideas."
       },
       {
-        "question": "What timing does the lesson recommend for sharing?",
+        "question": "What defines a cooperative in the Cooperative Structures lesson?",
         "options": [
-          "Share only after the project is fully complete",
-          "Share early and often",
-          "Share once per year",
-          "Share only when asked"
+          "A business owned by outside investors that donates profits to the community",
+          "An enterprise owned and governed by its members",
+          "A government agency that provides services to a neighborhood",
+          "An informal group that shares resources without any legal structure"
         ],
         "correctAnswer": 1,
-        "explanation": "The lesson advises sharing through exit movement networks, bioregional hubs, online commons, and peer learning communities, and to share early and often."
+        "explanation": "Cooperatives are enterprises owned and governed by their members, providing legal and organizational structures for collective exit. Principles such as democratic control distinguish them from other business forms."
       },
       {
-        "question": "Which of these is listed as a sharing network?",
+        "question": "According to the Commons Governance lesson, which statement about commons is accurate?",
         "options": [
-          "Private company archives",
-          "Personal notebooks kept at home",
-          "Bioregional hubs",
-          "Closed investor briefings"
+          "Commons are governed by rules, but the rules are made by their users",
+          "Commons are unregulated resources open to anyone without rules",
+          "Commons are resources owned and managed by the state",
+          "Commons can only be natural resources such as forests and water"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Commons are resources managed collectively by user communities. They are not unregulated: they have rules, but rules made by users, and they can be natural, cultural or infrastructural."
+      },
+      {
+        "question": "How does the Building Transition Teams lesson recommend forming a team?",
+        "options": [
+          "Recruit as many people as possible at once, then sort out roles later",
+          "Wait until a crisis to see who proves reliable",
+          "Start with trusted relationships and vet people through small commitments before large ones",
+          "Select only people with the same skills and perspective to avoid disagreement"
         ],
         "correctAnswer": 2,
-        "explanation": "Sharing networks include exit movement networks, bioregional hubs, online commons, and peer learning communities."
+        "explanation": "Team formation starts with trusted relationships, expands through shared work and vets people through small commitments before large ones, building trust before crisis. Diversity of perspective improves problem-solving."
+      },
+      {
+        "question": "What is the Conflict and Resilience lesson's view of conflict in exit communities?",
+        "options": [
+          "Conflict is a sign the community has failed and should disband",
+          "Conflict is normal; it is unaddressed conflict that is dangerous, and resolution methods should match the conflict's type and severity",
+          "Conflict should always be handled by a single method, such as a majority vote",
+          "Conflict only comes from outside pressure, never from within the group"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Conflict is normal; unaddressed conflict is dangerous. Methods such as direct communication, mediation, group processes and restorative circles should be matched to the conflict type and severity."
+      },
+      {
+        "question": "In community implementation planning, how should a transition be phased?",
+        "options": [
+          "Build every parallel system at once to maintain momentum",
+          "Leave the existing system as soon as the pilot launches",
+          "Decide phase conditions as you go, once each phase is already underway",
+          "Each phase should end in a stable intermediate state, with conditions for moving on agreed in advance"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Each phase should end in a stable intermediate state the community could hold if progress stalled, and the conditions for moving to the next, less reversible phase should be written down beforehand."
+      },
+      {
+        "question": "In the Community Food Co-op scenario, what is the best first step when several people are interested but commitments vary?",
+        "options": [
+          "Hold a public meeting and ask for founding member commitments",
+          "Start a buying club with 5 to 10 committed people to test the concept",
+          "Write a detailed business plan and seek funding",
+          "Let the founders decide the structure for everyone"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A small buying club applies graduated engagement, building proof of concept before expansion. A public meeting is too early without relationships, and planning before organizing may produce plans nobody owns."
+      },
+      {
+        "question": "According to the Documenting and Sharing lesson, what should documentation include?",
+        "options": [
+          "What worked, what did not and why, along with the context that shaped decisions",
+          "Only successes, so that others are encouraged to follow",
+          "Only final designs, leaving out costs and mistakes",
+          "Only material kept private within the founding group"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Documentation should capture what worked, what did not and why, designs, processes and costs, lessons learned and mistakes made, and the context that shaped decisions, and it should be shared early and often."
       }
     ]
   },
   "a-m9": {
     "moduleId": "a-m9",
     "title": "Module 9 Knowledge Check",
-    "description": "Test your understanding of how the Applied Exodology toolkit integrates into a sequenced exit plan.",
+    "description": "Test your understanding of Applied Exodology synthesis, the capstone exit plan, peer review of exit plans and reflection on your applied practice.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "What does the lesson say about the tools in the Applied toolkit?",
+        "question": "Which sequence for an exit does the Applied Exodology Synthesis lesson recommend?",
         "options": [
-          "They should be used separately, one at a time",
-          "Only dependency mapping is essential",
-          "They work together as an integrated practice",
-          "They replace the need for community"
-        ],
-        "correctAnswer": 2,
-        "explanation": "The Applied toolkit, from dependency mapping through documentation, works together as an integrated practice."
-      },
-      {
-        "question": "Which sequence matches the lesson's guidance for sequencing your exit?",
-        "options": [
+          "Execute, then map dependencies, then document",
           "Map dependencies, design alternatives, plan transition, build teams, execute, document, share",
-          "Build teams, execute, map dependencies, share, document",
-          "Design alternatives, execute, map dependencies, plan transition",
-          "Execute, document, share, then map dependencies"
-        ],
-        "correctAnswer": 0,
-        "explanation": "The sequence runs map dependencies, design alternatives, plan transition, build teams, execute, document, share, iterating and adapting to context."
-      },
-      {
-        "question": "Which of the following is listed as a common pitfall?",
-        "options": [
-          "Iterating on your plan",
-          "Adapting to your context",
-          "Documenting your learning",
-          "Isolation without community"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Common pitfalls are moving too fast without foundation, moving too slow and missing windows, isolation without community, action without reflection, and reflection without action."
-      },
-      {
-        "question": "Which pair of pitfalls relates to pace?",
-        "options": [
-          "Action without reflection and reflection without action",
-          "Moving too fast without foundation and moving too slow and missing windows",
-          "Isolation without community and action without reflection",
-          "Documenting too much and sharing too little"
+          "Build teams, execute, design alternatives, then map dependencies",
+          "Plan transition, share, map dependencies, then design alternatives"
         ],
         "correctAnswer": 1,
-        "explanation": "The pace-related pitfalls are moving too fast without foundation and moving too slow and missing windows."
+        "explanation": "The lesson sequences an exit as map dependencies, design alternatives, plan transition, build teams, execute, document and share, iterating as needed and adapting to context."
       },
       {
-        "question": "According to the synthesis lesson, what does Strategic Exodology address?",
+        "question": "Which statement reflects the common pitfalls named in the synthesis lesson?",
         "options": [
-          "Mapping household dependencies",
-          "Building a first parallel food system",
-          "Guiding others and shaping larger transitions",
-          "Personal financial planning"
+          "Both moving too fast without foundation and moving too slow and missing windows are pitfalls",
+          "Only moving too slowly is a pitfall; speed is always an advantage",
+          "Reflection is a pitfall in itself and should be avoided in favor of action",
+          "Working alone is safer than working with community"
         ],
-        "correctAnswer": 2,
-        "explanation": "Strategic Exodology addresses guiding others and shaping larger transitions, for those who would guide others."
+        "correctAnswer": 0,
+        "explanation": "The lesson lists moving too fast without foundation, moving too slow and missing windows, isolation without community, action without reflection, and reflection without action."
       },
       {
-        "question": "In the capstone exit plan, which dependency should the parallel system be designed for?",
+        "question": "In the capstone exit plan, which dependency should you design a parallel system for?",
         "options": [
-          "The least important dependency, to practice safely",
-          "Any dependency chosen at random",
-          "The dependency with the most expensive alternative",
-          "Your most critical/addressable dependency"
+          "Every dependency you have, all at once",
+          "The dependency that is least important to you, as a low-risk test",
+          "Whichever dependency a peer reviewer chooses",
+          "Your most critical and addressable dependency"
         ],
         "correctAnswer": 3,
-        "explanation": "The capstone asks you to design a parallel system for your most critical/addressable dependency after mapping your top 3 system dependencies."
+        "explanation": "The capstone asks you to map your top three system dependencies with full tracing, then design a parallel system for your most critical and addressable dependency."
+      },
+      {
+        "question": "What is the purpose of good peer review of an exit plan?",
+        "options": [
+          "To rewrite the plan in the reviewer's preferred form",
+          "To approve the plan so the author can proceed with confidence",
+          "To find the weaknesses in a plan before reality does",
+          "To rank plans against each other"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Good peer review is specific, evidence-based and kind without being vague; its purpose is to find weaknesses such as an unmapped dependency or missing fallback before reality does."
+      },
+      {
+        "question": "In the peer review exercise, what does it mean if the author says your summary of their plan misses their intent?",
+        "options": [
+          "The plan may need to be clearer, which is useful feedback in itself",
+          "The reviewer has failed and should withdraw from the exercise",
+          "The author should ignore the review entirely",
+          "The summary should be rewritten to match the cover note word for word"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The reviewer shares the summary with the author first; if it misses their intent, the plan may need to be clearer, and that is useful feedback in itself."
+      },
+      {
+        "question": "When responding to a concern raised about your own plan, when is declining it legitimate?",
+        "options": [
+          "Whenever you disagree, without needing to explain",
+          "Never; every concern from a reviewer must be accepted",
+          "Only if the reviewer agrees to withdraw the concern",
+          "When you have evidence the reviewer lacked, and you say what that evidence is"
+        ],
+        "correctAnswer": 3,
+        "explanation": "For each concern you record accept, partly accept or decline. Declining is legitimate when you have evidence the reviewer lacked, and you should state that evidence."
+      },
+      {
+        "question": "What does the Principle of Professional Competence ask of practitioners, as discussed in the reflection lesson?",
+        "options": [
+          "To undertake only work for which they are adequately qualified and seek collaboration beyond it",
+          "To take on every task in their chosen setting to avoid relying on others",
+          "To wait until they are fully expert before taking any step",
+          "To leave technical, legal and financial tasks out of their plans"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The Principle of Professional Competence asks practitioners to undertake only work for which they are adequately qualified and to seek collaboration beyond it, naming the people or groups whose skills they will need."
+      },
+      {
+        "question": "According to the reflection lesson, what is the measure of your practice?",
+        "options": [
+          "How far and how quickly you have exited existing systems",
+          "How many tools of the Applied path you have studied",
+          "Whether you have left well and widened the way for others",
+          "Whether you move on to the Strategic path immediately"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The lesson closes by saying the measure of practice is not how far you have exited but whether you have left well and widened the way for others."
       }
     ]
   },
@@ -1712,222 +1844,288 @@ export const additionalAssessments: Record<string, SimpleAssessment> = {
   "s-m1": {
     "moduleId": "s-m1",
     "title": "Module 1 Knowledge Check",
-    "description": "Test your understanding of how Exodology principles change and apply across individual, community, regional, national and civilizational scales.",
+    "description": "Test your understanding of Exodology at scale, including how dynamics change across scales, regional and national transitions, and lessons from national energy transitions.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "Which scale of Exodology involves governance, public infrastructure and diverse stakeholders, as with a city, county or bioregion pursuing exit?",
+        "question": "What does the fractal principle say about Exodology principles?",
         "options": [
-          "Community scale",
-          "Regional scale",
-          "Individual scale",
-          "Civilizational scale"
+          "They work at every scale, with appropriate adaptation",
+          "They apply only to individuals and households",
+          "They must be replaced by entirely new principles at national scale",
+          "They work identically at every scale with no adaptation needed"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Exodology principles such as dependency mapping, exit friction, parallel systems and ethical responsibility apply fractally, working at every scale with appropriate adaptation."
+      },
+      {
+        "question": "Which example does the Scaling Exodology lesson give of a top-down multi-scale strategy?",
+        "options": [
+          "The first solar homes enabling the solar industry",
+          "A regional transition spreading horizontally to other regions",
+          "Feed-in tariffs making home solar economically viable",
+          "A household using portable solar panels"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Top-down strategy means policy changes enabling individual and community exits, such as feed-in tariffs that made home solar viable. The first solar homes enabling the solar industry is a bottom-up example."
+      },
+      {
+        "question": "How does the Designing Regional Transitions lesson describe the role of regional infrastructure?",
+        "options": [
+          "It should be avoided because it creates new dependencies",
+          "It builds what individuals and communities cannot, enabling local exits",
+          "It matters less at regional scale than at individual scale",
+          "It is only relevant once national policy has changed"
         ],
         "correctAnswer": 1,
-        "explanation": "The regional scale covers a city, county or bioregion pursuing exit, and it involves governance, public infrastructure and diverse stakeholders."
+        "explanation": "Regional infrastructure planning covers energy, water, food, transportation and communication systems, building what individuals and communities cannot; regional infrastructure enables local exits."
       },
       {
-        "question": "According to the lesson, what happens to coordination costs as the scale of exit increases?",
+        "question": "What does multi-level alignment mean in the National and Global Transitions lesson?",
         "options": [
-          "They stay roughly constant because the same principles apply at every scale",
-          "They fall, because larger systems already have coordination structures in place",
-          "They matter only at the individual scale, where one household must organize everything",
-          "They rise, growing exponentially from no coordination for individuals to aligning millions of actors nationally"
+          "Local action is irrelevant once national policy exists",
+          "Global frameworks should replace all local initiatives",
+          "Each scale should act independently without regard to the others",
+          "Local exits contribute to national and global transition, while national and global frameworks enable local exits"
         ],
         "correctAnswer": 3,
-        "explanation": "Individual exit requires no coordination, while national exit requires aligning millions of actors, so the coordination burden grows exponentially."
+        "explanation": "Multi-level alignment covers how local exits contribute to national and global transition and how national and global frameworks enable local exits, aligning action across scales."
       },
       {
-        "question": "Why do equity stakes rise as exit scales up?",
+        "question": "Why does the case study describe the UK's exit from coal mining as resembling collapse rather than managed exit?",
         "options": [
-          "Larger exits affect millions of people, including vulnerable populations who may lack exit capability",
-          "Larger exits require less public funding, so benefits shrink",
-          "Individual exits harm more people than national ones",
-          "Equity only becomes relevant once exits reach the civilizational scale"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Individual exit affects one household, but national exit affects millions, including vulnerable populations who may lack exit capability."
-      },
-      {
-        "question": "What does the fractal principle state?",
-        "options": [
-          "Each scale requires an entirely separate set of principles",
-          "Principles proven at the individual scale can be copied to nations without change",
-          "Core Exodology principles work at every scale, with appropriate adaptation",
-          "Only national and civilizational exits follow Exodology principles"
+          "Because coal power stations closed with years of advance notice",
+          "Because a cooperative alternative was built in mining areas first",
+          "Because the old system was withdrawn far faster than any local alternative was built and residual duty was widely judged inadequate",
+          "Because the closures involved fewer workers than the later coal power exit"
         ],
         "correctAnswer": 2,
-        "explanation": "Exodology principles apply fractally: dependency mapping, exit friction, parallel systems and ethical responsibility work at every scale, though they require scale-appropriate adaptation."
+        "explanation": "After the 1984 to 1985 strike, mines closed rapidly and many communities experienced long-lasting unemployment and decline; the old system was withdrawn faster than any local alternative was built."
       },
       {
-        "question": "The lesson notes that feed-in tariffs made home solar economically viable. Which multi-scale approach does this illustrate?",
+        "question": "What does the pattern \"catalysts open windows, but do not do the work\" mean?",
         "options": [
-          "Top-down: policy changes enabling individual and community exits",
-          "Bottom-up: individual exits creating models larger scales can adopt",
-          "Middle-out: regional transitions spreading horizontally to other regions",
-          "Fractal: the same tool used identically at every scale"
+          "Events like the 1973 oil crisis changed what was politically possible, but the exits still took decades of policy, investment and organizing",
+          "Once a catalyst occurs, the transition completes itself within a few years",
+          "Catalysts are the main cause of failed transitions",
+          "Catalysts matter only for household exits, not national ones"
         ],
         "correctAnswer": 0,
-        "explanation": "In the top-down approach, policy changes such as feed-in tariffs enable individual and community exits."
+        "explanation": "The 1973 oil crisis and the 2011 Fukushima accident changed what was politically possible, but the exits themselves still took decades of deliberate work."
       },
       {
-        "question": "How does political resistance change as exits grow larger?",
+        "question": "What made early Danish wind power instructive from an Exodological point of view?",
         "options": [
-          "It weakens, because large exits carry more legitimacy",
-          "It stays the same at every scale, since exit friction is constant",
-          "It intensifies, from individual exiters being ignored to national exits provoking organized resistance",
-          "It is strongest against individual exiters, who are easiest to target"
+          "It was built and owned entirely by large utilities",
+          "It replaced oil overnight after the 1973 crisis",
+          "It depended on nuclear power as a backup",
+          "Many turbines were owned by local cooperatives, farmers and households, giving communities a stake and building acceptance"
         ],
-        "correctAnswer": 2,
-        "explanation": "Individual exiters are ignored, regional exits threaten industries, and national exits threaten entire economic sectors and provoke organized resistance."
+        "correctAnswer": 3,
+        "explanation": "The ownership pattern of early Danish wind power, with many turbines owned by cooperatives, farmers and households, gave communities a direct stake in the parallel system and is credited with building local acceptance."
+      },
+      {
+        "question": "Why does the case study warn against copying Denmark's transition as a model elsewhere?",
+        "options": [
+          "Because Denmark's transition failed on every criterion",
+          "Because ignoring context is an error: Denmark is small, windy and close to neighbors it can trade electricity with",
+          "Because national cases have nothing to teach practitioners",
+          "Because Denmark relied on a single leader whose approach cannot be repeated"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Ignoring context is one of the limits of the case method: what worked in one geography, political culture and resource base may not transfer. Cases teach judgment, not templates."
       }
     ]
   },
   "s-m2": {
     "moduleId": "s-m2",
     "title": "Module 2 Knowledge Check",
-    "description": "Test your understanding of policy levers that enable or block exit and the governance models suited to transitions at different scales.",
+    "description": "Test your understanding of policy levers, governance models, exit-compatible policy design and regulatory navigation for transition.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "Which of the following does the lesson give as an example of an exit-blocking policy?",
+        "question": "Which of the following is described as an exit-blocking policy?",
         "options": [
-          "Right-to-repair laws",
           "Net metering",
-          "Zoning that blocks food production",
-          "Cooperative formation laws"
+          "Right-to-repair laws",
+          "Cooperative formation laws",
+          "Utility monopolies"
         ],
-        "correctAnswer": 2,
-        "explanation": "The lesson lists utility monopolies, zoning, licensing and debt policy as exit-blocking; right-to-repair, net metering and cooperative formation laws are exit-enabling."
+        "correctAnswer": 3,
+        "explanation": "Utility monopolies block energy alternatives, just as zoning, licensing and debt policy can block other exits. Net metering, right-to-repair and cooperative formation laws are exit-enabling."
       },
       {
-        "question": "What is meant by prefigurative policy?",
+        "question": "What does the principle of subsidiarity hold?",
         "options": [
-          "Communities creating their own policy environments, such as intentional communities with internal governance, while advocating for change",
-          "Waiting until national policy changes before attempting any exit",
-          "Filing regulatory complaints before a policy is enacted",
-          "Drafting legislation in advance for policymakers to adopt"
+          "Decisions should be made at the lowest appropriate level",
+          "All decisions should be made by consensus",
+          "Decisions should always follow national boundaries",
+          "Transition decisions should be made by a single leader for speed"
         ],
         "correctAnswer": 0,
-        "explanation": "Prefigurative policy means communities create their own policy environments, such as intentional communities or member-governed cooperatives, working within constraints while advocating for change."
+        "explanation": "Subsidiarity means deciding at the lowest appropriate level, and it guides nested, multi-scale governance."
       },
       {
-        "question": "What does the principle of subsidiarity mean in multi-scale governance?",
+        "question": "How does transition governance differ from steady-state governance?",
         "options": [
-          "Decide at the highest available level to ensure consistency",
-          "Follow ecological boundaries when drawing jurisdictions",
-          "Use consensus for every decision regardless of group size",
-          "Decide at the lowest appropriate level"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Subsidiarity means deciding at the lowest appropriate level, and it guides the level of decision-making in nested governance."
-      },
-      {
-        "question": "How does governance for transition differ from steady-state governance, according to the lesson?",
-        "options": [
-          "It should always rely on full consensus, however long decisions take",
-          "It may need quick decisions during crisis, balancing speed and participation, often through temporary structures with sunset clauses",
-          "It should replace participation with expert rule permanently",
-          "It is identical to steady-state governance and needs no special design"
+          "It never requires participation",
+          "It must balance speed with participation and may use temporary structures with sunset clauses",
+          "It should always rely on holacracy",
+          "It is identical to steady-state governance"
         ],
         "correctAnswer": 1,
-        "explanation": "Transition governance requires quick decisions during crisis, a balance of speed and participation, and temporary structures with sunset clauses."
+        "explanation": "Transition may require quick decisions during crisis, so it balances speed and participation and can use temporary structures with sunset clauses."
       },
       {
-        "question": "In the solar access scenario, a utility blocks community solar through prohibitive fees. Which response does the lesson favor?",
+        "question": "What is exit-compatible policy?",
         "options": [
-          "File a regulatory complaint",
-          "Focus on individual rooftop solar, which isn't restricted",
-          "Seek a variance for your own property",
-          "Build a coalition with environmental and ratepayer groups for legislation"
+          "Policy that encourages everyone to leave existing systems",
+          "Policy that removes every form of exit friction, including notice periods",
+          "Policy that avoids trapping people in systems that fail them while protecting those who stay",
+          "Policy that bans long-term commitments"
         ],
-        "correctAnswer": 3,
-        "explanation": "Coalition building creates political power for systemic change, while a regulatory complaint is slow and rooftop solar avoids the community-scale problem."
+        "correctAnswer": 2,
+        "explanation": "Exit-compatible policy is not about encouraging everyone to leave; it avoids trapping people in failing systems while protecting the people who stay. Some friction, such as notice periods, is legitimate."
       },
       {
-        "question": "In the food production scenario, zoning prohibits backyard chickens and front-yard gardens. Why is organizing neighbors to petition for a zoning amendment preferred over seeking a variance?",
+        "question": "Why does the lesson say easy exit is not the same as fair exit?",
         "options": [
-          "A variance is illegal in most cities",
-          "Collective action changes policy for everyone, while a variance only solves an individual problem",
-          "Petitions are faster than any individual process",
-          "Moving away is never appropriate in Exodology"
+          "Because exit should always be costly",
+          "Because those most able to press for improvement tend to leave first, leaving others with a worse system and less voice",
+          "Because fair exit means banning large employers from leaving",
+          "Because voice channels make exit unnecessary"
         ],
         "correctAnswer": 1,
-        "explanation": "Seeking a variance solves the individual problem but does not change policy, whereas organizing neighbors for a zoning amendment changes policy for everyone."
+        "explanation": "Following Hirschman, members with the most resources and options often leave first, so exit rights should be paired with protections such as notice, service obligations and voice channels for those who stay."
+      },
+      {
+        "question": "In the solar access scenario, why is building a coalition for legislation the preferred response?",
+        "options": [
+          "It avoids any conflict with the utility",
+          "It solves the problem for one household quickly",
+          "It is faster than any regulatory process",
+          "Coalition building creates political power for systemic change"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Building a coalition with environmental and ratepayer groups creates political power for systemic change, whereas a complaint is slow and focusing on rooftop solar avoids the community-scale problem."
+      },
+      {
+        "question": "According to the lesson on regulatory navigation, where is the ethical line when working around a rule?",
+        "options": [
+          "Between using a lawful alternative and evading the rule's purpose",
+          "Between small and large organizations",
+          "Between local and national regulations",
+          "There is no ethical line as long as the goal is worthy"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Working around rules is legitimate only when it is transparent and respects the rule's purpose without shifting costs or risks onto others; regulatory arbitrage is not acceptable even for exit movements."
+      },
+      {
+        "question": "When compliance costs make a small alternative unviable, what does the lesson recommend?",
+        "options": [
+          "Cut corners quietly to stay viable",
+          "Abandon the alternative entirely",
+          "Treat the costs as evidence for reform rather than a reason to cut corners",
+          "Use regulatory arbitrage like large incumbents do"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Rules designed for large incumbents can impose costs small alternatives cannot carry; that becomes evidence for reform, not a reason to cut corners."
       }
     ]
   },
   "s-m3": {
     "moduleId": "s-m3",
     "title": "Module 3 Knowledge Check",
-    "description": "Test your understanding of justice frameworks for exit, including exit equity, the lifeboats problem and justice-centered exit design.",
+    "description": "Test your understanding of justice frameworks, the distribution of transition costs, access and inclusion, and protecting vulnerable populations during exit.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "According to the lesson, how does just transition relate to Exodology?",
+        "question": "According to the lesson, when is the \"lifeboats\" critique of exit less valid?",
         "options": [
-          "It is an optional add-on once an exit has succeeded",
-          "It applies only to national-scale exits",
-          "It is a separate field that Exodology leaves to policymakers",
-          "It is central to ethical practice, not an add-on"
-        ],
-        "correctAnswer": 3,
-        "explanation": "The lesson states that just transition is not an add-on to Exodology; it is central to ethical practice."
-      },
-      {
-        "question": "Which justice concept refers to addressing harms caused by the systems being exited, not just building alternatives?",
-        "options": [
-          "Procedural justice",
-          "Restorative justice",
-          "Exit equity",
-          "Intergenerational justice"
+          "When exits require resources most people do not have",
+          "When exits create models that can be scaled and replicated and include provisions for those who cannot self-exit",
+          "When exits create exclusive alternatives unavailable to most",
+          "When exits draw skilled people and capital away from communities"
         ],
         "correctAnswer": 1,
-        "explanation": "Restorative justice means addressing harms caused by the systems being exited, not just building alternatives."
-      },
-      {
-        "question": "What does procedural justice require in exit decisions?",
-        "options": [
-          "Equal access to exit opportunities regardless of income or location",
-          "Ensuring transitions serve future generations",
-          "Fair processes for making exit decisions, including voice for affected communities",
-          "Distributing the costs of transition fairly"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Procedural justice concerns fair processes for making exit decisions, including voice for affected communities."
-      },
-      {
-        "question": "When is the lifeboats critique of exit less valid, according to the lesson?",
-        "options": [
-          "When exits create models that can be scaled and replicated and maintain solidarity with those who remain",
-          "When exits require resources most people don't have",
-          "When exits create exclusive alternatives unavailable to most",
-          "When exiters move capital out of their former communities"
-        ],
-        "correctAnswer": 0,
         "explanation": "The critique is less valid when exits create scalable, replicable models, include provisions for those who cannot self-exit, challenge extraction and maintain solidarity with those who remain."
       },
       {
-        "question": "What is the risk of exits that ignore justice?",
+        "question": "Which justice concept concerns fair processes for making exit decisions, including voice for affected communities?",
         "options": [
-          "They can leave the most vulnerable behind in failing systems and reproduce existing inequalities",
-          "They automatically create fairer alternative systems",
-          "They make exit equally available to everyone",
-          "They slow down exits for those with resources"
+          "Procedural justice",
+          "Restorative justice",
+          "Intergenerational justice",
+          "Exit equity"
         ],
         "correctAnswer": 0,
-        "explanation": "Without attention to justice, exits can leave the vulnerable behind, extract resources, create new exclusion and reproduce existing inequalities in new contexts."
+        "explanation": "Procedural justice means fair processes for making exit decisions, including voice for affected communities."
       },
       {
-        "question": "Which question belongs to the Responsibility element of justice-centered exit design?",
+        "question": "Why does the lesson warn that a transition can be positive on average yet still unfair?",
         "options": [
-          "Who can participate in this exit and what barriers exist?",
-          "Who gains from the alternative system?",
-          "Are affected communities making decisions?",
-          "What obligations exist to those who cannot exit?"
+          "Because benefits always arrive before costs",
+          "Because averages are always calculated incorrectly",
+          "Because costs often arrive early and are concentrated on particular groups, while benefits arrive later and are spread thinly",
+          "Because only financial costs can be measured"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Costs often arrive early and visibly while benefits arrive later and spread thinly, so concentrated, immediate losses on particular groups can hide behind a positive average."
+      },
+      {
+        "question": "How does the lesson recommend dealing with hidden and delayed legacy costs, such as pollution cleanup or unfunded pensions?",
+        "options": [
+          "Address them once the transition is declared a success",
+          "Leave them to future governments",
+          "Exclude them from plans since they cannot be measured precisely",
+          "Assign responsibility at the start through bonds, funds or binding commitments"
         ],
         "correctAnswer": 3,
-        "explanation": "Justice-centered design asks about access, voice, burden distribution, benefit distribution and responsibility, which concerns the obligations owed to those who cannot exit."
+        "explanation": "Because slow costs appear years later, responsibility for legacy costs should be assigned at the start through bonds, funds or binding commitments rather than hoping someone will pay later."
+      },
+      {
+        "question": "What does the capability approach imply for designing access to exit pathways?",
+        "options": [
+          "Offering the same support to everyone does not produce equal access",
+          "Giving everyone the same subsidy guarantees equal access",
+          "Resources are all that matter for exit",
+          "Motivation is the main reason people fail to take up alternatives"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The capability approach focuses on what people are actually able to do and be, so two people given the same support may have very different capability to use it."
+      },
+      {
+        "question": "What is internal exclusion, as distinguished by Iris Marion Young?",
+        "options": [
+          "Being kept out of a decision process altogether",
+          "Being excluded from membership by a credit check",
+          "Being formally included in a process while one's contributions are not taken seriously",
+          "Choosing not to join an alternative system"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Internal exclusion means being formally present but having one's contributions not taken seriously; external exclusion means being kept out altogether."
+      },
+      {
+        "question": "In a transition, which of the following is an example of a handover gap?",
+        "options": [
+          "A register of customers who need extra help",
+          "The old system is withdrawn before its replacement works reliably for those who depend on it",
+          "A pilot run in a limited area before scaling",
+          "A minimum guarantee on heating in winter"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A handover gap is a period in which the old system has been withdrawn before its replacement works reliably for those who depend on it."
+      },
+      {
+        "question": "Which practice reflects protection without paternalism?",
+        "options": [
+          "Categorizing people as vulnerable without their knowledge",
+          "Keeping people in a failing system to keep them safe",
+          "Making decisions for vulnerable groups to save them effort",
+          "Including vulnerable groups in governance and keeping the door to exit open"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Protection should respect agency: ask rather than assume, let people define their own needs, include vulnerable groups in governance, and avoid safeguards that become a new form of lock-in."
       }
     ]
   },
@@ -2082,370 +2280,480 @@ export const additionalAssessments: Record<string, SimpleAssessment> = {
   "s-m6": {
     "moduleId": "s-m6",
     "title": "Module 6 Knowledge Check",
-    "description": "Test your understanding of designing exit education and building learning communities.",
+    "description": "Test your understanding of institutional lock-in, exit-enabling governance, transition-ready organizations, and designing exit education and learning communities.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "Where does learner-centered design start?",
+        "question": "According to the lesson, how does institutional lock-in usually come about?",
         "options": [
-          "With the full body of content to be covered",
-          "With learner needs: what learners need to be able to do",
-          "With the assessment format",
-          "With the teacher's areas of expertise"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Learner-centered design starts with learner needs, not content, asking what learners need to be able to do and what knowledge and experiences support that."
-      },
-      {
-        "question": "How does the lesson say Exodology is best learned?",
-        "options": [
-          "Primarily by memorizing frameworks before any practice",
-          "Only through lectures by experienced stewards",
-          "By avoiding failure until learners are fully prepared",
-          "By doing, through simulations, projects, fieldwork and reflection on experience"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Exodology is learned by doing, not just studying, through simulations, projects, fieldwork, reflection on experience and learning from failure."
-      },
-      {
-        "question": "Which sequence reflects the scaffolding principle described in the lesson?",
-        "options": [
-          "Strategy before foundation before application",
-          "Abstract before concrete",
-          "Foundation before application before strategy",
-          "Complex before simple to challenge learners"
+          "Through a single bad decision by incumbents",
+          "Through the deliberate plotting of a few powerful actors",
+          "It accumulates through path dependence, as each reasonable step makes alternatives more expensive",
+          "Through members' strong preference to stay"
         ],
         "correctAnswer": 2,
-        "explanation": "Scaffolding moves from foundation to application to strategy, simple to complex and concrete to abstract, building on what learners already know."
+        "explanation": "Lock-in is rarely the product of a single bad decision; it accumulates as each reasonable step makes the next alternative more expensive, which is why analysis should avoid villain narratives."
       },
       {
-        "question": "What kind of assessment does the lesson recommend?",
+        "question": "Using Hirschman's exit and voice lens, what can high exit friction do to an institution?",
         "options": [
-          "Demonstrations of capability, not just knowledge tests, with feedback that guides improvement",
-          "Knowledge tests only, since they are easiest to score",
-          "No assessment, to keep learning self-directed",
-          "A single final exam at the end of the course"
+          "Guarantee that voice is always heard",
+          "Weaken accountability, because the institution has little to lose by ignoring complaints",
+          "Drain the institution of its most capable members",
+          "Remove any risk of crisis or collapse"
+        ],
+        "correctAnswer": 1,
+        "explanation": "When members cannot leave, the institution has little to lose by ignoring complaints, and dissatisfaction can be pushed underground until it surfaces as crisis."
+      },
+      {
+        "question": "How do exit and voice relate in exit-compatible governance?",
+        "options": [
+          "They work best together: credible exit makes leaders take voice seriously, and effective voice gives members reason to stay",
+          "Voice should replace exit wherever possible",
+          "Exit should be made effortless so voice becomes unnecessary",
+          "They are unrelated and should be designed separately"
         ],
         "correctAnswer": 0,
-        "explanation": "Assessment for learning uses demonstrations of capability, not just knowledge tests, and feedback that guides improvement."
+        "explanation": "Exit and voice are complements: a credible exit option makes leaders take voice seriously, and effective voice gives members a reason to stay and repair rather than leave."
       },
       {
-        "question": "In a community of practice, how do newcomers learn?",
+        "question": "Why do polycentric and nested governance structures matter for Exodology?",
         "options": [
-          "By completing all study before joining any practice",
-          "Through formal lectures from a single expert",
-          "By working alone until they become practitioners",
-          "Through legitimate peripheral participation, learning from practitioners"
+          "They concentrate power at a single point for faster decisions",
+          "They prevent any unit from ever leaving the federation",
+          "They remove the need for shared rules",
+          "They allow partial exit, so a local unit can change course without the whole system breaking apart"
         ],
         "correctAnswer": 3,
-        "explanation": "Communities of practice share domain, community and practice; through legitimate peripheral participation, newcomers learn from practitioners."
+        "explanation": "Polycentric and nested structures have many centers with real authority linked by shared rules, allowing partial exit at the local level without the whole system breaking apart."
       },
       {
-        "question": "What makes a learning community sustainable, according to the lesson?",
+        "question": "According to the lesson on transition-ready organizations, why do well-managed organizations often fail to change course?",
         "options": [
-          "It persists beyond any individual through leadership development, documentation and reproducing itself",
-          "It depends on one charismatic teacher",
-          "It keeps the same members indefinitely",
-          "It avoids documentation to stay flexible"
+          "Their leaders are always short-sighted",
+          "Good management of the current regime builds internal lock-in and makes small new approaches look unattractive",
+          "They lack any assets or skills",
+          "They change course too often"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Drawing on Christensen, well-managed firms often fail because they do what good management recommends, building assets, skills and revenue around the current regime and undervaluing new approaches."
+      },
+      {
+        "question": "What role do protected internal niches play in a transition-ready organization?",
+        "options": [
+          "They let alternatives be tested before competing on established terms, building parallel systems before the exit window opens",
+          "They should be protected permanently regardless of results",
+          "They replace the existing business immediately",
+          "They are used to hide failing operations from members"
         ],
         "correctAnswer": 0,
-        "explanation": "Sustainable learning communities persist beyond any individual through leadership development, documentation and knowledge management, and reproduction of the community itself."
+        "explanation": "Internal niches are protected spaces where new approaches can be tested, building parallel systems so an alternative already exists when the exit window opens, with clear learning goals and decision points."
+      },
+      {
+        "question": "Which principle reflects the lesson on designing exit education?",
+        "options": [
+          "Start with content and cover as much as possible",
+          "Teach strategy before foundations",
+          "Assess learners only through knowledge tests",
+          "Start with learner needs and scaffold from simple to complex"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Exit education should start with what learners need to be able to do, emphasize experiential learning, scaffold from foundation to strategy, and assess capability, not just knowledge."
+      },
+      {
+        "question": "In building learning communities, what shift in the teacher's role does the lesson describe?",
+        "options": [
+          "From facilitator to sole expert",
+          "From guiding to directing every step",
+          "From teacher as expert to teacher as facilitator who creates conditions for learning",
+          "From group learning to individual instruction only"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The lesson describes shifting from teacher as expert to teacher as facilitator: creating conditions for learning, guiding rather than directing, and trusting the learning process."
       }
     ]
   },
   "s-m7": {
     "moduleId": "s-m7",
     "title": "Module 7 Knowledge Check",
-    "description": "Test your understanding of exit as a movement and the role of narrative and framing in shaping exit.",
+    "description": "Test your understanding of exit stewardship, facilitation and coaching, generational thinking, resilience across time, long-term evaluation and adaptive management.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "Which question does target analysis address in movement strategy?",
+        "question": "Which of the following is part of steward ethics?",
         "options": [
-          "How does change happen?",
-          "What actions advance the goal?",
-          "How to build power over time?",
-          "Who can deliver change?"
+          "Encourage everyone to exit as soon as possible",
+          "Never push exit on those not ready and respect autonomy in decisions",
+          "Share clients' situations openly to build networks",
+          "Avoid referring clients elsewhere to maintain trust"
         ],
-        "correctAnswer": 3,
-        "explanation": "Movement strategy includes theory of change (how change happens), target analysis (who can deliver change), tactic selection and escalation."
+        "correctAnswer": 1,
+        "explanation": "Steward ethics require never pushing exit on those not ready, respecting autonomy, maintaining confidentiality, acknowledging the limits of one's knowledge and referring when appropriate."
       },
       {
-        "question": "What does the lesson mean by movement ecology?",
+        "question": "A client with debt and no savings wants to quit their job and move to an ecovillage immediately. What is the coaching response modeled in the stewardship scenarios?",
         "options": [
-          "Movements include diverse organizations, with people playing different roles such as organizers, spokespeople, researchers and supporters",
-          "Movements should focus only on environmental issues",
-          "A single organization should coordinate every role",
-          "Everyone in a movement should play the same role"
+          "Ask questions that help them examine their readiness",
+          "Support their excitement and help them plan the move",
+          "Tell them it is a bad idea and they should wait",
+          "Present a detailed plan for them to adopt"
         ],
         "correctAnswer": 0,
-        "explanation": "Different people play different roles, and movement ecology includes diverse organizations; each person should find their role."
+        "explanation": "The coaching approach asks questions that help the client discover what they need; supporting the move ignores red flags, and telling them to wait imposes judgment rather than facilitating reflection."
       },
       {
-        "question": "How does the lesson suggest movements avoid burnout?",
+        "question": "How does generational Exodology approach legacy?",
         "options": [
-          "Escalate tactics constantly to maintain momentum",
-          "Rely on a small group of highly committed people",
-          "Care for participants, celebrate victories, keep a sustainable pace and think long-term",
-          "Focus only on short-term wins"
+          "By locking in today's solutions so future generations cannot undo them",
+          "By focusing only on what can be achieved within one lifetime",
+          "With humility about future needs, avoiding binding future generations to our solutions",
+          "By prioritizing urgency over any long-term patience"
         ],
         "correctAnswer": 2,
-        "explanation": "Movements burn out; sustainability requires care for participants, celebrating victories, a sustainable pace and long-term thinking."
+        "explanation": "Legacy requires humility about future needs; we ask what we owe future generations and how to avoid binding them to our solutions, while balancing strategic patience with tactical urgency."
       },
       {
-        "question": "What point does the lesson make about framing effects?",
+        "question": "Which resilience principles does the Resilience Across Time lesson name?",
         "options": [
-          "Framing matters little because actions speak for themselves",
-          "The same action can be framed as abandonment or transformation, and frames shape perception and response",
-          "Exit should always be framed as dropping out",
-          "Frames only affect participants, not how society responds"
+          "Centralization, uniformity and scale",
+          "Speed, growth and efficiency",
+          "Secrecy, control and permanence",
+          "Diversity, redundancy and modularity"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Resilience comes from diversity, redundancy and modularity: multiple ways to meet each need and parts that can fail without system collapse."
+      },
+      {
+        "question": "Why can short-term measures mislead judgments about whether an exit succeeded?",
+        "options": [
+          "Early success can hide fragility and early difficulty can hide success",
+          "Short-term measures always overstate costs",
+          "Baselines never change over time",
+          "Costs always appear immediately"
+        ],
+        "correctAnswer": 0,
+        "explanation": "An alternative thriving early has shown it can start, not that it can last, while the transition burden is often heaviest at the start; baselines also drift and some costs arrive late."
+      },
+      {
+        "question": "How does exit coaching help clients, according to the Facilitation and Coaching lesson?",
+        "options": [
+          "By telling clients which exit to choose",
+          "By eliciting the client's own wisdom: helping them identify their motivations, explore options and plan, with accountability without judgment",
+          "By completing the client's dependency map for them",
+          "By pushing clients past analysis toward an immediate decision"
         ],
         "correctAnswer": 1,
-        "explanation": "The same action can be framed as abandonment or transformation, as dropping out or stepping up; frames shape perception and response."
+        "explanation": "Stewards use coaching to help others navigate exit without imposing solutions: helping clients identify their own motivations, facilitating dependency mapping and providing accountability without judgment."
       },
       {
-        "question": "How do counter-narratives challenge dominant framing of exit?",
+        "question": "What distinguishes double-loop learning from single-loop learning?",
         "options": [
-          "They accept the dominant view of exit as failure",
-          "They reframe exit, which dominant narratives cast as failure, as courage, responsibility and innovation",
-          "They avoid stories and rely only on data",
-          "They frame exit as abandonment of society"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Dominant narratives frame exit as failure; counter-narratives frame it as courage, responsibility and innovation."
-      },
-      {
-        "question": "Which elements does story-based strategy include, according to the lesson?",
-        "options": [
-          "Story of past, present and future, used to persuade at any cost",
-          "Characters without conflict or resolution",
-          "Story of self, us and now, used strategically while maintaining authenticity",
-          "A single fixed story told the same way to every audience"
+          "It adjusts actions to reach a goal more efficiently",
+          "It repeats the same review cycle twice",
+          "It questions the goals and assumptions behind actions, not only the actions themselves",
+          "It relies only on quantitative monitoring data"
         ],
         "correctAnswer": 2,
-        "explanation": "Story-based strategy asks who is telling what story to whom and uses the story of self, us and now strategically while maintaining authenticity."
+        "explanation": "Single-loop learning adjusts actions to reach a goal; double-loop learning questions the goals and assumptions themselves, linking adaptation back to the response spectrum."
+      },
+      {
+        "question": "Which is described as a misuse or limit of adaptive management?",
+        "options": [
+          "Stating assumptions explicitly before acting",
+          "Agreeing decision points in advance",
+          "Sequencing reversible steps before harder-to-reverse commitments",
+          "Using \"we will adapt as we go\" to avoid committing to clear goals, protections or timelines"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Adaptive management can become an excuse for vagueness; used properly it requires more explicit commitments, such as stated assumptions, defined monitoring and agreed decision points."
       }
     ]
   },
   "s-m8": {
     "moduleId": "s-m8",
     "title": "Module 8 Knowledge Check",
-    "description": "Test your understanding of generational Exodology and building alternatives that remain resilient across time.",
+    "description": "Test your understanding of integrating the strategic frameworks, movement dynamics, narrative and framing, and applying them together to a complex case.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "What stance does the lesson recommend for holding the urgency of climate change alongside slow cultural change?",
+        "question": "In the integration lesson, what is \"framework hopping\"?",
         "options": [
-          "Tactical patience with strategic urgency",
-          "Strategic patience with tactical urgency",
-          "Urgency in all things, setting patience aside",
-          "Patience in all things, waiting for culture to shift"
+          "Applying every framework in a fixed order without looping back",
+          "Switching to an easier analytical lens to avoid a difficult question raised by another",
+          "Treating the frameworks as boxes to tick in a plan that connects nothing",
+          "Combining two frameworks into a new model of transition"
         ],
         "correctAnswer": 1,
-        "explanation": "Climate change is urgent while cultural change is slow; the lesson calls for holding both without paralysis or despair through strategic patience with tactical urgency."
+        "explanation": "Framework hopping is switching to an easier lens to avoid a hard question, for example redescribing a justice problem as a communication problem or a governance failure as a technical one."
       },
       {
-        "question": "What does the lesson say about legacy and future generations?",
+        "question": "According to the working order of questions, which question should an integrated analysis begin with?",
         "options": [
-          "We should lock in our solutions so future generations cannot undo them",
-          "Future generations are not our concern",
-          "Legacy means preserving current systems unchanged",
-          "We should avoid binding future generations to our solutions, since legacy requires humility about future needs"
+          "Who will guide the transition, and how will it last?",
+          "How will people come to understand and join it?",
+          "What rules enable or block it?",
+          "Should we leave, and from what?"
         ],
         "correctAnswer": 3,
-        "explanation": "Legacy asks what we owe future generations and how to avoid binding them to our solutions; it requires humility about future needs."
+        "explanation": "The sequence begins with diagnosis: should we leave, and from what, using dependency mapping, the response spectrum, the signals and analysis of regime, niches, landscape and lock-in."
       },
       {
-        "question": "Which is an internal threat to the persistence of alternatives?",
+        "question": "Why does the lesson say justice and stability reinforce each other?",
         "options": [
-          "Succession failures",
-          "Political opposition",
-          "Economic pressure",
-          "Environmental change"
+          "Transitions that leave many people worse off tend to provoke backlash, which threatens stability",
+          "Stable systems automatically distribute transition burdens fairly",
+          "Justice analysis can be skipped once stability has been secured",
+          "Fast transitions are always both the most just and the most stable"
         ],
         "correctAnswer": 0,
-        "explanation": "Internal threats include conflict, burnout and succession failures; external threats include economic pressure, political opposition and environmental change."
+        "explanation": "Transitions that leave many worse off provoke backlash that threatens stability, so attending to transition burden is both right and protective of the transition itself."
       },
       {
-        "question": "Which principle is described as having parts that can fail without system collapse?",
+        "question": "The tension the lesson calls \"exit versus voice\" refers to what problem?",
         "options": [
-          "Centralization",
-          "Uniformity",
-          "Modularity",
-          "Efficiency"
+          "Narratives that overpromise recruit people quickly but then lose their trust",
+          "Larger-scale strategies risk imposing uniform solutions on different places",
+          "Building alternatives outside a system can weaken pressure for reform inside it",
+          "People need predictable commitments while adaptive management needs freedom to change course"
         ],
         "correctAnswer": 2,
-        "explanation": "Resilience principles include diversity, redundancy and modularity: multiple ways to meet each need and parts that can fail without system collapse."
+        "explanation": "Building alternatives outside a system can weaken pressure for reform inside it, so strategic plans often need both parallel systems for those who leave and continued advocacy for those who stay."
       },
       {
-        "question": "How do organizations maintain institutional memory, according to the lesson?",
+        "question": "Which of the following is listed under movement strategy in the lesson on exit as movement?",
         "options": [
-          "By relying on founders to stay indefinitely",
-          "By resisting all change",
-          "By keeping knowledge with a few key individuals",
-          "Through documentation, culture, ritual and succession planning"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Organizations remember through documentation, culture and ritual, and succession planning addresses what happens when founders leave."
-      },
-      {
-        "question": "What does the lesson say about evolution in healthy systems?",
-        "options": [
-          "Healthy systems change, adapting to new conditions while balancing stability and change",
-          "Healthy systems stay the same to protect what works",
-          "Change is a sign that an alternative is failing",
-          "Systems should change constantly with no stability"
+          "Theory of change, target analysis, tactic selection and escalation",
+          "Organizers, spokespeople, researchers and supporters",
+          "Caring for participants, celebrating victories and keeping a sustainable pace",
+          "Shared identity, networks, cultural production and movement infrastructure"
         ],
         "correctAnswer": 0,
-        "explanation": "Healthy systems change through adaptation to new conditions and a balance of stability and change, as learning organizations; evolution maintains relevance."
+        "explanation": "Movement strategy asks how change happens (theory of change), who can deliver it (target analysis), what actions advance the goal (tactic selection) and how to build power over time (escalation)."
+      },
+      {
+        "question": "How do counter-narratives, as described in the narrative and framing lesson, respond to dominant narratives about exit?",
+        "options": [
+          "They accept that exit is failure but argue it is sometimes necessary",
+          "They avoid framing altogether and present only data",
+          "They frame exit as dropping out in order to attract dissenters",
+          "They frame exit as courage, responsibility and innovation rather than failure"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Dominant narratives frame exit as failure; counter-narratives reframe it as courage, responsibility and innovation, after identifying the dominant frames and constructing alternatives."
+      },
+      {
+        "question": "In the Lowmarsh Valley Integration Challenge, which groups does the case single out for particular attention when applying the justice questions?",
+        "options": [
+          "Larger farms, the private operator and the processing plant's owners",
+          "The regional council members who want to renegotiate the concession",
+          "Smaller farms, seasonal workers, the fishing community and households near the salty coastal wells",
+          "Residents who have already formed the informal water-sharing group"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The challenge asks students to consider in particular smaller farms, seasonal workers, the fishing community and households near the salty coastal wells, and to center the analysis on those with the least exit capability."
+      },
+      {
+        "question": "What does the Integration Challenge require the final step to include?",
+        "options": [
+          "A single correct answer agreed with the regional council",
+          "At least two tensions between frameworks and how the plan resolves or manages them",
+          "A decision to exit the groundwater system immediately",
+          "A list of every framework mentioned without cross-references"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The final step must name at least two tensions between frameworks, explain how the plan handles each and who is prioritized in unavoidable trade-offs; there is no single correct answer."
       }
     ]
   },
   "s-m9": {
     "moduleId": "s-m9",
     "title": "Module 9 Knowledge Check",
-    "description": "Test your understanding of how Strategic Exodology concepts integrate into a coherent stewardship framework.",
+    "description": "Test your understanding of strategic synthesis and capstone preparation: choosing a focus, researching context, scoping the plan and developing the proposal.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "What is the purpose of the strategic toolkit (scaling, justice, policy, stewardship, teaching, movement building, long-term thinking)?",
+        "question": "In the Strategic Exodology Synthesis lesson, what three kinds of connection does the steward make as \"linchpin\"?",
         "options": [
-          "To help individuals exit as quickly as possible",
-          "To replace the need for community",
-          "To enable systemic change",
-          "To focus practitioners on a single domain"
+          "Between allies, opponents and neutral parties",
+          "Between scales, timescales and domains",
+          "Between optimization, reform and exit",
+          "Between policy, technology and markets"
         ],
-        "correctAnswer": 2,
-        "explanation": "The strategic toolkit covers scaling, justice, policy, regional and global transitions, stewardship, teaching, movement building and long-term thinking, and these tools enable systemic change."
-      },
-      {
-        "question": "Why does the lesson describe the steward as a linchpin?",
-        "options": [
-          "Stewards connect scales, timescales and domains",
-          "Stewards make decisions on behalf of communities",
-          "Stewards specialize in one scale only",
-          "Stewards replace policy and governance"
-        ],
-        "correctAnswer": 0,
+        "correctAnswer": 1,
         "explanation": "Strategic exodologists connect scales (individual to world), timescales (immediate to generational) and domains (food, energy, water, economy)."
       },
       {
-        "question": "Which is an example of connecting timescales as a steward?",
+        "question": "Why does the capstone focus lesson warn against choosing a system because you already know you want to leave it?",
         "options": [
-          "Linking food systems to energy systems",
-          "Linking individual exits to regional ones",
-          "Linking teaching to organizing",
-          "Linking immediate action to generational change"
+          "It invites teleological framing by assuming the transition has an inevitable endpoint",
+          "It makes the system too small to involve governance and policy",
+          "It turns the capstone into a hero narrative about one leader",
+          "It means no comparable cases can be found"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Choosing the conclusion first invites teleological framing; the whole response spectrum should stay open so the question of when to leave is real."
+      },
+      {
+        "question": "Which scale does the lesson describe as the most common capstone choice, large enough to involve public infrastructure and policy yet small enough to map dependencies with some precision?",
+        "options": [
+          "Community scale",
+          "National scale",
+          "Civilizational scale",
+          "Regional scale"
         ],
         "correctAnswer": 3,
-        "explanation": "Connecting timescales means linking the immediate to the generational; linking food and energy connects domains, and linking individual to regional connects scales."
+        "explanation": "Regional scale (a city, county or bioregion) is the most common choice because it involves public infrastructure and policy while still allowing fairly precise dependency mapping."
       },
       {
-        "question": "What questions does Finding Your Work ask practitioners to consider?",
+        "question": "According to the research lesson, what is \"triangulation\"?",
         "options": [
-          "Which single framework is objectively best",
-          "What scale, what domain and what role are yours to serve",
-          "How to complete Exodology as quickly as possible",
-          "Which systems everyone should exit first"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Finding Your Work asks where you are called to serve: what scale, what domain and what role, such as facilitator, teacher, organizer or builder."
-      },
-      {
-        "question": "How does the lesson describe the path forward in Exodology?",
-        "options": [
-          "As a course completed once and then set aside",
-          "As an ongoing, lifelong practice with continuous learning in a community of practitioners",
-          "As a solo pursuit independent of other practitioners",
-          "As a fixed set of answers to memorize"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Exodology is an ongoing practice involving continuous learning and a community of practitioners; it is the work of a lifetime."
-      },
-      {
-        "question": "Which of the following is NOT one of the roles named in Finding Your Work?",
-        "options": [
-          "Facilitator",
-          "Teacher",
-          "Regulator",
-          "Organizer"
+          "Mapping stakeholders by dependence, interests and power",
+          "Comparing three similar transitions from other countries",
+          "Checking an important claim against more than one independent kind of source",
+          "Choosing the source that best supports your recommendation when sources disagree"
         ],
         "correctAnswer": 2,
-        "explanation": "The lesson names facilitator, teacher, organizer and builder as possible roles; regulator is not among them."
+        "explanation": "Triangulation means checking an important claim against more than one kind of source; when sources disagree, the disagreement should be recorded rather than quietly resolved."
+      },
+      {
+        "question": "Which question does the research lesson describe as especially important because it is often the strongest indicator of reform exhaustion?",
+        "options": [
+          "What has already been tried?",
+          "Which technology will free the region?",
+          "Who is the visionary leader behind the system?",
+          "How quickly can exit be completed?"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Evidence of repeated reform efforts, and why they succeeded or failed, is often the strongest indicator of whether reform exhaustion has set in."
+      },
+      {
+        "question": "Why does the scoping lesson call scope an ethical decision?",
+        "options": [
+          "Because scope statements must be approved by an ethics board",
+          "Because boundaries determine whose dependence and transition burden the plan counts and who falls outside it",
+          "Because a narrow scope always produces a more just plan",
+          "Because the planning fallacy only affects ethical judgments"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Analysts choose boundaries, and each choice brings some people and effects into view and pushes others out, such as overlooking those owed residual duty or exporting burdens elsewhere."
+      },
+      {
+        "question": "Which assumptions does the scoping lesson say deserve special attention and may justify preferring reversible steps?",
+        "options": [
+          "High confidence and low impact",
+          "High confidence and high impact",
+          "Low confidence and low impact",
+          "Low confidence and high impact"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Assumptions with low confidence and high impact belong in the risk analysis and may justify reversible steps, as the principle of precaution recommends."
+      },
+      {
+        "question": "In the proposal exercise, which working title does the lesson recommend over \"Exiting the regional water utility\"?",
+        "options": [
+          "\"Why the regional water utility must be abandoned\"",
+          "\"A cooperative future for the river valley\"",
+          "\"Water supply dependence in a river valley region\"",
+          "\"How one leader can free the valley from its utility\""
+        ],
+        "correctAnswer": 2,
+        "explanation": "The working title should describe the system rather than announce a conclusion, so the focus statement frames an open transition question."
       }
     ]
   },
   "s-m10": {
     "moduleId": "s-m10",
     "title": "Module 10 Knowledge Check",
-    "description": "Test your understanding of the Strategic Exodology capstone project options, components, evaluation criteria and final reflection.",
+    "description": "Test your understanding of the Strategic capstone project, its components and criteria, final presentation preparation and reflection on your Exodology path.",
     "passingScore": 70,
     "questions": [
       {
-        "question": "Which of the following is one of the capstone project options?",
+        "question": "Which of the following is one of the capstone project options listed in the overview?",
         "options": [
+          "A personal household exit plan",
           "A stewardship portfolio documenting your practice",
-          "A research paper on the history of exit",
-          "A personal budget for leaving a job",
-          "A product review of sustainable goods"
+          "A single-technology adoption proposal",
+          "A literature review of all transition research"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The project options are a regional transition plan, an exit guide for a specific domain, a teaching curriculum design and a stewardship portfolio, chosen according to your calling."
+      },
+      {
+        "question": "Which set correctly lists the capstone evaluation criteria?",
+        "options": [
+          "Application of concepts, realism of analysis, creativity of approach, ethical grounding and quality of reflection",
+          "Length, number of sources, visual design and presentation speed",
+          "Speed of exit, cost savings, number of participants and media coverage",
+          "Executive summary, diagnosis, strategy and limits"
         ],
         "correctAnswer": 0,
-        "explanation": "Project options are a regional transition plan, a domain exit guide, a teaching curriculum design and a stewardship portfolio, chosen based on your calling."
+        "explanation": "The capstone is evaluated on application of concepts, realism of analysis, creativity of approach, ethical grounding and quality of reflection."
       },
       {
-        "question": "How should learners choose their capstone project?",
+        "question": "In the capstone workbook, which questions belong to the step \"Assess justice implications\"?",
         "options": [
-          "Based on whichever option is shortest",
-          "By assignment from the instructor",
-          "Always as a regional transition plan",
-          "Based on their calling"
+          "What is the theory of change? What sequence of interventions?",
+          "How does this persist? What are resilience mechanisms?",
+          "Who is affected? Who has power? Who could ally or oppose?",
+          "Who benefits and who bears costs? How is equity addressed?"
         ],
         "correctAnswer": 3,
-        "explanation": "The lesson says to choose a project based on your calling."
+        "explanation": "Assessing justice implications asks who benefits and who bears costs, and how equity is addressed."
       },
       {
-        "question": "Which is NOT one of the listed capstone evaluation criteria?",
+        "question": "What are the three jobs of the final presentation?",
         "options": [
-          "Realism of analysis",
-          "Speed of completion",
-          "Ethical grounding",
-          "Quality of reflection"
+          "Persuasion, recruitment and fundraising",
+          "Integration, accountability and communication",
+          "Diagnosis, strategy and evaluation",
+          "Summary, critique and reflection"
         ],
         "correctAnswer": 1,
-        "explanation": "Evaluation criteria are application of concepts, realism of analysis, creativity of approach, ethical grounding and quality of reflection."
+        "explanation": "The presentation shows the plan is a coherent whole (integration), opens the work to scrutiny (accountability) and makes it usable by people not involved in writing it (communication)."
       },
       {
-        "question": "In the capstone workbook, which step asks who benefits and who bears costs, and how equity is addressed?",
+        "question": "When presenting to different audiences, what does the lesson require?",
         "options": [
-          "Map stakeholders",
-          "Plan for sustainability",
-          "Assess justice implications",
-          "Conduct situational analysis"
+          "Each audience should receive only the parts of the plan that favor it",
+          "A single identical version must be used for every audience",
+          "Different versions are acceptable, but every version must tell the same truth",
+          "Community members should receive a simplified version without trade-offs"
         ],
         "correctAnswer": 2,
-        "explanation": "The justice implications step asks who benefits and who bears costs and how equity is addressed."
+        "explanation": "You may need different versions for peers, community members and policymakers, but every version must tell the same truth."
       },
       {
-        "question": "In the workbook, what does the plan for sustainability step ask?",
+        "question": "Which practice does the lesson recommend for presenting uncertain estimates of cost or timing honestly?",
         "options": [
-          "What the theory of change is",
-          "Who has power and who could ally or oppose",
-          "How the project persists and what its resilience mechanisms are",
-          "What the concrete steps and timeline are"
+          "Show a range and explain what drives it",
+          "Give a single precise figure to build confidence",
+          "Leave uncertain estimates out of the presentation",
+          "Truncate chart axes so changes are easier to see"
         ],
-        "correctAnswer": 2,
-        "explanation": "Planning for sustainability asks how the project persists and what resilience mechanisms it has; theory of change belongs to the strategic framework step."
+        "correctAnswer": 0,
+        "explanation": "Honest presentation shows ranges rather than false precision and explains what drives the uncertainty; truncated axes are among the ways visuals mislead."
       },
       {
-        "question": "The final reflection asks about your vision for a post-exit world. What does it emphasize?",
+        "question": "What does the lesson mean by avoiding \"deficit framing\" when representing affected people?",
         "options": [
-          "Which systems were most harmful",
-          "What we are exiting toward, not just what we are exiting from",
-          "How quickly the exit can be completed",
-          "How to return to the original systems if needed"
+          "Not mentioning the costs a plan imposes on a community",
+          "Not reporting any community views without written consent",
+          "Not describing a community's dependence on the existing system",
+          "Not describing a community only by what it lacks, overlooking its knowledge, capacities and agency"
         ],
-        "correctAnswer": 1,
-        "explanation": "The final reflection asks what we are exiting toward, not just from, as part of envisioning a post-exit world."
+        "correctAnswer": 3,
+        "explanation": "Communities should be described by their dependence and constraints but also by their knowledge, capacities and existing alternatives; people with little exit capability are not without agency."
+      },
+      {
+        "question": "The final reflection asks \"What is your vision for a post-exit world?\" What emphasis does the lesson attach to this question?",
+        "options": [
+          "What we are exiting toward, not just from",
+          "Which systems should be allowed to collapse",
+          "How quickly every system can be left",
+          "Which individual will lead the post-exit world"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The reflection asks what we are exiting toward, not just from, as part of envisioning a post-exit world."
       }
     ]
   }
