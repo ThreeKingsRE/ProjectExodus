@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import type { Prisma } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import { z } from 'zod'
 import { prisma } from '@/lib/db'
@@ -24,7 +25,7 @@ export async function POST(request: NextRequest) {
     }
     const email = record.identifier.slice(RESET_PREFIX.length)
     const passwordHash = await bcrypt.hash(password, 12)
-    const changed = await prisma.$transaction(async (tx) => {
+    const changed = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // Atomically claim this token. Concurrent requests cannot both reset the password.
       const claimed = await tx.verificationToken.deleteMany({ where: { token: hashToken(token), identifier: record.identifier, expires: { gt: new Date() } } })
       if (claimed.count !== 1) return false
