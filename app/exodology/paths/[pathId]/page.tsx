@@ -2132,6 +2132,7 @@ export default function ExodologyPathPage() {
                               {/* Module Header */}
                               <button
                                 onClick={() => toggleModule(courseModule.id)}
+                                aria-expanded={isExpanded}
                                 className="w-full flex items-center gap-4 p-4 bg-[var(--card)] hover:bg-[var(--muted)]/50 transition-colors text-left"
                               >
                                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${
