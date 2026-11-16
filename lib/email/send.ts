@@ -9,12 +9,12 @@ export type OutgoingEmail = { to: string; subject: string; html: string; text: s
 export type SendResult = { sent: true; id: string } | { sent: false; reason: 'not-configured' | 'failed'; detail?: string }
 
 export function emailConfigured() {
-  return Boolean(process.env.RESEND_API_KEY && process.env.EMAIL_FROM)
+  return Boolean(process.env.RESEND_API_KEY?.trim() && process.env.EMAIL_FROM?.trim())
 }
 
 export async function sendEmail(msg: OutgoingEmail): Promise<SendResult> {
-  const key = process.env.RESEND_API_KEY
-  const from = process.env.EMAIL_FROM
+  const key = process.env.RESEND_API_KEY?.trim()
+  const from = process.env.EMAIL_FROM?.trim()
   if (!key || !from) {
     console.warn(`[email] not configured (RESEND_API_KEY / EMAIL_FROM); skipped "${msg.subject}"`)
     return { sent: false, reason: 'not-configured' }
@@ -40,5 +40,17 @@ export async function sendEmail(msg: OutgoingEmail): Promise<SendResult> {
 
 /** Public base URL for links in emails. Never derived from the request's Host header. */
 export function siteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXTAUTH_URL || process.env.AUTH_URL || 'http://localhost:3000').replace(/\/$/, '')
+  for (const candidate of [process.env.NEXT_PUBLIC_SITE_URL, process.env.NEXTAUTH_URL, process.env.AUTH_URL]) {
+    if (!candidate?.trim()) continue
+    try {
+      const url = new URL(candidate.trim())
+      if (url.username || url.password || !['http:', 'https:'].includes(url.protocol)) continue
+      const local = ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname) || url.hostname.endsWith('.localhost')
+      if (process.env.NODE_ENV === 'production' && (url.protocol !== 'https:' || local)) continue
+      return url.origin
+    } catch {
+      // Ignore malformed deployment settings rather than email a broken link.
+    }
+  }
+  return process.env.NODE_ENV === 'production' ? 'https://www.projxodus.com' : 'http://localhost:3000'
 }

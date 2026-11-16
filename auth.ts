@@ -50,13 +50,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+        if (typeof credentials?.email !== 'string' || typeof credentials?.password !== 'string' || !credentials.email.trim() || !credentials.password) {
           throw new Error("Missing credentials")
         }
 
         const user = await prisma.user.findUnique({
           where: {
-            email: credentials.email as string
+            email: credentials.email.trim().toLowerCase()
           }
         })
 
