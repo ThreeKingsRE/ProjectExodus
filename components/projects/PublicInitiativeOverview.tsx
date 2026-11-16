@@ -3,12 +3,23 @@ import { ArrowRight, Globe2, Lock, MessageSquare, Users } from 'lucide-react'
 import type { PublicProject } from '@/lib/projects/public-view'
 
 export function InitiativeStory({ text }: { text: string }) {
+  const inline = (value: string) => value.split(/(\[[^\]]+\]\(https:\/\/[^\s)]+\)|https:\/\/[^\s]+)/g).map((part, i) => {
+    const named = part.match(/^\[([^\]]+)\]\((https:\/\/[^\s)]+)\)$/)
+    if (named || /^https:\/\//.test(part)) return <a key={i} href={named ? named[2] : part} target="_blank" rel="noreferrer" className="underline underline-offset-4">{named ? named[1] : part}</a>
+    return part
+  })
   return <div className="space-y-5 text-base leading-8 text-[var(--foreground)]">
-    {text.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => (
-      <p key={index} className="whitespace-pre-wrap break-words">{paragraph.split(/(https:\/\/[^\s]+)/g).map((part, i) => /^https:\/\//.test(part)
-        ? <a key={i} href={part} target="_blank" rel="noreferrer" className="underline underline-offset-4">{part}</a>
-        : part)}</p>
-    ))}
+    {text.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => {
+      const lines = paragraph.trim().split('\n')
+      const cells = (line: string) => line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(cell => cell.trim())
+      if (lines.length >= 2 && lines[0].trim().startsWith('|') && /^\|?[\s:|-]+\|?$/.test(lines[1]) && lines[1].includes('---')) {
+        const headers = cells(lines[0])
+        return <div key={index} className="overflow-x-auto rounded-xl border border-[var(--border)]"><table className="w-full min-w-[420px] border-collapse text-left text-sm leading-6"><thead className="bg-[var(--muted)]"><tr>{headers.map((heading, i) => <th key={i} scope="col" className="px-4 py-3 font-bold">{inline(heading)}</th>)}</tr></thead><tbody>{lines.slice(2).map((row, r) => <tr key={r} className="border-t border-[var(--border)]">{headers.map((_, c) => <td key={c} className="px-4 py-3 align-top">{inline(cells(row)[c] || '')}</td>)}</tr>)}</tbody></table></div>
+      }
+      if (lines.length === 1 && paragraph.startsWith('## ')) return <h2 key={index} className="pt-4 text-2xl font-black leading-tight">{inline(paragraph.slice(3))}</h2>
+      if (lines.length === 1 && paragraph.startsWith('### ')) return <h3 key={index} className="pt-2 text-lg font-bold">{inline(paragraph.slice(4))}</h3>
+      return <p key={index} className="whitespace-pre-wrap break-words">{inline(paragraph)}</p>
+    })}
   </div>
 }
 
@@ -45,3 +56,4 @@ export function PublicInitiativeOverview({ project }: { project: PublicProject }
     </div>
   </main>
 }
+
