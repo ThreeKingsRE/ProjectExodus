@@ -129,7 +129,7 @@ Throughout, record uncertainty explicitly. Saying "we do not know how large this
   ],
   keyTerms: [
     { term: 'Transition Risk', definition: 'The possibility that a transition causes harm to exiters, those who stay, the system or third parties.' },
-    { term: 'Risk Carrier', definition: 'The person, group or system that would bear the harm if a given risk materialises.' },
+    { term: 'Risk Carrier', definition: 'The person, group or system that would bear the harm if a given risk materializes.' },
     { term: 'Tight Coupling', definition: 'A condition, described by Charles Perrow, in which parts of a system affect each other quickly and with little slack.' },
     { term: 'Deep Uncertainty', definition: 'A situation in which the likelihood of outcomes cannot be reliably estimated, as distinct from calculable risk.' },
     { term: 'Post-Exit Precarity', definition: 'The vulnerability and instability experienced after leaving an established system.' }

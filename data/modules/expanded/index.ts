@@ -2,6 +2,7 @@
 import type { ModuleExpansion } from './types'
 import x_food_sovereignty_agroecology from './food-sovereignty/agroecology'
 import x_food_sovereignty_agroforestry_food_forests from './food-sovereignty/agroforestry-food-forests'
+import x_food_sovereignty_climate_resilient_agriculture from './food-sovereignty/climate-resilient-agriculture'
 import x_food_sovereignty_cooperative_food_models from './food-sovereignty/cooperative-food-models'
 import x_food_sovereignty_farm_to_school from './food-sovereignty/farm-to-school'
 import x_food_sovereignty_farmers_markets from './food-sovereignty/farmers-markets'
@@ -9,6 +10,7 @@ import x_food_sovereignty_food_access_equity from './food-sovereignty/food-acces
 import x_food_sovereignty_food_cooperatives from './food-sovereignty/food-cooperatives'
 import x_food_sovereignty_food_justice from './food-sovereignty/food-justice'
 import x_food_sovereignty_food_policy_governance from './food-sovereignty/food-policy-governance'
+import x_food_sovereignty_food_preservation_storage from './food-sovereignty/food-preservation-storage'
 import x_food_sovereignty_food_preservation from './food-sovereignty/food-preservation'
 import x_food_sovereignty_food_processing_preservation from './food-sovereignty/food-processing-preservation'
 import x_food_sovereignty_food_system_finance from './food-sovereignty/food-system-finance'
@@ -41,6 +43,7 @@ import x_green_building_daylighting_design from './green-building/daylighting-de
 import x_green_building_embodied_carbon from './green-building/embodied-carbon'
 import x_green_building_green_building_certification from './green-building/green-building-certification'
 import x_green_building_green_building_certifications from './green-building/green-building-certifications'
+import x_green_building_green_building_future from './green-building/green-building-future'
 import x_green_building_green_retrofits from './green-building/green-retrofits'
 import x_green_building_green_roofs_and_walls from './green-building/green-roofs-and-walls'
 import x_green_building_green_roofs_walls from './green-building/green-roofs-walls'
@@ -79,6 +82,7 @@ import x_regenerative_agriculture_perennial_grains from './regenerative-agricult
 import x_regenerative_agriculture_perennial_systems from './regenerative-agriculture/perennial-systems'
 import x_regenerative_agriculture_pollinator_habitat from './regenerative-agriculture/pollinator-habitat'
 import x_regenerative_agriculture_pollinator_health from './regenerative-agriculture/pollinator-health'
+import x_regenerative_agriculture_regenerative_agriculture_future from './regenerative-agriculture/regenerative-agriculture-future'
 import x_regenerative_agriculture_regenerative_business_models from './regenerative-agriculture/regenerative-business-models'
 import x_regenerative_agriculture_regenerative_ranching from './regenerative-agriculture/regenerative-ranching'
 import x_regenerative_agriculture_seed_saving from './regenerative-agriculture/seed-saving'
@@ -101,6 +105,7 @@ import x_renewable_energy_energy_policy_regulation from './renewable-energy/ener
 import x_renewable_energy_energy_storage__2 from './renewable-energy/energy-storage--2'
 import x_renewable_energy_energy_storage_technologies from './renewable-energy/energy-storage-technologies'
 import x_renewable_energy_energy_storage from './renewable-energy/energy-storage'
+import x_renewable_energy_energy_transition_masterclass from './renewable-energy/energy-transition-masterclass'
 import x_renewable_energy_geothermal_energy__2 from './renewable-energy/geothermal-energy--2'
 import x_renewable_energy_geothermal_energy from './renewable-energy/geothermal-energy'
 import x_renewable_energy_green_hydrogen from './renewable-energy/green-hydrogen'
@@ -118,6 +123,7 @@ import x_renewable_energy_smart_grids from './renewable-energy/smart-grids'
 import x_renewable_energy_solar_plus_storage from './renewable-energy/solar-plus-storage'
 import x_water_systems_aquaponics_systems from './water-systems/aquaponics-systems'
 import x_water_systems_aquifer_management from './water-systems/aquifer-management'
+import x_water_systems_blue_economy from './water-systems/blue-economy'
 import x_water_systems_climate_adaptation_water from './water-systems/climate-adaptation-water'
 import x_water_systems_climate_and_water from './water-systems/climate-and-water'
 import x_water_systems_desalination__2 from './water-systems/desalination--2'
@@ -134,6 +140,7 @@ import x_water_systems_water_conservation_technology from './water-systems/water
 import x_water_systems_water_conservation from './water-systems/water-conservation'
 import x_water_systems_water_economics from './water-systems/water-economics'
 import x_water_systems_water_energy_nexus from './water-systems/water-energy-nexus'
+import x_water_systems_water_future_masterclass from './water-systems/water-future-masterclass'
 import x_water_systems_water_policy_law from './water-systems/water-policy-law'
 import x_water_systems_water_quality_monitoring__2 from './water-systems/water-quality-monitoring--2'
 import x_water_systems_water_quality_monitoring from './water-systems/water-quality-monitoring'
@@ -173,11 +180,13 @@ import x_zero_waste_waste_data_measurement from './zero-waste/waste-data-measure
 import x_zero_waste_waste_to_energy from './zero-waste/waste-to-energy'
 import x_zero_waste_zero_waste_careers from './zero-waste/zero-waste-careers'
 import x_zero_waste_zero_waste_communities from './zero-waste/zero-waste-communities'
+import x_zero_waste_zero_waste_future from './zero-waste/zero-waste-future'
 import x_zero_waste_zero_waste_masterclass from './zero-waste/zero-waste-masterclass'
 
 export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_food_sovereignty_agroecology,
   x_food_sovereignty_agroforestry_food_forests,
+  x_food_sovereignty_climate_resilient_agriculture,
   x_food_sovereignty_cooperative_food_models,
   x_food_sovereignty_farm_to_school,
   x_food_sovereignty_farmers_markets,
@@ -185,6 +194,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_food_sovereignty_food_cooperatives,
   x_food_sovereignty_food_justice,
   x_food_sovereignty_food_policy_governance,
+  x_food_sovereignty_food_preservation_storage,
   x_food_sovereignty_food_preservation,
   x_food_sovereignty_food_processing_preservation,
   x_food_sovereignty_food_system_finance,
@@ -217,6 +227,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_green_building_embodied_carbon,
   x_green_building_green_building_certification,
   x_green_building_green_building_certifications,
+  x_green_building_green_building_future,
   x_green_building_green_retrofits,
   x_green_building_green_roofs_and_walls,
   x_green_building_green_roofs_walls,
@@ -255,6 +266,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_regenerative_agriculture_perennial_systems,
   x_regenerative_agriculture_pollinator_habitat,
   x_regenerative_agriculture_pollinator_health,
+  x_regenerative_agriculture_regenerative_agriculture_future,
   x_regenerative_agriculture_regenerative_business_models,
   x_regenerative_agriculture_regenerative_ranching,
   x_regenerative_agriculture_seed_saving,
@@ -277,6 +289,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_renewable_energy_energy_storage__2,
   x_renewable_energy_energy_storage_technologies,
   x_renewable_energy_energy_storage,
+  x_renewable_energy_energy_transition_masterclass,
   x_renewable_energy_geothermal_energy__2,
   x_renewable_energy_geothermal_energy,
   x_renewable_energy_green_hydrogen,
@@ -294,6 +307,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_renewable_energy_solar_plus_storage,
   x_water_systems_aquaponics_systems,
   x_water_systems_aquifer_management,
+  x_water_systems_blue_economy,
   x_water_systems_climate_adaptation_water,
   x_water_systems_climate_and_water,
   x_water_systems_desalination__2,
@@ -310,6 +324,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_water_systems_water_conservation,
   x_water_systems_water_economics,
   x_water_systems_water_energy_nexus,
+  x_water_systems_water_future_masterclass,
   x_water_systems_water_policy_law,
   x_water_systems_water_quality_monitoring__2,
   x_water_systems_water_quality_monitoring,
@@ -349,5 +364,6 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_zero_waste_waste_to_energy,
   x_zero_waste_zero_waste_careers,
   x_zero_waste_zero_waste_communities,
+  x_zero_waste_zero_waste_future,
   x_zero_waste_zero_waste_masterclass,
 ]

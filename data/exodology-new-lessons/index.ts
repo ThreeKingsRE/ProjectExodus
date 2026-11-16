@@ -4,9 +4,11 @@ import l_a_m1_n1 from './a-m1-n1'
 import l_a_m1_n2 from './a-m1-n2'
 import l_a_m2_n1 from './a-m2-n1'
 import l_a_m2_n2 from './a-m2-n2'
+import l_a_m2_n3 from './a-m2-n3'
 import l_a_m3_n1 from './a-m3-n1'
 import l_a_m3_n2 from './a-m3-n2'
 import l_a_m3_n3 from './a-m3-n3'
+import l_a_m4_n1 from './a-m4-n1'
 import l_a_m5_n1 from './a-m5-n1'
 import l_a_m5_n2 from './a-m5-n2'
 import l_a_m5_n3 from './a-m5-n3'
@@ -32,6 +34,9 @@ import l_s_m3_n3 from './s-m3-n3'
 import l_s_m4_n1 from './s-m4-n1'
 import l_s_m4_n2 from './s-m4-n2'
 import l_s_m4_n3 from './s-m4-n3'
+import l_s_m4_n4 from './s-m4-n4'
+import l_s_m5_n1 from './s-m5-n1'
+import l_s_m5_n2 from './s-m5-n2'
 import l_s_m6_n1 from './s-m6-n1'
 import l_s_m6_n2 from './s-m6-n2'
 import l_s_m6_n3 from './s-m6-n3'
@@ -49,9 +54,11 @@ export const NEW_EXODOLOGY_LESSONS: Record<string, NewExodologyLesson> = {
   'a-m1-n2': l_a_m1_n2,
   'a-m2-n1': l_a_m2_n1,
   'a-m2-n2': l_a_m2_n2,
+  'a-m2-n3': l_a_m2_n3,
   'a-m3-n1': l_a_m3_n1,
   'a-m3-n2': l_a_m3_n2,
   'a-m3-n3': l_a_m3_n3,
+  'a-m4-n1': l_a_m4_n1,
   'a-m5-n1': l_a_m5_n1,
   'a-m5-n2': l_a_m5_n2,
   'a-m5-n3': l_a_m5_n3,
@@ -77,6 +84,9 @@ export const NEW_EXODOLOGY_LESSONS: Record<string, NewExodologyLesson> = {
   's-m4-n1': l_s_m4_n1,
   's-m4-n2': l_s_m4_n2,
   's-m4-n3': l_s_m4_n3,
+  's-m4-n4': l_s_m4_n4,
+  's-m5-n1': l_s_m5_n1,
+  's-m5-n2': l_s_m5_n2,
   's-m6-n1': l_s_m6_n1,
   's-m6-n2': l_s_m6_n2,
   's-m6-n3': l_s_m6_n3,
