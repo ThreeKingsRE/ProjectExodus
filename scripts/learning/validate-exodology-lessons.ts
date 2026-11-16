@@ -20,7 +20,8 @@ const titleMatches = (cited: string, found: string) => {
   return a === b || a.includes(b) || b.includes(a)
 }
 
-async function checkLink(ref: NewExodologyLesson['content']['references'] extends (infer R)[] | undefined ? R : never): Promise<string | null> {
+type Ref = NonNullable<NewExodologyLesson['content']['references']>[number]
+async function checkLink(ref: Ref, retried = false): Promise<string | null> {
   const url = ref.url ?? ''
   try {
     const wiki = url.match(/^https:\/\/en\.wikipedia\.org\/wiki\/([^#?]+)$/)
@@ -46,6 +47,11 @@ async function checkLink(ref: NewExodologyLesson['content']['references'] extend
     }
     return `link must be an en.wikipedia.org/wiki/... or openlibrary.org/works/... URL: ${url}`
   } catch (e) {
+    if (!retried) {
+      // One retry for transient network/proxy errors
+      await new Promise((r) => setTimeout(r, 1500))
+      return checkLink(ref, true)
+    }
     return `could not open ${url}: ${(e as Error).message}`
   }
 }
@@ -90,6 +96,15 @@ async function validate(lesson: NewExodologyLesson): Promise<string[]> {
 }
 
 async function main() {
+  // Node's fetch only uses the HTTPS proxy when NODE_USE_ENV_PROXY is set at
+  // startup; re-run with it so reference links can be checked behind a proxy.
+  if ((process.env.HTTPS_PROXY || process.env.https_proxy) && !process.env.NODE_USE_ENV_PROXY) {
+    const { spawnSync } = await import('child_process')
+    const r = spawnSync(process.execPath, process.execArgv.concat(process.argv.slice(1)), {
+      stdio: 'inherit', env: { ...process.env, NODE_USE_ENV_PROXY: '1' },
+    })
+    process.exit(r.status ?? 1)
+  }
   const fileArg = process.argv.indexOf('--file')
   const files = fileArg !== -1 ? [process.argv[fileArg + 1]] : readdirSync(DIR).filter((f) => /^[as]-m\d+-n\d+\.ts$/.test(f)).map((f) => `${DIR}/${f}`)
   let problems: string[] = []
