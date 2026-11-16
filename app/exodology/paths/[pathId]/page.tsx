@@ -12,6 +12,7 @@ import {
   Gamepad2, FileText, AlertTriangle, Lightbulb, Eye, Settings, Heart,
   Building, Sprout, Home, Network, BarChart3, Puzzle, GraduationCap
 } from 'lucide-react'
+import { getMergedModuleLessons } from '@/lib/exodology/lessons'
 import Link from 'next/link'
 import { notFound, useParams } from 'next/navigation'
 
@@ -1855,7 +1856,21 @@ type LessonProgressData = {
 export default function ExodologyPathPage() {
   const params = useParams()
   const pathId = params.pathId as string
-  const path = pathsData[pathId]
+  // Applied and Strategic use the merged outline (lib/exodology/mergedOutline.ts):
+  // each module lists its existing and new lessons in order, and interactive
+  // tools still in development are shown but not openable.
+  const basePath = pathsData[pathId]
+  const path = basePath && {
+    ...basePath,
+    modules: basePath.modules.map((m) => {
+      const merged = getMergedModuleLessons(m.id)
+      if (!merged) return m
+      return {
+        ...m,
+        lessons: merged.map((l) => ({ ...(m.lessons.find((x) => x.id === l.id && x.title === l.title) ?? {}), ...l })) as unknown as typeof m.lessons,
+      }
+    }),
+  }
   const { data: session } = useSession()
   const [expandedModules, setExpandedModules] = useState<Set<string>>(new Set())
   const [userProgress, setUserProgress] = useState<LessonProgressData[]>([])
@@ -2211,7 +2226,7 @@ export default function ExodologyPathPage() {
                                                       lesson.type === 'game' ? 'bg-green-500/20 text-green-600' :
                                                       'bg-red-500/20 text-red-600'
                                                     }`}>
-                                                      {lesson.type}
+                                                      {(lesson.type as string) === 'tool' ? 'tool · in development' : lesson.type}
                                                     </span>
                                                   )}
                                                 </div>

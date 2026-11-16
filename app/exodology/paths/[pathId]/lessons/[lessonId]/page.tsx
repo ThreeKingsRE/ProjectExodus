@@ -14,12 +14,8 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { notFound, useParams, useRouter } from 'next/navigation'
-import {
-  foundationsLessons,
-  appliedLessons,
-  strategicLessons,
-  exodologyGlossary
-} from '@/data/exodology-curriculum'
+import { exodologyGlossary } from '@/data/exodology-curriculum'
+import { getExodologyLesson, getPathLessonOrder } from '@/lib/exodology/lessons'
 
 // ============================================================================
 // PROGRESS HOOK
@@ -219,6 +215,7 @@ type LessonData = {
       year: number
       publisher: string
       relevance: string
+      url?: string
     }>
     // Game-specific fields
     gameType?: string
@@ -271,28 +268,14 @@ const pathMeta = {
 // LESSON NAVIGATION HELPER
 // ============================================================================
 
-type LessonMap = Record<string, { id: string; title: string; duration: string; type: string }>
-
+// Reading order follows the merged outline (lib/exodology/mergedOutline.ts),
+// so previous/next match what the path page lists.
 function getLessonNavigation(pathId: string, currentLessonId: string) {
-  // Get all lessons for this path in order
-  const lessonsMap: LessonMap = pathId === 'foundations' ? foundationsLessons as LessonMap :
-                     pathId === 'applied' ? appliedLessons as LessonMap :
-                     pathId === 'strategic' ? strategicLessons as LessonMap : {}
-
-  const lessonIds = Object.keys(lessonsMap)
-  const currentIndex = lessonIds.indexOf(currentLessonId)
-
-  const prevLesson = currentIndex > 0 ? {
-    id: lessonIds[currentIndex - 1],
-    title: lessonsMap[lessonIds[currentIndex - 1]]?.title || 'Previous'
-  } : null
-
-  const nextLesson = currentIndex < lessonIds.length - 1 ? {
-    id: lessonIds[currentIndex + 1],
-    title: lessonsMap[lessonIds[currentIndex + 1]]?.title || 'Next'
-  } : null
-
-  return { prevLesson, nextLesson, currentIndex, totalLessons: lessonIds.length }
+  const order = getPathLessonOrder(pathId)
+  const currentIndex = order.findIndex((l) => l.id === currentLessonId)
+  const prevLesson = currentIndex > 0 ? order[currentIndex - 1] : null
+  const nextLesson = currentIndex !== -1 && currentIndex < order.length - 1 ? order[currentIndex + 1] : null
+  return { prevLesson, nextLesson, currentIndex, totalLessons: order.length }
 }
 
 // ============================================================================
@@ -479,7 +462,15 @@ function InstructionContent({ content }: { content: NonNullable<LessonData['cont
             {content.references.map((ref, i) => (
               <div key={i} className="p-4 rounded-xl bg-[var(--muted)]/30 border border-[var(--border)]">
                 <p className="font-medium text-[var(--foreground)]">
-                  {ref.author} ({ref.year}). <em>{ref.title}</em>. {ref.publisher}.
+                  {ref.author} ({ref.year}).{' '}
+                  {ref.url ? (
+                    <a href={ref.url} target="_blank" rel="noopener noreferrer" className="underline decoration-dotted underline-offset-2 hover:text-[var(--primary)]">
+                      <em>{ref.title}</em>
+                    </a>
+                  ) : (
+                    <em>{ref.title}</em>
+                  )}
+                  . {ref.publisher}.
                 </p>
                 <p className="text-sm text-[var(--muted-foreground)] mt-1">{ref.relevance}</p>
               </div>
@@ -1121,11 +1112,7 @@ export default function LessonPage() {
 
   // Get the correct lesson data based on path
    
-  const lessonData: LessonData | undefined = pathId === 'foundations'
-    ? (foundationsLessons as any)[lessonId]
-    : pathId === 'applied'
-    ? (appliedLessons as any)[lessonId]
-    : (strategicLessons as any)[lessonId]
+  const lessonData = getExodologyLesson(pathId, lessonId) as LessonData | undefined
 
   const meta = pathMeta[pathId as keyof typeof pathMeta]
 
