@@ -46,6 +46,9 @@ jobs:
       - name: Community guest access
         run: npm run test:community
 
+      - name: Password reset and email delivery behavior
+        run: node scripts/test-password-reset.mjs
+
       - name: Initiative ownership and contribution permissions
         run: node scripts/test-project-message-editing.mjs
 
