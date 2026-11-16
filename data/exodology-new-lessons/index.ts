@@ -2,18 +2,26 @@
 import type { NewExodologyLesson } from './types'
 import l_a_m1_n1 from './a-m1-n1'
 import l_a_m1_n2 from './a-m1-n2'
+import l_a_m2_n1 from './a-m2-n1'
+import l_a_m2_n2 from './a-m2-n2'
 import l_a_m3_n1 from './a-m3-n1'
+import l_a_m3_n2 from './a-m3-n2'
+import l_a_m3_n3 from './a-m3-n3'
 import l_a_m5_n1 from './a-m5-n1'
 import l_a_m5_n2 from './a-m5-n2'
 import l_a_m5_n3 from './a-m5-n3'
 import l_a_m6_n1 from './a-m6-n1'
 import l_a_m6_n2 from './a-m6-n2'
+import l_a_m6_n3 from './a-m6-n3'
+import l_a_m6_n4 from './a-m6-n4'
 import l_a_m7_n1 from './a-m7-n1'
 import l_a_m7_n2 from './a-m7-n2'
 import l_a_m7_n3 from './a-m7-n3'
 import l_a_m8_n1 from './a-m8-n1'
 import l_a_m8_n2 from './a-m8-n2'
 import l_a_m8_n3 from './a-m8-n3'
+import l_a_m9_n1 from './a-m9-n1'
+import l_a_m9_n2 from './a-m9-n2'
 import l_s_m1_n1 from './s-m1-n1'
 import l_s_m10_n1 from './s-m10-n1'
 import l_s_m2_n1 from './s-m2-n1'
@@ -22,11 +30,15 @@ import l_s_m3_n1 from './s-m3-n1'
 import l_s_m3_n2 from './s-m3-n2'
 import l_s_m3_n3 from './s-m3-n3'
 import l_s_m4_n1 from './s-m4-n1'
+import l_s_m4_n2 from './s-m4-n2'
+import l_s_m4_n3 from './s-m4-n3'
 import l_s_m6_n1 from './s-m6-n1'
 import l_s_m6_n2 from './s-m6-n2'
 import l_s_m6_n3 from './s-m6-n3'
 import l_s_m7_n1 from './s-m7-n1'
 import l_s_m7_n2 from './s-m7-n2'
+import l_s_m8_n1 from './s-m8-n1'
+import l_s_m8_n2 from './s-m8-n2'
 import l_s_m9_n1 from './s-m9-n1'
 import l_s_m9_n2 from './s-m9-n2'
 import l_s_m9_n3 from './s-m9-n3'
@@ -35,18 +47,26 @@ import l_s_m9_n4 from './s-m9-n4'
 export const NEW_EXODOLOGY_LESSONS: Record<string, NewExodologyLesson> = {
   'a-m1-n1': l_a_m1_n1,
   'a-m1-n2': l_a_m1_n2,
+  'a-m2-n1': l_a_m2_n1,
+  'a-m2-n2': l_a_m2_n2,
   'a-m3-n1': l_a_m3_n1,
+  'a-m3-n2': l_a_m3_n2,
+  'a-m3-n3': l_a_m3_n3,
   'a-m5-n1': l_a_m5_n1,
   'a-m5-n2': l_a_m5_n2,
   'a-m5-n3': l_a_m5_n3,
   'a-m6-n1': l_a_m6_n1,
   'a-m6-n2': l_a_m6_n2,
+  'a-m6-n3': l_a_m6_n3,
+  'a-m6-n4': l_a_m6_n4,
   'a-m7-n1': l_a_m7_n1,
   'a-m7-n2': l_a_m7_n2,
   'a-m7-n3': l_a_m7_n3,
   'a-m8-n1': l_a_m8_n1,
   'a-m8-n2': l_a_m8_n2,
   'a-m8-n3': l_a_m8_n3,
+  'a-m9-n1': l_a_m9_n1,
+  'a-m9-n2': l_a_m9_n2,
   's-m1-n1': l_s_m1_n1,
   's-m10-n1': l_s_m10_n1,
   's-m2-n1': l_s_m2_n1,
@@ -55,11 +75,15 @@ export const NEW_EXODOLOGY_LESSONS: Record<string, NewExodologyLesson> = {
   's-m3-n2': l_s_m3_n2,
   's-m3-n3': l_s_m3_n3,
   's-m4-n1': l_s_m4_n1,
+  's-m4-n2': l_s_m4_n2,
+  's-m4-n3': l_s_m4_n3,
   's-m6-n1': l_s_m6_n1,
   's-m6-n2': l_s_m6_n2,
   's-m6-n3': l_s_m6_n3,
   's-m7-n1': l_s_m7_n1,
   's-m7-n2': l_s_m7_n2,
+  's-m8-n1': l_s_m8_n1,
+  's-m8-n2': l_s_m8_n2,
   's-m9-n1': l_s_m9_n1,
   's-m9-n2': l_s_m9_n2,
   's-m9-n3': l_s_m9_n3,

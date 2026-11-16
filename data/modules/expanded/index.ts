@@ -11,7 +11,10 @@ import x_food_sovereignty_food_justice from './food-sovereignty/food-justice'
 import x_food_sovereignty_food_policy_governance from './food-sovereignty/food-policy-governance'
 import x_food_sovereignty_food_preservation from './food-sovereignty/food-preservation'
 import x_food_sovereignty_food_processing_preservation from './food-sovereignty/food-processing-preservation'
+import x_food_sovereignty_food_system_finance from './food-sovereignty/food-system-finance'
 import x_food_sovereignty_food_system_resilience from './food-sovereignty/food-system-resilience'
+import x_food_sovereignty_food_waste_reduction from './food-sovereignty/food-waste-reduction'
+import x_food_sovereignty_indigenous_food_systems__2 from './food-sovereignty/indigenous-food-systems--2'
 import x_food_sovereignty_indigenous_food_systems from './food-sovereignty/indigenous-food-systems'
 import x_food_sovereignty_indigenous_food_ways from './food-sovereignty/indigenous-food-ways'
 import x_food_sovereignty_local_food_systems from './food-sovereignty/local-food-systems'
@@ -20,11 +23,13 @@ import x_food_sovereignty_regenerative_food_systems from './food-sovereignty/reg
 import x_food_sovereignty_school_gardens from './food-sovereignty/school-gardens'
 import x_food_sovereignty_seed_saving_biodiversity from './food-sovereignty/seed-saving-biodiversity'
 import x_food_sovereignty_seed_saving from './food-sovereignty/seed-saving'
+import x_food_sovereignty_sustainable_fisheries from './food-sovereignty/sustainable-fisheries'
 import x_food_sovereignty_traditional_food_knowledge from './food-sovereignty/traditional-food-knowledge'
 import x_food_sovereignty_urban_agriculture_policy from './food-sovereignty/urban-agriculture-policy'
 import x_food_sovereignty_urban_farming from './food-sovereignty/urban-farming'
 import x_green_building_acoustic_design from './green-building/acoustic-design'
 import x_green_building_adaptive_reuse from './green-building/adaptive-reuse'
+import x_green_building_biophilic_design__2 from './green-building/biophilic-design--2'
 import x_green_building_biophilic_design from './green-building/biophilic-design'
 import x_green_building_building_commissioning from './green-building/building-commissioning'
 import x_green_building_building_integrated_renewables from './green-building/building-integrated-renewables'
@@ -74,6 +79,7 @@ import x_regenerative_agriculture_perennial_grains from './regenerative-agricult
 import x_regenerative_agriculture_perennial_systems from './regenerative-agriculture/perennial-systems'
 import x_regenerative_agriculture_pollinator_habitat from './regenerative-agriculture/pollinator-habitat'
 import x_regenerative_agriculture_pollinator_health from './regenerative-agriculture/pollinator-health'
+import x_regenerative_agriculture_regenerative_business_models from './regenerative-agriculture/regenerative-business-models'
 import x_regenerative_agriculture_regenerative_ranching from './regenerative-agriculture/regenerative-ranching'
 import x_regenerative_agriculture_seed_saving from './regenerative-agriculture/seed-saving'
 import x_regenerative_agriculture_silvopasture_systems from './regenerative-agriculture/silvopasture-systems'
@@ -86,6 +92,7 @@ import x_renewable_energy_building_electrification from './renewable-energy/buil
 import x_renewable_energy_clean_energy_finance__2 from './renewable-energy/clean-energy-finance--2'
 import x_renewable_energy_clean_energy_finance from './renewable-energy/clean-energy-finance'
 import x_renewable_energy_community_solar from './renewable-energy/community-solar'
+import x_renewable_energy_distributed_energy_resources from './renewable-energy/distributed-energy-resources'
 import x_renewable_energy_electric_vehicles__2 from './renewable-energy/electric-vehicles--2'
 import x_renewable_energy_electric_vehicles from './renewable-energy/electric-vehicles'
 import x_renewable_energy_energy_access_equity from './renewable-energy/energy-access-equity'
@@ -100,6 +107,7 @@ import x_renewable_energy_green_hydrogen from './renewable-energy/green-hydrogen
 import x_renewable_energy_grid_decarbonization from './renewable-energy/grid-decarbonization'
 import x_renewable_energy_hydrogen_energy from './renewable-energy/hydrogen-energy'
 import x_renewable_energy_hydropower from './renewable-energy/hydropower'
+import x_renewable_energy_microgrids__2 from './renewable-energy/microgrids--2'
 import x_renewable_energy_microgrids from './renewable-energy/microgrids'
 import x_renewable_energy_net_metering from './renewable-energy/net-metering'
 import x_renewable_energy_ocean_energy__2 from './renewable-energy/ocean-energy--2'
@@ -127,6 +135,7 @@ import x_water_systems_water_conservation from './water-systems/water-conservati
 import x_water_systems_water_economics from './water-systems/water-economics'
 import x_water_systems_water_energy_nexus from './water-systems/water-energy-nexus'
 import x_water_systems_water_policy_law from './water-systems/water-policy-law'
+import x_water_systems_water_quality_monitoring__2 from './water-systems/water-quality-monitoring--2'
 import x_water_systems_water_quality_monitoring from './water-systems/water-quality-monitoring'
 import x_water_systems_water_reuse_recycling from './water-systems/water-reuse-recycling'
 import x_water_systems_water_rights_law from './water-systems/water-rights-law'
@@ -135,6 +144,7 @@ import x_water_systems_watershed_protection from './water-systems/watershed-prot
 import x_water_systems_wetland_conservation from './water-systems/wetland-conservation'
 import x_water_systems_wetland_restoration from './water-systems/wetland-restoration'
 import x_zero_waste_biomaterials from './zero-waste/biomaterials'
+import x_zero_waste_circular_design_principles from './zero-waste/circular-design-principles'
 import x_zero_waste_circular_economy__2 from './zero-waste/circular-economy--2'
 import x_zero_waste_circular_economy from './zero-waste/circular-economy'
 import x_zero_waste_community_waste_solutions from './zero-waste/community-waste-solutions'
@@ -153,6 +163,7 @@ import x_zero_waste_packaging_innovation from './zero-waste/packaging-innovation
 import x_zero_waste_plastic_alternatives from './zero-waste/plastic-alternatives'
 import x_zero_waste_plastic_free_living from './zero-waste/plastic-free-living'
 import x_zero_waste_product_lifecycle_design from './zero-waste/product-lifecycle-design'
+import x_zero_waste_product_lifecycle from './zero-waste/product-lifecycle'
 import x_zero_waste_recycling_systems from './zero-waste/recycling-systems'
 import x_zero_waste_sharing_economy from './zero-waste/sharing-economy'
 import x_zero_waste_textile_waste_fashion from './zero-waste/textile-waste-fashion'
@@ -176,7 +187,10 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_food_sovereignty_food_policy_governance,
   x_food_sovereignty_food_preservation,
   x_food_sovereignty_food_processing_preservation,
+  x_food_sovereignty_food_system_finance,
   x_food_sovereignty_food_system_resilience,
+  x_food_sovereignty_food_waste_reduction,
+  x_food_sovereignty_indigenous_food_systems__2,
   x_food_sovereignty_indigenous_food_systems,
   x_food_sovereignty_indigenous_food_ways,
   x_food_sovereignty_local_food_systems,
@@ -185,11 +199,13 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_food_sovereignty_school_gardens,
   x_food_sovereignty_seed_saving_biodiversity,
   x_food_sovereignty_seed_saving,
+  x_food_sovereignty_sustainable_fisheries,
   x_food_sovereignty_traditional_food_knowledge,
   x_food_sovereignty_urban_agriculture_policy,
   x_food_sovereignty_urban_farming,
   x_green_building_acoustic_design,
   x_green_building_adaptive_reuse,
+  x_green_building_biophilic_design__2,
   x_green_building_biophilic_design,
   x_green_building_building_commissioning,
   x_green_building_building_integrated_renewables,
@@ -239,6 +255,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_regenerative_agriculture_perennial_systems,
   x_regenerative_agriculture_pollinator_habitat,
   x_regenerative_agriculture_pollinator_health,
+  x_regenerative_agriculture_regenerative_business_models,
   x_regenerative_agriculture_regenerative_ranching,
   x_regenerative_agriculture_seed_saving,
   x_regenerative_agriculture_silvopasture_systems,
@@ -251,6 +268,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_renewable_energy_clean_energy_finance__2,
   x_renewable_energy_clean_energy_finance,
   x_renewable_energy_community_solar,
+  x_renewable_energy_distributed_energy_resources,
   x_renewable_energy_electric_vehicles__2,
   x_renewable_energy_electric_vehicles,
   x_renewable_energy_energy_access_equity,
@@ -265,6 +283,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_renewable_energy_grid_decarbonization,
   x_renewable_energy_hydrogen_energy,
   x_renewable_energy_hydropower,
+  x_renewable_energy_microgrids__2,
   x_renewable_energy_microgrids,
   x_renewable_energy_net_metering,
   x_renewable_energy_ocean_energy__2,
@@ -292,6 +311,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_water_systems_water_economics,
   x_water_systems_water_energy_nexus,
   x_water_systems_water_policy_law,
+  x_water_systems_water_quality_monitoring__2,
   x_water_systems_water_quality_monitoring,
   x_water_systems_water_reuse_recycling,
   x_water_systems_water_rights_law,
@@ -300,6 +320,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_water_systems_wetland_conservation,
   x_water_systems_wetland_restoration,
   x_zero_waste_biomaterials,
+  x_zero_waste_circular_design_principles,
   x_zero_waste_circular_economy__2,
   x_zero_waste_circular_economy,
   x_zero_waste_community_waste_solutions,
@@ -318,6 +339,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_zero_waste_plastic_alternatives,
   x_zero_waste_plastic_free_living,
   x_zero_waste_product_lifecycle_design,
+  x_zero_waste_product_lifecycle,
   x_zero_waste_recycling_systems,
   x_zero_waste_sharing_economy,
   x_zero_waste_textile_waste_fashion,
