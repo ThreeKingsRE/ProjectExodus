@@ -6,7 +6,7 @@ const lesson: NewExodologyLesson = {
   duration: '20 min',
   type: 'instruction',
   content: {
-    introduction: `Some of the most serious harms in transitions are ones nobody intended. A programme to help households leave an expensive energy system raises prices for those who cannot join it. A policy to reduce one harm shifts it to another place. A well-designed alternative succeeds so quickly that the old system collapses before its remaining users have anywhere to go. None of these outcomes was the goal, yet each was caused by deliberate action.
+    introduction: `Some of the most serious harms in transitions are ones nobody intended. A program to help households leave an expensive energy system raises prices for those who cannot join it. A policy to reduce one harm shifts it to another place. A well-designed alternative succeeds so quickly that the old system collapses before its remaining users have anywhere to go. None of these outcomes was the goal, yet each was caused by deliberate action.
 
 The sociologist Robert K. Merton drew attention to this problem in a 1936 essay on the unanticipated consequences of purposive social action. Since then, systems thinkers, engineers and policy scholars have studied why interventions in complex systems so often produce surprises. For Exodology, the question is ethical as well as practical: the Principle of Systemic Responsibility asks practitioners to attend to indirect and cascading effects and to accept accountability for foreseeable negative consequences.
 
@@ -21,8 +21,8 @@ Several further causes are common in practice:
 
 1. **Narrow framing.** A transition is designed to solve one problem, and its designers measure success against that problem alone.
 2. **Missing knowledge.** Planners rarely have the experiential knowledge of the people who operate or depend on a system day to day.
-3. **Behavioural responses.** People adapt to new rules in ways designers did not foresee, sometimes defeating the purpose of the rules.
-4. **Time lags.** Some effects appear only years later, long after a programme has been declared a success.
+3. **Behavioral responses.** People adapt to new rules in ways designers did not foresee, sometimes defeating the purpose of the rules.
+4. **Time lags.** Some effects appear only years later, long after a program has been declared a success.
 5. **Interaction effects.** Two reasonable policies, each sound on its own, combine to produce an outcome nobody wanted.
 
 Donella Meadows, whose work on leverage points appears in the timeline of this discipline, warned that people intervening in systems often push in the wrong direction or at the wrong point. Humility is not a weakness in this context; it is an accurate description of what we can know.`
@@ -35,7 +35,7 @@ Donella Meadows, whose work on leverage points appears in the timeline of this d
 
 **Displacement or leakage.** A harm reduced in one place reappears elsewhere, for example when a polluting activity simply moves to a jurisdiction with weaker rules.
 
-**Perverse incentives and gaming.** When a measure becomes a target, people may optimise the measure rather than the outcome it was meant to indicate, a pattern often summarised as Goodhart's law.
+**Perverse incentives and gaming.** When a measure becomes a target, people may optimize the measure rather than the outcome it was meant to indicate, a pattern often summarized as Goodhart's law.
 
 **Unravelling of the remaining system.** In exit terms, the departure of some participants leaves the system more expensive or less viable for those who stay, which can trigger further departures. This is where a managed exit risks becoming collapse, and where residual duty becomes urgent.
 
@@ -77,7 +77,7 @@ These features cost time and money and can slow a transition. That cost should b
         title: 'Responsibility When Harm Occurs Anyway',
         content: `Even careful practice will sometimes cause harm. The Ethics Guidelines distinguish foreseeable from unforeseeable consequences, and the Principle of Systemic Responsibility asks practitioners to accept accountability for the foreseeable ones. In practice, responsibility for unintended harm involves several commitments:
 
-- **Acknowledge it.** Denying or minimising a harm because it was not intended erodes trust and delays correction. The Principle of Intellectual Honesty applies to one's own mistakes.
+- **Acknowledge it.** Denying or minimizing a harm because it was not intended erodes trust and delays correction. The Principle of Intellectual Honesty applies to one's own mistakes.
 - **Repair what can be repaired.** Restorative justice, introduced earlier in the Strategic path, includes addressing harms caused by the transition itself, not only those caused by the system being exited.
 - **Adjust the design.** Change the elements that produced the harm, even if that slows progress toward the goal.
 - **Document and share.** The Charter commits the discipline to documenting transition cases systematically. Recording unintended consequences, including embarrassing ones, is how practitioners elsewhere avoid repeating them.
@@ -87,7 +87,7 @@ There is a tension here. Fear of unintended consequences can become a reason nev
     ],
 
     keyTakeaways: [
-      'Unintended consequences arise from systems complexity, missing knowledge, behavioural responses, time lags and interactions',
+      'Unintended consequences arise from systems complexity, missing knowledge, behavioral responses, time lags and interactions',
       'Rebound, displacement, gaming, unravelling of the remaining system and distributional surprises are recurring patterns',
       'Extended dependency mapping, stakeholder walk-throughs, pre-mortems and red teams widen foresight',
       'Transitions should be designed for correction, with pilots, reversibility, triggers and feedback channels',

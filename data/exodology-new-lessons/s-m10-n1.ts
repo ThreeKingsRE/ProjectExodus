@@ -45,7 +45,7 @@ Keep each part proportionate. A common weakness is a long description of the sys
 
 - **Label claims by strength.** Distinguish what your evidence shows, what you infer from it, and what you are estimating or assuming.
 - **Show ranges, not false precision.** If your estimate of cost or timing is uncertain, present a range and explain what drives it.
-- **Use honest visuals.** Charts and maps can mislead through truncated axes, selective time periods, inconsistent scales or omitted context. Writers on statistical graphics, such as Tufte, and on statistical misuse, such as Huff, catalogue these problems. Every figure should help a viewer see the evidence, not steer them past it.
+- **Use honest visuals.** Charts and maps can mislead through truncated axes, selective time periods, inconsistent scales or omitted context. Writers on statistical graphics, such as Tufte, and on statistical misuse, such as Huff, catalog these problems. Every figure should help a viewer see the evidence, not steer them past it.
 - **Do not cherry-pick.** If some evidence cuts against your recommendation, present it and explain why you still reach your conclusion, or how you have adjusted it.
 - **Disclose interests.** If you have a personal or professional stake in the outcome, say so.
 

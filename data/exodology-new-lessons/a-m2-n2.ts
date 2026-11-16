@@ -21,7 +21,7 @@ This insight is central to distribution design. A decentralized food system can 
 
 For the exodologist, Sen's work carries two lessons:
 
-1. **Measure access, not just output.** Success is not tonnes grown or members recruited, but whether every household that depends on the system can reliably obtain enough suitable food.
+1. **Measure access, not just output.** Success is not tons grown or members recruited, but whether every household that depends on the system can reliably obtain enough suitable food.
 
 2. **Watch entitlements during transition.** Exit changes prices, jobs and supply routes. A transition that reduces a group's ability to obtain food, even while local production rises, has harmed that group. This is a form of transition burden that must be anticipated, not discovered afterwards.`
       },
@@ -47,7 +47,7 @@ Mapping these dimensions for each group in a community, especially those most de
 
 **Aggregation**: Collecting food from many small producers into quantities that can be distributed efficiently. Food hubs and producer cooperatives often perform this role, reducing the burden on each grower.
 
-**Storage and processing**: Cold storage, dry storage and basic processing extend shelf life and smooth seasonal supply. These facilities frequently become **critical nodes**; a single shared cold store can be as much a point of failure as a supermarket distribution centre. Applying redundancy here matters.
+**Storage and processing**: Cold storage, dry storage and basic processing extend shelf life and smooth seasonal supply. These facilities frequently become **critical nodes**; a single shared cold store can be as much a point of failure as a supermarket distribution center. Applying redundancy here matters.
 
 **Transport**: Moving food from aggregation points to distribution points. Shared logistics among several initiatives can cut costs and emissions compared with every farm making its own deliveries.
 
@@ -61,10 +61,10 @@ Each channel suits different households. CSA schemes give farmers financial secu
 
 Approaches that alternative food initiatives have used include:
 
-- **Sliding-scale or solidarity pricing**, where members who can pay more cross-subsidise those who cannot
+- **Sliding-scale or solidarity pricing**, where members who can pay more cross-subsidize those who cannot
 - **Flexible payment terms**, such as weekly or monthly instalments instead of a single advance payment
-- **Accepting public food benefits** where these exist, and taking part in programmes in several countries that match the value of benefits spent on fresh produce
-- **Work-for-share arrangements**, where labour substitutes for some of the cost, with care that this does not exclude people with caring duties or disabilities
+- **Accepting public food benefits** where these exist, and taking part in programs in several countries that match the value of benefits spent on fresh produce
+- **Work-for-share arrangements**, where labor substitutes for some of the cost, with care that this does not exclude people with caring duties or disabilities
 - **Public procurement**, such as school or hospital meals sourced from local producers, which spreads costs through public budgets and reaches people regardless of income
 - **Community kitchens and shared meals**, which lower per-person cost and build social ties
 
@@ -72,7 +72,7 @@ Each has trade-offs. Cross-subsidy depends on enough better-off members; benefit
       },
       {
         title: 'Designing for Inclusion and Dignity',
-        content: `Affordable food can still be inaccessible if people feel unwelcome or have no say. Anti-hunger advocate **Mark Winne**, drawing on decades of work in Hartford, Connecticut, criticised both the tendency of alternative food movements to serve mainly affluent customers and the growth of emergency food provision as a permanent substitute for fair access. His work highlights the need to design inclusion in from the start.
+        content: `Affordable food can still be inaccessible if people feel unwelcome or have no say. Anti-hunger advocate **Mark Winne**, drawing on decades of work in Hartford, Connecticut, criticized both the tendency of alternative food movements to serve mainly affluent customers and the growth of emergency food provision as a permanent substitute for fair access. His work highlights the need to design inclusion in from the start.
 
 Practical design questions include:
 
@@ -80,7 +80,7 @@ Practical design questions include:
 
 2. **Does the system offer choice?** Models that let people choose their own food, rather than receive a fixed parcel, tend to respect dignity and reduce waste.
 
-3. **Does it avoid stigma?** Mixing paying and subsidised members in the same channel, without visible distinction, reduces the stigma that keeps people away.
+3. **Does it avoid stigma?** Mixing paying and subsidized members in the same channel, without visible distinction, reduces the stigma that keeps people away.
 
 4. **Is it culturally responsive?** Growing and stocking foods that reflect the community's diets is both fairer and more likely to be used.
 
@@ -92,11 +92,11 @@ Inclusion is not only an ethical add-on. A system used by a broad cross-section 
         title: 'Distribution Under Stress and Duties to Those Who Stay',
         content: `A decentralized food system proves its worth when the dominant system is disrupted. That is also when distribution decisions become hardest.
 
-**Agree allocation rules in advance.** If supply falls short, who receives food first? Deciding this during a crisis invites conflict and favours the well connected. Rules agreed beforehand, through an inclusive process, are more likely to be fair and accepted. The ethics guidelines advise that when trade-offs are unavoidable, priority goes to those with less power.
+**Agree allocation rules in advance.** If supply falls short, who receives food first? Deciding this during a crisis invites conflict and favors the well connected. Rules agreed beforehand, through an inclusive process, are more likely to be fair and accepted. The ethics guidelines advise that when trade-offs are unavoidable, priority goes to those with less power.
 
 **Coordinate with existing safety nets.** Food banks, public assistance and emergency services remain essential. A parallel food system should connect to them, not compete with them or undermine their support.
 
-**Avoid weakening what others depend on.** If an alternative draws enough custom away from a local shop that it closes, neighbours who relied on that shop may lose access. This is residual duty in practice: considering the effects of exit on those who remain in the existing system.
+**Avoid weakening what others depend on.** If an alternative draws enough custom away from a local shop that it closes, neighbors who relied on that shop may lose access. This is residual duty in practice: considering the effects of exit on those who remain in the existing system.
 
 **Keep on-ramps open.** Distribution design should make it easy for newcomers to join, including those who arrive in a crisis without having contributed beforehand. A system that closes its doors when demand rises is a lifeboat, not an alternative.
 

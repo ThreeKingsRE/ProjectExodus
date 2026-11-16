@@ -6,11 +6,11 @@ const lesson: NewExodologyLesson = {
   duration: '20 min',
   type: 'instruction',
   content: {
-    introduction: `Water is the dependency people notice last and miss first. Most households in industrialised settings have never traced where their tap water comes from, what treats it, what powers the pumps, or where their wastewater goes. Yet a few days without safe water is a crisis, and a few weeks is a catastrophe. In the language of Applied Exodology, mains water is a textbook case of **structural dependence**: survival requires continued participation, and for most people no alternative path exists.
+    introduction: `Water is the dependency people notice last and miss first. Most households in industrialized settings have never traced where their tap water comes from, what treats it, what powers the pumps, or where their wastewater goes. Yet a few days without safe water is a crisis, and a few weeks is a catastrophe. In the language of Applied Exodology, mains water is a textbook case of **structural dependence**: survival requires continued participation, and for most people no alternative path exists.
 
 This module applies the tools you have already learned (dependency mapping, critical nodes, exit friction, parallel systems and the minimum viable system) to water. It begins with principles rather than hardware. Before deciding whether to collect rain, reuse greywater or form a water cooperative, you need a clear idea of what water autonomy means, what it does not mean, and what ethical obligations come with it.
 
-The central claim of this lesson is that water autonomy is a matter of **exit capability**, not of disconnection. The aim is the structural capacity to meet essential water needs if the existing system fails or becomes unjust, while recognising that water is shared, that it flows from and to other people, and that public water systems are among the great public health achievements of the modern era.`,
+The central claim of this lesson is that water autonomy is a matter of **exit capability**, not of disconnection. The aim is the structural capacity to meet essential water needs if the existing system fails or becomes unjust, while recognizing that water is shared, that it flows from and to other people, and that public water systems are among the great public health achievements of the modern era.`,
 
     sections: [
       {
@@ -19,7 +19,7 @@ The central claim of this lesson is that water autonomy is a matter of **exit ca
 
 It helps to separate water needs into tiers, because each tier has a different risk profile and a different exit friction:
 
-1. **Drinking and cooking water**: small in volume (a few litres per person per day) but with the highest quality requirement. Contamination here causes illness quickly.
+1. **Drinking and cooking water**: small in volume (a few liters per person per day) but with the highest quality requirement. Contamination here causes illness quickly.
 2. **Hygiene water**: handwashing, bathing and cleaning. Larger volumes, high public health importance, somewhat lower quality requirements.
 3. **Sanitation**: managing human waste safely. Often overlooked in autonomy planning, yet failure spreads disease to everyone nearby.
 4. **Productive water**: gardens, livestock, small enterprises. Large volumes, lower quality requirements, often the easiest place to begin.
@@ -46,9 +46,9 @@ When you map your own water system, mark where it touches the energy system, whe
 
 **Quality failures are invisible and fast.** Spoiled food usually looks or smells wrong. Contaminated water often does not. Pathogens and some chemical contaminants cannot be detected without testing, and the consequences can be serious within hours or days. This makes water an area where the **Principle of Precaution** carries particular weight: prefer proven, multi-barrier designs, and treat untested water as unsafe for drinking.
 
-**Water is physically shared.** Rain that you capture would otherwise run off into streams or recharge groundwater that others use. A well you drill draws from an aquifer your neighbours share. Wastewater you release flows to someone downstream. Water autonomy is therefore never purely private; it always has effects on other users.
+**Water is physically shared.** Rain that you capture would otherwise run off into streams or recharge groundwater that others use. A well you drill draws from an aquifer your neighbors share. Wastewater you release flows to someone downstream. Water autonomy is therefore never purely private; it always has effects on other users.
 
-**Public water is a genuine achievement.** Centralised water treatment and sewerage dramatically reduced waterborne disease in the cities that adopted them. Exodology does not treat these systems as failures by default. The response spectrum applies: many water problems call for optimisation or reform, and exit is appropriate only for specific functions or under specific conditions.`
+**Public water is a genuine achievement.** Centralized water treatment and sewerage dramatically reduced waterborne disease in the cities that adopted them. Exodology does not treat these systems as failures by default. The response spectrum applies: many water problems call for optimization or reform, and exit is appropriate only for specific functions or under specific conditions.`
       },
       {
         title: 'When Exit From Water Systems Is Warranted',
@@ -59,7 +59,7 @@ When you map your own water system, mark where it touches the energy system, whe
 - **Unsafe supply**: documented contamination that the responsible institutions are not addressing. Reform and voice should be pursued in parallel, because exit by those who can afford filters or tanks can weaken pressure to fix the system for everyone else.
 - **Unaffordable or unjust supply**: pricing or governance changes that exclude people from a basic need.
 
-Two widely documented cases show different sides of this. In Cochabamba, Bolivia, a 2000 water privatisation contract and the resulting price rises provoked mass protests, and the contract was cancelled; the episode is often cited in debates about who should control water. In Cape Town, South Africa, a severe drought led authorities to warn in 2018 of a possible "Day Zero" when municipal taps would be shut off; intensive demand reduction helped avoid it. Neither case is a simple story of exit, but both show how quickly a taken-for-granted dependency can become a live question.`
+Two widely documented cases show different sides of this. In Cochabamba, Bolivia, a 2000 water privatization contract and the resulting price rises provoked mass protests, and the contract was canceled; the episode is often cited in debates about who should control water. In Cape Town, South Africa, a severe drought led authorities to warn in 2018 of a possible "Day Zero" when municipal taps would be shut off; intensive demand reduction helped avoid it. Neither case is a simple story of exit, but both show how quickly a taken-for-granted dependency can become a live question.`
       },
       {
         title: 'Ethical Principles for Water Autonomy',
@@ -69,7 +69,7 @@ Two widely documented cases show different sides of this. In Cochabamba, Bolivia
 
 **Precaution with health.** Do not supply drinking water to others, or reuse wastewater near people, without treatment and testing appropriate to the risk. A community water project that makes people ill destroys trust in alternatives for years.
 
-**Distributive justice.** Tanks, filters and wells cost money. If only wealthier households gain water autonomy, the **lifeboat problem** appears in its sharpest form. In 2010 the United Nations General Assembly recognised access to safe drinking water and sanitation as a human right; whatever one's view of rights language, the point for practitioners is that water autonomy projects should widen access, not narrow it.
+**Distributive justice.** Tanks, filters and wells cost money. If only wealthier households gain water autonomy, the **lifeboat problem** appears in its sharpest form. In 2010 the United Nations General Assembly recognized access to safe drinking water and sanitation as a human right; whatever one's view of rights language, the point for practitioners is that water autonomy projects should widen access, not narrow it.
 
 **Residual duty.** Those who reduce their reliance on public water still have obligations to those who remain fully dependent: sharing knowledge, supporting public investment, and not using their own security as a reason to stop caring about the shared system.`
       },
@@ -92,7 +92,7 @@ At each stage, record the boundary between what the alternative carries and what
       'Separating drinking, hygiene, sanitation and productive water clarifies risk, exit friction and priorities',
       'Water quality failures are invisible and fast, so precaution and multi-barrier treatment are central',
       'Water is physically shared: capture, abstraction and discharge always affect other users',
-      'A staged, partial approach that widens access and honours residual duty is usually the ethical path'
+      'A staged, partial approach that widens access and honors residual duty is usually the ethical path'
     ],
 
     references: [

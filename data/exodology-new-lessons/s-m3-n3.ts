@@ -31,7 +31,7 @@ Groups often at risk include older people living alone, disabled people, people 
 
 In Poverty and Famines, Amartya Sen argued that several major famines occurred without a large fall in overall food supply. People starved because their **entitlements**, their ability to obtain food through wages, production or trade, collapsed while food was still available to others. The lesson for transitions is that aggregate measures can look healthy while particular groups lose the means to meet basic needs, for example when wages in a declining industry fall faster than prices.
 
-In Heat Wave, the sociologist Eric Klinenberg examined the 1995 Chicago heat wave, in which hundreds of people died. He found that deaths were concentrated among older, poorer and socially isolated residents, and in neighbourhoods where public life and local services had declined. His account shows how social isolation and weakened institutions turn an external shock into a disaster for particular people.
+In Heat Wave, the sociologist Eric Klinenberg examined the 1995 Chicago heat wave, in which hundreds of people died. He found that deaths were concentrated among older, poorer and socially isolated residents, and in neighborhoods where public life and local services had declined. His account shows how social isolation and weakened institutions turn an external shock into a disaster for particular people.
 
 Transitions create similar risks in several ways:
 
@@ -50,7 +50,7 @@ Transitions create similar risks in several ways:
 
 **Knowing who is at risk.** Some systems keep voluntary registers of people who need extra help. In Great Britain, for example, energy and water companies operate a Priority Services Register for customers in vulnerable circumstances. Such registers allow planners to contact people before a change and during an outage, though they depend on people knowing about them and choosing to sign up.
 
-**Targeted and proactive support.** Outreach, advice and practical help delivered through trusted local organisations, rather than relying on people to request help when they are already in crisis.
+**Targeted and proactive support.** Outreach, advice and practical help delivered through trusted local organizations, rather than relying on people to request help when they are already in crisis.
 
 **Retaining an opt-out where possible.** Keeping a simple version of the old option available for people who cannot yet move, for a defined period, reduces the risk of forcing people into arrangements that fail them.
 
@@ -72,16 +72,16 @@ Precaution has costs. It can slow a transition, and delay can itself harm vulner
       },
       {
         title: 'Protection Without Paternalism',
-        content: `Protection can go wrong. Measures meant to shield people can take decisions away from them, label them in ways that stigmatise, or treat them as passive recipients rather than participants. A Strategic Exodologist has to hold two commitments together: protecting those most at risk, and respecting their agency.
+        content: `Protection can go wrong. Measures meant to shield people can take decisions away from them, label them in ways that stigmatize, or treat them as passive recipients rather than participants. A Strategic Exodologist has to hold two commitments together: protecting those most at risk, and respecting their agency.
 
 Several practices help:
 
 - **Ask, do not assume.** People are usually the best judges of their own needs and risks. The Principle of Informed Engagement calls for clear communication and meaningful consent from affected parties where possible.
-- **Let people define their own needs.** Self-identification, as in voluntary registers, respects dignity better than categorising people without their knowledge, although it can miss those who are unaware or distrustful.
-- **Include vulnerable groups in governance.** The Principle of Procedural Justice calls for meaningful participation and respect for experiential knowledge. Organisations led by disabled people, older people or low-income communities can identify risks that planners would not.
+- **Let people define their own needs.** Self-identification, as in voluntary registers, respects dignity better than categorizing people without their knowledge, although it can miss those who are unaware or distrustful.
+- **Include vulnerable groups in governance.** The Principle of Procedural Justice calls for meaningful participation and respect for experiential knowledge. Organizations led by disabled people, older people or low-income communities can identify risks that planners would not.
 - **Avoid trapping people in protection.** Safeguards should keep the door to exit open. A protection that only preserves people's position in a failing system can become another form of lock-in.
 
-There are genuine tensions here. Respecting someone's choice to stay in a declining system may expose them to harm; pressing them to move may override their judgement. There is no formula that resolves this. What the ethics guidelines ask is that such choices be made openly, with those affected, and documented so that practice can learn from them.`
+There are genuine tensions here. Respecting someone's choice to stay in a declining system may expose them to harm; pressing them to move may override their judgment. There is no formula that resolves this. What the ethics guidelines ask is that such choices be made openly, with those affected, and documented so that practice can learn from them.`
       }
     ],
 

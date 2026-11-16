@@ -48,11 +48,11 @@ Pay particular attention to those with the least margin. A household with saving
       },
       {
         title: 'Deciding When to Return',
-        content: `The hardest part of re-entry is often recognising that it is needed. Two errors are common: returning too quickly after a setback that could have been overcome, and staying too long in an alternative that is clearly failing.
+        content: `The hardest part of re-entry is often recognizing that it is needed. Two errors are common: returning too quickly after a setback that could have been overcome, and staying too long in an alternative that is clearly failing.
 
-Research in psychology and organizational behaviour has documented the **sunk cost effect** and **escalation of commitment**: the tendency to keep investing in a course of action because of what has already been invested, rather than because of what the future holds. Exit projects are especially exposed to this, because they carry strong values, identity and community attachment.
+Research in psychology and organizational behavior has documented the **sunk cost effect** and **escalation of commitment**: the tendency to keep investing in a course of action because of what has already been invested, rather than because of what the future holds. Exit projects are especially exposed to this, because they carry strong values, identity and community attachment.
 
-A practical safeguard is to set **re-entry triggers** in advance, while judgement is calm. For example:
+A practical safeguard is to set **re-entry triggers** in advance, while judgment is calm. For example:
 - If reserves fall below a set level and cannot be restored within a defined period
 - If an essential need, such as safe water or necessary medical care, cannot be met reliably
 - If the warning signs from Common Exit System Failures persist after repair attempts
@@ -70,13 +70,13 @@ Sociologist Erving Goffman's classic study of stigma described how people manage
 
 Exodology's commitment to ethical exit implies a commitment to dignified return. In practice, this means:
 
-**Normalise re-entry in advance.** Communities that discuss openly, from the start, that some members may need to return make it far easier for those members to do so without shame.
+**Normalize re-entry in advance.** Communities that discuss openly, from the start, that some members may need to return make it far easier for those members to do so without shame.
 
 **Separate the person from the system.** A failed alternative is information about the alternative, its design and its circumstances, not a verdict on the character of those who tried it.
 
 **Keep relationships across the boundary.** People who return to a dominant system can remain friends, allies and advisers to those who stay in the alternative, and often bring valuable knowledge in both directions.
 
-William Bridges, writing about personal transitions, emphasised that every transition begins with an ending that has to be acknowledged. Re-entry is a transition too. Taking time to recognise what was attempted, what was learned and what was lost helps people move forward rather than carry the experience as a private failure.`
+William Bridges, writing about personal transitions, emphasized that every transition begins with an ending that has to be acknowledged. Re-entry is a transition too. Taking time to recognize what was attempted, what was learned and what was lost helps people move forward rather than carry the experience as a private failure.`
       },
       {
         title: 'Collective Re-entry: Winding Down an Alternative Well',
@@ -86,7 +86,7 @@ The principle is the one at the heart of Exodology: a managed exit is better tha
 
 - **Early, honest notice** to members and dependents, with as much time as possible to make other arrangements
 - **Protecting essential needs first**, so that no one is suddenly left without water, food, heat or care
-- **Prioritising the vulnerable**, in line with the guidance to give priority to those with less power when trade-offs are unavoidable
+- **Prioritizing the vulnerable**, in line with the guidance to give priority to those with less power when trade-offs are unavoidable
 - **Fair settlement** of member contributions, deposits, debts and shared assets, following the group's own rules and applicable law
 - **Transferring what can be saved**, such as equipment, knowledge, records or members, to another alternative that can continue the work
 - **Helping members re-enter**, for example by sharing information about how to rejoin services or by supporting those who face the highest re-entry costs
@@ -116,7 +116,7 @@ Finally, re-entry may be a stage rather than an end point. Many people who retur
       'Re-entry planning supports exit capability by keeping exits reversible, in line with the Principle of Precaution',
       'Identify the costs of returning before leaving, and choose deliberately which bridges to keep',
       'Set re-entry triggers in advance to guard against both premature return and escalation of commitment',
-      'Dignified return requires normalising re-entry and separating the person from the failed alternative',
+      'Dignified return requires normalizing re-entry and separating the person from the failed alternative',
       'When a collective alternative ends, a managed wind-down that protects essential needs and the vulnerable is the ethical standard'
     ],
 

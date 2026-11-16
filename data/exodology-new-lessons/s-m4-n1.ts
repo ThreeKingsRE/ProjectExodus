@@ -10,7 +10,7 @@ const lesson: NewExodologyLesson = {
 
 This lesson offers a working way to classify those risks. It is not a fixed Exodological model and it does not replace the risk methods of engineering, finance or public health. It is a set of distinctions that help a strategic exodologist ask the right questions before acting: what kind of risk is this, who carries it, how fast could it unfold, and can it be undone?
 
-The lesson also insists on a point that is easy to forget: staying is risky too. A risk typology that only lists the dangers of leaving will always favour the status quo. Honest analysis compares the risks of the transition with the risks of remaining in a system that is failing.`,
+The lesson also insists on a point that is easy to forget: staying is risky too. A risk typology that only lists the dangers of leaving will always favor the status quo. Honest analysis compares the risks of the transition with the risks of remaining in a system that is failing.`,
 
     sections: [
       {
@@ -23,7 +23,7 @@ The Ethics Guidelines ask practitioners to identify potential unintended consequ
       },
       {
         title: 'Risks by Domain',
-        content: `A first way to sort risk is by the part of the system it affects. Exodology analyses transitions as involving technological, institutional, behavioural and cultural dimensions, and risks appear in each:
+        content: `A first way to sort risk is by the part of the system it affects. Exodology analyses transitions as involving technological, institutional, behavioral and cultural dimensions, and risks appear in each:
 
 1. **Technical and operational risks**: alternatives do not perform as expected, new infrastructure is late, or the old and new systems fail to work together during the changeover.
 2. **Economic and financial risks**: costs overrun, assets lose value before they are paid off, prices rise for households, or financing for parallel systems dries up. Bent Flyvbjerg and colleagues documented how often large infrastructure projects exceed their budgets and timelines, a pattern worth assuming rather than hoping to avoid.
@@ -36,7 +36,7 @@ Most real risks belong to more than one domain. A plant closure is at once a tec
       },
       {
         title: 'Risks by Who Carries Them',
-        content: `The Foundations path distinguishes three parties in any exit: those who leave, those who stay, and the system itself. Sorting risks by who carries them keeps the Principle of Distributive Justice at the centre of analysis.
+        content: `The Foundations path distinguishes three parties in any exit: those who leave, those who stay, and the system itself. Sorting risks by who carries them keeps the Principle of Distributive Justice at the center of analysis.
 
 **Risks to exiters** include post-exit precarity: the period after leaving when alternatives are immature, income is uncertain or support networks are thin. At scale, these risks fall on whole communities that have committed to parallel systems.
 
@@ -44,7 +44,7 @@ Most real risks belong to more than one domain. A plant closure is at once a tec
 
 **Risks to the system as a whole** arise when departures push a system past a threshold, so that it no longer functions for anyone. A managed exit becomes collapse.
 
-**Risks to third parties and future generations** fall on people outside the system entirely: neighbouring regions, ecosystems, or those who will inherit the infrastructure and debts that a transition leaves behind.
+**Risks to third parties and future generations** fall on people outside the system entirely: neighboring regions, ecosystems, or those who will inherit the infrastructure and debts that a transition leaves behind.
 
 A useful discipline is to require that every listed risk names a carrier. Risks with no named carrier are usually risks someone else has quietly been assigned.`
       },
@@ -58,13 +58,13 @@ A useful discipline is to require that every listed risk names a carrier. Risks 
 
 **Coupling and complexity.** The sociologist Charles Perrow argued that in systems that are both tightly coupled (one part quickly affects another, with little slack) and interactively complex (parts interact in unexpected ways), serious accidents should be expected rather than treated as freak events. Transitions often temporarily increase coupling, because old and new systems must be run side by side under time pressure. That is precisely when unexpected interactions are most likely.
 
-**Known risks and deep uncertainty.** Economists since Frank Knight have distinguished risk, where probabilities can be estimated, from uncertainty, where they cannot. Nassim Nicholas Taleb popularised the term "black swan" for rare, high-impact events that are explained only in hindsight. For transitions, the practical lesson is to build buffers and options rather than relying only on forecasts.`
+**Known risks and deep uncertainty.** Economists since Frank Knight have distinguished risk, where probabilities can be estimated, from uncertainty, where they cannot. Nassim Nicholas Taleb popularized the term "black swan" for rare, high-impact events that are explained only in hindsight. For transitions, the practical lesson is to build buffers and options rather than relying only on forecasts.`
       },
       {
         title: 'The Risk of Staying',
         content: `The response spectrum reminds us that collapse is what happens when exit and reform fail or are blocked. A risk assessment that counts only the dangers of moving will therefore always recommend staying, even when the exit window is closing.
 
-A balanced typology applies the same categories to the status quo. What are the technical risks of continuing to depend on ageing infrastructure? The financial risks of assets that may be stranded later at greater cost? The social risks of a decline that is managed by nobody? The political risks of losing public trust because problems were denied until crisis?
+A balanced typology applies the same categories to the status quo. What are the technical risks of continuing to depend on aging infrastructure? The financial risks of assets that may be stranded later at greater cost? The social risks of a decline that is managed by nobody? The political risks of losing public trust because problems were denied until crisis?
 
 Comparing the two profiles honestly often reveals that the choice is not between risk and safety but between **managed risk now and unmanaged risk later**. It also shows where risks can be shifted from the most vulnerable to those better able to carry them, which is a design choice rather than a fact of nature.
 
@@ -77,8 +77,8 @@ This comparison has limits. Risks of the status quo are often more familiar and 
 1. **List risks broadly** with stakeholders, including those who will stay in the existing system and those with experiential knowledge of how it actually works.
 2. **Sort each risk** by domain, by carrier, by speed and by reversibility. Gaps in the table, such as no ecological risks or no risks to those who stay, are signals to look harder.
 3. **Compare with the risks of staying**, using the same categories.
-4. **Prioritise** irreversible, fast and tightly coupled risks, and risks that fall on people with the least capacity to absorb them.
-5. **Assign a response and a responsible party** for each priority risk, together with an early warning sign that would show it is materialising.
+4. **Prioritize** irreversible, fast and tightly coupled risks, and risks that fall on people with the least capacity to absorb them.
+5. **Assign a response and a responsible party** for each priority risk, together with an early warning sign that would show it is materializing.
 6. **Revisit regularly.** Risk profiles change as a transition moves through its phases. The next lessons on backlash and unintended consequences, and the Risk Scenario Planning tool that closes this module, build on this foundation.
 
 Throughout, record uncertainty explicitly. Saying "we do not know how large this risk is" is more useful than a precise number that hides guesswork.`

@@ -6,7 +6,7 @@ const lesson: NewExodologyLesson = {
   duration: '30 min',
   type: 'interactive',
   content: {
-    introduction: `This challenge asks you to apply every strategic framework to one complex case and bring them together into a single, coherent judgement. The case is **hypothetical**: it is a composite built from patterns common in documented transitions, and it does not describe any real place, company or community.
+    introduction: `This challenge asks you to apply every strategic framework to one complex case and bring them together into a single, coherent judgment. The case is **hypothetical**: it is a composite built from patterns common in documented transitions, and it does not describe any real place, company or community.
 
 **The case: the Lowmarsh Valley.** The valley contains three small towns and surrounding farmland. For forty years, almost all of its water, for households and for irrigation, has come from a groundwater system run by a single private operator under a long-term concession granted by the national government. Most of the water goes to irrigate one export crop, which supplies a large processing plant that is the valley's biggest employer. Groundwater levels have fallen steadily, and wells near the coast have begun to turn salty. The operator has twice promised investment to stabilize the system and twice delivered less than promised. Water prices are rising.
 

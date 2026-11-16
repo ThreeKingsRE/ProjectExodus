@@ -15,7 +15,7 @@ This lesson introduces practical methods for assessing how well a household or c
     sections: [
       {
         title: 'What Resilience Means Here',
-        content: `The word resilience is used loosely, so begin with care. Ecologist C.S. Holling distinguished resilience from stability: a stable system returns quickly to a single equilibrium after a small disturbance, while a resilient system can absorb large disturbances and keep its essential functions, even if it changes along the way. Later resilience researchers, including Brian Walker and David Salt, emphasise **thresholds**: points beyond which a system shifts into a different state that may be hard or impossible to reverse.
+        content: `The word resilience is used loosely, so begin with care. Ecologist C.S. Holling distinguished resilience from stability: a stable system returns quickly to a single equilibrium after a small disturbance, while a resilient system can absorb large disturbances and keep its essential functions, even if it changes along the way. Later resilience researchers, including Brian Walker and David Salt, emphasize **thresholds**: points beyond which a system shifts into a different state that may be hard or impossible to reverse.
 
 For exit work, three plain questions follow from this research:
 
@@ -36,7 +36,7 @@ A good scenario is concrete. Rather than "the grid fails", write: "Electricity i
 - What backups exist, and do any of them depend on the same failed input?
 - Who in the household or community is affected first and most?
 
-Run several scenarios that stress different systems: a supply disruption, a utility outage, a loss of income, a health emergency, the departure of key people. Choose scenarios that are plausible for your place rather than dramatic. A flood-prone neighbourhood should test flooding before it tests anything exotic.
+Run several scenarios that stress different systems: a supply disruption, a utility outage, a loss of income, a health emergency, the departure of key people. Choose scenarios that are plausible for your place rather than dramatic. A flood-prone neighborhood should test flooding before it tests anything exotic.
 
 Record each point where the scenario reveals a hidden dependency. The **weakest-link** insight from autonomy scoring is often confirmed here: a water system that depends on an electric pump, or a cooperative whose bank account only one person can access.`
       },
@@ -52,22 +52,22 @@ Record each point where the scenario reveals a hidden dependency. The **weakest-
       },
       {
         title: 'Method 3: Assessing Social Resilience',
-        content: `Many documented disasters suggest that relationships matter as much as equipment. Communities with dense networks of neighbours who know and check on each other often cope better than those with better hardware but weaker ties. Assessing resilience therefore means assessing social connections, not only physical systems.
+        content: `Many documented disasters suggest that relationships matter as much as equipment. Communities with dense networks of neighbors who know and check on each other often cope better than those with better hardware but weaker ties. Assessing resilience therefore means assessing social connections, not only physical systems.
 
 Useful questions include:
 
 - **Who checks on whom?** If communication systems failed, how would people find out who needs help? Is anyone isolated?
 - **Who holds critical knowledge?** If a single person knows how to run the water filter or manage the cooperative's accounts, that person is a critical node.
 - **How are decisions made under pressure?** Does the group have an agreed way to decide quickly, or will a crisis expose unresolved conflict? Conflict and Resilience covered building these capacities; assessment checks whether they actually exist.
-- **What external relationships exist?** Ties to neighbouring communities, local services and other cooperatives can provide help when local capacity is overwhelmed.
+- **What external relationships exist?** Ties to neighboring communities, local services and other cooperatives can provide help when local capacity is overwhelmed.
 
 A simple method is a **relationship walk-through**: list the households in a block or group and, for each, name who would notice if they needed help within a day. Gaps in that list are resilience gaps. This exercise must be handled with respect and consent, since it touches on people's privacy and circumstances.`
       },
       {
         title: 'Equity and Honest Reporting',
-        content: `Resilience is unevenly distributed, and an assessment that reports only averages can hide the people most at risk. The Principle of Distributive Justice asks practitioners to analyse who gains and who loses; in resilience work, this means asking who is affected first and recovers last.
+        content: `Resilience is unevenly distributed, and an assessment that reports only averages can hide the people most at risk. The Principle of Distributive Justice asks practitioners to analyze who gains and who loses; in resilience work, this means asking who is affected first and recovers last.
 
-Groups that often face greater exposure include people who depend on powered medical equipment, older people living alone, people without a car, renters who cannot modify their homes, and households with little savings. A community energy scheme that keeps the community centre running during an outage may do little for a person on oxygen at home unless that need is specifically planned for.
+Groups that often face greater exposure include people who depend on powered medical equipment, older people living alone, people without a car, renters who cannot modify their homes, and households with little savings. A community energy scheme that keeps the community center running during an outage may do little for a person on oxygen at home unless that need is specifically planned for.
 
 Honest reporting also matters. Practitioners can be tempted to present resilience findings optimistically to encourage participation. The Principle of Intellectual Honesty asks you to distinguish what has been tested from what is assumed. A useful convention is to label each finding:
 

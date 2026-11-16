@@ -8,7 +8,7 @@ const lesson: NewExodologyLesson = {
   content: {
     introduction: `This exercise brings the Failure Modes module together. You will take one alternative you run, belong to or are planning, imagine specific ways it could fail, trace what would happen, and design responses for prevention, graceful degradation and re-entry.
 
-Choose a real alternative where possible: a household water or energy setup, a community garden, a buying club, a cooperative, a mutual aid network, or the parallel system you designed earlier in the Applied path. If you are not yet part of one, use a clearly hypothetical alternative and describe it concretely enough to analyse. Keep your dependency map from earlier modules at hand, and where the alternative is shared, consider working through the exercise with other members, since failures are rarely visible from one person's position alone.`,
+Choose a real alternative where possible: a household water or energy setup, a community garden, a buying club, a cooperative, a mutual aid network, or the parallel system you designed earlier in the Applied path. If you are not yet part of one, use a clearly hypothetical alternative and describe it concretely enough to analyze. Keep your dependency map from earlier modules at hand, and where the alternative is shared, consider working through the exercise with other members, since failures are rarely visible from one person's position alone.`,
     gameType: 'guided-exercise',
     steps: [
       {

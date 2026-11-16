@@ -15,9 +15,9 @@ This lesson sets out those principles and their limits. The lessons that follow 
     sections: [
       {
         title: 'Why Food Systems Centralized, and What It Cost',
-        content: `Modern food systems did not centralize by accident. Concentrating processing, distribution and retail in large facilities brought real benefits: economies of scale, lower prices for many foods, year-round availability, and the ability to move food from regions with surpluses to regions with shortages. Intellectual honesty requires acknowledging these gains before criticising the arrangement.
+        content: `Modern food systems did not centralize by accident. Concentrating processing, distribution and retail in large facilities brought real benefits: economies of scale, lower prices for many foods, year-round availability, and the ability to move food from regions with surpluses to regions with shortages. Intellectual honesty requires acknowledging these gains before criticizing the arrangement.
 
-The costs appear in the dependency map. Writer and activist **Raj Patel** described the global food system as an hourglass: very many farmers at one end, very many eaters at the other, and a narrow waist of a relatively small number of firms that buy, process, trade and sell. From an Exodological perspective, that narrow waist is a cluster of **critical nodes**. Disruption at one processing plant, port or distribution centre can affect very large numbers of people, and the actors at the waist hold considerable power over both farmers and consumers.
+The costs appear in the dependency map. Writer and activist **Raj Patel** described the global food system as an hourglass: very many farmers at one end, very many eaters at the other, and a narrow waist of a relatively small number of firms that buy, process, trade and sell. From an Exodological perspective, that narrow waist is a cluster of **critical nodes**. Disruption at one processing plant, port or distribution center can affect very large numbers of people, and the actors at the waist hold considerable power over both farmers and consumers.
 
 Architect **Carolyn Steel** has shown how the feeding of cities has shaped urban form throughout history, and how modern supply chains have made food's journey largely invisible to city dwellers. Invisibility is itself a form of dependence: people cannot plan an exit from a system they cannot see.
 
@@ -53,15 +53,15 @@ Two clarifications prevent common misunderstandings:
 
 **Proximity where it matters**: Shortening supply chains for perishable, essential foods reduces exposure to transport disruption and makes the system visible to the people who rely on it.
 
-**Appropriate scale**: Economist **E. F. Schumacher** argued for technology and organisation at a human scale that communities can understand, maintain and control. In food systems, this means matching each function to the smallest scale at which it works well. Growing vegetables works at household scale; milling grain, cold storage or slaughter may need shared community or regional facilities.
+**Appropriate scale**: Economist **E. F. Schumacher** argued for technology and organization at a human scale that communities can understand, maintain and control. In food systems, this means matching each function to the smallest scale at which it works well. Growing vegetables works at household scale; milling grain, cold storage or slaughter may need shared community or regional facilities.
 
-**Maintainability**: As the parallel systems lesson emphasises, design for the people who will run it. A distributed system that depends on rare expertise has simply moved the critical node.`
+**Maintainability**: As the parallel systems lesson emphasizes, design for the people who will run it. A distributed system that depends on rare expertise has simply moved the critical node.`
       },
       {
         title: 'Control: Food Security and Food Sovereignty',
         content: `Decentralization concerns not only where food moves but who decides. Foundations distinguished **food security**, having enough food, from **food sovereignty**, the right of peoples to define their own food systems. A highly centralized system can deliver food security in normal times while leaving communities with almost no control.
 
-Decentralizing control means asking who sets the rules at each stage: who owns the land and seed, who sets prices, who decides what is grown, who governs shared infrastructure. Political scientists **Vincent and Elinor Ostrom** used the term **polycentric governance** for arrangements with many overlapping centres of decision-making rather than a single authority. Food systems lend themselves to this: household gardens, farmer cooperatives, consumer cooperatives, municipal food policy and national regulation can each govern what they are best placed to govern.
+Decentralizing control means asking who sets the rules at each stage: who owns the land and seed, who sets prices, who decides what is grown, who governs shared infrastructure. Political scientists **Vincent and Elinor Ostrom** used the term **polycentric governance** for arrangements with many overlapping centers of decision-making rather than a single authority. Food systems lend themselves to this: household gardens, farmer cooperatives, consumer cooperatives, municipal food policy and national regulation can each govern what they are best placed to govern.
 
 This links decentralization to the principle of **political embeddedness**. Shifting control away from the narrow waist of the hourglass is contested; actors who benefit from concentration may resist. It also links to **procedural justice**: a decentralized system run by a small, unrepresentative group is not more just than a centralized one. Decentralization of control has to come with fair participation.`
       },
@@ -77,7 +77,7 @@ This links decentralization to the principle of **political embeddedness**. Shif
 
 **Cost and access**: Small-scale food can cost more per unit. Without deliberate design, decentralized food systems can become a premium option for those who can afford it, which is the lifeboat problem in food form. The distribution and access lesson in this module addresses this directly.
 
-**Labour and skills**: Distributed systems need more people with more skills. Where food-growing knowledge has faded, rebuilding it takes time.
+**Labor and skills**: Distributed systems need more people with more skills. Where food-growing knowledge has faded, rebuilding it takes time.
 
 The Exodological position is therefore not "local is good" but "no single point of failure, and fair control". Sometimes the best decentralization strategy keeps regional and global links while adding local capacity.`
       },
@@ -95,7 +95,7 @@ In practice this means:
 
 4. **Keep bridges open.** Hybrid arrangements, such as farmers selling to both cooperatives and conventional buyers, protect livelihoods during the transition.
 
-5. **Remember those who stay.** Residual duty applies: if new systems draw customers away from shops that low-income neighbours depend on, the transition may leave some people worse off. Designing on-ramps and keeping public food assistance strong are part of exiting well.
+5. **Remember those who stay.** Residual duty applies: if new systems draw customers away from shops that low-income neighbors depend on, the transition may leave some people worse off. Designing on-ramps and keeping public food assistance strong are part of exiting well.
 
 In multi-level terms, decentralized food initiatives often begin as **niches**, protected spaces where alternatives can develop, which may over time influence the dominant regime. The next lessons turn these principles into concrete designs.`
       }

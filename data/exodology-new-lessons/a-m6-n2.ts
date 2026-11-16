@@ -43,7 +43,7 @@ Two cautions. First, redundancy only helps if the duplicates do not fail togethe
 
 Resilience ecologists distinguish two related ideas that are useful here. One is having several different elements that perform the same function. The other, sometimes called **response diversity**, is having elements that perform the same function but respond differently to the same disturbance. A garden with many crop varieties, some drought-tolerant and some frost-tolerant, will rarely lose everything in one bad season.
 
-A widely documented historical warning is the Irish famine of the 1840s. Much of the rural population depended heavily on potatoes, largely of a narrow range of varieties, and potato blight destroyed crops across the country in successive years. Historians emphasise that the scale of death and emigration was also shaped by political and economic decisions, including land tenure and the response of the government of the day. The lesson for Exodology is double: low diversity created the biological vulnerability, and unjust institutions turned that vulnerability into catastrophe.
+A widely documented historical warning is the Irish famine of the 1840s. Much of the rural population depended heavily on potatoes, largely of a narrow range of varieties, and potato blight destroyed crops across the country in successive years. Historians emphasize that the scale of death and emigration was also shaped by political and economic decisions, including land tenure and the response of the government of the day. The lesson for Exodology is double: low diversity created the biological vulnerability, and unjust institutions turned that vulnerability into catastrophe.
 
 Diversity in exit systems can include:
 - Several sources for critical inputs, rather than one supplier
@@ -82,7 +82,7 @@ The key is that these choices are made before the crisis, through a fair process
 
 Modularity creates natural firebreaks. It also makes systems easier to understand and repair, which supports the maintainability principle from Designing Parallel Systems.
 
-The trade-off is real. Larger, integrated systems can be cheaper per unit and can support more specialised equipment. Community scale often enables solutions that individual households cannot afford, as the water alternatives lesson noted. A common compromise is a modular design with shared support: units that can operate independently in a disruption but share knowledge, spare parts and maintenance in normal times.`
+The trade-off is real. Larger, integrated systems can be cheaper per unit and can support more specialized equipment. Community scale often enables solutions that individual households cannot afford, as the water alternatives lesson noted. A common compromise is a modular design with shared support: units that can operate independently in a disruption but share knowledge, spare parts and maintenance in normal times.`
       },
       {
         title: 'Resilience for Whom?',
@@ -96,7 +96,7 @@ Some practical commitments follow:
 
 **Share the cost of slack fairly.** Reserves and redundancy cost money and time. Decide openly who pays for them and who benefits.
 
-**Keep resilience in use.** Backups, skills and agreements that are never practised tend to fail when needed. Regular drills, rotating roles and keeping alternatives in occasional use are part of the design, not extras.
+**Keep resilience in use.** Backups, skills and agreements that are never practiced tend to fail when needed. Regular drills, rotating roles and keeping alternatives in occasional use are part of the design, not extras.
 
 Resilience is ultimately a property of relationships as much as of equipment. Many documented disasters suggest that communities where people know and check on each other cope better. Designing for resilience therefore includes the slow work of building trust.`
       }

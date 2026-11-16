@@ -8,7 +8,7 @@ const lesson: NewExodologyLesson = {
   content: {
     introduction: `Every staged exit passes through a period in which people depend on two systems at once. The existing system still carries critical functions; the alternative is carrying more each month but is not yet fully proven. This is the condition of **dual dependency**, and it is where many exits stall.
 
-Dual dependency is a paradox. On paper, exit capability is rising: there is now a second way to meet a need. In practice, total obligations often rise too: two sets of costs, two sets of skills to maintain, two sets of relationships and rules to honour, and the mental strain of holding both. Without deliberate management, the transition period can become permanent, or it can exhaust people until they abandon the alternative altogether.
+Dual dependency is a paradox. On paper, exit capability is rising: there is now a second way to meet a need. In practice, total obligations often rise too: two sets of costs, two sets of skills to maintain, two sets of relationships and rules to honor, and the mental strain of holding both. Without deliberate management, the transition period can become permanent, or it can exhaust people until they abandon the alternative altogether.
 
 This lesson examines the costs of living with two systems, how the existing system may resist your departure, how to structure the transition period so it moves forward, and how to share its burdens fairly. It builds on the hybrid roles from the previous lesson and on the income bridge and milestones from Financial Planning for Exit.`,
 
@@ -21,7 +21,7 @@ This lesson examines the costs of living with two systems, how the existing syst
 
 **Time**: Two systems need two sets of maintenance, learning and coordination. Time spent keeping the old system going is time not spent strengthening the new one.
 
-**Attention**: Behavioural economist Sendhil Mullainathan and psychologist Eldar Shafir showed that scarcity—of money or of time—captures attention and narrows focus, reducing the mental capacity available for other decisions. People under the pressure of a demanding transition may make poorer choices not because they lack skill, but because their attention is overloaded.
+**Attention**: Behavioral economist Sendhil Mullainathan and psychologist Eldar Shafir showed that scarcity—of money or of time—captures attention and narrows focus, reducing the mental capacity available for other decisions. People under the pressure of a demanding transition may make poorer choices not because they lack skill, but because their attention is overloaded.
 
 **Skills**: Competence in both systems has to be kept current. Skills in the alternative that are rarely used fade.
 
@@ -43,7 +43,7 @@ Naming these costs in advance makes them manageable rather than surprising.`
 
 **Social pressure**: Colleagues, family or community members who see partial exit as disloyalty.
 
-These are forms of exit friction, and recognising them is the first step to managing them. Some can be reduced through timing (waiting for a contract to end), some through collective action (negotiating as a group), and some through advocacy for rules that lower switching costs. Others must simply be accepted as part of the transition burden and budgeted for.`
+These are forms of exit friction, and recognizing them is the first step to managing them. Some can be reduced through timing (waiting for a contract to end), some through collective action (negotiating as a group), and some through advocacy for rules that lower switching costs. Others must simply be accepted as part of the transition burden and budgeted for.`
       },
       {
         title: 'Structuring the Transition Period',
@@ -63,7 +63,7 @@ Structure does not mean rigidity. Adaptive management—learning while doing—i
         title: 'Reducing the Load',
         content: `Several practical approaches can lighten dual dependency without increasing risk.
 
-**Sequence, do not parallelise everything**: Running several dual dependencies at once multiplies costs and attention load. It is usually wiser to move one or two functions through the transition period at a time, guided by criticality and exit leverage.
+**Sequence, do not parallelize everything**: Running several dual dependencies at once multiplies costs and attention load. It is usually wiser to move one or two functions through the transition period at a time, guided by criticality and exit leverage.
 
 **Retire fixed costs first where safe**: Look for parts of the existing system that can be reduced to a low-cost fallback level—a basic tariff, a minimal membership, a pay-as-you-go option—while keeping access for emergencies.
 
@@ -77,7 +77,7 @@ Structure does not mean rigidity. Adaptive management—learning while doing—i
         title: 'Fair Distribution of the Transition Burden',
         content: `The extra work of dual dependency is rarely shared equally, and the Exodologist should make its distribution visible.
 
-**Within households**: Much of the added work—learning new routines, maintaining equipment, preparing food differently, managing two sets of accounts—falls on whoever already carries the most domestic work. Research on unpaid care and household labour has widely documented that this burden often falls unevenly, frequently along gendered lines. An exit that quietly doubles one person's workload is not a just exit.
+**Within households**: Much of the added work—learning new routines, maintaining equipment, preparing food differently, managing two sets of accounts—falls on whoever already carries the most domestic work. Research on unpaid care and household labor has widely documented that this burden often falls unevenly, frequently along gendered lines. An exit that quietly doubles one person's workload is not a just exit.
 
 **Within communities**: Alternatives often depend on volunteers. A small number of committed people can end up carrying dual dependency for everyone, which leads to burnout—one of the internal threats to persistence covered in the Strategic path.
 
@@ -91,7 +91,7 @@ Practical responses include making the work visible and discussed, rotating role
 
 **Honesty**: Be clear with employers, suppliers, institutions and communities about what you are doing, where that is safe and appropriate. Exits that rely on concealment tend to damage trust that may be needed later.
 
-**Meeting commitments**: Honour obligations you still hold in the existing system—contracts, roles, responsibilities to colleagues—until they can be properly concluded. Breaking commitments without transition planning is one of the patterns of harmful exit identified in Foundations.
+**Meeting commitments**: Honor obligations you still hold in the existing system—contracts, roles, responsibilities to colleagues—until they can be properly concluded. Breaking commitments without transition planning is one of the patterns of harmful exit identified in Foundations.
 
 **Carrying knowledge across**: People in dual dependency understand both systems. That makes them well placed to help others assess their own options, and to bring lessons from the alternative back into reform efforts within the existing system.
 

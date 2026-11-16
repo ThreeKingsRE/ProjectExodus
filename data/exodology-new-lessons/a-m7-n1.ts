@@ -8,18 +8,18 @@ const lesson: NewExodologyLesson = {
   content: {
     introduction: `Earlier in the Applied path you mapped your dependencies, designed parallel systems and planned transitions. Each of those steps rests on a claim that is easy to make and hard to check: that your exit capability is growing. This module asks how you would know. Without some form of measurement, a household or community can mistake activity for progress, buying equipment or holding meetings while its structural dependence on the systems it means to leave stays exactly where it was.
 
-In Exodology, **autonomy** is not isolation or total self-sufficiency. It is the degree to which a household or community can meet an essential need without being forced to remain in a particular system. It is the practical expression of exit capability. A household that grows a fifth of its vegetables, shares a well with neighbours and keeps two weeks of stored food is more autonomous in food and water than one that does none of these things, even though it still shops at a supermarket.
+In Exodology, **autonomy** is not isolation or total self-sufficiency. It is the degree to which a household or community can meet an essential need without being forced to remain in a particular system. It is the practical expression of exit capability. A household that grows a fifth of its vegetables, shares a well with neighbors and keeps two weeks of stored food is more autonomous in food and water than one that does none of these things, even though it still shops at a supermarket.
 
-This lesson sets out a simple, transparent way to describe autonomy across essential systems: which systems to measure, which dimensions of autonomy to look at, how to turn observations into scores, and what such scores can and cannot tell you. It is a way of organising questions you already know from dependency mapping, not a new theory, and it prepares you for the Autonomy Calculator at the end of this module.`,
+This lesson sets out a simple, transparent way to describe autonomy across essential systems: which systems to measure, which dimensions of autonomy to look at, how to turn observations into scores, and what such scores can and cannot tell you. It is a way of organizing questions you already know from dependency mapping, not a new theory, and it prepares you for the Autonomy Calculator at the end of this module.`,
 
     sections: [
       {
         title: 'Why Measure Autonomy at All?',
         content: `Measurement serves three purposes in exit work.
 
-**1. Seeing clearly.** Dependency maps show how you are connected to systems. A measure summarises how exposed you are, so that you can compare systems and decide where effort matters most. It turns the question "where are we vulnerable?" into something you can discuss with others.
+**1. Seeing clearly.** Dependency maps show how you are connected to systems. A measure summarizes how exposed you are, so that you can compare systems and decide where effort matters most. It turns the question "where are we vulnerable?" into something you can discuss with others.
 
-**2. Choosing well.** Exodology repeatedly asks whether optimisation, reform or exit is the right response on the response spectrum. Honest measures help you see whether reform is actually reducing dependence or only making it more comfortable. Recall the test from the Foundations path: if the original system disappeared tomorrow, would you be fine or in crisis? A measure is a structured way of answering that question in advance.
+**2. Choosing well.** Exodology repeatedly asks whether optimization, reform or exit is the right response on the response spectrum. Honest measures help you see whether reform is actually reducing dependence or only making it more comfortable. Recall the test from the Foundations path: if the original system disappeared tomorrow, would you be fine or in crisis? A measure is a structured way of answering that question in advance.
 
 **3. Being accountable.** The Charter commits practitioners to transparency and accountability. When you advise a community or ask people to invest time and money in a parallel system, you owe them a way of seeing whether it is working.
 
@@ -48,7 +48,7 @@ Notice that several of these systems are social rather than technical. The mappi
 
 **1. Coverage.** What share of the need can be met from sources you control or govern together with others, such as a garden, a shared well, a cooperative or a community energy scheme? Coverage is about everyday supply.
 
-**2. Duration.** If the dominant system stopped providing this need today, how long could you continue? The Foundations food exercise asked you to imagine a two-week supply disruption; duration generalises that question to every system.
+**2. Duration.** If the dominant system stopped providing this need today, how long could you continue? The Foundations food exercise asked you to imagine a two-week supply disruption; duration generalizes that question to every system.
 
 **3. Redundancy.** How many independent ways do you have to meet the need? One source, however reliable, is a critical node. Two sources that both depend on the same grid or the same supplier are not truly independent.
 
@@ -74,11 +74,11 @@ Three practices keep scoring honest:
 
 **Record evidence.** Next to each score, note what supports it: "pantry inventory, March", "tested the pump on battery for six hours". A score without evidence is a guess.
 
-**Avoid a single total too early.** It is tempting to add everything into one autonomy number. Totals hide the pattern: a high food score cannot compensate for having no safe water. Keep a profile across systems first, and if you do summarise, report the lowest system score alongside any average.`
+**Avoid a single total too early.** It is tempting to add everything into one autonomy number. Totals hide the pattern: a high food score cannot compensate for having no safe water. Keep a profile across systems first, and if you do summarize, report the lowest system score alongside any average.`
       },
       {
         title: 'Autonomy, Interdependence and Justice',
-        content: `Measuring autonomy carries a risk that Exodology takes seriously: it can drift toward the survivalism the Foundations path rejects. Exodology is not about individual escape. A household that scores high by hoarding while neighbours have nothing has not achieved an ethical exit; it has illustrated the **lifeboat problem**.
+        content: `Measuring autonomy carries a risk that Exodology takes seriously: it can drift toward the survivalism the Foundations path rejects. Exodology is not about individual escape. A household that scores high by hoarding while neighbors have nothing has not achieved an ethical exit; it has illustrated the **lifeboat problem**.
 
 Three habits keep measurement aligned with the discipline's commitments.
 

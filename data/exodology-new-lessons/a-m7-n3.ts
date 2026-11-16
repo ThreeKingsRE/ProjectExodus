@@ -26,15 +26,15 @@ A good baseline has four parts:
 
 Context is easy to forget and important to keep. If your food coverage rises between winter and summer, that may reflect the season rather than progress. If your energy costs fall, that may reflect a change in market prices rather than reduced dependence. Recording context at the baseline lets you separate what you changed from what simply changed around you, which is the heart of honest evaluation in any field.
 
-Keep the baseline even after you improve on it. Looking back at where you started is often the clearest evidence that a transition is real, and it is valuable documentation for others, as the lesson on Documenting and Sharing emphasises.`
+Keep the baseline even after you improve on it. Looking back at where you started is often the clearest evidence that a transition is real, and it is valuable documentation for others, as the lesson on Documenting and Sharing emphasizes.`
       },
       {
         title: 'Choose Indicators of Different Kinds',
-        content: `An indicator is a specific, observable sign of change. Programme evaluators commonly distinguish between kinds of indicators; three are especially useful for exit work.
+        content: `An indicator is a specific, observable sign of change. Program evaluators commonly distinguish between kinds of indicators; three are especially useful for exit work.
 
 **Activity indicators** show that work is happening: workshops held, beds planted, meetings attended, panels installed. They are easy to count and useful for coordination, but they do not show that dependence has fallen.
 
-**Capacity indicators** show that the ability to meet needs has grown: number of people who can maintain the water filter, litres of rainwater storage, months of reserve funds, number of households in the buying club. These are closer to exit capability.
+**Capacity indicators** show that the ability to meet needs has grown: number of people who can maintain the water filter, liters of rainwater storage, months of reserve funds, number of households in the buying club. These are closer to exit capability.
 
 **Outcome indicators** show that structural dependence has actually changed: share of food from community sources over a season, days the household could manage without grid power in a real outage, proportion of income from more than one source.
 
@@ -64,16 +64,16 @@ For community projects, hold reviews openly. The Principle of Procedural Justice
       },
       {
         title: 'When Measures Distort',
-        content: `Measurement changes behaviour. The economist Charles Goodhart gave his name to a well-known observation, usually paraphrased as: when a measure becomes a target, it ceases to be a good measure. The historian Jerry Muller, in The Tyranny of Metrics, documents how organisations that reward people for hitting numbers often get the numbers without the underlying improvement.
+        content: `Measurement changes behavior. The economist Charles Goodhart gave his name to a well-known observation, usually paraphrased as: when a measure becomes a target, it ceases to be a good measure. The historian Jerry Muller, in The Tyranny of Metrics, documents how organizations that reward people for hitting numbers often get the numbers without the underlying improvement.
 
 Exit work is vulnerable to the same problem. Some common distortions:
 
 - **Counting what is easy.** Panels installed are easy to count; whether anyone can repair them is not. The easy measure quietly becomes the goal.
 - **Gaming the definition.** A buying club reports rising food coverage by redefining "community-sourced" to include anything bought in bulk.
 - **Hiding setbacks.** A cooperative stops reporting membership after numbers fall, so the problem is noticed only when it is serious.
-- **Displacing judgement.** A community focuses on raising its average autonomy score and loses sight of the households whose exit capability has not changed at all.
+- **Displacing judgment.** A community focuses on raising its average autonomy score and loses sight of the households whose exit capability has not changed at all.
 
-Three habits reduce these risks. Pair every number with a short narrative explaining it. Review the indicators themselves each year and retire any that have started to drive the wrong behaviour. And avoid tying rewards, status or funding to a single indicator, which gives people the strongest incentive to bend it.`
+Three habits reduce these risks. Pair every number with a short narrative explaining it. Review the indicators themselves each year and retire any that have started to drive the wrong behavior. And avoid tying rewards, status or funding to a single indicator, which gives people the strongest incentive to bend it.`
       },
       {
         title: 'Reading the Trajectory',

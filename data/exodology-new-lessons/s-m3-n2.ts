@@ -10,7 +10,7 @@ const lesson: NewExodologyLesson = {
 
 Exit capability, the structural capacity to leave a system when needed, is not evenly shared. People with savings, flexible time, strong networks and secure legal status can try an alternative, absorb a setback and try again. People with the fewest options often cannot take even the first step, and they are frequently the people most harmed by staying in a failing system. If exit pathways are open only to the first group, the result is exactly what the lifeboats critique warns about.
 
-This lesson examines why access is unequal, how scarcity itself makes exit harder, how to design on-ramps for those with the least room to manoeuvre, how alternatives can exclude people even after they join, and how to check whether a pathway is really a ladder or only a lifeboat.`,
+This lesson examines why access is unequal, how scarcity itself makes exit harder, how to design on-ramps for those with the least room to maneuver, how alternatives can exclude people even after they join, and how to check whether a pathway is really a ladder or only a lifeboat.`,
 
     sections: [
       {
@@ -33,7 +33,7 @@ Each barrier may look small on its own. Together they mean that an exit describe
 
 The first is the **capability approach** developed by the economist Amartya Sen and the philosopher Martha Nussbaum, already referenced in Justice Frameworks for Exit. It holds that what matters is not only the resources people have but what they are actually able to do and be. Two people given the same subsidy may have very different capability to use it, because of disability, care responsibilities, location or discrimination. For exit design, this means that offering the same support to everyone does not produce equal access.
 
-The second comes from behavioural economics. In their book on scarcity, Sendhil Mullainathan and Eldar Shafir argue that having too little, whether money or time, captures attention and leaves less mental capacity for planning and for anything outside immediate pressures. On this view, failing to take up a beneficial option is often a predictable result of circumstances rather than a lack of motivation.
+The second comes from behavioral economics. In their book on scarcity, Sendhil Mullainathan and Eldar Shafir argue that having too little, whether money or time, captures attention and leaves less mental capacity for planning and for anything outside immediate pressures. On this view, failing to take up a beneficial option is often a predictable result of circumstances rather than a lack of motivation.
 
 Both ideas point to the same practical conclusion. Exit involves risk and a period of uncertainty, and people with no margin cannot absorb that risk. A pathway that requires people to take a leap, giving up something secure for something uncertain, will be used mostly by those who can afford to fall. Designing for access means reducing the size of the leap.`
       },
@@ -49,7 +49,7 @@ Both ideas point to the same practical conclusion. Exit involves risk and a peri
 
 **Reduce complexity.** Simple forms, help with applications, and support offered in person and in several languages lower the attention cost described in the previous section.
 
-**Go to people.** Instead of waiting for people to find the pathway, take it to the places they already are, through trusted local organisations, workplaces, faith groups and community centres.
+**Go to people.** Instead of waiting for people to find the pathway, take it to the places they already are, through trusted local organizations, workplaces, faith groups and community centers.
 
 None of these features is costly in itself, but each requires the designers of a transition to decide that reaching people with the fewest options is part of the goal rather than a later phase.`
       },
@@ -73,7 +73,7 @@ Practical questions for any alternative include: who holds decision-making roles
 
 **Involve those with the fewest options in design.** The Principle of Procedural Justice calls for meaningful participation by affected parties and respect for experiential knowledge. The disability rights slogan "nothing about us without us" expresses the same idea: people facing barriers are best placed to identify them. Participation must itself be accessible, with support for time, travel and care costs.
 
-**Watch for trade-offs.** Broadening access can slow a project, raise its costs or dilute the commitment of early members. These tensions are real. The ethics guidelines advise looking first for approaches that honour several principles at once and, when trade-offs cannot be avoided, giving priority to those with less power.
+**Watch for trade-offs.** Broadening access can slow a project, raise its costs or dilute the commitment of early members. These tensions are real. The ethics guidelines advise looking first for approaches that honor several principles at once and, when trade-offs cannot be avoided, giving priority to those with less power.
 
 A pathway that only the already advantaged can use may still be valuable as an experiment, but it should be described honestly as a niche, not presented as a just transition.`
       }

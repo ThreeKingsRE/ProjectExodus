@@ -6,11 +6,11 @@ const lesson: NewExodologyLesson = {
   duration: '20 min',
   type: 'instruction',
   content: {
-    introduction: `Water autonomy is usually discussed in terms of supply: where clean water comes from. But every litre that enters a household also leaves it, and the wastewater side of the system is just as much a dependency. Sewers and treatment plants are critical nodes that most people never see. When they fail, the consequences for public health are immediate and shared by everyone nearby.
+    introduction: `Water autonomy is usually discussed in terms of supply: where clean water comes from. But every liter that enters a household also leaves it, and the wastewater side of the system is just as much a dependency. Sewers and treatment plants are critical nodes that most people never see. When they fail, the consequences for public health are immediate and shared by everyone nearby.
 
 Water System Alternatives introduced the idea of **closing loops**: reusing greywater for irrigation, using composting toilets, and treating wastewater in constructed wetlands. This lesson develops those ideas into design principles. It distinguishes the different streams of household wastewater, explains how each can be reused or treated safely, and examines the nutrient value that conventional systems often discard.
 
-This is the area of water autonomy where the **Principle of Precaution** matters most. Human waste carries pathogens that cause serious disease. Poorly designed reuse systems can harm the household, its neighbours and the wider environment. The aim is not to bypass public health systems but to understand when local alternatives can be safe, and what it takes to make them so.`,
+This is the area of water autonomy where the **Principle of Precaution** matters most. Human waste carries pathogens that cause serious disease. Poorly designed reuse systems can harm the household, its neighbors and the wider environment. The aim is not to bypass public health systems but to understand when local alternatives can be safe, and what it takes to make them so.`,
 
     sections: [
       {
@@ -44,11 +44,11 @@ Common configurations include laundry-to-landscape systems that use the washing 
         title: 'Blackwater: Composting and Container-Based Sanitation',
         content: `Blackwater can be handled in several ways outside a central sewer. Each has trade-offs that should be assessed honestly.
 
-**Septic systems** are the most familiar decentralised option in many rural areas. A tank settles solids and the liquid passes to a soil drainage field. They are proven and widely regulated, but they discard nutrients, require periodic pumping, and can contaminate groundwater if poorly sited or maintained.
+**Septic systems** are the most familiar decentralized option in many rural areas. A tank settles solids and the liquid passes to a soil drainage field. They are proven and widely regulated, but they discard nutrients, require periodic pumping, and can contaminate groundwater if poorly sited or maintained.
 
 **Composting toilets** collect excreta, usually with a carbon-rich cover material such as sawdust, and break it down biologically. They save the large volume of water used for flushing. Safety depends on time and, in some approaches, heat: pathogen reduction is reliable only when material is held long enough under the right conditions. Guidance from public health bodies sets out retention times and handling practices. Finished material is most safely used around trees and ornamental plants rather than vegetables, unless treatment has been verified.
 
-**Urine-diverting toilets** separate urine at the source. Stored urine can, after a holding period recommended in sanitation guidance, be diluted and used as a fertiliser. Faeces are dried or composted separately.
+**Urine-diverting toilets** separate urine at the source. Stored urine can, after a holding period recommended in sanitation guidance, be diluted and used as a fertilizer. Faeces are dried or composted separately.
 
 **Container-based sanitation**, in which sealed containers are collected and processed centrally, is used in some cities where sewers are absent. It shows that the choice is not simply between a household system and a city sewer.
 
@@ -58,11 +58,11 @@ Every option requires maintenance. A neglected composting toilet is worse than a
         title: 'Nutrient Recovery and Closing Loops',
         content: `Conventional sanitation treats human waste as something to be removed and diluted. Ecological sanitation, a field within environmental engineering and public health, treats it as a resource that is in the wrong place.
 
-The reasoning is straightforward. Food grown on farms takes nitrogen, phosphorus and potassium from the soil. People eat the food and excrete most of those nutrients. In a conventional system those nutrients go to treatment plants and, often, to rivers and seas, where they can contribute to algal blooms. Meanwhile farms buy synthetic fertiliser, much of it produced with fossil energy or mined from finite phosphate deposits.
+The reasoning is straightforward. Food grown on farms takes nitrogen, phosphorus and potassium from the soil. People eat the food and excrete most of those nutrients. In a conventional system those nutrients go to treatment plants and, often, to rivers and seas, where they can contribute to algal blooms. Meanwhile farms buy synthetic fertilizer, much of it produced with fossil energy or mined from finite phosphate deposits.
 
-Recovering nutrients from wastewater, through urine diversion, composting, or nutrient recovery at treatment plants, can reduce both pollution and fertiliser dependence. From an Exodological perspective this is a **dependency link between two systems**: food autonomy and water autonomy are connected through the nutrient cycle. A dependency map of a household's food system that ends at "fertiliser" can, in principle, loop back to its own sanitation.
+Recovering nutrients from wastewater, through urine diversion, composting, or nutrient recovery at treatment plants, can reduce both pollution and fertilizer dependence. From an Exodological perspective this is a **dependency link between two systems**: food autonomy and water autonomy are connected through the nutrient cycle. A dependency map of a household's food system that ends at "fertilizer" can, in principle, loop back to its own sanitation.
 
-This connection should not be oversold. Recovered nutrients must be handled safely, regulations on using human-derived fertiliser vary widely, and social acceptance can be a real form of exit friction. Pilot projects at community scale, with clear safety protocols, are a more realistic path than individual experimentation with food crops.`
+This connection should not be oversold. Recovered nutrients must be handled safely, regulations on using human-derived fertilizer vary widely, and social acceptance can be a real form of exit friction. Pilot projects at community scale, with clear safety protocols, are a more realistic path than individual experimentation with food crops.`
       },
       {
         title: 'Health, Regulation and Residual Duty',
@@ -72,7 +72,7 @@ This connection should not be oversold. Recovered nutrients must be handled safe
 
 **Regulation**: Rules vary greatly. Some jurisdictions actively permit simple greywater systems without a permit; others prohibit any reuse or require engineered systems. Composting toilets may be allowed only with a backup sewer or septic connection. Working within the law, and pursuing reform through voice where rules are outdated, protects both the practitioner and the credibility of alternatives.
 
-**Neighbours and downstream users**: Wastewater that pools on the surface, runs onto another property or reaches a well affects people who did not choose the risk. Siting and setbacks matter.
+**Neighbors and downstream users**: Wastewater that pools on the surface, runs onto another property or reaches a well affects people who did not choose the risk. Siting and setbacks matter.
 
 **Residual duty to the shared system**: Households that reduce their use of public sewers still benefit from them, especially during illness or system failure. Continuing to support well-functioning public sanitation, rather than treating it as someone else's problem, is part of exiting well.`
       },
@@ -95,7 +95,7 @@ At each step, keep the connection to the public system until the alternative has
       'Greywater is best used promptly in subsurface irrigation with compatible products and a diversion valve',
       'Composting, urine-diverting and container-based sanitation can work, but only with proper retention, handling and maintenance',
       'Nutrient recovery links water autonomy to food autonomy, but must be approached cautiously and at suitable scale',
-      'Public health guidance, regulation and residual duty to neighbours and the shared system shape every design'
+      'Public health guidance, regulation and residual duty to neighbors and the shared system shape every design'
     ],
 
     references: [

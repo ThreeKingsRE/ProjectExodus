@@ -25,7 +25,7 @@ The Charter commits Exodology to a **longitudinal orientation**, studying transi
 
 **Costs arrive late.** Some of the most important effects of a transition, such as the slow decline of a town left behind, or the gradual erosion of a skill base, become visible only after many years. The Principle of Systemic Responsibility asks Exodologists to consider effects over extended time horizons precisely because these delayed effects are easy to miss.
 
-For these reasons, long-term evaluation should never rest on a single moment of judgement. It is a series of judgements at different horizons, each asking slightly different questions.`
+For these reasons, long-term evaluation should never rest on a single moment of judgment. It is a series of judgments at different horizons, each asking slightly different questions.`
       },
       {
         title: 'What Long-term Success Means in Exodology',
@@ -75,7 +75,7 @@ A useful discipline is to report results separately for different groups rather 
       },
       {
         title: 'Learning from Long-run Cases',
-        content: `Documented cases show why long time horizons change judgements. Two widely studied examples illustrate the point; both are summarized briefly and should be studied in fuller sources before being used in your own work.
+        content: `Documented cases show why long time horizons change judgments. Two widely studied examples illustrate the point; both are summarized briefly and should be studied in fuller sources before being used in your own work.
 
 **The Mondragon cooperatives** in the Basque Country of Spain began in the 1950s and grew into one of the largest groups of worker cooperatives in the world. Judged at different horizons, the story looks different. Early evaluation would emphasize viability; later evaluation would note the group's durability through several economic crises and the institutions it built for education, finance and the redeployment of members between cooperatives. The bankruptcy of one of its best-known cooperatives, Fagor Electrodomésticos, in 2013 tested those institutions and is often discussed as evidence of both their strengths and their limits. A fair long-term evaluation holds these together rather than choosing one.
 

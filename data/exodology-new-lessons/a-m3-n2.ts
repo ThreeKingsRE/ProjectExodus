@@ -33,9 +33,9 @@ Most contamination in rainwater systems enters at the catchment. Keeping it clea
         title: 'Storage Design',
         content: `Storage is usually the most expensive part of a rainwater system and the one that determines how much exit capability it actually provides. Rain arrives in pulses; demand is steady. The tank bridges the gap.
 
-**Materials**: Common options include polyethylene, steel with food-grade liners, ferrocement, concrete and fibreglass. Each has trade-offs in cost, lifespan, ease of repair and suitability for local skills. Ferrocement, for example, can be built with local labour, which may matter more for a community than the lowest purchase price.
+**Materials**: Common options include polyethylene, steel with food-grade liners, ferrocement, concrete and fibreglass. Each has trade-offs in cost, lifespan, ease of repair and suitability for local skills. Ferrocement, for example, can be built with local labor, which may matter more for a community than the lowest purchase price.
 
-**Placement**: Tanks are heavy when full (one cubic metre of water weighs about a tonne), so foundations must be designed for the load. Raised tanks provide gravity pressure; buried tanks save space and keep water cooler but are harder to inspect.
+**Placement**: Tanks are heavy when full (one cubic meter of water weighs about a ton), so foundations must be designed for the load. Raised tanks provide gravity pressure; buried tanks save space and keep water cooler but are harder to inspect.
 
 **Protecting stored water**:
 - Keep light out to prevent algae growth
@@ -44,7 +44,7 @@ Most contamination in rainwater systems enters at the catchment. Keeping it clea
 - Draw water from just above the bottom, not from the sludge layer
 - Provide an overflow that discharges safely away from foundations
 
-**Redundancy**: Two smaller tanks can be safer than one large one, because one can be cleaned or repaired while the other stays in service. This is a small-scale example of designing for resilience rather than optimisation.`
+**Redundancy**: Two smaller tanks can be safer than one large one, because one can be cleaned or repaired while the other stays in service. This is a small-scale example of designing for resilience rather than optimization.`
       },
       {
         title: 'Treatment for Different Uses',
@@ -64,11 +64,11 @@ Some households also use activated carbon to improve taste and reduce certain ch
       },
       {
         title: 'Sizing a Rainwater System',
-        content: `Sizing starts from a simple relationship: **one millimetre of rain falling on one square metre of catchment yields about one litre of water**. Real systems collect less, because of evaporation, splash and first-flush losses, so designers multiply by a runoff coefficient, often in the range of 0.8 to 0.9 for smooth roofs.
+        content: `Sizing starts from a simple relationship: **one millimeter of rain falling on one square meter of catchment yields about one liter of water**. Real systems collect less, because of evaporation, splash and first-flush losses, so designers multiply by a runoff coefficient, often in the range of 0.8 to 0.9 for smooth roofs.
 
-Potential annual yield (litres) is roughly: **catchment area (m²) × annual rainfall (mm) × runoff coefficient**.
+Potential annual yield (liters) is roughly: **catchment area (m²) × annual rainfall (mm) × runoff coefficient**.
 
-A hypothetical example: a 100 m² metal roof in a place with 600 mm of rain per year and a coefficient of 0.85 could yield about 51,000 litres a year. A household of three using 5 litres per person per day for drinking and cooking needs about 5,500 litres a year, so the roof can comfortably cover potable needs. Covering all household use at, say, 100 litres per person per day would need over 100,000 litres, far beyond what this roof provides.
+A hypothetical example: a 100 m² metal roof in a place with 600 mm of rain per year and a coefficient of 0.85 could yield about 51,000 liters a year. A household of three using 5 liters per person per day for drinking and cooking needs about 5,500 liters a year, so the roof can comfortably cover potable needs. Covering all household use at, say, 100 liters per person per day would need over 100,000 liters, far beyond what this roof provides.
 
 **Annual totals hide the real constraint.** If most rain falls in a few months, storage must carry the household through the dry season. The tank size needed depends on the longest dry spell you plan for and the daily demand you intend to cover. This is a stock-and-flow problem: inflows arrive in pulses, outflows are steady, and the tank must never empty when it matters.
 
@@ -79,7 +79,7 @@ The practical lesson is to decide which tiers of need the system will cover, siz
         content: `Household tanks are not the only model. Rainwater can be harvested from community buildings, schools, clinics and shared roofs, and stored in larger cisterns serving several households.
 
 **Advantages of community scale**:
-- Lower cost per litre of storage, because large tanks are cheaper per unit volume
+- Lower cost per liter of storage, because large tanks are cheaper per unit volume
 - Better treatment, since a shared system can justify more reliable equipment and regular testing
 - Shared maintenance skills, so a system does not fail when one household loses interest
 - Inclusion of households that rent, lack roof space or cannot afford a tank
@@ -89,7 +89,7 @@ The practical lesson is to decide which tiers of need the system will cover, siz
 - Rules are needed for allocation during dry periods
 - Contamination of a shared tank affects everyone at once, raising the stakes of maintenance
 
-Rainwater harvesting at community scale has a long history in water-scarce regions. In parts of India, for example, traditional systems of tanks and ponds that capture monsoon rain have been studied and, in some places, revived by local organisations. You do not need to copy a specific model; the transferable point is that shared storage brings governance questions with it, which are the subject of the final lesson in this module.
+Rainwater harvesting at community scale has a long history in water-scarce regions. In parts of India, for example, traditional systems of tanks and ponds that capture monsoon rain have been studied and, in some places, revived by local organizations. You do not need to copy a specific model; the transferable point is that shared storage brings governance questions with it, which are the subject of the final lesson in this module.
 
 From an Exodological perspective, community systems also address the lifeboat problem: they extend water autonomy to people who could not build it alone.`
       },

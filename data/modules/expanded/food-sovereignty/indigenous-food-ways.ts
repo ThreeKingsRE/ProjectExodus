@@ -335,7 +335,7 @@ const expansion: ModuleExpansion = {
         HIGH_SCHOOL: 'Cultural burning renews plants like berries and improves habitat, increasing food while keeping biodiversity.',
         UNDERGRADUATE: 'The nutrition transition is a shift toward processed, energy-dense foods that has been linked to diet-related disease.',
         GRADUATE: 'Rules built for commercial food chains often lack pathways for wild game and traditional processing.',
-        PHD: 'Intellectual property regimes centre individual authors and fixed works, a poor fit for communal, oral knowledge.',
+        PHD: 'Intellectual property regimes center individual authors and fixed works, a poor fit for communal, oral knowledge.',
       },
     },
     {
@@ -391,7 +391,7 @@ const expansion: ModuleExpansion = {
         HIGH_SCHOOL: 'Seeing plants and animals as relatives creates responsibilities to harvest respectfully and avoid waste.',
         UNDERGRADUATE: 'Biocultural diversity links biological, linguistic and cultural diversity, which often decline together.',
         GRADUATE: 'Rights are hard to exercise if species are depleted, contaminated or blocked by other rules.',
-        PHD: 'Conventional metrics centre purchased food, so they miss land access, sharing and intergenerational knowledge.',
+        PHD: 'Conventional metrics center purchased food, so they miss land access, sharing and intergenerational knowledge.',
       },
     },
   ],

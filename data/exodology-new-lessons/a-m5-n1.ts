@@ -8,7 +8,7 @@ const lesson: NewExodologyLesson = {
   content: {
     introduction: `The image most people carry of exit is a clean break: one day you are inside a system, the next day you are outside it. In practice, almost no one exits that way. A household that installs solar panels usually stays connected to the grid. Members of a community-supported agriculture scheme still buy some food from shops. A worker cooperative still pays taxes, uses banks and sells into markets. Most real exits are partial.
 
-Foundations introduced the **hybrid zone** of the response spectrum—the space where people reform some systems while building alternatives alongside them—and the idea of a **soft exodus**: a gradual, partial exit that maintains some connections while building alternatives. This module treats that zone not as a compromise to be apologised for, but as the place where most applied Exodology actually happens.
+Foundations introduced the **hybrid zone** of the response spectrum—the space where people reform some systems while building alternatives alongside them—and the idea of a **soft exodus**: a gradual, partial exit that maintains some connections while building alternatives. This module treats that zone not as a compromise to be apologized for, but as the place where most applied Exodology actually happens.
 
 This lesson explains why partial exit is the norm, distinguishes deliberate partial exit from simply drifting between systems, and gives you a way to decide what to leave, what to keep, and on what terms. The next two lessons then turn to designing hybrid arrangements and managing the dual dependencies they create.`,
 

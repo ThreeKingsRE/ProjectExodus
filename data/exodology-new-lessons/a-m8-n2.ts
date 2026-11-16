@@ -52,7 +52,7 @@ Several approaches help:
 
 **Negotiate on interests, not positions.** Fisher and Ury's work on principled negotiation distinguishes a party's stated position from the underlying interests that position serves. A utility that opposes a community energy project may in fact be concerned about grid stability or lost revenue; a council that resists a land request may be worried about liability. Interests can sometimes be met in ways positions cannot.
 
-**Seek recognition, not control.** Ostrom found that durable commons tend to have their right to organize recognized by external authorities. Formal recognition, a licence, a lease or a partnership agreement, can protect a parallel system without handing control of it to the institution.
+**Seek recognition, not control.** Ostrom found that durable commons tend to have their right to organize recognized by external authorities. Formal recognition, a license, a lease or a partnership agreement, can protect a parallel system without handing control of it to the institution.
 
 **Be transparent about your aims.** Institutions should not learn of a planned exit from the newspaper. Surprises harden opposition and can close windows that patient engagement might have kept open.`
       },

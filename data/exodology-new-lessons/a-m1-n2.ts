@@ -8,7 +8,7 @@ const lesson: NewExodologyLesson = {
   content: {
     introduction: `A completed dependency map is usually sobering. It shows dozens of dependencies, many of them critical, several of them locked in, and far more than any household or community can address at once. Without a way to choose, people tend either to freeze or to start with whatever is most visible or most interesting. Neither approach reliably builds **exit capability**.
 
-This lesson teaches how to decide which dependencies to address first, and why. It draws together tools you already have: criticality and critical nodes, exit friction, exit leverage points, the lock-in mechanisms identified in the previous lesson, and the exit window from Foundations. It adds ideas from resilience thinking and systems analysis, and it places ethical considerations, especially the question of who bears the risk, at the centre of prioritization rather than at the end.
+This lesson teaches how to decide which dependencies to address first, and why. It draws together tools you already have: criticality and critical nodes, exit friction, exit leverage points, the lock-in mechanisms identified in the previous lesson, and the exit window from Foundations. It adds ideas from resilience thinking and systems analysis, and it places ethical considerations, especially the question of who bears the risk, at the center of prioritization rather than at the end.
 
 Prioritization is not a formula. It is a structured judgment that should be written down, explained, and revisited as conditions change. The following exercise in this module asks you to classify dependencies by criticality and friction; this lesson explains the reasoning behind that classification and what to do with it.`,
 
@@ -60,7 +60,7 @@ These questions help explain why the classification categories are a starting po
       },
       {
         title: 'Coupling and Buffers',
-        content: `Sociologist **Charles Perrow**, studying accidents in high-risk technologies, distinguished systems that are **tightly coupled**, where a failure spreads quickly with little time or slack to respond, from systems that are **loosely coupled**, where there is time and flexibility to absorb problems. Resilience researchers such as **Brian Walker and David Salt** similarly emphasise that systems can cross thresholds into different states, and that keeping a safe distance from those thresholds matters.
+        content: `Sociologist **Charles Perrow**, studying accidents in high-risk technologies, distinguished systems that are **tightly coupled**, where a failure spreads quickly with little time or slack to respond, from systems that are **loosely coupled**, where there is time and flexibility to absorb problems. Resilience researchers such as **Brian Walker and David Salt** similarly emphasize that systems can cross thresholds into different states, and that keeping a safe distance from those thresholds matters.
 
 Applied to exit planning, these ideas suggest a distinct priority: before replacing a tightly coupled dependency, add **buffers** that loosen the coupling. Examples include stored water, food reserves, backup power for medical equipment, or a second supplier for a critical input. A buffer does not exit the dependency, but it buys time, which turns a potential collapse into a manageable disruption.
 
@@ -70,7 +70,7 @@ Buffers have limits. They can become a substitute for genuine alternatives, and 
       },
       {
         title: 'Who Bears the Risk? Prioritization as an Ethical Act',
-        content: `Choosing priorities is also choosing whose needs come first. The **principle of distributive justice** asks practitioners to analyse who gains and who loses, and the ethics guidelines advise that when trade-offs are unavoidable, priority goes to protecting those with less power.
+        content: `Choosing priorities is also choosing whose needs come first. The **principle of distributive justice** asks practitioners to analyze who gains and who loses, and the ethics guidelines advise that when trade-offs are unavoidable, priority goes to protecting those with less power.
 
 Several questions bring this into prioritization:
 
@@ -80,7 +80,7 @@ Several questions bring this into prioritization:
 
 3. **Who bears the transition burden?** Some exits shift costs onto others, for example by reducing the customer base that keeps a public service viable for those who remain. Residual duty asks you to consider these effects before acting.
 
-4. **Who decided?** The **principle of procedural justice** requires that affected people participate in setting priorities. A list drawn up by a few organisers, however well informed, may miss dependencies that matter most to others.
+4. **Who decided?** The **principle of procedural justice** requires that affected people participate in setting priorities. A list drawn up by a few organizers, however well informed, may miss dependencies that matter most to others.
 
 Prioritization that ignores these questions may be efficient, but it is not ethical exit.`
       },

@@ -25,7 +25,7 @@ The aim is that by the end of this module you can look at a complex case and see
 
 **Checklist thinking.** Treating the frameworks as boxes to tick encourages a plan that mentions everything and connects nothing.
 
-The core principle of **systems thinking**, to see wholes and not just parts, applies to analysis as much as to the systems being analyzed. Integrated analysis treats the frameworks as different views of one situation. Each view reveals something the others miss, and the steward's job is to bring those views together into a single, coherent judgement.`
+The core principle of **systems thinking**, to see wholes and not just parts, applies to analysis as much as to the systems being analyzed. Integrated analysis treats the frameworks as different views of one situation. Each view reveals something the others miss, and the steward's job is to bring those views together into a single, coherent judgment.`
       },
       {
         title: 'Moving Through the Frameworks in Order',
@@ -106,7 +106,7 @@ Notice how each step depends on the others: the justice analysis shapes governan
       'A working order of questions (diagnosis, scale, justice, rules, safety, stewardship, narrative) helps each answer build on the last, with looping back as needed',
       'Frameworks often reinforce each other, for example justice protects stability and good governance enables adaptive management',
       'Real tensions remain, such as speed versus participation and persuasion versus honesty, and an integrated plan names them and explains how it handles them',
-      'Integration is a commitment of the Charter: coherent judgement drawn from many views of one situation'
+      'Integration is a commitment of the Charter: coherent judgment drawn from many views of one situation'
     ],
 
     references: [

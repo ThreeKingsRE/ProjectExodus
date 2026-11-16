@@ -15,7 +15,7 @@ This lesson builds on the integration points introduced in Designing Parallel Sy
     sections: [
       {
         title: 'How Hybrids Become Fragile',
-        content: `Hybrid arrangements usually fail in a few recognisable ways.
+        content: `Hybrid arrangements usually fail in a few recognizable ways.
 
 **Hidden common dependencies**: The alternative quietly relies on the same critical node as the existing system. A well-known energy example: most standard grid-tied solar inverters are designed to switch off when the grid goes down, a safety requirement that protects line workers. A household that believed its panels gave it independence discovers that, without batteries and equipment designed to operate separately from the grid, it has no power during an outage.
 
@@ -39,7 +39,7 @@ Good hybrid design is mostly the work of anticipating these patterns.`
 
 **Staged handover**: The alternative's share grows on a planned schedule until it becomes primary. This links directly to the fallback points and milestones of transition path design.
 
-**Specialisation**: Each system carries the functions it does best. Example: a cooperative that is governed democratically by its members but sources some inputs and sells some outputs through conventional markets.
+**Specialization**: Each system carries the functions it does best. Example: a cooperative that is governed democratically by its members but sources some inputs and sells some outputs through conventional markets.
 
 Write the role for each function into your boundary map from the previous lesson. A hybrid in which every function has a named primary, a named fallback and a known trigger for switching is far more robust than one where these are assumed.`
       },
@@ -69,7 +69,7 @@ Typical overlaps include:
 - Both depending on the same regional supply chain for spare parts or inputs
 - Both subject to the same regulatory decision
 
-Not every overlap can or should be removed. Some are cheap to address (a manual backup, a second trained person); others would cost more than the risk justifies. The point is to know where they are, so that the hybrid's real exit capability is understood rather than assumed. Systems thinker Donella Meadows emphasised that resilience comes from a rich structure of feedback and alternative pathways, and that it is often invisible until it is tested.`
+Not every overlap can or should be removed. Some are cheap to address (a manual backup, a second trained person); others would cost more than the risk justifies. The point is to know where they are, so that the hybrid's real exit capability is understood rather than assumed. Systems thinker Donella Meadows emphasized that resilience comes from a rich structure of feedback and alternative pathways, and that it is often invisible until it is tested.`
       },
       {
         title: 'Balancing Safety and Experiment',
@@ -87,7 +87,7 @@ The lens has limits. It assumes you have a reliable base to start from, and many
 
 When some people partly exit a shared system, the costs of maintaining that system may fall more heavily on those who remain fully dependent. Energy offers a widely discussed example: in several countries there has been sustained public debate about whether households with rooftop solar contribute fairly to the cost of maintaining the electricity grid they still rely on for backup. Similar questions arise when better-resourced members leave a public service for a private or community alternative while still drawing on it in emergencies.
 
-These debates do not have simple answers, and the Exodologist's role is to analyse who gains and who loses rather than to assume either side is right. Questions to ask of any hybrid:
+These debates do not have simple answers, and the Exodologist's role is to analyze who gains and who loses rather than to assume either side is right. Questions to ask of any hybrid:
 - Does it draw on the existing system as a free safety net while reducing contributions to it?
 - Does it raise costs or reduce service quality for those who cannot exit?
 - Could it be designed so others can join, creating on-ramps rather than a lifeboat?

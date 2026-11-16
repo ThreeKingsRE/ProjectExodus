@@ -87,7 +87,7 @@ A widely documented example is the adaptive management program for the Glen Cany
 
 **It can become an excuse for vagueness.** "We will adapt as we go" can be used to avoid committing to clear goals, protections or timelines. Adaptive management requires more explicit commitments, not fewer: stated assumptions, defined monitoring and agreed decision points.
 
-**Feedback can be slower than decisions.** Some effects of a transition, such as changes in ecosystems, health or community cohesion, take years to appear. Political and funding cycles often demand judgements sooner. Where feedback is slow, stewards should say so and avoid presenting early results as conclusive.
+**Feedback can be slower than decisions.** Some effects of a transition, such as changes in ecosystems, health or community cohesion, take years to appear. Political and funding cycles often demand judgments sooner. Where feedback is slow, stewards should say so and avoid presenting early results as conclusive.
 
 **Monitoring is costly and easily dropped.** When budgets tighten, monitoring is often the first thing cut. Without it, adaptive management becomes ordinary management with a new name.
 
