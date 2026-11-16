@@ -10,6 +10,9 @@ import l_a_m3_n2 from './a-m3-n2'
 import l_a_m3_n3 from './a-m3-n3'
 import l_a_m3_n4 from './a-m3-n4'
 import l_a_m4_n1 from './a-m4-n1'
+import l_a_m4_n2 from './a-m4-n2'
+import l_a_m4_n3 from './a-m4-n3'
+import l_a_m4_n4 from './a-m4-n4'
 import l_a_m5_n1 from './a-m5-n1'
 import l_a_m5_n2 from './a-m5-n2'
 import l_a_m5_n3 from './a-m5-n3'
@@ -63,6 +66,9 @@ export const NEW_EXODOLOGY_LESSONS: Record<string, NewExodologyLesson> = {
   'a-m3-n3': l_a_m3_n3,
   'a-m3-n4': l_a_m3_n4,
   'a-m4-n1': l_a_m4_n1,
+  'a-m4-n2': l_a_m4_n2,
+  'a-m4-n3': l_a_m4_n3,
+  'a-m4-n4': l_a_m4_n4,
   'a-m5-n1': l_a_m5_n1,
   'a-m5-n2': l_a_m5_n2,
   'a-m5-n3': l_a_m5_n3,

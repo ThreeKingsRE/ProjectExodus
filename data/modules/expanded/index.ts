@@ -16,6 +16,7 @@ import x_food_sovereignty_food_processing_preservation from './food-sovereignty/
 import x_food_sovereignty_food_system_finance from './food-sovereignty/food-system-finance'
 import x_food_sovereignty_food_system_resilience from './food-sovereignty/food-system-resilience'
 import x_food_sovereignty_food_waste_reduction from './food-sovereignty/food-waste-reduction'
+import x_food_sovereignty_future_of_food from './food-sovereignty/future-of-food'
 import x_food_sovereignty_indigenous_food_systems__2 from './food-sovereignty/indigenous-food-systems--2'
 import x_food_sovereignty_indigenous_food_systems from './food-sovereignty/indigenous-food-systems'
 import x_food_sovereignty_indigenous_food_ways from './food-sovereignty/indigenous-food-ways'
@@ -28,6 +29,7 @@ import x_food_sovereignty_seed_saving from './food-sovereignty/seed-saving'
 import x_food_sovereignty_sustainable_fisheries from './food-sovereignty/sustainable-fisheries'
 import x_food_sovereignty_traditional_food_knowledge from './food-sovereignty/traditional-food-knowledge'
 import x_food_sovereignty_urban_agriculture_policy from './food-sovereignty/urban-agriculture-policy'
+import x_food_sovereignty_urban_farming__2 from './food-sovereignty/urban-farming--2'
 import x_food_sovereignty_urban_farming from './food-sovereignty/urban-farming'
 import x_green_building_acoustic_design from './green-building/acoustic-design'
 import x_green_building_adaptive_reuse from './green-building/adaptive-reuse'
@@ -147,6 +149,7 @@ import x_water_systems_water_quality_monitoring from './water-systems/water-qual
 import x_water_systems_water_reuse_recycling from './water-systems/water-reuse-recycling'
 import x_water_systems_water_rights_law from './water-systems/water-rights-law'
 import x_water_systems_water_security from './water-systems/water-security'
+import x_water_systems_water_technology_innovation from './water-systems/water-technology-innovation'
 import x_water_systems_watershed_protection from './water-systems/watershed-protection'
 import x_water_systems_wetland_conservation from './water-systems/wetland-conservation'
 import x_water_systems_wetland_restoration from './water-systems/wetland-restoration'
@@ -200,6 +203,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_food_sovereignty_food_system_finance,
   x_food_sovereignty_food_system_resilience,
   x_food_sovereignty_food_waste_reduction,
+  x_food_sovereignty_future_of_food,
   x_food_sovereignty_indigenous_food_systems__2,
   x_food_sovereignty_indigenous_food_systems,
   x_food_sovereignty_indigenous_food_ways,
@@ -212,6 +216,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_food_sovereignty_sustainable_fisheries,
   x_food_sovereignty_traditional_food_knowledge,
   x_food_sovereignty_urban_agriculture_policy,
+  x_food_sovereignty_urban_farming__2,
   x_food_sovereignty_urban_farming,
   x_green_building_acoustic_design,
   x_green_building_adaptive_reuse,
@@ -331,6 +336,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_water_systems_water_reuse_recycling,
   x_water_systems_water_rights_law,
   x_water_systems_water_security,
+  x_water_systems_water_technology_innovation,
   x_water_systems_watershed_protection,
   x_water_systems_wetland_conservation,
   x_water_systems_wetland_restoration,
