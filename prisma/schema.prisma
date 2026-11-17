@@ -95,6 +95,7 @@ model User {
   userBadges            UserBadge[]
   projectMemberships    ProjectMember[]
   createdProjects       Project[]              @relation("ProjectCreator")
+  projectFiles          ProjectFile[]          @relation("ProjectFileCreator")
   projectMessages       ProjectMessage[]       @relation("ProjectMessages")
   sentMessages          DirectMessage[]        @relation("SentMessages")
   receivedMessages      DirectMessage[]        @relation("ReceivedMessages")
@@ -1194,6 +1195,7 @@ model Project {
   mindMap              MindMap?
   documents            Document[]
   documentTemplates    DocumentTemplate[]
+  files                ProjectFile[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1204,6 +1206,60 @@ model Project {
   @@index([visibility])
   @@index([createdAt])
   @@index([status, visibility]) // Composite: Active public projects
+}
+
+// ============================================
+// PROJECT WORKSPACE FILES
+// Linked Google / Microsoft / Figma / hosted files.
+// The site decides which link each member receives;
+// the file's own sharing settings still apply.
+// ============================================
+
+model ProjectFile {
+  id          String             @id @default(cuid())
+  projectId   String
+  project     Project            @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  section     ProjectFileSection @default(RESOURCES)
+  title       String
+  description String?            @db.Text
+
+  viewUrl String  @db.Text
+  editUrl String? @db.Text
+
+  viewAccess ProjectFileViewAccess @default(MEMBERS)
+  editAccess ProjectFileEditAccess @default(OWNERS)
+  editorIds  String[]              @default([])
+
+  isPinned Boolean @default(false)
+  order    Int     @default(0)
+
+  createdById String
+  createdBy   User   @relation("ProjectFileCreator", fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+  @@index([projectId, section])
+}
+
+enum ProjectFileSection {
+  PITCH
+  FINANCIALS
+  DESIGNS
+  TIMELINE
+  RESOURCES
+}
+
+enum ProjectFileViewAccess {
+  MEMBERS // Everyone in the initiative, including followers
+  TEAM // Contributors, moderators, admins, and owners
+}
+
+enum ProjectFileEditAccess {
+  OWNERS // Initiative owner and admins
+  TEAM // Contributors, moderators, admins, and owners
+  SELECTED // Owner, admins, and the members listed in editorIds
 }
 
 enum ProjectStatus {

@@ -43,10 +43,8 @@ import {
   TrendingUp,
   Lock,
   Unlock,
-  Brain,
   File,
   ChevronLeft,
-  Maximize2,
   Minimize2,
   Edit,
   Zap,
@@ -61,8 +59,10 @@ import { MessageEditor } from '@/components/projects/MessageEditor'
 import { RemoveContribution } from '@/components/projects/RemoveContribution'
 import { DocumentTemplateSelector } from '@/components/documents/DocumentTemplateSelector'
 import type { DocumentTemplate } from '@/data/document-templates'
+import { ProjectFiles } from '@/components/projects/workspace/ProjectFiles'
+import { FILE_SECTIONS, SECTION_INFO, type FileSection } from '@/lib/projects/files'
 
-type TabType = 'overview' | 'learning' | 'research' | 'discussions' | 'members' | 'mindmaps' | 'documents' | 'settings'
+type TabType = 'overview' | 'workspace' | 'learning' | 'research' | 'discussions' | 'members' | 'documents' | 'settings'
 
 interface LearningModule {
   id: string
@@ -138,6 +138,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
   // Tab state
   const [activeTab, setActiveTab] = useState<TabType>('overview')
+  const [workspaceSection, setWorkspaceSection] = useState<FileSection | 'ALL'>('ALL')
 
   // New feature states
   const [learningModules, setLearningModules] = useState<LearningModule[]>([])
@@ -146,13 +147,11 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   const [editingResearch, setEditingResearch] = useState<ResearchPost | null>(null)
   const [subgroups, setSubgroups] = useState<Subgroup[]>([])
   const [membersWithBadges, setMembersWithBadges] = useState<MemberWithBadges[]>([])
-  const [mindMapData, setMindMapData] = useState<any>(null)
   const [documents, setDocuments] = useState<any[]>([])
   const [loadingModules, setLoadingModules] = useState(false)
   const [loadingResearch, setLoadingResearch] = useState(false)
   const [loadingSubgroups, setLoadingSubgroups] = useState(false)
   const [loadingMembers, setLoadingMembers] = useState(false)
-  const [loadingMindMap, setLoadingMindMap] = useState(false)
   const [loadingDocuments, setLoadingDocuments] = useState(false)
   const [showTemplateSelector, setShowTemplateSelector] = useState(false)
 
@@ -171,7 +170,6 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
   // New: Sidebar and live features state
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
-  const [showMindMapPreview, setShowMindMapPreview] = useState(true)
   const [editingSection, setEditingSection] = useState<string | null>(null)
 
   // Delete modal state
@@ -274,21 +272,6 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     }
   }, [project?.id])
 
-  const fetchMindMap = useCallback(async () => {
-    if (!project?.mindMapId) return
-    setLoadingMindMap(true)
-    try {
-      const res = await fetch(`/api/mindmaps/${project.mindMapId}`)
-      const data = await res.json()
-      if (data.success) {
-        setMindMapData(data.data)
-      }
-    } catch (error) {
-      console.error('Error fetching mind map:', error)
-    } finally {
-      setLoadingMindMap(false)
-    }
-  }, [project?.mindMapId])
 
   const fetchDocuments = useCallback(async () => {
     if (!project?.id) return
@@ -344,10 +327,14 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   }, [fetchProject])
 
   useEffect(() => {
-    const tab = searchParams.get('tab')
-    if (tab && ['overview', 'learning', 'research', 'discussions', 'members', 'mindmaps', 'documents', 'settings'].includes(tab)) {
+    const rawTab = searchParams.get('tab')
+    // Old links to the mind map tab now open the workspace.
+    const tab = rawTab === 'mindmaps' ? 'workspace' : rawTab
+    if (tab && ['overview', 'workspace', 'learning', 'research', 'discussions', 'members', 'documents', 'settings'].includes(tab)) {
       setActiveTab(tab as TabType)
     }
+    const section = searchParams.get('section')?.toUpperCase()
+    if (section && FILE_SECTIONS.includes(section as FileSection)) setWorkspaceSection(section as FileSection)
   }, [searchParams])
 
   // Replace polling with Pusher real-time updates
@@ -398,8 +385,6 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     } else if (activeTab === 'members') {
       fetchMembersWithBadges()
       fetchSubgroups()
-    } else if (activeTab === 'mindmaps') {
-      fetchMindMap()
     } else if (activeTab === 'documents') {
       fetchDocuments()
     } else if (activeTab === 'overview') {
@@ -407,7 +392,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       fetchSubgroups()
       fetchLearningModules()
     }
-  }, [activeTab, project?.id, fetchLearningModules, fetchResearchPosts, fetchSubgroups, fetchMembersWithBadges, fetchMindMap, fetchDocuments])
+  }, [activeTab, project?.id, fetchLearningModules, fetchResearchPosts, fetchSubgroups, fetchMembersWithBadges, fetchDocuments])
 
   useEffect(() => {
     // Only auto-scroll if user has interacted with the chat
@@ -612,7 +597,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
   const tabs: { id: TabType; label: string; icon: typeof Users; memberOnly?: boolean }[] = [
     { id: 'overview', label: 'Overview', icon: Target },
-    { id: 'mindmaps', label: 'Mind Map', icon: Brain, memberOnly: true },
+    { id: 'workspace', label: 'Workspace', icon: Layers, memberOnly: true },
     { id: 'documents', label: 'Documents', icon: File, memberOnly: true },
     { id: 'learning', label: 'Learning', icon: BookOpen, memberOnly: true },
     { id: 'research', label: 'Research', icon: FlaskConical, memberOnly: true },
@@ -1086,52 +1071,27 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     </Card>
                   </div>
 
-                  {/* Mind Map Mini Preview */}
-                  {isMember && project.mindMapId && showMindMapPreview && (
-                    <Card className="border-2 border-purple-500/30 bg-gradient-to-br from-purple-500/5 to-pink-500/5">
+                  {/* Workspace shortcuts */}
+                  {isMember && (
+                    <Card className="border-2 border-theme-primary/40">
                       <CardHeader className="pb-3">
-                        <div className="flex items-center justify-between">
-                          <CardTitle className="text-lg font-black flex items-center gap-2">
-                            <Brain className="w-5 h-5 text-purple-500" />
-                            MIND MAP PREVIEW
-                          </CardTitle>
-                          <div className="flex gap-2">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => setActiveTab('mindmaps')}
-                              className="font-bold"
-                            >
-                              <Maximize2 className="w-3 h-3 mr-1" />
-                              Open Full Editor
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => setShowMindMapPreview(false)}
-                              className="p-1 h-8 w-8"
-                            >
-                              <X className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </div>
+                        <CardTitle className="text-lg font-black flex items-center gap-2">
+                          <Layers className="w-5 h-5 text-theme-primary" />
+                          PROJECT WORKSPACE
+                        </CardTitle>
                       </CardHeader>
-                      <CardContent>
-                        <div className="aspect-video bg-[var(--muted)] rounded-lg border-2 border-dashed border-purple-500/30 flex items-center justify-center">
-                          <div className="text-center">
-                            <Brain className="w-12 h-12 mx-auto mb-3 text-purple-500 opacity-50" />
-                            <p className="text-sm text-theme-muted mb-3">
-                              {mindMapData?._count?.nodes || 0} nodes, {mindMapData?._count?.connections || 0} connections
-                            </p>
-                            <Button
-                              onClick={() => setActiveTab('mindmaps')}
-                              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
-                            >
-                              <Brain className="w-4 h-4 mr-2" />
-                              Open Interactive Mind Map
-                            </Button>
-                          </div>
-                        </div>
+                      <CardContent className="flex flex-wrap gap-2">
+                        {FILE_SECTIONS.map(section => (
+                          <Button
+                            key={section}
+                            size="sm"
+                            variant="outline"
+                            className="font-bold"
+                            onClick={() => { setWorkspaceSection(section); setActiveTab('workspace') }}
+                          >
+                            {SECTION_INFO[section].label}
+                          </Button>
+                        ))}
                       </CardContent>
                     </Card>
                   )}
@@ -1393,60 +1353,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             )}
 
             {/* Mind Maps Tab */}
-            {activeTab === 'mindmaps' && isMember && (
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black">PROJECT MIND MAP</h2>
-                </div>
-
-                {loadingMindMap ? (
-                  <div className="flex items-center justify-center py-12">
-                    <Loader2 className="w-8 h-8 animate-spin text-theme-primary" />
-                  </div>
-                ) : !project.mindMapId ? (
-                  <Card className="border-2 border-dashed">
-                    <CardContent className="p-12 text-center">
-                      <Brain className="w-16 h-16 mx-auto mb-4 text-theme-muted opacity-50" />
-                      <h3 className="text-xl font-black mb-2 text-theme-muted">NO MIND MAP YET</h3>
-                      <p className="text-theme-muted mb-4">This project doesn't have a mind map configured yet.</p>
-                      <p className="text-sm text-theme-muted">Mind maps are created during project setup and help visualize project structure and goals.</p>
-                    </CardContent>
-                  </Card>
-                ) : mindMapData ? (
-                  <Card className="border-2 border-theme-primary">
-                    <CardContent className="p-6">
-                      <div className="mb-4 p-4 bg-[var(--muted)] rounded-lg">
-                        <h3 className="font-black mb-2">{mindMapData.title || 'Project Mind Map'}</h3>
-                        {mindMapData.description && (
-                          <p className="text-sm text-theme-muted">{mindMapData.description}</p>
-                        )}
-                        <div className="flex items-center gap-4 mt-3 text-sm">
-                          <span className="flex items-center gap-1 text-theme-muted">
-                            <Network className="w-4 h-4" />
-                            {mindMapData._count?.nodes || 0} nodes
-                          </span>
-                          <span className="flex items-center gap-1 text-theme-muted">
-                            <ArrowLeft className="w-4 h-4" />
-                            {mindMapData._count?.connections || 0} connections
-                          </span>
-                          <span className="flex items-center gap-1 text-theme-muted">
-                            <Users className="w-4 h-4" />
-                            {mindMapData._count?.contributors || 0} contributors
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-center py-8 bg-[var(--background)] rounded-lg border-2 border-dashed">
-                        <Brain className="w-12 h-12 mx-auto mb-4 text-theme-primary" />
-                        <p className="text-theme-muted mb-4">Interactive mind map viewer coming soon</p>
-                        <Button variant="outline" className="font-bold">
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          OPEN IN FULL SCREEN
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ) : null}
-              </div>
+            {activeTab === 'workspace' && isMember && (
+              <ProjectFiles projectId={project.id} initialSection={workspaceSection} />
             )}
 
             {/* Documents Tab */}
@@ -1819,7 +1727,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             )}
 
             {/* Not a Member Message for restricted tabs */}
-            {!isMember && ['learning', 'research', 'discussions', 'mindmaps', 'documents', 'settings'].includes(activeTab) && (
+            {!isMember && ['workspace', 'learning', 'research', 'discussions', 'documents', 'settings'].includes(activeTab) && (
               <Card className="border-4 border-theme-secondary">
                 <CardContent className="p-12 text-center">
                   <Lock className="w-16 h-16 text-theme-secondary mx-auto mb-4 opacity-50" />
