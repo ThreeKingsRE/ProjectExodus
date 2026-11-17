@@ -1526,18 +1526,18 @@ export default function LessonPage() {
               <div className="flex items-center justify-between mt-4 gap-4">
                 {/* Previous Lesson */}
                 {prevLesson ? (
-                  <Link href={`/exodology/paths/${pathId}/lessons/${prevLesson.id}`} className="flex-1">
-                    <Button variant="outline" className="w-full justify-start">
+                  <Link href={`/exodology/paths/${pathId}/lessons/${prevLesson.id}`} className="flex-1 min-w-0">
+                    <Button variant="outline" className="w-full min-w-0 justify-start">
                       <ArrowLeft className="w-4 h-4 mr-2 flex-shrink-0" />
-                      <span className="truncate text-left">
+                      <span className="min-w-0 truncate text-left">
                         <span className="text-xs text-[var(--muted-foreground)] block">Previous</span>
-                        <span className="text-sm">{prevLesson.title}</span>
+                        <span className="block truncate text-sm">{prevLesson.title}</span>
                       </span>
                     </Button>
                   </Link>
                 ) : (
-                  <Link href={`/exodology/paths/${pathId}`} className="flex-1">
-                    <Button variant="outline" className="w-full justify-start">
+                  <Link href={`/exodology/paths/${pathId}`} className="flex-1 min-w-0">
+                    <Button variant="outline" className="w-full min-w-0 justify-start">
                       <ArrowLeft className="w-4 h-4 mr-2" />
                       Back to Path
                     </Button>
@@ -1571,24 +1571,24 @@ export default function LessonPage() {
 
                 {/* Next Lesson */}
                 {nextLesson ? (
-                  <Link href={`/exodology/paths/${pathId}/lessons/${nextLesson.id}`} className="flex-1">
+                  <Link href={`/exodology/paths/${pathId}/lessons/${nextLesson.id}`} className="flex-1 min-w-0">
                     <Button
                       variant={progress?.status === 'COMPLETED' ? 'primary' : 'outline'}
-                      className={`w-full justify-end ${progress?.status === 'COMPLETED' ? `bg-gradient-to-r ${meta.gradient}` : ''}`}
+                      className={`w-full min-w-0 justify-end ${progress?.status === 'COMPLETED' ? `bg-gradient-to-r ${meta.gradient}` : ''}`}
                     >
-                      <span className="truncate text-right">
+                      <span className="min-w-0 truncate text-right">
                         <span className="text-xs text-[var(--muted-foreground)] block">Next</span>
-                        <span className="text-sm">{nextLesson.title}</span>
+                        <span className="block truncate text-sm">{nextLesson.title}</span>
                       </span>
                       <ArrowRight className="w-4 h-4 ml-2 flex-shrink-0" />
                     </Button>
                   </Link>
                 ) : (
-                  <Link href={`/exodology/paths/${pathId}`} className="flex-1">
+                  <Link href={`/exodology/paths/${pathId}`} className="flex-1 min-w-0">
                     <Button
                       className={`w-full justify-end bg-gradient-to-r ${meta.gradient}`}
                     >
-                      <span className="truncate text-right">Path Complete!</span>
+                      <span className="min-w-0 truncate text-right">Path Complete!</span>
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </Link>
