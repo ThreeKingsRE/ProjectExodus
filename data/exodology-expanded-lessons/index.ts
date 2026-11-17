@@ -3,6 +3,7 @@ import type { ExpandedExodologyLesson } from './types'
 import l_a_m2_l1 from './a-m2-l1'
 import l_a_m2_l2 from './a-m2-l2'
 import l_a_m2_l3 from './a-m2-l3'
+import l_a_m2_l4 from './a-m2-l4'
 import l_a_m3_l1 from './a-m3-l1'
 import l_a_m3_l2 from './a-m3-l2'
 import l_a_m3_l3 from './a-m3-l3'
@@ -34,12 +35,16 @@ import l_f_m10_l1 from './f-m10-l1'
 import l_f_m10_l2 from './f-m10-l2'
 import l_f_m10_l3 from './f-m10-l3'
 import l_f_m11_l1 from './f-m11-l1'
+import l_s_m2_l1 from './s-m2-l1'
+import l_s_m2_l2 from './s-m2-l2'
 import l_s_m4_l1 from './s-m4-l1'
 import l_s_m4_l2 from './s-m4-l2'
 import l_s_m5_l1 from './s-m5-l1'
+import l_s_m5_l2 from './s-m5-l2'
 import l_s_m6_l1 from './s-m6-l1'
 import l_s_m6_l2 from './s-m6-l2'
 import l_s_m7_l1 from './s-m7-l1'
+import l_s_m7_l2 from './s-m7-l2'
 import l_s_m8_l1 from './s-m8-l1'
 import l_s_m8_l2 from './s-m8-l2'
 import l_s_m9_l1 from './s-m9-l1'
@@ -49,6 +54,7 @@ export const EXPANDED_EXODOLOGY_LESSONS: Record<string, ExpandedExodologyLesson>
   'a-m2-l1': l_a_m2_l1,
   'a-m2-l2': l_a_m2_l2,
   'a-m2-l3': l_a_m2_l3,
+  'a-m2-l4': l_a_m2_l4,
   'a-m3-l1': l_a_m3_l1,
   'a-m3-l2': l_a_m3_l2,
   'a-m3-l3': l_a_m3_l3,
@@ -80,12 +86,16 @@ export const EXPANDED_EXODOLOGY_LESSONS: Record<string, ExpandedExodologyLesson>
   'f-m10-l2': l_f_m10_l2,
   'f-m10-l3': l_f_m10_l3,
   'f-m11-l1': l_f_m11_l1,
+  's-m2-l1': l_s_m2_l1,
+  's-m2-l2': l_s_m2_l2,
   's-m4-l1': l_s_m4_l1,
   's-m4-l2': l_s_m4_l2,
   's-m5-l1': l_s_m5_l1,
+  's-m5-l2': l_s_m5_l2,
   's-m6-l1': l_s_m6_l1,
   's-m6-l2': l_s_m6_l2,
   's-m7-l1': l_s_m7_l1,
+  's-m7-l2': l_s_m7_l2,
   's-m8-l1': l_s_m8_l1,
   's-m8-l2': l_s_m8_l2,
   's-m9-l1': l_s_m9_l1,
