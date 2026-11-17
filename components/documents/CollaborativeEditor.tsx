@@ -32,6 +32,11 @@ import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 
+export type CollaborationStatus = 'off' | 'connecting' | 'live' | 'fallback'
+
+// How long to wait for the live-editing server before falling back to normal saving.
+const COLLAB_CONNECT_TIMEOUT_MS = 10000
+
 interface CollaborativeEditorProps {
   documentId?: string
   initialContent?: string
@@ -46,6 +51,8 @@ interface CollaborativeEditorProps {
   // Collaboration options
   enableCollaboration?: boolean
   collaborationType?: 'document' | 'mindmap'
+  /** Reports whether live editing is off, connecting, live, or fell back to normal saving. */
+  onCollaborationStatusChange?: (status: CollaborationStatus) => void
   currentUser?: {
     id: string
     name: string | null
@@ -67,6 +74,7 @@ export function CollaborativeEditor({
   enableCollaboration = false,
   collaborationType = 'document',
   currentUser = null,
+  onCollaborationStatusChange,
 }: CollaborativeEditorProps) {
   const [isSaving, setIsSaving] = useState(false)
   const [lastSaved, setLastSaved] = useState<Date | null>(null)
@@ -78,9 +86,27 @@ export function CollaborativeEditor({
   const providerRef = useRef<any>(null)
   const ydocRef = useRef<any>(null)
   const [collaborationReady, setCollaborationReady] = useState(false)
+  // Set when the live-editing server can't be reached; the editor then loads the
+  // saved content and saves normally instead of showing an empty live document.
+  const [collabFailed, setCollabFailed] = useState(false)
 
   // Check if collaboration is available
-  const canUseCollaboration = enableCollaboration && documentId && currentUser && collaborationConfig.isAvailable
+  // Viewers read the saved content directly; live editing is for people who can edit.
+  const canUseCollaboration = !!(enableCollaboration && documentId && currentUser && collaborationConfig.isAvailable && !readOnly && !collabFailed)
+  const waitingForCollaboration = canUseCollaboration && !collaborationReady
+
+  // The page passes a new currentUser object on every render; key effects on the
+  // user's id and name so the live connection isn't torn down and rebuilt each time.
+  const currentUserRef = useRef(currentUser)
+  currentUserRef.current = currentUser
+  const currentUserId = currentUser?.id
+  const currentUserName = currentUser?.name
+
+  useEffect(() => {
+    onCollaborationStatusChange?.(
+      collabFailed ? 'fallback' : !canUseCollaboration ? 'off' : collaborationReady ? 'live' : 'connecting'
+    )
+  }, [onCollaborationStatusChange, collabFailed, canUseCollaboration, collaborationReady])
 
   // Initialize Y.js and PartyKit provider for collaboration
   useEffect(() => {
@@ -91,6 +117,15 @@ export function CollaborativeEditor({
 
     let provider: any = null
     let ydoc: any = null
+    let cancelled = false
+    const fallBack = (reason: unknown) => {
+      if (cancelled) return
+      console.warn('Live editing unavailable, falling back to normal saving:', reason)
+      setConnectionStatus('error')
+      setCollaborationReady(false)
+      setCollabFailed(true)
+    }
+    const connectTimeout = setTimeout(() => fallBack('timed out waiting for sync'), COLLAB_CONNECT_TIMEOUT_MS)
 
     const initCollaboration = async () => {
       try {
@@ -106,8 +141,7 @@ export function CollaborativeEditor({
           // YPartyKitProvider is the default export
           YPartyKitProvider = partykit.default
         } catch (e) {
-          console.warn('y-partykit not installed. Run: npm install y-partykit')
-          setConnectionStatus('error')
+          fallBack('y-partykit not installed')
           return
         }
 
@@ -132,7 +166,7 @@ export function CollaborativeEditor({
                 cache: 'no-store',
               })
               if (!res.ok) {
-                setConnectionStatus('error')
+                fallBack(`collaboration token request failed (${res.status})`)
                 throw new Error(`Collaboration token request failed (${res.status})`)
               }
               const data = await res.json()
@@ -152,14 +186,15 @@ export function CollaborativeEditor({
           }
         })
 
-        // Handle sync status
-        provider.on('synced', ({ synced }: { synced: boolean }) => {
+        // Only switch the editor to live mode after the first sync with the
+        // server, so it never shows (or saves) an empty document by mistake.
+        // y-websocket based providers emit 'sync' with a boolean.
+        provider.on('sync', (arg: boolean | { synced: boolean }) => {
+          const synced = typeof arg === 'boolean' ? arg : !!arg?.synced
           setIsSynced(synced)
-          if (synced) {
-            // Auto-save to database when synced
-            if (onSave && ydocRef.current) {
-              // Debounced save will be handled by the editor's onUpdate
-            }
+          if (synced && !cancelled) {
+            clearTimeout(connectTimeout)
+            setCollaborationReady(true)
           }
         })
 
@@ -168,25 +203,23 @@ export function CollaborativeEditor({
           const states = Array.from(provider.awareness.getStates().values())
           const otherUsers = states
             .map((state: any) => state.user)
-            .filter((user: any) => user && user.id !== currentUser?.id)
+            .filter((user: any) => user && user.id !== currentUserRef.current?.id)
           setActiveUsers(otherUsers)
         })
 
         // Set current user awareness
-        provider.awareness.setLocalStateField('user', getUserAwarenessInfo(currentUser!).user)
+        provider.awareness.setLocalStateField('user', getUserAwarenessInfo(currentUserRef.current!).user)
 
-        // Mark collaboration as ready
-        setCollaborationReady(true)
       } catch (error) {
-        console.error('Failed to initialize collaboration:', error)
-        setConnectionStatus('error')
-        setCollaborationReady(false)
+        fallBack(error)
       }
     }
 
     initCollaboration()
 
     return () => {
+      cancelled = true
+      clearTimeout(connectTimeout)
       setCollaborationReady(false)
       if (provider) {
         provider.destroy()
@@ -197,7 +230,7 @@ export function CollaborativeEditor({
       providerRef.current = null
       ydocRef.current = null
     }
-  }, [canUseCollaboration, documentId, currentUser, collaborationType])
+  }, [canUseCollaboration, documentId, currentUserId, collaborationType])
 
   // Build extensions array
   const extensions = useCallback(() => {
@@ -252,18 +285,19 @@ export function CollaborativeEditor({
         }),
         CollaborationCursor.configure({
           provider: providerRef.current,
-          user: currentUser ? getUserAwarenessInfo(currentUser).user : undefined,
+          user: currentUserRef.current ? getUserAwarenessInfo(currentUserRef.current).user : undefined,
         })
       )
     }
 
     return baseExtensions
-  }, [canUseCollaboration, collaborationReady, readOnly, placeholder, currentUser])
+  }, [canUseCollaboration, collaborationReady, readOnly, placeholder, currentUserId, currentUserName])
 
   const editor = useEditor({
     extensions: extensions(),
     content: (canUseCollaboration && collaborationReady) ? undefined : initialContent,
-    editable: !readOnly,
+    // Locked while connecting so nothing typed is lost when live mode starts.
+    editable: !readOnly && !waitingForCollaboration,
     onUpdate: ({ editor }) => {
       setHasUnsavedChanges(true)
       onUpdate?.(editor.getHTML())
@@ -273,18 +307,30 @@ export function CollaborativeEditor({
         class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none focus:outline-none min-h-[500px] p-6 prose-headings:text-[var(--foreground)] prose-p:text-[var(--foreground)] prose-strong:text-[var(--foreground)] prose-a:text-[var(--primary)] prose-code:text-[var(--foreground)] prose-pre:bg-[var(--secondary)] prose-blockquote:border-[var(--primary)] prose-blockquote:text-[var(--muted)] text-[var(--foreground)]',
       },
     },
-  }, [extensions, initialContent, readOnly, canUseCollaboration, collaborationReady])
+  }, [extensions, initialContent, readOnly, canUseCollaboration, collaborationReady, waitingForCollaboration])
+
+  // A live document starts empty the first time it is opened. Load the saved
+  // content into it once, so existing documents never appear blank.
+  useEffect(() => {
+    if (!editor || !canUseCollaboration || !collaborationReady || !ydocRef.current) return
+    const meta = ydocRef.current.getMap('exodus-meta')
+    if (meta.get('seeded')) return
+    if (editor.isEmpty && initialContent.trim()) {
+      editor.commands.setContent(initialContent)
+    }
+    meta.set('seeded', true)
+  }, [editor, canUseCollaboration, collaborationReady, initialContent])
 
   // Auto-save functionality
   useEffect(() => {
-    if (!autoSave || !onSave || !hasUnsavedChanges || !editor) return
+    if (!autoSave || !onSave || !hasUnsavedChanges || !editor || waitingForCollaboration) return
 
     const timer = setTimeout(async () => {
       await handleSave()
     }, autoSaveInterval)
 
     return () => clearTimeout(timer)
-  }, [autoSave, hasUnsavedChanges, editor, autoSaveInterval])
+  }, [autoSave, hasUnsavedChanges, editor, autoSaveInterval, waitingForCollaboration])
 
   const handleSave = async () => {
     if (!editor || !onSave) return
@@ -554,6 +600,14 @@ export function CollaborativeEditor({
 
       {/* Editor content */}
       <div className="relative bg-[var(--background)]">
+        {waitingForCollaboration && (
+          <p className="px-6 pt-4 text-xs text-theme-muted" role="status">Connecting to live editing…</p>
+        )}
+        {collabFailed && enableCollaboration && !readOnly && (
+          <p className="px-6 pt-4 text-xs text-yellow-600" role="status">
+            Live co-editing is unavailable right now. Your changes still save normally.
+          </p>
+        )}
         <EditorContent editor={editor} />
       </div>
 
