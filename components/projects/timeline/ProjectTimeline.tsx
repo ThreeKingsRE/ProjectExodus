@@ -31,6 +31,7 @@ interface Item {
   assigneeIds: string[]
   milestoneId: string | null
   color: string | null
+  isPublic: boolean
   imported: boolean
   createdBy: { id: string; name: string | null }
   canEdit: boolean
@@ -560,6 +561,7 @@ function ItemForm({ projectId, item, defaults, data, onClose, onSaved }: {
   const [milestoneId, setMilestoneId] = useState(base.milestoneId ?? '')
   const [location, setLocation] = useState(base.location ?? '')
   const [description, setDescription] = useState(base.description ?? '')
+  const [isPublic, setIsPublic] = useState(base.isPublic ?? false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -581,7 +583,7 @@ function ItemForm({ projectId, item, defaults, data, onClose, onSaved }: {
     setError(null)
     try {
       const body: Record<string, unknown> = {
-        kind, title, allDay, status, location, description,
+        kind, title, allDay, status, location, description, isPublic,
         startAt: toIso(start), endAt: toIso(end),
         milestoneId: kind === 'MILESTONE' ? null : milestoneId || null,
       }
@@ -680,6 +682,10 @@ function ItemForm({ projectId, item, defaults, data, onClose, onSaved }: {
 
         <input className={input} maxLength={300} value={location} onChange={e => setLocation(e.target.value)} placeholder="Location or meeting link (optional)" aria-label="Location" />
         <textarea className={input} rows={3} maxLength={4000} value={description} onChange={e => setDescription(e.target.value)} placeholder="Notes (optional)" aria-label="Notes" />
+        <label className="flex items-start gap-2 text-sm">
+          <input type="checkbox" className="mt-1" checked={isPublic} onChange={e => setIsPublic(e.target.checked)} />
+          <span><strong>Share with followers</strong><span className="block text-xs text-theme-muted">Shows on the Shared tab so followers can track progress. Notes and assignees stay with the team.</span></span>
+        </label>
       </fieldset>
 
       {item && (

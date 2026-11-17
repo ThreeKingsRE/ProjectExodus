@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requireCollaborator } from '@/lib/projects/guard'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 
@@ -9,6 +10,8 @@ export async function GET(
 ) {
   try {
     const { projectId, researchId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
 
     const post = await prisma.projectResearch.findUnique({
       where: { id: researchId },
@@ -91,6 +94,8 @@ export async function PUT(
     }
 
     const { projectId, researchId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
     const body = await request.json()
     const { heading, summary, fullContent, sourceUrl, sourceTitle, tags, isPinned } = body
 
@@ -192,6 +197,8 @@ export async function DELETE(
     }
 
     const { projectId, researchId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
 
     const post = await prisma.projectResearch.findUnique({
       where: { id: researchId },

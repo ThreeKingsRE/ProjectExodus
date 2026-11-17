@@ -53,9 +53,18 @@ export async function GET(request: NextRequest) {
       prisma.project.count({ where }),
     ])
 
+    // The viewer's own role in each initiative (the members list above is only a preview)
+    const myMemberships = projects.length
+      ? await prisma.projectMember.findMany({
+          where: { userId: session.user.id, projectId: { in: projects.map((p: { id: string }) => p.id) } },
+          select: { projectId: true, role: true },
+        })
+      : []
+    const roleByProject = new Map(myMemberships.map((m: { projectId: string; role: string }) => [m.projectId, m.role]))
+
     return NextResponse.json({
       success: true,
-      data: projects,
+      data: projects.map((p: any) => ({ ...p, viewerRole: roleByProject.get(p.id) ?? null })),
       pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     })
   } catch (error) {

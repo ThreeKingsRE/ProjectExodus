@@ -31,6 +31,7 @@ import {
   Award,
   Layers,
   ClipboardList,
+  Share2,
   CalendarRange,
   Bell,
   ChevronRight,
@@ -53,7 +54,6 @@ import {
 } from 'lucide-react'
 import { getPusherClient } from '@/lib/pusher-client'
 import Link from 'next/link'
-import { JoinProjectButton } from '@/components/projects/JoinProjectButton'
 import { InitiativeStory } from '@/components/projects/PublicInitiativeOverview'
 import { InitiativeParticipation } from '@/components/projects/InitiativeParticipation'
 import { ResearchComposer } from '@/components/projects/ResearchComposer'
@@ -64,10 +64,13 @@ import type { DocumentTemplate } from '@/data/document-templates'
 import { ProjectFiles } from '@/components/projects/workspace/ProjectFiles'
 import { ProjectSurveys } from '@/components/projects/surveys/ProjectSurveys'
 import { ProjectTimeline } from '@/components/projects/timeline/ProjectTimeline'
+import { ParticipationBar } from '@/components/projects/team/ParticipationBar'
+import { TeamInvitesPanel } from '@/components/projects/team/TeamInvitesPanel'
+import { ProjectShared } from '@/components/projects/team/ProjectShared'
 import { FILE_SECTIONS, SECTION_INFO, type FileSection } from '@/lib/projects/files'
 import { VENTURE_TYPES, VENTURE_TYPE_LABEL, ventureTypeLabel } from '@/lib/projects/ventureType'
 
-type TabType = 'overview' | 'workspace' | 'timeline' | 'surveys' | 'learning' | 'research' | 'discussions' | 'members' | 'documents' | 'settings'
+type TabType = 'overview' | 'shared' | 'workspace' | 'timeline' | 'surveys' | 'learning' | 'research' | 'discussions' | 'members' | 'documents' | 'settings'
 
 interface LearningModule {
   id: string
@@ -202,10 +205,23 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     }
   }, [slug])
 
+  // The viewer's standing: collaborators (team) vs followers
+  const viewerIsTeam = !!project && (project.creatorId === session?.user?.id || (!!project.viewerRole && project.viewerRole !== 'VIEWER'))
+  const viewerFollows = !!project && !viewerIsTeam && project.viewerRole === 'VIEWER'
+  // Discussion channels: PUBLIC (followers + team) and TEAM (collaborators only)
+  const [chatChannel, setChatChannel] = useState<'PUBLIC' | 'TEAM'>('PUBLIC')
+  const chatChannelChosen = useRef(false)
+  useEffect(() => {
+    if (viewerIsTeam && !chatChannelChosen.current) {
+      chatChannelChosen.current = true
+      setChatChannel('TEAM')
+    }
+  }, [viewerIsTeam])
+
   const fetchMessages = useCallback(async () => {
     if (!project?.id) return
     try {
-      const res = await fetch(`/api/projects/${project.id}/messages`)
+      const res = await fetch(`/api/projects/${project.id}/messages?channel=${chatChannel}`)
       const data = await res.json()
       if (data.success) {
         setMessages(data.data)
@@ -213,7 +229,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     } catch (error) {
       console.error('Error fetching messages:', error)
     }
-  }, [project?.id])
+  }, [project?.id, chatChannel])
 
   const fetchLearningModules = useCallback(async () => {
     if (!project?.id) return
@@ -280,6 +296,23 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   }, [project?.id])
 
 
+  // Share a document with followers (read + comment) or make it team-only again
+  const toggleDocumentSharing = useCallback(async (doc: any) => {
+    const shared = doc.isPublic && doc.status === 'PUBLISHED'
+    if (!shared && !window.confirm(`Share "${doc.title}" with followers? They'll be able to read it and leave comments, but not edit.`)) return
+    const res = await fetch(`/api/documents/${doc.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(shared ? { isPublic: false } : { isPublic: true, status: 'PUBLISHED', allowComments: true }),
+    })
+    if (res.ok) {
+      setDocuments((prev: any[]) => prev.map(d => (d.id === doc.id ? { ...d, isPublic: !shared, status: shared ? d.status : 'PUBLISHED', allowComments: shared ? d.allowComments : true } : d)))
+    } else {
+      const data = await res.json().catch(() => ({}))
+      alert(data.error || 'Could not change sharing')
+    }
+  }, [])
+
   const fetchDocuments = useCallback(async () => {
     if (!project?.id) return
     setLoadingDocuments(true)
@@ -337,7 +370,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     const rawTab = searchParams.get('tab')
     // Old links to the mind map tab now open the workspace.
     const tab = rawTab === 'mindmaps' ? 'workspace' : rawTab
-    if (tab && ['overview', 'workspace', 'timeline', 'surveys', 'learning', 'research', 'discussions', 'members', 'documents', 'settings'].includes(tab)) {
+    if (tab && ['overview', 'shared', 'workspace', 'timeline', 'surveys', 'learning', 'research', 'discussions', 'members', 'documents', 'settings'].includes(tab)) {
       setActiveTab(tab as TabType)
     }
     const section = searchParams.get('section')?.toUpperCase()
@@ -346,9 +379,10 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
   // Replace polling with Pusher real-time updates
   useEffect(() => {
-    if (!project?.id) return
+    if (!project?.id || !(viewerIsTeam || viewerFollows)) return
 
     // Initial fetch
+    setMessages([])
     fetchMessages()
 
     // Subscribe to Pusher for real-time updates
@@ -359,7 +393,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       return () => clearInterval(interval)
     }
 
-    const channel = pusher.subscribe(`project-${project.id}`)
+    const channel = pusher.subscribe(chatChannel === 'PUBLIC' ? `private-project-public-${project.id}` : `private-project-${project.id}`)
 
     // Listen for new messages
     channel.bind('message-created', (data: any) => {
@@ -379,11 +413,16 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       channel.unbind_all()
       channel.unsubscribe()
     }
-  }, [project?.id, fetchMessages])
+  }, [project?.id, fetchMessages, viewerIsTeam, viewerFollows, chatChannel])
 
   // Load tab-specific data
   useEffect(() => {
     if (!project?.id) return
+    // Followers don't load team-only data
+    if (!viewerIsTeam) {
+      if (activeTab === 'members') fetchMembersWithBadges()
+      return
+    }
 
     if (activeTab === 'learning') {
       fetchLearningModules()
@@ -399,7 +438,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       fetchSubgroups()
       fetchLearningModules()
     }
-  }, [activeTab, project?.id, fetchLearningModules, fetchResearchPosts, fetchSubgroups, fetchMembersWithBadges, fetchDocuments])
+  }, [activeTab, project?.id, viewerIsTeam, fetchLearningModules, fetchResearchPosts, fetchSubgroups, fetchMembersWithBadges, fetchDocuments])
 
   useEffect(() => {
     // Only auto-scroll if user has interacted with the chat
@@ -517,7 +556,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       const res = await fetch(`/api/projects/${project.id}/messages`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: newMessage }),
+        body: JSON.stringify({ content: newMessage, channel: chatChannel }),
       })
 
       const data = await res.json()
@@ -574,9 +613,12 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   }
 
   const colors = statusColors[project.status as keyof typeof statusColors] || statusColors.PLANNING
-  const isMember = project.members?.some((m: any) => m.userId === session?.user?.id)
   const isCreator = project.creatorId === session?.user?.id
   const userMembership = project.members?.find((m: any) => m.userId === session?.user?.id)
+  // Collaborators ("team") are invited or approved; followers can only view what's shared
+  const isTeam = viewerIsTeam
+  const isFollowing = viewerFollows
+  const isMember = isTeam || isFollowing
 
   const getRoleBadge = (member: any) => {
     if (member.userId === project.creatorId) {
@@ -606,17 +648,18 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     return null
   }
 
-  const tabs: { id: TabType; label: string; icon: typeof Users; memberOnly?: boolean }[] = [
+  const tabs: { id: TabType; label: string; icon: typeof Users; memberOnly?: boolean; teamOnly?: boolean }[] = [
     { id: 'overview', label: 'Overview', icon: Target },
-    { id: 'workspace', label: 'Workspace', icon: Layers, memberOnly: true },
-    { id: 'timeline', label: 'Timeline', icon: CalendarRange, memberOnly: true },
+    { id: 'shared', label: 'Shared', icon: Share2, memberOnly: true },
+    { id: 'discussions', label: 'Discussion', icon: MessageSquare, memberOnly: true },
     { id: 'surveys', label: 'Surveys', icon: ClipboardList, memberOnly: true },
-    { id: 'documents', label: 'Documents', icon: File, memberOnly: true },
-    { id: 'learning', label: 'Learning', icon: BookOpen, memberOnly: true },
-    { id: 'research', label: 'Research', icon: FlaskConical, memberOnly: true },
-    { id: 'discussions', label: 'Discussions', icon: MessageSquare, memberOnly: true },
+    { id: 'workspace', label: 'Workspace', icon: Layers, teamOnly: true },
+    { id: 'timeline', label: 'Timeline', icon: CalendarRange, teamOnly: true },
+    { id: 'documents', label: 'Documents', icon: File, teamOnly: true },
+    { id: 'learning', label: 'Learning', icon: BookOpen, teamOnly: true },
+    { id: 'research', label: 'Research', icon: FlaskConical, teamOnly: true },
     { id: 'members', label: 'Members', icon: Users },
-    { id: 'settings', label: 'Settings', icon: SettingsIcon, memberOnly: true },
+    { id: 'settings', label: 'Settings', icon: SettingsIcon, teamOnly: true },
   ]
 
   const completedModules = learningModules.filter((m: LearningModule) => m.userProgress?.completedAt).length
@@ -856,14 +899,9 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   </div>
                 </div>
 
-                {!isCreator && !isMember && (
+                {!isCreator && (
                   <div className="mt-4">
-                    <JoinProjectButton
-                      projectId={project.id}
-                      projectName={project.name}
-                      isMember={isMember}
-                      isOwner={isCreator}
-                    />
+                    <ParticipationBar projectId={project.id} projectName={project.name} isCreator={isCreator} isTeam={isTeam} isFollowing={isFollowing} onChanged={fetchProject} />
                   </div>
                 )}
               </div>
@@ -872,7 +910,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
               <Card className="lg:w-72 border-2 border-theme-primary">
                 <CardContent className="p-4">
                   <div className="space-y-3">
-                    {isMember && (
+                    {isTeam && (
                       <Button
                         onClick={() => setShowSage(true)}
                         className="w-full font-bold bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700"
@@ -891,7 +929,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                         JOIN DISCUSSION
                       </Button>
                     )}
-                    {isMember && totalModules > 0 && (
+                    {isTeam && totalModules > 0 && (
                       <div className="p-3 bg-[var(--muted)] rounded-lg">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm font-bold">Learning Progress</span>
@@ -923,7 +961,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             <div className="flex gap-1 overflow-x-auto py-2">
               {tabs.map((tab) => {
                 const Icon = tab.icon
-                const isDisabled = tab.memberOnly && !isMember
+                const isDisabled = (tab.memberOnly && !isMember) || (tab.teamOnly && !isTeam)
                 const isActive = activeTab === tab.id
 
                 return (
@@ -1112,7 +1150,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   </div>
 
                   {/* Workspace shortcuts */}
-                  {isMember && (
+                  {isTeam && (
                     <Card className="border-2 border-theme-primary/40">
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg font-black flex items-center gap-2">
@@ -1224,7 +1262,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             )}
 
             {/* Learning Tab */}
-            {activeTab === 'learning' && isMember && (
+            {activeTab === 'learning' && isTeam && (
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <h2 className="text-2xl font-black">LEARNING MODULES</h2>
@@ -1313,7 +1351,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             )}
 
             {/* Research Tab */}
-            {activeTab === 'research' && isMember && (
+            {activeTab === 'research' && isTeam && (
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <h2 className="text-2xl font-black">RESEARCH & RESOURCES</h2>
@@ -1393,11 +1431,15 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             )}
 
             {/* Mind Maps Tab */}
-            {activeTab === 'workspace' && isMember && (
+            {activeTab === 'workspace' && isTeam && (
               <ProjectFiles projectId={project.id} initialSection={workspaceSection} />
             )}
 
-            {activeTab === 'timeline' && isMember && (
+            {activeTab === 'shared' && isMember && (
+              <ProjectShared projectId={project.id} slug={slug} isTeam={isTeam} />
+            )}
+
+            {activeTab === 'timeline' && isTeam && (
               <ProjectTimeline projectId={project.id} />
             )}
 
@@ -1406,7 +1448,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             )}
 
             {/* Documents Tab */}
-            {activeTab === 'documents' && isMember && (
+            {activeTab === 'documents' && isTeam && (
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <h2 className="text-2xl font-black">PROJECT DOCUMENTS</h2>
@@ -1467,6 +1509,17 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                               </span>
                             </div>
                             <div className="mt-3 pt-3 border-t border-[var(--border)] flex items-center gap-3 text-xs text-theme-muted">
+                              {(isCreator || doc.creatorId === session?.user?.id) ? (
+                                <button
+                                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleDocumentSharing(doc) }}
+                                  className={`rounded px-2 py-0.5 font-bold ${doc.isPublic && doc.status === 'PUBLISHED' ? 'bg-green-500/15 text-green-600' : 'bg-[var(--muted)] hover:text-theme-primary'}`}
+                                  title={doc.isPublic && doc.status === 'PUBLISHED' ? 'Followers can read and comment. Click to make team-only.' : 'Share with followers so they can read and comment'}
+                                >
+                                  {doc.isPublic && doc.status === 'PUBLISHED' ? 'Shared with followers' : 'Team only · Share'}
+                                </button>
+                              ) : doc.isPublic && doc.status === 'PUBLISHED' && (
+                                <span className="rounded bg-green-500/15 px-2 py-0.5 font-bold text-green-600">Shared with followers</span>
+                              )}
                               <span className="flex items-center gap-1">
                                 <Users className="w-3 h-3" />
                                 {doc._count?.collaborators || 0}
@@ -1496,8 +1549,31 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   <CardHeader>
                     <CardTitle className="text-2xl font-black flex items-center gap-2">
                       <MessageSquare className="w-6 h-6" />
-                      PROJECT DISCUSSION
+                      DISCUSSION
                     </CardTitle>
+                    {isTeam ? (
+                      <div className="mt-2 flex flex-wrap items-center gap-2">
+                        <div className="flex rounded-lg border-2 border-[var(--border)] overflow-hidden" role="tablist" aria-label="Discussion channel">
+                          {(['TEAM', 'PUBLIC'] as const).map(c => (
+                            <button
+                              key={c}
+                              role="tab"
+                              aria-selected={chatChannel === c}
+                              onClick={() => setChatChannel(c)}
+                              className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold ${chatChannel === c ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'hover:bg-[var(--muted)]'}`}
+                            >
+                              {c === 'TEAM' ? <Lock className="w-3.5 h-3.5" /> : <Users className="w-3.5 h-3.5" />}
+                              {c === 'TEAM' ? 'Team only' : 'Public'}
+                            </button>
+                          ))}
+                        </div>
+                        <p className="text-xs text-theme-muted">
+                          {chatChannel === 'TEAM' ? 'Only collaborators see this channel.' : 'Followers can read and post here.'}
+                        </p>
+                      </div>
+                    ) : (
+                      <p className="mt-1 text-sm text-theme-muted">The public discussion: talk with the team and other followers.</p>
+                    )}
                   </CardHeader>
                   <CardContent>
                     {/* Messages */}
@@ -1580,7 +1656,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                         onFocus={() => setHasInteractedWithChat(true)}
-                        placeholder="Type your message..."
+                        placeholder={chatChannel === 'TEAM' ? 'Message the team...' : 'Message everyone following...'}
                         disabled={isSending}
                         className="flex-1 px-4 py-3 rounded-lg border-2 border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] font-semibold focus:border-theme-primary focus:outline-none transition-colors disabled:opacity-50"
                       />
@@ -1601,6 +1677,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             {/* Members Tab */}
             {activeTab === 'members' && (
               <div className="space-y-8">
+                {isTeam && <TeamInvitesPanel projectId={project.id} onChanged={() => { fetchProject(); fetchMembersWithBadges() }} />}
                 {/* Subgroups Section */}
                 {subgroups.length > 0 && (
                   <div>
@@ -1626,7 +1703,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                                 <Users className="w-4 h-4 inline mr-1" />
                                 {sg._count.members}{sg.memberLimit ? `/${sg.memberLimit}` : ''} members
                               </span>
-                              {isMember && !sg.userMembership && (
+                              {isTeam && !sg.userMembership && (
                                 <Button size="sm" variant="outline" className="font-bold">
                                   Join
                                 </Button>
@@ -1720,7 +1797,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             )}
 
             {/* Settings Tab */}
-            {activeTab === 'settings' && isMember && (
+            {activeTab === 'settings' && isTeam && (
               <div className="space-y-6">
                 <h2 className="text-2xl font-black">PROJECT SETTINGS</h2>
 
@@ -1775,22 +1852,22 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             )}
 
             {/* Not a Member Message for restricted tabs */}
-            {!isMember && ['workspace', 'timeline', 'surveys', 'learning', 'research', 'discussions', 'documents', 'settings'].includes(activeTab) && (
+            {((!isMember && ['shared', 'surveys', 'discussions'].includes(activeTab)) ||
+              (!isTeam && ['workspace', 'timeline', 'learning', 'research', 'documents', 'settings'].includes(activeTab))) && (
               <Card className="border-4 border-theme-secondary">
                 <CardContent className="p-12 text-center">
                   <Lock className="w-16 h-16 text-theme-secondary mx-auto mb-4 opacity-50" />
                   <h3 className="text-2xl font-black mb-4 text-theme-muted">
-                    MEMBERS ONLY
+                    {isMember ? 'FOR THE TEAM' : 'FOLLOW TO SEE MORE'}
                   </h3>
                   <p className="text-lg font-semibold mb-6 text-theme-muted">
-                    Join this project to access {activeTab} and collaborate with the team!
+                    {isMember
+                      ? 'This part is for the initiative’s collaborators. Ask to collaborate, or check the Shared tab for what the team has made public.'
+                      : 'Follow this initiative to join the public discussion and see what the team shares.'}
                   </p>
-                  <JoinProjectButton
-                    projectId={project.id}
-                    projectName={project.name}
-                    isMember={isMember}
-                    isOwner={isCreator}
-                  />
+                  <div className="flex justify-center">
+                    <ParticipationBar projectId={project.id} projectName={project.name} isCreator={isCreator} isTeam={isTeam} isFollowing={isFollowing} onChanged={fetchProject} />
+                  </div>
                 </CardContent>
               </Card>
             )}
@@ -1799,7 +1876,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       </section>
 
       {/* Project Sage AI Modal */}
-      {showSage && isMember && (
+      {showSage && isTeam && (
         <ProjectSage
           projectId={project.id}
           projectName={project.name}

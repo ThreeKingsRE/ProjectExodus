@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requireCollaborator } from '@/lib/projects/guard'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 
@@ -10,6 +11,8 @@ export async function GET(
   try {
     const session = await auth()
     const { projectId, subgroupId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
 
     // Check subgroup exists
     const subgroup = await prisma.projectSubgroup.findUnique({
@@ -99,6 +102,8 @@ export async function POST(
     }
 
     const { projectId, subgroupId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
     const body = await request.json()
     const { userId, makeLeader } = body
 
@@ -218,6 +223,8 @@ export async function DELETE(
     }
 
     const { projectId, subgroupId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
     const { searchParams } = new URL(request.url)
     const userIdToRemove = searchParams.get('userId') || session.user.id
     const removeAsLeader = searchParams.get('removeLeader') === 'true'

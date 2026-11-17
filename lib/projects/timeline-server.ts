@@ -17,6 +17,7 @@ export function itemForViewer(item: any, viewer: Parameters<typeof canEditItem>[
     assigneeIds: item.assigneeIds,
     milestoneId: item.milestoneId,
     color: item.color,
+    isPublic: item.isPublic,
     imported: !!item.externalUid,
     createdBy: item.createdBy,
     updatedAt: item.updatedAt,

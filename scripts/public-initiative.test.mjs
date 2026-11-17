@@ -34,42 +34,47 @@ test('public output contains saved overview fields and no member or private conf
   for (const key of ['members', 'messages', 'layoutConfig', 'settings']) assert.equal(key in output, false)
 })
 
-function fakeDatabase({ visibility = 'PUBLIC', approval = false, prerequisites = [], role = null } = {}) {
+function fakeDatabase({ visibility = 'PUBLIC', role = null, creatorId = 'owner' } = {}) {
   let member = role ? { id: 'membership', role, projectId: 'project', userId: 'user' } : null
   let creates = 0
+  const requests = []
   const tx = {
-    project: { findUnique: async () => ({ id: 'project', visibility, layoutConfig: { settings: { requireApproval: approval } }, prerequisites }) },
+    project: { findUnique: async () => ({ id: 'project', visibility, creatorId }) },
     projectMember: {
       findUnique: async () => member,
       upsert: async ({ create, update }) => { if (!member) { member = { id: 'membership', ...create }; creates++ } else member = { ...member, ...update }; return member },
-      updateMany: async ({ data }) => { if (member.role === 'VIEWER') member = { ...member, ...data } },
       findUniqueOrThrow: async () => member,
     },
+    projectJoinRequest: {
+      findFirst: async () => requests.find(r => r.status === 'PENDING') ?? null,
+      create: async ({ data }) => { const r = { id: `r${requests.length}`, status: 'PENDING', ...data }; requests.push(r); return r },
+    },
   }
-  return { $transaction: fn => fn(tx), state: () => ({ member, creates }) }
+  return { $transaction: fn => fn(tx), state: () => ({ member, creates, requests }) }
 }
 
-test('repeat follows create one membership and an explicit collaboration upgrades that follower', async () => {
+test('repeat follows create one membership; asking to collaborate files one request and grants nothing', async () => {
   const db = fakeDatabase()
   await participate(db, 'user', 'project', 'follow')
   await participate(db, 'user', 'project', 'follow')
   assert.equal(db.state().creates, 1)
   assert.equal(db.state().member.role, 'VIEWER')
+  const first = await participate(db, 'user', 'project', 'collaborate', '  I can help with costing  ')
   await participate(db, 'user', 'project', 'collaborate')
-  assert.equal(db.state().member.role, 'CONTRIBUTOR')
+  assert.equal(first.requested, true)
+  assert.equal(db.state().member.role, 'VIEWER', 'only an owner can add collaborators')
+  assert.equal(db.state().requests.length, 1, 'no duplicate pending requests')
+  assert.equal(db.state().requests[0].message, 'I can help with costing')
   assert.equal(db.state().creates, 1)
 })
 
-test('following cannot demote an owner, and collaboration respects approval and prerequisites', async () => {
+test('following or asking never changes an existing role', async () => {
   const owner = fakeDatabase({ role: 'OWNER' })
-  await participate(owner, 'user', 'project', 'collaborate')
+  const result = await participate(owner, 'user', 'project', 'collaborate')
   await participate(owner, 'user', 'project', 'follow')
   assert.equal(owner.state().member.role, 'OWNER')
-  for (const db of [fakeDatabase({ approval: true }), fakeDatabase({ prerequisites: [{ id: 'requirement' }] })]) {
-    const result = await participate(db, 'user', 'project', 'collaborate')
-    assert.equal(result.approvalRequired, true)
-    assert.equal(result.member.role, 'VIEWER')
-  }
+  assert.equal(result.requested, false)
+  assert.equal(owner.state().requests.length, 0)
 })
 
 test('knowing an unlisted project ID does not let a new person join', async () => {

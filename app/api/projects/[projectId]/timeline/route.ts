@@ -3,6 +3,7 @@ import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { getFileViewer, filterMemberIds } from '@/lib/projects/files-server'
 import { canAddItems, canViewTimeline, isManager, parseTimelineInput, rangeWhere } from '@/lib/projects/timeline'
+import { isCollaborator } from '@/lib/projects/access'
 import { itemForViewer, itemInclude } from '@/lib/projects/timeline-server'
 import { expandEvents } from '@/lib/calendar/ics'
 import { feedEvents } from '@/lib/calendar/feeds-server'
@@ -28,9 +29,11 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     if (Number.isNaN(to.getTime()) || to <= from) to = new Date(from.getTime() + 365 * DAY)
     if (to.getTime() - from.getTime() > MAX_SPAN) to = new Date(from.getTime() + MAX_SPAN)
 
+    // Followers see only what the team shares with them, and no linked calendars
+    const team = isCollaborator(viewer)
     const [items, members, feeds] = await Promise.all([
       prisma.projectTimelineItem.findMany({
-        where: rangeWhere(projectId, from, to),
+        where: team ? rangeWhere(projectId, from, to) : { ...rangeWhere(projectId, from, to), isPublic: true },
         include: itemInclude,
         orderBy: [{ startAt: 'asc' }, { endAt: 'asc' }],
         take: 2000,
@@ -40,14 +43,14 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         select: { userId: true, role: true, user: { select: { id: true, name: true, image: true } } },
       }),
       prisma.projectCalendarFeed.findMany({
-        where: { projectId },
+        where: team ? { projectId } : { id: '__none__' },
         select: { id: true, name: true, color: true, url: true, cachedEvents: true, fetchedAt: true, ownerId: true },
       }),
     ])
 
     // Milestones outside the range still need to be listed for linking tasks
     const milestones = await prisma.projectTimelineItem.findMany({
-      where: { projectId, kind: 'MILESTONE' },
+      where: team ? { projectId, kind: 'MILESTONE' } : { projectId, kind: 'MILESTONE', isPublic: true },
       select: { id: true, title: true, endAt: true, startAt: true, status: true },
       orderBy: { endAt: 'asc' },
       take: 200,
@@ -66,14 +69,16 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     return NextResponse.json({
       success: true,
       data: {
-        items: items.map((i: any) => itemForViewer(i, viewer)),
+        // Followers see shared items without the team's notes or assignments
+        items: items.map((i: any) => (team ? itemForViewer(i, viewer) : { ...itemForViewer(i, viewer), description: null, location: null, assigneeIds: [], createdBy: { id: '', name: null } })),
         external,
         feeds: feedStatus,
         milestones,
-        members: members.map((m: any) => ({ id: m.userId, name: m.user?.name || 'Member', image: m.user?.image ?? null, role: m.role })),
+        members: members.filter((m: any) => team || m.role !== 'VIEWER').map((m: any) => ({ id: m.userId, name: m.user?.name || 'Member', image: m.user?.image ?? null, role: m.role })),
         me: session.user.id,
         canAdd: canAddItems(viewer),
         canManage: isManager(viewer),
+        isTeam: team,
         range: { from, to },
       },
     })
@@ -120,6 +125,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         assigneeIds,
         milestoneId,
         color: input.color ?? null,
+        isPublic: input.isPublic ?? false,
         createdById: session.user.id,
       },
       include: itemInclude,

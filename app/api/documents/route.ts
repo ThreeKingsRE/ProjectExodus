@@ -3,6 +3,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { getAccess } from '@/lib/projects/access-server'
+import { isCollaborator } from '@/lib/projects/access'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { z } from 'zod'
@@ -44,12 +46,16 @@ export async function GET(request: NextRequest) {
       where.status = status
     }
 
-    // Only show documents user has access to
-    where.OR = [
-      { creatorId: session.user.id },
-      { collaborators: { some: { userId: session.user.id } } },
-      { isPublic: true }
-    ]
+    // Only show documents user has access to. An initiative's collaborators see
+    // all of its documents; followers see the ones shared publicly.
+    const access = projectId ? await getAccess(projectId, session.user.id) : null
+    if (!(access && isCollaborator(access))) {
+      where.OR = [
+        { creatorId: session.user.id },
+        { collaborators: { some: { userId: session.user.id } } },
+        { isPublic: true, status: 'PUBLISHED' }
+      ]
+    }
 
     const documents = await prisma.document.findMany({
       where,
@@ -120,7 +126,7 @@ export async function POST(request: NextRequest) {
 
     // Check if user has permission to create documents
     const isCreator = project.creatorId === session.user.id
-    const isMember = project.members.length > 0
+    const isMember = project.members.some((m: { role: string }) => m.role !== 'VIEWER') // followers can't create documents
 
     if (!isCreator && !isMember) {
       return NextResponse.json({ error: 'No permission to create documents' }, { status: 403 })

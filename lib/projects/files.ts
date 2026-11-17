@@ -203,6 +203,8 @@ export interface FileForViewer {
   /** The link this viewer should open: the edit link if allowed, otherwise the view link. */
   openUrl: string
   canEdit: boolean
+  /** Shown to followers as well as the team */
+  sharedWithFollowers: boolean
   isPinned: boolean
   order: number
   createdBy: { id: string; name: string | null; image?: string | null } | null
@@ -233,6 +235,7 @@ export function fileForViewer(file: StoredFile, viewer: Viewer, siteOrigin?: str
     previewIsImage: info.previewIsImage,
     openUrl: canEdit && file.editUrl ? file.editUrl : file.viewUrl,
     canEdit,
+    sharedWithFollowers: file.viewAccess === 'MEMBERS',
     isPinned: file.isPinned,
     order: file.order,
     createdBy: file.createdBy ?? null,
@@ -297,7 +300,7 @@ export function parseFileInput(body: unknown, partial: boolean, siteOrigin?: str
     }
   }
   if (b.viewAccess !== undefined || !partial) {
-    const va = b.viewAccess ?? 'MEMBERS'
+    const va = b.viewAccess ?? 'TEAM'
     if (!VIEW_ACCESS.includes(va as ViewAccess)) return { ok: false, error: 'Invalid view access.' }
     data.viewAccess = va as ViewAccess
   }

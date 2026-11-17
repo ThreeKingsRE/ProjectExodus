@@ -39,7 +39,7 @@ export function PublicInitiativeOverview({ project }: { project: PublicProject }
         <p className="mt-5 max-w-4xl text-lg leading-8 text-[var(--muted-foreground)]">{project.description}</p>
         <p className="mt-5 text-sm">Posted by {project.organizer.name} · {project.participants} {project.participants === 1 ? 'participant' : 'participants'}</p>
         <div className="mt-7 flex flex-wrap gap-3">
-          <Link href={signIn} style={{ color: 'var(--primary-foreground)' }} className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-5 py-3 font-bold"><Users size={17} /> Follow or collaborate <ArrowRight size={17} /></Link>
+          <Link href={signIn} style={{ color: 'var(--primary-foreground)' }} className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-5 py-3 font-bold"><Users size={17} /> Follow this initiative <ArrowRight size={17} /></Link>
           <Link href={contact} className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 font-bold"><MessageSquare size={17} /> Message the organizer</Link>
         </div>
       </div>
@@ -50,7 +50,7 @@ export function PublicInitiativeOverview({ project }: { project: PublicProject }
       {project.story && <section aria-label="Public initiative story" className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-8"><InitiativeStory text={project.story} /></section>}
       <aside className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6">
         <h2 className="flex items-center gap-2 text-xl font-black"><Lock size={20} /> Join the conversation</h2>
-        <p className="mt-4 leading-7 text-[var(--muted-foreground)]">This overview is open to everyone. Sign in to follow the initiative or join its workspace. Research, discussions, documents, and member tools are available after sign-in and membership where required.</p>
+        <p className="mt-4 leading-7 text-[var(--muted-foreground)]">This overview is open to everyone. Sign in to follow the initiative, join its public discussion, and see what the team shares. The team's workspace is for collaborators the organizer invites; followers can ask to join.</p>
         <Link href={signIn} className="mt-5 inline-flex items-center gap-2 font-bold">Sign in to get involved <ArrowRight size={17} /></Link>
       </aside>
     </div>

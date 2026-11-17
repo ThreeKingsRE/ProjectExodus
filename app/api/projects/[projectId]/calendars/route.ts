@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { getFileViewer } from '@/lib/projects/files-server'
-import { canAddItems, canViewTimeline, isManager, normalizeFeedUrl } from '@/lib/projects/timeline'
+import { canAddItems, isManager, normalizeFeedUrl } from '@/lib/projects/timeline'
+import { isCollaborator } from '@/lib/projects/access'
 import { parseIcs } from '@/lib/calendar/ics'
 import { eventsWorthStoring, fetchIcs } from '@/lib/calendar/feeds-server'
 
@@ -16,7 +17,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
     if (!session?.user?.id) return NextResponse.json({ success: false, error: 'Sign in first.' }, { status: 401 })
     const { projectId } = await params
     const viewer = await getFileViewer(projectId, session.user.id)
-    if (!viewer || !canViewTimeline(viewer)) return NextResponse.json({ success: false, error: 'Not available.' }, { status: 403 })
+    if (!viewer || !isCollaborator(viewer)) return NextResponse.json({ success: false, error: 'Not available.' }, { status: 403 })
 
     const feeds = await prisma.projectCalendarFeed.findMany({
       where: { projectId },

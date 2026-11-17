@@ -267,7 +267,7 @@ function FileForm({ projectId, file, defaultSection, onClose, onSaved }: {
     description: file?.description ?? '',
     viewUrl: file?.manage?.viewUrl ?? '',
     editUrl: file?.manage?.editUrl ?? '',
-    viewAccess: file?.manage?.viewAccess ?? 'MEMBERS',
+    viewAccess: file?.manage?.viewAccess ?? 'TEAM',
     editAccess: file?.manage?.editAccess ?? 'OWNERS',
     editorIds: file?.manage?.editorIds ?? [] as string[],
   })
@@ -345,8 +345,8 @@ function FileForm({ projectId, file, defaultSection, onClose, onSaved }: {
 
         <fieldset className="space-y-1">
           <legend className="text-xs font-bold">Who can see it</legend>
-          <label className="flex items-center gap-2 text-sm"><input type="radio" checked={form.viewAccess === 'MEMBERS'} onChange={() => set('viewAccess', 'MEMBERS')} />All members, including followers</label>
-          <label className="flex items-center gap-2 text-sm"><input type="radio" checked={form.viewAccess === 'TEAM'} onChange={() => set('viewAccess', 'TEAM')} />Team only (contributors and up)</label>
+          <label className="flex items-center gap-2 text-sm"><input type="radio" checked={form.viewAccess === 'TEAM'} onChange={() => set('viewAccess', 'TEAM')} />Team only (collaborators)</label>
+          <label className="flex items-center gap-2 text-sm"><input type="radio" checked={form.viewAccess === 'MEMBERS'} onChange={() => set('viewAccess', 'MEMBERS')} />Share with followers too (view and comment)</label>
         </fieldset>
 
         <fieldset className="space-y-1">

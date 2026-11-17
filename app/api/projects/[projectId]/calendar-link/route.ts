@@ -3,7 +3,8 @@ import { randomBytes } from 'crypto'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { getFileViewer } from '@/lib/projects/files-server'
-import { canViewTimeline, isManager } from '@/lib/projects/timeline'
+import { isManager } from '@/lib/projects/timeline'
+import { isCollaborator } from '@/lib/projects/access'
 
 function siteOrigin(request: NextRequest) {
   return process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || request.nextUrl.origin
@@ -13,7 +14,7 @@ async function setup(projectId: string) {
   const session = await auth()
   if (!session?.user?.id) return { error: NextResponse.json({ success: false, error: 'Sign in first.' }, { status: 401 }) }
   const viewer = await getFileViewer(projectId, session.user.id)
-  if (!viewer || !canViewTimeline(viewer)) return { error: NextResponse.json({ success: false, error: 'Not available.' }, { status: 403 }) }
+  if (!viewer || !isCollaborator(viewer)) return { error: NextResponse.json({ success: false, error: 'Not available.' }, { status: 403 }) }
   const project = await prisma.project.findUnique({ where: { id: projectId }, select: { layoutConfig: true } })
   return { viewer, layout: ((project?.layoutConfig as Record<string, unknown>) || {}) }
 }

@@ -56,6 +56,7 @@ export interface TimelineInput {
   assigneeIds: string[]
   milestoneId: string | null
   color: string | null
+  isPublic: boolean
 }
 
 type Result<T> = { ok: true; data: T } | { ok: false; error: string }
@@ -132,6 +133,7 @@ export function parseTimelineInput(
   if (b.milestoneId !== undefined) {
     data.milestoneId = typeof b.milestoneId === 'string' && b.milestoneId ? b.milestoneId.slice(0, 64) : null
   }
+  if (b.isPublic !== undefined) data.isPublic = b.isPublic === true
   if (b.color !== undefined) {
     if (b.color !== null && b.color !== '' && !(typeof b.color === 'string' && COLOR.test(b.color))) return { ok: false, error: 'Invalid color.' }
     data.color = (b.color as string) || null

@@ -11,10 +11,10 @@ export async function POST(request: NextRequest) {
   if (!session?.user?.id) return NextResponse.json({ success: false, error: 'Please sign in.' }, { status: 401 })
   try {
     const body = await request.json()
-    const intent = body.intent || 'collaborate'
+    const intent = body.intent || 'follow'
     if (typeof body.projectId !== 'string' || !body.projectId || !['follow', 'collaborate'].includes(intent)) return NextResponse.json({ success: false, error: 'A valid initiative and participation choice are required.' }, { status: 400 })
-    const result = await participate(prisma, session.user.id, body.projectId, intent)
-    return NextResponse.json({ success: true, data: result.member, approvalRequired: result.approvalRequired })
+    const result = await participate(prisma, session.user.id, body.projectId, intent, body.message)
+    return NextResponse.json({ success: true, data: result.member, requested: result.requested, approvalRequired: result.approvalRequired })
   } catch (error) {
     if (error instanceof ParticipationError) return NextResponse.json({ success: false, error: error.message }, { status: error.status })
     if (error instanceof SyntaxError) return NextResponse.json({ success: false, error: 'Invalid JSON.' }, { status: 400 })
