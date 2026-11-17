@@ -2,6 +2,9 @@
  * Validate new Exodology lessons (data/exodology-new-lessons/<id>.ts).
  *   npx tsx scripts/learning/validate-exodology-lessons.ts --file data/exodology-new-lessons/a-m3-n1.ts
  *   npx tsx scripts/learning/validate-exodology-lessons.ts            # all files
+ *   npx tsx scripts/learning/validate-exodology-lessons.ts --expanded [--file data/exodology-expanded-lessons/f-m6-l1.ts]
+ *     expanded original lessons: also checks every part of the original
+ *     lesson is kept word for word
  *
  * Checks structure and depth for the lesson type, and opens every reference
  * link to confirm it resolves to a page about that work (title must match).
@@ -11,9 +14,37 @@
 import { readdirSync } from 'fs'
 import { resolve } from 'path'
 import { NEW_LESSON_SPECS } from '../../lib/exodology/mergedOutline'
+import { foundationsLessons, appliedLessons, strategicLessons } from '../../data/exodology-curriculum'
 import type { NewExodologyLesson } from '../../data/exodology-new-lessons/types'
 
-const DIR = 'data/exodology-new-lessons'
+const EXPANDED = process.argv.includes('--expanded')
+const DIR = EXPANDED ? 'data/exodology-expanded-lessons' : 'data/exodology-new-lessons'
+type Original = { id: string; title: string; type: string; content: { introduction: string; sections?: { title: string; content: string }[]; keyTakeaways?: string[] }; learningObjectives?: string[] }
+const ORIGINALS = { ...foundationsLessons, ...appliedLessons, ...strategicLessons } as unknown as Record<string, Original>
+const squash = (t: string) => t.replace(/\s+/g, ' ').trim()
+
+/** Every part of the original lesson must survive word for word. */
+function keepsOriginal(lesson: NewExodologyLesson, o: Original): string[] {
+  const errors: string[] = []
+  const tag = lesson.id
+  if (lesson.title !== o.title) errors.push(`${tag}: title changed (original "${o.title}")`)
+  if (lesson.type !== o.type) errors.push(`${tag}: type changed (original ${o.type})`)
+  if (!squash(lesson.content.introduction ?? '').startsWith(squash(o.content.introduction))) errors.push(`${tag}: introduction must begin with the original introduction, unchanged`)
+  const secs = lesson.content.sections ?? []
+  let at = 0
+  for (const os of o.content.sections ?? []) {
+    const i = secs.findIndex((s, k) => k >= at && s.title === os.title)
+    if (i === -1) { errors.push(`${tag}: original section "${os.title}" missing or out of order`); continue }
+    if (!squash(secs[i].content).includes(squash(os.content))) errors.push(`${tag}: section "${os.title}" must contain the original text unchanged`)
+    if (squash(secs[i].content).length < squash(os.content).length + 300) errors.push(`${tag}: section "${os.title}" is not expanded (add at least 300 characters)`)
+    at = i + 1
+  }
+  for (const k of o.content.keyTakeaways ?? []) if (!(lesson.content.keyTakeaways ?? []).includes(k)) errors.push(`${tag}: original key takeaway missing: "${k}"`)
+  for (const k of o.learningObjectives ?? []) if (!(lesson.learningObjectives ?? []).includes(k)) errors.push(`${tag}: original learning objective missing: "${k}"`)
+  const total = squash(JSON.stringify(lesson.content)).length
+  if (total < 6000) errors.push(`${tag}: lesson is ${total} characters; expand to at least 6,000`)
+  return errors
+}
 const norm = (s: string) => s.toLowerCase().normalize('NFKD').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
 const titleMatches = (cited: string, found: string) => {
   const a = norm(cited.split(':')[0]), b = norm(found.split(':')[0])
@@ -58,10 +89,16 @@ async function checkLink(ref: Ref, retried = false): Promise<string | null> {
 
 async function validate(lesson: NewExodologyLesson): Promise<string[]> {
   const errors: string[] = []
-  const spec = NEW_LESSON_SPECS.find((s) => s.id === lesson.id)
   const tag = lesson.id
-  if (!spec) return [`${tag}: not a lesson in the merged outline`]
-  if (lesson.type !== spec.type) errors.push(`${tag}: type ${lesson.type}, outline says ${spec.type}`)
+  if (EXPANDED) {
+    const o = ORIGINALS[lesson.id]
+    if (!o) return [`${tag}: not an original Exodology lesson`]
+    errors.push(...keepsOriginal(lesson, o))
+  } else {
+    const spec = NEW_LESSON_SPECS.find((s) => s.id === lesson.id)
+    if (!spec) return [`${tag}: not a lesson in the merged outline`]
+    if (lesson.type !== spec.type) errors.push(`${tag}: type ${lesson.type}, outline says ${spec.type}`)
+  }
   if (!lesson.title?.trim() || !lesson.duration?.trim()) errors.push(`${tag}: missing title or duration`)
   const c = lesson.content
   if (!c?.introduction || c.introduction.length < 300) errors.push(`${tag}: introduction under 300 characters`)
@@ -106,7 +143,7 @@ async function main() {
     process.exit(r.status ?? 1)
   }
   const fileArg = process.argv.indexOf('--file')
-  const files = fileArg !== -1 ? [process.argv[fileArg + 1]] : readdirSync(DIR).filter((f) => /^[as]-m\d+-n\d+\.ts$/.test(f)).map((f) => `${DIR}/${f}`)
+  const files = fileArg !== -1 ? [process.argv[fileArg + 1]] : readdirSync(DIR).filter((f) => (EXPANDED ? /^[asf]-m\d+-l\d+\.ts$/ : /^[as]-m\d+-n\d+\.ts$/).test(f)).map((f) => `${DIR}/${f}`)
   let problems: string[] = []
   for (const f of files) {
     const mod = await import(resolve(f))

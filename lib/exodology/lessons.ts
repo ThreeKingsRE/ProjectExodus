@@ -1,5 +1,6 @@
 import { foundationsLessons, appliedLessons, strategicLessons } from '@/data/exodology-curriculum'
 import { NEW_EXODOLOGY_LESSONS } from '@/data/exodology-new-lessons'
+import { EXPANDED_EXODOLOGY_LESSONS } from '@/data/exodology-expanded-lessons'
 import { MERGED_MODULE_LESSONS, type MergedEntry } from './mergedOutline'
 
 // Lesson lookup and order for the Exodology paths, following the merged
@@ -11,6 +12,8 @@ const ORIGINAL: Record<string, AnyLesson> = {
   ...(foundationsLessons as unknown as Record<string, AnyLesson>),
   ...(appliedLessons as unknown as Record<string, AnyLesson>),
   ...(strategicLessons as unknown as Record<string, AnyLesson>),
+  // Expanded versions keep the original text word for word and add depth
+  ...(EXPANDED_EXODOLOGY_LESSONS as unknown as Record<string, AnyLesson>),
 }
 
 const PATH_PREFIX: Record<string, string> = { foundations: 'f-', applied: 'a-', strategic: 's-' }
