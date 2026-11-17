@@ -2,13 +2,10 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/Button'
-import {
-  Clock, BookOpen,
-  ArrowLeft, GraduationCap,
-  Sparkles
-} from 'lucide-react'
+import { ArrowLeft, GraduationCap } from 'lucide-react'
+import { ScrollHardcover } from '@/components/learning/ScrollHardcover'
 import Link from 'next/link'
-import type { CoreTopic, TopicDefinition } from '@/types/modules'
+import type { TopicDefinition } from '@/types/modules'
 import { LearningLevel, LEARNING_LEVELS, LEARNING_LEVEL_ORDER } from '@/types/learning'
 import { TopicBookBrowser } from '@/components/learning/TopicBookBrowser'
 import { AnimatePresence } from 'framer-motion'
@@ -35,16 +32,6 @@ const DigitalScroll = dynamic(
   () => import('@/components/learning/DigitalScroll/DigitalScroll').then(mod => mod.DigitalScroll),
   { ssr: false }
 )
-
-// Hero emoji mapping
-const heroEmojis: Record<CoreTopic, string> = {
-  'renewable-energy': '⚡',
-  'water-systems': '💧',
-  'regenerative-agriculture': '🌱',
-  'zero-waste': '♻️',
-  'green-building': '🏠',
-  'food-sovereignty': '🥬'
-}
 
 interface TopicPageClientProps {
   topic: TopicDefinition
@@ -165,11 +152,12 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
     .filter((p) => p.quizPassed && progressKeys.includes(p.moduleKey))
     .map((p) => p.moduleKey)
 
-  const heroEmoji = heroEmojis[topic.id]
+  // The chapter the reader is on: the first one whose quiz isn't passed yet
+  const firstUnfinished = progressKeys.findIndex((k) => !completedModules.includes(k))
+  const nextChapter = firstUnfinished === -1 ? topic.modules.length - 1 : firstUnfinished
   const totalModules = topic.modules.length
   const completedCount = completedModules.length
   const progressPercent = Math.round((completedCount / totalModules) * 100)
-  const isGraduated = progressPercent === 100
 
   // Calculate total duration for selected level
   const totalDuration = topic.modules.reduce((acc, m) => acc + m.duration[selectedLevel], 0)
@@ -177,64 +165,26 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      {/* Simple Header */}
-      <section className="py-12 bg-[var(--muted)] border-b border-[var(--border)]">
+      {/* Hero: the Digital Scroll as a closed hardcover; click it to open */}
+      <section className="relative overflow-hidden border-b border-[var(--border)] bg-[var(--muted)] pb-14 pt-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <Link href="/learn" className="inline-flex items-center gap-2 text-theme-muted hover:text-theme-primary mb-6 font-bold">
-              <ArrowLeft className="w-5 h-5" />
+          <div className="mx-auto max-w-6xl">
+            <Link href="/learn" className="mb-6 inline-flex items-center gap-2 font-bold text-theme-muted hover:text-theme-primary">
+              <ArrowLeft className="h-5 w-5" />
               Back to Learn
             </Link>
-
-            <div className="flex items-center justify-between flex-wrap gap-4">
-              <div className="flex items-center gap-4">
-                <div className="text-5xl">{heroEmoji}</div>
-                <div>
-                  <h1 className="text-3xl font-black text-[var(--foreground)]">{topic.title}</h1>
-                  <p className="text-theme-muted font-medium">{topic.description}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-4 text-sm text-theme-muted">
-                  <span className="flex items-center gap-1">
-                    <BookOpen className="w-4 h-4" />
-                    {totalModules} lessons
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    ~{totalHours}h
-                  </span>
-                </div>
-                {progressPercent > 0 && (
-                  <div className="flex items-center gap-2">
-                    <div className="w-24 h-2 bg-[var(--border)] rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-[var(--primary)] rounded-full"
-                        style={{ width: `${progressPercent}%` }}
-                      />
-                    </div>
-                    <span className="text-sm font-bold text-theme-primary">{progressPercent}%</span>
-                    {isGraduated && (
-                      <span className="text-green-600 text-xs font-black">COMPLETE</span>
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Prominent Digital Scroll Button - Centered */}
-            <div className="mt-8 flex justify-center">
-              <Button
-                onClick={() => handleOpenDigitalScroll()}
-                className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-600 hover:via-orange-600 hover:to-amber-700 text-white font-black shadow-2xl shadow-amber-500/30 text-lg px-8 py-6 rounded-2xl border-2 border-amber-400/50 transition-all duration-300 hover:scale-105 hover:shadow-amber-500/50"
-                size="lg"
-              >
-                <Sparkles className="w-6 h-6 mr-3" />
-                {isScrollUnlocked ? 'Open Digital Scroll' : 'Begin Your Journey'}
-                <BookOpen className="w-6 h-6 ml-3" />
-              </Button>
-            </div>
+            <h1 className="sr-only">{topic.title}</h1>
+            <ScrollHardcover
+              topicId={topic.id}
+              title={topic.title}
+              subtitle={topic.description}
+              chapterTitles={topic.modules.map((m) => m.title)}
+              currentChapter={progressPercent > 0 || moduleProgress.length > 0 ? nextChapter : null}
+              levelLabel={LEARNING_LEVELS[selectedLevel].label}
+              hours={totalHours}
+              progressPercent={progressPercent}
+              onOpen={() => handleOpenDigitalScroll()}
+            />
           </div>
         </div>
       </section>

@@ -2708,3 +2708,6 @@ body.textbook-fullscreen .fixed.inset-0.z-50 {
 
 /* The Sage launcher would sit on the open book's page corner */
 body.textbook-fullscreen button[aria-label="Open Sage"] { display: none; }
+
+/* Gold-foil shimmer on the Digital Scroll hardcover title */
+@keyframes ds-foil { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0% 0; } }
