@@ -117,7 +117,8 @@ export default function PrintTextbook(props: {
 
   return (
     <div className="min-h-screen bg-white">
-      <style>{BOOK_CSS}{`@media print { .pt-toolbar, header, nav, footer, button[aria-label="Open Sage"] { display: none !important; } }`}</style>
+      <style>{`${BOOK_CSS}
+@media print { .pt-toolbar, header, nav, footer, button[aria-label="Open Sage"] { display: none !important; } }`}</style>
 
       <div className="pt-toolbar border-b border-gray-200 bg-gray-50 print:hidden">
         <div className="mx-auto px-4 py-4" style={{ maxWidth: '64rem' }}>
