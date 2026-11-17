@@ -386,13 +386,17 @@ export function InsideCover({
         <h3 className="text-[10px] font-bold text-[var(--muted-foreground)] mb-2 tracking-wider uppercase">
           Select Your Path
         </h3>
-        <div className="grid grid-cols-3 gap-1.5">
+        <div className="grid grid-cols-3 gap-1.5" role="radiogroup" aria-label="Learning level">
           {levels.map((level) => (
             <button
               key={level.id}
+              type="button"
+              role="radio"
+              aria-checked={selectedLevel === level.id}
+              data-level={level.id}
               onClick={() => onLevelSelect?.(level.id)}
               className={cn(
-                'px-2 py-1.5 rounded text-[10px] font-medium transition-all',
+                'px-2 py-1.5 rounded text-[11px] font-medium transition-all',
                 'border',
                 selectedLevel === level.id
                   ? 'border-[var(--primary)] bg-[var(--primary)] text-[var(--primary-foreground)]'
