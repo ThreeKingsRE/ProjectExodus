@@ -112,7 +112,7 @@ export function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Top Section - Newsletter & Social */}
         <div className="mb-16 pb-12 border-b border-[var(--border)]">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center [&>*]:min-w-0">
             {/* Newsletter Signup */}
             <div>
               <div className="flex items-center gap-3 mb-4">
@@ -133,7 +133,7 @@ export function Footer() {
                     placeholder="Enter your email"
                     required
                     disabled={isSubmitting}
-                    className="flex-1 px-6 py-4 rounded-xl bg-[var(--muted)] border-2 border-[var(--border)] text-[var(--foreground)] placeholder:text-theme-muted focus:outline-none focus:border-theme-primary transition-colors text-base font-medium disabled:opacity-50"
+                    className="flex-1 min-w-0 px-4 sm:px-6 py-4 rounded-xl bg-[var(--muted)] border-2 border-[var(--border)] text-[var(--foreground)] placeholder:text-theme-muted focus:outline-none focus:border-theme-primary transition-colors text-base font-medium disabled:opacity-50"
                   />
                   <Button
                     type="submit"

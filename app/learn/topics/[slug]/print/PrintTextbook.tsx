@@ -112,7 +112,7 @@ export default function PrintTextbook(props: {
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
 
-  const select = 'rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900'
+  const select = 'max-w-full rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900'
   const button = 'inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium'
 
   return (
@@ -128,24 +128,24 @@ export default function PrintTextbook(props: {
             <h1 className="text-base font-semibold text-gray-900">Print or download your textbook</h1>
           </div>
           <div className="flex flex-wrap items-end gap-3">
-            <label className="text-xs text-gray-700">Level<br />
+            <label className="min-w-0 max-w-full text-xs text-gray-700">Level<br />
               <select className={select} value={level} onChange={(e) => go({ level: e.target.value })}>
                 {Object.entries(LEARNING_LEVELS).map(([key, v]) => <option key={key} value={key}>{v.label}</option>)}
               </select>
             </label>
-            <label className="text-xs text-gray-700">What to include<br />
+            <label className="min-w-0 max-w-full text-xs text-gray-700">What to include<br />
               <select className={select} value={scope} onChange={(e) => go({ scope: e.target.value })}>
                 <option value="all">Complete textbook</option>
                 {volumeCount > 1 && volumeLabels.map((v, i) => <option key={v} value={`v${i + 1}`}>{v}</option>)}
                 {chapterTitles.map((t, i) => <option key={i} value={`c${i + 1}`}>Chapter {i + 1}: {t}</option>)}
               </select>
             </label>
-            <label className="text-xs text-gray-700">Text style<br />
+            <label className="min-w-0 max-w-full text-xs text-gray-700">Text style<br />
               <select className={select} value={style} onChange={(e) => setStyle(e.target.value as TextStyle)}>
                 {(Object.keys(STYLE_LABEL) as TextStyle[]).map((s) => <option key={s} value={s}>{STYLE_LABEL[s]}</option>)}
               </select>
             </label>
-            <label className="text-xs text-gray-700">Quizzes<br />
+            <label className="min-w-0 max-w-full text-xs text-gray-700">Quizzes<br />
               <select className={select} value={quiz} onChange={(e) => setQuiz(e.target.value as QuizMode)}>
                 <option value="none">Leave out</option>
                 <option value="questions">Questions only</option>

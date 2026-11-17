@@ -1293,7 +1293,7 @@ export default function LessonPage() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-4 right-4 z-50 bg-[var(--card)] border border-[var(--border)] rounded-lg shadow-lg p-3 max-w-xs"
+            className="fixed bottom-4 right-4 z-50 hidden md:block bg-[var(--card)] border border-[var(--border)] rounded-lg shadow-lg p-3 max-w-xs"
           >
             <div className="flex items-center gap-2 mb-2">
               <Keyboard className="w-4 h-4 text-[var(--primary)]" />
@@ -1351,9 +1351,9 @@ export default function LessonPage() {
       {/* Main Content */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-4xl mx-auto">
-          <div className="grid lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Sidebar */}
-            <aside className="lg:col-span-1 space-y-6 order-2 lg:order-1">
+            <aside className="min-w-0 lg:col-span-1 space-y-6 order-2 lg:order-1">
               {/* Learning Objectives */}
               {lessonData.learningObjectives && lessonData.learningObjectives.length > 0 && (
                 <Card className="border-2 border-[var(--border)]">
@@ -1441,7 +1441,7 @@ export default function LessonPage() {
             </aside>
 
             {/* Main Lesson Content */}
-            <div className="lg:col-span-3 order-1 lg:order-2">
+            <div className="min-w-0 lg:col-span-3 order-1 lg:order-2">
               <Card className="border-2 border-[var(--border)]">
                 <CardContent className="p-6 sm:p-8">
                   {/* Instruction Content - has sections */}
