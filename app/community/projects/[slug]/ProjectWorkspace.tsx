@@ -1,6 +1,7 @@
 'use client'
 
 import { BackButton } from '@/components/navigation/BackButton'
+import { InitiativeShare } from '@/components/projects/InitiativeShare'
 import { useState, useEffect, useRef, use, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -910,6 +911,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
               <Card className="lg:w-72 border-2 border-theme-primary">
                 <CardContent className="p-4">
                   <div className="space-y-3">
+                    {project.visibility === 'PUBLIC' && project.layoutConfig?.allowPublicView === true && <InitiativeShare slug={project.slug} name={project.name} />}
                     {isTeam && (
                       <Button
                         onClick={() => setShowSage(true)}

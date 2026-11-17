@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, Globe2, Lock, MessageSquare, Users } from 'lucide-react'
 import type { PublicProject } from '@/lib/projects/public-view'
+import { InitiativeShare } from './InitiativeShare'
 
 export function InitiativeStory({ text }: { text: string }) {
   const inline = (value: string) => value.split(/(\[[^\]]+\]\(https:\/\/[^\s)]+\)|https:\/\/[^\s]+)/g).map((part, i) => {
@@ -41,6 +42,7 @@ export function PublicInitiativeOverview({ project }: { project: PublicProject }
         <div className="mt-7 flex flex-wrap gap-3">
           <Link href={signIn} style={{ color: 'var(--primary-foreground)' }} className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-5 py-3 font-bold"><Users size={17} /> Follow this initiative <ArrowRight size={17} /></Link>
           <Link href={contact} className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 font-bold"><MessageSquare size={17} /> Message the organizer</Link>
+          <InitiativeShare slug={project.slug} name={project.name} />
         </div>
       </div>
     </section>
