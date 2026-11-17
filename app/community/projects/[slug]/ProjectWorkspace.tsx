@@ -30,6 +30,7 @@ import {
   FlaskConical,
   Award,
   Layers,
+  ClipboardList,
   Bell,
   ChevronRight,
   CheckCircle,
@@ -60,9 +61,10 @@ import { RemoveContribution } from '@/components/projects/RemoveContribution'
 import { DocumentTemplateSelector } from '@/components/documents/DocumentTemplateSelector'
 import type { DocumentTemplate } from '@/data/document-templates'
 import { ProjectFiles } from '@/components/projects/workspace/ProjectFiles'
+import { ProjectSurveys } from '@/components/projects/surveys/ProjectSurveys'
 import { FILE_SECTIONS, SECTION_INFO, type FileSection } from '@/lib/projects/files'
 
-type TabType = 'overview' | 'workspace' | 'learning' | 'research' | 'discussions' | 'members' | 'documents' | 'settings'
+type TabType = 'overview' | 'workspace' | 'surveys' | 'learning' | 'research' | 'discussions' | 'members' | 'documents' | 'settings'
 
 interface LearningModule {
   id: string
@@ -330,7 +332,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     const rawTab = searchParams.get('tab')
     // Old links to the mind map tab now open the workspace.
     const tab = rawTab === 'mindmaps' ? 'workspace' : rawTab
-    if (tab && ['overview', 'workspace', 'learning', 'research', 'discussions', 'members', 'documents', 'settings'].includes(tab)) {
+    if (tab && ['overview', 'workspace', 'surveys', 'learning', 'research', 'discussions', 'members', 'documents', 'settings'].includes(tab)) {
       setActiveTab(tab as TabType)
     }
     const section = searchParams.get('section')?.toUpperCase()
@@ -598,6 +600,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   const tabs: { id: TabType; label: string; icon: typeof Users; memberOnly?: boolean }[] = [
     { id: 'overview', label: 'Overview', icon: Target },
     { id: 'workspace', label: 'Workspace', icon: Layers, memberOnly: true },
+    { id: 'surveys', label: 'Surveys', icon: ClipboardList, memberOnly: true },
     { id: 'documents', label: 'Documents', icon: File, memberOnly: true },
     { id: 'learning', label: 'Learning', icon: BookOpen, memberOnly: true },
     { id: 'research', label: 'Research', icon: FlaskConical, memberOnly: true },
@@ -1357,6 +1360,10 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
               <ProjectFiles projectId={project.id} initialSection={workspaceSection} />
             )}
 
+            {activeTab === 'surveys' && isMember && (
+              <ProjectSurveys projectId={project.id} projectSlug={project.slug} />
+            )}
+
             {/* Documents Tab */}
             {activeTab === 'documents' && isMember && (
               <div className="space-y-6">
@@ -1727,7 +1734,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             )}
 
             {/* Not a Member Message for restricted tabs */}
-            {!isMember && ['workspace', 'learning', 'research', 'discussions', 'documents', 'settings'].includes(activeTab) && (
+            {!isMember && ['workspace', 'surveys', 'learning', 'research', 'discussions', 'documents', 'settings'].includes(activeTab) && (
               <Card className="border-4 border-theme-secondary">
                 <CardContent className="p-12 text-center">
                   <Lock className="w-16 h-16 text-theme-secondary mx-auto mb-4 opacity-50" />

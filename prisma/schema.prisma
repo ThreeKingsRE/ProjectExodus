@@ -96,6 +96,8 @@ model User {
   projectMemberships    ProjectMember[]
   createdProjects       Project[]              @relation("ProjectCreator")
   projectFiles          ProjectFile[]          @relation("ProjectFileCreator")
+  projectSurveys        ProjectSurvey[]        @relation("ProjectSurveyCreator")
+  surveyResponses       ProjectSurveyResponse[] @relation("ProjectSurveyRespondent")
   projectMessages       ProjectMessage[]       @relation("ProjectMessages")
   sentMessages          DirectMessage[]        @relation("SentMessages")
   receivedMessages      DirectMessage[]        @relation("ReceivedMessages")
@@ -1196,6 +1198,7 @@ model Project {
   documents            Document[]
   documentTemplates    DocumentTemplate[]
   files                ProjectFile[]
+  surveys              ProjectSurvey[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1241,6 +1244,69 @@ model ProjectFile {
 
   @@index([projectId])
   @@index([projectId, section])
+}
+
+// ============================================
+// PROJECT SURVEYS
+// Native surveys for initiatives (resident input, market research, feedback).
+// Questions are stored as JSON and validated in lib/projects/surveys.ts.
+// ============================================
+
+model ProjectSurvey {
+  id          String  @id @default(cuid())
+  projectId   String
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title       String
+  description String? @db.Text
+
+  questions Json // SurveyQuestion[]
+
+  status         ProjectSurveyStatus   @default(DRAFT)
+  audience       ProjectSurveyAudience @default(MEMBERS)
+  anonymous      Boolean               @default(false) // Hide respondent names from the team
+  shareResults   Boolean               @default(false) // Respondents see summary results after answering
+  closesAt       DateTime?
+
+  createdById String
+  createdBy   User   @relation("ProjectSurveyCreator", fields: [createdById], references: [id])
+
+  responses ProjectSurveyResponse[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+}
+
+model ProjectSurveyResponse {
+  id       String        @id @default(cuid())
+  surveyId String
+  survey   ProjectSurvey @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+
+  userId String?
+  user   User?   @relation("ProjectSurveyRespondent", fields: [userId], references: [id], onDelete: SetNull)
+
+  // One response per person: "user:<id>" when signed in, otherwise a hashed browser token
+  respondentKey String
+
+  answers Json // Record<questionId, string | string[] | number>
+
+  createdAt DateTime @default(now())
+
+  @@unique([surveyId, respondentKey])
+  @@index([surveyId])
+}
+
+enum ProjectSurveyStatus {
+  DRAFT
+  OPEN
+  CLOSED
+}
+
+enum ProjectSurveyAudience {
+  MEMBERS // Initiative members only
+  SIGNED_IN // Anyone signed in to the site, via the survey link
+  PUBLIC // Anyone with the link, no account needed
 }
 
 enum ProjectFileSection {
