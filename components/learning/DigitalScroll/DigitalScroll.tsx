@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react'
 import { cn } from '@/lib/utils/cn'
 import { sanitizeHtml } from '@/lib/utils/sanitize'
 import { ACCREDITATION_ENABLED } from '@/lib/learning/accreditation'
-import { X, Volume2, VolumeX, Maximize2, Minimize2, ChevronLeft, ChevronRight, GripVertical, Users, Cloud, CloudOff } from 'lucide-react'
+import { X, Volume2, VolumeX, Maximize2, Minimize2, ChevronLeft, ChevronRight, GripVertical, Users, Cloud, CloudOff, Printer } from 'lucide-react'
 
 // Scroll components
 import ScrollContainer, { ScrollWrapper, PageContainer, ScrollSpine, PageEdges } from './ScrollContainer'
@@ -1908,6 +1908,17 @@ export function DigitalScroll({
           {/* Top Control Bar */}
           {/* On phones the ribbons span the full width, so sit below them */}
           <div className="absolute top-16 sm:top-6 right-3 sm:right-6 flex items-center gap-2 z-30">
+            {/* Print or download this textbook (opens a print-ready page) */}
+            <a
+              href={`/learn/topics/${topic.id}/print?level=${selectedLevel}&scope=v${volumeIndex + 1}`}
+              target="_blank"
+              rel="noopener"
+              className="p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
+              aria-label="Print or download this textbook"
+              title="Print or download"
+            >
+              <Printer className="w-4 h-4 sm:w-5 sm:h-5" />
+            </a>
             {/* Notes sync: notes stay on this device unless the learner turns this on */}
             <button
               type="button"
