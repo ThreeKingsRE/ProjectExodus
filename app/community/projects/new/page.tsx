@@ -24,6 +24,7 @@ import { BackButton } from '@/components/navigation/BackButton'
 import Link from 'next/link'
 import { ProjectTemplateGallery } from '@/components/projects/ProjectTemplateGallery'
 import { PROJECT_TEMPLATES, ProjectTemplate } from '@/data/project-templates'
+import { VENTURE_TYPES, VENTURE_TYPE_LABEL } from '@/lib/projects/ventureType'
 
 // Guardian-themed steps
 const STEPS = [
@@ -206,6 +207,8 @@ export default function NewProjectPage() {
   // Step 6: Launch
   const [projectStatus, setProjectStatus] = useState('PLANNING')
   const [goal, setGoal] = useState('')
+  const [ventureType, setVentureType] = useState('')
+  const [ventureTypeOther, setVentureTypeOther] = useState('')
   const [draftLoaded, setDraftLoaded] = useState(false)
   const [draftSaveFailed, setDraftSaveFailed] = useState(false)
   const draftKey = session?.user?.id ? `projxodus:initiative-draft:${session.user.id}` : null
@@ -216,7 +219,7 @@ export default function NewProjectPage() {
       const saved = JSON.parse(localStorage.getItem(draftKey) || 'null')
       if (saved?.version === 1 && typeof saved.name === 'string') {
         setName(saved.name); setTagline(saved.tagline || ''); setDescription(saved.description || '')
-        setMission(saved.mission || ''); setGoal(saved.goal || '')
+        setMission(saved.mission || ''); setGoal(saved.goal || ''); setVentureType(saved.ventureType || ''); setVentureTypeOther(saved.ventureTypeOther || '')
         setVisibility(saved.visibility || 'PUBLIC'); setCategory(saved.category || '')
         setTags(Array.isArray(saved.tags) ? saved.tags : []); setTheme(saved.theme || 'nature')
         setPublicSlug(saved.publicSlug || ''); setPublicStory(saved.publicStory || '')
@@ -234,10 +237,10 @@ export default function NewProjectPage() {
   useEffect(() => {
     if (!draftLoaded || !draftKey || !name.trim()) return
     try {
-      localStorage.setItem(draftKey, JSON.stringify({ version: 1, name, tagline, description, mission, goal, visibility, category, tags, theme, publicSlug, publicStory, allowPublicView, enableDiscussions, enableResearch, enableLearning, requireApproval, projectStatus, currentStep }))
+      localStorage.setItem(draftKey, JSON.stringify({ version: 1, name, tagline, description, mission, goal, ventureType, ventureTypeOther, visibility, category, tags, theme, publicSlug, publicStory, allowPublicView, enableDiscussions, enableResearch, enableLearning, requireApproval, projectStatus, currentStep }))
       setDraftSaveFailed(false)
     } catch { setDraftSaveFailed(true) }
-  }, [draftLoaded, draftKey, name, tagline, description, mission, goal, visibility, category, tags, theme, publicSlug, publicStory, allowPublicView, enableDiscussions, enableResearch, enableLearning, requireApproval, projectStatus, currentStep])
+  }, [draftLoaded, draftKey, name, tagline, description, mission, goal, ventureType, ventureTypeOther, visibility, category, tags, theme, publicSlug, publicStory, allowPublicView, enableDiscussions, enableResearch, enableLearning, requireApproval, projectStatus, currentStep])
 
   // Handle template selection
   const handleTemplateSelection = useCallback((template: ProjectTemplate | null) => {
@@ -474,6 +477,8 @@ export default function NewProjectPage() {
         tagline,
         mission,
         goal,
+        ventureType: ventureType || null,
+        ventureTypeOther,
         status: projectStatus,
         visibility,
         allowPublicView,
@@ -1805,6 +1810,31 @@ export default function NewProjectPage() {
                             maxLength={150}
                             className="w-full px-3 py-2 rounded-lg border-2 border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] text-sm font-semibold focus:border-theme-primary focus:outline-none"
                           />
+                        </div>
+
+                        {/* Initiative type */}
+                        <div>
+                          <label htmlFor="initiative-type" className="block text-xs font-bold text-[var(--foreground)] mb-1.5">Initiative type (optional)</label>
+                          <select
+                            id="initiative-type"
+                            value={ventureType}
+                            onChange={(e) => setVentureType(e.target.value)}
+                            className="w-full px-3 py-2 rounded-lg border-2 border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] text-sm font-semibold focus:border-theme-primary focus:outline-none"
+                          >
+                            <option value="">No type</option>
+                            {VENTURE_TYPES.map(t => <option key={t} value={t}>{VENTURE_TYPE_LABEL[t]}</option>)}
+                          </select>
+                          {ventureType === 'OTHER' && (
+                            <input
+                              type="text"
+                              value={ventureTypeOther}
+                              onChange={(e) => setVentureTypeOther(e.target.value)}
+                              placeholder="Describe your type, e.g. Housing cooperative"
+                              maxLength={60}
+                              aria-label="Your initiative type"
+                              className="mt-2 w-full px-3 py-2 rounded-lg border-2 border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] text-sm font-semibold focus:border-theme-primary focus:outline-none"
+                            />
+                          )}
                         </div>
 
                         <div className="space-y-2">

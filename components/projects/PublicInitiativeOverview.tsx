@@ -33,7 +33,7 @@ export function PublicInitiativeOverview({ project }: { project: PublicProject }
     <section className="border-b border-[var(--border)] bg-[var(--card)] px-5 py-10 sm:px-8">
       <div className="mx-auto max-w-6xl">
         <Link href="/community/projects" className="text-sm font-semibold">← Community initiatives</Link>
-        <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wider"><span className="inline-flex items-center gap-2"><Globe2 size={15} />Public overview</span><span>{project.status.toLowerCase().replaceAll('_', ' ')}</span></div>
+        <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wider"><span className="inline-flex items-center gap-2"><Globe2 size={15} />Public overview</span><span>{project.status.toLowerCase().replaceAll('_', ' ')}</span>{project.ventureType && <span>{project.ventureType}</span>}</div>
         <h1 className="mt-4 text-4xl font-black sm:text-5xl">{project.name}</h1>
         {project.tagline && <p className="mt-4 text-xl font-semibold">{project.tagline}</p>}
         <p className="mt-5 max-w-4xl text-lg leading-8 text-[var(--muted-foreground)]">{project.description}</p>

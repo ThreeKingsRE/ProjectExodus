@@ -31,6 +31,7 @@ import {
   Award,
   Layers,
   ClipboardList,
+  CalendarRange,
   Bell,
   ChevronRight,
   CheckCircle,
@@ -62,9 +63,11 @@ import { DocumentTemplateSelector } from '@/components/documents/DocumentTemplat
 import type { DocumentTemplate } from '@/data/document-templates'
 import { ProjectFiles } from '@/components/projects/workspace/ProjectFiles'
 import { ProjectSurveys } from '@/components/projects/surveys/ProjectSurveys'
+import { ProjectTimeline } from '@/components/projects/timeline/ProjectTimeline'
 import { FILE_SECTIONS, SECTION_INFO, type FileSection } from '@/lib/projects/files'
+import { VENTURE_TYPES, VENTURE_TYPE_LABEL, ventureTypeLabel } from '@/lib/projects/ventureType'
 
-type TabType = 'overview' | 'workspace' | 'surveys' | 'learning' | 'research' | 'discussions' | 'members' | 'documents' | 'settings'
+type TabType = 'overview' | 'workspace' | 'timeline' | 'surveys' | 'learning' | 'research' | 'discussions' | 'members' | 'documents' | 'settings'
 
 interface LearningModule {
   id: string
@@ -167,6 +170,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   const [editedGoal, setEditedGoal] = useState('')
   const [editedStatus, setEditedStatus] = useState('')
   const [editedPublicView, setEditedPublicView] = useState(false)
+  const [editedVentureType, setEditedVentureType] = useState('')
+  const [editedVentureTypeOther, setEditedVentureTypeOther] = useState('')
   const [editedPublicStory, setEditedPublicStory] = useState('')
   const [isSaving, setIsSaving] = useState(false)
 
@@ -332,7 +337,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     const rawTab = searchParams.get('tab')
     // Old links to the mind map tab now open the workspace.
     const tab = rawTab === 'mindmaps' ? 'workspace' : rawTab
-    if (tab && ['overview', 'workspace', 'surveys', 'learning', 'research', 'discussions', 'members', 'documents', 'settings'].includes(tab)) {
+    if (tab && ['overview', 'workspace', 'timeline', 'surveys', 'learning', 'research', 'discussions', 'members', 'documents', 'settings'].includes(tab)) {
       setActiveTab(tab as TabType)
     }
     const section = searchParams.get('section')?.toUpperCase()
@@ -424,6 +429,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       setEditedGoal(project.goal || '')
       setEditedStatus(project.status || 'PLANNING')
       setEditedPublicView(project.layoutConfig?.allowPublicView === true)
+      setEditedVentureType(project.layoutConfig?.ventureType || '')
+      setEditedVentureTypeOther(project.layoutConfig?.ventureTypeOther || '')
       setEditedPublicStory(project.layoutConfig?.publicStory || '')
       setIsEditing(true)
     }
@@ -449,6 +456,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
           status: editedStatus,
           allowPublicView: editedPublicView,
           publicStory: editedPublicStory,
+          ventureType: editedVentureType || null,
+          ventureTypeOther: editedVentureTypeOther,
         }),
       })
 
@@ -600,6 +609,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   const tabs: { id: TabType; label: string; icon: typeof Users; memberOnly?: boolean }[] = [
     { id: 'overview', label: 'Overview', icon: Target },
     { id: 'workspace', label: 'Workspace', icon: Layers, memberOnly: true },
+    { id: 'timeline', label: 'Timeline', icon: CalendarRange, memberOnly: true },
     { id: 'surveys', label: 'Surveys', icon: ClipboardList, memberOnly: true },
     { id: 'documents', label: 'Documents', icon: File, memberOnly: true },
     { id: 'learning', label: 'Learning', icon: BookOpen, memberOnly: true },
@@ -693,6 +703,33 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   ) : (
                     <div className={`px-4 py-2 rounded-full ${colors.bg} ${colors.text} font-black text-sm uppercase`}>
                       {project.status}
+                    </div>
+                  )}
+                  {isEditing ? (
+                    <div className="flex flex-wrap gap-2">
+                      <select
+                        value={editedVentureType}
+                        onChange={(e) => setEditedVentureType(e.target.value)}
+                        aria-label="Initiative type"
+                        className="px-4 py-2 rounded-full font-bold text-sm bg-[var(--background)] border-2 border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-theme-primary"
+                      >
+                        <option value="">No type</option>
+                        {VENTURE_TYPES.map(t => <option key={t} value={t}>{VENTURE_TYPE_LABEL[t]}</option>)}
+                      </select>
+                      {editedVentureType === 'OTHER' && (
+                        <input
+                          value={editedVentureTypeOther}
+                          onChange={(e) => setEditedVentureTypeOther(e.target.value)}
+                          maxLength={60}
+                          placeholder="Your type"
+                          aria-label="Your initiative type"
+                          className="px-4 py-2 rounded-full text-sm bg-[var(--background)] border-2 border-[var(--border)] focus:outline-none focus:border-theme-primary"
+                        />
+                      )}
+                    </div>
+                  ) : ventureTypeLabel(project.layoutConfig) && (
+                    <div className="px-4 py-2 rounded-full border-2 border-theme-primary text-theme-primary font-black text-sm uppercase">
+                      {ventureTypeLabel(project.layoutConfig)}
                     </div>
                   )}
                   {isCreator && !isEditing && (
@@ -1360,6 +1397,10 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
               <ProjectFiles projectId={project.id} initialSection={workspaceSection} />
             )}
 
+            {activeTab === 'timeline' && isMember && (
+              <ProjectTimeline projectId={project.id} />
+            )}
+
             {activeTab === 'surveys' && isMember && (
               <ProjectSurveys projectId={project.id} projectSlug={project.slug} />
             )}
@@ -1734,7 +1775,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             )}
 
             {/* Not a Member Message for restricted tabs */}
-            {!isMember && ['workspace', 'surveys', 'learning', 'research', 'discussions', 'documents', 'settings'].includes(activeTab) && (
+            {!isMember && ['workspace', 'timeline', 'surveys', 'learning', 'research', 'discussions', 'documents', 'settings'].includes(activeTab) && (
               <Card className="border-4 border-theme-secondary">
                 <CardContent className="p-12 text-center">
                   <Lock className="w-16 h-16 text-theme-secondary mx-auto mb-4 opacity-50" />

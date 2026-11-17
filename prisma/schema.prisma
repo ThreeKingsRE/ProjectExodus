@@ -97,6 +97,8 @@ model User {
   createdProjects       Project[]              @relation("ProjectCreator")
   projectFiles          ProjectFile[]          @relation("ProjectFileCreator")
   projectSurveys        ProjectSurvey[]        @relation("ProjectSurveyCreator")
+  timelineItems         ProjectTimelineItem[]  @relation("ProjectTimelineCreator")
+  calendarFeeds         ProjectCalendarFeed[]  @relation("ProjectCalendarFeedOwner")
   surveyResponses       ProjectSurveyResponse[] @relation("ProjectSurveyRespondent")
   projectMessages       ProjectMessage[]       @relation("ProjectMessages")
   sentMessages          DirectMessage[]        @relation("SentMessages")
@@ -1199,6 +1201,8 @@ model Project {
   documentTemplates    DocumentTemplate[]
   files                ProjectFile[]
   surveys              ProjectSurvey[]
+  timelineItems        ProjectTimelineItem[]
+  calendarFeeds        ProjectCalendarFeed[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1307,6 +1311,79 @@ enum ProjectSurveyAudience {
   MEMBERS // Initiative members only
   SIGNED_IN // Anyone signed in to the site, via the survey link
   PUBLIC // Anyone with the link, no account needed
+}
+
+// ============================================
+// PROJECT TIMELINE & CALENDAR
+// Shared milestones, tasks, and events with owners and dates, shown as a
+// timeline and as day/week/month calendars. Linked outside calendars
+// (Google, Outlook, Apple) are fetched read-only from their private iCal links.
+// ============================================
+
+model ProjectTimelineItem {
+  id          String              @id @default(cuid())
+  projectId   String
+  project     Project             @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  kind        ProjectTimelineKind @default(TASK)
+  title       String
+  description String?             @db.Text
+  location    String?
+
+  // All-day items are stored at UTC midnight; endAt is inclusive for all-day items.
+  startAt DateTime?
+  endAt   DateTime?
+  allDay  Boolean   @default(true)
+
+  status      ProjectTimelineStatus @default(TODO)
+  assigneeIds String[]              @default([])
+  milestoneId String? // Task or event that counts toward a milestone
+  color       String?
+
+  // Imported from an .ics file
+  externalUid String?
+
+  createdById String
+  createdBy   User   @relation("ProjectTimelineCreator", fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId, startAt])
+  @@index([projectId, endAt])
+  @@index([projectId, externalUid])
+}
+
+enum ProjectTimelineKind {
+  MILESTONE
+  TASK
+  EVENT
+}
+
+enum ProjectTimelineStatus {
+  TODO
+  IN_PROGRESS
+  BLOCKED
+  DONE
+}
+
+model ProjectCalendarFeed {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  ownerId   String
+  owner     User    @relation("ProjectCalendarFeedOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  name      String
+  url       String  @db.Text // Private iCal address. Never sent to anyone but its owner.
+  color     String  @default("#6366f1")
+
+  cachedEvents Json? // Parsed events from the last fetch
+  fetchedAt    DateTime?
+  lastError    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
 }
 
 enum ProjectFileSection {

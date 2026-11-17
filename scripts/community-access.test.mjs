@@ -30,6 +30,8 @@ const privateApis = [
   '/api/projects/project-id/discussions', '/api/users', '/api/users/search',
   '/api/projects/project-id/files', '/api/projects/project-id/surveys',
   '/api/projects/project-id/surveys/survey-id/export',
+  '/api/projects/project-id/timeline', '/api/projects/project-id/calendars',
+  '/api/projects/project-id/calendar-link',
   '/api/fishbowl', '/api/fishbowl/personal', '/api/network/suggestions', '/api/forum/posts',
 ]
 

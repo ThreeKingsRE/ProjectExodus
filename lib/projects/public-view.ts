@@ -32,4 +32,4 @@ export function publicProjectFields(project: {
   }
 }
 
-export type PublicProject = NonNullable<ReturnType<typeof publicProjectFields>>
+export type PublicProject = NonNullable<ReturnType<typeof publicProjectFields>> & { ventureType?: string | null }

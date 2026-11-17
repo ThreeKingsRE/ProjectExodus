@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { parseVentureType } from '@/lib/projects/ventureType'
 import { prisma } from '@/lib/db'
 import { auth } from '@/auth'
 import { incrementStockScore, STOCK_POINTS } from '@/lib/stockScore'
@@ -113,6 +114,7 @@ export async function POST(request: NextRequest) {
           theme: typeof body.theme === 'string' ? body.theme : 'nature',
           settings: body.settings && typeof body.settings === 'object' ? body.settings : {},
           templateId: typeof body.templateId === 'string' ? body.templateId : null,
+          ...(parseVentureType(body) ?? {}),
         },
         creatorId: session.user.id,
       },
