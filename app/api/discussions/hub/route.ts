@@ -41,6 +41,8 @@ export async function GET(request: NextRequest) {
         take: 5,
       }),
       prisma.project.findMany({
+        // Public initiatives only; private and unlisted ones never appear here
+        where: { visibility: 'PUBLIC' },
         select: {
           id: true, name: true, slug: true, description: true, createdAt: true,
           creator: { select: { id: true, name: true, image: true } },
@@ -95,6 +97,8 @@ export async function GET(request: NextRequest) {
         take: 5,
       }),
       prisma.projectDiscussion.findMany({
+        // Only public discussions in public initiatives; team discussions stay private
+        where: { visibility: 'PUBLIC', project: { visibility: 'PUBLIC' } },
         select: {
           id: true, title: true, content: true, createdAt: true,
           author: { select: { id: true, name: true, image: true } },

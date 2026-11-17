@@ -41,6 +41,7 @@ export async function GET(request: NextRequest) {
       prisma.projectMember.findMany({
         where: {
           userId: { in: followingIds },
+          project: { visibility: 'PUBLIC' },
         },
         include: {
           user: {
@@ -123,6 +124,7 @@ export async function GET(request: NextRequest) {
       prisma.project.findMany({
         where: {
           creatorId: { in: followingIds },
+          visibility: 'PUBLIC',
           createdAt: {
             gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
           },

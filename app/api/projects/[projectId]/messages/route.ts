@@ -67,7 +67,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     if (!gate.access.isCreator) return NextResponse.json({ success: false, error: 'Only the initiative owner can remove messages.' }, { status: 403 })
     const message = await prisma.projectMessage.findFirst({ where: { id: messageId, projectId }, select: { channel: true } })
     if (!message) return NextResponse.json({ success: false, error: 'Message not found.' }, { status: 404 })
-    await prisma.projectMessage.delete({ where: { id: messageId } })
+    await prisma.projectMessage.deleteMany({ where: { id: messageId, projectId } })
     await broadcast(projectId, message.channel as Channel, 'message-deleted', { messageId })
     return NextResponse.json({ success: true })
   } catch (error) {

@@ -119,7 +119,7 @@ export async function GET(request: NextRequest) {
     })
 
     const recentProjectsPromise = prisma.project.findMany({
-      where: { createdAt: { gte: sevenDaysAgo } },
+      where: { createdAt: { gte: sevenDaysAgo }, visibility: 'PUBLIC' },
       select: {
         id: true, name: true, slug: true, createdAt: true,
         creator: { select: { id: true, name: true, image: true } }
