@@ -8,7 +8,7 @@ const lesson: ExpandedExodologyLesson = {
   content: {
     introduction: `Even when exit is possible and desirable, psychological factors keep people in failing systems. Understanding these barriers is essential for designing effective exits.
 
-Earlier modules described push factors, pull factors and the exit threshold: the point at which push factors overcome inertia and barriers to exit. This module turns to the barriers themselves. Psychological barriers come first because they operate inside every person who considers leaving, whatever their income, culture or legal situation. They raise exit friction even when the material path out is open.
+Earlier modules described push factors, pull factors and the exit threshold: the point at which push and pull factors together overcome inertia and barriers to exit. This module turns to the barriers themselves. Psychological barriers come first because they operate inside every person who considers leaving, whatever their income, culture or legal situation. They raise exit friction even when the material path out is open.
 
 Lock-in is a word Exodology borrows from transition studies, where it describes systems that resist change because of accumulated advantages and interdependencies. Psychological lock-in is the same pattern at the level of a mind: habits of thought, attachments and fears that make the current system feel like the only option. Recognizing these patterns is not a judgment on anyone who stays. It is a way of separating a considered decision to stay from a decision that was never really made.`,
 
@@ -128,7 +128,7 @@ Three conclusions follow for Exodological practice:
     { term: 'Status Quo Bias', definition: 'A preference for the current state or default option over alternatives of equal value.' },
     { term: 'Loss Aversion', definition: 'The tendency to feel losses more strongly than gains of the same size (from the prospect theory of Kahneman and Tversky).' },
     { term: 'Learned Helplessness', definition: 'A belief, formed through repeated failure to affect outcomes, that action is pointless, which persists even when opportunities appear.' },
-    { term: 'Exit Threshold', definition: 'The point at which push factors overcome inertia and barriers to exit.' }
+    { term: 'Exit Threshold', definition: 'The point at which push and pull factors together overcome inertia and barriers to exit.' }
   ]
 }
 

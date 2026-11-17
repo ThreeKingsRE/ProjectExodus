@@ -6,7 +6,7 @@ const lesson: ExpandedExodologyLesson = {
   duration: '20 min',
   type: 'instruction',
   content: {
-    introduction: `Beyond individual economics, alternative economic systems enable collective exit from capitalism's extractive dynamics.
+    introduction: `Beyond individual economics, alternative economic systems enable collective exit from extractive economic dynamics.
 
 The previous lesson worked at the scale of one household: reducing debt, building reserves and shifting income gradually. This lesson moves to the community scale. Many of the things a household needs to exit, such as affordable land, credit, tools, and a market for what it produces, are hard to secure alone but much easier to secure together. Alternative economies are the arrangements people have built to do exactly that.
 

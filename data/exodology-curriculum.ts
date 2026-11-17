@@ -906,7 +906,7 @@ Strong pull factors make exit destinations viable. Without pull, exit becomes fl
         },
         {
           title: 'The Exit Threshold',
-          content: `The exit threshold is the point where push factors overcome inertia and barriers:
+          content: `The exit threshold is the point where push and pull factors together overcome inertia and barriers:
 
 **Inertia**: The tendency to stay with the familiar, even when it's not optimal. Includes habit, comfort with known difficulties, and fear of unknown challenges.
 
@@ -956,7 +956,7 @@ This explains why people stay in clearly failing systems—not because they're u
     keyTerms: [
       { term: 'Push Factors', definition: 'Conditions within a system that drive people to seek exit.' },
       { term: 'Pull Factors', definition: 'Attractions of alternatives that draw people away from current systems.' },
-      { term: 'Exit Threshold', definition: 'The point at which push factors overcome inertia and barriers to exit.' }
+      { term: 'Exit Threshold', definition: 'The point at which push and pull factors together overcome inertia and barriers to exit.' }
     ]
   },
 
@@ -1670,7 +1670,7 @@ These movements create spaces where different social rules apply.`
       sections: [
         {
           title: 'The Fossil Fuel Dependency',
-          content: `Modern agriculture runs on oil: Nitrogen fertilizer is synthesized from natural gas. Pesticides are petroleum-derived. Machinery burns diesel. Food travels 1,500 miles on average. When oil becomes scarce or expensive, the entire system is stressed.`
+          content: `Modern agriculture runs on oil: Nitrogen fertilizer is synthesized from natural gas. Pesticides are petroleum-derived. Machinery burns diesel. Food often travels long distances; a widely cited but contested estimate puts the average at about 1,500 miles. When oil becomes scarce or expensive, the entire system is stressed.`
         },
         {
           title: 'The Seed and Genetic Dependency',
@@ -1721,10 +1721,10 @@ These movements create spaces where different social rules apply.`
     content: {
       introduction: `Food sovereignty—the right of peoples to define their own food systems—represents a comprehensive alternative to industrial food.`,
       sections: [
-        { title: 'What is Food Sovereignty?', content: `Food sovereignty goes beyond food security (having enough food) to controlling how food is produced, distributed, and consumed. It emerged from La Vía Campesina in 1996 and includes rights to define policy, prioritize local production, and control land, water, and seeds.` },
-        { title: 'Global Movements', content: `La Vía Campesina represents 200+ million farmers. MST in Brazil, National Family Farm Coalition in US, GRAIN, and Indigenous food sovereignty movements combine political advocacy with practical alternative-building.` },
+        { title: 'What is Food Sovereignty?', content: `Food sovereignty goes beyond food security (having enough food) to controlling how food is produced, distributed, and consumed. It was introduced by La Vía Campesina (founded in 1993) at the 1996 World Food Summit and includes rights to define policy, prioritize local production, and control land, water, and seeds.` },
+        { title: 'Global Movements', content: `La Vía Campesina says it represents about 200 million farmers. MST in Brazil, National Family Farm Coalition in US, GRAIN, and Indigenous food sovereignty movements combine political advocacy with practical alternative-building.` },
         { title: 'Food Sovereignty in Practice', content: `Seed sovereignty through community seed banks, land access through trusts and reform, direct marketing through CSAs and farmers markets, agroecology, food policy councils, and cooperative processing.` },
-        { title: 'Challenges', content: `Scale questions about feeding cities, affordability, knowledge gaps after industrial agriculture destroyed traditional knowledge, land access barriers, and policy environments favoring industrial production.` }
+        { title: 'Challenges', content: `Scale questions about feeding cities, affordability, knowledge gaps where industrial agriculture eroded or marginalized traditional knowledge, land access barriers, and policy environments favoring industrial production.` }
       ],
       keyTakeaways: ['Food sovereignty is control over food systems, not just access to food', 'Global movements connect local struggles', 'Practical sovereignty includes seeds, land, markets, and governance']
     },
@@ -1760,7 +1760,7 @@ These movements create spaces where different social rules apply.`
       introduction: `Modern water systems seem invisible—turn the tap, water flows. But this invisibility masks deep dependencies and vulnerabilities.`,
       sections: [
         { title: 'Centralized Water Infrastructure', content: `Source dependency on limited rivers or aquifers, treatment requiring power and chemicals, distribution through aging pipes, pressure requiring pumps, and centralized control by utilities and governments.` },
-        { title: 'Energy-Water Nexus', content: `Pumping and treating water uses 2-3% of US electricity. Power plants need water for cooling. Climate change stresses both systems simultaneously.` },
+        { title: 'Energy-Water Nexus', content: `Pumping and treating drinking water and wastewater accounts for roughly 2% of US energy use, by common estimates. Power plants need water for cooling. Climate change stresses both systems simultaneously.` },
         { title: 'Supply Dependencies', content: `Treatment requires chemicals, replacement parts, trained expertise, testing capacity, and continuous funding.` },
         { title: 'Climate Dependencies', content: `Systems were designed for historical precipitation. Climate change is shifting patterns. Snowpack is declining. Aquifers recharge slowly.` }
       ],
@@ -1777,9 +1777,9 @@ These movements create spaces where different social rules apply.`
     content: {
       introduction: `Water system failures have become increasingly visible—from Flint to Jackson to Cape Town.`,
       sections: [
-        { title: 'Flint, Michigan', content: `In 2014, Flint switched water sources to save money. The new source corroded lead pipes, contaminating water. Infrastructure failure combined with governance failure and environmental racism. Years later, residents still don't trust tap water.` },
-        { title: 'Cape Town, South Africa', content: `Multi-year drought depleted reservoirs. "Day Zero" announced—the day taps would be turned off. Aggressive conservation reduced consumption 50%. Wealthy residents installed private storage while the poor faced cutoffs.` },
-        { title: 'Jackson, Mississippi', content: `Flooding disabled the treatment plant, leaving 150,000 without water. Decades of underinvestment, population loss reducing tax base, and climate events created compounding failure.` },
+        { title: 'Flint, Michigan', content: `In 2014, Flint switched water sources to save money. The new source was more corrosive and lacked corrosion-control treatment, so lead leached from old pipes into the water. Infrastructure failure combined with governance failure and environmental racism. Years later, residents still don't trust tap water.` },
+        { title: 'Cape Town, South Africa', content: `Multi-year drought depleted reservoirs. "Day Zero" announced—the day taps would be turned off. Aggressive conservation reduced consumption 50%. Wealthy residents installed private storage while poorer households, many relying on shared standpipes, bore the hardest restrictions. Day Zero was ultimately avoided.` },
+        { title: 'Jackson, Mississippi', content: `Flooding disabled the treatment plant, leaving much of the city's roughly 150,000 residents without reliable running water. Decades of underinvestment, population loss reducing tax base, and climate events created compounding failure.` },
         { title: 'Patterns', content: `Infrastructure age, governance failures, environmental justice issues, climate stress as threat multiplier, slow-motion crises before acute events, and loss of trust once broken.` }
       ],
       keyTakeaways: ['Water failures combine infrastructure, governance, and environmental factors', 'Environmental justice shapes who experiences water crises', 'Climate change acts as threat multiplier']
@@ -1834,7 +1834,7 @@ These movements create spaces where different social rules apply.`
       sections: [
         { title: 'What Depends on the Grid', content: `Water systems, food refrigeration, communication, transportation (gas pumps need electricity), healthcare, finance, and heating/cooling. Modern life is electrified life.` },
         { title: 'Grid Vulnerabilities', content: `Generation concentration, transmission bottlenecks, aging infrastructure, cybersecurity risks, physical attack vulnerability, weather exposure, and fuel dependence.` },
-        { title: 'Failure Examples', content: `Texas 2021: Cold caused gas failures, hundreds died. California rolling blackouts from heat and wildfire. Puerto Rico 2017: Hurricane destroyed grid, restoration took over a year. Northeast 2003: Software bug cascaded to 55 million affected.` },
+        { title: 'Failure Examples', content: `Texas 2021: Cold caused failures across gas, coal, nuclear and wind generation, with gas the largest; hundreds died. California rolling blackouts from heat and wildfire. Puerto Rico 2017: Hurricane destroyed grid, restoration took nearly a year. Northeast 2003: Lines sagging into trees, unnoticed because an alarm system failed, cascaded into a blackout affecting about 50 million people.` },
         { title: 'Cascade Dynamics', content: `Initial failure causes load redistribution, which causes overload, which causes more failures, leading to blackout. Recovery is complex—"black start" capability is limited.` }
       ],
       keyTakeaways: ['Nearly every system depends on the grid', 'Multiple vulnerability points exist', 'Cascade dynamics mean small failures become large']
@@ -1868,7 +1868,7 @@ These movements create spaces where different social rules apply.`
     content: {
       introduction: `Decentralized energy alternatives offer exit from grid dependence. Microgrids represent a middle path between complete grid dependence and full off-grid living.`,
       sections: [
-        { title: 'What is a Microgrid?', content: `A local energy system that can operate independently or connected to the main grid. Includes generation (solar, wind, batteries), storage, distribution, and controls.` },
+        { title: 'What is a Microgrid?', content: `A local energy system that can operate independently or connected to the main grid. Includes generation (solar, wind), storage (batteries), distribution, and controls.` },
         { title: 'Microgrid Benefits', content: `Resilience through islanding during outages. Local control over energy. Integration of renewables. Reduced transmission losses. Community economic benefits.` },
         { title: 'Implementation Approaches', content: `Campus microgrids (universities, hospitals), community microgrids (neighborhoods, villages), commercial/industrial microgrids, and emergency/military microgrids.` },
         { title: 'Challenges', content: `High upfront costs, technical complexity, regulatory barriers, utility resistance, and intermittency management.` }
@@ -1907,7 +1907,7 @@ These movements create spaces where different social rules apply.`
       introduction: `Exit is not morally neutral. Choosing to leave a system raises ethical questions about responsibility, solidarity, and justice.`,
       sections: [
         { title: 'Staying vs Leaving', content: `Arguments for staying: responsibility to improve from within, solidarity with those who cannot leave. Arguments for leaving: participation legitimizes harmful systems, resources could build alternatives, some systems cannot be reformed. Neither is automatically ethical.` },
-        { title: 'The Lifeboat Problem', content: `The critique: exit movements often serve the privileged. Valid when exit requires resources most lack, exiters extract value, alternatives exclude the vulnerable. Less valid when exiters create replicable models and maintain solidarity.` },
+        { title: 'The Lifeboat Problem', content: `The critique: exit movements often serve the privileged. Valid when exit requires resources most lack, exiters extract value, alternatives exclude the vulnerable. Less valid when exiters create replicable models and maintain solidarity. (Not to be confused with Garrett Hardin's 1974 "lifeboat ethics," which argued against aid; here the term names a critique of exit itself.)` },
         { title: 'Responsibility to Those Who Stay', content: `Residual duty: obligations that persist after leaving. Forms include sharing knowledge, creating on-ramps for others, avoiding actions that harm those remaining, and advocacy for better conditions.` },
         { title: 'When Exit is Obligatory', content: `Sometimes exit is required: when staying makes you complicit in serious harm, when participation enables continued harm, when self-preservation demands it, when exit models possibilities for others.` }
       ],
@@ -2461,7 +2461,7 @@ Which dependencies should be addressed first based on criticality and feasibilit
     duration: '20 min',
     type: 'instruction' as const,
     content: {
-      introduction: `Food is the most fundamental human need and one of the most actionable areas for building parallel systems.`,
+      introduction: `Food is among the most fundamental human needs and one of the most actionable areas for building parallel systems.`,
       sections: [
         { title: 'Production Alternatives', content: `Home gardens, community gardens, urban farms, small-scale farms, agroforestry, permaculture systems. Each provides food production at different scales with different resource requirements.` },
         { title: 'Distribution Alternatives', content: `CSAs, farmers markets, food hubs, community buying clubs, food cooperatives. These connect producers to consumers outside industrial supply chains.` },
@@ -2482,7 +2482,7 @@ Which dependencies should be addressed first based on criticality and feasibilit
       introduction: `Energy independence provides resilience against both grid failures and fossil fuel transitions.`,
       sections: [
         { title: 'Generation Alternatives', content: `Solar PV, small wind, micro-hydro, biomass. Each has different resource requirements and applicability. Solar is most broadly applicable; hydro needs water flow; biomass needs sustainable fuel supply.` },
-        { title: 'Storage Solutions', content: `Batteries for short-term storage. Thermal mass, ice storage, hydrogen for longer durations. Pumped hydro for community scale. Storage is often more challenging than generation.` },
+        { title: 'Storage Solutions', content: `Batteries for short-term storage. Thermal mass and ice storage for daily heating and cooling; hydrogen for longer durations. Pumped hydro where terrain allows, though usually at utility rather than community scale. Storage is often more challenging than generation.` },
         { title: 'Demand Reduction', content: `The cheapest watt is the one you don't use. Efficiency improvements, passive design, behavior change. Often more cost-effective than generation.` },
         { title: 'Grid Relationship', content: `Complete off-grid, grid-tied with backup, community microgrid. Each has tradeoffs in cost, complexity, and resilience. Most situations benefit from hybrid approaches.` }
       ],
@@ -2499,9 +2499,9 @@ Which dependencies should be addressed first based on criticality and feasibilit
     content: {
       introduction: `Water independence is challenging but essential for true resilience.`,
       sections: [
-        { title: 'Source Alternatives', content: `Rainwater harvesting, well drilling, spring development. Each requires different conditions and has different costs. Rainwater is universally applicable but volume-limited; wells require groundwater; springs need specific geography.` },
+        { title: 'Source Alternatives', content: `Rainwater harvesting, well drilling, spring development. Each requires different conditions and has different costs. Rainwater works in most climates but is volume-limited, weak in arid regions and restricted in some jurisdictions; wells require groundwater; springs need specific geography.` },
         { title: 'Treatment Options', content: `Filtration (sediment, carbon, ceramic), UV sterilization, ozone, chlorination. Multi-barrier approaches provide redundancy. Match treatment to contamination risks.` },
-        { title: 'Greywater and Blackwater', content: `Greywater reuse for irrigation. Composting toilets eliminate blackwater. Constructed wetlands for treatment. Closing loops reduces water demand.` },
+        { title: 'Greywater and Blackwater', content: `Greywater reuse for irrigation. Composting toilets eliminate blackwater, though the compost itself must be managed safely. Constructed wetlands for treatment. Closing loops reduces water demand.` },
         { title: 'Community Scale', content: `Shared wells, community treatment, cooperative maintenance. Community scale reduces per-household cost and enables more sophisticated treatment.` }
       ],
       keyTakeaways: ['Multiple source options with different requirements', 'Treatment must match contamination risks', 'Closing loops reduces water demand', 'Community scale enables better solutions']
@@ -2716,7 +2716,7 @@ Which dependencies should be addressed first based on criticality and feasibilit
     duration: '20 min',
     type: 'instruction' as const,
     content: {
-      introduction: `Beyond individual economics, alternative economic systems enable collective exit from capitalism's extractive dynamics.`,
+      introduction: `Beyond individual economics, alternative economic systems enable collective exit from extractive economic dynamics.`,
       sections: [
         { title: 'Solidarity Economy', content: `Economic practices prioritizing people and planet over profit. Includes cooperatives, community land trusts, local currencies, time banks, mutual aid.` },
         { title: 'Local and Complementary Currencies', content: `Community currencies keep wealth local. Time banks exchange labor directly. LETS (Local Exchange Trading Systems) create credit within communities.` },

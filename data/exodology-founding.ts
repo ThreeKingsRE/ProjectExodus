@@ -191,7 +191,7 @@ export const exodologyTimeline = {
         { year: 2022, title: 'Exodology Conception', description: 'Recognition that transition knowledge requires integration into a coherent discipline.' },
         { year: 2023, title: 'Curriculum Development', description: 'First comprehensive Exodology curriculum created, synthesizing multiple knowledge streams.' },
         { year: 2024, title: 'Charter Adoption', description: 'Charter of Exodology formally establishes founding principles of the discipline.' },
-        { year: 2024, title: 'Certification Framework', description: 'Three-tier certification pathway established (Literacy, Application, Stewardship, Master).' }
+        { year: 2024, title: 'Certification Framework', description: 'Certification pathway established (Literacy, Application, Stewardship, Master).' }
       ]
     },
     {

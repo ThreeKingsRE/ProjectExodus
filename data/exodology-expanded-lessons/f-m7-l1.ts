@@ -47,7 +47,7 @@ For Exodology, the lesson is that vulnerability is distributed across the whole 
       },
       {
         title: 'Failure Examples',
-        content: `Texas 2021: Cold caused gas failures, hundreds died. California rolling blackouts from heat and wildfire. Puerto Rico 2017: Hurricane destroyed grid, restoration took over a year. Northeast 2003: Software bug cascaded to 55 million affected.
+        content: `Texas 2021: Cold caused failures across gas, coal, nuclear and wind generation, with gas the largest; hundreds died. California rolling blackouts from heat and wildfire. Puerto Rico 2017: Hurricane destroyed grid, restoration took nearly a year. Northeast 2003: Lines sagging into trees, unnoticed because an alarm system failed, cascaded into a blackout affecting about 50 million people.
 
 These four cases show different paths to the same outcome:
 

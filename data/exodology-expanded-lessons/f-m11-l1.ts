@@ -125,7 +125,7 @@ The Applied path builds on this foundation by moving from analysis to design: ma
   keyTerms: [
     { term: 'Exodology', definition: 'The study and practice of designing ethical exits from systems that no longer serve people or the planet.' },
     { term: 'The Exodology Trinity', definition: 'The three pillars of Exodology practice: Literacy, Application, and Stewardship.' },
-    { term: 'Exit Threshold', definition: 'The point at which push factors overcome inertia and barriers to exit.' },
+    { term: 'Exit Threshold', definition: 'The point at which push and pull factors together overcome inertia and barriers to exit.' },
     { term: 'Exit Window', definition: 'The period when exit is possible before collapse becomes inevitable.' },
     { term: 'Residual Duty', definition: 'Continuing ethical obligations to those who remain in systems we have left.' },
     { term: 'Exit Capability', definition: 'The structural capacity of individuals or communities to leave a system when needed without catastrophic loss.' }

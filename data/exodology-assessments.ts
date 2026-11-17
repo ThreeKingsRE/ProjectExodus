@@ -1184,7 +1184,7 @@ export const additionalAssessments: Record<string, SimpleAssessment> = {
           "Because seed saving requires fossil energy"
         ],
         "correctAnswer": 1,
-        "explanation": "Nitrogen fertilizer is synthesized from natural gas, pesticides are petroleum-derived, machinery burns diesel, and food travels 1,500 miles on average, so when oil becomes scarce or expensive the whole system is stressed."
+        "explanation": "Nitrogen fertilizer is synthesized from natural gas, pesticides are petroleum-derived, machinery burns diesel, and food often travels long distances (a contested estimate puts it at about 1,500 miles), so when oil becomes scarce or expensive the whole system is stressed."
       },
       {
         "question": "How does the seed and genetic dependency create fragility in industrial agriculture?",
@@ -1309,22 +1309,22 @@ export const additionalAssessments: Record<string, SimpleAssessment> = {
         "options": [
           "Multi-year drought and rising demand",
           "Flooding that disabled the treatment plant",
-          "A cost-saving source switch that corroded lead pipes, combining infrastructure failure, governance failure, and environmental racism",
+          "A cost-saving source switch to more corrosive, untreated water that leached lead from pipes, combining infrastructure failure, governance failure, and environmental racism",
           "Overpumping of an aquifer requiring deeper wells"
         ],
         "correctAnswer": 2,
-        "explanation": "Flint switched sources to save money, the new source corroded lead pipes, and infrastructure failure combined with governance failure and environmental racism. Residents still do not trust tap water."
+        "explanation": "Flint switched sources to save money, the new source was more corrosive and untreated, so lead leached from pipes, and infrastructure failure combined with governance failure and environmental racism. Residents still do not trust tap water."
       },
       {
         "question": "What does the Cape Town Day Zero case reveal about environmental justice?",
         "options": [
           "Conservation failed to reduce consumption at all",
-          "Wealthy residents installed private storage while poor residents faced cutoffs",
+          "Wealthy residents installed private storage while poorer households bore the hardest restrictions",
           "All residents were affected equally",
           "The crisis was caused by a lead contamination event"
         ],
         "correctAnswer": 1,
-        "explanation": "During Cape Town's drought, aggressive conservation cut consumption 50 percent, but wealthy residents installed private storage while the poor faced cutoffs, showing that environmental justice shapes who experiences water crises."
+        "explanation": "During Cape Town's drought, aggressive conservation cut consumption 50 percent, but wealthy residents installed private storage while poorer households bore the hardest restrictions, showing that environmental justice shapes who experiences water crises."
       },
       {
         "question": "What role does the module assign to climate change across the water failure case studies?",
@@ -1390,7 +1390,7 @@ export const additionalAssessments: Record<string, SimpleAssessment> = {
         "explanation": "An initial failure redistributes load, which overloads other parts and causes more failures, ending in blackout. Recovery is complex because black start capability is limited."
       },
       {
-        "question": "The 2003 Northeast blackout began with a software bug that affected 55 million people. Which module idea does it best illustrate?",
+        "question": "In the 2003 Northeast blackout, lines sagging into trees went unnoticed because an alarm system failed, and the outage spread to about 50 million people. Which module idea does it best illustrate?",
         "options": [
           "Microgrids eliminate the need for transmission",
           "Weather is the only real grid threat",
@@ -1398,7 +1398,7 @@ export const additionalAssessments: Record<string, SimpleAssessment> = {
           "Distribution failures are always caused by tree contact"
         ],
         "correctAnswer": 2,
-        "explanation": "The Northeast 2003 failure shows cascade dynamics: a small software bug cascaded until 55 million people were affected."
+        "explanation": "The Northeast 2003 failure shows cascade dynamics: a local fault, unnoticed because an alarm system failed, cascaded until about 50 million people were affected."
       },
       {
         "question": "Which of the following is a systemic energy failure rather than a generation, transmission, or distribution failure?",

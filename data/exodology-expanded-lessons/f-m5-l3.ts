@@ -15,7 +15,7 @@ Food sovereignty movements also show a pattern that runs through this course: ex
     sections: [
       {
         title: 'What is Food Sovereignty?',
-        content: `Food sovereignty goes beyond food security (having enough food) to controlling how food is produced, distributed, and consumed. It emerged from La Vía Campesina in 1996 and includes rights to define policy, prioritize local production, and control land, water, and seeds.
+        content: `Food sovereignty goes beyond food security (having enough food) to controlling how food is produced, distributed, and consumed. It was introduced by La Vía Campesina (founded in 1993) at the 1996 World Food Summit and includes rights to define policy, prioritize local production, and control land, water, and seeds.
 
 The distinction between the two terms is the heart of the concept:
 
@@ -32,7 +32,7 @@ For Exodology, food sovereignty can be read as a direct response to **structural
       },
       {
         title: 'Global Movements',
-        content: `La Vía Campesina represents 200+ million farmers. MST in Brazil, National Family Farm Coalition in US, GRAIN, and Indigenous food sovereignty movements combine political advocacy with practical alternative-building.
+        content: `La Vía Campesina says it represents about 200 million farmers. MST in Brazil, National Family Farm Coalition in US, GRAIN, and Indigenous food sovereignty movements combine political advocacy with practical alternative-building.
 
 Each of these organizations illustrates a different way of combining voice and exit:
 
@@ -61,7 +61,7 @@ Together these practices form a recognizable pattern of **soft exodus**. None of
       },
       {
         title: 'Challenges',
-        content: `Scale questions about feeding cities, affordability, knowledge gaps after industrial agriculture destroyed traditional knowledge, land access barriers, and policy environments favoring industrial production.
+        content: `Scale questions about feeding cities, affordability, knowledge gaps where industrial agriculture eroded or marginalized traditional knowledge, land access barriers, and policy environments favoring industrial production.
 
 These challenges are real, and an Exodological analysis should present them as honestly as the achievements:
 

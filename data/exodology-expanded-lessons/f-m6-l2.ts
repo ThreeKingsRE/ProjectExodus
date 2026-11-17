@@ -15,7 +15,7 @@ Following the case study approach in the Academic Style Guide, each case is read
     sections: [
       {
         title: 'Flint, Michigan',
-        content: `In 2014, Flint switched water sources to save money. The new source corroded lead pipes, contaminating water. Infrastructure failure combined with governance failure and environmental racism. Years later, residents still don't trust tap water.
+        content: `In 2014, Flint switched water sources to save money. The new source was more corrosive and lacked corrosion-control treatment, so lead leached from old pipes into the water. Infrastructure failure combined with governance failure and environmental racism. Years later, residents still don't trust tap water.
 
 **Context.** Flint, a majority-Black city, had lost much of its population and industrial base and was under the control of a state-appointed emergency manager when, in April 2014, it began drawing water from the Flint River as a temporary measure while a new regional pipeline was built.
 
@@ -27,7 +27,7 @@ Following the case study approach in the Academic Style Guide, each case is read
       },
       {
         title: 'Cape Town, South Africa',
-        content: `Multi-year drought depleted reservoirs. "Day Zero" announced—the day taps would be turned off. Aggressive conservation reduced consumption 50%. Wealthy residents installed private storage while the poor faced cutoffs.
+        content: `Multi-year drought depleted reservoirs. "Day Zero" announced—the day taps would be turned off. Aggressive conservation reduced consumption 50%. Wealthy residents installed private storage while poorer households, many relying on shared standpipes, bore the hardest restrictions. Day Zero was ultimately avoided.
 
 **Context.** Cape Town relies mainly on surface reservoirs filled by winter rain. A severe drought from around 2015 to 2018 drew those reservoirs down sharply while the city's population continued to grow.
 
@@ -39,7 +39,7 @@ Following the case study approach in the Academic Style Guide, each case is read
       },
       {
         title: 'Jackson, Mississippi',
-        content: `Flooding disabled the treatment plant, leaving 150,000 without water. Decades of underinvestment, population loss reducing tax base, and climate events created compounding failure.
+        content: `Flooding disabled the treatment plant, leaving much of the city's roughly 150,000 residents without reliable running water. Decades of underinvestment, population loss reducing tax base, and climate events created compounding failure.
 
 **Context.** Jackson is Mississippi's capital and a majority-Black city. Over several decades it lost population, much of it to surrounding suburbs, which shrank the tax and rate base needed to maintain an aging system. The city had faced repeated boil-water notices and federal concerns about water quality for years before the acute crisis.
 

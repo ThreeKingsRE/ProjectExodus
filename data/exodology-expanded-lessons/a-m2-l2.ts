@@ -6,7 +6,7 @@ const lesson: ExpandedExodologyLesson = {
   duration: '20 min',
   type: 'instruction',
   content: {
-    introduction: `Food is the most fundamental human need and one of the most actionable areas for building parallel systems.
+    introduction: `Food is among the most fundamental human needs and one of the most actionable areas for building parallel systems.
 
 It is actionable because food alternatives can start at almost any scale and any budget: a few containers on a balcony, a shared plot, a buying club of six households. Results arrive within a season, so people can learn quickly and see the value of what they are building. The previous lesson set out the general method for designing parallel systems: start with function, design for resilience and maintainability, begin with a minimum viable system, and plan integration points. This lesson applies that method to food by surveying the alternatives available at each stage of the food chain.
 

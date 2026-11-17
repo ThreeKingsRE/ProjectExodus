@@ -33,7 +33,7 @@ Centralization brings real efficiency: economies of scale, professional operator
       },
       {
         title: 'Energy-Water Nexus',
-        content: `Pumping and treating water uses 2-3% of US electricity. Power plants need water for cooling. Climate change stresses both systems simultaneously.
+        content: `Pumping and treating drinking water and wastewater accounts for roughly 2% of US energy use, by common estimates. Power plants need water for cooling. Climate change stresses both systems simultaneously.
 
 The term **energy-water nexus** describes this two-way dependence. Water systems need energy to move and clean water; many energy systems need water to produce electricity.
 

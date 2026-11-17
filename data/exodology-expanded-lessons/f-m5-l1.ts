@@ -15,7 +15,7 @@ Food is the clearest case of **structural dependence** in modern life: most hous
     sections: [
       {
         title: 'The Fossil Fuel Dependency',
-        content: `Modern agriculture runs on oil: Nitrogen fertilizer is synthesized from natural gas. Pesticides are petroleum-derived. Machinery burns diesel. Food travels 1,500 miles on average. When oil becomes scarce or expensive, the entire system is stressed.
+        content: `Modern agriculture runs on oil: Nitrogen fertilizer is synthesized from natural gas. Pesticides are petroleum-derived. Machinery burns diesel. Food often travels long distances; a widely cited but contested estimate puts the average at about 1,500 miles. When oil becomes scarce or expensive, the entire system is stressed.
 
 Each point in this list is a separate channel of dependence:
 

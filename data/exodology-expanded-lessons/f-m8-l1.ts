@@ -35,7 +35,7 @@ The final sentence of the original section is the key point: **neither is automa
       },
       {
         title: 'The Lifeboat Problem',
-        content: `The critique: exit movements often serve the privileged. Valid when exit requires resources most lack, exiters extract value, alternatives exclude the vulnerable. Less valid when exiters create replicable models and maintain solidarity.
+        content: `The critique: exit movements often serve the privileged. Valid when exit requires resources most lack, exiters extract value, alternatives exclude the vulnerable. Less valid when exiters create replicable models and maintain solidarity. (Not to be confused with Garrett Hardin's 1974 "lifeboat ethics," which argued against aid; here the term names a critique of exit itself.)
 
 The image is of a sinking ship from which only some passengers can reach the lifeboats. If the people who design an exit are those with the most money, skills, mobility or social connections, the exit may simply let them escape problems that everyone else must still endure. The critique asks Exodologists to look honestly at who can actually leave.
 

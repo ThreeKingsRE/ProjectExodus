@@ -28,7 +28,7 @@ For exit planning, combining sources whose output peaks at different times (for 
       },
       {
         title: 'Storage Solutions',
-        content: `Batteries for short-term storage. Thermal mass, ice storage, hydrogen for longer durations. Pumped hydro for community scale. Storage is often more challenging than generation.
+        content: `Batteries for short-term storage. Thermal mass and ice storage for daily heating and cooling; hydrogen for longer durations. Pumped hydro where terrain allows, though usually at utility rather than community scale. Storage is often more challenging than generation.
 
 Storage is the bridge between when energy is produced and when it is needed. Without it, solar does nothing for the evening and a calm week leaves a wind system idle.
 

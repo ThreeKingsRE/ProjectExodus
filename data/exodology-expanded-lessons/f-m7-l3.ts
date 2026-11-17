@@ -15,7 +15,7 @@ In Exodology's terms, a microgrid is a clear example of **parallel systems** and
     sections: [
       {
         title: 'What is a Microgrid?',
-        content: `A local energy system that can operate independently or connected to the main grid. Includes generation (solar, wind, batteries), storage, distribution, and controls.
+        content: `A local energy system that can operate independently or connected to the main grid. Includes generation (solar, wind), storage (batteries), distribution, and controls.
 
 The defining feature is the ability to switch between two modes. In **grid-connected mode**, the microgrid exchanges power with the main grid, buying when local supply is short and, where rules allow, selling when it has a surplus. In **island mode**, it disconnects at a single point of connection and runs on its own resources. The United States Department of Energy describes a microgrid in similar terms: a group of connected loads and energy resources within clear electrical boundaries that acts as a single controllable unit and can connect to or disconnect from the grid.
 

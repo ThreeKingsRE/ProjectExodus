@@ -15,7 +15,7 @@ This lesson surveys the alternatives available at each part of the water cycle: 
     sections: [
       {
         title: 'Source Alternatives',
-        content: `Rainwater harvesting, well drilling, spring development. Each requires different conditions and has different costs. Rainwater is universally applicable but volume-limited; wells require groundwater; springs need specific geography.
+        content: `Rainwater harvesting, well drilling, spring development. Each requires different conditions and has different costs. Rainwater works in most climates but is volume-limited, weak in arid regions and restricted in some jurisdictions; wells require groundwater; springs need specific geography.
 
 **Rainwater harvesting** collects rain from roofs or other surfaces and stores it in tanks or cisterns. Its volume is easy to estimate: each millimeter of rain falling on one square meter of roof yields about one liter. A 100-square-meter roof in a place with 600 millimeters of rain a year could in principle collect up to about 60,000 liters a year, less losses from evaporation, first-flush diversion and overflow. That is a meaningful supply, but it arrives unevenly, so storage size and seasonal rainfall patterns decide how much of it is usable. This is what volume-limited means in practice.
 
@@ -44,7 +44,7 @@ Matching treatment to contamination risks means testing first. Roof water may ca
       },
       {
         title: 'Greywater and Blackwater',
-        content: `Greywater reuse for irrigation. Composting toilets eliminate blackwater. Constructed wetlands for treatment. Closing loops reduces water demand.
+        content: `Greywater reuse for irrigation. Composting toilets eliminate blackwater, though the compost itself must be managed safely. Constructed wetlands for treatment. Closing loops reduces water demand.
 
 Household wastewater has two main streams. **Greywater** is lightly used water from showers, baths, bathroom sinks and laundry. **Blackwater** is water from toilets, which carries human waste and the highest health risk; kitchen sink water is treated differently in different places because of its food and grease content.
 
