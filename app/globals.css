@@ -2705,3 +2705,6 @@ body.textbook-fullscreen .fixed.inset-0.z-50 {
   --ds-paper: #1f2937;
   --ds-ink: #f3f4f6;
 }
+
+/* The Sage launcher would sit on the open book's page corner */
+body.textbook-fullscreen button[aria-label="Open Sage"] { display: none; }

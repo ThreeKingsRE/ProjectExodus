@@ -139,7 +139,9 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
         <div
           ref={scrollContainerRef}
           className={cn(
-            'flex-1 min-h-0 pt-2 pb-1 overflow-x-hidden',
+            'flex-1 min-h-0 pb-1 overflow-x-hidden',
+            // Right pages start below the scroll's top-right controls
+            side === 'right' ? 'pt-12 sm:pt-14' : 'pt-2',
             allowScroll ? 'overflow-y-auto' : 'overflow-y-hidden',
             side === 'left' && allowScroll && 'pr-1'
           )}
@@ -152,7 +154,7 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
           className={cn(
             'shrink-0 py-1 border-t border-[var(--border)]/20',
             'flex items-center',
-            'text-[10px] text-[var(--muted-foreground)]'
+            'text-[12px] text-[var(--muted-foreground)]'
           )}
         >
           {/* Desktop left page: ← pageNum ... chapter */}
@@ -178,7 +180,7 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
                     className="w-1.5 h-1.5 rounded-full"
                     style={{ background: ribbon.colors.gradient }}
                   />
-                  <span className="text-[9px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
+                  <span className="text-[11px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
                 </span>
               )}
             </>
@@ -193,7 +195,7 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
                     className="w-1.5 h-1.5 rounded-full"
                     style={{ background: ribbon.colors.gradient }}
                   />
-                  <span className="text-[9px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
+                  <span className="text-[11px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
                 </span>
               )}
               <div className="flex-1" />
@@ -236,7 +238,7 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
                       className="w-1.5 h-1.5 rounded-full"
                       style={{ background: ribbon.colors.gradient }}
                     />
-                    <span className="text-[9px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
+                    <span className="text-[11px]">Ch. {chapterNumber ?? chapterIndex + 1}</span>
                   </span>
                 )}
               </div>
@@ -1060,12 +1062,12 @@ export function ChapterDivider({
               }}
             >
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: color }} />
-              {versesCount} Verses to explore
+              {versesCount} {versesCount === 1 ? 'Verse' : 'Verses'} to explore
             </span>
           </motion.div>
         ) : (
           <div className="text-xs text-[var(--muted-foreground)]">
-            {versesCount} Verses to explore
+            {versesCount} {versesCount === 1 ? 'Verse' : 'Verses'} to explore
           </div>
         )}
       </div>
