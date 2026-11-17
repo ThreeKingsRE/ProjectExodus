@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import type { Prisma } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import { z } from 'zod'
 import { prisma } from '@/lib/db'
@@ -23,11 +24,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'This reset link is invalid or has expired. Please request a new one.' }, { status: 400 })
     }
     const email = record.identifier.slice(RESET_PREFIX.length)
-    await prisma.$transaction([
+    const passwordHash = await bcrypt.hash(password, 12)
+    const changed = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+      // Atomically claim this token. Concurrent requests cannot both reset the password.
+      const claimed = await tx.verificationToken.deleteMany({ where: { token: hashToken(token), identifier: record.identifier, expires: { gt: new Date() } } })
+      if (claimed.count !== 1) return false
       // Proving access to the inbox also verifies the address
-      prisma.user.update({ where: { email }, data: { password: await bcrypt.hash(password, 12), emailVerified: new Date() } }),
-      prisma.verificationToken.deleteMany({ where: { identifier: record.identifier } }),
-    ])
+      await tx.user.update({ where: { email }, data: { password: passwordHash, emailVerified: new Date() } })
+      await tx.verificationToken.deleteMany({ where: { identifier: record.identifier } })
+      return true
+    })
+    if (!changed) {
+      return NextResponse.json({ success: false, error: 'This reset link is invalid or has expired. Please request a new one.' }, { status: 400 })
+    }
     return NextResponse.json({ success: true, message: 'Password updated. You can sign in now.' })
   } catch (error) {
     console.error('Reset password error:', error)

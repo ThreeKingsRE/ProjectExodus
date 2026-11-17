@@ -16,8 +16,14 @@ export const config = {
     '/dashboard',         // Protect user dashboard
     '/articles/write',    // Protect article creation
     '/events/create',     // Protect event creation
-    '/community/projects/new', // Protect project creation
-    '/community/projects/:slug/documents/:path*', // Protect document editing
+    '/community/:path*', // Public tab landings; member-only pages below them
+    '/fishbowl/:path*',   // Public Fish Tank landing; private personal tank
+    '/api/projects/:path*', // Protect underlying community data as well as pages
+    '/api/social/:path*',
+    '/api/users/:path*',
+    '/api/network/:path*',
+    '/api/fishbowl/:path*',
+    '/api/forum/:path*',
     '/network/:path*',    // Protect social networking features
   ],
 }

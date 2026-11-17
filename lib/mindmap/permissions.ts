@@ -50,7 +50,7 @@ export async function checkMindMapAccess(
   }
 
   // Check if user is the creator
-  if (mindMap.creatorId === userId) {
+  if (mindMap.creatorId === userId || mindMap.project.creatorId === userId) {
     return true
   }
 
@@ -111,7 +111,7 @@ export async function getUserPermission(
   }
 
   // Creator has ADMIN permission
-  if (mindMap.creatorId === userId) {
+  if (mindMap.creatorId === userId || mindMap.project.creatorId === userId) {
     return 'ADMIN'
   }
 

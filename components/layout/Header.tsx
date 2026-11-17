@@ -346,13 +346,15 @@ export function Header() {
                             const isLocked = !session
 
                             return isLocked ? (
-                              <div
+                              <Link
                                 key={menuItem.label}
-                                className="flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-[var(--muted-foreground)] opacity-60 cursor-not-allowed whitespace-nowrap"
+                                href={menuItem.href}
+                                onClick={() => setCommunityMenuOpen(false)}
+                                className="flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-[var(--muted-foreground)] hover:bg-[var(--muted)]/50 hover:text-[var(--primary)] transition-colors whitespace-nowrap"
                               >
                                 <Lock className="w-3.5 h-3.5 flex-shrink-0" />
                                 <span className="text-sm font-medium">{menuItem.label}</span>
-                              </div>
+                              </Link>
                             ) : (
                               <Link
                                 key={menuItem.label}
@@ -641,17 +643,19 @@ export function Header() {
                 <p className="text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wide px-2">Community Features</p>
                 <div className="grid grid-cols-2 gap-2">
                   {communityMenuItems.map((menuItem) => {
-                    const isLocked = !session // All items locked for non-users
+                    const isLocked = !session // Guest links open the public introductions
 
                     if (isLocked) {
                       return (
-                        <div
+                        <Link
                           key={menuItem.label}
-                          className="flex items-center justify-center gap-1.5 py-3 px-2 rounded-xl bg-[var(--muted)]/50 opacity-60"
+                          href={menuItem.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center justify-center gap-1.5 py-3 px-2 rounded-xl bg-[var(--muted)]/50 hover:bg-theme-primary/10 transition-colors"
                         >
                           <Lock className="w-3 h-3 flex-shrink-0 text-[var(--muted-foreground)]" />
                           <span className="text-xs font-medium text-[var(--muted-foreground)]">{menuItem.label}</span>
-                        </div>
+                        </Link>
                       )
                     }
 
