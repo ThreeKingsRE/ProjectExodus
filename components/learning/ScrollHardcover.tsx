@@ -82,6 +82,26 @@ function Deboss({ id, paths, width = 1.6 }: { id: string; paths: string[]; width
   )
 }
 
+export interface BookCoverProps {
+  topicId: CoreTopic
+  title: string
+  subtitle: string
+  chapterTitles: string[]
+  /** Chapter shown in the window; null turns through the chapters */
+  currentChapter: number | null
+  levelLabel: string
+  hours: number
+  progressPercent: number
+  /** Swing the front board open on its spine */
+  open?: boolean
+  /** Animate the window and foil (off for small cards) */
+  animate?: boolean
+  /** Fixed text for the window instead of a chapter (e.g. on cards) */
+  windowText?: { kicker: string; big: string; small?: string }
+  /** Replaces the chapters · hours · level line */
+  imprint?: string
+}
+
 export interface ScrollHardcoverProps {
   topicId: CoreTopic
   title: string
@@ -95,169 +115,214 @@ export interface ScrollHardcoverProps {
   onOpen: () => void
 }
 
-export function ScrollHardcover({ topicId, title, subtitle, chapterTitles, currentChapter, levelLabel, hours, progressPercent, onOpen }: ScrollHardcoverProps) {
+/**
+ * The book itself, drawn to fill its parent (3:4). Sizes inside are relative
+ * to the book's width (cqw), so the same cover works as a hero or a card.
+ */
+export function BookCover({ topicId, title, subtitle, chapterTitles, currentChapter, levelLabel, hours, progressPercent, open = false, animate = true, windowText, imprint }: BookCoverProps) {
   const theme = THEMES[topicId]
   const reduceMotion = useReducedMotion()
-  const [hover, setHover] = useState(false)
+  const moving = animate && !reduceMotion
 
   // The window shows the current chapter; before starting, it turns through them
   const [tick, setTick] = useState(0)
   useEffect(() => {
-    if (currentChapter !== null || reduceMotion || chapterTitles.length < 2) return
+    if (windowText || currentChapter !== null || !moving || chapterTitles.length < 2) return
     const t = setInterval(() => setTick((i) => i + 1), 2800)
     return () => clearInterval(t)
-  }, [currentChapter, chapterTitles.length, reduceMotion])
+  }, [windowText, currentChapter, chapterTitles.length, moving])
   const shown = currentChapter ?? tick % Math.max(1, chapterTitles.length)
+  // Endpaper: a fine diamond lattice in the cover's colours
+  const endpaper = `repeating-linear-gradient(45deg, ${theme.cloth}33 0 1px, transparent 1px 9px), repeating-linear-gradient(-45deg, ${theme.cloth}33 0 1px, transparent 1px 9px), radial-gradient(circle, ${theme.foil}55 0 1.2px, transparent 1.6px)`
 
+  return (
+    <div className="absolute inset-0" style={{ containerType: 'inline-size', transformStyle: 'preserve-3d' }}>
+      {/* Page block behind the board (edges right and bottom), with a title page */}
+      <div
+        aria-hidden
+        className="absolute flex flex-col items-center justify-center rounded-r-sm text-center"
+        style={{
+          top: '2.2%', bottom: '-1.6%', left: '3%', right: '-2.6%',
+          background: 'linear-gradient(90deg, rgba(0,0,0,0.12), transparent 8%), repeating-linear-gradient(90deg, #f8f4ea 0 2px, #e6dfcf 2px 3px)',
+          boxShadow: '0 24px 40px -12px rgba(0,0,0,0.55), 0 8px 14px -6px rgba(0,0,0,0.35)',
+        }}
+      >
+        <div className="absolute rounded-sm" style={{ inset: '0 1.5% 1.5% 0', background: '#fbf8f1' }} />
+        <div className="relative px-[10%]">
+          <p className="font-serif uppercase text-stone-500" style={{ fontSize: '2.6cqw', letterSpacing: '0.25em' }}>Project Exodus</p>
+          <p className="mt-[3cqw] font-serif font-bold text-stone-800" style={{ fontSize: '7.5cqw', lineHeight: 1.1 }}>{title}</p>
+          <div className="mx-auto my-[3cqw] h-px w-1/3 bg-stone-400" />
+          <p className="font-serif italic text-stone-600" style={{ fontSize: '3.2cqw' }}>{levelLabel} edition</p>
+        </div>
+      </div>
+
+      {/* The board: swings open on its spine */}
+      <motion.div
+        className="absolute inset-0"
+        style={{ transformOrigin: 'left center', transformStyle: 'preserve-3d' }}
+        initial={false}
+        animate={{ rotateY: open ? -132 : 0 }}
+        transition={{ duration: reduceMotion ? 0 : 0.85, ease: [0.45, 0, 0.2, 1] }}
+      >
+        {/* Inside of the board: marbled endpaper */}
+        <div
+          aria-hidden
+          className="absolute inset-0 rounded-l-md"
+          style={{ transform: 'rotateY(180deg)', backfaceVisibility: 'hidden', backgroundColor: '#f1e9d6', backgroundImage: endpaper, backgroundSize: 'auto, auto, 12.7px 12.7px', boxShadow: `inset 0 0 0 6px ${theme.cloth}, inset 0 0 18px rgba(0,0,0,0.12)` }}
+        />
+
+        <div
+          className="absolute inset-0 overflow-hidden rounded-r-md rounded-l-sm"
+          style={{
+            backfaceVisibility: 'hidden',
+            backgroundColor: theme.cloth,
+            backgroundImage: `
+              repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px),
+              repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 3px),
+              radial-gradient(120% 90% at 30% 15%, rgba(255,255,255,0.10), transparent 55%),
+              radial-gradient(90% 80% at 80% 100%, rgba(0,0,0,0.35), transparent 60%)`,
+            boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.06), inset -6px 0 14px rgba(0,0,0,0.25)',
+          }}
+        >
+          {/* Spine hinge with raised bands */}
+          <div
+            aria-hidden
+            className="absolute inset-y-0 left-0"
+            style={{ width: '9%', background: `linear-gradient(90deg, ${theme.clothDark}, ${theme.cloth} 70%, rgba(0,0,0,0.35))`, boxShadow: 'inset -2px 0 3px rgba(0,0,0,0.45)' }}
+          >
+            {[14, 34, 66, 86].map((t) => (
+              <div key={t} className="absolute inset-x-0" style={{ top: `${t}%`, height: '1.4cqw', background: 'linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.4))' }} />
+            ))}
+          </div>
+
+          {/* Etched frame, corners and emblem */}
+          <svg aria-hidden className="absolute inset-0 h-full w-full" viewBox="0 0 300 400" preserveAspectRatio="none">
+            <Deboss id={`frame-${topicId}`} paths={['M36 14 H288 V386 H36 Z', 'M43 21 H281 V379 H43 Z']} width={1.4} />
+          </svg>
+          <svg aria-hidden className="absolute inset-0 h-full w-full" viewBox="0 0 300 400">
+            <g transform="translate(38 16)"><Deboss id={`corner-tl-${topicId}`} paths={[CORNER]} width={1.3} /></g>
+            <g transform="translate(286 16) scale(-1 1)"><Deboss id={`corner-tr-${topicId}`} paths={[CORNER]} width={1.3} /></g>
+            <g transform="translate(38 384) scale(1 -1)"><Deboss id={`corner-bl-${topicId}`} paths={[CORNER]} width={1.3} /></g>
+            <g transform="translate(286 384) scale(-1 -1)"><Deboss id={`corner-br-${topicId}`} paths={[CORNER]} width={1.3} /></g>
+            <g transform="translate(128 270) scale(0.7)">
+              <Deboss id={`emblem-${topicId}`} paths={EMBLEMS[topicId]} width={2.2} />
+            </g>
+          </svg>
+
+          {/* Square window cut into the board, showing the chapter page beneath */}
+          <div
+            className="absolute left-1/2 -translate-x-1/2 overflow-hidden"
+            style={{
+              top: '8.5%', width: '26%', aspectRatio: '1 / 1', marginLeft: '4.5%',
+              background: '#f7f2e6',
+              boxShadow: `inset 0 4px 7px rgba(0,0,0,0.55), inset 0 -1px 0 rgba(0,0,0,0.25), 0 0 0 1.5px ${theme.foil}66, 0 1px 0 rgba(255,255,255,0.15)`,
+            }}
+          >
+            <AnimatePresence initial={false} mode="popLayout">
+              <motion.div
+                key={shown}
+                className="absolute inset-0 flex flex-col items-center justify-center px-[1.5cqw] text-center"
+                initial={moving ? { y: '100%', opacity: 0 } : false}
+                animate={{ y: 0, opacity: 1 }}
+                exit={moving ? { y: '-100%', opacity: 0 } : undefined}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className="font-serif uppercase text-stone-500" style={{ fontSize: '2.5cqw', letterSpacing: '0.18em' }}>{windowText?.kicker ?? 'Chapter'}</span>
+                <span className="font-serif font-bold leading-none text-stone-800" style={{ fontSize: '8.9cqw' }}>{windowText?.big ?? String(shown + 1).padStart(2, '0')}</span>
+                <span className="mt-[1cqw] line-clamp-2 font-serif leading-tight text-stone-600" style={{ fontSize: '2.6cqw' }}>{windowText ? windowText.small : chapterTitles[shown]}</span>
+              </motion.div>
+            </AnimatePresence>
+            {/* Light catching the cut edge */}
+            {moving && (
+              <motion.div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{ background: 'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.55) 50%, transparent 65%)' }}
+                animate={{ x: ['-120%', '120%'] }}
+                transition={{ duration: 2.4, repeat: Infinity, repeatDelay: 3.6, ease: 'easeInOut' }}
+              />
+            )}
+          </div>
+
+          {/* Gold-foil title block */}
+          <div className="absolute inset-x-0 text-center" style={{ top: '42%', paddingLeft: '13%', paddingRight: '5%' }}>
+            <h2
+              className="font-serif font-bold uppercase leading-[1.05]"
+              style={{
+                fontSize: '9.4cqw',
+                letterSpacing: '0.06em',
+                backgroundImage: `linear-gradient(100deg, ${theme.foil} 0%, #fff4cf 22%, ${theme.foil} 40%, #9c7a3c 70%, ${theme.foil} 100%)`,
+                backgroundSize: '220% 100%',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+                textShadow: '0 1px 0 rgba(0,0,0,0.35)',
+                animation: moving ? 'ds-foil 7s ease-in-out infinite' : undefined,
+              }}
+            >
+              {title}
+            </h2>
+            <div className="mx-auto my-[2.2cqw] h-px w-1/3" style={{ background: `linear-gradient(90deg, transparent, ${theme.foil}, transparent)` }} />
+            <p className="mx-auto font-serif italic leading-snug" style={{ color: `${theme.foil}cc`, fontSize: '3.5cqw', maxWidth: '86%' }}>
+              {subtitle}
+            </p>
+          </div>
+
+          {/* Imprint along the foot */}
+          <p className="absolute inset-x-0 text-center font-serif uppercase" style={{ bottom: '10.5%', paddingLeft: '9%', color: `${theme.foil}b3`, fontSize: '2.6cqw', letterSpacing: '0.22em' }}>
+            {imprint ?? `${chapterTitles.length} chapters · ~${hours} h · ${levelLabel}`}
+          </p>
+          <p className="absolute inset-x-0 text-center font-serif" style={{ bottom: '7%', paddingLeft: '9%', color: `${theme.foil}80`, fontSize: '2.4cqw', letterSpacing: '0.3em' }}>
+            PROJECT EXODUS
+          </p>
+        </div>
+      </motion.div>
+
+      {/* Ribbon marker once the reader has made progress */}
+      {progressPercent > 0 && (
+        <div aria-hidden className="absolute" style={{ right: '16%', bottom: '-7%', width: '5.5%', height: '12%' }}>
+          <div className="h-full w-full" style={{ background: `linear-gradient(90deg, #8a6a2a, ${theme.foil}, #8a6a2a)`, clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%)' }} />
+        </div>
+      )}
+    </div>
+  )
+}
+
+/** The topic page hero: the book you click to open the Digital Scroll. */
+export function ScrollHardcover(props: ScrollHardcoverProps) {
+  const { title, currentChapter, progressPercent, onOpen } = props
+  const reduceMotion = useReducedMotion()
+  const [hover, setHover] = useState(false)
+  const [opening, setOpening] = useState(false)
   const action = currentChapter === null ? 'Open the book' : `Continue at Chapter ${currentChapter + 1}`
+
+  // Swing the cover open, then hand over to the scroll; close it again behind the scroll
+  const open = () => {
+    if (opening) return
+    if (reduceMotion) { onOpen(); return }
+    setOpening(true)
+    setTimeout(onOpen, 650)
+    setTimeout(() => setOpening(false), 1600)
+  }
 
   return (
     <div className="flex flex-col items-center">
       <div style={{ perspective: 1600 }}>
         <motion.button
           type="button"
-          onClick={onOpen}
+          onClick={open}
           onHoverStart={() => setHover(true)}
           onHoverEnd={() => setHover(false)}
           onFocus={() => setHover(true)}
           onBlur={() => setHover(false)}
           aria-label={`${title} textbook. ${action}.`}
-          className="relative block focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/70 rounded-r-md"
+          className="relative block rounded-r-md focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/70"
           style={{ width: 'clamp(250px, 62vw, 360px)', aspectRatio: '3 / 4', transformStyle: 'preserve-3d' }}
           initial={false}
-          animate={reduceMotion ? {} : { rotateY: hover ? -16 : -7, rotateX: hover ? 3 : 2, y: hover ? -6 : 0 }}
+          animate={reduceMotion ? {} : opening ? { rotateY: 0, rotateX: 0, y: -4, scale: 1.04 } : { rotateY: hover ? -16 : -7, rotateX: hover ? 3 : 2, y: hover ? -6 : 0, scale: 1 }}
           transition={{ type: 'spring', stiffness: 140, damping: 18 }}
         >
-          {/* Page block behind the board (visible edges right and bottom) */}
-          <div
-            aria-hidden
-            className="absolute rounded-r-sm"
-            style={{
-              top: '2.2%', bottom: '-1.6%', left: '3%', right: '-2.6%',
-              background: 'repeating-linear-gradient(90deg, #f8f4ea 0 2px, #e6dfcf 2px 3px)',
-              boxShadow: '0 24px 40px -12px rgba(0,0,0,0.55), 0 8px 14px -6px rgba(0,0,0,0.35)',
-            }}
-          />
-
-          {/* The board */}
-          <div
-            className="absolute inset-0 overflow-hidden rounded-r-md rounded-l-sm"
-            style={{
-              backgroundColor: theme.cloth,
-              backgroundImage: `
-                repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px),
-                repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 3px),
-                radial-gradient(120% 90% at 30% 15%, rgba(255,255,255,0.10), transparent 55%),
-                radial-gradient(90% 80% at 80% 100%, rgba(0,0,0,0.35), transparent 60%)`,
-              boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.06), inset -6px 0 14px rgba(0,0,0,0.25)',
-            }}
-          >
-            {/* Spine hinge with raised bands */}
-            <div
-              aria-hidden
-              className="absolute inset-y-0 left-0"
-              style={{
-                width: '9%',
-                background: `linear-gradient(90deg, ${theme.clothDark}, ${theme.cloth} 70%, rgba(0,0,0,0.35))`,
-                boxShadow: 'inset -2px 0 3px rgba(0,0,0,0.45)',
-              }}
-            >
-              {[14, 34, 66, 86].map((t) => (
-                <div key={t} className="absolute inset-x-0" style={{ top: `${t}%`, height: 5, background: 'linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.4))' }} />
-              ))}
-            </div>
-
-            {/* Etched frame, corners and emblem */}
-            <svg aria-hidden className="absolute inset-0 h-full w-full" viewBox="0 0 300 400" preserveAspectRatio="none">
-              <Deboss id={`frame-${topicId}`} paths={['M36 14 H288 V386 H36 Z', 'M43 21 H281 V379 H43 Z']} width={1.4} />
-            </svg>
-            <svg aria-hidden className="absolute inset-0 h-full w-full" viewBox="0 0 300 400">
-              <g transform="translate(38 16)"><Deboss id={`corner-tl-${topicId}`} paths={[CORNER]} width={1.3} /></g>
-              <g transform="translate(286 16) scale(-1 1)"><Deboss id={`corner-tr-${topicId}`} paths={[CORNER]} width={1.3} /></g>
-              <g transform="translate(38 384) scale(1 -1)"><Deboss id={`corner-bl-${topicId}`} paths={[CORNER]} width={1.3} /></g>
-              <g transform="translate(286 384) scale(-1 -1)"><Deboss id={`corner-br-${topicId}`} paths={[CORNER]} width={1.3} /></g>
-              <g transform="translate(128 270) scale(0.7)">
-                <Deboss id={`emblem-${topicId}`} paths={EMBLEMS[topicId]} width={2.2} />
-              </g>
-            </svg>
-
-            {/* Square window cut into the board, showing the chapter page beneath */}
-            <div
-              className="absolute left-1/2 -translate-x-1/2 overflow-hidden"
-              style={{
-                top: '8.5%', width: '26%', aspectRatio: '1 / 1', marginLeft: '4.5%',
-                background: '#f7f2e6',
-                boxShadow: `inset 0 4px 7px rgba(0,0,0,0.55), inset 0 -1px 0 rgba(0,0,0,0.25), 0 0 0 1.5px ${theme.foil}66, 0 1px 0 rgba(255,255,255,0.15)`,
-              }}
-            >
-              <AnimatePresence initial={false} mode="popLayout">
-                <motion.div
-                  key={shown}
-                  className="absolute inset-0 flex flex-col items-center justify-center px-1.5 text-center"
-                  initial={reduceMotion ? false : { y: '100%', opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={reduceMotion ? undefined : { y: '-100%', opacity: 0 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <span className="font-serif uppercase text-stone-500" style={{ fontSize: 'clamp(7px, 1.6vw, 9px)', letterSpacing: '0.18em' }}>Chapter</span>
-                  <span className="font-serif font-bold leading-none text-stone-800" style={{ fontSize: 'clamp(22px, 6vw, 32px)' }}>{String(shown + 1).padStart(2, '0')}</span>
-                  <span className="mt-1 line-clamp-2 font-serif leading-tight text-stone-600" style={{ fontSize: 'clamp(7px, 1.7vw, 9.5px)' }}>{chapterTitles[shown]}</span>
-                </motion.div>
-              </AnimatePresence>
-              {/* Light catching the cut edge */}
-              {!reduceMotion && (
-                <motion.div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0"
-                  style={{ background: 'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.55) 50%, transparent 65%)' }}
-                  animate={{ x: ['-120%', '120%'] }}
-                  transition={{ duration: 2.4, repeat: Infinity, repeatDelay: 3.6, ease: 'easeInOut' }}
-                />
-              )}
-            </div>
-
-            {/* Gold-foil title block */}
-            <div className="absolute inset-x-0 text-center" style={{ top: '42%', paddingLeft: '13%', paddingRight: '5%' }}>
-              <h2
-                className="font-serif font-bold uppercase leading-[1.05]"
-                style={{
-                  fontSize: 'clamp(22px, 6.4vw, 34px)',
-                  letterSpacing: '0.06em',
-                  backgroundImage: `linear-gradient(100deg, ${theme.foil} 0%, #fff4cf 22%, ${theme.foil} 40%, #9c7a3c 70%, ${theme.foil} 100%)`,
-                  backgroundSize: '220% 100%',
-                  WebkitBackgroundClip: 'text',
-                  backgroundClip: 'text',
-                  color: 'transparent',
-                  textShadow: '0 1px 0 rgba(0,0,0,0.35)',
-                  animation: reduceMotion ? undefined : 'ds-foil 7s ease-in-out infinite',
-                }}
-              >
-                {title}
-              </h2>
-              <div className="mx-auto my-2 h-px w-1/3" style={{ background: `linear-gradient(90deg, transparent, ${theme.foil}, transparent)` }} />
-              <p className="mx-auto font-serif italic leading-snug" style={{ color: `${theme.foil}cc`, fontSize: 'clamp(10px, 2.4vw, 12.5px)', maxWidth: '86%' }}>
-                {subtitle}
-              </p>
-            </div>
-
-            {/* Imprint along the foot */}
-            <p
-              className="absolute inset-x-0 text-center font-serif uppercase"
-              style={{ bottom: '10.5%', paddingLeft: '9%', color: `${theme.foil}b3`, fontSize: 'clamp(7.5px, 1.8vw, 9.5px)', letterSpacing: '0.22em' }}
-            >
-              {chapterTitles.length} chapters · ~{hours} h · {levelLabel}
-            </p>
-            <p className="absolute inset-x-0 text-center font-serif" style={{ bottom: '7%', paddingLeft: '9%', color: `${theme.foil}80`, fontSize: 'clamp(7px, 1.6vw, 8.5px)', letterSpacing: '0.3em' }}>
-              PROJECT EXODUS
-            </p>
-          </div>
-
-          {/* Ribbon marker once the reader has made progress */}
-          {progressPercent > 0 && (
-            <div aria-hidden className="absolute" style={{ right: '16%', bottom: '-7%', width: '5.5%', height: '12%' }}>
-              <div className="h-full w-full" style={{ background: `linear-gradient(90deg, #8a6a2a, ${theme.foil}, #8a6a2a)`, clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%)' }} />
-            </div>
-          )}
+          <BookCover {...props} open={opening} />
         </motion.button>
       </div>
 

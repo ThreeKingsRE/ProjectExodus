@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useSession } from 'next-auth/react'
 import { Card, CardContent } from '@/components/ui/Card'
+import { BookCover } from '@/components/learning/ScrollHardcover'
 import { Button } from '@/components/ui/Button'
 import dynamic from 'next/dynamic'
 
@@ -526,64 +527,48 @@ export default function LearnPage() {
               const isGraduated = progress?.isGraduated || false
 
               return (
-                <Link key={topic.title} href={`/learn/topics/${topic.slug}?level=${selectedLevel.toLowerCase()}`}>
-                  <Card className="h-full border-2 sm:border-4 border-theme-primary bg-gradient-to-br from-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[var(--background)] transform hover:scale-[1.02] lg:hover:scale-105 hover:shadow-xl lg:hover:shadow-2xl transition-all duration-300 cursor-pointer group">
-                    <CardContent className="p-3 sm:p-4 lg:p-8">
-                      <div className="flex items-start justify-between mb-2 sm:mb-3 lg:mb-4">
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-[color-mix(in_srgb,var(--primary)_20%,var(--background))] flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
-                          <topic.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-theme-primary" />
-                        </div>
-                        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-                          {isGraduated && (
-                            <div className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-green-500/20 text-green-600 text-[8px] sm:text-xs font-black flex items-center gap-0.5 sm:gap-1">
-                              <GraduationCap className="w-2 h-2 sm:w-3 sm:h-3" />
-                              <span className="hidden sm:inline">COMPLETE</span>
-                              <span className="sm:hidden">✓</span>
-                            </div>
-                          )}
-                          <div className="px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 rounded-full bg-[color-mix(in_srgb,var(--primary)_15%,var(--background))] text-[8px] sm:text-xs font-bold text-theme-primary flex items-center gap-0.5 sm:gap-1">
-                            <span className="text-xs sm:text-sm">{LEARNING_LEVELS[selectedLevel].icon}</span>
-                            <span className="hidden lg:inline">{LEARNING_LEVELS[selectedLevel].shortLabel}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <h3 className="text-xs sm:text-base lg:text-2xl font-black mb-1 sm:mb-2 lg:mb-3 text-[var(--foreground)] group-hover:text-theme-primary transition-colors leading-tight">
-                        {topic.title}
-                      </h3>
-                      <p className="text-[10px] sm:text-xs lg:text-base font-medium mb-2 sm:mb-3 lg:mb-4 text-theme-muted line-clamp-2">
-                        {topic.desc}
-                      </p>
-
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-3">
-                          <span className="text-[10px] sm:text-xs lg:text-sm font-bold text-theme-muted flex items-center gap-1 sm:gap-2">
-                            <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
-                            <span className="hidden sm:inline">{topic.modules} modules</span>
-                            <span className="sm:hidden">{topic.modules}</span>
-                          </span>
-                          {progressPercent > 0 && (
-                            <span className="text-[10px] sm:text-xs lg:text-sm font-black text-theme-primary">
-                              {progressPercent}%
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-theme-primary font-black text-[10px] sm:text-xs lg:text-sm flex items-center gap-0.5 sm:gap-1 group-hover:gap-1 sm:group-hover:gap-2 transition-all">
-                          <span className="hidden sm:inline">{isGraduated ? 'REVIEW' : progressPercent > 0 ? 'CONTINUE' : 'EXPLORE'}</span>
-                          <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
-                        </span>
-                      </div>
-
-                      {/* Minimal Progress Bar - only show if started */}
-                      {progressPercent > 0 && (
-                        <div className="mt-2 sm:mt-3 h-0.5 sm:h-1 bg-[var(--muted)] rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full transition-all duration-500 bg-[var(--primary)]"
-                            style={{ width: `${progressPercent}%` }}
-                          />
-                        </div>
+                <Link
+                  key={topic.title}
+                  href={`/learn/topics/${topic.slug}?level=${selectedLevel.toLowerCase()}`}
+                  className="group block focus:outline-none"
+                  aria-label={`${topic.title}: ${isGraduated ? 'review' : progressPercent > 0 ? 'continue' : 'explore'} the textbook`}
+                >
+                  {/* The topic's textbook, closed; tilts open a little on hover */}
+                  <div style={{ perspective: 1200 }} className="mx-auto px-[4%] pt-1" >
+                    <div
+                      className="relative w-full transition-transform duration-500 ease-out [transform:rotateY(-6deg)_rotateX(2deg)] group-hover:[transform:rotateY(-14deg)_rotateX(3deg)_translateY(-6px)] group-focus-visible:[transform:rotateY(-14deg)_rotateX(3deg)_translateY(-6px)] motion-reduce:transform-none"
+                      style={{ aspectRatio: '3 / 4', transformStyle: 'preserve-3d' }}
+                    >
+                      <BookCover
+                        topicId={topic.slug as CoreTopic}
+                        title={topic.title}
+                        subtitle={topic.desc}
+                        chapterTitles={[]}
+                        currentChapter={null}
+                        levelLabel={LEARNING_LEVELS[selectedLevel].shortLabel}
+                        hours={0}
+                        progressPercent={progressPercent}
+                        animate={false}
+                        windowText={{ kicker: 'Chapters', big: String(topic.modules), small: `${Math.ceil(topic.modules / 7)} volumes` }}
+                        imprint={`${LEARNING_LEVELS[selectedLevel].label} edition`}
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-4 flex items-center justify-between gap-2 px-1 sm:mt-6">
+                    <span className="text-[11px] font-bold text-theme-muted sm:text-xs lg:text-sm">
+                      {isGraduated ? (
+                        <span className="inline-flex items-center gap-1 text-green-600"><GraduationCap className="h-3.5 w-3.5" /> Complete</span>
+                      ) : progressPercent > 0 ? (
+                        <span className="text-theme-primary">{progressPercent}% read</span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1"><BookOpen className="h-3.5 w-3.5" /> {topic.modules} chapters</span>
                       )}
-                    </CardContent>
-                  </Card>
+                    </span>
+                    <span className="flex items-center gap-0.5 text-[11px] font-black text-theme-primary transition-all group-hover:gap-1.5 sm:text-xs lg:text-sm">
+                      {isGraduated ? 'REVIEW' : progressPercent > 0 ? 'CONTINUE' : 'OPEN'}
+                      <ChevronRight className="h-3.5 w-3.5" />
+                    </span>
+                  </div>
                 </Link>
               )
             })}
