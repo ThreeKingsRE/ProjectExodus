@@ -8,7 +8,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils/cn'
-import { SCROLL_DIMENSIONS, getDeviceType } from './scrollConstants'
+import { SCROLL_DIMENSIONS, CORE_TOPIC_ICONS, getDeviceType } from './scrollConstants'
 
 // ============================================
 // TYPES
@@ -42,6 +42,7 @@ export function ScrollOpenAnimation({
   const completedRef = useRef(false)
   const [dimensions, setDimensions] = useState(SCROLL_DIMENSIONS.desktop)
 
+  const topicIcon = CORE_TOPIC_ICONS[topicSlug] || '📖'
 
   // Get responsive dimensions
   useEffect(() => {
@@ -136,12 +137,10 @@ export function ScrollOpenAnimation({
   return (
     <div
       className={cn(
-        // digital-scroll: share the drafting tokens with the book
-        'digital-scroll fixed inset-0 z-[100] flex items-center justify-center',
-        'bg-[#141a24]/80 backdrop-blur-sm',
+        'fixed inset-0 z-[100] flex items-center justify-center',
+        'bg-black/80 backdrop-blur-md',
         className
       )}
-      data-topic={topicSlug}
     >
       {/* Skip button - always visible */}
       <button
@@ -149,7 +148,7 @@ export function ScrollOpenAnimation({
           e.stopPropagation()
           handleComplete()
         }}
-        className="ds-label absolute top-6 right-6 z-20 px-3 py-1.5 text-[10px] border border-white/30 text-white/85 hover:bg-white/10 transition-colors"
+        className="absolute top-6 right-6 z-20 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition-all text-sm font-medium"
         aria-label="Skip animation"
       >
         Skip <span className="opacity-60 ml-1">ESC</span>
@@ -208,10 +207,12 @@ export function ScrollOpenAnimation({
           >
             {/* Back cover / Revealed page content */}
             <div
-              className="ds-sheet absolute inset-0 rounded-sm"
+              className="absolute inset-0 rounded-lg"
               style={{
-                // Both intro pages are drafting paper, so the book opens onto the same sheet style
-                background: 'var(--ds-paper)',
+                background: phase === 'title'
+                  ? 'linear-gradient(135deg, #f5f0e8 0%, #e8e0d4 100%)'
+                  : 'linear-gradient(135deg, #1a1612 0%, #2a2420 50%, #1a1612 100%)',
+                transition: 'background 0.8s ease',
               }}
             >
               {/* INSTRUCTIONS PAGE - Dark background with keyboard hints */}
@@ -227,38 +228,38 @@ export function ScrollOpenAnimation({
                     <div className="text-center max-w-lg space-y-8">
                       {/* Title */}
                       <div>
-                        <p className="ds-label text-[var(--ds-accent)] text-xs mb-2">
+                        <p className="text-amber-500/80 text-sm uppercase tracking-[0.3em] font-serif mb-2">
                           Navigation Guide
                         </p>
-                        <div className="w-32 h-px mx-auto bg-[var(--ds-ink)]" />
+                        <div className="w-32 h-0.5 mx-auto bg-gradient-to-r from-transparent via-amber-600/50 to-transparent" />
                       </div>
 
                       {/* Keyboard shortcuts */}
-                      <div className="grid grid-cols-2 gap-x-8 gap-y-4 text-[var(--ds-ink)]">
+                      <div className="grid grid-cols-2 gap-x-8 gap-y-4 text-amber-100/80">
                         {/* Spacebar */}
                         <div className="flex items-center gap-3 justify-end">
-                          <span className="ds-label text-[10px] text-[var(--ds-ink-soft)]">Flip page</span>
-                          <kbd className="px-4 py-2 bg-[var(--ds-paper)] rounded-sm text-sm font-mono border border-[var(--ds-ink)]/40 border-b-2 min-w-[70px] text-center">
+                          <span className="text-sm text-amber-100/60">Flip page</span>
+                          <kbd className="px-4 py-2 bg-amber-900/30 rounded-lg text-sm font-mono border border-amber-700/30 min-w-[70px] text-center">
                             Space
                           </kbd>
                         </div>
 
                         {/* Escape */}
                         <div className="flex items-center gap-3">
-                          <kbd className="px-4 py-2 bg-[var(--ds-paper)] rounded-sm text-sm font-mono border border-[var(--ds-ink)]/40 border-b-2 min-w-[70px] text-center">
+                          <kbd className="px-4 py-2 bg-amber-900/30 rounded-lg text-sm font-mono border border-amber-700/30 min-w-[70px] text-center">
                             Esc
                           </kbd>
-                          <span className="ds-label text-[10px] text-[var(--ds-ink-soft)]">Close book</span>
+                          <span className="text-sm text-amber-100/60">Close book</span>
                         </div>
 
                         {/* Left/Right arrows */}
                         <div className="flex items-center gap-3 justify-end">
-                          <span className="ds-label text-[10px] text-[var(--ds-ink-soft)]">Previous / Next</span>
+                          <span className="text-sm text-amber-100/60">Previous / Next</span>
                           <div className="flex gap-1">
-                            <kbd className="px-3 py-2 bg-[var(--ds-paper)] rounded-sm text-sm font-mono border border-[var(--ds-ink)]/40 border-b-2">
+                            <kbd className="px-3 py-2 bg-amber-900/30 rounded-lg text-sm font-mono border border-amber-700/30">
                               ←
                             </kbd>
-                            <kbd className="px-3 py-2 bg-[var(--ds-paper)] rounded-sm text-sm font-mono border border-[var(--ds-ink)]/40 border-b-2">
+                            <kbd className="px-3 py-2 bg-amber-900/30 rounded-lg text-sm font-mono border border-amber-700/30">
                               →
                             </kbd>
                           </div>
@@ -267,33 +268,33 @@ export function ScrollOpenAnimation({
                         {/* Up/Down arrows */}
                         <div className="flex items-center gap-3">
                           <div className="flex gap-1">
-                            <kbd className="px-3 py-2 bg-[var(--ds-paper)] rounded-sm text-sm font-mono border border-[var(--ds-ink)]/40 border-b-2">
+                            <kbd className="px-3 py-2 bg-amber-900/30 rounded-lg text-sm font-mono border border-amber-700/30">
                               ↑
                             </kbd>
-                            <kbd className="px-3 py-2 bg-[var(--ds-paper)] rounded-sm text-sm font-mono border border-[var(--ds-ink)]/40 border-b-2">
+                            <kbd className="px-3 py-2 bg-amber-900/30 rounded-lg text-sm font-mono border border-amber-700/30">
                               ↓
                             </kbd>
                           </div>
-                          <span className="ds-label text-[10px] text-[var(--ds-ink-soft)]">Scroll content</span>
+                          <span className="text-sm text-amber-100/60">Scroll content</span>
                         </div>
 
                         {/* Number keys - full width */}
-                        <div className="col-span-2 flex items-center justify-center gap-4 pt-4 mt-2 border-t border-[var(--ds-rule)]">
+                        <div className="col-span-2 flex items-center justify-center gap-4 pt-4 mt-2 border-t border-amber-700/20">
                           <div className="flex gap-1">
                             {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-                              <kbd key={n} className="w-8 h-8 bg-[var(--ds-paper)] rounded text-xs font-mono border border-[var(--ds-ink)]/40 border-b-2 flex items-center justify-center">
+                              <kbd key={n} className="w-8 h-8 bg-amber-900/30 rounded text-xs font-mono border border-amber-700/30 flex items-center justify-center">
                                 {n}
                               </kbd>
                             ))}
                           </div>
-                          <span className="ds-label text-[10px] text-[var(--ds-ink-soft)]">Jump to chapter</span>
+                          <span className="text-sm text-amber-100/60">Jump to chapter</span>
                         </div>
                       </div>
 
                       {/* Click to proceed */}
                       <button
                         onClick={handleProceedToTitle}
-                        className="ds-label mt-8 px-6 py-2.5 text-[11px] border border-[var(--ds-ink)] bg-[var(--ds-ink)] text-[var(--ds-paper)] hover:bg-transparent hover:text-[var(--ds-ink)] transition-colors"
+                        className="mt-8 px-8 py-3 rounded-lg bg-amber-700/30 hover:bg-amber-700/50 border border-amber-600/40 text-amber-100 font-serif transition-all"
                       >
                         Click to Proceed
                       </button>
@@ -314,30 +315,30 @@ export function ScrollOpenAnimation({
                   >
                     <div className="text-center max-w-lg">
                       {/* Icon */}
-                      <div className="ds-label text-[10px] text-[var(--ds-accent)] mb-4">Project Exodus · Learning Academy</div>
+                      <div className="text-7xl mb-6">{topicIcon}</div>
 
                       {/* Decorative line */}
-                      <div className="w-40 h-px mx-auto bg-[var(--ds-ink)] mb-6" />
+                      <div className="w-40 h-0.5 mx-auto bg-gradient-to-r from-transparent via-amber-700 to-transparent mb-6" />
 
                       {/* Title */}
-                      <h2 className="text-4xl font-serif font-semibold text-[var(--ds-ink)] mb-4">
+                      <h2 className="text-4xl font-serif font-bold text-gray-800 mb-4">
                         {topicTitle}
                       </h2>
 
                       {/* Description/Overview */}
                       {topicDescription && (
-                        <p className="text-[var(--ds-ink-soft)] font-serif italic leading-relaxed mb-6 max-w-md mx-auto">
+                        <p className="text-gray-600 font-serif leading-relaxed mb-6 max-w-md mx-auto">
                           {topicDescription}
                         </p>
                       )}
 
                       {/* Decorative line */}
-                      <div className="w-40 h-px mx-auto bg-[var(--ds-rule)] mb-8" />
+                      <div className="w-40 h-0.5 mx-auto bg-gradient-to-r from-transparent via-amber-700 to-transparent mb-8" />
 
                       {/* Click to continue */}
                       <button
                         onClick={handleContinue}
-                        className="ds-label px-6 py-2.5 text-[11px] border border-[var(--ds-ink)] bg-[var(--ds-ink)] text-[var(--ds-paper)] hover:bg-transparent hover:text-[var(--ds-ink)] transition-colors"
+                        className="px-8 py-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-serif transition-all shadow-lg"
                       >
                         Begin Reading
                       </button>
@@ -362,31 +363,48 @@ export function ScrollOpenAnimation({
                 ease: [0.25, 0.1, 0.25, 1],
               }}
             >
-              {/* Cover front face: ink-blue cloth binding with a paper-coloured
-                  hairline frame and title block, like a bound drawing set */}
+              {/* Cover front face */}
               <div
-                className="absolute inset-0 rounded-sm flex flex-col items-center justify-center p-8"
+                className="absolute inset-0 rounded-lg flex flex-col items-center justify-center p-8"
                 style={{
-                  background: 'linear-gradient(160deg, #26334a 0%, #1f2a37 55%, #18212d 100%)',
+                  background: 'linear-gradient(135deg, #1a1612 0%, #2a2420 30%, #1a1612 50%, #0f0d0a 100%)',
                   backfaceVisibility: 'hidden',
                 }}
               >
-                <div className="absolute inset-5 border pointer-events-none" style={{ borderColor: 'rgba(244, 239, 227, 0.35)' }} />
-                <div className="absolute inset-7 border pointer-events-none" style={{ borderColor: 'rgba(244, 239, 227, 0.15)' }} />
+                {/* Gold border */}
+                <div
+                  className="absolute inset-6 border-2 rounded pointer-events-none"
+                  style={{ borderColor: 'rgba(212, 175, 55, 0.4)' }}
+                />
 
-                <div className="ds-label text-[10px]" style={{ color: 'rgba(244, 239, 227, 0.6)' }}>
-                  Project Exodus · Learning Academy
+                {/* Decorative corners */}
+                <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2" style={{ borderColor: 'rgba(212, 175, 55, 0.3)' }} />
+                <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2" style={{ borderColor: 'rgba(212, 175, 55, 0.3)' }} />
+                <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2" style={{ borderColor: 'rgba(212, 175, 55, 0.3)' }} />
+                <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2" style={{ borderColor: 'rgba(212, 175, 55, 0.3)' }} />
+
+                {/* Content */}
+                <span className="text-7xl mb-6">{topicIcon}</span>
+
+                <div className="w-40 h-0.5 mb-6" style={{
+                  background: 'linear-gradient(to right, transparent, rgba(212, 175, 55, 0.6), transparent)'
+                }} />
+
+                <div className="text-xl font-serif tracking-wide" style={{ color: '#d4af37' }}>
+                  THE SACRED BOOK OF
                 </div>
-                <div className="w-24 h-px my-6" style={{ background: 'rgba(244, 239, 227, 0.5)' }} />
-                <div className="ds-label text-xs" style={{ color: '#e8956b' }}>
-                  The book of
-                </div>
-                <h1 className="text-4xl font-serif font-semibold mt-2 text-center px-8" style={{ color: '#f4efe3' }}>
-                  {topicTitle.charAt(0) + topicTitle.slice(1).toLowerCase()}
+
+                <h1 className="text-4xl font-serif font-black mt-2 text-center px-8" style={{ color: '#f4e5c2' }}>
+                  {topicTitle.toUpperCase()}
                 </h1>
-                <div className="w-24 h-px mt-6" style={{ background: 'rgba(244, 239, 227, 0.5)' }} />
-                <p className="mt-6 text-sm font-serif italic" style={{ color: 'rgba(244, 239, 227, 0.6)' }}>
-                  A journey of discovery
+
+                <div className="w-40 h-0.5 mt-6" style={{
+                  background: 'linear-gradient(to right, transparent, rgba(212, 175, 55, 0.6), transparent)'
+                }} />
+
+                {/* Subtitle */}
+                <p className="mt-6 text-sm font-serif italic" style={{ color: 'rgba(244, 229, 194, 0.6)' }}>
+                  A Journey of Discovery
                 </p>
               </div>
 

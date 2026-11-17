@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react'
 import { cn } from '@/lib/utils/cn'
 import { sanitizeHtml } from '@/lib/utils/sanitize'
 import { ACCREDITATION_ENABLED } from '@/lib/learning/accreditation'
-import { X, Volume2, VolumeX, Maximize2, Minimize2, ChevronLeft, ChevronRight, GripVertical, Users, Cloud, CloudOff, BookOpen, BookOpenText, Building2, CircleCheck, Droplets, Globe, GraduationCap, Lightbulb, Lock, MessageSquareText, Microscope, PenLine, Puzzle, Recycle, Sparkles, Sprout, Target, Wheat, Zap } from 'lucide-react'
+import { X, Volume2, VolumeX, Maximize2, Minimize2, ChevronLeft, ChevronRight, GripVertical, Users, Cloud, CloudOff } from 'lucide-react'
 
 // Scroll components
 import ScrollContainer, { ScrollWrapper, PageContainer, ScrollSpine, PageEdges } from './ScrollContainer'
@@ -100,60 +100,77 @@ interface ScrollContent {
 // ANCIENT DECORATIVE ELEMENTS
 // ============================================
 
-// Section divider drawn as a dash-dot centre line with a small circle at its
-// midpoint, as on the architecture sheets
-function HieroglyphicDivider({ color }: { color?: string; index?: number }) {
+function AncientBorder({ className }: { className?: string }) {
   return (
-    <div className="flex items-center justify-center gap-2 my-5" aria-hidden>
-      <div
-        className="flex-1 h-px"
-        style={{
-          background: `repeating-linear-gradient(90deg, ${color || 'var(--ds-accent)'} 0 12px, transparent 12px 15px, ${color || 'var(--ds-accent)'} 15px 17px, transparent 17px 20px)`,
-          opacity: 0.6,
-        }}
-      />
-      <span className="h-2 w-2 rounded-full border" style={{ borderColor: color || 'var(--ds-accent)' }} />
-      <div
-        className="flex-1 h-px"
-        style={{
-          background: `repeating-linear-gradient(90deg, ${color || 'var(--ds-accent)'} 0 12px, transparent 12px 15px, ${color || 'var(--ds-accent)'} 15px 17px, transparent 17px 20px)`,
-          opacity: 0.6,
-        }}
-      />
-    </div>
-  )
-}
-
-// Topic emblem for the cover: the topic's icon in a ruled circle with
-// centre lines, drawn in the same hand as the chapter plates
-const TOPIC_EMBLEM_ICONS: Record<string, typeof Zap> = {
-  'renewable-energy': Zap,
-  'water-systems': Droplets,
-  'regenerative-agriculture': Sprout,
-  'zero-waste': Recycle,
-  'green-building': Building2,
-  'food-sovereignty': Wheat,
-}
-function TopicEmblem({ topicId, className }: { topicId: string; className?: string }) {
-  const Icon = TOPIC_EMBLEM_ICONS[topicId] ?? BookOpenText
-  return (
-    <div className={cn('relative', className)} style={{ width: 132, height: 132 }}>
-      <svg viewBox="0 0 132 132" className="absolute inset-0 h-full w-full" fill="none" aria-hidden>
-        <path d="M66 2 L66 130 M2 66 L130 66" stroke="var(--ds-accent)" strokeWidth={0.5} strokeDasharray="10 3 2 3" />
-        <circle cx={66} cy={66} r={50} stroke="var(--ds-ink)" strokeWidth={1.5} />
-        <circle cx={66} cy={66} r={38} stroke="var(--ds-ink)" strokeWidth={0.5} opacity={0.55} />
-        <rect x={14} y={14} width={104} height={104} stroke="var(--ds-ink)" strokeWidth={0.5} opacity={0.25} />
+    <div className={cn('absolute inset-0 pointer-events-none', className)}>
+      {/* Corner flourishes */}
+      <svg className="absolute top-2 left-2 w-12 h-12 text-[var(--primary)]/20" viewBox="0 0 48 48">
+        <path
+          d="M4 24 L4 4 L24 4 M4 4 L16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <circle cx="8" cy="8" r="2" fill="currentColor" />
       </svg>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <Icon className="h-10 w-10 text-[var(--ds-ink)]" strokeWidth={1.25} />
-      </div>
+      <svg className="absolute top-2 right-2 w-12 h-12 text-[var(--primary)]/20 rotate-90" viewBox="0 0 48 48">
+        <path
+          d="M4 24 L4 4 L24 4 M4 4 L16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <circle cx="8" cy="8" r="2" fill="currentColor" />
+      </svg>
+      <svg className="absolute bottom-2 left-2 w-12 h-12 text-[var(--primary)]/20 -rotate-90" viewBox="0 0 48 48">
+        <path
+          d="M4 24 L4 4 L24 4 M4 4 L16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <circle cx="8" cy="8" r="2" fill="currentColor" />
+      </svg>
+      <svg className="absolute bottom-2 right-2 w-12 h-12 text-[var(--primary)]/20 rotate-180" viewBox="0 0 48 48">
+        <path
+          d="M4 24 L4 4 L24 4 M4 4 L16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <circle cx="8" cy="8" r="2" fill="currentColor" />
+      </svg>
     </div>
   )
 }
 
-/** Strip a leading emoji from generated content strings (shown with drafting markers instead) */
-function stripLeadingEmoji(text: string): string {
-  return text.replace(/^[\p{Extended_Pictographic}\uFE0F\u200D\s]+/u, '')
+function HieroglyphicDivider({ color, index = 0 }: { color?: string; index?: number }) {
+  // Ancient-inspired decorative symbols — deterministic selection based on index
+  const symbols = ['☥', '𓂀', '☀', '✦', '◈', '❋', '⚜']
+  const randomSymbol = symbols[Math.abs(index) % symbols.length]
+
+  return (
+    <div className="flex items-center justify-center gap-4 my-6">
+      <div
+        className="flex-1 h-px"
+        style={{
+          background: `linear-gradient(to right, transparent, ${color || 'var(--border)'}, transparent)`,
+        }}
+      />
+      <span
+        className="text-xl opacity-40"
+        style={{ color: color || 'var(--muted-foreground)' }}
+      >
+        {randomSymbol}
+      </span>
+      <div
+        className="flex-1 h-px"
+        style={{
+          background: `linear-gradient(to left, transparent, ${color || 'var(--border)'}, transparent)`,
+        }}
+      />
+    </div>
+  )
 }
 
 // ============================================
@@ -543,7 +560,6 @@ export function DigitalScroll({
     }
   }, [currentPageIndex, goToPage, isDesktop, isContentPage])
 
-  // Jump to a page; long jumps play the rapid page-flip
   const jumpToPage = useCallback((pageIndex: number) => {
     if (pageIndex !== -1) {
       const clampedIndex = Math.max(0, Math.min(pageIndex, totalPages - 1))
@@ -720,23 +736,15 @@ export function DigitalScroll({
     switch (page.type) {
       case 'cover':
         return (
-          <div className="ds-sheet relative w-full h-full flex items-center justify-center text-[var(--ds-ink)]">
-            <div aria-hidden className="pointer-events-none absolute inset-[5px] border border-[var(--ds-hair)]" />
-            <div className="text-center px-6">
-              <TopicEmblem topicId={topic.id} className="mx-auto mb-6" />
-              <p className="ds-label text-[10px] text-[var(--ds-accent)] mb-2">
-                {volumeCount > 1 ? `${volumeLabel(volumeIndex)} of ${volumeCount}` : 'Course text'}
-              </p>
-              <h1 className="text-3xl sm:text-4xl font-serif font-semibold leading-tight">
-                {topic.title.charAt(0) + topic.title.slice(1).toLowerCase()}
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="text-center px-4">
+              <span className="text-7xl block mb-6">{CORE_TOPIC_ICONS[topic.id] || '📖'}</span>
+              <h1 className="text-3xl sm:text-4xl font-serif font-bold" style={{ color: currentRibbon?.colors.from }}>
+                {topic.title}
               </h1>
-              <div className="mx-auto mt-3 h-px w-16 bg-[var(--ds-ink)]" aria-hidden />
-              <p className="mt-3 text-sm italic font-serif text-[var(--ds-ink-soft)]">A journey of knowledge</p>
-            </div>
-            {/* Title block, bottom right, as on a drawing sheet */}
-            <div className="absolute bottom-4 right-4 border border-[var(--ds-rule)] px-3 py-1.5 text-left">
-              <div className="ds-label text-[8px] text-[var(--ds-ink-soft)]">Sheet</div>
-              <div className="ds-label text-[10px]">{topic.id.split('-').map(w => w[0]).join('').toUpperCase()}-00 · Cover</div>
+              <p className="text-sm text-[var(--muted-foreground)] mt-4 italic">
+                A Journey of Knowledge
+              </p>
             </div>
           </div>
         )
@@ -763,6 +771,7 @@ export function DigitalScroll({
       case 'toc':
         return (
           <div className="w-full h-full flex flex-col px-2">
+            <AncientBorder />
             {/* TOC Header */}
             <div className="text-center py-2 shrink-0">
               <h2 className="text-xl sm:text-2xl font-serif font-bold text-[var(--book-text,var(--foreground))] mb-0.5">
@@ -835,10 +844,11 @@ export function DigitalScroll({
         const missionColor = currentRibbon?.colors.from || 'var(--primary)'
         return (
           <div className="w-full h-full flex flex-col relative">
+            <AncientBorder />
 
             {/* Header - compact */}
             <div className="text-center pt-3 pb-1 shrink-0">
-              <Target className="w-4 h-4 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden />
+              <span className="text-lg">🎯</span>
               <h3 className="text-sm font-serif font-bold text-[var(--book-text,var(--foreground))]">
                 Set Your Intentions
               </h3>
@@ -860,7 +870,7 @@ export function DigitalScroll({
               {/* Intention 1: What I hope to learn */}
               <div>
                 <div className="flex items-center gap-1 mb-0.5">
-                  <Sparkles className="w-3 h-3 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden />
+                  <span className="text-[10px]">✨</span>
                   <p className="text-[9px] font-medium text-[var(--book-text,var(--foreground))]">
                     By studying {topic.title}, I hope to learn...
                   </p>
@@ -888,7 +898,7 @@ export function DigitalScroll({
               {/* Intention 2: What I already know */}
               <div>
                 <div className="flex items-center gap-1 mb-0.5">
-                  <MessageSquareText className="w-3 h-3 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden />
+                  <span className="text-[10px]">💭</span>
                   <p className="text-[9px] font-medium text-[var(--book-text,var(--foreground))]">
                     What I already know about this topic is...
                   </p>
@@ -916,7 +926,7 @@ export function DigitalScroll({
               {/* Intention 3: How I will apply */}
               <div>
                 <div className="flex items-center gap-1 mb-0.5">
-                  <Sprout className="w-3 h-3 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden />
+                  <span className="text-[10px]">🌱</span>
                   <p className="text-[9px] font-medium text-[var(--book-text,var(--foreground))]">
                     I plan to apply this knowledge by...
                   </p>
@@ -956,7 +966,6 @@ export function DigitalScroll({
           <div className="w-full h-full">
             <ChapterDivider
               chapterIndex={page.chapterIndex ?? 0}
-              chapterNumber={chapterOffset + (page.chapterIndex ?? 0) + 1}
               chapterTitle={page.title || ''}
               versesCount={page.module?.lessons.length ?? 0}
               guardianQuote={getGuardianQuote(page.chapterIndex ?? 0)}
@@ -982,6 +991,7 @@ export function DigitalScroll({
 
         return (
           <div className="w-full h-full flex flex-col relative px-4 py-3">
+            <AncientBorder />
 
             {/* Header with Accreditation Badge */}
             <div className="text-center pb-2 shrink-0">
@@ -1017,7 +1027,7 @@ export function DigitalScroll({
                     {chapterModule?.title}
                   </p>
                   <p className="text-sm text-[var(--muted-foreground)]">
-                    {totalDuration} min · {allLessons.length} {allLessons.length === 1 ? 'lesson' : 'lessons'}
+                    {totalDuration} min • {allLessons.length} lessons
                   </p>
                 </>
               )}
@@ -1035,8 +1045,8 @@ export function DigitalScroll({
               {/* LEARNING OBJECTIVES - shown for undergrad/graduate levels */}
               {showAccreditation && chapterAccreditation.learningObjectives.length > 0 && (
                 <div className="min-h-0">
-                  <p className="text-[10px] ds-label text-[var(--muted-foreground)] mb-0.5 flex items-center gap-1">
-                    <Target className="w-3 h-3 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Learning Objectives
+                  <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                    <span className="text-xs">🎯</span> Learning Objectives
                   </p>
                   <div className="space-y-0.5">
                     {chapterAccreditation.learningObjectives.slice(0, 4).map((objective, idx) => (
@@ -1061,23 +1071,26 @@ export function DigitalScroll({
 
               {/* LESSONS SECTION */}
               <div className="min-h-0">
-                <p className="text-[10px] ds-label text-[var(--muted-foreground)] mb-0.5 flex items-center gap-1">
-                  <BookOpen className="w-3 h-3 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Lessons
+                <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                  <span className="text-xs">📚</span> Lessons
                 </p>
                 <div className="space-y-0.5">
                   {allLessons.slice(0, showAccreditation ? 4 : 5).map((lesson, idx) => (
                     <div
                       key={lesson.id || idx}
-                      className="flex items-center gap-2 py-1 px-1 border-b border-[var(--ds-hair)]"
+                      className="flex items-center gap-1.5 py-0.5 px-1.5 rounded bg-[var(--muted)]/15"
                     >
-                      <span className="ds-label text-[9px] shrink-0 tabular-nums" style={{ color: introColor }}>
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
+                      <div
+                        className="w-4 h-4 rounded-full flex items-center justify-center text-white text-[8px] font-bold shrink-0"
+                        style={{ background: introColor }}
+                      >
+                        {idx + 1}
+                      </div>
                       <p className="flex-1 text-[10px] font-medium text-[var(--book-text,var(--foreground))] truncate">
                         {lesson.title}
                       </p>
-                      <span className="ds-label text-[9px] text-[var(--muted-foreground)] shrink-0 tabular-nums">
-                        {lesson.duration} min
+                      <span className="text-[9px] text-[var(--muted-foreground)] shrink-0">
+                        {lesson.duration}m
                       </span>
                     </div>
                   ))}
@@ -1089,7 +1102,7 @@ export function DigitalScroll({
                 <div className="flex gap-2">
                   <div className="flex-1 p-2 rounded-lg bg-[var(--muted)]/20">
                     <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase flex items-center gap-1 mb-0.5">
-                      <PenLine className="w-3 h-3 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Assessment
+                      <span className="text-xs">📝</span> Assessment
                     </p>
                     <p className="text-[10px] text-[var(--book-text,var(--foreground))]">
                       {chapterQuiz?.questions?.length || 10} questions • {chapterAccreditation.assessmentFramework.passingThreshold}% to pass
@@ -1097,7 +1110,7 @@ export function DigitalScroll({
                   </div>
                   <div className="flex-1 p-2 rounded-lg bg-[var(--muted)]/20">
                     <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase flex items-center gap-1 mb-0.5">
-                      <Microscope className="w-3 h-3 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Project
+                      <span className="text-xs">🔬</span> Project
                     </p>
                     <p className="text-[10px] text-[var(--book-text,var(--foreground))] truncate">
                       {chapterAccreditation.finalProject.title}
@@ -1110,7 +1123,7 @@ export function DigitalScroll({
                   {chapterGame && (
                     <div className="flex-1 p-3 rounded-lg bg-[var(--muted)]/20">
                       <p className="text-xs font-bold text-[var(--muted-foreground)] uppercase flex items-center gap-1 mb-1">
-                        <Puzzle className="w-4 h-4 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Game
+                        <span className="text-base">🎮</span> Game
                       </p>
                       <p className="text-sm font-medium text-[var(--book-text,var(--foreground))]">
                         {chapterGame.title}
@@ -1122,10 +1135,10 @@ export function DigitalScroll({
                   {chapterQuiz && (
                     <div className="flex-1 p-3 rounded-lg bg-[var(--muted)]/20">
                       <p className="text-xs font-bold text-[var(--muted-foreground)] uppercase flex items-center gap-1 mb-1">
-                        <CircleCheck className="w-4 h-4 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Quiz
+                        <span className="text-base">✅</span> Quiz
                       </p>
                       <p className="text-sm font-medium text-[var(--book-text,var(--foreground))]">
-                        {chapterQuiz.questions?.length || 0} hand-written {(chapterQuiz.questions?.length || 0) === 1 ? 'question' : 'questions'}
+                        {chapterQuiz.questions?.length || 0} questions
                       </p>
                     </div>
                   )}
@@ -1135,7 +1148,7 @@ export function DigitalScroll({
               {/* Module Description / Course Info */}
               {showAccreditation ? (
                 <div className="p-2 rounded-lg bg-[var(--muted)]/10 border-l-3" style={{ borderColor: introColor }}>
-                  <p className="text-[10px] ds-label text-[var(--muted-foreground)] mb-0.5">
+                  <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-0.5">
                     {chapterAccreditation.discipline}
                   </p>
                   <p className="text-[10px] italic text-[var(--muted-foreground)] leading-relaxed line-clamp-3">
@@ -1180,7 +1193,7 @@ export function DigitalScroll({
             {/* Header - compact */}
             <div className="text-center pt-1 pb-1 shrink-0">
               <div className="flex items-center justify-center gap-1.5 mb-0.5">
-                {gamesCompleted ? <CircleCheck className="w-3.5 h-3.5 text-[var(--ds-accent)]" strokeWidth={1.5} aria-hidden /> : <Puzzle className="w-3.5 h-3.5" strokeWidth={1.5} aria-hidden />}
+                <span className="text-sm">{gamesCompleted ? '✅' : '🎮'}</span>
                 <h3 className="text-xs font-serif font-bold text-[var(--book-text,var(--foreground))]">
                   Practice Activities
                 </h3>
@@ -1300,11 +1313,12 @@ export function DigitalScroll({
         const showAccreditedReview = ACCREDITATION_ENABLED && reviewAccreditation && (selectedLevel === 'UNDERGRADUATE' || selectedLevel === 'GRADUATE' || selectedLevel === 'PHD')
         return (
           <div className="w-full h-full flex flex-col relative px-3 py-2">
+            <AncientBorder />
 
             {/* Header */}
             <div className="text-center pb-2 shrink-0">
               <h3 className="text-lg font-serif font-bold text-[var(--book-text,var(--foreground))] flex items-center justify-center gap-2">
-                {showAccreditedReview ? <GraduationCap className="w-5 h-5" strokeWidth={1.5} aria-hidden /> : <BookOpen className="w-5 h-5" strokeWidth={1.5} aria-hidden />}
+                <span className="text-xl">{showAccreditedReview ? '🎓' : '📚'}</span>
                 {showAccreditedReview ? 'Module Assessment' : 'Chapter Review'}
               </h3>
               <div
@@ -1322,7 +1336,7 @@ export function DigitalScroll({
                   {/* Objectives Checklist */}
                   <div>
                     <p className="text-xs font-bold text-[var(--muted-foreground)] mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
-                      <Target className="w-3.5 h-3.5 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Learning Objectives Demonstrated
+                      <span className="text-sm">🎯</span> Learning Objectives Demonstrated
                     </p>
                     <div className="space-y-1">
                       {reviewAccreditation.learningObjectives.slice(0, 4).map((objective, idx) => (
@@ -1342,7 +1356,7 @@ export function DigitalScroll({
                   {/* Assessment Requirements */}
                   <div>
                     <p className="text-xs font-bold text-[var(--muted-foreground)] mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
-                      <PenLine className="w-3.5 h-3.5 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Assessment Requirements
+                      <span className="text-sm">📝</span> Assessment Requirements
                     </p>
                     <div className="space-y-1.5">
                       {reviewAccreditation.assessmentFramework.summativeAssessments.map((assessment, idx) => (
@@ -1360,7 +1374,7 @@ export function DigitalScroll({
                   {/* Final Project Preview */}
                   <div>
                     <p className="text-xs font-bold text-[var(--muted-foreground)] mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
-                      <Microscope className="w-3.5 h-3.5 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Applied Project
+                      <span className="text-sm">🔬</span> Applied Project
                     </p>
                     <div className="p-2 rounded-lg bg-[var(--muted)]/20">
                       <p className="text-xs font-bold text-[var(--book-text,var(--foreground))]">
@@ -1397,8 +1411,8 @@ export function DigitalScroll({
                 <>
                   {/* Key Terms Section */}
                   <div className="min-h-0">
-                    <p className="text-[10px] ds-label text-[var(--muted-foreground)] mb-1 flex items-center gap-1">
-                      <BookOpenText className="w-3 h-3 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Key Terms
+                    <p className="text-[10px] font-bold text-[var(--muted-foreground)] mb-1 flex items-center gap-1 uppercase tracking-wider">
+                      <span className="text-xs">📖</span> Key Terms
                     </p>
                     <div className="grid grid-cols-2 gap-1.5">
                       {(page.keyTerms || []).slice(0, 4).map((item, idx) => (
@@ -1415,17 +1429,17 @@ export function DigitalScroll({
 
                   {/* Fun Facts Section */}
                   <div className="min-h-0">
-                    <p className="text-[10px] ds-label text-[var(--muted-foreground)] mb-1 flex items-center gap-1">
-                      <Lightbulb className="w-3 h-3 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Did You Know?
+                    <p className="text-[10px] font-bold text-[var(--muted-foreground)] mb-1 flex items-center gap-1 uppercase tracking-wider">
+                      <span className="text-xs">💡</span> Did You Know?
                     </p>
                     <div className="space-y-1">
                       {(page.funFacts || []).slice(0, 2).map((fact, idx) => (
                         <div
                           key={idx}
-                          className="py-1 pl-2 border-l text-[10px] text-[var(--book-text,var(--foreground))] leading-snug"
-                          style={{ borderColor: reviewColor }}
+                          className="p-1.5 rounded-lg border-l-2 text-[10px] text-[var(--book-text,var(--foreground))] leading-snug"
+                          style={{ borderColor: reviewColor, background: `${reviewColor}10` }}
                         >
-                          {stripLeadingEmoji(fact)}
+                          {fact}
                         </div>
                       ))}
                     </div>
@@ -1433,19 +1447,19 @@ export function DigitalScroll({
 
                   {/* Summary Section */}
                   <div className="min-h-0">
-                    <p className="text-[10px] ds-label text-[var(--muted-foreground)] mb-1 flex items-center gap-1">
+                    <p className="text-[10px] font-bold text-[var(--muted-foreground)] mb-1 flex items-center gap-1 uppercase tracking-wider">
                       <span className="text-xs">✓</span> Key Takeaways
                     </p>
                     <div className="space-y-1">
                       {(page.summaryPoints || []).slice(0, 2).map((point, idx) => (
                         <div key={idx} className="flex items-start gap-1.5">
                           <span
-                            className="ds-label text-[8px] shrink-0 mt-0.5 tabular-nums"
-                            style={{ color: reviewColor }}
+                            className="w-4 h-4 rounded-full flex items-center justify-center text-white text-[8px] shrink-0 mt-0.5"
+                            style={{ background: reviewColor }}
                           >
-                            {String(idx + 1).padStart(2, '0')}
+                            ✓
                           </span>
-                          <p className="text-[10px] text-[var(--book-text,var(--foreground))] leading-snug">{stripLeadingEmoji(point)}</p>
+                          <p className="text-[10px] text-[var(--book-text,var(--foreground))] leading-snug">{point}</p>
                         </div>
                       ))}
                     </div>
@@ -1483,11 +1497,12 @@ export function DigitalScroll({
         const legacyNoteKey = volumeIndex === 0 ? `chapter-${page.chapterIndex ?? 'general'}-notes` : null
         return (
           <div className="w-full h-full flex flex-col relative px-2 py-1">
+            <AncientBorder />
 
             {/* Header - compact */}
             <div className="text-center pb-1 shrink-0">
               <h3 className="text-sm font-serif font-bold text-[var(--book-text,var(--foreground))] flex items-center justify-center gap-1.5">
-                <Target className="w-4 h-4 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Apply & Reflect
+                <span className="text-base">🎯</span> Apply & Reflect
               </h3>
               <p className="text-[10px] text-[var(--muted-foreground)]">{enhancedChapterTitle}</p>
               <div
@@ -1499,15 +1514,15 @@ export function DigitalScroll({
             {/* Real World Actions - compact */}
             <div className="mb-2 shrink-0">
               <p className="text-[10px] font-bold text-[var(--muted-foreground)] mb-1 uppercase tracking-wider flex items-center gap-1">
-                <Globe className="w-3 h-3 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Try This:
+                <span className="text-xs">🌍</span> Try This:
               </p>
               <div className="flex gap-1.5">
                 {(page.realWorldExamples || []).slice(0, 3).map((ex, idx) => (
                   <div
                     key={idx}
-                    className="flex-1 p-2 border border-[var(--ds-hair)] text-center"
+                    className="flex-1 p-2 rounded-lg bg-[var(--muted)]/20 text-center"
                   >
-                    <span className="ds-label block mb-0.5 text-[9px] text-[var(--ds-accent)] tabular-nums">{String(idx + 1).padStart(2, '0')}</span>
+                    <span className="text-lg block mb-0.5">{ex.icon}</span>
                     <p className="text-[10px] font-medium text-[var(--book-text,var(--foreground))] leading-tight">{ex.title}</p>
                   </div>
                 ))}
@@ -1518,8 +1533,8 @@ export function DigitalScroll({
             <div className="flex-1 min-h-0 flex flex-col">
               {/* Eye sits beside the label: the page edge has an invisible page-turn strip */}
               <div className="flex items-center gap-1.5 mb-1 shrink-0">
-                <p className="text-[10px] ds-label text-[var(--muted-foreground)] flex items-center gap-1">
-                  <PenLine className="w-3 h-3 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden /> Your Notes:
+                <p className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider flex items-center gap-1">
+                  <span className="text-xs">📝</span> Your Notes:
                 </p>
                 <NoteVisibilityToggle
                   visibility={scrollNotes.visibilityOf(enhancedNoteKey)}
@@ -1591,7 +1606,7 @@ export function DigitalScroll({
             {/* Header - compact */}
             <div className="text-center pt-1 pb-1 shrink-0">
               <div className="flex items-center justify-center gap-1.5 mb-0.5">
-                {isQuizUnlocked ? <PenLine className="w-3.5 h-3.5" strokeWidth={1.5} aria-hidden /> : <Lock className="w-3.5 h-3.5" strokeWidth={1.5} aria-hidden />}
+                <span className="text-sm">{isQuizUnlocked ? '📝' : '🔒'}</span>
                 <h3 className="text-xs font-serif font-bold text-[var(--book-text,var(--foreground))]">
                   Chapter Quiz
                 </h3>
@@ -1606,7 +1621,7 @@ export function DigitalScroll({
               {!isQuizUnlocked ? (
                 <div className="h-full flex flex-col items-center justify-center text-center p-3">
                   <div className="w-12 h-12 rounded-full bg-[var(--muted)] flex items-center justify-center mb-3">
-                    <Lock className="w-6 h-6 shrink-0 text-[var(--ds-ink,currentColor)]" strokeWidth={1.5} aria-hidden />
+                    <span className="text-2xl">🔒</span>
                   </div>
                   <h4 className="text-xs font-bold text-[var(--book-text,var(--foreground))] mb-1.5">
                     Quiz Locked
@@ -1911,7 +1926,7 @@ export function DigitalScroll({
                       : 'Notes stay on this device only. Copies on your account were removed (shared notes stay shared).'
                 )
               }}
-              className="p-2 rounded-full bg-[var(--ds-paper)] text-[var(--ds-ink)] hover:bg-[var(--ds-paper-deep)] border border-[var(--ds-rule)] transition-colors"
+              className="p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
               aria-label={scrollNotes.settings?.syncScrollNotes ? 'Notes sync to your account. Click to keep them on this device only.' : 'Notes are on this device only. Click to sync them to your account.'}
               aria-pressed={Boolean(scrollNotes.settings?.syncScrollNotes)}
               title={scrollNotes.settings?.syncScrollNotes ? 'Syncing notes to your account' : 'Notes on this device only'}
@@ -1926,7 +1941,7 @@ export function DigitalScroll({
             {/* Sound Toggle */}
             <button
               onClick={() => scrollState.updatePreferences({ soundEnabled: !scrollState.preferences.soundEnabled })}
-              className="p-2 rounded-full bg-[var(--ds-paper)] text-[var(--ds-ink)] hover:bg-[var(--ds-paper-deep)] border border-[var(--ds-rule)] transition-colors"
+              className="p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
               aria-label={scrollState.preferences.soundEnabled ? 'Mute sounds' : 'Enable sounds'}
             >
               {scrollState.preferences.soundEnabled ? (
@@ -1939,7 +1954,7 @@ export function DigitalScroll({
             {/* Expand/Minimize Button */}
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="p-2 rounded-full bg-[var(--ds-paper)] text-[var(--ds-ink)] hover:bg-[var(--ds-paper-deep)] border border-[var(--ds-rule)] transition-colors"
+              className="p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
               aria-label={isExpanded ? 'Exit fullscreen' : 'Enter fullscreen'}
             >
               {isExpanded ? (
@@ -1952,7 +1967,7 @@ export function DigitalScroll({
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className="p-2 rounded-full bg-[var(--ds-ink)] text-[var(--ds-paper)] hover:opacity-85 border border-[var(--ds-ink)] transition-opacity"
+              className="p-2 rounded-full bg-red-500/90 text-white hover:bg-red-600 transition-all"
               aria-label="Close scroll"
             >
               <X className="w-4 h-4 sm:w-5 sm:h-5" />
