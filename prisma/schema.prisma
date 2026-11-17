@@ -20,64 +20,64 @@ model User {
   email         String    @unique
   emailVerified DateTime?
   image         String?
-  password      String?   // For email/password auth
+  password      String? // For email/password auth
 
   // LinkedIn-style Profile Fields
-  bio           String?   @db.Text
-  headline      String?   // Professional tagline (e.g., "Sustainability Advocate | Green Building Expert")
-  banner        String?   // Banner/cover image URL
-  location      String?
-  phone         String?   // Contact phone number
-  showEmail     Boolean   @default(false)
-  showPhone     Boolean   @default(false)
-  company       String?   // Current company/organization
-  jobTitle      String?   // Current job title
-  website       String?   // Personal website or portfolio
-  linkedin      String?   // LinkedIn profile URL
-  twitter       String?   // Twitter/X handle
-  interests     String[]  // Array of interests
-  expertise     String[]  // Array of skills/expertise areas
+  bio       String?  @db.Text
+  headline  String? // Professional tagline (e.g., "Sustainability Advocate | Green Building Expert")
+  banner    String? // Banner/cover image URL
+  location  String?
+  phone     String? // Contact phone number
+  showEmail Boolean  @default(false)
+  showPhone Boolean  @default(false)
+  company   String? // Current company/organization
+  jobTitle  String? // Current job title
+  website   String? // Personal website or portfolio
+  linkedin  String? // LinkedIn profile URL
+  twitter   String? // Twitter/X handle
+  interests String[] // Array of interests
+  expertise String[] // Array of skills/expertise areas
 
   // Professional Background
-  experience    Json?     // Array of work experience objects
-  education     Json?     // Array of education objects
-  resume        String?   // Uploaded resume/CV file path or URL
+  experience Json? // Array of work experience objects
+  education  Json? // Array of education objects
+  resume     String? // Uploaded resume/CV file path or URL
 
   // LinkedIn-style Additional Sections
-  skills        Json?     // Array of skill objects {name, level}
-  languages     Json?     // Array of language objects {name, proficiency}
-  certifications Json?    // Array of certification objects {name, issuer, date, url}
-  volunteer     Json?     // Array of volunteer experience objects {role, organization, startDate, endDate, description}
-  publications  Json?     // Array of publication objects {title, publisher, date, url, description}
-  honors        Json?     // Array of honors/awards objects {title, issuer, date, description}
-  projects      Json?     // Array of project objects {name, startDate, endDate, description, url}
+  skills         Json? // Array of skill objects {name, level}
+  languages      Json? // Array of language objects {name, proficiency}
+  certifications Json? // Array of certification objects {name, issuer, date, url}
+  volunteer      Json? // Array of volunteer experience objects {role, organization, startDate, endDate, description}
+  publications   Json? // Array of publication objects {title, publisher, date, url, description}
+  honors         Json? // Array of honors/awards objects {title, issuer, date, description}
+  projects       Json? // Array of project objects {name, startDate, endDate, description, url}
 
   // Identity Declaration (7 Guardians)
-  guardianArchetype String?   // Selected guardian value: michael, gabriel, raphael, uriel, camael, jophiel, zadkiel
-  declaration       String?   @db.Text // Personal declaration/truth statement
+  guardianArchetype String? // Selected guardian value: michael, gabriel, raphael, uriel, camael, jophiel, zadkiel
+  declaration       String? @db.Text // Personal declaration/truth statement
 
   // Privacy Settings (JSON object with all privacy preferences)
-  privacySettings   Json?     // { profileVisibility, showExperience, showEducation, showSkills, showBadges, showContact, allowMessages, resumeVisibility }
+  privacySettings Json? // { profileVisibility, showExperience, showEducation, showSkills, showBadges, showContact, allowMessages, resumeVisibility }
 
   // Notification Preferences (JSON object with notification settings)
   notificationPreferences Json? // { email, newsletter, communityUpdates, productUpdates, messages, connectionRequests, endorsements }
 
   // Theme Preference
-  themePreference String?   @default("auto") // Theme mode: auto, light, dark, sunrise, sunset, dusk
+  themePreference String? @default("auto") // Theme mode: auto, light, dark, sunrise, sunset, dusk
 
   // Reputation / contribution score (computed from projects, articles, modules, followers, connections)
-  stockScore    Int       @default(0)
+  stockScore Int @default(0)
 
   // Fish Tank Customization (JSON: { species, colors: { body, fin, accent, eye }, pattern })
   fishCustomization Json?
 
-  role          UserRole  @default(USER)
+  role      UserRole @default(USER)
   // Admin-set verification flag — used by the profile page to render
   // a small ShieldCheck next to the name. Not currently editable from
   // the UI; flip from the admin dashboard or directly in the DB.
-  verified      Boolean   @default(false)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
   accounts              Account[]
@@ -90,102 +90,103 @@ model User {
   articleReads          ArticleRead[]
   notifications         Notification[]
   adminLogs             AdminLog[]
-  following             UserFollow[]       @relation("Following")
-  followers             UserFollow[]       @relation("Followers")
+  following             UserFollow[]           @relation("Following")
+  followers             UserFollow[]           @relation("Followers")
   userBadges            UserBadge[]
   projectMemberships    ProjectMember[]
-  createdProjects       Project[]          @relation("ProjectCreator")
-  projectMessages       ProjectMessage[]   @relation("ProjectMessages")
-  sentMessages          DirectMessage[]    @relation("SentMessages")
-  receivedMessages      DirectMessage[]    @relation("ReceivedMessages")
-  messageReactions      MessageReaction[]  @relation("MessageReactions")
-  createdEvents         Event[]            @relation("CreatedEvents")
+  createdProjects       Project[]              @relation("ProjectCreator")
+  projectMessages       ProjectMessage[]       @relation("ProjectMessages")
+  sentMessages          DirectMessage[]        @relation("SentMessages")
+  receivedMessages      DirectMessage[]        @relation("ReceivedMessages")
+  messageReactions      MessageReaction[]      @relation("MessageReactions")
+  createdEvents         Event[]                @relation("CreatedEvents")
   eventAttendances      EventAttendee[]
-  reportedContent       Report[]           @relation("ReportedBy")
-  assignedReports       Report[]           @relation("ReportAssignedTo")
-  resolvedReports       Report[]           @relation("ReportResolvedBy")
-  socialPosts           SocialPost[]     @relation("SocialPosts")
-  socialComments        SocialComment[]  @relation("SocialComments")
-  socialLikes           SocialLike[]     @relation("SocialLikes")
-  userProducts          UserProduct[]    @relation("UserProducts")
-  sentConnections       Connection[]     @relation("SentConnections")
-  receivedConnections   Connection[]     @relation("ReceivedConnections")
+  reportedContent       Report[]               @relation("ReportedBy")
+  assignedReports       Report[]               @relation("ReportAssignedTo")
+  resolvedReports       Report[]               @relation("ReportResolvedBy")
+  socialPosts           SocialPost[]           @relation("SocialPosts")
+  socialComments        SocialComment[]        @relation("SocialComments")
+  socialLikes           SocialLike[]           @relation("SocialLikes")
+  userProducts          UserProduct[]          @relation("UserProducts")
+  sentConnections       Connection[]           @relation("SentConnections")
+  receivedConnections   Connection[]           @relation("ReceivedConnections")
   learningProgress      UserLearningProgress[]
   topicModuleProgress   TopicModuleProgress[]
   learnerProfile        LearnerProfile?
   scrollNotes           ScrollNote[]
-  articlePeerReviews    ArticlePeerReview[] @relation("ArticlePeerReviews")
-  reviewLikes           ReviewLike[]       @relation("ReviewLikes")
-  adminAlerts           AdminAlert[]       @relation("AdminAlerts")
+  scrollDiscussionPosts ScrollDiscussionPost[]
+  articlePeerReviews    ArticlePeerReview[]    @relation("ArticlePeerReviews")
+  reviewLikes           ReviewLike[]           @relation("ReviewLikes")
+  adminAlerts           AdminAlert[]           @relation("AdminAlerts")
 
   // Multi-level learning system
-  moduleDiscussions         ModuleDiscussion[]      @relation("ModuleDiscussionAuthor")
-  moduleDiscussionReplies   ModuleDiscussionReply[] @relation("ModuleDiscussionReplyAuthor")
-  discussionHelpfulVotes    DiscussionHelpfulVote[] @relation("DiscussionHelpfulVoter")
+  moduleDiscussions       ModuleDiscussion[]      @relation("ModuleDiscussionAuthor")
+  moduleDiscussionReplies ModuleDiscussionReply[] @relation("ModuleDiscussionReplyAuthor")
+  discussionHelpfulVotes  DiscussionHelpfulVote[] @relation("DiscussionHelpfulVoter")
 
   // Article reading experience
-  readingProgress           ArticleReadingProgress[] @relation("ArticleReadingProgress")
-  articleBookmarks          ArticleBookmark[]        @relation("ArticleBookmarks")
-  articleHighlights         ArticleHighlight[]       @relation("ArticleHighlights")
+  readingProgress   ArticleReadingProgress[] @relation("ArticleReadingProgress")
+  articleBookmarks  ArticleBookmark[]        @relation("ArticleBookmarks")
+  articleHighlights ArticleHighlight[]       @relation("ArticleHighlights")
 
   // Reading collections
-  readingCollections        ReadingCollection[]      @relation("ReadingCollections")
-  collectionFollows         CollectionFollow[]       @relation("CollectionFollows")
+  readingCollections ReadingCollection[] @relation("ReadingCollections")
+  collectionFollows  CollectionFollow[]  @relation("CollectionFollows")
 
   // Gamification
-  userAchievements          UserAchievement[]        @relation("UserAchievements")
-  readingStreak             ReadingStreak?           @relation("ReadingStreak")
-  userPoints                UserPoints?              @relation("UserPoints")
+  userAchievements UserAchievement[] @relation("UserAchievements")
+  readingStreak    ReadingStreak?    @relation("ReadingStreak")
+  userPoints       UserPoints?       @relation("UserPoints")
 
   // Author analytics
-  authorAnalytics           AuthorAnalytics?         @relation("AuthorAnalytics")
+  authorAnalytics AuthorAnalytics? @relation("AuthorAnalytics")
 
   // Recommendations
-  articleRecommendations    ArticleRecommendation[]  @relation("ArticleRecommendations")
+  articleRecommendations ArticleRecommendation[] @relation("ArticleRecommendations")
 
   // Enhanced Project Relations
-  subgroupLeaderships       SubgroupLeader[]         @relation("SubgroupLeaders")
-  subgroupMemberships       SubgroupMember[]         @relation("SubgroupMembers")
-  subgroupJoinRequests      SubgroupJoinRequest[]    @relation("SubgroupJoinRequests")
-  projectDiscussions        ProjectDiscussion[]      @relation("ProjectDiscussionAuthor")
-  projectDiscussionReplies  ProjectDiscussionReply[] @relation("ProjectDiscussionReplyAuthor")
-  subgroupDiscussions       SubgroupDiscussion[]     @relation("SubgroupDiscussionAuthor")
-  subgroupDiscussionReplies SubgroupDiscussionReply[] @relation("SubgroupDiscussionReplyAuthor")
-  projectResearchPosts      ProjectResearch[]        @relation("ProjectResearchAuthor")
-  projectResearchComments   ProjectResearchComment[] @relation("ProjectResearchCommentAuthor")
-  projectModuleProgress     ProjectModuleProgress[]  @relation("ProjectModuleProgress")
+  subgroupLeaderships       SubgroupLeader[]            @relation("SubgroupLeaders")
+  subgroupMemberships       SubgroupMember[]            @relation("SubgroupMembers")
+  subgroupJoinRequests      SubgroupJoinRequest[]       @relation("SubgroupJoinRequests")
+  projectDiscussions        ProjectDiscussion[]         @relation("ProjectDiscussionAuthor")
+  projectDiscussionReplies  ProjectDiscussionReply[]    @relation("ProjectDiscussionReplyAuthor")
+  subgroupDiscussions       SubgroupDiscussion[]        @relation("SubgroupDiscussionAuthor")
+  subgroupDiscussionReplies SubgroupDiscussionReply[]   @relation("SubgroupDiscussionReplyAuthor")
+  projectResearchPosts      ProjectResearch[]           @relation("ProjectResearchAuthor")
+  projectResearchComments   ProjectResearchComment[]    @relation("ProjectResearchCommentAuthor")
+  projectModuleProgress     ProjectModuleProgress[]     @relation("ProjectModuleProgress")
   projectWaivers            ProjectPrerequisiteWaiver[] @relation("ProjectWaivers")
   projectWaiversApproved    ProjectPrerequisiteWaiver[] @relation("ProjectWaiversApproved")
-  projectContributions      ProjectContribution[]    @relation("ProjectContributions")
-  projectNotifications      ProjectNotification[]    @relation("ProjectNotifications")
+  projectContributions      ProjectContribution[]       @relation("ProjectContributions")
+  projectNotifications      ProjectNotification[]       @relation("ProjectNotifications")
 
   // Exodology learning progress
-  exodologyProgress         ExodologyProgress[]      @relation("ExodologyProgress")
-  exodologyCertifications   ExodologyCertification[] @relation("ExodologyCertifications")
-  exodologyStreak           ExodologyStreak?         @relation("ExodologyStreak")
-  exodologyNotes            ExodologyNote[]          @relation("ExodologyNotes")
-  exodologyReviews          ExodologyReview[]        @relation("ExodologyReviews")
+  exodologyProgress       ExodologyProgress[]      @relation("ExodologyProgress")
+  exodologyCertifications ExodologyCertification[] @relation("ExodologyCertifications")
+  exodologyStreak         ExodologyStreak?         @relation("ExodologyStreak")
+  exodologyNotes          ExodologyNote[]          @relation("ExodologyNotes")
+  exodologyReviews        ExodologyReview[]        @relation("ExodologyReviews")
 
   // Architecture learning progress
-  architectureProgress      ArchitectureProgress?    @relation("ArchitectureProgress")
+  architectureProgress ArchitectureProgress? @relation("ArchitectureProgress")
 
   // Collaborative documents
-  createdDocuments          Document[]               @relation("CreatedDocuments")
-  lastEditedDocuments       Document[]               @relation("LastEditedDocuments")
-  documentVersions          DocumentVersion[]
-  documentCollaborations    DocumentCollaborator[]
-  documentComments          DocumentComment[]
-  resolvedComments          DocumentComment[]        @relation("ResolvedComments")
-  documentMentionsReceived  DocumentMention[]        @relation("MentionedInDocuments")
-  documentMentionsMade      DocumentMention[]        @relation("DocumentMentions")
-  lockedDocuments           Document[]               @relation("LockedDocuments")
-  documentSuggestions       DocumentSuggestion[]     @relation("DocumentSuggestionAuthor")
-  resolvedSuggestions       DocumentSuggestion[]     @relation("SuggestionResolver")
-  createdTemplates          DocumentTemplate[]       @relation("TemplateCreator")
-  commentReactions          CommentReaction[]        @relation("CommentReactions")
+  createdDocuments         Document[]             @relation("CreatedDocuments")
+  lastEditedDocuments      Document[]             @relation("LastEditedDocuments")
+  documentVersions         DocumentVersion[]
+  documentCollaborations   DocumentCollaborator[]
+  documentComments         DocumentComment[]
+  resolvedComments         DocumentComment[]      @relation("ResolvedComments")
+  documentMentionsReceived DocumentMention[]      @relation("MentionedInDocuments")
+  documentMentionsMade     DocumentMention[]      @relation("DocumentMentions")
+  lockedDocuments          Document[]             @relation("LockedDocuments")
+  documentSuggestions      DocumentSuggestion[]   @relation("DocumentSuggestionAuthor")
+  resolvedSuggestions      DocumentSuggestion[]   @relation("SuggestionResolver")
+  createdTemplates         DocumentTemplate[]     @relation("TemplateCreator")
+  commentReactions         CommentReaction[]      @relation("CommentReactions")
 
   // Initiative drafts (pre-creation workspaces with Sage)
-  initiativeDrafts          InitiativeDraft[]        @relation("InitiativeDrafts")
+  initiativeDrafts InitiativeDraft[] @relation("InitiativeDrafts")
 
   @@index([email])
   @@index([role])
@@ -245,31 +246,31 @@ model VerificationToken {
 // ============================================
 
 model Product {
-  id                    String    @id @default(cuid())
-  name                  String
-  slug                  String    @unique
-  description           String    @db.Text
-  specifications        Json?     // Flexible product specs
-  price                 Decimal?  @db.Decimal(10, 2)
-  purchaseLink          String?
-  status                ProductStatus @default(PENDING)
-  featured              Boolean   @default(false)
-  viewCount             Int       @default(0)
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
-  publishedAt           DateTime?
+  id             String        @id @default(cuid())
+  name           String
+  slug           String        @unique
+  description    String        @db.Text
+  specifications Json? // Flexible product specs
+  price          Decimal?      @db.Decimal(10, 2)
+  purchaseLink   String?
+  status         ProductStatus @default(PENDING)
+  featured       Boolean       @default(false)
+  viewCount      Int           @default(0)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  publishedAt    DateTime?
 
   // Relations
-  categoryId            String
-  category              Category  @relation(fields: [categoryId], references: [id])
-  vendorId              String?
-  vendor                Vendor?   @relation(fields: [vendorId], references: [id])
-  images                ProductImage[]
-  tags                  ProductTag[]
-  sustainabilityMetric  SustainabilityMetric?
-  reviews               Review[]
-  savedBy               SavedProduct[]
-  certifications        ProductCertification[]
+  categoryId           String
+  category             Category               @relation(fields: [categoryId], references: [id])
+  vendorId             String?
+  vendor               Vendor?                @relation(fields: [vendorId], references: [id])
+  images               ProductImage[]
+  tags                 ProductTag[]
+  sustainabilityMetric SustainabilityMetric?
+  reviews              Review[]
+  savedBy              SavedProduct[]
+  certifications       ProductCertification[]
 
   @@index([slug])
   @@index([categoryId])
@@ -356,40 +357,40 @@ model ProductTag {
 }
 
 model SustainabilityMetric {
-  id                    String   @id @default(cuid())
-  productId             String   @unique
-  product               Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  id        String  @id @default(cuid())
+  productId String  @unique
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   // Carbon metrics
-  carbonFootprint       Decimal? @db.Decimal(10, 2) // kg CO2e
-  carbonSavings         Decimal? @db.Decimal(10, 2) // vs conventional
+  carbonFootprint Decimal? @db.Decimal(10, 2) // kg CO2e
+  carbonSavings   Decimal? @db.Decimal(10, 2) // vs conventional
 
   // Water metrics
-  waterUsage            Decimal? @db.Decimal(10, 2) // liters
-  waterSavings          Decimal? @db.Decimal(10, 2)
+  waterUsage   Decimal? @db.Decimal(10, 2) // liters
+  waterSavings Decimal? @db.Decimal(10, 2)
 
   // Material metrics
-  recycledContent       Int?     // percentage
-  recyclable            Boolean  @default(false)
-  biodegradable         Boolean  @default(false)
+  recycledContent Int? // percentage
+  recyclable      Boolean @default(false)
+  biodegradable   Boolean @default(false)
 
   // Energy metrics
   energyEfficiencyRating String? // A+, A, B, etc.
-  renewableEnergy       Boolean  @default(false)
+  renewableEnergy        Boolean @default(false)
 
   // Lifecycle
-  lifespanYears         Int?
-  repairability         Int?     // score 1-10
+  lifespanYears Int?
+  repairability Int? // score 1-10
 
   // Overall score (calculated)
-  sustainabilityScore   Int?     // 0-100
+  sustainabilityScore Int? // 0-100
 
   // Additional data
-  materialsBreakdown    Json?    // Flexible structure
-  certificationData     Json?
+  materialsBreakdown Json? // Flexible structure
+  certificationData  Json?
 
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Certification {
@@ -420,7 +421,7 @@ model ProductCertification {
 
 model Review {
   id        String   @id @default(cuid())
-  rating    Int      // 1-5
+  rating    Int // 1-5
   title     String?
   content   String   @db.Text
   verified  Boolean  @default(false) // Verified purchase
@@ -457,46 +458,46 @@ model SavedProduct {
 // ============================================
 
 model Article {
-  id              String           @id @default(cuid())
-  title           String
-  slug            String           @unique
-  excerpt         String?          @db.Text
-  content         String           @db.Text              // Fallback/legacy — new articles store content in cloud
-  contentUrl      String?                                 // Cloud CDN URL for article HTML content
-  contentPublicId String?                                 // Cloudinary public ID for cleanup
-  coverImage      String?
-  readTime        Int?             // minutes
-  views           Int              @default(0)
-  status          ArticleStatus    @default(DRAFT)
-  featured        Boolean          @default(false)
-  authorId        String
-  author          User             @relation(fields: [authorId], references: [id])
-  categoryId      String
-  category        ArticleCategory  @relation(fields: [categoryId], references: [id])
-  tags            ArticleTag[]
-  comments        Comment[]
-  peerReviews     ArticlePeerReview[]
-  savedBy         SavedArticle[]
-  readBy          ArticleRead[]
-  seoTitle        String?
-  seoDescription  String?
+  id                String              @id @default(cuid())
+  title             String
+  slug              String              @unique
+  excerpt           String?             @db.Text
+  content           String              @db.Text // Fallback/legacy — new articles store content in cloud
+  contentUrl        String? // Cloud CDN URL for article HTML content
+  contentPublicId   String? // Cloudinary public ID for cleanup
+  coverImage        String?
+  readTime          Int? // minutes
+  views             Int                 @default(0)
+  status            ArticleStatus       @default(DRAFT)
+  featured          Boolean             @default(false)
+  authorId          String
+  author            User                @relation(fields: [authorId], references: [id])
+  categoryId        String
+  category          ArticleCategory     @relation(fields: [categoryId], references: [id])
+  tags              ArticleTag[]
+  comments          Comment[]
+  peerReviews       ArticlePeerReview[]
+  savedBy           SavedArticle[]
+  readBy            ArticleRead[]
+  seoTitle          String?
+  seoDescription    String?
   // Editorial correction / editor's note. When present, surfaced as a
   // banner at the top of the article (above the body) so readers can
   // see when content has been amended after publish. Plain text;
   // intentionally separate from `content` so it can be revised
   // without rewriting the article itself.
-  correctionsNote  String?          @db.Text
-  correctionsNoteAt DateTime?       // when the note was most recently set
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  publishedAt     DateTime?
+  correctionsNote   String?             @db.Text
+  correctionsNoteAt DateTime? // when the note was most recently set
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  publishedAt       DateTime?
 
   // Learning Module Fields
-  moduleType      ModuleType?      // SMALL (quick facts) or LARGE (tabs + quiz)
-  moduleTabs      Json?            // Array of tab objects: [{title: string, content: string}]
-  quizQuestions   Json?            // Array of quiz objects: [{question: string, type: 'multiple_choice'|'true_false', options: string[], correctAnswer: string}]
-  estimatedTime   Int?             // Estimated minutes to complete
-  difficulty      String?          // 'Beginner', 'Intermediate', 'Advanced'
+  moduleType       ModuleType? // SMALL (quick facts) or LARGE (tabs + quiz)
+  moduleTabs       Json? // Array of tab objects: [{title: string, content: string}]
+  quizQuestions    Json? // Array of quiz objects: [{question: string, type: 'multiple_choice'|'true_false', options: string[], correctAnswer: string}]
+  estimatedTime    Int? // Estimated minutes to complete
+  difficulty       String? // 'Beginner', 'Intermediate', 'Advanced'
   learningProgress UserLearningProgress[]
 
   // Multi-level learning system
@@ -504,18 +505,18 @@ model Article {
   moduleDiscussions ModuleDiscussion[]
 
   // Reading experience relations
-  readingProgress     ArticleReadingProgress[] @relation("ArticleReadingProgress")
-  bookmarks           ArticleBookmark[]        @relation("ArticleBookmarks")
-  highlights          ArticleHighlight[]       @relation("ArticleHighlights")
+  readingProgress ArticleReadingProgress[] @relation("ArticleReadingProgress")
+  bookmarks       ArticleBookmark[]        @relation("ArticleBookmarks")
+  highlights      ArticleHighlight[]       @relation("ArticleHighlights")
 
   // Collections
-  inCollections       CollectionArticle[]      @relation("CollectionArticles")
+  inCollections CollectionArticle[] @relation("CollectionArticles")
 
   // Recommendations
-  recommendations     ArticleRecommendation[]  @relation("ArticleRecommendations")
+  recommendations ArticleRecommendation[] @relation("ArticleRecommendations")
 
   // References / Works Cited
-  references          ArticleReference[]
+  references ArticleReference[]
 
   @@index([slug])
   @@index([authorId])
@@ -550,17 +551,17 @@ model ArticleCategory {
 }
 
 model ArticleReference {
-  id          String   @id @default(cuid())
-  articleId   String
-  article     Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
-  title       String
-  authors     String?
-  year        String?
-  url         String?
-  publisher   String?
-  format      String?  // MLA, APA, Chicago, Unknown
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
+  id        String   @id @default(cuid())
+  articleId String
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  title     String
+  authors   String?
+  year      String?
+  url       String?
+  publisher String?
+  format    String? // MLA, APA, Chicago, Unknown
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
 
   @@index([articleId])
 }
@@ -577,17 +578,17 @@ model ArticleTag {
 }
 
 model Comment {
-  id        String   @id @default(cuid())
-  content   String   @db.Text
+  id        String    @id @default(cuid())
+  content   String    @db.Text
   articleId String
   userId    String
-  parentId  String?  // For nested comments
-  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  parent    Comment? @relation("CommentReplies", fields: [parentId], references: [id])
+  parentId  String? // For nested comments
+  article   Article   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
   replies   Comment[] @relation("CommentReplies")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
   @@index([articleId])
   @@index([userId])
@@ -598,28 +599,28 @@ model Comment {
 
 // Article Peer Reviews - Reddit-style threaded reviews with ratings
 model ArticlePeerReview {
-  id          String   @id @default(cuid())
-  articleId   String
-  userId      String
-  parentId    String?  // For nested replies (unlimited depth)
+  id        String  @id @default(cuid())
+  articleId String
+  userId    String
+  parentId  String? // For nested replies (unlimited depth)
 
   // Rating fields (only for top-level reviews, null for replies)
-  rating      Int?     // 1-5 overall rating
-  accuracy    Int?     // 1-5 accuracy rating
-  clarity     Int?     // 1-5 clarity rating
-  relevance   Int?     // 1-5 relevance rating
+  rating    Int? // 1-5 overall rating
+  accuracy  Int? // 1-5 accuracy rating
+  clarity   Int? // 1-5 clarity rating
+  relevance Int? // 1-5 relevance rating
 
-  content     String   @db.Text
+  content String @db.Text
 
   // Relations
-  article     Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
-  user        User     @relation("ArticlePeerReviews", fields: [userId], references: [id], onDelete: Cascade)
-  parent      ArticlePeerReview?  @relation("PeerReviewReplies", fields: [parentId], references: [id], onDelete: Cascade)
-  replies     ArticlePeerReview[] @relation("PeerReviewReplies")
-  likes       ReviewLike[]
+  article Article             @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  user    User                @relation("ArticlePeerReviews", fields: [userId], references: [id], onDelete: Cascade)
+  parent  ArticlePeerReview?  @relation("PeerReviewReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies ArticlePeerReview[] @relation("PeerReviewReplies")
+  likes   ReviewLike[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([articleId])
   @@index([userId])
@@ -628,12 +629,12 @@ model ArticlePeerReview {
 
 // Review Likes - Track who liked which review/reply
 model ReviewLike {
-  id        String   @id @default(cuid())
-  reviewId  String
-  userId    String
+  id       String @id @default(cuid())
+  reviewId String
+  userId   String
 
-  review    ArticlePeerReview @relation(fields: [reviewId], references: [id], onDelete: Cascade)
-  user      User              @relation("ReviewLikes", fields: [userId], references: [id], onDelete: Cascade)
+  review ArticlePeerReview @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  user   User              @relation("ReviewLikes", fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
 
@@ -670,18 +671,18 @@ model ArticleRead {
 }
 
 enum ModuleType {
-  SMALL   // Quick facts, mark as read
-  LARGE   // Tabs + quiz with perfect score requirement
+  SMALL // Quick facts, mark as read
+  LARGE // Tabs + quiz with perfect score requirement
 }
 
 // Learning Level - 6 educational levels
 enum LearningLevel {
-  ELEMENTARY      // Ages 6-10
-  MIDDLE_SCHOOL   // Ages 11-13
-  HIGH_SCHOOL     // Ages 14-17
-  UNDERGRADUATE   // Ages 18-22
-  GRADUATE        // Ages 22+
-  PHD             // Expert level
+  ELEMENTARY // Ages 6-10
+  MIDDLE_SCHOOL // Ages 11-13
+  HIGH_SCHOOL // Ages 14-17
+  UNDERGRADUATE // Ages 18-22
+  GRADUATE // Ages 22+
+  PHD // Expert level
 }
 
 // Activity Type for interactive learning
@@ -696,31 +697,31 @@ enum ActivityType {
 
 // Level-specific content for each learning module
 model ModuleLevelContent {
-  id                String         @id @default(cuid())
-  articleId         String
-  level             LearningLevel
+  id        String        @id @default(cuid())
+  articleId String
+  level     LearningLevel
 
   // Content
-  introduction      String         @db.Text
-  sections          Json           // Array of {id, title, content, interactiveElements}
-  summary           String         @db.Text
-  objectives        Json           // Array of learning objectives
-  keyTerms          Json           // Array of {term, definition}
+  introduction String @db.Text
+  sections     Json // Array of {id, title, content, interactiveElements}
+  summary      String @db.Text
+  objectives   Json // Array of learning objectives
+  keyTerms     Json // Array of {term, definition}
 
   // Interactive activities configuration
-  activities        Json           // Array of ActivityConfig
+  activities Json // Array of ActivityConfig
 
   // Learning game configuration (replaces quiz)
-  learningGame      Json           // LearningGameConfig
+  learningGame Json // LearningGameConfig
 
   // Metadata
-  estimatedMinutes  Int
-  readingLevel      String?
+  estimatedMinutes Int
+  readingLevel     String?
 
-  createdAt         DateTime       @default(now())
-  updatedAt         DateTime       @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  article           Article        @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
 
   @@unique([articleId, level])
   @@index([articleId])
@@ -729,25 +730,25 @@ model ModuleLevelContent {
 
 // Module discussion threads (tied to learning level)
 model ModuleDiscussion {
-  id                String         @id @default(cuid())
-  articleId         String
-  level             LearningLevel
-  authorId          String
+  id        String        @id @default(cuid())
+  articleId String
+  level     LearningLevel
+  authorId  String
 
-  title             String
-  content           String         @db.Text
+  title   String
+  content String @db.Text
 
-  isResolved        Boolean        @default(false)
-  isPinned          Boolean        @default(false)
-  viewCount         Int            @default(0)
-  replyCount        Int            @default(0)
+  isResolved Boolean @default(false)
+  isPinned   Boolean @default(false)
+  viewCount  Int     @default(0)
+  replyCount Int     @default(0)
 
-  createdAt         DateTime       @default(now())
-  updatedAt         DateTime       @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  article           Article        @relation(fields: [articleId], references: [id], onDelete: Cascade)
-  author            User           @relation("ModuleDiscussionAuthor", fields: [authorId], references: [id], onDelete: Cascade)
-  replies           ModuleDiscussionReply[]
+  article Article                 @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  author  User                    @relation("ModuleDiscussionAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  replies ModuleDiscussionReply[]
 
   @@index([articleId, level])
   @@index([authorId])
@@ -756,24 +757,24 @@ model ModuleDiscussion {
 
 // Replies to module discussions
 model ModuleDiscussionReply {
-  id                String         @id @default(cuid())
-  discussionId      String
-  authorId          String
-  parentReplyId     String?        // For nested replies
+  id            String  @id @default(cuid())
+  discussionId  String
+  authorId      String
+  parentReplyId String? // For nested replies
 
-  content           String         @db.Text
-  isFromCompleter   Boolean        @default(false) // Author completed the module
-  isAcceptedAnswer  Boolean        @default(false) // Marked as accepted by OP
-  helpfulCount      Int            @default(0)
+  content          String  @db.Text
+  isFromCompleter  Boolean @default(false) // Author completed the module
+  isAcceptedAnswer Boolean @default(false) // Marked as accepted by OP
+  helpfulCount     Int     @default(0)
 
-  createdAt         DateTime       @default(now())
-  updatedAt         DateTime       @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  discussion        ModuleDiscussion @relation(fields: [discussionId], references: [id], onDelete: Cascade)
-  author            User           @relation("ModuleDiscussionReplyAuthor", fields: [authorId], references: [id], onDelete: Cascade)
-  parentReply       ModuleDiscussionReply? @relation("ReplyThread", fields: [parentReplyId], references: [id], onDelete: Cascade)
-  childReplies      ModuleDiscussionReply[] @relation("ReplyThread")
-  helpfulVotes      DiscussionHelpfulVote[]
+  discussion   ModuleDiscussion        @relation(fields: [discussionId], references: [id], onDelete: Cascade)
+  author       User                    @relation("ModuleDiscussionReplyAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  parentReply  ModuleDiscussionReply?  @relation("ReplyThread", fields: [parentReplyId], references: [id], onDelete: Cascade)
+  childReplies ModuleDiscussionReply[] @relation("ReplyThread")
+  helpfulVotes DiscussionHelpfulVote[]
 
   @@index([discussionId])
   @@index([authorId])
@@ -787,8 +788,8 @@ model DiscussionHelpfulVote {
   voterId   String
   createdAt DateTime @default(now())
 
-  reply     ModuleDiscussionReply @relation(fields: [replyId], references: [id], onDelete: Cascade)
-  voter     User     @relation("DiscussionHelpfulVoter", fields: [voterId], references: [id], onDelete: Cascade)
+  reply ModuleDiscussionReply @relation(fields: [replyId], references: [id], onDelete: Cascade)
+  voter User                  @relation("DiscussionHelpfulVoter", fields: [voterId], references: [id], onDelete: Cascade)
 
   @@unique([replyId, voterId])
   @@index([replyId])
@@ -797,22 +798,22 @@ model DiscussionHelpfulVote {
 
 // Activity completion tracking
 model ActivityProgress {
-  id                String         @id @default(cuid())
-  progressId        String         // Links to UserLearningProgress
-  activityId        String
+  id         String @id @default(cuid())
+  progressId String // Links to UserLearningProgress
+  activityId String
 
-  completed         Boolean        @default(false)
-  score             Int?           // Points earned
-  attempts          Int            @default(0)
-  bestScore         Int?
-  timeSpent         Int?           // seconds
+  completed Boolean @default(false)
+  score     Int? // Points earned
+  attempts  Int     @default(0)
+  bestScore Int?
+  timeSpent Int? // seconds
 
-  submissionData    Json?          // User's submission details
+  submissionData Json? // User's submission details
 
-  createdAt         DateTime       @default(now())
-  updatedAt         DateTime       @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  progress          UserLearningProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
+  progress UserLearningProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
 
   @@unique([progressId, activityId])
   @@index([progressId])
@@ -820,32 +821,32 @@ model ActivityProgress {
 
 // Learning game session tracking
 model GameSession {
-  id                String         @id @default(cuid())
-  progressId        String
+  id         String @id @default(cuid())
+  progressId String
 
   // Game state
-  currentRound      Int            @default(0)
-  totalRounds       Int            @default(10)
-  lives             Int            @default(3)
-  maxLives          Int            @default(3)
-  score             Int            @default(0)
-  streak            Int            @default(0)
-  maxStreak         Int            @default(0)
+  currentRound Int @default(0)
+  totalRounds  Int @default(10)
+  lives        Int @default(3)
+  maxLives     Int @default(3)
+  score        Int @default(0)
+  streak       Int @default(0)
+  maxStreak    Int @default(0)
 
   // Results
-  completed         Boolean        @default(false)
-  passed            Boolean        @default(false)
-  finalScore        Int?
-  starsEarned       Int?           // 1-3 stars
-  timeTaken         Int?           // seconds
+  completed   Boolean @default(false)
+  passed      Boolean @default(false)
+  finalScore  Int?
+  starsEarned Int? // 1-3 stars
+  timeTaken   Int? // seconds
 
   // Answer history
-  answers           Json?          // Array of round results
+  answers Json? // Array of round results
 
-  startedAt         DateTime       @default(now())
-  completedAt       DateTime?
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
 
-  progress          UserLearningProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
+  progress UserLearningProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
 
   @@index([progressId])
   @@index([completed])
@@ -856,23 +857,23 @@ model GameSession {
 // module viewer). Modules aren't database rows, so they're identified by topic
 // id + progress key (see moduleProgressKeys in lib/learning/topicVolumes.ts).
 model TopicModuleProgress {
-  id                String        @id @default(cuid())
-  userId            String
-  topicId           String        // CoreTopic id, e.g. "renewable-energy"
-  moduleKey         String        // module slug, or "slug~2" for a later module reusing a slug
-  level             LearningLevel @default(HIGH_SCHOOL) // level of the most recent attempt
+  id        String        @id @default(cuid())
+  userId    String
+  topicId   String // CoreTopic id, e.g. "renewable-energy"
+  moduleKey String // module slug, or "slug~2" for a later module reusing a slug
+  level     LearningLevel @default(HIGH_SCHOOL) // level of the most recent attempt
 
-  practiceCompleted Boolean       @default(false) // finished a practice activity (unlocks the quiz)
-  quizAttempts      Int           @default(0)
-  lastQuizScore     Int?          // percentage 0-100
-  bestQuizScore     Int?          // percentage 0-100
-  quizPassed        Boolean       @default(false)
-  completedAt       DateTime?     // first time the quiz was passed
+  practiceCompleted Boolean   @default(false) // finished a practice activity (unlocks the quiz)
+  quizAttempts      Int       @default(0)
+  lastQuizScore     Int? // percentage 0-100
+  bestQuizScore     Int? // percentage 0-100
+  quizPassed        Boolean   @default(false)
+  completedAt       DateTime? // first time the quiz was passed
 
-  createdAt         DateTime      @default(now())
-  updatedAt         DateTime      @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, topicId, moduleKey])
   @@index([userId])
@@ -882,8 +883,8 @@ model TopicModuleProgress {
 // Digital Scroll learner settings. Age band separates teens from adults when
 // learners connect; Project Exodus is 13+ (a separate kids' site is planned).
 enum LearnerAgeBand {
-  TEEN   // 13-17
-  ADULT  // 18+
+  TEEN // 13-17
+  ADULT // 18+
 }
 
 model LearnerProfile {
@@ -894,69 +895,88 @@ model LearnerProfile {
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
 
-  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum ScrollNoteVisibility {
   PRIVATE // only the author (stored on the server only when they sync notes)
-  PEERS   // learners in the same module, at the same level and age band
+  PEERS // learners in the same module, at the same level and age band
 }
 
 // A Digital Scroll note that has left the device: either synced (author chose
 // to sync notes to their account) or shared with peers via the eye icon.
 model ScrollNote {
-  id          String               @id @default(cuid())
-  userId      String
-  topicId     String               // CoreTopic id
-  noteKey     String               // e.g. "mission-hope-to-learn", "module-<moduleKey>-notes"
-  moduleKey   String?              // null for topic-wide notes (intentions)
-  level       LearningLevel        @default(HIGH_SCHOOL) // level the author was reading at
-  content     String               @db.Text
-  visibility  ScrollNoteVisibility @default(PRIVATE)
-  createdAt   DateTime             @default(now())
-  updatedAt   DateTime             @updatedAt
+  id         String               @id @default(cuid())
+  userId     String
+  topicId    String // CoreTopic id
+  noteKey    String // e.g. "mission-hope-to-learn", "module-<moduleKey>-notes"
+  moduleKey  String? // null for topic-wide notes (intentions)
+  level      LearningLevel        @default(HIGH_SCHOOL) // level the author was reading at
+  content    String               @db.Text
+  visibility ScrollNoteVisibility @default(PRIVATE)
+  createdAt  DateTime             @default(now())
+  updatedAt  DateTime             @updatedAt
 
-  user        User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, topicId, noteKey])
   @@index([userId])
   @@index([topicId, moduleKey, level, visibility])
 }
 
+/// Public discussion for one chapter (module) of a topic, visible to learners
+/// enrolled in that chapter at the same learning level and age band.
+model ScrollDiscussionPost {
+  id        String         @id @default(cuid())
+  userId    String
+  topicId   String // CoreTopic id
+  moduleKey String // stable module key (see moduleProgressKeys)
+  level     LearningLevel
+  ageBand   LearnerAgeBand // author's band when posting; readers only see their own band
+  language  String?        @db.VarChar(16) // author's browser language (BCP 47), for translation
+  body      String         @db.Text
+  createdAt DateTime       @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([topicId, moduleKey, level, ageBand, createdAt])
+  @@index([userId, createdAt])
+}
+
 model UserLearningProgress {
-  id                String         @id @default(cuid())
-  userId            String
-  articleId         String
+  id        String @id @default(cuid())
+  userId    String
+  articleId String
 
   // Learning level selection
-  selectedLevel     LearningLevel  @default(HIGH_SCHOOL)
+  selectedLevel LearningLevel @default(HIGH_SCHOOL)
 
   // Progress tracking
-  status            LearningStatus @default(IN_PROGRESS)
-  progressPercentage Int           @default(0)  // 0-100 for large modules
-  currentTabIndex   Int            @default(0)  // Current tab user is on (for large modules)
-  currentSectionId  String?        // Current section ID
+  status             LearningStatus @default(IN_PROGRESS)
+  progressPercentage Int            @default(0) // 0-100 for large modules
+  currentTabIndex    Int            @default(0) // Current tab user is on (for large modules)
+  currentSectionId   String? // Current section ID
 
   // Quiz tracking (legacy - for backwards compatibility)
-  quizAttempts      Int            @default(0)
-  quizScore         Int?           // Last quiz score (0-5)
-  quizPassed        Boolean        @default(false) // Must achieve perfect score (5/5)
+  quizAttempts Int     @default(0)
+  quizScore    Int? // Last quiz score (0-5)
+  quizPassed   Boolean @default(false) // Must achieve perfect score (5/5)
 
   // Game tracking (new system)
-  gameHighScore     Int?           // Highest game score achieved
-  gameStars         Int?           // Best star rating (1-3)
-  gamePassed        Boolean        @default(false)
+  gameHighScore Int? // Highest game score achieved
+  gameStars     Int? // Best star rating (1-3)
+  gamePassed    Boolean @default(false)
 
   // Timestamps
-  startedAt         DateTime       @default(now())
-  completedAt       DateTime?
-  lastAccessedAt    DateTime       @updatedAt
+  startedAt      DateTime  @default(now())
+  completedAt    DateTime?
+  lastAccessedAt DateTime  @updatedAt
 
   // Relations
-  user              User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  article           Article        @relation(fields: [articleId], references: [id], onDelete: Cascade)
-  activityProgress  ActivityProgress[]
-  gameSessions      GameSession[]
+  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  article          Article            @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  activityProgress ActivityProgress[]
+  gameSessions     GameSession[]
 
   @@unique([userId, articleId, selectedLevel])
   @@index([userId])
@@ -991,17 +1011,17 @@ model UserFollow {
 
 // LinkedIn-style Connection model (mutual professional connections)
 model Connection {
-  id              String            @id @default(cuid())
-  userId          String            // User who sent the request
-  connectedUserId String            // User who received the request
-  status          ConnectionStatus  @default(PENDING)
-  message         String?           @db.Text // Optional message with connection request
-  createdAt       DateTime          @default(now())
-  acceptedAt      DateTime?         // When connection was accepted
-  updatedAt       DateTime          @updatedAt
+  id              String           @id @default(cuid())
+  userId          String // User who sent the request
+  connectedUserId String // User who received the request
+  status          ConnectionStatus @default(PENDING)
+  message         String?          @db.Text // Optional message with connection request
+  createdAt       DateTime         @default(now())
+  acceptedAt      DateTime? // When connection was accepted
+  updatedAt       DateTime         @updatedAt
 
-  user            User              @relation("SentConnections", fields: [userId], references: [id], onDelete: Cascade)
-  connectedUser   User              @relation("ReceivedConnections", fields: [connectedUserId], references: [id], onDelete: Cascade)
+  user          User @relation("SentConnections", fields: [userId], references: [id], onDelete: Cascade)
+  connectedUser User @relation("ReceivedConnections", fields: [connectedUserId], references: [id], onDelete: Cascade)
 
   @@unique([userId, connectedUserId])
   @@index([userId])
@@ -1017,11 +1037,11 @@ enum ConnectionStatus {
 
 // LinkedIn-style Skill Endorsement model
 model Endorsement {
-  id          String   @id @default(cuid())
-  userId      String   // User being endorsed
-  endorserId  String   // User giving the endorsement
-  skill       String   // Skill being endorsed
-  createdAt   DateTime @default(now())
+  id         String   @id @default(cuid())
+  userId     String // User being endorsed
+  endorserId String // User giving the endorsement
+  skill      String // Skill being endorsed
+  createdAt  DateTime @default(now())
 
   @@unique([userId, endorserId, skill])
   @@index([userId])
@@ -1035,7 +1055,7 @@ model Badge {
   slug        String      @unique
   description String      @db.Text
   icon        String
-  criteria    Json        // Flexible criteria definition
+  criteria    Json // Flexible criteria definition
   userBadges  UserBadge[]
   createdAt   DateTime    @default(now())
 
@@ -1043,12 +1063,12 @@ model Badge {
 }
 
 model UserBadge {
-  id        String   @id @default(cuid())
-  userId    String
-  badgeId   String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  badge     Badge    @relation(fields: [badgeId], references: [id], onDelete: Cascade)
-  earnedAt  DateTime @default(now())
+  id       String   @id @default(cuid())
+  userId   String
+  badgeId  String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badge    Badge    @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+  earnedAt DateTime @default(now())
 
   @@unique([userId, badgeId])
   @@index([userId])
@@ -1060,19 +1080,19 @@ model UserBadge {
 // ============================================
 
 model SocialPost {
-  id          String          @id @default(cuid())
-  content     String          @db.Text
-  userId      String
-  visibility  PostVisibility  @default(PUBLIC)
-  user        User            @relation("SocialPosts", fields: [userId], references: [id], onDelete: Cascade)
-  media       SocialMedia[]
-  comments    SocialComment[]
-  likes       SocialLike[]
-  hashtags    String[]        // Array of hashtags
-  mentions    String[]        // Array of mentioned user IDs
-  shares      Int             @default(0)
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  id         String          @id @default(cuid())
+  content    String          @db.Text
+  userId     String
+  visibility PostVisibility  @default(PUBLIC)
+  user       User            @relation("SocialPosts", fields: [userId], references: [id], onDelete: Cascade)
+  media      SocialMedia[]
+  comments   SocialComment[]
+  likes      SocialLike[]
+  hashtags   String[] // Array of hashtags
+  mentions   String[] // Array of mentioned user IDs
+  shares     Int             @default(0)
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
 
   @@index([userId])
   @@index([createdAt])
@@ -1088,12 +1108,12 @@ enum PostVisibility {
 }
 
 model SocialMedia {
-  id        String    @id @default(cuid())
+  id        String     @id @default(cuid())
   postId    String
   type      MediaType
   url       String
   caption   String?
-  order     Int       @default(0)
+  order     Int        @default(0)
   post      SocialPost @relation(fields: [postId], references: [id], onDelete: Cascade)
   createdAt DateTime   @default(now())
 
@@ -1111,7 +1131,7 @@ model SocialComment {
   content   String          @db.Text
   postId    String
   userId    String
-  parentId  String?         // For nested comments
+  parentId  String? // For nested comments
   post      SocialPost      @relation(fields: [postId], references: [id], onDelete: Cascade)
   user      User            @relation("SocialComments", fields: [userId], references: [id], onDelete: Cascade)
   parent    SocialComment?  @relation("CommentThread", fields: [parentId], references: [id])
@@ -1144,39 +1164,39 @@ model SocialLike {
 // ============================================
 
 model Project {
-  id          String          @id @default(cuid())
+  id          String            @id @default(cuid())
   name        String
-  slug        String          @unique
-  description String          @db.Text
-  goal        String?         @db.Text
-  status      ProjectStatus   @default(ACTIVE)
+  slug        String            @unique
+  description String            @db.Text
+  goal        String?           @db.Text
+  status      ProjectStatus     @default(ACTIVE)
   visibility  ProjectVisibility @default(PUBLIC)
   coverImage  String?
 
   // Customizable layout configuration (JSON)
-  layoutConfig Json?          @default("{}")
+  layoutConfig Json? @default("{}")
 
   // Creator/Owner
-  creatorId   String
-  creator     User            @relation("ProjectCreator", fields: [creatorId], references: [id])
+  creatorId String
+  creator   User   @relation("ProjectCreator", fields: [creatorId], references: [id])
 
   // Relations
-  members             ProjectMember[]
-  messages            ProjectMessage[]
-  subgroups           ProjectSubgroup[]
-  discussions         ProjectDiscussion[]
-  researchPosts       ProjectResearch[]
-  learningModules     ProjectLearningModule[]
-  prerequisites       ProjectPrerequisite[]
-  waivers             ProjectPrerequisiteWaiver[]
-  contributions       ProjectContribution[]
+  members              ProjectMember[]
+  messages             ProjectMessage[]
+  subgroups            ProjectSubgroup[]
+  discussions          ProjectDiscussion[]
+  researchPosts        ProjectResearch[]
+  learningModules      ProjectLearningModule[]
+  prerequisites        ProjectPrerequisite[]
+  waivers              ProjectPrerequisiteWaiver[]
+  contributions        ProjectContribution[]
   projectNotifications ProjectNotification[]
-  mindMap             MindMap?
-  documents           Document[]
-  documentTemplates   DocumentTemplate[]
+  mindMap              MindMap?
+  documents            Document[]
+  documentTemplates    DocumentTemplate[]
 
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([slug])
   @@index([creatorId])
@@ -1194,86 +1214,86 @@ enum ProjectStatus {
 }
 
 enum ProjectVisibility {
-  PUBLIC      // Everyone can view
-  UNLISTED    // Only with direct link
+  PUBLIC // Everyone can view
+  UNLISTED // Only with direct link
 }
 
 // Pre-creation drafts: a workspace where a user can paste an existing plan,
 // brainstorm with Sage, and accumulate structured fields before promoting
 // the draft into a real Project.
 model InitiativeDraft {
-  id            String              @id @default(cuid())
-  userId        String
-  user          User                @relation("InitiativeDrafts", fields: [userId], references: [id], onDelete: Cascade)
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation("InitiativeDrafts", fields: [userId], references: [id], onDelete: Cascade)
 
-  title         String              @default("Untitled draft")
-  status        InitiativeDraftStatus @default(ACTIVE)
-  path          InitiativeDraftPath   @default(BLANK)
+  title  String                @default("Untitled draft")
+  status InitiativeDraftStatus @default(ACTIVE)
+  path   InitiativeDraftPath   @default(BLANK)
 
   // Plan-paste / upload inputs (only set when path includes PASTE/HYBRID)
-  originalPlanText     String?      @db.Text
+  originalPlanText     String? @db.Text
   originalPlanFilename String?
 
   // Brainstorm chat history: array of { role: 'user'|'assistant', content, ts }
-  chatHistory   Json                @default("[]")
+  chatHistory Json @default("[]")
 
   // Structured form fields gathered so far. Mirrors the Project form's state
   // shape — fields Sage couldn't determine are absent rather than null.
-  extractedFields Json              @default("{}")
+  extractedFields Json @default("{}")
 
   // Counters for rate limiting / abuse prevention
-  draftAttempts   Int               @default(0)
-  chatMessageCount Int              @default(0)
+  draftAttempts    Int @default(0)
+  chatMessageCount Int @default(0)
 
   // If the draft was promoted into a real Project
   promotedToProjectId String?
   promotedAt          DateTime?
 
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId, status])
   @@index([userId, updatedAt])
 }
 
 enum InitiativeDraftStatus {
-  ACTIVE      // user is working on it
-  PROMOTED    // turned into a real Project
-  DISCARDED   // user threw it away
+  ACTIVE // user is working on it
+  PROMOTED // turned into a real Project
+  DISCARDED // user threw it away
 }
 
 enum InitiativeDraftPath {
-  BLANK       // Step 0 not used / skipped
-  PASTE       // started from a pasted/uploaded plan
-  BRAINSTORM  // started from a chat with Sage
-  HYBRID      // both: paste, then refine in chat
+  BLANK // Step 0 not used / skipped
+  PASTE // started from a pasted/uploaded plan
+  BRAINSTORM // started from a chat with Sage
+  HYBRID // both: paste, then refine in chat
 }
 
 model ProjectMember {
-  id        String              @id @default(cuid())
+  id        String            @id @default(cuid())
   projectId String
   userId    String
-  role      ProjectMemberRole   @default(VIEWER)
+  role      ProjectMemberRole @default(VIEWER)
 
   // Personalization - member's custom view arrangement
-  layoutPreferences Json?       @default("{}")
+  layoutPreferences Json? @default("{}")
 
   // Opt-in notifications
-  notifyDiscussions Boolean     @default(false)
-  notifyResearch    Boolean     @default(false)
-  notifyUpdates     Boolean     @default(false)
-  notifyMentions    Boolean     @default(true)
+  notifyDiscussions Boolean @default(false)
+  notifyResearch    Boolean @default(false)
+  notifyUpdates     Boolean @default(false)
+  notifyMentions    Boolean @default(true)
 
   // Contribution tracking
-  contributionScore Int         @default(0)
+  contributionScore Int @default(0)
 
-  project   Project             @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  user      User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Recognition badges
   recognitions ProjectMemberRecognition[]
 
-  joinedAt  DateTime            @default(now())
+  joinedAt DateTime @default(now())
 
   @@unique([projectId, userId])
   @@index([projectId])
@@ -1284,11 +1304,11 @@ model ProjectMember {
 }
 
 enum ProjectMemberRole {
-  VIEWER        // Can view, pending approval or prerequisites not met
-  CONTRIBUTOR   // Can contribute to project
-  MODERATOR     // Can moderate discussions, approve content
-  ADMIN         // Full admin rights (layout, members, settings)
-  OWNER         // Project creator - cannot be removed
+  VIEWER // Can view, pending approval or prerequisites not met
+  CONTRIBUTOR // Can contribute to project
+  MODERATOR // Can moderate discussions, approve content
+  ADMIN // Full admin rights (layout, members, settings)
+  OWNER // Project creator - cannot be removed
 }
 
 // Legacy ProjectRole kept for backwards compatibility
@@ -1319,27 +1339,27 @@ model ProjectMessage {
 // ============================================
 
 model ProjectSubgroup {
-  id                String              @id @default(cuid())
+  id                String  @id @default(cuid())
   projectId         String
   name              String
   slug              String
-  description       String?             @db.Text
-  goal              String?             @db.Text
-  isPrivate         Boolean             @default(false)
-  entryRequirements String?             @db.Text
+  description       String? @db.Text
+  goal              String? @db.Text
+  isPrivate         Boolean @default(false)
+  entryRequirements String? @db.Text
 
   // Subgroup-specific learning requirements
-  requiresLearning  Boolean             @default(false)
-  requiredModuleIds String[]            @default([])
+  requiresLearning  Boolean  @default(false)
+  requiredModuleIds String[] @default([])
 
-  project           Project             @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  leaders           SubgroupLeader[]
-  members           SubgroupMember[]
-  discussions       SubgroupDiscussion[]
-  joinRequests      SubgroupJoinRequest[]
+  project      Project               @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  leaders      SubgroupLeader[]
+  members      SubgroupMember[]
+  discussions  SubgroupDiscussion[]
+  joinRequests SubgroupJoinRequest[]
 
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([projectId, slug])
   @@index([projectId])
@@ -1347,12 +1367,12 @@ model ProjectSubgroup {
 }
 
 model SubgroupLeader {
-  id          String          @id @default(cuid())
-  subgroupId  String
-  userId      String
-  subgroup    ProjectSubgroup @relation(fields: [subgroupId], references: [id], onDelete: Cascade)
-  user        User            @relation("SubgroupLeaders", fields: [userId], references: [id], onDelete: Cascade)
-  assignedAt  DateTime        @default(now())
+  id         String          @id @default(cuid())
+  subgroupId String
+  userId     String
+  subgroup   ProjectSubgroup @relation(fields: [subgroupId], references: [id], onDelete: Cascade)
+  user       User            @relation("SubgroupLeaders", fields: [userId], references: [id], onDelete: Cascade)
+  assignedAt DateTime        @default(now())
 
   @@unique([subgroupId, userId])
   @@index([subgroupId])
@@ -1363,7 +1383,7 @@ model SubgroupMember {
   id            String          @id @default(cuid())
   subgroupId    String
   userId        String
-  canContribute Boolean         @default(true)  // false = learning/viewing only
+  canContribute Boolean         @default(true) // false = learning/viewing only
   subgroup      ProjectSubgroup @relation(fields: [subgroupId], references: [id], onDelete: Cascade)
   user          User            @relation("SubgroupMembers", fields: [userId], references: [id], onDelete: Cascade)
   joinedAt      DateTime        @default(now())
@@ -1374,16 +1394,16 @@ model SubgroupMember {
 }
 
 model SubgroupJoinRequest {
-  id          String              @id @default(cuid())
-  subgroupId  String
-  userId      String
-  status      JoinRequestStatus   @default(PENDING)
-  message     String?             @db.Text
-  subgroup    ProjectSubgroup     @relation(fields: [subgroupId], references: [id], onDelete: Cascade)
-  user        User                @relation("SubgroupJoinRequests", fields: [userId], references: [id], onDelete: Cascade)
-  createdAt   DateTime            @default(now())
-  reviewedAt  DateTime?
-  reviewedBy  String?
+  id         String            @id @default(cuid())
+  subgroupId String
+  userId     String
+  status     JoinRequestStatus @default(PENDING)
+  message    String?           @db.Text
+  subgroup   ProjectSubgroup   @relation(fields: [subgroupId], references: [id], onDelete: Cascade)
+  user       User              @relation("SubgroupJoinRequests", fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime          @default(now())
+  reviewedAt DateTime?
+  reviewedBy String?
 
   @@unique([subgroupId, userId])
   @@index([subgroupId])
@@ -1403,21 +1423,21 @@ enum JoinRequestStatus {
 // ============================================
 
 model ProjectDiscussion {
-  id          String              @id @default(cuid())
-  projectId   String
-  title       String
-  content     String              @db.Text
-  isPinned    Boolean             @default(false)
-  isLocked    Boolean             @default(false)
-  viewCount   Int                 @default(0)
-  authorId    String
+  id        String  @id @default(cuid())
+  projectId String
+  title     String
+  content   String  @db.Text
+  isPinned  Boolean @default(false)
+  isLocked  Boolean @default(false)
+  viewCount Int     @default(0)
+  authorId  String
 
-  project     Project             @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  author      User                @relation("ProjectDiscussionAuthor", fields: [authorId], references: [id], onDelete: Cascade)
-  replies     ProjectDiscussionReply[]
+  project Project                  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  author  User                     @relation("ProjectDiscussionAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  replies ProjectDiscussionReply[]
 
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([projectId])
   @@index([authorId])
@@ -1426,19 +1446,19 @@ model ProjectDiscussion {
 }
 
 model ProjectDiscussionReply {
-  id            String              @id @default(cuid())
-  discussionId  String
-  content       String              @db.Text
-  authorId      String
-  parentId      String?             // For nested replies
+  id           String  @id @default(cuid())
+  discussionId String
+  content      String  @db.Text
+  authorId     String
+  parentId     String? // For nested replies
 
-  discussion    ProjectDiscussion   @relation(fields: [discussionId], references: [id], onDelete: Cascade)
-  author        User                @relation("ProjectDiscussionReplyAuthor", fields: [authorId], references: [id], onDelete: Cascade)
-  parent        ProjectDiscussionReply?  @relation("DiscussionReplyThread", fields: [parentId], references: [id], onDelete: Cascade)
-  children      ProjectDiscussionReply[] @relation("DiscussionReplyThread")
+  discussion ProjectDiscussion        @relation(fields: [discussionId], references: [id], onDelete: Cascade)
+  author     User                     @relation("ProjectDiscussionReplyAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  parent     ProjectDiscussionReply?  @relation("DiscussionReplyThread", fields: [parentId], references: [id], onDelete: Cascade)
+  children   ProjectDiscussionReply[] @relation("DiscussionReplyThread")
 
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([discussionId])
   @@index([authorId])
@@ -1447,35 +1467,35 @@ model ProjectDiscussionReply {
 
 // Subgroup-specific discussions
 model SubgroupDiscussion {
-  id          String              @id @default(cuid())
-  subgroupId  String
-  title       String
-  content     String              @db.Text
-  isPinned    Boolean             @default(false)
-  authorId    String
+  id         String  @id @default(cuid())
+  subgroupId String
+  title      String
+  content    String  @db.Text
+  isPinned   Boolean @default(false)
+  authorId   String
 
-  subgroup    ProjectSubgroup     @relation(fields: [subgroupId], references: [id], onDelete: Cascade)
-  author      User                @relation("SubgroupDiscussionAuthor", fields: [authorId], references: [id], onDelete: Cascade)
-  replies     SubgroupDiscussionReply[]
+  subgroup ProjectSubgroup           @relation(fields: [subgroupId], references: [id], onDelete: Cascade)
+  author   User                      @relation("SubgroupDiscussionAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  replies  SubgroupDiscussionReply[]
 
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([subgroupId])
   @@index([authorId])
 }
 
 model SubgroupDiscussionReply {
-  id            String              @id @default(cuid())
-  discussionId  String
-  content       String              @db.Text
-  authorId      String
+  id           String @id @default(cuid())
+  discussionId String
+  content      String @db.Text
+  authorId     String
 
-  discussion    SubgroupDiscussion  @relation(fields: [discussionId], references: [id], onDelete: Cascade)
-  author        User                @relation("SubgroupDiscussionReplyAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  discussion SubgroupDiscussion @relation(fields: [discussionId], references: [id], onDelete: Cascade)
+  author     User               @relation("SubgroupDiscussionReplyAuthor", fields: [authorId], references: [id], onDelete: Cascade)
 
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([discussionId])
   @@index([authorId])
@@ -1487,28 +1507,28 @@ model SubgroupDiscussionReply {
 // ============================================
 
 model ProjectResearch {
-  id          String              @id @default(cuid())
-  projectId   String
+  id        String @id @default(cuid())
+  projectId String
 
   // Article-style structure
   heading     String
-  summary     String              @db.Text
-  fullContent String?             @db.Text
+  summary     String  @db.Text
+  fullContent String? @db.Text
   sourceUrl   String?
   sourceTitle String?
 
   // Metadata
-  authorId    String
-  tags        String[]            @default([])
-  isPinned    Boolean             @default(false)
-  viewCount   Int                 @default(0)
+  authorId  String
+  tags      String[] @default([])
+  isPinned  Boolean  @default(false)
+  viewCount Int      @default(0)
 
-  project     Project             @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  author      User                @relation("ProjectResearchAuthor", fields: [authorId], references: [id], onDelete: Cascade)
-  comments    ProjectResearchComment[]
+  project  Project                  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  author   User                     @relation("ProjectResearchAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  comments ProjectResearchComment[]
 
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([projectId])
   @@index([authorId])
@@ -1517,16 +1537,16 @@ model ProjectResearch {
 }
 
 model ProjectResearchComment {
-  id          String            @id @default(cuid())
-  researchId  String
-  content     String            @db.Text
-  authorId    String
+  id         String @id @default(cuid())
+  researchId String
+  content    String @db.Text
+  authorId   String
 
-  research    ProjectResearch   @relation(fields: [researchId], references: [id], onDelete: Cascade)
-  author      User              @relation("ProjectResearchCommentAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  research ProjectResearch @relation(fields: [researchId], references: [id], onDelete: Cascade)
+  author   User            @relation("ProjectResearchCommentAuthor", fields: [authorId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([researchId])
   @@index([authorId])
@@ -1538,27 +1558,27 @@ model ProjectResearchComment {
 // ============================================
 
 model ProjectLearningModule {
-  id          String                  @id @default(cuid())
-  projectId   String
+  id        String @id @default(cuid())
+  projectId String
 
   title       String
-  description String?                 @db.Text
-  order       Int                     @default(0)
+  description String? @db.Text
+  order       Int     @default(0)
 
   // Content
   videoUrl    String?
-  textContent String?                 @db.Text
+  textContent String? @db.Text
 
   // Accreditation
-  isAccredited Boolean                @default(false)
-  difficulty  ProjectModuleDifficulty @default(BEGINNER)
+  isAccredited     Boolean                 @default(false)
+  difficulty       ProjectModuleDifficulty @default(BEGINNER)
   estimatedMinutes Int?
 
-  project     Project                 @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  progress    ProjectModuleProgress[]
+  project  Project                 @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  progress ProjectModuleProgress[]
 
-  createdAt   DateTime                @default(now())
-  updatedAt   DateTime                @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([projectId])
   @@index([order])
@@ -1569,18 +1589,18 @@ enum ProjectModuleDifficulty {
   BEGINNER
   INTERMEDIATE
   ADVANCED
-  CURRENT_STATE  // Catches up to where project is now
+  CURRENT_STATE // Catches up to where project is now
 }
 
 model ProjectModuleProgress {
-  id          String                      @id @default(cuid())
-  moduleId    String
-  userId      String
-  status      ProjectModuleProgressStatus @default(NOT_STARTED)
-  progress    Int                         @default(0)  // 0-100
+  id       String                      @id @default(cuid())
+  moduleId String
+  userId   String
+  status   ProjectModuleProgressStatus @default(NOT_STARTED)
+  progress Int                         @default(0) // 0-100
 
-  module      ProjectLearningModule       @relation(fields: [moduleId], references: [id], onDelete: Cascade)
-  user        User                        @relation("ProjectModuleProgress", fields: [userId], references: [id], onDelete: Cascade)
+  module ProjectLearningModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  user   User                  @relation("ProjectModuleProgress", fields: [userId], references: [id], onDelete: Cascade)
 
   startedAt   DateTime?
   completedAt DateTime?
@@ -1603,25 +1623,25 @@ enum ProjectModuleProgressStatus {
 // ============================================
 
 model ExodologyProgress {
-  id              String                    @id @default(cuid())
-  userId          String
+  id     String @id @default(cuid())
+  userId String
 
   // Path tracking (foundations, applied, strategic)
-  pathId          String
+  pathId String
 
   // Lesson tracking
-  lessonId        String
-  status          ExodologyLessonStatus     @default(NOT_STARTED)
+  lessonId String
+  status   ExodologyLessonStatus @default(NOT_STARTED)
 
   // Game/exercise completion data (JSON for flexibility)
-  completionData  Json?                     // Stores mastered cards, matched pairs, etc.
+  completionData Json? // Stores mastered cards, matched pairs, etc.
 
   // Timestamps
-  startedAt       DateTime?
-  completedAt     DateTime?
-  lastAccessedAt  DateTime                  @default(now())
+  startedAt      DateTime?
+  completedAt    DateTime?
+  lastAccessedAt DateTime  @default(now())
 
-  user            User                      @relation("ExodologyProgress", fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation("ExodologyProgress", fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, pathId, lessonId])
   @@index([userId])
@@ -1637,18 +1657,18 @@ enum ExodologyLessonStatus {
 }
 
 model ExodologyCertification {
-  id              String                    @id @default(cuid())
-  userId          String
+  id     String @id @default(cuid())
+  userId String
 
   // Which certification (foundations, applied, strategic, or master)
   certificationId String
-  pathId          String?                   // null for master certification
+  pathId          String? // null for master certification
 
   // Certificate details
-  issuedAt        DateTime                  @default(now())
-  certificateNumber String                  @unique @default(cuid())
+  issuedAt          DateTime @default(now())
+  certificateNumber String   @unique @default(cuid())
 
-  user            User                      @relation("ExodologyCertifications", fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation("ExodologyCertifications", fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, certificationId])
   @@index([userId])
@@ -1657,30 +1677,30 @@ model ExodologyCertification {
 
 // User's learning streak tracking
 model ExodologyStreak {
-  id              String                    @id @default(cuid())
-  userId          String                    @unique
-  currentStreak   Int                       @default(0)
-  longestStreak   Int                       @default(0)
-  lastActivityDate DateTime?
-  streakStartDate DateTime?
-  totalLearningDays Int                     @default(0)
+  id                String    @id @default(cuid())
+  userId            String    @unique
+  currentStreak     Int       @default(0)
+  longestStreak     Int       @default(0)
+  lastActivityDate  DateTime?
+  streakStartDate   DateTime?
+  totalLearningDays Int       @default(0)
 
-  user            User                      @relation("ExodologyStreak", fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation("ExodologyStreak", fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
 
 // User's notes on lessons
 model ExodologyNote {
-  id              String                    @id @default(cuid())
-  userId          String
-  pathId          String
-  lessonId        String
-  content         String                    @db.Text
-  createdAt       DateTime                  @default(now())
-  updatedAt       DateTime                  @updatedAt
+  id        String   @id @default(cuid())
+  userId    String
+  pathId    String
+  lessonId  String
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  user            User                      @relation("ExodologyNotes", fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation("ExodologyNotes", fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, pathId, lessonId])
   @@index([userId])
@@ -1689,17 +1709,17 @@ model ExodologyNote {
 
 // Spaced repetition review schedule
 model ExodologyReview {
-  id              String                    @id @default(cuid())
-  userId          String
-  pathId          String
-  lessonId        String
-  nextReviewDate  DateTime
-  interval        Int                       @default(1)  // days until next review
-  easeFactor      Float                     @default(2.5) // SM-2 algorithm factor
-  reviewCount     Int                       @default(0)
-  lastReviewDate  DateTime?
+  id             String    @id @default(cuid())
+  userId         String
+  pathId         String
+  lessonId       String
+  nextReviewDate DateTime
+  interval       Int       @default(1) // days until next review
+  easeFactor     Float     @default(2.5) // SM-2 algorithm factor
+  reviewCount    Int       @default(0)
+  lastReviewDate DateTime?
 
-  user            User                      @relation("ExodologyReviews", fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation("ExodologyReviews", fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, pathId, lessonId])
   @@index([userId])
@@ -1712,41 +1732,41 @@ model ExodologyReview {
 // ============================================
 
 model ProjectPrerequisite {
-  id                  String              @id @default(cuid())
-  projectId           String
+  id        String @id @default(cuid())
+  projectId String
 
   // Type of prerequisite
-  type                PrerequisiteType
+  type PrerequisiteType
 
   // For EXODUS_COURSE type - reference to Exodus Academy article/module
-  exodusCourseId      String?
+  exodusCourseId String?
 
   // For PROJECT_MODULE type - reference to project's own learning module
-  projectModuleId     String?
+  projectModuleId String?
 
   // For TAG_MATCH type - courses matching this tag
-  requiredTag         String?
+  requiredTag String?
 
   // For STOCK_LEVEL type - minimum STOCK score
-  minStockScore       Int?
+  minStockScore Int?
 
   // Description for display
-  displayName         String?
-  description         String?             @db.Text
+  displayName String?
+  description String? @db.Text
 
-  project             Project             @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
-  createdAt           DateTime            @default(now())
+  createdAt DateTime @default(now())
 
   @@index([projectId])
   @@index([type])
 }
 
 enum PrerequisiteType {
-  EXODUS_COURSE       // Specific Exodus Academy course
-  PROJECT_MODULE      // Project's own learning module
-  TAG_MATCH           // Courses matching a tag
-  STOCK_LEVEL         // Minimum STOCK score
+  EXODUS_COURSE // Specific Exodus Academy course
+  PROJECT_MODULE // Project's own learning module
+  TAG_MATCH // Courses matching a tag
+  STOCK_LEVEL // Minimum STOCK score
 }
 
 // ============================================
@@ -1755,21 +1775,21 @@ enum PrerequisiteType {
 // ============================================
 
 model ProjectPrerequisiteWaiver {
-  id          String              @id @default(cuid())
-  projectId   String
-  userId      String
+  id        String @id @default(cuid())
+  projectId String
+  userId    String
 
   // Who approved
   approvedById String
-  aiAssisted  Boolean             @default(false)
-  aiConfidence Int?               // 0-100 confidence score from Sage
-  reason      String?             @db.Text
+  aiAssisted   Boolean @default(false)
+  aiConfidence Int? // 0-100 confidence score from Sage
+  reason       String? @db.Text
 
-  project     Project             @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  user        User                @relation("ProjectWaivers", fields: [userId], references: [id], onDelete: Cascade)
-  approvedBy  User                @relation("ProjectWaiversApproved", fields: [approvedById], references: [id], onDelete: Cascade)
+  project    Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user       User    @relation("ProjectWaivers", fields: [userId], references: [id], onDelete: Cascade)
+  approvedBy User    @relation("ProjectWaiversApproved", fields: [approvedById], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime            @default(now())
+  createdAt DateTime @default(now())
 
   @@unique([projectId, userId])
   @@index([projectId])
@@ -1782,13 +1802,13 @@ model ProjectPrerequisiteWaiver {
 // ============================================
 
 model ProjectMemberRecognition {
-  id          String              @id @default(cuid())
-  memberId    String              // ProjectMember ID
-  badge       ProjectRecognitionBadge
+  id       String                  @id @default(cuid())
+  memberId String // ProjectMember ID
+  badge    ProjectRecognitionBadge
 
-  member      ProjectMember       @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  member ProjectMember @relation(fields: [memberId], references: [id], onDelete: Cascade)
 
-  earnedAt    DateTime            @default(now())
+  earnedAt DateTime @default(now())
 
   @@unique([memberId, badge])
   @@index([memberId])
@@ -1796,16 +1816,16 @@ model ProjectMemberRecognition {
 }
 
 enum ProjectRecognitionBadge {
-  PIONEER           // Early contributor to the project
-  ARCHITECT         // Significant structural contributions
-  SCHOLAR           // Completed all learning + contributing
-  MENTOR            // Helping others learn
-  RESEARCHER        // Active in research sections
-  PATHFINDER        // Finding and sharing new resources
-  STEWARD           // Long-term consistent contributor
-  CATALYST          // Sparking productive discussions
-  RISING_STAR       // Learning the process, showing growth
-  TOP_CONTRIBUTOR   // Highest contribution score
+  PIONEER // Early contributor to the project
+  ARCHITECT // Significant structural contributions
+  SCHOLAR // Completed all learning + contributing
+  MENTOR // Helping others learn
+  RESEARCHER // Active in research sections
+  PATHFINDER // Finding and sharing new resources
+  STEWARD // Long-term consistent contributor
+  CATALYST // Sparking productive discussions
+  RISING_STAR // Learning the process, showing growth
+  TOP_CONTRIBUTOR // Highest contribution score
 }
 
 // ============================================
@@ -1814,18 +1834,18 @@ enum ProjectRecognitionBadge {
 // ============================================
 
 model ProjectContribution {
-  id          String              @id @default(cuid())
-  projectId   String
-  userId      String
+  id        String @id @default(cuid())
+  projectId String
+  userId    String
 
   type        ProjectContributionType
-  referenceId String?             // ID of the thing contributed
-  points      Int                 @default(1)
+  referenceId String? // ID of the thing contributed
+  points      Int                     @default(1)
 
-  project     Project             @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  user        User                @relation("ProjectContributions", fields: [userId], references: [id], onDelete: Cascade)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation("ProjectContributions", fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime            @default(now())
+  createdAt DateTime @default(now())
 
   @@index([projectId])
   @@index([userId])
@@ -1851,20 +1871,20 @@ enum ProjectContributionType {
 // ============================================
 
 model ProjectNotification {
-  id          String                      @id @default(cuid())
-  projectId   String
-  userId      String
+  id        String @id @default(cuid())
+  projectId String
+  userId    String
 
   type        ProjectNotificationType
   title       String
   content     String?
   referenceId String?
-  isRead      Boolean                     @default(false)
+  isRead      Boolean                 @default(false)
 
-  project     Project                     @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  user        User                        @relation("ProjectNotifications", fields: [userId], references: [id], onDelete: Cascade)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation("ProjectNotifications", fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime                    @default(now())
+  createdAt DateTime @default(now())
 
   @@index([projectId])
   @@index([userId])
@@ -1892,99 +1912,99 @@ enum ProjectNotificationType {
 // ============================================
 
 model MindMap {
-  id            String              @id @default(cuid())
-  projectId     String
-  title         String              @default("Project Mind Map")
-  description   String?             @db.Text
+  id          String  @id @default(cuid())
+  projectId   String
+  title       String  @default("Project Mind Map")
+  description String? @db.Text
 
   // Configuration
-  isCollaborative Boolean           @default(true)
-  isPublic      Boolean             @default(false)  // If false, only project members can view
-  allowComments Boolean             @default(true)
+  isCollaborative Boolean @default(true)
+  isPublic        Boolean @default(false) // If false, only project members can view
+  allowComments   Boolean @default(true)
 
   // Layout settings
-  layoutType    MindMapLayoutType   @default(FORCE_GRAPH)
-  canvasWidth   Int                 @default(3000)
-  canvasHeight  Int                 @default(2000)
-  zoom          Float               @default(1.0)
-  centerX       Float               @default(1500)
-  centerY       Float               @default(1000)
-  yjsState      Bytes?                   // Y.js CRDT state for real-time collaboration
+  layoutType   MindMapLayoutType @default(FORCE_GRAPH)
+  canvasWidth  Int               @default(3000)
+  canvasHeight Int               @default(2000)
+  zoom         Float             @default(1.0)
+  centerX      Float             @default(1500)
+  centerY      Float             @default(1000)
+  yjsState     Bytes? // Y.js CRDT state for real-time collaboration
 
   // Metadata
-  creatorId     String
-  nodeCount     Int                 @default(0)
-  connectionCount Int               @default(0)
-  lastEditedBy  String?
-  lastEditedAt  DateTime?
+  creatorId       String
+  nodeCount       Int       @default(0)
+  connectionCount Int       @default(0)
+  lastEditedBy    String?
+  lastEditedAt    DateTime?
 
   // Relations
-  project       Project             @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  nodes         MindMapNode[]
-  connections   MindMapConnection[]
-  contributors  MindMapContributor[]
-  activities    MindMapActivity[]
+  project      Project              @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  nodes        MindMapNode[]
+  connections  MindMapConnection[]
+  contributors MindMapContributor[]
+  activities   MindMapActivity[]
 
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  @@unique([projectId])  // One mind map per project
+  @@unique([projectId]) // One mind map per project
   @@index([projectId])
   @@index([creatorId])
   @@index([isPublic])
 }
 
 enum MindMapLayoutType {
-  FORCE_GRAPH     // Physics-based force layout
+  FORCE_GRAPH // Physics-based force layout
   INFINITE_CANVAS // Free-form infinite canvas
-  TREE            // Hierarchical tree layout
-  RADIAL          // Radial/circular layout
+  TREE // Hierarchical tree layout
+  RADIAL // Radial/circular layout
 }
 
 model MindMapNode {
-  id            String              @id @default(cuid())
-  mindMapId     String
+  id        String @id @default(cuid())
+  mindMapId String
 
   // Node properties
-  type          MindMapNodeType
-  label         String
-  description   String?             @db.Text
+  type        MindMapNodeType
+  label       String
+  description String?         @db.Text
 
   // Position
-  x             Float
-  y             Float
-  width         Float               @default(200)
-  height        Float               @default(100)
+  x      Float
+  y      Float
+  width  Float @default(200)
+  height Float @default(100)
 
   // Visual styling
-  color         String?             // Hex color code
-  emoji         String?             // Node icon
-  fontSize      Int                 @default(14)
+  color    String? // Hex color code
+  emoji    String? // Node icon
+  fontSize Int     @default(14)
 
   // Node metadata
-  priority      NodePriority?
-  status        NodeStatus?
-  assigneeId    String?             // User assigned to this node
-  dueDate       DateTime?
-  tags          String[]            @default([])
+  priority   NodePriority?
+  status     NodeStatus?
+  assigneeId String? // User assigned to this node
+  dueDate    DateTime?
+  tags       String[]      @default([])
 
   // State
-  isLocked      Boolean             @default(false)
-  isVisible     Boolean             @default(true)
+  isLocked  Boolean @default(false)
+  isVisible Boolean @default(true)
 
   // Collaboration
-  createdById   String
-  lastEditedBy  String?
-  lastEditedAt  DateTime?
+  createdById  String
+  lastEditedBy String?
+  lastEditedAt DateTime?
 
   // Relations
-  mindMap       MindMap             @relation(fields: [mindMapId], references: [id], onDelete: Cascade)
-  sourceConnections MindMapConnection[] @relation("SourceNode")
-  targetConnections MindMapConnection[] @relation("TargetNode")
-  comments      MindMapNodeComment[]
+  mindMap           MindMap              @relation(fields: [mindMapId], references: [id], onDelete: Cascade)
+  sourceConnections MindMapConnection[]  @relation("SourceNode")
+  targetConnections MindMapConnection[]  @relation("TargetNode")
+  comments          MindMapNodeComment[]
 
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([mindMapId])
   @@index([type])
@@ -1994,16 +2014,16 @@ model MindMapNode {
 }
 
 enum MindMapNodeType {
-  IDEA          // 💡 Brainstorming idea
-  TASK          // ✅ Actionable task
-  MILESTONE     // 🎯 Project milestone
-  RESOURCE      // 📦 Reference/resource
-  NOTE          // 📝 General note
-  DECISION      // 🎲 Decision point
-  RISK          // ⚠️ Risk/concern
-  OPPORTUNITY   // 🌟 Opportunity
-  PERSON        // 👤 Person/stakeholder
-  QUESTION      // ❓ Open question
+  IDEA // 💡 Brainstorming idea
+  TASK // ✅ Actionable task
+  MILESTONE // 🎯 Project milestone
+  RESOURCE // 📦 Reference/resource
+  NOTE // 📝 General note
+  DECISION // 🎲 Decision point
+  RISK // ⚠️ Risk/concern
+  OPPORTUNITY // 🌟 Opportunity
+  PERSON // 👤 Person/stakeholder
+  QUESTION // ❓ Open question
 }
 
 enum NodePriority {
@@ -2022,38 +2042,38 @@ enum NodeStatus {
 }
 
 model MindMapConnection {
-  id            String              @id @default(cuid())
-  mindMapId     String
-  sourceNodeId  String
-  targetNodeId  String
+  id           String @id @default(cuid())
+  mindMapId    String
+  sourceNodeId String
+  targetNodeId String
 
   // Connection properties
-  type          ConnectionType      @default(RELATED)
-  label         String?
-  description   String?             @db.Text
+  type        ConnectionType @default(RELATED)
+  label       String?
+  description String?        @db.Text
 
   // Visual styling
-  color         String?             // Hex color code
-  style         ConnectionStyle     @default(SOLID)
-  thickness     Int                 @default(2)
+  color     String? // Hex color code
+  style     ConnectionStyle @default(SOLID)
+  thickness Int             @default(2)
 
   // Arrow configuration
-  showArrow     Boolean             @default(true)
-  bidirectional Boolean             @default(false)
+  showArrow     Boolean @default(true)
+  bidirectional Boolean @default(false)
 
   // Collaboration
-  createdById   String
-  lastEditedBy  String?
-  lastEditedAt  DateTime?
+  createdById  String
+  lastEditedBy String?
+  lastEditedAt DateTime?
 
   // Relations
-  mindMap       MindMap             @relation(fields: [mindMapId], references: [id], onDelete: Cascade)
-  sourceNode    MindMapNode         @relation("SourceNode", fields: [sourceNodeId], references: [id], onDelete: Cascade)
-  targetNode    MindMapNode         @relation("TargetNode", fields: [targetNodeId], references: [id], onDelete: Cascade)
-  comments      MindMapConnectionComment[]
+  mindMap    MindMap                    @relation(fields: [mindMapId], references: [id], onDelete: Cascade)
+  sourceNode MindMapNode                @relation("SourceNode", fields: [sourceNodeId], references: [id], onDelete: Cascade)
+  targetNode MindMapNode                @relation("TargetNode", fields: [targetNodeId], references: [id], onDelete: Cascade)
+  comments   MindMapConnectionComment[]
 
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([mindMapId])
   @@index([sourceNodeId])
@@ -2063,36 +2083,36 @@ model MindMapConnection {
 }
 
 enum ConnectionType {
-  RELATED       // General relationship
-  DEPENDS       // Target depends on source
-  LEADS_TO      // Source leads to target
-  BLOCKS        // Source blocks target
-  SUPPORTS      // Source supports target
-  CONFLICTS     // Source conflicts with target
-  PART_OF       // Target is part of source
-  SIMILAR_TO    // Similar concepts
+  RELATED // General relationship
+  DEPENDS // Target depends on source
+  LEADS_TO // Source leads to target
+  BLOCKS // Source blocks target
+  SUPPORTS // Source supports target
+  CONFLICTS // Source conflicts with target
+  PART_OF // Target is part of source
+  SIMILAR_TO // Similar concepts
 }
 
 enum ConnectionStyle {
-  SOLID         // ───
-  DASHED        // - - -
-  DOTTED        // ···
-  THICK         // ━━━
+  SOLID // ───
+  DASHED // - - -
+  DOTTED // ···
+  THICK // ━━━
 }
 
 model MindMapNodeComment {
-  id            String              @id @default(cuid())
-  nodeId        String
-  userId        String
-  content       String              @db.Text
-  isResolved    Boolean             @default(false)
-  resolvedBy    String?
-  resolvedAt    DateTime?
+  id         String    @id @default(cuid())
+  nodeId     String
+  userId     String
+  content    String    @db.Text
+  isResolved Boolean   @default(false)
+  resolvedBy String?
+  resolvedAt DateTime?
 
-  node          MindMapNode         @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+  node MindMapNode @relation(fields: [nodeId], references: [id], onDelete: Cascade)
 
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([nodeId])
   @@index([userId])
@@ -2100,18 +2120,18 @@ model MindMapNodeComment {
 }
 
 model MindMapConnectionComment {
-  id            String              @id @default(cuid())
-  connectionId  String
-  userId        String
-  content       String              @db.Text
-  isResolved    Boolean             @default(false)
-  resolvedBy    String?
-  resolvedAt    DateTime?
+  id           String    @id @default(cuid())
+  connectionId String
+  userId       String
+  content      String    @db.Text
+  isResolved   Boolean   @default(false)
+  resolvedBy   String?
+  resolvedAt   DateTime?
 
-  connection    MindMapConnection   @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+  connection MindMapConnection @relation(fields: [connectionId], references: [id], onDelete: Cascade)
 
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([connectionId])
   @@index([userId])
@@ -2119,20 +2139,20 @@ model MindMapConnectionComment {
 }
 
 model MindMapContributor {
-  id            String              @id @default(cuid())
-  mindMapId     String
-  userId        String
-  permission    MindMapPermission   @default(VIEW)
+  id         String            @id @default(cuid())
+  mindMapId  String
+  userId     String
+  permission MindMapPermission @default(VIEW)
 
   // Activity tracking
-  nodesCreated  Int                 @default(0)
-  nodesEdited   Int                 @default(0)
-  connectionsCreated Int            @default(0)
-  lastActiveAt  DateTime?
+  nodesCreated       Int       @default(0)
+  nodesEdited        Int       @default(0)
+  connectionsCreated Int       @default(0)
+  lastActiveAt       DateTime?
 
-  mindMap       MindMap             @relation(fields: [mindMapId], references: [id], onDelete: Cascade)
+  mindMap MindMap @relation(fields: [mindMapId], references: [id], onDelete: Cascade)
 
-  addedAt       DateTime            @default(now())
+  addedAt DateTime @default(now())
 
   @@unique([mindMapId, userId])
   @@index([mindMapId])
@@ -2141,29 +2161,29 @@ model MindMapContributor {
 }
 
 enum MindMapPermission {
-  VIEW          // Can only view
-  COMMENT       // Can view and comment
-  EDIT          // Can edit nodes and connections
-  ADMIN         // Full control
+  VIEW // Can only view
+  COMMENT // Can view and comment
+  EDIT // Can edit nodes and connections
+  ADMIN // Full control
 }
 
 model MindMapActivity {
-  id            String              @id @default(cuid())
-  mindMapId     String
-  userId        String
+  id        String @id @default(cuid())
+  mindMapId String
+  userId    String
 
   // Activity details
-  activityType  MindMapActivityType
-  entityType    String?             // 'node', 'connection', 'map'
-  entityId      String?             // ID of affected entity
+  activityType MindMapActivityType
+  entityType   String? // 'node', 'connection', 'map'
+  entityId     String? // ID of affected entity
 
   // Change details
-  description   String              // Human-readable description
-  changes       Json?               // Detailed change data
+  description String // Human-readable description
+  changes     Json? // Detailed change data
 
-  mindMap       MindMap             @relation(fields: [mindMapId], references: [id], onDelete: Cascade)
+  mindMap MindMap @relation(fields: [mindMapId], references: [id], onDelete: Cascade)
 
-  createdAt     DateTime            @default(now())
+  createdAt DateTime @default(now())
 
   @@index([mindMapId])
   @@index([userId])
@@ -2191,17 +2211,17 @@ enum MindMapActivityType {
 // ============================================
 
 model DirectMessage {
-  id           String   @id @default(cuid())
-  content      String   @db.Text
-  senderId     String
-  receiverId   String
-  read         Boolean  @default(false)
-  editedAt     DateTime?
-  deletedAt    DateTime?
-  sender       User     @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
-  receiver     User     @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade)
-  reactions    MessageReaction[]
-  createdAt    DateTime @default(now())
+  id         String            @id @default(cuid())
+  content    String            @db.Text
+  senderId   String
+  receiverId String
+  read       Boolean           @default(false)
+  editedAt   DateTime?
+  deletedAt  DateTime?
+  sender     User              @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver   User              @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade)
+  reactions  MessageReaction[]
+  createdAt  DateTime          @default(now())
 
   @@index([senderId])
   @@index([receiverId])
@@ -2231,22 +2251,22 @@ model MessageReaction {
 // ============================================
 
 model Event {
-  id          String        @id @default(cuid())
+  id          String          @id @default(cuid())
   title       String
-  slug        String        @unique
-  description String        @db.Text
-  type        EventType     @default(VIRTUAL)
-  location    String?       // For in-person events
-  meetingLink String?       // For virtual events
+  slug        String          @unique
+  description String          @db.Text
+  type        EventType       @default(VIRTUAL)
+  location    String? // For in-person events
+  meetingLink String? // For virtual events
   startDate   DateTime
   endDate     DateTime?
   maxCapacity Int?
   coverImage  String?
   creatorId   String
-  creator     User          @relation("CreatedEvents", fields: [creatorId], references: [id])
+  creator     User            @relation("CreatedEvents", fields: [creatorId], references: [id])
   attendees   EventAttendee[]
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
 
   @@index([slug])
   @@index([creatorId])
@@ -2263,13 +2283,13 @@ enum EventType {
 }
 
 model EventAttendee {
-  id        String           @id @default(cuid())
-  eventId   String
-  userId    String
-  status    AttendeeStatus   @default(GOING)
-  event     Event            @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
-  joinedAt  DateTime         @default(now())
+  id       String         @id @default(cuid())
+  eventId  String
+  userId   String
+  status   AttendeeStatus @default(GOING)
+  event    Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  user     User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  joinedAt DateTime       @default(now())
 
   @@unique([eventId, userId])
   @@index([eventId])
@@ -2322,7 +2342,7 @@ model Report {
   reason         String         @db.Text
   status         ReportStatus   @default(PENDING)
   priority       ReportPriority @default(MEDIUM)
-  contentType    String         // 'user', 'product', 'article', 'comment', 'post'
+  contentType    String // 'user', 'product', 'article', 'comment', 'post'
   contentId      String
   reporterId     String
   reporter       User           @relation("ReportedBy", fields: [reporterId], references: [id])
@@ -2332,9 +2352,9 @@ model Report {
   resolvedBy     User?          @relation("ReportResolvedBy", fields: [resolvedById], references: [id])
   resolutionNote String?        @db.Text
 
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
-  resolvedAt     DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  resolvedAt DateTime?
 
   @@index([reporterId])
   @@index([status])
@@ -2359,13 +2379,13 @@ enum ReportStatus {
 }
 
 model AdminLog {
-  id          String         @id @default(cuid())
+  id          String      @id @default(cuid())
   action      AdminAction
-  description String         @db.Text
+  description String      @db.Text
   metadata    Json?
   userId      String
-  user        User           @relation(fields: [userId], references: [id])
-  createdAt   DateTime       @default(now())
+  user        User        @relation(fields: [userId], references: [id])
+  createdAt   DateTime    @default(now())
 
   @@index([userId])
   @@index([action])
@@ -2390,28 +2410,28 @@ enum AdminAction {
 // ============================================
 
 model UserProduct {
-  id              String   @id @default(cuid())
-  name            String
-  description     String   @db.Text
-  price           Float
-  category        String
-  materials       String   // Sustainable materials used
-  images          String[] // Array of image URLs
-  externalUrl     String   // Link to user's store (Etsy, Shopify, etc.)
+  id          String   @id @default(cuid())
+  name        String
+  description String   @db.Text
+  price       Float
+  category    String
+  materials   String // Sustainable materials used
+  images      String[] // Array of image URLs
+  externalUrl String // Link to user's store (Etsy, Shopify, etc.)
 
   // Approval workflow
   approvalStatus  ProductApprovalStatus @default(PENDING)
-  rejectionReason String?  @db.Text
-  affiliateLink   String?  // Project Exodus affiliate link (generated after approval)
-  reviewedBy      String?  // Admin who reviewed
+  rejectionReason String?               @db.Text
+  affiliateLink   String? // Project Exodus affiliate link (generated after approval)
+  reviewedBy      String? // Admin who reviewed
   reviewedAt      DateTime?
 
   // Seller info
-  sellerId        String
-  seller          User     @relation("UserProducts", fields: [sellerId], references: [id], onDelete: Cascade)
+  sellerId String
+  seller   User   @relation("UserProducts", fields: [sellerId], references: [id], onDelete: Cascade)
 
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([sellerId])
   @@index([approvalStatus])
@@ -2434,7 +2454,7 @@ model EmailTemplate {
   subject   String
   html      String   @db.Text
   text      String?  @db.Text
-  variables Json?    // Available variables
+  variables Json? // Available variables
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -2452,12 +2472,12 @@ model SiteSettings {
 }
 
 model NewsletterSubscription {
-  id          String   @id @default(cuid())
-  email       String   @unique
-  status      SubscriptionStatus @default(ACTIVE)
-  source      String?  // Where they subscribed from
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String             @id @default(cuid())
+  email     String             @unique
+  status    SubscriptionStatus @default(ACTIVE)
+  source    String? // Where they subscribed from
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
 
   @@index([email])
   @@index([status])
@@ -2483,17 +2503,17 @@ model RolePermission {
 }
 
 model AdminAlert {
-  id        String            @id @default(cuid())
+  id        String         @id @default(cuid())
   type      AdminAlertType
-  priority  AlertPriority     @default(MEDIUM)
+  priority  AlertPriority  @default(MEDIUM)
   title     String
-  message   String            @db.Text
+  message   String         @db.Text
   link      String?
-  read      Boolean           @default(false)
-  userId    String?           // Target admin (null = all admins)
-  user      User?             @relation("AdminAlerts", fields: [userId], references: [id], onDelete: SetNull)
-  metadata  Json?             // Additional context data
-  createdAt DateTime          @default(now())
+  read      Boolean        @default(false)
+  userId    String? // Target admin (null = all admins)
+  user      User?          @relation("AdminAlerts", fields: [userId], references: [id], onDelete: SetNull)
+  metadata  Json? // Additional context data
+  createdAt DateTime       @default(now())
 
   @@index([userId])
   @@index([read])
@@ -2521,14 +2541,14 @@ enum AlertPriority {
 }
 
 model UserBan {
-  id          String    @id @default(cuid())
-  userId      String
-  bannedById  String
-  reason      String    @db.Text
-  expiresAt   DateTime? // Null = permanent
-  active      Boolean   @default(true)
-  createdAt   DateTime  @default(now())
-  unbannedAt  DateTime?
+  id           String    @id @default(cuid())
+  userId       String
+  bannedById   String
+  reason       String    @db.Text
+  expiresAt    DateTime? // Null = permanent
+  active       Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  unbannedAt   DateTime?
   unbannedById String?
 
   @@index([userId])
@@ -2545,9 +2565,9 @@ model ArticleReadingProgress {
   id             String    @id @default(cuid())
   userId         String
   articleId      String
-  scrollProgress Float     @default(0)    // 0-100 percentage
-  timeSpent      Int       @default(0)    // seconds spent reading
-  lastPosition   Int?                      // paragraph/section index
+  scrollProgress Float     @default(0) // 0-100 percentage
+  timeSpent      Int       @default(0) // seconds spent reading
+  lastPosition   Int? // paragraph/section index
   completed      Boolean   @default(false)
   completedAt    DateTime?
   user           User      @relation("ArticleReadingProgress", fields: [userId], references: [id], onDelete: Cascade)
@@ -2565,9 +2585,9 @@ model ArticleBookmark {
   id        String   @id @default(cuid())
   userId    String
   articleId String
-  position  Int                           // Paragraph or section index
-  title     String?                       // Optional bookmark title
-  note      String?  @db.Text            // Optional note
+  position  Int // Paragraph or section index
+  title     String? // Optional bookmark title
+  note      String?  @db.Text // Optional note
   user      User     @relation("ArticleBookmarks", fields: [userId], references: [id], onDelete: Cascade)
   article   Article  @relation("ArticleBookmarks", fields: [articleId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
@@ -2577,18 +2597,18 @@ model ArticleBookmark {
 }
 
 model ArticleHighlight {
-  id         String   @id @default(cuid())
-  userId     String
-  articleId  String
-  startPos   Int                          // Start character position
-  endPos     Int                          // End character position
-  text       String   @db.Text           // The highlighted text
-  color      String   @default("yellow") // yellow, green, blue, pink, purple
-  note       String?  @db.Text           // Optional annotation
-  user       User     @relation("ArticleHighlights", fields: [userId], references: [id], onDelete: Cascade)
-  article    Article  @relation("ArticleHighlights", fields: [articleId], references: [id], onDelete: Cascade)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        String   @id @default(cuid())
+  userId    String
+  articleId String
+  startPos  Int // Start character position
+  endPos    Int // End character position
+  text      String   @db.Text // The highlighted text
+  color     String   @default("yellow") // yellow, green, blue, pink, purple
+  note      String?  @db.Text // Optional annotation
+  user      User     @relation("ArticleHighlights", fields: [userId], references: [id], onDelete: Cascade)
+  article   Article  @relation("ArticleHighlights", fields: [articleId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
   @@index([articleId])
@@ -2658,10 +2678,10 @@ model Achievement {
   slug             String              @unique
   name             String
   description      String
-  icon             String                            // Emoji or icon name
+  icon             String // Emoji or icon name
   category         AchievementCategory
   points           Int                 @default(10)
-  requirement      Json                              // {type: 'articles_read', count: 10}
+  requirement      Json // {type: 'articles_read', count: 10}
   rarity           AchievementRarity   @default(COMMON)
   secret           Boolean             @default(false) // Hidden until earned
   userAchievements UserAchievement[]
@@ -2672,31 +2692,31 @@ model Achievement {
 }
 
 enum AchievementCategory {
-  READING       // Reading milestones
-  CONTRIBUTION  // Writing, reviewing
-  ENGAGEMENT    // Comments, likes, discussions
-  STREAK        // Consistency streaks
-  EXPLORATION   // Categories, topics explored
-  SOCIAL        // Following, sharing, connecting
-  MASTERY       // Deep expertise in areas
+  READING // Reading milestones
+  CONTRIBUTION // Writing, reviewing
+  ENGAGEMENT // Comments, likes, discussions
+  STREAK // Consistency streaks
+  EXPLORATION // Categories, topics explored
+  SOCIAL // Following, sharing, connecting
+  MASTERY // Deep expertise in areas
 }
 
 enum AchievementRarity {
-  COMMON      // Easy to get
-  UNCOMMON    // Some effort required
-  RARE        // Significant achievement
-  EPIC        // Major accomplishment
-  LEGENDARY   // Exceptional dedication
+  COMMON // Easy to get
+  UNCOMMON // Some effort required
+  RARE // Significant achievement
+  EPIC // Major accomplishment
+  LEGENDARY // Exceptional dedication
 }
 
 model UserAchievement {
   id            String      @id @default(cuid())
   userId        String
   achievementId String
-  progress      Int         @default(0)           // Progress toward requirement
+  progress      Int         @default(0) // Progress toward requirement
   completed     Boolean     @default(false)
   completedAt   DateTime?
-  notified      Boolean     @default(false)       // Has user seen the notification
+  notified      Boolean     @default(false) // Has user seen the notification
   user          User        @relation("UserAchievements", fields: [userId], references: [id], onDelete: Cascade)
   achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
   createdAt     DateTime    @default(now())
@@ -2709,18 +2729,18 @@ model UserAchievement {
 }
 
 model ReadingStreak {
-  id              String    @id @default(cuid())
-  userId          String    @unique
-  currentStreak   Int       @default(0)
-  longestStreak   Int       @default(0)
-  lastReadDate    DateTime?
-  totalDaysRead   Int       @default(0)
-  weekStartStreak Int       @default(0)          // Streak at start of week
-  freezesUsed     Int       @default(0)          // Streak freezes used this month
-  freezesAvailable Int      @default(2)          // Streak freezes available
-  user            User      @relation("ReadingStreak", fields: [userId], references: [id], onDelete: Cascade)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id               String    @id @default(cuid())
+  userId           String    @unique
+  currentStreak    Int       @default(0)
+  longestStreak    Int       @default(0)
+  lastReadDate     DateTime?
+  totalDaysRead    Int       @default(0)
+  weekStartStreak  Int       @default(0) // Streak at start of week
+  freezesUsed      Int       @default(0) // Streak freezes used this month
+  freezesAvailable Int       @default(2) // Streak freezes available
+  user             User      @relation("ReadingStreak", fields: [userId], references: [id], onDelete: Cascade)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 
   @@index([currentStreak])
   @@index([longestStreak])
@@ -2734,7 +2754,7 @@ model UserPoints {
   monthlyPoints Int                @default(0)
   allTimePoints Int                @default(0)
   level         Int                @default(1)
-  levelProgress Int                @default(0)    // Progress to next level (0-100)
+  levelProgress Int                @default(0) // Progress to next level (0-100)
   user          User               @relation("UserPoints", fields: [userId], references: [id], onDelete: Cascade)
   transactions  PointTransaction[]
   createdAt     DateTime           @default(now())
@@ -2745,15 +2765,15 @@ model UserPoints {
 }
 
 model PointTransaction {
-  id           String     @id @default(cuid())
-  userPointsId String
-  amount       Int                              // Can be negative for deductions
-  reason       PointReason
-  description  String?                          // Human-readable description
-  referenceId  String?                          // Related article, review, etc.
-  referenceType String?                         // 'article', 'review', 'achievement', etc.
-  userPoints   UserPoints @relation(fields: [userPointsId], references: [id], onDelete: Cascade)
-  createdAt    DateTime   @default(now())
+  id            String      @id @default(cuid())
+  userPointsId  String
+  amount        Int // Can be negative for deductions
+  reason        PointReason
+  description   String? // Human-readable description
+  referenceId   String? // Related article, review, etc.
+  referenceType String? // 'article', 'review', 'achievement', etc.
+  userPoints    UserPoints  @relation(fields: [userPointsId], references: [id], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
 
   @@index([userPointsId])
   @@index([reason])
@@ -2764,12 +2784,12 @@ enum PointReason {
   ARTICLE_READ
   ARTICLE_COMPLETED
   REVIEW_WRITTEN
-  REVIEW_HELPFUL         // Review received likes
+  REVIEW_HELPFUL // Review received likes
   COMMENT_POSTED
   ACHIEVEMENT_EARNED
   STREAK_BONUS
   DAILY_LOGIN
-  FIRST_OF_DAY          // First article of the day bonus
+  FIRST_OF_DAY // First article of the day bonus
   COLLECTION_CREATED
   ARTICLE_PUBLISHED
   REFERRAL_BONUS
@@ -2781,31 +2801,31 @@ enum PointReason {
 // ============================================
 
 model AuthorAnalytics {
-  id                 String   @id @default(cuid())
-  userId             String   @unique
-  totalArticles      Int      @default(0)
-  totalViews         Int      @default(0)
-  totalReads         Int      @default(0)     // Completed reads
-  totalTimeSpent     Int      @default(0)     // Total seconds readers spent
-  avgReadCompletion  Float?                   // Average completion percentage
-  avgRating          Float?                   // Average peer review rating
-  totalReviews       Int      @default(0)
-  totalComments      Int      @default(0)
-  followerCount      Int      @default(0)
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  totalArticles     Int      @default(0)
+  totalViews        Int      @default(0)
+  totalReads        Int      @default(0) // Completed reads
+  totalTimeSpent    Int      @default(0) // Total seconds readers spent
+  avgReadCompletion Float? // Average completion percentage
+  avgRating         Float? // Average peer review rating
+  totalReviews      Int      @default(0)
+  totalComments     Int      @default(0)
+  followerCount     Int      @default(0)
   // Time-based metrics
-  viewsToday         Int      @default(0)
-  viewsThisWeek      Int      @default(0)
-  viewsThisMonth     Int      @default(0)
-  readsToday         Int      @default(0)
-  readsThisWeek      Int      @default(0)
-  readsThisMonth     Int      @default(0)
+  viewsToday        Int      @default(0)
+  viewsThisWeek     Int      @default(0)
+  viewsThisMonth    Int      @default(0)
+  readsToday        Int      @default(0)
+  readsThisWeek     Int      @default(0)
+  readsThisMonth    Int      @default(0)
   // Category performance
-  topCategories      Json?                    // [{categoryId, categoryName, articleCount, views}]
-  topArticles        Json?                    // [{articleId, title, views, rating}]
+  topCategories     Json? // [{categoryId, categoryName, articleCount, views}]
+  topArticles       Json? // [{articleId, title, views, rating}]
   // Engagement trends
-  engagementTrend    Json?                    // [{date, views, reads, reviews}]
-  user               User     @relation("AuthorAnalytics", fields: [userId], references: [id], onDelete: Cascade)
-  updatedAt          DateTime @updatedAt
+  engagementTrend   Json? // [{date, views, reads, reviews}]
+  user              User     @relation("AuthorAnalytics", fields: [userId], references: [id], onDelete: Cascade)
+  updatedAt         DateTime @updatedAt
 }
 
 // ============================================
@@ -2814,18 +2834,18 @@ model AuthorAnalytics {
 // ============================================
 
 model ArticleRecommendation {
-  id          String   @id @default(cuid())
-  userId      String
-  articleId   String
-  score       Float                          // Recommendation score (0-1)
-  reason      String                         // 'similar_content', 'popular_in_category', 'followed_author', etc.
-  seen        Boolean  @default(false)
-  clicked     Boolean  @default(false)
-  dismissed   Boolean  @default(false)
-  user        User     @relation("ArticleRecommendations", fields: [userId], references: [id], onDelete: Cascade)
-  article     Article  @relation("ArticleRecommendations", fields: [articleId], references: [id], onDelete: Cascade)
-  createdAt   DateTime @default(now())
-  expiresAt   DateTime                       // Recommendations expire after some time
+  id        String   @id @default(cuid())
+  userId    String
+  articleId String
+  score     Float // Recommendation score (0-1)
+  reason    String // 'similar_content', 'popular_in_category', 'followed_author', etc.
+  seen      Boolean  @default(false)
+  clicked   Boolean  @default(false)
+  dismissed Boolean  @default(false)
+  user      User     @relation("ArticleRecommendations", fields: [userId], references: [id], onDelete: Cascade)
+  article   Article  @relation("ArticleRecommendations", fields: [articleId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  expiresAt DateTime // Recommendations expire after some time
 
   @@unique([userId, articleId])
   @@index([userId])
@@ -2841,49 +2861,49 @@ model ArticleRecommendation {
 
 // User's overall architecture learning progress and settings
 model ArchitectureProgress {
-  id                    String                      @id @default(cuid())
-  userId                String                      @unique
+  id     String @id @default(cuid())
+  userId String @unique
 
   // Learning preferences
-  preferredLevel        LearningLevel               @default(HIGH_SCHOOL)
-  preferredGameMode     ArchitectureGameMode        @default(FLASHCARD)
-  preferredPath         ArchitectureLearningPath    @default(RANDOM)
+  preferredLevel    LearningLevel            @default(HIGH_SCHOOL)
+  preferredGameMode ArchitectureGameMode     @default(FLASHCARD)
+  preferredPath     ArchitectureLearningPath @default(RANDOM)
 
   // Overall stats
-  totalGamesPlayed      Int                         @default(0)
-  totalQuestionsAnswered Int                        @default(0)
-  totalCorrectAnswers   Int                         @default(0)
-  totalTimeSpent        Int                         @default(0) // seconds
-  overallAccuracy       Float?                      // calculated percentage
+  totalGamesPlayed       Int    @default(0)
+  totalQuestionsAnswered Int    @default(0)
+  totalCorrectAnswers    Int    @default(0)
+  totalTimeSpent         Int    @default(0) // seconds
+  overallAccuracy        Float? // calculated percentage
 
   // Element mastery
-  elementsEncountered   String[]                    @default([]) // element IDs
-  elementsMastered      String[]                    @default([]) // element IDs with high proficiency
+  elementsEncountered String[] @default([]) // element IDs
+  elementsMastered    String[] @default([]) // element IDs with high proficiency
 
   // Period/Region/Category coverage
-  periodsStudied        String[]                    @default([])
-  regionsStudied        String[]                    @default([])
-  categoriesStudied     String[]                    @default([])
+  periodsStudied    String[] @default([])
+  regionsStudied    String[] @default([])
+  categoriesStudied String[] @default([])
 
   // XP and leveling
-  totalXp               Int                         @default(0)
-  currentLevel          Int                         @default(1)
+  totalXp      Int @default(0)
+  currentLevel Int @default(1)
 
   // Ghost racing stats
-  personalBestTime      Int?                        // best time for 25-question game in ms
-  ghostData             Json?                       // serialized ghost for racing
+  personalBestTime Int? // best time for 25-question game in ms
+  ghostData        Json? // serialized ghost for racing
 
-  user                  User                        @relation("ArchitectureProgress", fields: [userId], references: [id], onDelete: Cascade)
-  gameSessions          ArchitectureGameSession[]
-  spottedElements       ArchitectureSpottedElement[]
-  earnedBadges          ArchitectureUserBadge[]
-  streak                ArchitectureStreak?
-  elementProgress       ArchitectureElementProgress[]
-  diagramProgress       ArchitectureDiagramProgress[]
-  leaderboardEntries    ArchitectureLeaderboard[]
+  user               User                          @relation("ArchitectureProgress", fields: [userId], references: [id], onDelete: Cascade)
+  gameSessions       ArchitectureGameSession[]
+  spottedElements    ArchitectureSpottedElement[]
+  earnedBadges       ArchitectureUserBadge[]
+  streak             ArchitectureStreak?
+  elementProgress    ArchitectureElementProgress[]
+  diagramProgress    ArchitectureDiagramProgress[]
+  leaderboardEntries ArchitectureLeaderboard[]
 
-  createdAt             DateTime                    @default(now())
-  updatedAt             DateTime                    @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
   @@index([totalXp])
@@ -2891,67 +2911,67 @@ model ArchitectureProgress {
 }
 
 enum ArchitectureGameMode {
-  FLASHCARD         // Image → Name matching
-  REVERSE           // Name → Image matching
-  DIAGRAM           // Label the diagram
-  MIXED             // Random mix of all modes
+  FLASHCARD // Image → Name matching
+  REVERSE // Name → Image matching
+  DIAGRAM // Label the diagram
+  MIXED // Random mix of all modes
 }
 
 enum ArchitectureLearningPath {
-  TIMELINE      // Chronological by period
-  RANDOM        // Complete random shuffle
-  CATEGORY      // By element category
-  REGION        // By geographic region
-  ADAPTIVE      // AI-driven based on weaknesses
+  TIMELINE // Chronological by period
+  RANDOM // Complete random shuffle
+  CATEGORY // By element category
+  REGION // By geographic region
+  ADAPTIVE // AI-driven based on weaknesses
 }
 
 // Individual game session with ghost racing data
 model ArchitectureGameSession {
-  id                    String                      @id @default(cuid())
-  progressId            String
-  userId                String
+  id         String @id @default(cuid())
+  progressId String
+  userId     String
 
   // Game configuration
-  gameMode              ArchitectureGameMode
-  learningPath          ArchitectureLearningPath
-  questionCount         Int                         @default(25)
+  gameMode      ArchitectureGameMode
+  learningPath  ArchitectureLearningPath
+  questionCount Int                      @default(25)
 
   // Filters used
-  periodFilters         String[]                    @default([])
-  regionFilters         String[]                    @default([])
-  categoryFilters       String[]                    @default([])
+  periodFilters   String[] @default([])
+  regionFilters   String[] @default([])
+  categoryFilters String[] @default([])
 
   // Session state
-  currentQuestion       Int                         @default(0)
-  correctAnswers        Int                         @default(0)
-  incorrectAnswers      Int                         @default(0)
+  currentQuestion  Int @default(0)
+  correctAnswers   Int @default(0)
+  incorrectAnswers Int @default(0)
 
   // Scoring
-  score                 Int                         @default(0)
-  maxStreak             Int                         @default(0)
-  perfectScore          Boolean                     @default(false)
+  score        Int     @default(0)
+  maxStreak    Int     @default(0)
+  perfectScore Boolean @default(false)
 
   // Timing
-  startedAt             DateTime                    @default(now())
-  completedAt           DateTime?
-  totalTimeMs           Int?                        // total time in milliseconds
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+  totalTimeMs Int? // total time in milliseconds
 
   // Per-question timing for ghost racing
-  questionTimes         Json?                       // [{questionId, elementId, timeMs, correct, answeredAt}]
+  questionTimes Json? // [{questionId, elementId, timeMs, correct, answeredAt}]
 
   // Ghost racing
-  beatPersonalBest      Boolean                     @default(false)
-  previousBestTime      Int?                        // what was PB before this game
-  ghostComparison       Json?                       // comparison data vs ghost
+  beatPersonalBest Boolean @default(false)
+  previousBestTime Int? // what was PB before this game
+  ghostComparison  Json? // comparison data vs ghost
 
   // Game-specific fields
-  diagramStructureId    String?                     // For Diagram Builder
+  diagramStructureId String? // For Diagram Builder
 
   // Results
-  accuracy              Float?
-  xpEarned              Int                         @default(0)
+  accuracy Float?
+  xpEarned Int    @default(0)
 
-  progress              ArchitectureProgress        @relation(fields: [progressId], references: [id], onDelete: Cascade)
+  progress ArchitectureProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
 
   @@index([progressId])
   @@index([userId])
@@ -2963,28 +2983,28 @@ model ArchitectureGameSession {
 
 // Per-element mastery tracking
 model ArchitectureElementProgress {
-  id                    String                      @id @default(cuid())
-  progressId            String
-  elementId             String                      // references element data file
+  id         String @id @default(cuid())
+  progressId String
+  elementId  String // references element data file
 
   // Encounter stats
-  timesEncountered      Int                         @default(0)
-  timesCorrect          Int                         @default(0)
-  timesIncorrect        Int                         @default(0)
+  timesEncountered Int @default(0)
+  timesCorrect     Int @default(0)
+  timesIncorrect   Int @default(0)
 
   // Mastery calculation
-  masteryScore          Float                       @default(0) // 0-100
-  lastEncounteredAt     DateTime?
+  masteryScore      Float     @default(0) // 0-100
+  lastEncounteredAt DateTime?
 
   // Spaced repetition data
-  nextReviewAt          DateTime?
-  easeFactor            Float                       @default(2.5) // SM-2 algorithm
-  interval              Int                         @default(1)   // days
+  nextReviewAt DateTime?
+  easeFactor   Float     @default(2.5) // SM-2 algorithm
+  interval     Int       @default(1) // days
 
   // Common mistakes
-  confusedWith          String[]                    @default([]) // element IDs often confused with
+  confusedWith String[] @default([]) // element IDs often confused with
 
-  progress              ArchitectureProgress        @relation(fields: [progressId], references: [id], onDelete: Cascade)
+  progress ArchitectureProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
 
   @@unique([progressId, elementId])
   @@index([progressId])
@@ -2994,20 +3014,20 @@ model ArchitectureElementProgress {
 
 // Diagram game progress
 model ArchitectureDiagramProgress {
-  id                    String                      @id @default(cuid())
-  progressId            String
-  diagramId             String                      // references diagram data file
+  id         String @id @default(cuid())
+  progressId String
+  diagramId  String // references diagram data file
 
   // Stats
-  timesAttempted        Int                         @default(0)
-  timesCompleted        Int                         @default(0)
-  bestScore             Float?                      // percentage
-  bestTime              Int?                        // milliseconds
+  timesAttempted Int    @default(0)
+  timesCompleted Int    @default(0)
+  bestScore      Float? // percentage
+  bestTime       Int? // milliseconds
 
   // Per-label performance
-  labelPerformance      Json?                       // {labelId: {correct, incorrect, avgTime}}
+  labelPerformance Json? // {labelId: {correct, incorrect, avgTime}}
 
-  progress              ArchitectureProgress        @relation(fields: [progressId], references: [id], onDelete: Cascade)
+  progress ArchitectureProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
 
   @@unique([progressId, diagramId])
   @@index([progressId])
@@ -3015,39 +3035,39 @@ model ArchitectureDiagramProgress {
 
 // "Spotted in the Wild" - User-uploaded photos of elements
 model ArchitectureSpottedElement {
-  id                    String                      @id @default(cuid())
-  progressId            String
-  elementId             String                      // references element data file
+  id         String @id @default(cuid())
+  progressId String
+  elementId  String // references element data file
 
   // Photo data
-  imageUrl              String                      // stored image URL
-  thumbnailUrl          String?                     // optimized thumbnail
-  originalFilename      String?
+  imageUrl         String // stored image URL
+  thumbnailUrl     String? // optimized thumbnail
+  originalFilename String?
 
   // Location (optional)
-  locationName          String?                     // user-provided location name
-  latitude              Float?
-  longitude             Float?
-  country               String?
-  city                  String?
+  locationName String? // user-provided location name
+  latitude     Float?
+  longitude    Float?
+  country      String?
+  city         String?
 
   // Building info (optional)
-  buildingName          String?
-  buildingYear          String?
-  notes                 String?                     @db.Text
+  buildingName String?
+  buildingYear String?
+  notes        String? @db.Text
 
   // Verification/quality
-  isVerified            Boolean                     @default(false)
-  quality               SpottedPhotoQuality         @default(PENDING)
+  isVerified Boolean             @default(false)
+  quality    SpottedPhotoQuality @default(PENDING)
 
   // Social features
-  isPublic              Boolean                     @default(true)
-  likes                 Int                         @default(0)
+  isPublic Boolean @default(true)
+  likes    Int     @default(0)
 
-  progress              ArchitectureProgress        @relation(fields: [progressId], references: [id], onDelete: Cascade)
+  progress ArchitectureProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
 
-  createdAt             DateTime                    @default(now())
-  updatedAt             DateTime                    @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([progressId])
   @@index([elementId])
@@ -3056,28 +3076,28 @@ model ArchitectureSpottedElement {
 }
 
 enum SpottedPhotoQuality {
-  PENDING       // Not yet reviewed
-  EXCELLENT     // Great example of the element
-  GOOD          // Acceptable quality
-  NEEDS_WORK    // Could be improved
+  PENDING // Not yet reviewed
+  EXCELLENT // Great example of the element
+  GOOD // Acceptable quality
+  NEEDS_WORK // Could be improved
 }
 
 // User's earned architecture badges
 model ArchitectureUserBadge {
-  id                    String                      @id @default(cuid())
-  progressId            String
-  badgeId               String                      // references badge data file
+  id         String @id @default(cuid())
+  progressId String
+  badgeId    String // references badge data file
 
   // When earned
-  earnedAt              DateTime                    @default(now())
+  earnedAt DateTime @default(now())
 
   // Progress when earned (for display)
-  progressSnapshot      Json?                       // relevant stats at time of earning
+  progressSnapshot Json? // relevant stats at time of earning
 
   // Notification
-  notified              Boolean                     @default(false)
+  notified Boolean @default(false)
 
-  progress              ArchitectureProgress        @relation(fields: [progressId], references: [id], onDelete: Cascade)
+  progress ArchitectureProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
 
   @@unique([progressId, badgeId])
   @@index([progressId])
@@ -3086,21 +3106,21 @@ model ArchitectureUserBadge {
 
 // Architecture learning streak
 model ArchitectureStreak {
-  id                    String                      @id @default(cuid())
-  progressId            String                      @unique
+  id         String @id @default(cuid())
+  progressId String @unique
 
-  currentStreak         Int                         @default(0)
-  longestStreak         Int                         @default(0)
-  lastActivityDate      DateTime?
-  streakStartDate       DateTime?
+  currentStreak    Int       @default(0)
+  longestStreak    Int       @default(0)
+  lastActivityDate DateTime?
+  streakStartDate  DateTime?
 
   // Weekly stats
-  daysActiveThisWeek    Int                         @default(0)
-  gamesThisWeek         Int                         @default(0)
+  daysActiveThisWeek Int @default(0)
+  gamesThisWeek      Int @default(0)
 
-  progress              ArchitectureProgress        @relation(fields: [progressId], references: [id], onDelete: Cascade)
+  progress ArchitectureProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
 
-  updatedAt             DateTime                    @updatedAt
+  updatedAt DateTime @updatedAt
 
   @@index([progressId])
   @@index([currentStreak])
@@ -3108,25 +3128,25 @@ model ArchitectureStreak {
 
 // Global leaderboards for architecture games
 model ArchitectureLeaderboard {
-  id                    String                      @id @default(cuid())
-  userId                String
-  progressId            String
+  id         String @id @default(cuid())
+  userId     String
+  progressId String
 
   // Leaderboard type
-  category              String                      // "fastest_flashcard", "highest_accuracy", "most_games_week", etc
-  timeframe             String                      // "all_time", "monthly", "weekly", "daily"
-  gameMode              ArchitectureGameMode?
+  category  String // "fastest_flashcard", "highest_accuracy", "most_games_week", etc
+  timeframe String // "all_time", "monthly", "weekly", "daily"
+  gameMode  ArchitectureGameMode?
 
   // Ranking details
-  rank                  Int?
-  score                 Float                       // flexible score value (time, percentage, count, etc)
-  metadata              Json?                       // additional context (game config, timestamp, etc)
+  rank     Int?
+  score    Float // flexible score value (time, percentage, count, etc)
+  metadata Json? // additional context (game config, timestamp, etc)
 
   // Timestamps
-  achievedAt            DateTime                    @default(now())
-  lastUpdated           DateTime                    @updatedAt
+  achievedAt  DateTime @default(now())
+  lastUpdated DateTime @updatedAt
 
-  progress              ArchitectureProgress        @relation(fields: [progressId], references: [id], onDelete: Cascade)
+  progress ArchitectureProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
 
   @@unique([userId, category, timeframe, gameMode])
   @@index([progressId])
@@ -3142,68 +3162,68 @@ model ArchitectureLeaderboard {
 // ============================================
 
 model Document {
-  id                String                @id @default(cuid())
-  title             String
-  slug              String
-  content           String                @db.Text // JSON content from Tiptap editor
-  plainText         String?               @db.Text // Plain text for search
-  yjsState          Bytes?                       // Y.js CRDT state for real-time collaboration
+  id        String  @id @default(cuid())
+  title     String
+  slug      String
+  content   String  @db.Text // JSON content from Tiptap editor
+  plainText String? @db.Text // Plain text for search
+  yjsState  Bytes? // Y.js CRDT state for real-time collaboration
 
   // Project association
-  projectId         String
-  project           Project               @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   // Document type
-  type              DocumentType          @default(GENERAL)
-  templateId        String?
+  type       DocumentType @default(GENERAL)
+  templateId String?
 
   // Collaboration settings
-  isPublic          Boolean               @default(false)
-  allowComments     Boolean               @default(true)
-  allowSuggestions  Boolean               @default(true)
+  isPublic         Boolean @default(false)
+  allowComments    Boolean @default(true)
+  allowSuggestions Boolean @default(true)
 
   // Status
-  status            DocumentStatus        @default(DRAFT)
-  publishedAt       DateTime?
-  archivedAt        DateTime?
+  status      DocumentStatus @default(DRAFT)
+  publishedAt DateTime?
+  archivedAt  DateTime?
 
   // Creator and editor tracking
-  creatorId         String
-  creator           User                  @relation("CreatedDocuments", fields: [creatorId], references: [id])
-  lastEditedById    String?
-  lastEditedBy      User?                 @relation("LastEditedDocuments", fields: [lastEditedById], references: [id])
+  creatorId      String
+  creator        User    @relation("CreatedDocuments", fields: [creatorId], references: [id])
+  lastEditedById String?
+  lastEditedBy   User?   @relation("LastEditedDocuments", fields: [lastEditedById], references: [id])
 
   // Statistics
-  wordCount         Int                   @default(0)
-  readCount         Int                   @default(0)
-  editCount         Int                   @default(0)
-  version           Int                   @default(1)  // Current version number
+  wordCount Int @default(0)
+  readCount Int @default(0)
+  editCount Int @default(0)
+  version   Int @default(1) // Current version number
 
   // Sharing settings
-  shareToken        String?               @unique // For shareable links
-  shareExpiry       DateTime?             // Optional link expiration
-  publicAccess      DocumentPermission?   // What link holders can do
+  shareToken   String?             @unique // For shareable links
+  shareExpiry  DateTime? // Optional link expiration
+  publicAccess DocumentPermission? // What link holders can do
 
   // Document locking
-  isLocked          Boolean               @default(false)
-  lockedById        String?
-  lockedBy          User?                 @relation("LockedDocuments", fields: [lockedById], references: [id])
-  lockedAt          DateTime?
+  isLocked   Boolean   @default(false)
+  lockedById String?
+  lockedBy   User?     @relation("LockedDocuments", fields: [lockedById], references: [id])
+  lockedAt   DateTime?
 
   // Visual customization
-  coverImage        String?               // Cover image for document list
-  tags              String[]              // Tags for organization
+  coverImage String? // Cover image for document list
+  tags       String[] // Tags for organization
 
   // Relationships
-  versions          DocumentVersion[]
-  collaborators     DocumentCollaborator[]
-  comments          DocumentComment[]
-  mentions          DocumentMention[]
-  suggestions       DocumentSuggestion[]
+  versions      DocumentVersion[]
+  collaborators DocumentCollaborator[]
+  comments      DocumentComment[]
+  mentions      DocumentMention[]
+  suggestions   DocumentSuggestion[]
 
   // Timestamps
-  createdAt         DateTime              @default(now())
-  updatedAt         DateTime              @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([projectId, slug])
   @@index([shareToken])
@@ -3216,28 +3236,28 @@ model Document {
 }
 
 model DocumentVersion {
-  id                String                @id @default(cuid())
-  documentId        String
-  document          Document              @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  id         String   @id @default(cuid())
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
 
   // Version data
-  versionNumber     Int
-  title             String
-  content           String                @db.Text // Snapshot of content
-  plainText         String?               @db.Text
-  wordCount         Int                   @default(0)
+  versionNumber Int
+  title         String
+  content       String  @db.Text // Snapshot of content
+  plainText     String? @db.Text
+  wordCount     Int     @default(0)
 
   // Change tracking
   createdById       String
-  createdBy         User                  @relation(fields: [createdById], references: [id])
-  changeDescription String?               // Optional description of changes
+  createdBy         User    @relation(fields: [createdById], references: [id])
+  changeDescription String? // Optional description of changes
 
   // Metadata
-  isAutoSaved       Boolean               @default(false)
-  isMajorVersion    Boolean               @default(false)
-  name              String?               // Named checkpoint (e.g., "Final Draft", "Client Review")
+  isAutoSaved    Boolean @default(false)
+  isMajorVersion Boolean @default(false)
+  name           String? // Named checkpoint (e.g., "Final Draft", "Client Review")
 
-  createdAt         DateTime              @default(now())
+  createdAt DateTime @default(now())
 
   @@unique([documentId, versionNumber])
   @@index([documentId])
@@ -3246,27 +3266,27 @@ model DocumentVersion {
 }
 
 model DocumentCollaborator {
-  id                String                @id @default(cuid())
-  documentId        String
-  document          Document              @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  id         String   @id @default(cuid())
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
 
-  userId            String
-  user              User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Permission level
-  permission        DocumentPermission    @default(VIEW)
+  permission DocumentPermission @default(VIEW)
 
   // Activity tracking
-  lastViewedAt      DateTime?
-  lastEditedAt      DateTime?
-  editsCount        Int                   @default(0)
-  commentsCount     Int                   @default(0)
+  lastViewedAt  DateTime?
+  lastEditedAt  DateTime?
+  editsCount    Int       @default(0)
+  commentsCount Int       @default(0)
 
   // Collaboration status
-  isActive          Boolean               @default(true)
-  lastCursorPosition Int?                 // For real-time cursor tracking
+  isActive           Boolean @default(true)
+  lastCursorPosition Int? // For real-time cursor tracking
 
-  joinedAt          DateTime              @default(now())
+  joinedAt DateTime @default(now())
 
   @@unique([documentId, userId])
   @@index([documentId])
@@ -3275,43 +3295,43 @@ model DocumentCollaborator {
 }
 
 model DocumentComment {
-  id                String                @id @default(cuid())
-  documentId        String
-  document          Document              @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  id         String   @id @default(cuid())
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
 
   // Comment content
-  content           String                @db.Text
+  content String @db.Text
 
   // Position in document (JSON with from/to character positions)
-  position          Json?                 // { from: 100, to: 150 } for inline comments
+  position Json? // { from: 100, to: 150 } for inline comments
 
   // Thread information
-  parentId          String?               // For replies
-  parent            DocumentComment?      @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
-  replies           DocumentComment[]     @relation("CommentReplies")
+  parentId String? // For replies
+  parent   DocumentComment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies  DocumentComment[] @relation("CommentReplies")
 
   // Author
-  authorId          String
-  author            User                  @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
   // Status
-  isResolved        Boolean               @default(false)
-  resolvedById      String?
-  resolvedBy        User?                 @relation("ResolvedComments", fields: [resolvedById], references: [id])
-  resolvedAt        DateTime?
+  isResolved   Boolean   @default(false)
+  resolvedById String?
+  resolvedBy   User?     @relation("ResolvedComments", fields: [resolvedById], references: [id])
+  resolvedAt   DateTime?
 
   // Metadata
-  isEdited          Boolean               @default(false)
-  editedAt          DateTime?
+  isEdited Boolean   @default(false)
+  editedAt DateTime?
 
   // Quoted text from document (for context)
-  quotedText        String?               @db.Text
+  quotedText String? @db.Text
 
   // Reactions
-  reactions         CommentReaction[]
+  reactions CommentReaction[]
 
-  createdAt         DateTime              @default(now())
-  updatedAt         DateTime              @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([documentId])
   @@index([authorId])
@@ -3321,26 +3341,26 @@ model DocumentComment {
 }
 
 model DocumentMention {
-  id                String                @id @default(cuid())
-  documentId        String
-  document          Document              @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  id         String   @id @default(cuid())
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
 
   // User being mentioned
-  mentionedUserId   String
-  mentionedUser     User                  @relation("MentionedInDocuments", fields: [mentionedUserId], references: [id], onDelete: Cascade)
+  mentionedUserId String
+  mentionedUser   User   @relation("MentionedInDocuments", fields: [mentionedUserId], references: [id], onDelete: Cascade)
 
   // Who mentioned them
-  mentionedById     String
-  mentionedBy       User                  @relation("DocumentMentions", fields: [mentionedById], references: [id], onDelete: Cascade)
+  mentionedById String
+  mentionedBy   User   @relation("DocumentMentions", fields: [mentionedById], references: [id], onDelete: Cascade)
 
   // Position in document
-  position          Int                   // Character position
+  position Int // Character position
 
   // Notification status
-  isRead            Boolean               @default(false)
-  readAt            DateTime?
+  isRead Boolean   @default(false)
+  readAt DateTime?
 
-  createdAt         DateTime              @default(now())
+  createdAt DateTime @default(now())
 
   @@index([documentId])
   @@index([mentionedUserId])
@@ -3379,28 +3399,28 @@ enum DocumentPermission {
 // ============================================
 
 model DocumentSuggestion {
-  id                String                @id @default(cuid())
-  documentId        String
-  document          Document              @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  id         String   @id @default(cuid())
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
 
   // Suggestion author
-  authorId          String
-  author            User                  @relation("DocumentSuggestionAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String
+  author   User   @relation("DocumentSuggestionAuthor", fields: [authorId], references: [id], onDelete: Cascade)
 
   // Suggestion type and content
-  type              SuggestionType
-  originalText      String?               @db.Text // Text being replaced/deleted
-  suggestedText     String?               @db.Text // New text being suggested
-  position          Json                  // { from: number, to: number }
+  type          SuggestionType
+  originalText  String?        @db.Text // Text being replaced/deleted
+  suggestedText String?        @db.Text // New text being suggested
+  position      Json // { from: number, to: number }
 
   // Status
-  status            SuggestionStatus      @default(PENDING)
-  resolvedAt        DateTime?
-  resolvedById      String?
-  resolvedBy        User?                 @relation("SuggestionResolver", fields: [resolvedById], references: [id])
-  rejectionReason   String?               // Optional reason for rejection
+  status          SuggestionStatus @default(PENDING)
+  resolvedAt      DateTime?
+  resolvedById    String?
+  resolvedBy      User?            @relation("SuggestionResolver", fields: [resolvedById], references: [id])
+  rejectionReason String? // Optional reason for rejection
 
-  createdAt         DateTime              @default(now())
+  createdAt DateTime @default(now())
 
   @@index([documentId])
   @@index([authorId])
@@ -3412,7 +3432,7 @@ enum SuggestionType {
   INSERT
   DELETE
   REPLACE
-  FORMAT  // Formatting changes
+  FORMAT // Formatting changes
 }
 
 enum SuggestionStatus {
@@ -3426,29 +3446,29 @@ enum SuggestionStatus {
 // ============================================
 
 model DocumentTemplate {
-  id                String                @id @default(cuid())
-  name              String
-  description       String?               @db.Text
-  content           String                @db.Text // HTML/JSON content
-  category          String                // e.g., "Meeting Notes", "Reports", "Planning"
-  icon              String?               // Icon name or emoji
+  id          String  @id @default(cuid())
+  name        String
+  description String? @db.Text
+  content     String  @db.Text // HTML/JSON content
+  category    String // e.g., "Meeting Notes", "Reports", "Planning"
+  icon        String? // Icon name or emoji
 
   // Ownership
-  isBuiltIn         Boolean               @default(false) // System template
-  creatorId         String?
-  creator           User?                 @relation("TemplateCreator", fields: [creatorId], references: [id])
-  projectId         String?               // Project-specific templates
-  project           Project?              @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  isBuiltIn Boolean  @default(false) // System template
+  creatorId String?
+  creator   User?    @relation("TemplateCreator", fields: [creatorId], references: [id])
+  projectId String? // Project-specific templates
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   // Usage tracking
-  usageCount        Int                   @default(0)
+  usageCount Int @default(0)
 
   // Metadata
-  isPublic          Boolean               @default(true) // Can other users see this template
-  tags              String[]
+  isPublic Boolean  @default(true) // Can other users see this template
+  tags     String[]
 
-  createdAt         DateTime              @default(now())
-  updatedAt         DateTime              @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([category])
   @@index([creatorId])
@@ -3462,16 +3482,16 @@ model DocumentTemplate {
 // ============================================
 
 model CommentReaction {
-  id                String                @id @default(cuid())
-  commentId         String
-  comment           DocumentComment       @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  id        String          @id @default(cuid())
+  commentId String
+  comment   DocumentComment @relation(fields: [commentId], references: [id], onDelete: Cascade)
 
-  userId            String
-  user              User                  @relation("CommentReactions", fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation("CommentReactions", fields: [userId], references: [id], onDelete: Cascade)
 
-  emoji             String                // 👍 ❤️ 😄 🎉 😕 👀
+  emoji String // 👍 ❤️ 😄 🎉 😕 👀
 
-  createdAt         DateTime              @default(now())
+  createdAt DateTime @default(now())
 
   @@unique([commentId, userId, emoji]) // One reaction type per user per comment
   @@index([commentId])
