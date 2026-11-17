@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Card, CardContent, CardHeader } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import {
   Star, Users, MessageSquare, ChevronRight, X, Send,
@@ -413,7 +413,7 @@ export function PeerReviewWidget({ articleId, peerReviews: initialReviews, onRev
       {/* Widget Card */}
       <Card className="border-2 border-[var(--border)] overflow-hidden">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base flex items-center justify-between text-[var(--foreground)]">
+          <div className="text-base flex items-center justify-between text-[var(--foreground)]">
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-[var(--primary)]" />
               Round Table Talk
@@ -425,7 +425,7 @@ export function PeerReviewWidget({ articleId, peerReviews: initialReviews, onRev
                 <span className="text-xs text-[var(--foreground)]/50">({ratedReviews.length})</span>
               </div>
             )}
-          </CardTitle>
+          </div>
         </CardHeader>
         <CardContent className="space-y-3">
           {/* Stats */}

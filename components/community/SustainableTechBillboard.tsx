@@ -310,7 +310,7 @@ export function SustainableTechBillboard() {
             <button
               key={s.id}
               onClick={() => { haptic(); goToSlide(i) }}
-              className={`h-2 rounded-full transition-all duration-300 ${
+              className={`relative before:absolute before:-inset-x-2 before:-inset-y-3 before:content-[''] h-2 rounded-full transition-all duration-300 ${
                 i === activeIndex
                   ? 'w-6 bg-[var(--primary)]'
                   : 'w-2 bg-[var(--muted-foreground)]/40 hover:bg-[var(--muted-foreground)]/70'

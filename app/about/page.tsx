@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Card, CardContent, CardHeader } from '@/components/ui/Card'
 import { Leaf, Droplet, Zap, Users, Heart, Shield, Sprout, BookOpen, Scale, Eye, Handshake, Award, Building2 } from 'lucide-react'
 
 export default function AboutPage() {
@@ -218,12 +218,12 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-3 gap-8">
               <Card className="border-4 border-moss-300 bg-gradient-to-br from-moss-50 to-moss-100 shadow-xl">
                 <CardHeader>
-                  <CardTitle className="text-center">
+                  <div className="text-center">
                     <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-moss-500 to-moss-600 flex items-center justify-center shadow-xl">
                       <Users className="w-10 h-10 text-white" />
                     </div>
                     <h3 className="text-2xl font-black text-[var(--primary)]">ROUND TABLE</h3>
-                  </CardTitle>
+                  </div>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-base font-bold text-[var(--muted-foreground)]">
@@ -234,12 +234,12 @@ export default function AboutPage() {
 
               <Card className="border-4 border-ocean-300 bg-gradient-to-br from-ocean-50 to-ocean-100 shadow-xl">
                 <CardHeader>
-                  <CardTitle className="text-center">
+                  <div className="text-center">
                     <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-ocean-500 to-ocean-600 flex items-center justify-center shadow-xl">
                       <BookOpen className="w-10 h-10 text-white" />
                     </div>
                     <h3 className="text-2xl font-black text-[var(--accent)]">ITJ COMMITTEE</h3>
-                  </CardTitle>
+                  </div>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-base font-bold text-[var(--muted-foreground)]">
@@ -250,12 +250,12 @@ export default function AboutPage() {
 
               <Card className="border-4 border-terra-300 bg-gradient-to-br from-terra-50 to-terra-100 shadow-xl">
                 <CardHeader>
-                  <CardTitle className="text-center">
+                  <div className="text-center">
                     <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-terra-500 to-terra-600 flex items-center justify-center shadow-xl">
                       <Award className="w-10 h-10 text-white" />
                     </div>
                     <h3 className="text-2xl font-black text-[var(--secondary)]">BIZ OP</h3>
-                  </CardTitle>
+                  </div>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-base font-bold text-[var(--muted-foreground)]">

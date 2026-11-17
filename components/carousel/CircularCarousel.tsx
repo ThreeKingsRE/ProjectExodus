@@ -208,7 +208,7 @@ export function CircularCarousel({ items }: CircularCarouselProps) {
               setCurrentIndex(index)
               setIsAutoPlaying(false)
             }}
-            className={`
+            className={`relative before:absolute before:-inset-x-2 before:-inset-y-3 before:content-[''] 
               h-2 rounded-full transition-all duration-300
               ${index === currentIndex
                 ? 'w-8 bg-[var(--primary)]'

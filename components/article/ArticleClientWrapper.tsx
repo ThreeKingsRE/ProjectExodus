@@ -213,7 +213,7 @@ export function ArticleClientWrapper({ article }: ArticleClientWrapperProps) {
         <div className="mt-12">
           <Card className="bg-[var(--card)] border-2 border-[var(--border)]">
             <CardHeader>
-              <CardTitle className="flex items-center justify-between text-[var(--foreground)]">
+              <div className="flex items-center justify-between text-[var(--foreground)]">
                 <div className="flex items-center gap-2">
                   <Users className="w-5 h-5 text-[var(--primary)]" />
                   Round Table Discussion
@@ -221,7 +221,7 @@ export function ArticleClientWrapper({ article }: ArticleClientWrapperProps) {
                 <span className="text-sm font-normal text-[var(--foreground)]/60">
                   {topLevelItems.length} {topLevelItems.length === 1 ? 'post' : 'posts'}
                 </span>
-              </CardTitle>
+              </div>
 
               {/* Filter Tabs */}
               <div className="flex gap-2 mt-4">

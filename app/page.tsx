@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Card, CardContent, CardHeader } from '@/components/ui/Card'
 import { Users, Heart, BookOpen, Award } from 'lucide-react'
 import { FeatureShowcase } from '@/components/home/FeatureShowcase'
 import { OnboardingReminderBanner } from '@/components/onboarding/OnboardingReminderBanner'
@@ -278,12 +278,12 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-8">
               <Card className="border-4 border-theme-primary bg-gradient-to-br from-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[color-mix(in_srgb,var(--primary)_25%,var(--background))] shadow-theme-xl">
                 <CardHeader>
-                  <CardTitle className="text-center">
+                  <div className="text-center">
                     <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--primary)] to-[color-mix(in_srgb,var(--primary)_80%,black)] flex items-center justify-center shadow-theme-xl">
                       <Users className="w-10 h-10 text-[var(--primary-foreground)]" />
                     </div>
                     <h3 className="text-2xl font-black text-theme-primary">ROUND TABLE</h3>
-                  </CardTitle>
+                  </div>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-base font-bold text-theme-muted">
@@ -294,12 +294,12 @@ export default function Home() {
 
               <Card className="border-4 border-theme-accent bg-gradient-to-br from-[color-mix(in_srgb,var(--accent)_15%,var(--background))] to-[color-mix(in_srgb,var(--accent)_25%,var(--background))] shadow-theme-xl">
                 <CardHeader>
-                  <CardTitle className="text-center">
+                  <div className="text-center">
                     <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--accent)] to-[color-mix(in_srgb,var(--accent)_80%,black)] flex items-center justify-center shadow-theme-xl">
                       <BookOpen className="w-10 h-10 text-[var(--primary-foreground)]" />
                     </div>
                     <h3 className="text-2xl font-black text-theme-accent">ITJ COMMITTEE</h3>
-                  </CardTitle>
+                  </div>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-base font-bold text-theme-muted">
@@ -310,12 +310,12 @@ export default function Home() {
 
               <Card className="border-4 border-theme-secondary bg-gradient-to-br from-[color-mix(in_srgb,var(--secondary)_15%,var(--background))] to-[color-mix(in_srgb,var(--secondary)_25%,var(--background))] shadow-theme-xl">
                 <CardHeader>
-                  <CardTitle className="text-center">
+                  <div className="text-center">
                     <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--secondary)] to-[color-mix(in_srgb,var(--secondary)_80%,black)] flex items-center justify-center shadow-theme-xl">
                       <Award className="w-10 h-10 text-[var(--primary-foreground)]" />
                     </div>
                     <h3 className="text-2xl font-black text-theme-secondary">BIZ OP</h3>
-                  </CardTitle>
+                  </div>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-base font-bold text-theme-muted">

@@ -1232,7 +1232,7 @@ export default function LessonPage() {
                 </p>
 
                 <div className="space-y-4">
-                  <Link href="/auth/signin">
+                  <Link href="/auth/signin" className="block">
                     <Button className={`w-full font-bold text-lg py-6 bg-gradient-to-r ${meta.gradient}`}>
                       Sign In to Continue <ChevronRight className="w-5 h-5 ml-2" />
                     </Button>

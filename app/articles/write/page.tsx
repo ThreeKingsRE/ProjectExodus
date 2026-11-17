@@ -1254,7 +1254,7 @@ function ReferencesPreview({
   return (
     <Card className="border-4 border-[var(--border)]">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base flex items-center justify-between text-[var(--foreground)]">
+        <div className="text-base flex items-center justify-between text-[var(--foreground)]">
           <div className="flex items-center gap-2">
             <BookOpen className="w-4 h-4 text-[var(--primary)]" />
             Works Cited ({references.length})
@@ -1274,7 +1274,7 @@ function ReferencesPreview({
               {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
           </div>
-        </CardTitle>
+        </div>
       </CardHeader>
       {isExpanded && (
         <CardContent className="space-y-2">

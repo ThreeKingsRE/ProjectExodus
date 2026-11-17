@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Card, CardContent, CardHeader } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Star, Reply, Trash2, User, Award, ChevronDown, ChevronUp, ThumbsUp, Users, Maximize2 } from 'lucide-react'
 import { useSession } from 'next-auth/react'
@@ -451,7 +451,7 @@ export function ArticleReviewSection({ articleId, articleAuthorId, initialReview
     <div id="round-table-section" className="scroll-mt-20">
       <Card className="bg-[var(--card)] border-2 border-[var(--border)]">
         <CardHeader>
-          <CardTitle className="flex items-center justify-between text-[var(--foreground)]">
+          <div className="flex items-center justify-between text-[var(--foreground)]">
             <div className="flex items-center gap-2">
               <Users className="w-5 h-5" />
               Round Table Talk ({topLevelReviews.length})
@@ -469,7 +469,7 @@ export function ArticleReviewSection({ articleId, articleAuthorId, initialReview
                 </Button>
               )}
             </div>
-          </CardTitle>
+          </div>
         </CardHeader>
         <CardContent>
           {/* Error Message */}

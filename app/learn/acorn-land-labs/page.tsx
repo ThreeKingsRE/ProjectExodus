@@ -397,14 +397,14 @@ export default function AcornLandLabsPage() {
                       <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--${color})] to-[color-mix(in_srgb,var(--${color})_80%,black)] flex items-center justify-center shadow-theme-lg`}>
                         <Icon className="w-8 h-8 text-[var(--primary-foreground)]" />
                       </div>
-                      <CardTitle className="text-center">
+                      <div className="text-center">
                         <h3 className={`text-2xl font-black mb-3 text-theme-${color}`}>
                           {program.title}
                         </h3>
                         <p className="text-base font-bold text-theme-muted">
                           {program.description}
                         </p>
-                      </CardTitle>
+                      </div>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4 mb-6">

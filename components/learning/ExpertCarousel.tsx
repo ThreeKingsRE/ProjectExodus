@@ -93,7 +93,7 @@ export function ExpertCarousel({ experts, autoPlayInterval = 5000 }: ExpertCarou
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
+            className={`relative before:absolute before:-inset-x-2 before:-inset-y-3 before:content-[''] w-3 h-3 rounded-full transition-all ${
               index === currentIndex
                 ? 'bg-moss-500 w-8'
                 : 'bg-earth-600 hover:bg-earth-500'
