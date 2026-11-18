@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
         take: 3,
       }),
       prisma.socialPost.findMany({
-        where: { visibility: 'PUBLIC' },
+        where: { visibility: 'PUBLIC', OR: [{ projectId: null }, { project: { visibility: 'PUBLIC' } }] },
         select: {
           id: true, content: true, createdAt: true, hashtags: true,
           media: { select: { url: true }, take: 1 },

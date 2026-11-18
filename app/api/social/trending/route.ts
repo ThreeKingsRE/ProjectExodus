@@ -10,6 +10,7 @@ export async function GET(request: NextRequest) {
     const posts = await prisma.socialPost.findMany({
       where: {
         visibility: 'PUBLIC',
+        OR: [{ projectId: null }, { project: { visibility: 'PUBLIC' } }],
         createdAt: { gte: thirtyDaysAgo }
       },
       select: {

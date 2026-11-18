@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { PUBLIC_POSTS_WHERE } from '@/lib/social/postAccess'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 
@@ -11,9 +12,8 @@ export async function GET(request: Request) {
     const skip = (page - 1) * limit
 
     // Get posts from followed users + public posts
-    let whereClause: any = {
-      visibility: 'PUBLIC'
-    }
+    // Public posts, and public updates from public initiatives
+    let whereClause: any = { ...PUBLIC_POSTS_WHERE }
 
     if (session?.user?.id) {
       // Get user's following list
@@ -24,16 +24,28 @@ export async function GET(request: Request) {
 
       const followingIds = following.map((f: any) => f.followingId)
 
+      // Initiatives the user follows or works on
+      const memberships = await prisma.projectMember.findMany({
+        where: { userId: session.user.id },
+        select: { projectId: true, role: true },
+      })
+      const followedProjectIds = memberships.map((m: any) => m.projectId)
+      const teamProjectIds = memberships.filter((m: any) => m.role !== 'VIEWER').map((m: any) => m.projectId)
+
       // Include posts from followed users or public posts
       whereClause = {
         OR: [
-          { visibility: 'PUBLIC' },
+          { ...PUBLIC_POSTS_WHERE },
           {
             AND: [
               { userId: { in: followingIds } },
-              { visibility: 'FOLLOWERS_ONLY' }
+              { visibility: 'FOLLOWERS_ONLY' },
+              { projectId: null }
             ]
           },
+          // Updates shared with an initiative's followers
+          { projectId: { in: followedProjectIds }, visibility: { in: ['PUBLIC', 'FOLLOWERS_ONLY'] } },
+          { projectId: { in: teamProjectIds } },
           { userId: session.user.id } // User's own posts
         ]
       }
@@ -46,7 +58,6 @@ export async function GET(request: Request) {
           select: {
             id: true,
             name: true,
-            email: true,
             image: true,
             headline: true,
             expertise: true
@@ -55,6 +66,7 @@ export async function GET(request: Request) {
         media: {
           orderBy: { order: 'asc' }
         },
+        project: { select: { id: true, name: true, slug: true } },
         comments: {
           include: {
             user: {

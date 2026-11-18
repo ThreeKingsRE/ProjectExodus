@@ -32,6 +32,7 @@ import {
   Layers,
   ClipboardList,
   Share2,
+  Megaphone,
   CalendarRange,
   Bell,
   ChevronRight,
@@ -67,10 +68,11 @@ import { ProjectTimeline } from '@/components/projects/timeline/ProjectTimeline'
 import { ParticipationBar } from '@/components/projects/team/ParticipationBar'
 import { TeamInvitesPanel } from '@/components/projects/team/TeamInvitesPanel'
 import { ProjectShared } from '@/components/projects/team/ProjectShared'
+import { ProjectUpdates } from '@/components/projects/updates/ProjectUpdates'
 import { FILE_SECTIONS, SECTION_INFO, type FileSection } from '@/lib/projects/files'
 import { VENTURE_TYPES, VENTURE_TYPE_LABEL, ventureTypeLabel } from '@/lib/projects/ventureType'
 
-type TabType = 'overview' | 'shared' | 'workspace' | 'timeline' | 'surveys' | 'learning' | 'research' | 'discussions' | 'members' | 'documents' | 'settings'
+type TabType = 'overview' | 'updates' | 'shared' | 'workspace' | 'timeline' | 'surveys' | 'learning' | 'research' | 'discussions' | 'members' | 'documents' | 'settings'
 
 interface LearningModule {
   id: string
@@ -370,7 +372,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     const rawTab = searchParams.get('tab')
     // Old links to the mind map tab now open the workspace.
     const tab = rawTab === 'mindmaps' ? 'workspace' : rawTab
-    if (tab && ['overview', 'shared', 'workspace', 'timeline', 'surveys', 'learning', 'research', 'discussions', 'members', 'documents', 'settings'].includes(tab)) {
+    if (tab && ['overview', 'updates', 'shared', 'workspace', 'timeline', 'surveys', 'learning', 'research', 'discussions', 'members', 'documents', 'settings'].includes(tab)) {
       setActiveTab(tab as TabType)
     }
     const section = searchParams.get('section')?.toUpperCase()
@@ -650,6 +652,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
   const tabs: { id: TabType; label: string; icon: typeof Users; memberOnly?: boolean; teamOnly?: boolean }[] = [
     { id: 'overview', label: 'Overview', icon: Target },
+    { id: 'updates', label: 'Updates', icon: Megaphone },
     { id: 'shared', label: 'Shared', icon: Share2, memberOnly: true },
     { id: 'discussions', label: 'Discussion', icon: MessageSquare, memberOnly: true },
     { id: 'surveys', label: 'Surveys', icon: ClipboardList, memberOnly: true },
@@ -1433,6 +1436,10 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             {/* Mind Maps Tab */}
             {activeTab === 'workspace' && isTeam && (
               <ProjectFiles projectId={project.id} initialSection={workspaceSection} />
+            )}
+
+            {activeTab === 'updates' && (
+              <ProjectUpdates projectId={project.id} projectName={project.name} />
             )}
 
             {activeTab === 'shared' && isMember && (

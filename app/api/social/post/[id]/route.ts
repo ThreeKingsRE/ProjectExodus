@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { findVisiblePost } from '@/lib/social/postAccess-server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 
@@ -24,6 +25,7 @@ export async function GET(
         media: {
           orderBy: { order: 'asc' }
         },
+        project: { select: { id: true, name: true, slug: true } },
         likes: session?.user?.id ? {
           where: { userId: session.user.id }
         } : false,
@@ -74,7 +76,8 @@ export async function GET(
       }
     })
 
-    if (!post) {
+    // Hidden posts look the same as missing ones
+    if (!post || !(await findVisiblePost(id, session?.user?.id ?? null))) {
       return NextResponse.json(
         { success: false, error: 'Discussion not found' },
         { status: 404 }

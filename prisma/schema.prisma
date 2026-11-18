@@ -1099,10 +1099,20 @@ model SocialPost {
   hashtags   String[] // Array of hashtags
   mentions   String[] // Array of mentioned user IDs
   shares     Int             @default(0)
+
+  // Initiative updates: a post made on behalf of an initiative. PUBLIC updates
+  // also appear in the community feed; FOLLOWERS_ONLY ones only reach the
+  // initiative's followers and team.
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title     String?  // Optional headline, newsletter style
+  isPinned  Boolean  @default(false) // Pinned to the top of the initiative's updates
+
   createdAt  DateTime        @default(now())
   updatedAt  DateTime        @updatedAt
 
   @@index([userId])
+  @@index([projectId, createdAt])
   @@index([createdAt])
   @@index([visibility])
   @@index([visibility, createdAt]) // Composite: Public posts sorted by date
@@ -1206,6 +1216,7 @@ model Project {
   surveys              ProjectSurvey[]
   timelineItems        ProjectTimelineItem[]
   invites              ProjectInvite[]
+  updates              SocialPost[]
   joinRequests         ProjectJoinRequest[]
   calendarFeeds        ProjectCalendarFeed[]
 

@@ -64,7 +64,7 @@ async function getDashboardData(userId: string) {
     })
 
     const recentDiscussions = await prisma.socialPost.findMany({
-      where: { visibility: 'PUBLIC' },
+      where: { visibility: 'PUBLIC', OR: [{ projectId: null }, { project: { visibility: 'PUBLIC' } }] },
       take: 15,
       orderBy: { createdAt: 'desc' },
       select: {

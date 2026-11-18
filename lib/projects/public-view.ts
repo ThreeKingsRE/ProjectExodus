@@ -32,4 +32,5 @@ export function publicProjectFields(project: {
   }
 }
 
-export type PublicProject = NonNullable<ReturnType<typeof publicProjectFields>> & { ventureType?: string | null }
+export interface PublicUpdate { id: string; title: string | null; excerpt: string; createdAt: string; author: string | null; image: string | null; likes: number; comments: number }
+export type PublicProject = NonNullable<ReturnType<typeof publicProjectFields>> & { ventureType?: string | null; updates?: PublicUpdate[] }

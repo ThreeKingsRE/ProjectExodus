@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { findVisiblePost } from '@/lib/social/postAccess-server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 
@@ -16,11 +17,22 @@ export async function POST(request: Request) {
     const body = await request.json()
     const { postId, content, parentId } = body
 
-    if (!postId || !content || content.trim().length === 0) {
+    if (typeof postId !== 'string' || typeof content !== 'string' || content.trim().length === 0 || content.length > 5000) {
       return NextResponse.json(
         { success: false, error: 'Post ID and content are required' },
         { status: 400 }
       )
+    }
+
+    // Only people who can see a post can comment on it
+    if (!(await findVisiblePost(postId, session.user.id))) {
+      return NextResponse.json({ success: false, error: 'Post not found' }, { status: 404 })
+    }
+    if (parentId) {
+      const parent = await prisma.socialComment.findUnique({ where: { id: String(parentId) }, select: { postId: true } })
+      if (!parent || parent.postId !== postId) {
+        return NextResponse.json({ success: false, error: 'Reply target not found' }, { status: 400 })
+      }
     }
 
     const comment = await prisma.socialComment.create({
@@ -65,6 +77,11 @@ export async function GET(request: Request) {
         { success: false, error: 'Post ID is required' },
         { status: 400 }
       )
+    }
+
+    const session = await auth()
+    if (!(await findVisiblePost(postId, session?.user?.id ?? null))) {
+      return NextResponse.json({ success: false, error: 'Post not found' }, { status: 404 })
     }
 
     const comments = await prisma.socialComment.findMany({
