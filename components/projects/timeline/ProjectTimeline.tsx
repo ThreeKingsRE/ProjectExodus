@@ -7,6 +7,7 @@ import {
   CalendarDays, ChevronLeft, ChevronRight, Plus, Loader2, X, Save, Trash2, Diamond, CheckCircle2,
   Circle, Clock, AlertTriangle, Link2, Check, Upload, CalendarPlus, RefreshCw, MapPin, Users,
 } from 'lucide-react'
+import { ItemComments } from '@/components/projects/team/ItemComments'
 import {
   KIND_LABEL, STATUS_LABEL, TIMELINE_KINDS, TIMELINE_STATUSES,
   type TimelineKind, type TimelineStatus,
@@ -709,6 +710,15 @@ function ItemForm({ projectId, item, defaults, data, onClose, onSaved }: {
         </p>
       )}
       {error && <p className="text-sm font-bold text-red-500" role="alert">{error}</p>}
+
+      {item && (
+        <div className="rounded-lg border-2 border-[var(--border)] p-3">
+          <p className="mb-1 text-xs font-black uppercase tracking-wide text-theme-muted">
+            Comments{item.isPublic ? ' · followers can see and comment' : ' · team only'}
+          </p>
+          <ItemComments projectId={projectId} type="TIMELINE_ITEM" id={item.id} defaultOpen />
+        </div>
+      )}
 
       <div className="flex flex-wrap justify-end gap-2">
         {item?.canReassign && <Button type="button" variant="ghost" className="mr-auto text-red-500" onClick={remove}><Trash2 className="w-4 h-4 mr-1" />Delete</Button>}

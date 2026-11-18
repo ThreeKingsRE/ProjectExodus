@@ -7,6 +7,7 @@ import {
   ExternalLink, Plus, Loader2, Pencil, Trash2, Pin, X, Save, FileSpreadsheet, FileText,
   Presentation, PenTool, Image as ImageIcon, File as FileIcon, Link2, Eye, Lock, Maximize2,
 } from 'lucide-react'
+import { ItemComments, fetchCommentCounts } from '@/components/projects/team/ItemComments'
 import { FILE_SECTIONS, SECTION_INFO, type FileForViewer, type FileSection, type FileKind } from '@/lib/projects/files'
 
 const KIND_ICON: Record<FileKind, typeof FileIcon> = {
@@ -27,8 +28,11 @@ interface Props {
 }
 
 export function ProjectFiles({ projectId, initialSection = 'ALL' }: Props) {
+  const [commentCounts, setCommentCounts] = useState<Record<string, number>>({})
   const [section, setSection] = useState<FileSection | 'ALL'>(initialSection)
   const [files, setFiles] = useState<FileForViewer[]>([])
+  // Comment counts for the file cards
+  useEffect(() => { if (files.length) fetchCommentCounts(projectId, 'FILE', files.map(f => f.id)).then(setCommentCounts) }, [projectId, files])
   const [canManage, setCanManage] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -141,6 +145,8 @@ export function ProjectFiles({ projectId, initialSection = 'ALL' }: Props) {
           {shown.map(file => (
             <FileCard
               key={file.id}
+              projectId={projectId}
+              commentCount={commentCounts[file.id] ?? 0}
               file={file}
               canManage={canManage}
               onEdit={() => setEditing(file)}
@@ -199,8 +205,8 @@ function Preview({ file, className }: { file: FileForViewer; className: string }
   )
 }
 
-function FileCard({ file, canManage, onEdit, onRemove, onPin, onExpand }: {
-  file: FileForViewer; canManage: boolean; onEdit: () => void; onRemove: () => void; onPin: () => void; onExpand: () => void
+function FileCard({ projectId, commentCount, file, canManage, onEdit, onRemove, onPin, onExpand }: {
+  projectId: string; commentCount: number; file: FileForViewer; canManage: boolean; onEdit: () => void; onRemove: () => void; onPin: () => void; onExpand: () => void
 }) {
   const Icon = KIND_ICON[file.kind] ?? FileIcon
   return (
@@ -253,6 +259,7 @@ function FileCard({ file, canManage, onEdit, onRemove, onPin, onExpand }: {
             </div>
           )}
         </div>
+        <div className="mt-2"><ItemComments projectId={projectId} type="FILE" id={file.id} count={commentCount} /></div>
       </CardContent>
     </Card>
   )

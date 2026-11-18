@@ -15,6 +15,12 @@ Working review: November 14, 2026. Recorded while preparing Riverknoll Renewal t
 | A primary link’s label disappeared against its background in one theme. | Give the label an explicit contrasting foreground. | Visual review. |
 | Sharing needed an initiative-specific title and image. | Public-view metadata and a reusable social image use saved initiative data; nonpublic records reveal none. | Public-only data selection. |
 
+## Stage 3: comments on shared items (November 18, 2026)
+
+Followers and the team can comment on files and timeline items (milestones, tasks, events): in the Shared tab, on Workspace file cards, and inside each calendar item. Whoever can see an item can comment on it: items shared with followers are open to followers and the team, team-only items to collaborators. Authors delete their own comments; moderators, admins and owners can remove any. Documents keep their existing comment system.
+
+Security fix found along the way: document comments checked only `allowComments` (on by default) before posting, so any signed-in person who knew a document's ID could comment on a team-only document, and reading allowed unpublished public drafts. Reading and posting now follow the document view rule (creator, document collaborator, initiative team, or a shared published document).
+
 ## Launch checks still required
 
 - Deploy the reusable platform changes to the project serving **www.projxodus.com**.

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { documentCommentAccess } from '@/lib/documents/comment-access'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db/prisma'
 
@@ -54,7 +55,7 @@ export async function POST(
     const isCreator = comment.document.creatorId === session.user.id
     const isCollaborator = comment.document.collaborators.length > 0
 
-    if (!isCreator && !isCollaborator && !comment.document.isPublic) {
+    if (!(await documentCommentAccess(documentId, session.user.id))?.canRead) {
       return NextResponse.json({ success: false, error: 'Access denied' }, { status: 403 })
     }
 

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { documentCommentAccess } from '@/lib/documents/comment-access'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db/prisma'
 
@@ -32,7 +33,7 @@ export async function GET(
     const isCreator = document.creatorId === session.user.id
     const isCollaborator = document.collaborators.length > 0
 
-    if (!isCreator && !isCollaborator && !document.isPublic) {
+    if (!(await documentCommentAccess(documentId, session.user.id))?.canRead) {
       return NextResponse.json({ success: false, error: 'Access denied' }, { status: 403 })
     }
 
@@ -125,7 +126,7 @@ export async function POST(
     const canComment = isCreator ||
       (collaborator && ['COMMENT', 'SUGGEST', 'EDIT', 'ADMIN'].includes(collaborator.permission))
 
-    if (!canComment && !document.allowComments) {
+    if (!canComment && !(await documentCommentAccess(documentId, session.user.id))?.canComment) {
       return NextResponse.json({ success: false, error: 'Comments not allowed' }, { status: 403 })
     }
 

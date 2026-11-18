@@ -80,52 +80,52 @@ model User {
   updatedAt DateTime @updatedAt
 
   // Relations
-  accounts              Account[]
-  sessions              Session[]
-  reviews               Review[]
-  articles              Article[]
-  comments              Comment[]
-  savedProducts         SavedProduct[]
-  savedArticles         SavedArticle[]
-  articleReads          ArticleRead[]
-  notifications         Notification[]
-  adminLogs             AdminLog[]
-  following             UserFollow[]           @relation("Following")
-  followers             UserFollow[]           @relation("Followers")
-  userBadges            UserBadge[]
-  projectMemberships    ProjectMember[]
-  createdProjects       Project[]              @relation("ProjectCreator")
-  projectFiles          ProjectFile[]          @relation("ProjectFileCreator")
-  projectSurveys        ProjectSurvey[]        @relation("ProjectSurveyCreator")
-  projectInvitesSent    ProjectInvite[]        @relation("ProjectInviteSender")
-  projectInvitesReceived ProjectInvite[]       @relation("ProjectInviteRecipient")
-  projectJoinRequests   ProjectJoinRequest[]   @relation("ProjectJoinRequester")
-  timelineItems         ProjectTimelineItem[]  @relation("ProjectTimelineCreator")
-  calendarFeeds         ProjectCalendarFeed[]  @relation("ProjectCalendarFeedOwner")
-  surveyResponses       ProjectSurveyResponse[] @relation("ProjectSurveyRespondent")
-  projectMessages       ProjectMessage[]       @relation("ProjectMessages")
-  sentMessages          DirectMessage[]        @relation("SentMessages")
-  receivedMessages      DirectMessage[]        @relation("ReceivedMessages")
-  messageReactions      MessageReaction[]      @relation("MessageReactions")
-  createdEvents         Event[]                @relation("CreatedEvents")
-  eventAttendances      EventAttendee[]
-  reportedContent       Report[]               @relation("ReportedBy")
-  assignedReports       Report[]               @relation("ReportAssignedTo")
-  resolvedReports       Report[]               @relation("ReportResolvedBy")
-  socialPosts           SocialPost[]           @relation("SocialPosts")
-  socialComments        SocialComment[]        @relation("SocialComments")
-  socialLikes           SocialLike[]           @relation("SocialLikes")
-  userProducts          UserProduct[]          @relation("UserProducts")
-  sentConnections       Connection[]           @relation("SentConnections")
-  receivedConnections   Connection[]           @relation("ReceivedConnections")
-  learningProgress      UserLearningProgress[]
-  topicModuleProgress   TopicModuleProgress[]
-  learnerProfile        LearnerProfile?
-  scrollNotes           ScrollNote[]
-  scrollDiscussionPosts ScrollDiscussionPost[]
-  articlePeerReviews    ArticlePeerReview[]    @relation("ArticlePeerReviews")
-  reviewLikes           ReviewLike[]           @relation("ReviewLikes")
-  adminAlerts           AdminAlert[]           @relation("AdminAlerts")
+  accounts               Account[]
+  sessions               Session[]
+  reviews                Review[]
+  articles               Article[]
+  comments               Comment[]
+  savedProducts          SavedProduct[]
+  savedArticles          SavedArticle[]
+  articleReads           ArticleRead[]
+  notifications          Notification[]
+  adminLogs              AdminLog[]
+  following              UserFollow[]            @relation("Following")
+  followers              UserFollow[]            @relation("Followers")
+  userBadges             UserBadge[]
+  projectMemberships     ProjectMember[]
+  createdProjects        Project[]               @relation("ProjectCreator")
+  projectFiles           ProjectFile[]           @relation("ProjectFileCreator")
+  projectSurveys         ProjectSurvey[]         @relation("ProjectSurveyCreator")
+  projectInvitesSent     ProjectInvite[]         @relation("ProjectInviteSender")
+  projectInvitesReceived ProjectInvite[]         @relation("ProjectInviteRecipient")
+  projectJoinRequests    ProjectJoinRequest[]    @relation("ProjectJoinRequester")
+  timelineItems          ProjectTimelineItem[]   @relation("ProjectTimelineCreator")
+  calendarFeeds          ProjectCalendarFeed[]   @relation("ProjectCalendarFeedOwner")
+  surveyResponses        ProjectSurveyResponse[] @relation("ProjectSurveyRespondent")
+  projectMessages        ProjectMessage[]        @relation("ProjectMessages")
+  sentMessages           DirectMessage[]         @relation("SentMessages")
+  receivedMessages       DirectMessage[]         @relation("ReceivedMessages")
+  messageReactions       MessageReaction[]       @relation("MessageReactions")
+  createdEvents          Event[]                 @relation("CreatedEvents")
+  eventAttendances       EventAttendee[]
+  reportedContent        Report[]                @relation("ReportedBy")
+  assignedReports        Report[]                @relation("ReportAssignedTo")
+  resolvedReports        Report[]                @relation("ReportResolvedBy")
+  socialPosts            SocialPost[]            @relation("SocialPosts")
+  socialComments         SocialComment[]         @relation("SocialComments")
+  socialLikes            SocialLike[]            @relation("SocialLikes")
+  userProducts           UserProduct[]           @relation("UserProducts")
+  sentConnections        Connection[]            @relation("SentConnections")
+  receivedConnections    Connection[]            @relation("ReceivedConnections")
+  learningProgress       UserLearningProgress[]
+  topicModuleProgress    TopicModuleProgress[]
+  learnerProfile         LearnerProfile?
+  scrollNotes            ScrollNote[]
+  scrollDiscussionPosts  ScrollDiscussionPost[]
+  articlePeerReviews     ArticlePeerReview[]     @relation("ArticlePeerReviews")
+  reviewLikes            ReviewLike[]            @relation("ReviewLikes")
+  adminAlerts            AdminAlert[]            @relation("AdminAlerts")
 
   // Multi-level learning system
   moduleDiscussions       ModuleDiscussion[]      @relation("ModuleDiscussionAuthor")
@@ -194,7 +194,8 @@ model User {
   commentReactions         CommentReaction[]      @relation("CommentReactions")
 
   // Initiative drafts (pre-creation workspaces with Sage)
-  initiativeDrafts InitiativeDraft[] @relation("InitiativeDrafts")
+  initiativeDrafts    InitiativeDraft[]    @relation("InitiativeDrafts")
+  projectItemComments ProjectItemComment[] @relation("ProjectItemCommentAuthor")
 
   @@index([email])
   @@index([role])
@@ -1105,11 +1106,11 @@ model SocialPost {
   // initiative's followers and team.
   projectId String?
   project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  title     String?  // Optional headline, newsletter style
+  title     String? // Optional headline, newsletter style
   isPinned  Boolean  @default(false) // Pinned to the top of the initiative's updates
 
-  createdAt  DateTime        @default(now())
-  updatedAt  DateTime        @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
   @@index([projectId, createdAt])
@@ -1220,8 +1221,9 @@ model Project {
   joinRequests         ProjectJoinRequest[]
   calendarFeeds        ProjectCalendarFeed[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  itemComments ProjectItemComment[]
 
   @@index([slug])
   @@index([creatorId])
@@ -1281,11 +1283,11 @@ model ProjectSurvey {
 
   questions Json // SurveyQuestion[]
 
-  status         ProjectSurveyStatus   @default(DRAFT)
-  audience       ProjectSurveyAudience @default(MEMBERS)
-  anonymous      Boolean               @default(false) // Hide respondent names from the team
-  shareResults   Boolean               @default(false) // Respondents see summary results after answering
-  closesAt       DateTime?
+  status       ProjectSurveyStatus   @default(DRAFT)
+  audience     ProjectSurveyAudience @default(MEMBERS)
+  anonymous    Boolean               @default(false) // Hide respondent names from the team
+  shareResults Boolean               @default(false) // Respondents see summary results after answering
+  closesAt     DateTime?
 
   createdById String
   createdBy   User   @relation("ProjectSurveyCreator", fields: [createdById], references: [id])
@@ -1336,21 +1338,21 @@ enum ProjectSurveyAudience {
 // ============================================
 
 model ProjectInvite {
-  id          String  @id @default(cuid())
-  projectId   String
-  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  id            String              @id @default(cuid())
+  projectId     String
+  project       Project             @relation(fields: [projectId], references: [id], onDelete: Cascade)
   // An existing account, or an email address for someone who hasn't signed up yet
   invitedUserId String?
-  invitedUser   User?   @relation("ProjectInviteRecipient", fields: [invitedUserId], references: [id], onDelete: Cascade)
+  invitedUser   User?               @relation("ProjectInviteRecipient", fields: [invitedUserId], references: [id], onDelete: Cascade)
   email         String?
-  role          ProjectMemberRole  @default(CONTRIBUTOR)
-  message       String?            @db.Text
+  role          ProjectMemberRole   @default(CONTRIBUTOR)
+  message       String?             @db.Text
   status        ProjectInviteStatus @default(PENDING)
   invitedById   String
-  invitedBy     User               @relation("ProjectInviteSender", fields: [invitedById], references: [id], onDelete: Cascade)
+  invitedBy     User                @relation("ProjectInviteSender", fields: [invitedById], references: [id], onDelete: Cascade)
   respondedAt   DateTime?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
 
   @@index([projectId, status])
   @@index([invitedUserId, status])
@@ -1365,17 +1367,17 @@ enum ProjectInviteStatus {
 }
 
 model ProjectJoinRequest {
-  id          String  @id @default(cuid())
+  id          String                   @id @default(cuid())
   projectId   String
-  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  project     Project                  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   userId      String
-  user        User    @relation("ProjectJoinRequester", fields: [userId], references: [id], onDelete: Cascade)
-  message     String? @db.Text
+  user        User                     @relation("ProjectJoinRequester", fields: [userId], references: [id], onDelete: Cascade)
+  message     String?                  @db.Text
   status      ProjectJoinRequestStatus @default(PENDING)
   decidedById String?
   decidedAt   DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
 
   @@index([projectId, status])
   @@index([userId])
@@ -1413,7 +1415,7 @@ model ProjectTimelineItem {
   assigneeIds String[]              @default([])
   milestoneId String? // Task or event that counts toward a milestone
   color       String?
-  isPublic    Boolean @default(false) // Shown to followers
+  isPublic    Boolean               @default(false) // Shown to followers
 
   // Imported from an .ics file
   externalUid String?
@@ -1440,6 +1442,29 @@ enum ProjectTimelineStatus {
   IN_PROGRESS
   BLOCKED
   DONE
+}
+
+/// Comments on an initiative's files and timeline items (milestones, tasks,
+/// events). Readable and writable by whoever can see the item: followers and
+/// team for items shared with followers, collaborators for team-only items.
+model ProjectItemComment {
+  id         String                   @id @default(cuid())
+  projectId  String
+  project    Project                  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  targetType ProjectCommentTargetType
+  targetId   String
+  userId     String
+  user       User                     @relation("ProjectItemCommentAuthor", fields: [userId], references: [id], onDelete: Cascade)
+  body       String                   @db.Text
+  createdAt  DateTime                 @default(now())
+
+  @@index([projectId, targetType, targetId, createdAt])
+  @@index([userId, createdAt])
+}
+
+enum ProjectCommentTargetType {
+  FILE
+  TIMELINE_ITEM
 }
 
 model ProjectCalendarFeed {
@@ -1594,16 +1619,16 @@ enum ProjectRole {
 }
 
 model ProjectMessage {
-  id        String   @id @default(cuid())
-  content   String   @db.Text
+  id        String                @id @default(cuid())
+  content   String                @db.Text
   projectId String
   userId    String
-  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  user      User     @relation("ProjectMessages", fields: [userId], references: [id], onDelete: Cascade)
+  project   Project               @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user      User                  @relation("ProjectMessages", fields: [userId], references: [id], onDelete: Cascade)
   // PUBLIC: followers and the team talk here. TEAM: collaborators only.
   channel   ProjectMessageChannel @default(TEAM)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime              @default(now())
+  updatedAt DateTime              @updatedAt
 
   @@index([projectId])
   @@index([projectId, channel, createdAt])
@@ -1706,14 +1731,14 @@ enum JoinRequestStatus {
 // ============================================
 
 model ProjectDiscussion {
-  id        String  @id @default(cuid())
-  projectId String
-  title     String
-  content   String  @db.Text
-  isPinned  Boolean @default(false)
-  isLocked  Boolean @default(false)
-  viewCount Int     @default(0)
-  authorId  String
+  id         String                      @id @default(cuid())
+  projectId  String
+  title      String
+  content    String                      @db.Text
+  isPinned   Boolean                     @default(false)
+  isLocked   Boolean                     @default(false)
+  viewCount  Int                         @default(0)
+  authorId   String
   // PUBLIC: followers can read and reply. TEAM: collaborators only.
   visibility ProjectDiscussionVisibility @default(TEAM)
 

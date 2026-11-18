@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { Diamond, Eye, FileText, Loader2, Pencil, Share2, CalendarDays, CheckCircle2 } from 'lucide-react'
 import { SECTION_INFO, type FileForViewer, type FileSection } from '@/lib/projects/files'
 import { STATUS_LABEL, type TimelineStatus } from '@/lib/projects/timeline'
+import { ItemComments, fetchCommentCounts } from './ItemComments'
 
 interface Doc { id: string; title: string; description: string | null; updatedAt: string; isPublic: boolean; status: string; _count?: { comments: number } }
 interface Item { id: string; kind: string; title: string; startAt: string | null; endAt: string | null; allDay: boolean; status: TimelineStatus; isPublic: boolean }
@@ -19,6 +20,8 @@ export function ProjectShared({ projectId, slug, isTeam }: { projectId: string; 
   const [files, setFiles] = useState<FileForViewer[] | null>(null)
   const [docs, setDocs] = useState<Doc[] | null>(null)
   const [items, setItems] = useState<Item[] | null>(null)
+  const [fileCounts, setFileCounts] = useState<Record<string, number>>({})
+  const [itemCounts, setItemCounts] = useState<Record<string, number>>({})
 
   useEffect(() => {
     const now = Date.now()
@@ -27,6 +30,10 @@ export function ProjectShared({ projectId, slug, isTeam }: { projectId: string; 
     fetch(`/api/documents?projectId=${projectId}`).then(r => r.json()).then(d => setDocs(d.success ? d.data.filter((x: Doc) => x.isPublic && x.status === 'PUBLISHED') : [])).catch(() => setDocs([]))
     fetch(`/api/projects/${projectId}/timeline?${qs}`).then(r => r.json()).then(d => setItems(d.success ? d.data.items.filter((i: Item) => i.isPublic) : [])).catch(() => setItems([]))
   }, [projectId])
+
+  // Comment counts for the shared items, in one request per kind
+  useEffect(() => { if (files?.length) fetchCommentCounts(projectId, 'FILE', files.map(f => f.id)).then(setFileCounts) }, [projectId, files])
+  useEffect(() => { if (items?.length) fetchCommentCounts(projectId, 'TIMELINE_ITEM', items.map(i => i.id)).then(setItemCounts) }, [projectId, items])
 
   const loading = files === null || docs === null || items === null
   const empty = !loading && !files!.length && !docs!.length && !items!.length
@@ -46,7 +53,7 @@ export function ProjectShared({ projectId, slug, isTeam }: { projectId: string; 
         <p className="text-sm text-theme-muted">
           {isTeam
             ? 'What followers can see. Share a file, document, or timeline item from its own tab to add it here.'
-            : 'Plans, documents, and milestones the team has shared with followers.'}
+            : 'Plans, documents, and milestones the team has shared with followers. Comment on anything here to share your input.'}
         </p>
       </div>
 
@@ -66,10 +73,13 @@ export function ProjectShared({ projectId, slug, isTeam }: { projectId: string; 
               <h3 className="font-black flex items-center gap-2"><CalendarDays className="w-5 h-5" />Milestones & schedule</h3>
               <ul className="space-y-1">
                 {items!.map(i => (
-                  <li key={i.id} className="flex items-center gap-3 rounded-lg border-2 border-[var(--border)] px-3 py-2">
-                    {i.kind === 'MILESTONE' ? <Diamond className="w-4 h-4 text-purple-500 shrink-0" /> : i.status === 'DONE' ? <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" /> : <CalendarDays className="w-4 h-4 text-theme-muted shrink-0" />}
-                    <span className={`min-w-0 flex-1 truncate font-bold ${i.status === 'DONE' ? 'line-through opacity-60' : ''}`}>{i.title}</span>
-                    <span className="shrink-0 text-xs text-theme-muted">{STATUS_LABEL[i.status]} · {when(i)}</span>
+                  <li key={i.id} className="rounded-lg border-2 border-[var(--border)] px-3 py-2">
+                    <div className="flex items-center gap-3">
+                      {i.kind === 'MILESTONE' ? <Diamond className="w-4 h-4 text-purple-500 shrink-0" /> : i.status === 'DONE' ? <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" /> : <CalendarDays className="w-4 h-4 text-theme-muted shrink-0" />}
+                      <span className={`min-w-0 flex-1 truncate font-bold ${i.status === 'DONE' ? 'line-through opacity-60' : ''}`}>{i.title}</span>
+                      <span className="shrink-0 text-xs text-theme-muted">{STATUS_LABEL[i.status]} · {when(i)}</span>
+                    </div>
+                    <div className="mt-1 pl-7"><ItemComments projectId={projectId} type="TIMELINE_ITEM" id={i.id} count={itemCounts[i.id] ?? 0} /></div>
                   </li>
                 ))}
               </ul>
@@ -110,6 +120,7 @@ export function ProjectShared({ projectId, slug, isTeam }: { projectId: string; 
                       <a href={f.openUrl} target="_blank" rel="noopener noreferrer">
                         <Button size="sm" className="font-bold">{f.canEdit ? <Pencil className="w-4 h-4 mr-1" /> : <Eye className="w-4 h-4 mr-1" />}{f.canEdit ? 'OPEN TO EDIT' : 'OPEN'}</Button>
                       </a>
+                      <ItemComments projectId={projectId} type="FILE" id={f.id} count={fileCounts[f.id] ?? 0} />
                     </CardContent>
                   </Card>
                 ))}
