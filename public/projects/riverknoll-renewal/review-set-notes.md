@@ -4,7 +4,8 @@ November 2026 concept studies, published by the initiative organizer. This packa
 
 - Architecture pin-up v10: conceptual room layouts, capacity cases, site constraints, and courtyard studies.
 - Pitch deck v18: the earlier presentation of the concept.
-- Feasibility workbook v11: the earlier financial and wall-energy screening model.
+- Feasibility workbook v12: the financial and wall-energy screening model, with RIT's 2026–27 Riverknoll room rates on the RIT_Rates sheet. Results match v11.
+- Feasibility workbook v11: the previous version, kept for reference.
 - Technical DXF v1: schematic geometry for review, not construction drawings.
 
 ## Important version distinctions
@@ -19,32 +20,34 @@ V11's approximately $30.4 million debt screen uses all modeled NOI for annual de
 
 System 3E's local installed price and any upfront premium are unknown. The workbook's zero premium input is a placeholder. Its approximately $4,628 annual energy saving is an opaque-wall conduction screen, not a whole-building utility forecast or measured RIT saving. Campuswide financial references are not allocated Riverknoll costs.
 
-Current account-owned initiative and research: https://www.projxodus.com/community/projects/riverknoll-renewal
+## RIT 2026–27 Riverknoll room rates (per person)
 
-## RIT 2026–27 Riverknoll rate check (November 2026)
-
-The organizer obtained RIT's 2026–27 Riverknoll room rates:
-
-| Room type | Per semester, per person | Academic year (2 semesters) | Summer, per person per day |
+| Room type | Per semester | Two semesters | Summer, per day |
 | --- | --- | --- | --- |
 | 1 bedroom | $7,888 | $15,776 | $68 |
-| 2-bedroom townhouse, double | $3,266 | $6,532 | $31 |
-| 2-bedroom townhouse, single | $3,582 | $7,164 | $31 |
-| 3-bedroom townhouse, double | $3,092 | $6,184 | $29 |
-| 3-bedroom townhouse, single | $3,381 | $6,762 | $29 |
+| 2 bedroom townhouse, double | $3,266 | $6,532 | $31 |
+| 2 bedroom townhouse, single | $3,582 | $7,164 | $31 |
+| 3 bedroom townhouse, double | $3,092 | $6,184 | $29 |
+| 3 bedroom townhouse, single | $3,381 | $6,762 | $29 |
 
-**The v11 rent input is confirmed.** Workbook v11 uses $6,762 per bed per academic year (Assumptions row 8, which asked to "confirm exact room type / contract period"). That is exactly RIT's 2026–27 **3-bedroom townhouse single** rate for two semesters ($3,381 × 2). The workbook's results, including about $3.30M gross rent (513 beds × $6,762 × 95% occupancy) and about $1.98M net operating income, are unchanged.
+Source: RIT Housing rate table provided by the organizer, November 2026 (https://www.rit.edu/housing/riverknoll).
 
-**One rate is applied to every bed.** Current Riverknoll rates range from $6,184 (3-bedroom double) to $15,776 (1-bedroom) per academic year, and the real rent roll depends on the bed mix, which has not been verified. Holding v11's other assumptions (513 beds, 95% occupancy, 40% operating allowance, 30-year debt at 5%):
+The model's $6,762 per bed-year is the 3-bedroom single rate, confirmed against this table. It is applied to every target bed. With 513 beds at 95% occupancy that gives about $3.30 million gross rent a year. If every bed paid the lowest rate (3-bedroom double) it would be about $3.01 million; at the 2-bedroom single rate, about $3.49 million. The real figure depends on the bed mix, which still needs to be verified. Summer rent is not modeled, so revenue is conservative.
+
+For the private-bedroom proposal, the current benchmark is $6,762 to $7,164 per person per year for a private bedroom in a shared townhouse.
+
+### Debt and funding-gap sensitivity (v12 formulas)
+
+Holding the other assumptions (513 beds, 95% occupancy, 40% operating allowance, 30-year debt at 5%), the room rate changes what rent can support:
 
 | Rate applied to all 513 beds | Gross rent | Net operating income | Supported debt (unbuffered) | At 1.20× coverage |
 | --- | --- | --- | --- | --- |
-| $6,184 (3-bed double) | $3.01M | $1.81M | $27.8M | $23.2M |
-| $6,762 (3-bed single, v11) | $3.30M | $1.98M | $30.4M | $25.3M |
-| $7,164 (2-bed single) | $3.49M | $2.09M | $32.2M | $26.8M |
+| $6,184 (3-bedroom double) | $3.01M | $1.81M | $27.8M | $23.2M |
+| $6,762 (3-bedroom single, model rate) | $3.30M | $1.98M | $30.4M | $25.3M |
+| $7,164 (2-bedroom single) | $3.49M | $2.09M | $32.2M | $26.8M |
 
-Against the v11 base development allowance of $158.9M, the unbuffered base gap stays between about $126.7M and $131.1M across these rates. Rent alone does not close it. These are new sensitivities on v11's formulas, not v11 workbook results.
+Against the $158.9 million base development allowance, the unbuffered base gap stays between about $126.7 million and $131.1 million across these rates, so rent alone does not close it. These are sensitivities on the model's formulas, not separate workbook results.
 
-**Summer rent is not counted.** Summer rates ($29–$68 per person per day) are excluded from all figures, which keeps the rent estimate conservative.
+The private-room benchmark of $6,762 to $7,164 per person per year is about $845 to $896 a month over an eight-month academic year. The 1-bedroom rate ($15,776) prices a different product and is not the comparator for the proposal.
 
-**Affordability benchmark.** The design gives each resident a private bedroom. Today's private-room townhouse rates are $6,762–$7,164 per academic year, or about $845–$896 per month over an eight-month academic year. A renewed Riverknoll that aims to stay affordable should meet or beat that range for a private room. The 1-bedroom rate ($15,776) prices a different product and is not the comparator.
+Current account-owned initiative and research: https://www.projxodus.com/community/projects/riverknoll-renewal
