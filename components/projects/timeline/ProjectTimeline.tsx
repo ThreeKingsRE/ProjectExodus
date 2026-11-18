@@ -149,7 +149,7 @@ export function ProjectTimeline({ projectId }: { projectId: string }) {
     if (!data?.canAdd) return
     if (hour === undefined) {
       const key = localKey(day)
-      setEditing({ item: null, defaults: { kind: 'TASK', allDay: true, endAt: `${key}T00:00:00.000Z` } })
+      setEditing({ item: null, defaults: { kind: 'EVENT', allDay: true, startAt: `${key}T00:00:00.000Z`, endAt: `${key}T00:00:00.000Z` } })
     } else {
       const s = new Date(day.getFullYear(), day.getMonth(), day.getDate(), hour)
       setEditing({ item: null, defaults: { kind: 'EVENT', allDay: false, startAt: s.toISOString(), endAt: new Date(s.getTime() + 3600000).toISOString() } })
@@ -165,18 +165,21 @@ export function ProjectTimeline({ projectId }: { projectId: string }) {
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-2xl font-black">TIMELINE</h2>
-          <p className="text-sm text-theme-muted">Who’s doing what, and by when. Milestones, tasks, and events for the whole team.</p>
+          <h2 className="text-2xl font-black">TEAM CALENDAR</h2>
+          <p className="max-w-2xl text-sm text-theme-muted">
+            This initiative’s own calendar. Schedule meetings, deadlines, tasks and milestones for the team here; no personal calendar needed.
+            Already use Google, Outlook or Apple Calendar? Linking or importing one is optional.
+          </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Button variant="outline" className="font-bold" onClick={() => setCalendarsOpen(true)}>
-            <CalendarPlus className="w-4 h-4 mr-2" />CALENDARS
-          </Button>
           {data?.canAdd && (
-            <Button className="font-bold" onClick={() => setEditing({ item: null })}>
-              <Plus className="w-4 h-4 mr-2" />ADD
+            <Button className="font-bold" onClick={() => newOn(startOfDay(new Date()))}>
+              <Plus className="w-4 h-4 mr-2" />SCHEDULE
             </Button>
           )}
+          <Button variant="outline" className="font-bold" onClick={() => setCalendarsOpen(true)} title="Optional: show an existing calendar here, import one, or add this calendar to your own">
+            <CalendarPlus className="w-4 h-4 mr-2" />LINK OR IMPORT
+          </Button>
         </div>
       </div>
 
@@ -213,6 +216,17 @@ export function ProjectTimeline({ projectId }: { projectId: string }) {
           )}
         </div>
       </div>
+
+      {data?.canAdd && (view === 'month' || view === 'week' || view === 'day') && (
+        <p className="text-xs text-theme-muted">
+          {entries.length === 0
+            ? 'Nothing scheduled yet. Click any day to schedule something for the team, or use Schedule above.'
+            : view === 'month' ? 'Tip: click a day to schedule something on it.' : 'Tip: click an hour to schedule an event at that time.'}
+        </p>
+      )}
+      {data && !data.canAdd && entries.length === 0 && (
+        <p className="text-xs text-theme-muted">Nothing on the team calendar yet.</p>
+      )}
 
       {data?.feeds.some(f => f.error) && (
         <p className="rounded-lg bg-yellow-500/10 p-2 text-xs text-yellow-700 dark:text-yellow-400">
@@ -614,7 +628,7 @@ function ItemForm({ projectId, item, defaults, data, onClose, onSaved }: {
   const endLabel = kind === 'MILESTONE' ? 'Target date' : kind === 'TASK' ? 'Due' : 'Ends'
 
   return (
-    <Modal title={item ? (readOnly ? item.title : 'EDIT') : 'ADD TO TIMELINE'} onClose={onClose}>
+    <Modal title={item ? (readOnly ? item.title : 'EDIT') : 'SCHEDULE ON THE TEAM CALENDAR'} onClose={onClose}>
       <fieldset disabled={readOnly} className="space-y-4">
         <div className="flex rounded-lg border-2 border-[var(--border)] overflow-hidden" role="radiogroup" aria-label="Type">
           {TIMELINE_KINDS.map(k => (
@@ -797,7 +811,7 @@ function CalendarsPanel({ projectId, canAdd, canManage, onClose, onChanged }: {
   const input = 'w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm'
 
   return (
-    <Modal title="CALENDARS" onClose={onClose}>
+    <Modal title="LINK OR IMPORT A CALENDAR (OPTIONAL)" onClose={onClose}>
       <section className="space-y-2">
         <h4 className="font-black">Add this timeline to your calendar</h4>
         <p className="text-sm text-theme-muted">Subscribe once and the initiative’s milestones, tasks, and events show up in Google Calendar, Outlook, or your phone, updating on their own.</p>

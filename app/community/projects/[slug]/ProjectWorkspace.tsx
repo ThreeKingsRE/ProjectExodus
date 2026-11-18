@@ -658,7 +658,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     { id: 'discussions', label: 'Discussion', icon: MessageSquare, memberOnly: true },
     { id: 'surveys', label: 'Surveys', icon: ClipboardList, memberOnly: true },
     { id: 'workspace', label: 'Workspace', icon: Layers, teamOnly: true },
-    { id: 'timeline', label: 'Timeline', icon: CalendarRange, teamOnly: true },
+    { id: 'timeline', label: 'Calendar', icon: CalendarRange, teamOnly: true },
     { id: 'documents', label: 'Documents', icon: File, teamOnly: true },
     { id: 'learning', label: 'Learning', icon: BookOpen, teamOnly: true },
     { id: 'research', label: 'Research', icon: FlaskConical, teamOnly: true },
