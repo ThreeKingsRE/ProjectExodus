@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { parseVentureType } from '@/lib/projects/ventureType'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { projectPublication } from '@/lib/projects/public-view'
@@ -99,6 +100,7 @@ export async function PUT(
     const { name, description, goal, status } = body
     const previousLayout = (project.layoutConfig || {}) as Record<string, unknown>
     const publication = projectPublication(project.visibility, body.allowPublicView)
+    const venture = body && typeof body === 'object' ? parseVentureType(body) : null
 
     const updated = await prisma.project.update({
       where: { id: projectId },
@@ -107,11 +109,12 @@ export async function PUT(
         description: description?.trim() || undefined,
         goal: goal?.trim() || undefined,
         status: status || undefined,
-        ...(typeof body.allowPublicView === 'boolean' || typeof body.publicStory === 'string' ? {
+        ...(typeof body.allowPublicView === 'boolean' || typeof body.publicStory === 'string' || venture ? {
           layoutConfig: {
             ...previousLayout,
             ...(typeof body.allowPublicView === 'boolean' ? { allowPublicView: publication.allowPublicView } : {}),
             ...(typeof body.publicStory === 'string' ? { publicStory: body.publicStory.slice(0, 16000) } : {}),
+            ...(venture ?? {}),
           },
         } : {}),
       },

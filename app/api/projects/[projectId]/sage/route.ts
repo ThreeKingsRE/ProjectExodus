@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requireCollaborator } from '@/lib/projects/guard'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db/prisma'
 import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
@@ -39,6 +40,8 @@ export async function POST(
 ) {
   try {
     const { projectId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
 
     // Check authentication
     const session = await auth()
@@ -299,6 +302,8 @@ export async function GET(
 ) {
   try {
     const { projectId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
 
     const session = await auth()
     if (!session?.user?.id) {

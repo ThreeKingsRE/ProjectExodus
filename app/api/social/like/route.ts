@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { findVisiblePost } from '@/lib/social/postAccess-server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { handlePrismaError } from '@/lib/utils/prisma-errors'
@@ -17,11 +18,16 @@ export async function POST(request: Request) {
     const body = await request.json()
     const { postId } = body
 
-    if (!postId) {
+    if (typeof postId !== 'string' || !postId) {
       return NextResponse.json(
         { success: false, error: 'Post ID is required' },
         { status: 400 }
       )
+    }
+
+    // Only people who can see a post can like it
+    if (!(await findVisiblePost(postId, session.user.id))) {
+      return NextResponse.json({ success: false, error: 'Post not found' }, { status: 404 })
     }
 
     // Check if already liked

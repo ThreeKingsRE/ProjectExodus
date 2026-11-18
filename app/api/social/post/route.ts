@@ -17,7 +17,8 @@ const createPostSchema = z.object({
     .min(1, 'Content is required')
     .max(5000, 'Post content must be less than 5000 characters')
     .trim(),
-  visibility: z.enum(['PUBLIC', 'CONNECTIONS', 'PRIVATE']).optional(),
+  // Matches the PostVisibility enum (the old CONNECTIONS value made followers-only posts fail)
+  visibility: z.enum(['PUBLIC', 'FOLLOWERS_ONLY', 'PRIVATE']).optional(),
   media: z.array(mediaSchema).max(10, 'Maximum 10 media items allowed').optional(),
   hashtags: z.array(z.string().max(50, 'Hashtag is too long')).max(30, 'Maximum 30 hashtags allowed').optional(),
   mentions: z.array(z.string().cuid('Invalid user ID')).max(50, 'Maximum 50 mentions allowed').optional()

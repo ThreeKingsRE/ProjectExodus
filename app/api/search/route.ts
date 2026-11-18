@@ -235,6 +235,7 @@ export async function GET(request: NextRequest) {
           prisma.socialPost.findMany({
             where: {
               visibility: 'PUBLIC',
+              OR: [{ projectId: null }, { project: { visibility: 'PUBLIC' } }],
               content: searchFilter,
             },
             select: {
@@ -263,6 +264,7 @@ export async function GET(request: NextRequest) {
           prisma.socialPost.count({
             where: {
               visibility: 'PUBLIC',
+              OR: [{ projectId: null }, { project: { visibility: 'PUBLIC' } }],
               content: searchFilter,
             },
           }),

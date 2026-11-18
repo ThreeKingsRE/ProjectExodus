@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { Heart, MessageCircle, Share2, MoreHorizontal, Globe, Users, Lock } from 'lucide-react'
+import { Heart, MessageCircle, Share2, MoreHorizontal, Globe, Users, Lock, Rocket, Pin } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
@@ -11,9 +11,13 @@ interface FeedPostProps {
   post: any
   onLike?: () => void
   onComment?: () => void
+  /** Replaces the "more" button, e.g. pin/edit/delete for initiative updates */
+  menu?: ReactNode
+  /** Hide the initiative badge when already on that initiative's page */
+  hideInitiative?: boolean
 }
 
-export function FeedPost({ post, onLike, onComment }: FeedPostProps) {
+export function FeedPost({ post, onLike, onComment, menu, hideInitiative }: FeedPostProps) {
   const { data: session } = useSession()
   const [liked, setLiked] = useState(post.likes?.length > 0)
   const [likeCount, setLikeCount] = useState(post._count?.likes || 0)
@@ -170,7 +174,7 @@ export function FeedPost({ post, onLike, onComment }: FeedPostProps) {
               ) : (
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity">
                   <span className="text-xl font-black text-white">
-                    {post.user.name?.[0]?.toUpperCase() || post.user.email[0].toUpperCase()}
+                    {(post.user.name?.[0] || '?').toUpperCase()}
                   </span>
                 </div>
               )}
@@ -183,7 +187,12 @@ export function FeedPost({ post, onLike, onComment }: FeedPostProps) {
                   {post.user.name || 'Anonymous User'}
                 </h3>
               </Link>
-              {post.user.headline && (
+              {post.project && !hideInitiative ? (
+                <Link href={`/community/projects/${post.project.slug}?tab=updates`} className="flex items-center gap-1 text-sm font-bold text-theme-primary hover:underline">
+                  <Rocket className="w-3.5 h-3.5" />
+                  Update from {post.project.name}
+                </Link>
+              ) : post.user.headline && (
                 <p className="text-sm font-semibold text-theme-muted">
                   {post.user.headline}
                 </p>
@@ -191,36 +200,49 @@ export function FeedPost({ post, onLike, onComment }: FeedPostProps) {
               <div className="flex items-center gap-2 text-xs font-semibold text-theme-muted mt-1">
                 <span>{formatDate(post.createdAt)}</span>
                 <span>•</span>
-                <VisibilityIcon className="w-3 h-3" />
+                <VisibilityIcon className="w-3 h-3" aria-label={post.projectId ? ({ PUBLIC: 'Everyone', FOLLOWERS_ONLY: 'Followers and team', PRIVATE: 'Team only' } as Record<string, string>)[post.visibility] : post.visibility} />
+                {post.isPinned && (<><span>•</span><Pin className="w-3 h-3" aria-label="Pinned" /></>)}
               </div>
             </div>
           </div>
 
           {/* More Options */}
-          <button className="p-2 hover:bg-[var(--muted)] rounded-lg transition-colors">
-            <MoreHorizontal className="w-5 h-5 text-theme-muted" />
-          </button>
+          {menu ?? (
+            <button className="p-2 hover:bg-[var(--muted)] rounded-lg transition-colors" aria-label="More options">
+              <MoreHorizontal className="w-5 h-5 text-theme-muted" />
+            </button>
+          )}
         </div>
 
         {/* Post Content */}
         <div className="mb-4">
+          {post.title && <h2 className="mb-2 text-xl font-black text-[var(--foreground)]">{post.title}</h2>}
           <p className="text-base font-medium text-[var(--foreground)] leading-relaxed whitespace-pre-wrap">
             {renderContent(post.content)}
           </p>
         </div>
 
         {/* Post Media */}
-        {post.media && post.media.length > 0 && (
-          <div className="mb-4 rounded-xl overflow-hidden">
-            {post.media[0].type === 'IMAGE' && (
-              <img
-                src={post.media[0].url}
-                alt="Post media"
-                className="w-full h-auto max-h-96 object-cover"
-              />
-            )}
-          </div>
-        )}
+        {post.media && post.media.length > 0 && (() => {
+          const images = post.media.filter((m: any) => m.type === 'IMAGE').slice(0, 6)
+          if (!images.length) return null
+          if (images.length === 1) {
+            return (
+              <div className="mb-4 rounded-xl overflow-hidden">
+                <img src={images[0].url} alt={images[0].caption || 'Post photo'} className="w-full h-auto max-h-[32rem] object-cover" loading="lazy" />
+              </div>
+            )
+          }
+          return (
+            <div className={`mb-4 grid gap-1 rounded-xl overflow-hidden ${images.length === 2 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3'}`}>
+              {images.map((m: any, i: number) => (
+                <a key={m.id ?? i} href={m.url} target="_blank" rel="noopener noreferrer" className={images.length === 3 && i === 0 ? 'col-span-2 sm:col-span-1' : ''}>
+                  <img src={m.url} alt={m.caption || `Photo ${i + 1}`} className="aspect-square w-full object-cover hover:opacity-90" loading="lazy" />
+                </a>
+              ))}
+            </div>
+          )
+        })()}
 
         {/* Post Stats */}
         <div className="flex items-center gap-6 py-3 border-y-2 border-theme-muted text-sm font-bold text-theme-muted">

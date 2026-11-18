@@ -95,6 +95,14 @@ model User {
   userBadges            UserBadge[]
   projectMemberships    ProjectMember[]
   createdProjects       Project[]              @relation("ProjectCreator")
+  projectFiles          ProjectFile[]          @relation("ProjectFileCreator")
+  projectSurveys        ProjectSurvey[]        @relation("ProjectSurveyCreator")
+  projectInvitesSent    ProjectInvite[]        @relation("ProjectInviteSender")
+  projectInvitesReceived ProjectInvite[]       @relation("ProjectInviteRecipient")
+  projectJoinRequests   ProjectJoinRequest[]   @relation("ProjectJoinRequester")
+  timelineItems         ProjectTimelineItem[]  @relation("ProjectTimelineCreator")
+  calendarFeeds         ProjectCalendarFeed[]  @relation("ProjectCalendarFeedOwner")
+  surveyResponses       ProjectSurveyResponse[] @relation("ProjectSurveyRespondent")
   projectMessages       ProjectMessage[]       @relation("ProjectMessages")
   sentMessages          DirectMessage[]        @relation("SentMessages")
   receivedMessages      DirectMessage[]        @relation("ReceivedMessages")
@@ -1091,10 +1099,20 @@ model SocialPost {
   hashtags   String[] // Array of hashtags
   mentions   String[] // Array of mentioned user IDs
   shares     Int             @default(0)
+
+  // Initiative updates: a post made on behalf of an initiative. PUBLIC updates
+  // also appear in the community feed; FOLLOWERS_ONLY ones only reach the
+  // initiative's followers and team.
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title     String?  // Optional headline, newsletter style
+  isPinned  Boolean  @default(false) // Pinned to the top of the initiative's updates
+
   createdAt  DateTime        @default(now())
   updatedAt  DateTime        @updatedAt
 
   @@index([userId])
+  @@index([projectId, createdAt])
   @@index([createdAt])
   @@index([visibility])
   @@index([visibility, createdAt]) // Composite: Public posts sorted by date
@@ -1194,6 +1212,13 @@ model Project {
   mindMap              MindMap?
   documents            Document[]
   documentTemplates    DocumentTemplate[]
+  files                ProjectFile[]
+  surveys              ProjectSurvey[]
+  timelineItems        ProjectTimelineItem[]
+  invites              ProjectInvite[]
+  updates              SocialPost[]
+  joinRequests         ProjectJoinRequest[]
+  calendarFeeds        ProjectCalendarFeed[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1204,6 +1229,256 @@ model Project {
   @@index([visibility])
   @@index([createdAt])
   @@index([status, visibility]) // Composite: Active public projects
+}
+
+// ============================================
+// PROJECT WORKSPACE FILES
+// Linked Google / Microsoft / Figma / hosted files.
+// The site decides which link each member receives;
+// the file's own sharing settings still apply.
+// ============================================
+
+model ProjectFile {
+  id          String             @id @default(cuid())
+  projectId   String
+  project     Project            @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  section     ProjectFileSection @default(RESOURCES)
+  title       String
+  description String?            @db.Text
+
+  viewUrl String  @db.Text
+  editUrl String? @db.Text
+
+  viewAccess ProjectFileViewAccess @default(TEAM)
+  editAccess ProjectFileEditAccess @default(OWNERS)
+  editorIds  String[]              @default([])
+
+  isPinned Boolean @default(false)
+  order    Int     @default(0)
+
+  createdById String
+  createdBy   User   @relation("ProjectFileCreator", fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+  @@index([projectId, section])
+}
+
+// ============================================
+// PROJECT SURVEYS
+// Native surveys for initiatives (resident input, market research, feedback).
+// Questions are stored as JSON and validated in lib/projects/surveys.ts.
+// ============================================
+
+model ProjectSurvey {
+  id          String  @id @default(cuid())
+  projectId   String
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title       String
+  description String? @db.Text
+
+  questions Json // SurveyQuestion[]
+
+  status         ProjectSurveyStatus   @default(DRAFT)
+  audience       ProjectSurveyAudience @default(MEMBERS)
+  anonymous      Boolean               @default(false) // Hide respondent names from the team
+  shareResults   Boolean               @default(false) // Respondents see summary results after answering
+  closesAt       DateTime?
+
+  createdById String
+  createdBy   User   @relation("ProjectSurveyCreator", fields: [createdById], references: [id])
+
+  responses ProjectSurveyResponse[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+}
+
+model ProjectSurveyResponse {
+  id       String        @id @default(cuid())
+  surveyId String
+  survey   ProjectSurvey @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+
+  userId String?
+  user   User?   @relation("ProjectSurveyRespondent", fields: [userId], references: [id], onDelete: SetNull)
+
+  // One response per person: "user:<id>" when signed in, otherwise a hashed browser token
+  respondentKey String
+
+  answers Json // Record<questionId, string | string[] | number>
+
+  createdAt DateTime @default(now())
+
+  @@unique([surveyId, respondentKey])
+  @@index([surveyId])
+}
+
+enum ProjectSurveyStatus {
+  DRAFT
+  OPEN
+  CLOSED
+}
+
+enum ProjectSurveyAudience {
+  MEMBERS // Initiative members only
+  SIGNED_IN // Anyone signed in to the site, via the survey link
+  PUBLIC // Anyone with the link, no account needed
+}
+
+// ============================================
+// INVITES & JOIN REQUESTS
+// Only owners and admins add collaborators: they invite people, or approve a
+// follower's request to collaborate. Anyone can follow.
+// ============================================
+
+model ProjectInvite {
+  id          String  @id @default(cuid())
+  projectId   String
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  // An existing account, or an email address for someone who hasn't signed up yet
+  invitedUserId String?
+  invitedUser   User?   @relation("ProjectInviteRecipient", fields: [invitedUserId], references: [id], onDelete: Cascade)
+  email         String?
+  role          ProjectMemberRole  @default(CONTRIBUTOR)
+  message       String?            @db.Text
+  status        ProjectInviteStatus @default(PENDING)
+  invitedById   String
+  invitedBy     User               @relation("ProjectInviteSender", fields: [invitedById], references: [id], onDelete: Cascade)
+  respondedAt   DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([projectId, status])
+  @@index([invitedUserId, status])
+  @@index([email, status])
+}
+
+enum ProjectInviteStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  REVOKED
+}
+
+model ProjectJoinRequest {
+  id          String  @id @default(cuid())
+  projectId   String
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User    @relation("ProjectJoinRequester", fields: [userId], references: [id], onDelete: Cascade)
+  message     String? @db.Text
+  status      ProjectJoinRequestStatus @default(PENDING)
+  decidedById String?
+  decidedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([projectId, status])
+  @@index([userId])
+}
+
+enum ProjectJoinRequestStatus {
+  PENDING
+  APPROVED
+  DECLINED
+  CANCELLED
+}
+
+// ============================================
+// PROJECT TIMELINE & CALENDAR
+// Shared milestones, tasks, and events with owners and dates, shown as a
+// timeline and as day/week/month calendars. Linked outside calendars
+// (Google, Outlook, Apple) are fetched read-only from their private iCal links.
+// ============================================
+
+model ProjectTimelineItem {
+  id          String              @id @default(cuid())
+  projectId   String
+  project     Project             @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  kind        ProjectTimelineKind @default(TASK)
+  title       String
+  description String?             @db.Text
+  location    String?
+
+  // All-day items are stored at UTC midnight; endAt is inclusive for all-day items.
+  startAt DateTime?
+  endAt   DateTime?
+  allDay  Boolean   @default(true)
+
+  status      ProjectTimelineStatus @default(TODO)
+  assigneeIds String[]              @default([])
+  milestoneId String? // Task or event that counts toward a milestone
+  color       String?
+  isPublic    Boolean @default(false) // Shown to followers
+
+  // Imported from an .ics file
+  externalUid String?
+
+  createdById String
+  createdBy   User   @relation("ProjectTimelineCreator", fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId, startAt])
+  @@index([projectId, endAt])
+  @@index([projectId, externalUid])
+}
+
+enum ProjectTimelineKind {
+  MILESTONE
+  TASK
+  EVENT
+}
+
+enum ProjectTimelineStatus {
+  TODO
+  IN_PROGRESS
+  BLOCKED
+  DONE
+}
+
+model ProjectCalendarFeed {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  ownerId   String
+  owner     User    @relation("ProjectCalendarFeedOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  name      String
+  url       String  @db.Text // Private iCal address. Never sent to anyone but its owner.
+  color     String  @default("#6366f1")
+
+  cachedEvents Json? // Parsed events from the last fetch
+  fetchedAt    DateTime?
+  lastError    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+}
+
+enum ProjectFileSection {
+  PITCH
+  FINANCIALS
+  DESIGNS
+  TIMELINE
+  RESOURCES
+}
+
+enum ProjectFileViewAccess {
+  MEMBERS // Shared with followers as well as the team
+  TEAM // Contributors, moderators, admins, and owners
+}
+
+enum ProjectFileEditAccess {
+  OWNERS // Initiative owner and admins
+  TEAM // Contributors, moderators, admins, and owners
+  SELECTED // Owner, admins, and the members listed in editorIds
 }
 
 enum ProjectStatus {
@@ -1325,12 +1600,20 @@ model ProjectMessage {
   userId    String
   project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   user      User     @relation("ProjectMessages", fields: [userId], references: [id], onDelete: Cascade)
+  // PUBLIC: followers and the team talk here. TEAM: collaborators only.
+  channel   ProjectMessageChannel @default(TEAM)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([projectId])
+  @@index([projectId, channel, createdAt])
   @@index([userId])
   @@index([createdAt])
+}
+
+enum ProjectMessageChannel {
+  PUBLIC
+  TEAM
 }
 
 // ============================================
@@ -1431,6 +1714,8 @@ model ProjectDiscussion {
   isLocked  Boolean @default(false)
   viewCount Int     @default(0)
   authorId  String
+  // PUBLIC: followers can read and reply. TEAM: collaborators only.
+  visibility ProjectDiscussionVisibility @default(TEAM)
 
   project Project                  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   author  User                     @relation("ProjectDiscussionAuthor", fields: [authorId], references: [id], onDelete: Cascade)
@@ -1443,6 +1728,11 @@ model ProjectDiscussion {
   @@index([authorId])
   @@index([isPinned])
   @@index([createdAt])
+}
+
+enum ProjectDiscussionVisibility {
+  PUBLIC
+  TEAM
 }
 
 model ProjectDiscussionReply {

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requireCollaborator } from '@/lib/projects/guard'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { checkAndAwardBadges } from '@/lib/projects/recognition'
@@ -11,6 +12,8 @@ export async function GET(
   try {
     const session = await auth()
     const { projectId, moduleId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
 
     const learningModule = await prisma.projectLearningModule.findUnique({
       where: { id: moduleId },
@@ -93,6 +96,8 @@ export async function PUT(
     }
 
     const { projectId, moduleId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
     const body = await request.json()
     const { action, progress, title, description, content, videoUrl, estimatedMinutes, order } = body
 
@@ -256,6 +261,8 @@ export async function DELETE(
     }
 
     const { projectId, moduleId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
 
     // Check if admin
     const membership = await prisma.projectMember.findUnique({

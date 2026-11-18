@@ -36,10 +36,12 @@ The schema includes **43 database tables** for:
 Add environment variable in **Vercel Dashboard → Settings → Environment Variables**:
 
 ```
-DATABASE_URL=postgresql://neondb_owner:npg_XcQnZokR2J9V@ep-noisy-credit-ahpateo9-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&pgbouncer=true
+DATABASE_URL=postgresql://USER:PASSWORD@YOUR-ENDPOINT-pooler.REGION.aws.neon.tech/neondb?sslmode=require&pgbouncer=true
 ```
 
 Select: **Production, Preview, Development** (all three)
+
+> Never commit a real connection string. This repository is public; copy the value from the Neon dashboard straight into Vercel.
 
 Then redeploy.
 

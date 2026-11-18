@@ -74,6 +74,7 @@ export async function GET(request: NextRequest) {
         where: {
           userId: { in: followingIds },
           visibility: 'PUBLIC',
+          OR: [{ projectId: null }, { project: { visibility: 'PUBLIC' } }],
         },
         select: {
           id: true,

@@ -28,6 +28,10 @@ const privateApis = [
   '/api/social/feed?page=1', '/api/social/post/post-id', '/api/social/trending',
   '/api/projects?slug=riverknoll-renewal', '/api/projects/project-id/members',
   '/api/projects/project-id/discussions', '/api/users', '/api/users/search',
+  '/api/projects/project-id/files', '/api/projects/project-id/surveys',
+  '/api/projects/project-id/surveys/survey-id/export',
+  '/api/projects/project-id/timeline', '/api/projects/project-id/calendars',
+  '/api/projects/project-id/calendar-link',
   '/api/fishbowl', '/api/fishbowl/personal', '/api/network/suggestions', '/api/forum/posts',
 ]
 
@@ -37,6 +41,13 @@ test('tab introductions and individual initiatives reach their server-side publi
     assert.equal(authorize(path), true, path)
     assert.equal(authorize(`${path}/`), true, `${path}/`)
   }
+})
+
+test('survey pages reach their own audience check; nested paths stay private', () => {
+  assert.equal(matches('/community/projects/riverknoll-renewal/surveys/survey-id'), true)
+  assert.equal(authorize('/community/projects/riverknoll-renewal/surveys/survey-id'), true)
+  assert.equal(authorize('/community/projects/riverknoll-renewal/surveys/survey-id/results'), false)
+  assert.equal(authorize('/community/projects/riverknoll-renewal/surveys'), false)
 })
 
 test('direct member URLs, including Riverknoll workspace tabs, require sign-in', () => {

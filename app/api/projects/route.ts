@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { parseVentureType } from '@/lib/projects/ventureType'
 import { prisma } from '@/lib/db'
 import { auth } from '@/auth'
 import { incrementStockScore, STOCK_POINTS } from '@/lib/stockScore'
@@ -52,9 +53,18 @@ export async function GET(request: NextRequest) {
       prisma.project.count({ where }),
     ])
 
+    // The viewer's own role in each initiative (the members list above is only a preview)
+    const myMemberships = projects.length
+      ? await prisma.projectMember.findMany({
+          where: { userId: session.user.id, projectId: { in: projects.map((p: { id: string }) => p.id) } },
+          select: { projectId: true, role: true },
+        })
+      : []
+    const roleByProject = new Map(myMemberships.map((m: { projectId: string; role: string }) => [m.projectId, m.role]))
+
     return NextResponse.json({
       success: true,
-      data: projects,
+      data: projects.map((p: any) => ({ ...p, viewerRole: roleByProject.get(p.id) ?? null })),
       pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     })
   } catch (error) {
@@ -113,6 +123,7 @@ export async function POST(request: NextRequest) {
           theme: typeof body.theme === 'string' ? body.theme : 'nature',
           settings: body.settings && typeof body.settings === 'object' ? body.settings : {},
           templateId: typeof body.templateId === 'string' ? body.templateId : null,
+          ...(parseVentureType(body) ?? {}),
         },
         creatorId: session.user.id,
       },

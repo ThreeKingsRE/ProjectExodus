@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Globe2, Lock, MessageSquare, Users } from 'lucide-react'
+import { ArrowRight, Globe2, Lock, Megaphone, MessageSquare, Users } from 'lucide-react'
 import type { PublicProject } from '@/lib/projects/public-view'
 
 export function InitiativeStory({ text }: { text: string }) {
@@ -33,13 +33,13 @@ export function PublicInitiativeOverview({ project }: { project: PublicProject }
     <section className="border-b border-[var(--border)] bg-[var(--card)] px-5 py-10 sm:px-8">
       <div className="mx-auto max-w-6xl">
         <Link href="/community/projects" className="text-sm font-semibold">← Community initiatives</Link>
-        <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wider"><span className="inline-flex items-center gap-2"><Globe2 size={15} />Public overview</span><span>{project.status.toLowerCase().replaceAll('_', ' ')}</span></div>
+        <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wider"><span className="inline-flex items-center gap-2"><Globe2 size={15} />Public overview</span><span>{project.status.toLowerCase().replaceAll('_', ' ')}</span>{project.ventureType && <span>{project.ventureType}</span>}</div>
         <h1 className="mt-4 text-4xl font-black sm:text-5xl">{project.name}</h1>
         {project.tagline && <p className="mt-4 text-xl font-semibold">{project.tagline}</p>}
         <p className="mt-5 max-w-4xl text-lg leading-8 text-[var(--muted-foreground)]">{project.description}</p>
         <p className="mt-5 text-sm">Posted by {project.organizer.name} · {project.participants} {project.participants === 1 ? 'participant' : 'participants'}</p>
         <div className="mt-7 flex flex-wrap gap-3">
-          <Link href={signIn} style={{ color: 'var(--primary-foreground)' }} className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-5 py-3 font-bold"><Users size={17} /> Follow or collaborate <ArrowRight size={17} /></Link>
+          <Link href={signIn} style={{ color: 'var(--primary-foreground)' }} className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-5 py-3 font-bold"><Users size={17} /> Follow this initiative <ArrowRight size={17} /></Link>
           <Link href={contact} className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 font-bold"><MessageSquare size={17} /> Message the organizer</Link>
         </div>
       </div>
@@ -48,9 +48,28 @@ export function PublicInitiativeOverview({ project }: { project: PublicProject }
       {project.mission && <section className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6"><h2 className="mb-4 text-xl font-black">Our mission</h2><p className="whitespace-pre-wrap leading-8">{project.mission}</p></section>}
       {project.goal && <section className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6"><h2 className="mb-4 text-xl font-black">Our goal</h2><p className="whitespace-pre-wrap leading-8">{project.goal}</p></section>}
       {project.story && <section aria-label="Public initiative story" className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-8"><InitiativeStory text={project.story} /></section>}
+      {project.updates && project.updates.length > 0 && (
+        <section aria-label="Latest updates" className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6">
+          <h2 className="mb-4 flex items-center gap-2 text-xl font-black"><Megaphone size={20} /> Latest updates</h2>
+          <ul className="space-y-5">
+            {project.updates.map(u => (
+              <li key={u.id} className="space-y-2 border-b border-[var(--border)] pb-5 last:border-0 last:pb-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                {u.image && <img src={u.image} alt="" className="max-h-72 w-full rounded-xl object-cover" loading="lazy" />}
+                {u.title && <h3 className="text-lg font-black">{u.title}</h3>}
+                <p className="whitespace-pre-wrap leading-7">{u.excerpt}</p>
+                <p className="text-xs text-[var(--muted-foreground)]">
+                  {u.author ? `${u.author} · ` : ''}{new Date(u.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} · {u.likes} likes · {u.comments} comments
+                </p>
+              </li>
+            ))}
+          </ul>
+          <Link href={signIn} className="mt-5 inline-flex items-center gap-2 font-bold">Sign in to like, comment, and follow <ArrowRight size={17} /></Link>
+        </section>
+      )}
       <aside className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6">
         <h2 className="flex items-center gap-2 text-xl font-black"><Lock size={20} /> Join the conversation</h2>
-        <p className="mt-4 leading-7 text-[var(--muted-foreground)]">This overview is open to everyone. Sign in to follow the initiative or join its workspace. Research, discussions, documents, and member tools are available after sign-in and membership where required.</p>
+        <p className="mt-4 leading-7 text-[var(--muted-foreground)]">This overview is open to everyone. Sign in to follow the initiative, join its public discussion, and see what the team shares. The team's workspace is for collaborators the organizer invites; followers can ask to join.</p>
         <Link href={signIn} className="mt-5 inline-flex items-center gap-2 font-bold">Sign in to get involved <ArrowRight size={17} /></Link>
       </aside>
     </div>

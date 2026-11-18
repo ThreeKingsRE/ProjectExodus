@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requireCollaborator } from '@/lib/projects/guard'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 
@@ -10,6 +11,8 @@ export async function GET(
   try {
     const session = await auth()
     const { projectId, subgroupId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
 
     const subgroup = await prisma.projectSubgroup.findUnique({
       where: { id: subgroupId },
@@ -144,6 +147,8 @@ export async function PUT(
     }
 
     const { projectId, subgroupId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
     const body = await request.json()
     const { name, description, goal, isPrivate, entryRequirements } = body
 
@@ -244,6 +249,8 @@ export async function DELETE(
     }
 
     const { projectId, subgroupId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
 
     // Check if user is a leader or project admin
     const leader = await prisma.subgroupLeader.findFirst({

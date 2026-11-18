@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requireCollaborator } from '@/lib/projects/guard'
 import { prisma } from '@/lib/db'
 import { getProjectLeaderboard } from '@/lib/projects/recognition'
 
@@ -9,6 +10,8 @@ export async function GET(
 ) {
   try {
     const { projectId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
     const { searchParams } = new URL(request.url)
     const limit = parseInt(searchParams.get('limit') || '10')
     const period = searchParams.get('period') || 'all' // all, month, week

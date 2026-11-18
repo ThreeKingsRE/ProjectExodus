@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requireCollaborator } from '@/lib/projects/guard'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import type { Prisma } from '@prisma/client'
@@ -10,6 +11,8 @@ export async function GET(
 ) {
   try {
     const { projectId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
     const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '20')
@@ -104,6 +107,8 @@ export async function POST(
     }
 
     const { projectId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
     const body = await request.json()
     const { heading, summary, fullContent, sourceUrl, sourceTitle, tags } = body
 

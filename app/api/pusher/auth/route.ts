@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { pusherServer } from '@/lib/pusher'
 import { prisma } from '@/lib/db'
+import { getAccess } from '@/lib/projects/access-server'
+import { isCollaborator, isMemberOrFollower } from '@/lib/projects/access'
 
 /**
  * Pusher Private Channel Authentication
@@ -42,8 +44,17 @@ export async function POST(request: NextRequest) {
       `private-notifications-${session.user.id}`,
     ]
 
-    // Check if it's an admin channel
-    if (channel === 'private-admin') {
+    const publicChannel = /^private-project-public-([A-Za-z0-9_-]{1,64})$/.exec(channel)
+    const teamChannel = publicChannel ? null : /^private-project-([A-Za-z0-9_-]{1,64})$/.exec(channel)
+    if (publicChannel || teamChannel) {
+      // Initiative discussion: the public channel is for followers and the team,
+      // the team channel for collaborators only.
+      const access = await getAccess((publicChannel ?? teamChannel)![1], session.user.id)
+      const allowed = access && (publicChannel ? isMemberOrFollower(access) : isCollaborator(access))
+      if (!allowed) {
+        return NextResponse.json({ error: 'Forbidden - Cannot subscribe to this channel' }, { status: 403 })
+      }
+    } else if (channel === 'private-admin') {
       // Verify user is admin
       const user = await prisma.user.findUnique({
         where: { id: session.user.id },

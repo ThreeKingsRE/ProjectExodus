@@ -31,7 +31,7 @@ export function JoinProjectButton({ projectId, projectName, isMember = false, is
           className="font-black bg-[color-mix(in_srgb,var(--primary)_20%,var(--background))] border-[var(--primary)] text-theme-primary cursor-default"
         >
           <Check className="w-4 h-4 mr-1" />
-          {isOwner ? 'YOUR PROJECT' : 'JOINED'}
+          {isOwner ? 'YOUR PROJECT' : 'FOLLOWING'}
         </Button>
       </div>
     )
@@ -56,13 +56,14 @@ export function JoinProjectButton({ projectId, projectName, isMember = false, is
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ projectId }),
+        // Anyone can follow; joining the team takes an invitation or approved request
+        body: JSON.stringify({ projectId, intent: 'follow' }),
       })
 
       const data = await res.json()
 
       if (data.success) {
-        setMessage('✓ Joined!')
+        setMessage('✓ Following')
         setJoined(true)
         // Refresh the page to show updated member count
         setTimeout(() => {
@@ -88,7 +89,7 @@ export function JoinProjectButton({ projectId, projectName, isMember = false, is
         disabled={isJoining || message.includes('✓')}
         className="font-black"
       >
-        {message || (isJoining ? 'JOINING...' : 'JOIN PROJECT')}
+        {message || (isJoining ? 'FOLLOWING...' : 'FOLLOW')}
       </Button>
     </div>
   )

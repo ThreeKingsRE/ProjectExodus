@@ -78,6 +78,8 @@ const nextConfig: NextConfig = {
               "img-src 'self' data: https: blob: https://res.cloudinary.com",
               "font-src 'self' data: https://fonts.gstatic.com",
               "connect-src 'self' https://api.pusher.com wss://*.pusher.com https://*.pusher.com https://*.cloudinary.com https://*.partykit.dev wss://*.partykit.dev ws://localhost:* http://localhost:*",
+              // Workspace file previews (Google, Microsoft 365, Figma, Canva)
+              "frame-src 'self' https://docs.google.com https://drive.google.com https://view.officeapps.live.com https://onedrive.live.com https://*.sharepoint.com https://www.figma.com https://embed.figma.com https://www.canva.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self'",

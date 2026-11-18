@@ -1,6 +1,7 @@
 'use client'
 
 import { use, useEffect, useState, useCallback, useMemo } from 'react'
+import type { CollaborationStatus } from '@/components/documents/CollaborativeEditor'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
@@ -86,6 +87,7 @@ export default function DocumentPage({
   const [isSaving, setIsSaving] = useState(false)
   const [lastSaved, setLastSaved] = useState<Date | null>(null)
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
+  const [collabStatus, setCollabStatus] = useState<CollaborationStatus>('off')
 
   // Permissions
   const [canEdit, setCanEdit] = useState(false)
@@ -145,12 +147,13 @@ export default function DocumentPage({
       try {
         setIsLoading(true)
 
-        // Fetch project
-        const projectRes = await fetch('/api/projects')
+        // Fetch this initiative by slug (the unfiltered list is paginated, so
+        // initiatives past the first page were never found)
+        const projectRes = await fetch(`/api/projects?slug=${encodeURIComponent(slug)}`)
         const projectData = await projectRes.json()
         let currentProject = null
         if (projectData.success) {
-          currentProject = projectData.data.find((p: any) => p.slug === slug)
+          currentProject = projectData.data.find((p: any) => p.slug === slug) ?? null
           setProject(currentProject)
           setProjectMembers(currentProject?.members?.map((m: any) => m.user) || [])
         }
@@ -806,7 +809,12 @@ export default function DocumentPage({
 
               {/* Save / Sync status */}
               <div className="flex items-center gap-2 pl-2 border-l border-[var(--border)]">
-                {process.env.NEXT_PUBLIC_PARTYKIT_HOST ? (
+                {collabStatus === 'connecting' ? (
+                  <span className="text-xs text-yellow-500 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse" />
+                    Connecting...
+                  </span>
+                ) : collabStatus === 'live' ? (
                   // Collaboration mode: show subtle sync status
                   isSaving ? (
                     <span className="text-xs text-[var(--muted)] flex items-center gap-1">
@@ -821,7 +829,7 @@ export default function DocumentPage({
                   ) : (
                     <span className="text-xs text-green-500 flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                      Connected
+                      Live
                     </span>
                   )
                 ) : (
@@ -865,6 +873,7 @@ export default function DocumentPage({
                     showStats={false}
                     placeholder="Start writing your document..."
                     enableCollaboration={!!process.env.NEXT_PUBLIC_PARTYKIT_HOST}
+                    onCollaborationStatusChange={setCollabStatus}
                     collaborationType="document"
                     currentUser={
                       session?.user

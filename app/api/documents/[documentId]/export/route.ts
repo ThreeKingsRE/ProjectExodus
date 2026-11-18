@@ -80,7 +80,7 @@ export async function GET(
 
     // Check permissions
     const isCreator = document.creatorId === session.user.id
-    const isMember = document.project.members.length > 0
+    const isMember = document.project.members.some((m: { role: string }) => m.role !== 'VIEWER') // followers aren't team members
     const collaborator = document.collaborators[0]
     const canView =
       isCreator ||

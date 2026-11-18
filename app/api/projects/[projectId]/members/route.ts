@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getAccess } from '@/lib/projects/access-server'
+import { canInviteAs } from '@/lib/projects/access'
+import { createInvite, InviteError } from '@/lib/projects/invites-server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 
@@ -104,6 +107,25 @@ export async function POST(
     const targetUserId = userId || session.user.id
     const isSelfJoin = targetUserId === session.user.id
 
+    // Owners and admins add people by invitation; the person accepts to join.
+    if (!isSelfJoin) {
+      const access = await getAccess(projectId, session.user.id)
+      const inviteRole = typeof role === 'string' && role !== 'VIEWER' && role !== 'OWNER' ? role : 'CONTRIBUTOR'
+      if (!access || !canInviteAs(inviteRole, access)) {
+        return NextResponse.json(
+          { success: false, error: 'Only the initiative owner and admins can invite collaborators' },
+          { status: 403 }
+        )
+      }
+      try {
+        const { invite, emailed } = await createInvite({ projectId, invitedById: session.user.id, userId: targetUserId, role: inviteRole })
+        return NextResponse.json({ success: true, data: { inviteId: invite.id, emailed }, message: 'Invitation sent' })
+      } catch (err) {
+        if (err instanceof InviteError) return NextResponse.json({ success: false, error: err.message }, { status: err.status })
+        throw err
+      }
+    }
+
     // Check if already a member
     const existingMember = await prisma.projectMember.findUnique({
       where: {
@@ -163,54 +185,7 @@ export async function POST(
       })
     }
 
-    // Admin inviting someone
-    const membership = await prisma.projectMember.findUnique({
-      where: {
-        projectId_userId: {
-          projectId,
-          userId: session.user.id,
-        },
-      },
-    })
-
-    const project = await prisma.project.findUnique({
-      where: { id: projectId },
-      select: { creatorId: true },
-    })
-
-    const isAdmin = project?.creatorId === session.user.id
-
-    if (!isAdmin) {
-      return NextResponse.json(
-        { success: false, error: 'Only the initiative owner can invite members and assign roles' },
-        { status: 403 }
-      )
-    }
-
-    const member = await prisma.projectMember.create({
-      data: {
-        projectId,
-        userId: targetUserId,
-        role: role || 'CONTRIBUTOR',
-        joinedAt: new Date(),
-      },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            
-            image: true,
-          },
-        },
-      },
-    })
-
-    return NextResponse.json({
-      success: true,
-      data: member,
-      message: 'Member added successfully',
-    })
+    return NextResponse.json({ success: false, error: 'Invalid request' }, { status: 400 })
   } catch (error) {
     console.error('Error adding member:', error)
     return NextResponse.json(

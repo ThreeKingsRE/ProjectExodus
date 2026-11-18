@@ -109,7 +109,7 @@ export async function GET(request: NextRequest) {
     })
 
     const recentPostsPromise = prisma.socialPost.findMany({
-      where: { visibility: 'PUBLIC', createdAt: { gte: sevenDaysAgo } },
+      where: { visibility: 'PUBLIC', OR: [{ projectId: null }, { project: { visibility: 'PUBLIC' } }], createdAt: { gte: sevenDaysAgo } },
       select: {
         id: true, content: true, createdAt: true,
         user: { select: { id: true, name: true, image: true } }
@@ -119,7 +119,7 @@ export async function GET(request: NextRequest) {
     })
 
     const recentProjectsPromise = prisma.project.findMany({
-      where: { createdAt: { gte: sevenDaysAgo } },
+      where: { createdAt: { gte: sevenDaysAgo }, visibility: 'PUBLIC' },
       select: {
         id: true, name: true, slug: true, createdAt: true,
         creator: { select: { id: true, name: true, image: true } }

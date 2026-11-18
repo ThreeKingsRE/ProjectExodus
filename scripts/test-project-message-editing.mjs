@@ -15,9 +15,24 @@ let research = { id: 'research', projectId: 'project', authorId: 'author' }
 const mocks = {
   'next/server': { NextResponse: { json: (data, options = {}) => ({ status: options.status || 200, data }) } },
   '@/auth': { auth: async () => session },
-  '@/lib/pusher': { pusherServer: {} },
+  '@/lib/pusher': { pusherServer: { trigger: async () => {} } },
+  // Access is resolved from the session, the caller's membership, and the initiative creator
+  '@/lib/projects/guard': (() => {
+    const accessFor = () => ({ userId: session.user.id, role: membership ? membership.role ?? 'CONTRIBUTOR' : null, isCreator: project.creatorId === session.user.id, visibility: 'PUBLIC' })
+    const gate = allow => async () => {
+      if (!session) return { error: { status: 401, data: { success: false } } }
+      const access = accessFor()
+      if (!allow(access)) return { error: { status: 403, data: { success: false } } }
+      return { access, userId: session.user.id }
+    }
+    return {
+      requireFollowerOrTeam: gate(a => a.isCreator || a.role !== null),
+      requireCollaborator: gate(a => a.isCreator || (a.role !== null && a.role !== 'VIEWER')),
+    }
+  })(),
+  '@/lib/projects/access': { isCollaborator: a => a.isCreator || (a.role !== null && a.role !== 'VIEWER') },
   '@/lib/db': { prisma: {
-    projectMessage: { findUnique: async () => message, update: async args => { updates.push(args); return { ...message, ...args.data } }, deleteMany: async args => { removals.push(args); return { count: 1 } } },
+    projectMessage: { findUnique: async () => message, findFirst: async () => message, update: async args => { updates.push(args); return { ...message, ...args.data } }, deleteMany: async args => { removals.push(args); return { count: 1 } } },
     projectResearch: { findUnique: async () => research, update: async args => ({ ...research, ...args.data }) },
     projectMember: { findUnique: async () => membership },
     project: { findUnique: async () => project },
@@ -54,6 +69,15 @@ assert.equal((await remove()).status, 403, 'Members cannot moderate discussion m
 session = { user: { id: 'owner' } }
 assert.equal((await remove()).status, 200)
 assert.equal(removals[0].where.projectId, 'project')
+
+// Followers can't edit or see team-channel messages, even their own past ones
+session = { user: { id: 'author' } }
+membership = { id: 'member', role: 'VIEWER' }
+message = { ...message, userId: 'author', channel: 'TEAM' }
+assert.equal((await edit(valid)).status, 404, 'Followers cannot reach team-channel messages')
+message = { ...message, channel: 'PUBLIC' }
+assert.equal((await edit(valid)).status, 200, 'Followers can correct their own public messages')
+membership = { id: 'member' }
 
 const researchSource = readFileSync(new URL('../app/api/projects/[projectId]/research/[researchId]/route.ts', import.meta.url), 'utf8')
 const researchSandbox = { ...sandbox, exports: {} }

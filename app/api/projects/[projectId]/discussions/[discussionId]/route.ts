@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
+import { requireFollowerOrTeam } from '@/lib/projects/guard'
+import { canSeeDiscussion, isCollaborator, isModerator } from '@/lib/projects/access'
 
 // GET - Get discussion with replies
 export async function GET(
@@ -9,6 +11,8 @@ export async function GET(
 ) {
   try {
     const { projectId, discussionId } = await params
+    const gate = await requireFollowerOrTeam(projectId)
+    if (gate.error) return gate.error
 
     const discussion = await prisma.projectDiscussion.findUnique({
       where: { id: discussionId },
@@ -43,7 +47,7 @@ export async function GET(
       },
     })
 
-    if (!discussion || discussion.projectId !== projectId) {
+    if (!discussion || discussion.projectId !== projectId || !canSeeDiscussion(discussion.visibility, gate.access)) {
       return NextResponse.json(
         { success: false, error: 'Discussion not found' },
         { status: 404 }
@@ -84,22 +88,24 @@ export async function POST(
     }
 
     const { projectId, discussionId } = await params
+    const gate = await requireFollowerOrTeam(projectId)
+    if (gate.error) return gate.error
     const body = await request.json()
     const { content } = body
 
-    if (!content?.trim()) {
+    if (typeof content !== 'string' || !content.trim() || content.length > 20000) {
       return NextResponse.json(
         { success: false, error: 'Content is required' },
         { status: 400 }
       )
     }
 
-    // Verify discussion exists
+    // Verify discussion exists and this person can take part in it
     const discussion = await prisma.projectDiscussion.findUnique({
       where: { id: discussionId },
     })
 
-    if (!discussion || discussion.projectId !== projectId) {
+    if (!discussion || discussion.projectId !== projectId || !canSeeDiscussion(discussion.visibility, gate.access)) {
       return NextResponse.json(
         { success: false, error: 'Discussion not found' },
         { status: 404 }
@@ -142,7 +148,7 @@ export async function POST(
       },
     })
 
-    if (membership) {
+    if (membership && isCollaborator(gate.access)) {
       await prisma.projectContribution.create({
         data: {
           projectId,
@@ -191,7 +197,9 @@ export async function PUT(
 
     const { projectId, discussionId } = await params
     const body = await request.json()
-    const { title, content, category, isPinned, isLocked } = body
+    const { title, content, isPinned, isLocked } = body
+    const gate = await requireFollowerOrTeam(projectId)
+    if (gate.error) return gate.error
 
     const discussion = await prisma.projectDiscussion.findUnique({
       where: { id: discussionId },
@@ -221,7 +229,7 @@ export async function PUT(
       select: { creatorId: true },
     })
 
-    const isAdmin = project?.creatorId === session.user.id
+    const isAdmin = project?.creatorId === session.user.id || isModerator(gate.access)
 
     if (!isAuthor && !isAdmin) {
       return NextResponse.json(
@@ -235,14 +243,14 @@ export async function PUT(
     // Author can edit content
     if (isAuthor || isAdmin) {
       if (title) updateData.title = title.trim()
-      if (content !== undefined) updateData.content = content?.trim() || null
-      if (category) updateData.category = category
+      if (typeof content === 'string' && content.trim()) updateData.content = content.trim()
     }
 
-    // Admin can pin/lock
+    // Admin can pin/lock, and move a discussion between public and team
     if (isAdmin) {
-      if (isPinned !== undefined) updateData.isPinned = isPinned
-      if (isLocked !== undefined) updateData.isLocked = isLocked
+      if (typeof isPinned === 'boolean') updateData.isPinned = isPinned
+      if (typeof isLocked === 'boolean') updateData.isLocked = isLocked
+      if (body.visibility === 'PUBLIC' || body.visibility === 'TEAM') updateData.visibility = body.visibility
     }
 
     const updatedDiscussion = await prisma.projectDiscussion.update({
@@ -288,6 +296,8 @@ export async function DELETE(
     }
 
     const { projectId, discussionId } = await params
+    const gate = await requireFollowerOrTeam(projectId)
+    if (gate.error) return gate.error
 
     const discussion = await prisma.projectDiscussion.findUnique({
       where: { id: discussionId },
@@ -316,7 +326,7 @@ export async function DELETE(
       select: { creatorId: true },
     })
 
-    const isAdmin = project?.creatorId === session.user.id
+    const isAdmin = project?.creatorId === session.user.id || isModerator(gate.access)
 
     if (!isAuthor && !isAdmin) {
       return NextResponse.json(

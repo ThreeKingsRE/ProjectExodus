@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requireCollaborator } from '@/lib/projects/guard'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 
@@ -10,6 +11,8 @@ export async function GET(
   try {
     const session = await auth()
     const { projectId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
 
     const modules = await prisma.projectLearningModule.findMany({
       where: { projectId },
@@ -72,6 +75,8 @@ export async function POST(
     }
 
     const { projectId } = await params
+    const teamGate = await requireCollaborator(projectId)
+    if (teamGate.error) return teamGate.error
     const body = await request.json()
     const { title, description, content, videoUrl, estimatedMinutes, order } = body
 
