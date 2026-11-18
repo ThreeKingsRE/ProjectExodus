@@ -160,7 +160,7 @@ export function ProjectTemplateGallery({
               transition={{ delay: index * 0.05, duration: 0.3 }}
             >
               <Card
-                className={`relative overflow-hidden cursor-pointer transition-all hover:shadow-2xl group border-2 ${
+                className={`relative overflow-hidden cursor-pointer transition-all hover:shadow-2xl group border-2 focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--primary)]/40 ${
                   isSelected
                     ? 'border-[var(--primary)] ring-4 ring-[var(--primary)]/20'
                     : isBlankCanvas
@@ -168,6 +168,14 @@ export function ProjectTemplateGallery({
                     : 'border-[var(--border)] hover:border-[var(--primary)]/50'
                 } ${viewMode === 'list' ? 'flex' : ''}`}
                 onClick={() => handleSelectTemplate(template)}
+                role="button"
+                tabIndex={0}
+                aria-pressed={isSelected}
+                aria-label={isBlankCanvas ? 'Start from a blank canvas' : `Use the ${template.name} template`}
+                onKeyDown={(e) => {
+                  if (e.target !== e.currentTarget) return
+                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleSelectTemplate(template) }
+                }}
               >
                 {/* Gradient accent */}
                 <div
@@ -239,6 +247,8 @@ export function ProjectTemplateGallery({
                   {/* Preview Button */}
                   <div className="pt-2 flex items-center justify-between">
                     <button
+                      type="button"
+                      aria-label={`Preview details of the ${template.name} template`}
                       onClick={(e) => {
                         e.stopPropagation()
                         setPreviewTemplate(template)

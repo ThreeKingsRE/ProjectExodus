@@ -25,7 +25,9 @@ Working review: November 14, 2026. Recorded while preparing Riverknoll Renewal t
 
 ## Further design/process opportunities
 
-- Make template cards and image controls fully keyboard-accessible with explicit button labels.
+Done November 18, 2026: template cards are keyboard buttons (Enter/Space) with labels; image upload inputs are keyboard-reachable and Remove Cover shows on focus and touch; the Members tab loads the full member list (the API returns `{ members, roleCounts, total }`).
+
+
 - Add server-backed drafts, image upload progress, and a final public/private preview before launch.
 - Replace placeholder contact methods with a working, owner-configured contact path.
 - Clarify prerequisites and pending collaboration requests in the participant controls.

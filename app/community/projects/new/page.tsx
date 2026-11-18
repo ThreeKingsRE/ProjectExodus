@@ -926,8 +926,9 @@ export default function NewProjectPage() {
                                 alt="Cover preview"
                                 className="w-full h-48 object-cover rounded-xl border-2 border-[var(--border)]"
                               />
-                              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
+                              <div className="absolute inset-0 bg-black/50 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
                                 <button
+                                  type="button"
                                   onClick={removeCoverImage}
                                   className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold text-sm transition-colors flex items-center gap-2"
                                 >
@@ -937,7 +938,7 @@ export default function NewProjectPage() {
                               </div>
                             </div>
                           ) : (
-                            <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-[var(--border)] rounded-xl cursor-pointer hover:border-[var(--primary)] transition-colors bg-[var(--muted)]/20 hover:bg-[var(--muted)]/40">
+                            <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-[var(--border)] rounded-xl cursor-pointer focus-within:ring-4 focus-within:ring-[var(--primary)]/40 hover:border-[var(--primary)] transition-colors bg-[var(--muted)]/20 hover:bg-[var(--muted)]/40">
                               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                 <ImageIcon className="w-10 h-10 mb-3 text-theme-muted" />
                                 <p className="mb-2 text-sm font-bold text-theme-muted">
@@ -947,7 +948,7 @@ export default function NewProjectPage() {
                               </div>
                               <input
                                 type="file"
-                                className="hidden"
+                                className="sr-only"
                                 accept="image/*"
                                 onChange={handleCoverImageUpload}
                               />
@@ -969,7 +970,7 @@ export default function NewProjectPage() {
                               </div>
                               <input
                                 type="file"
-                                className="hidden"
+                                className="sr-only"
                                 accept="image/*"
                                 multiple
                                 onChange={handleInspirationImageUpload}

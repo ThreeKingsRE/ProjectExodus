@@ -289,7 +289,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       const res = await fetch(`/api/projects/${project.id}/members?include=badges`)
       const data = await res.json()
       if (data.success) {
-        setMembersWithBadges(data.data)
+        setMembersWithBadges(Array.isArray(data.data) ? data.data : data.data?.members ?? [])
       }
     } catch (error) {
       console.error('Error fetching members:', error)
