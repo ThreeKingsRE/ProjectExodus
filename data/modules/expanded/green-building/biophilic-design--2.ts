@@ -1,398 +1,328 @@
 import type { ModuleExpansion } from '../types'
 
+// Rewritten with its own angle: carrying biophilic design through a real project,
+// from site and brief to post-occupancy evaluation. The first biophilic chapter
+// covers principles, patterns and health benefits.
 const expansion: ModuleExpansion = {
   topicId: 'green-building',
   moduleKey: 'biophilic-design~2',
+  title: 'Designing Biophilic Spaces: Projects and Evidence',
+  description: {
+    ELEMENTARY: 'Plan a nature-filled classroom, and see how real schools, hospitals and offices bring nature inside.',
+    MIDDLE_SCHOOL: 'Step by step through designing a biophilic space, with real examples and how we know it works.',
+    HIGH_SCHOOL: 'Taking biophilic design from idea to building: site, brief, design choices, upkeep and measuring results.',
+    UNDERGRADUATE: 'Applying biophilic design on projects: integration with building systems, costs, maintenance and evaluation.',
+    GRADUATE: 'Delivering biophilic projects: briefs, specifications, post-occupancy evaluation and judging the evidence.',
+    PHD: 'Evaluating biophilic interventions in the field: study design, measurement, confounding and scaling evidence.',
+  },
   lessons: [
     {
       id: 'gb-bio-1',
-      title: 'Nature in Buildings: From Rooms to Cities',
+      title: 'Designing Biophilic Spaces: Projects and Evidence',
       content: {
         ELEMENTARY: `
-<h2>Be a Nature Detective Indoors</h2>
-<p>Hello, nature detective! Today we are going on a hunt, but not in a forest. We are hunting for nature <em>inside</em> buildings. Some buildings are designed to feel a little bit like the outdoors, and that makes people feel calm and happy. This idea is called <em>biophilic design</em>. Grab your magnifying glass and let's look around!</p>
+<h2>Let's Design a Nature Classroom!</h2>
+<p>People feel calmer, happier and more focused when they are near nature. Designers can use this idea to make buildings that feel a bit like being outdoors. Let's imagine we are designing a brand-new classroom that brings nature inside. What would you add?</p>
 
-<h3>Use Your Five Senses</h3>
-<p>Nature is not only something we see. We can hear it, smell it and touch it too. A great building gives all our senses a little piece of nature.</p>
+<h3>Step 1: Look Outside</h3>
+<p>Good designers start by looking at the place. Where does the sun shine in the morning? Is there a tree, a hill or a pond nearby? Big windows that face a tree or garden let everyone see nature while they learn.</p>
+
+<h3>Step 2: Bring Nature In</h3>
+<p>Next we add living things and natural materials. We could have plants on shelves, a living wall covered in green leaves, a small fish tank, and wooden tables. We could let lots of daylight in and add a reading nook that feels like a cosy cave.</p>
 <ul>
-<li><strong>Seeing:</strong> windows that show trees and sky, and plants on shelves</li>
-<li><strong>Hearing:</strong> a small fountain trickling, or birds singing outside</li>
-<li><strong>Smelling:</strong> fresh air, herbs growing in pots, or the scent of wood</li>
-<li><strong>Touching:</strong> a smooth wooden table or a cool stone step</li>
-<li><strong>Feeling:</strong> warm sunshine on your arm or a gentle breeze</li>
+<li><strong>Designer:</strong> a person who plans how a space will look and work</li>
+<li><strong>Daylight:</strong> natural light from the sun coming into a building</li>
+<li><strong>Living wall:</strong> a wall covered with growing plants</li>
+<li><strong>Natural material:</strong> something from nature, like wood, stone or wool</li>
+<li><strong>Nook:</strong> a small, cosy space to sit in</li>
 </ul>
 
-<h3>Words to Know</h3>
-<ul>
-<li><strong>Biophilic design:</strong> making buildings that bring nature inside so people feel good</li>
-<li><strong>Daylight:</strong> the natural light from the sun that comes in through windows</li>
-<li><strong>Natural material:</strong> something that comes from nature, like wood, stone or wool</li>
-<li><strong>Courtyard:</strong> an open space with sky above that is surrounded by a building</li>
-<li><strong>Living wall:</strong> a wall covered with real growing plants</li>
-</ul>
+<h3>Step 3: Take Care of It</h3>
+<p>Plants need water and light, and fish need feeding. A good design includes a plan for who will take care of everything. Maybe each class can have plant helpers!</p>
 
-<h3>Where Can You Find It?</h3>
-<p>Some schools have reading corners next to big windows. Some hospitals have gardens where sick children can play. Some offices have trees growing right inside! Even a home can feel more natural with a plant on the windowsill and curtains open in the morning.</p>
-
-<h3>Things You Can Do</h3>
-<ol>
-<li>Ask if your class can grow a plant and take turns watering it.</li>
-<li>Open the curtains to let sunshine in during the day.</li>
-<li>Make a nature shelf with pinecones, shells and leaves you found outside.</li>
-<li>Sit by a window when you read and look up at the sky sometimes.</li>
-</ol>
-
-<h3>Think About It</h3>
-<p>Close your eyes and picture your favorite place in nature. What do you see, hear and smell? Now imagine bringing just one of those things into your classroom. That is exactly what biophilic designers do!</p>
+<h3>Real Places</h3>
+<p>Some hospitals have gardens where patients can sit, and some offices have trees growing inside. Some schools have outdoor classrooms. Scientists have found that people in these places often feel less stressed. Ask your teacher if your class can add a plant or two!</p>
 `,
         MIDDLE_SCHOOL: `
-<h2>How Nature in Buildings Improves Wellbeing</h2>
-<p>Most people today spend the large majority of their time indoors, in homes, schools, cars and offices. Yet human beings evolved outdoors, surrounded by plants, animals, changing light and weather. Biophilic design tries to reconnect people with nature inside the places where they actually spend their days. The word comes from <em>bio</em> (life) and <em>philia</em> (love), so it means a love of living things.</p>
+<h2>From Idea to Biophilic Building</h2>
+<p>Biophilic design means designing buildings that connect people with nature. Knowing the ideas is one thing; making them real in a building is another. Designers must think about the site, the people who will use the space, the budget and who will care for plants and features over time. Then they need to check whether the design actually helped. This chapter walks through that process.</p>
 
-<h3>What Happens in Your Body?</h3>
-<p>When people see greenery, hear water or sit in daylight, many feel calmer. Researchers have found that contact with nature is linked with lower stress, better mood and improved attention. One idea is that nature holds our attention gently, the way clouds or leaves moving in the wind do, which lets the tired part of our brain that we use for hard focus rest and recover.</p>
+<h3>Start With the Site and the People</h3>
+<p>Designers study the site: where sunlight comes from, which views are worth framing, where wind and water move, and what plants and animals live there. They also talk to the people who will use the building. A hospital patient, an office worker and a student each need different things. These conversations become the design brief.</p>
 
-<h3>Key Words</h3>
+<h3>Choose the Right Features</h3>
+<p>Next, designers pick features that fit. Views to nature and daylight help almost everywhere. Indoor plants, living walls, water features, natural materials like wood and stone, patterns inspired by nature, and spaces offering both open views and cosy shelter can all be included. Courtyards and rooftop gardens let people step outside.</p>
 <ul>
-<li><strong>Biophilia:</strong> the idea that humans have a natural attraction to living things and nature</li>
-<li><strong>Wellbeing:</strong> feeling healthy, comfortable and happy in body and mind</li>
-<li><strong>Circadian rhythm:</strong> the body clock that tells us when to feel awake and sleepy, set partly by daylight</li>
-<li><strong>Attention restoration:</strong> recovering the ability to focus by spending time with calm natural scenes</li>
-<li><strong>Multisensory design:</strong> designing spaces that appeal to sight, sound, smell and touch together</li>
+<li><strong>Biophilic design:</strong> designing buildings that connect people with nature</li>
+<li><strong>Design brief:</strong> a document describing what a building needs to do and for whom</li>
+<li><strong>Courtyard:</strong> an open outdoor space surrounded by a building</li>
+<li><strong>Prospect and refuge:</strong> having a wide view while feeling safe and sheltered</li>
+<li><strong>Maintenance plan:</strong> a schedule for caring for plants and features</li>
+<li><strong>Survey:</strong> a set of questions asked to learn what people think</li>
 </ul>
 
-<h3>Nature at Different Sizes</h3>
-<table>
-<thead><tr><th>Scale</th><th>Example</th><th>How it helps</th></tr></thead>
-<tbody>
-<tr><td>Desk or room</td><td>Plants, wooden furniture, a window seat</td><td>Calms and refreshes during the day</td></tr>
-<tr><td>Whole building</td><td>Atrium with trees, courtyard, skylights</td><td>Brings daylight deep inside and gives people places to pause</td></tr>
-<tr><td>Street</td><td>Tree-lined sidewalks and planters</td><td>Shade, cooler air and nicer walks</td></tr>
-<tr><td>City</td><td>Parks, green roofs and restored streams</td><td>Habitat for wildlife and nature close to everyone</td></tr>
-</tbody>
-</table>
+<h3>Plan for Upkeep</h3>
+<p>Living walls and indoor plants need watering, light and care. Without a maintenance plan, plants die and the space looks worse than before. Many projects hire specialists or choose hardy plants.</p>
 
-<h3>Biophilic Design in Schools</h3>
-<p>Schools are great places for biophilic design. Classrooms with good daylight and views of trees can feel calmer. Outdoor classrooms and school gardens let students learn science by growing food. Natural materials like wood make rooms feel warmer and quieter.</p>
-
-<h3>Why It Matters for the Planet</h3>
-<p>Biophilic design often supports sustainability too. Daylight can reduce the need for electric lights. Trees and green roofs cool buildings in summer and soak up rainwater. And when people feel connected to nature, they may care more about protecting it.</p>
+<h3>Did It Work?</h3>
+<p>After people move in, designers can use surveys to ask how people feel, and measure things like daylight, temperature and how often spaces are used. Studies of hospitals, schools and offices have found benefits such as less stress, better mood and faster recovery, although results vary from project to project.</p>
 `,
         HIGH_SCHOOL: `
-<h2>Biophilic Design Principles, Patterns and Health Benefits</h2>
-<p>Biophilic design is the practice of connecting people with nature through the design of buildings and places. It goes far beyond adding a few potted plants. Designers organize it into recognizable patterns that work at every scale, from a single chair to an entire city district. This lesson explores those patterns, the health evidence behind them, and how to apply them in real buildings.</p>
+<h2>Delivering Biophilic Design on Real Projects</h2>
+<p>Biophilic design aims to strengthen people's connection with nature through buildings. Frameworks describe patterns such as visual connection with nature, presence of water, dynamic light, natural materials, and spatial qualities like prospect and refuge. But real projects face budgets, codes, climate and maintenance constraints. This chapter follows biophilic design through a project and asks how we judge whether it worked.</p>
 
-<h3>Three Families of Experience</h3>
-<p>Many design frameworks group biophilic strategies into three broad families:</p>
+<h3>Site Analysis and Briefing</h3>
+<p>Projects begin by mapping the site's natural assets: views, sun paths, prevailing winds, existing trees, water and habitat. Engagement with future occupants identifies needs, such as restorative spaces for stressed healthcare staff or quiet focus areas for students. The brief sets biophilic goals alongside energy, accessibility and cost targets.</p>
+
+<h3>Integration With Building Performance</h3>
+<p>Biophilic features work best when they also serve other goals. Daylighting reduces lighting energy if glare and overheating are controlled. Operable windows provide fresh air and a sense of connection with outdoor conditions. Green roofs reduce stormwater and heat. Natural materials can improve acoustics. Poorly integrated features, such as large glass walls facing west, may cause overheating and glare that undermine comfort.</p>
 <ul>
-<li><strong>Nature in the space:</strong> direct, living nature such as plants, water, animals, breezes and changing sunlight</li>
-<li><strong>Natural analogues:</strong> elements that evoke nature without being alive, such as wood grain, stone, leaf-like patterns and organic shapes</li>
-<li><strong>Nature of the space:</strong> spatial arrangements that people find comfortable, such as open views combined with sheltered spots</li>
-<li><strong>Prospect and refuge:</strong> a pairing of a wide outlook with a protected place to sit, which many people find relaxing</li>
-<li><strong>Dynamic and diffuse light:</strong> light that changes over the day and varies across a room, like sunlight through leaves</li>
-<li><strong>Thermal variability:</strong> small, pleasant differences in temperature and airflow, like a warm sunny spot or a cool breeze</li>
+<li><strong>Design pattern:</strong> a recurring, proven way of solving a design problem</li>
+<li><strong>Sun path:</strong> the track the sun follows across the sky through the day and year</li>
+<li><strong>Glare:</strong> uncomfortable brightness that makes it hard to see</li>
+<li><strong>Restorative environment:</strong> a setting that helps people recover from stress and mental fatigue</li>
+<li><strong>Post-occupancy evaluation:</strong> assessing how a building performs once people use it</li>
+<li><strong>Operable window:</strong> a window occupants can open and close</li>
 </ul>
 
-<h3>Why the Body Responds</h3>
-<p>Several explanations are commonly discussed. Stress reduction theory suggests that natural scenes trigger a quick, positive emotional response that lowers stress. Attention restoration theory suggests that nature gently holds attention and lets our focused attention recover. Daylight also helps set the circadian rhythm, which affects sleep and alertness. These effects are typically modest for any single visit but can add up over the many hours people spend indoors.</p>
+<h3>Examples</h3>
+<p>Hospitals have added healing gardens and patient room views; offices have used indoor trees, atriums and terraces; schools have created outdoor classrooms and daylit learning spaces. Housing projects increasingly provide balconies, shared gardens and nature-facing windows.</p>
 
-<h3>Applications by Building Type</h3>
-<table>
-<thead><tr><th>Building type</th><th>Biophilic strategies</th><th>Main goal</th></tr></thead>
-<tbody>
-<tr><td>Hospital</td><td>Healing gardens, views from patient rooms, daylight</td><td>Reduce stress and support recovery</td></tr>
-<tr><td>School</td><td>Daylit classrooms, outdoor learning, natural materials</td><td>Support attention and calm</td></tr>
-<tr><td>Office</td><td>Atriums, plants, window access, varied work settings</td><td>Comfort, focus and retention of staff</td></tr>
-<tr><td>Housing</td><td>Balconies, shared gardens, cross ventilation</td><td>Daily contact with nature at home</td></tr>
-</tbody>
-</table>
-
-<h3>Trade-Offs to Manage</h3>
-<ol>
-<li><strong>Glare and overheating:</strong> large windows bring daylight and views but need shading so rooms do not get too bright or hot.</li>
-<li><strong>Maintenance:</strong> living walls and indoor trees need water, light and care, or they die and send the opposite message.</li>
-<li><strong>Moisture:</strong> indoor water features and plants must be designed to avoid mold and humidity problems.</li>
-<li><strong>Allergies and access:</strong> plant choices should consider allergies, and nature should be reachable by people with disabilities.</li>
-</ol>
-
-<h3>Beyond the Building</h3>
-<p>Biophilic thinking also scales up to whole neighborhoods. Street trees, pocket parks, green corridors and restored urban streams give everyone daily access to nature, not only those who work in fancy offices. These same features cool cities, manage stormwater and support wildlife, so health and sustainability goals reinforce each other.</p>
+<h3>Measuring Results</h3>
+<p>Post-occupancy evaluation combines occupant surveys, environmental measurements and, sometimes, health or performance data. Evidence from multiple studies links nature views and indoor plants with lower stress and improved wellbeing, though effects vary by setting and many studies are small. Good evaluations compare results with similar spaces or with conditions before the change.</p>
 `,
         UNDERGRADUATE: `
-<h2>Biophilic Frameworks, Implementation and the Evidence Base</h2>
-<p>Biophilic design has moved from an inspiring idea to a structured design discipline with pattern languages, certification credits and a growing research literature. For designers and analysts the key questions are practical: which strategies fit a given project, how do they interact with energy and maintenance, and how strong is the evidence for the outcomes clients care about? This lesson approaches biophilic design as an implementation problem.</p>
+<h2>Applying Biophilic Design on Projects</h2>
+<p>Biophilic design has moved from theory into building standards, certification systems and client briefs. Applying it effectively requires integrating nature-based features with structural, mechanical and architectural systems; managing costs and maintenance; and evaluating outcomes. This chapter examines the practical delivery of biophilic design across building types.</p>
 
-<h3>Core Concepts</h3>
+<h3>From Patterns to Specifications</h3>
+<p>Pattern frameworks offer a vocabulary, but projects need specific, measurable targets: the percentage of workstations with views to nature within a set distance, daylight autonomy thresholds, minimum areas of planting, and access to outdoor space within a set walk. Wellness certification systems and some green building rating systems include such criteria, giving teams concrete benchmarks.</p>
+
+<h3>Systems Integration</h3>
+<p>Living walls need irrigation, drainage, lighting and structural support; they affect humidity and must be coordinated with mechanical systems. Water features require filtration and treatment to prevent Legionella. Daylighting must be balanced with glare control, thermal comfort and energy performance using simulation tools. Timber and other natural materials interact with fire, acoustic and moisture requirements.</p>
 <ul>
-<li><strong>Pattern language:</strong> a set of named, reusable design patterns that describe recurring solutions, used to organize biophilic strategies</li>
-<li><strong>Direct experience of nature:</strong> contact with living elements such as plants, water, animals, weather and natural light</li>
-<li><strong>Indirect experience of nature:</strong> contact with representations of nature, including materials, colors, images and organic forms</li>
-<li><strong>Experience of space and place:</strong> spatial qualities such as prospect, refuge, mystery and connection to local ecology and culture</li>
-<li><strong>Fractal patterns:</strong> self-similar patterns repeating at different scales, common in nature and often found visually pleasing</li>
-<li><strong>Post-occupancy evaluation:</strong> systematic study of how a building performs for its users after they move in</li>
+<li><strong>Daylight autonomy:</strong> the share of occupied hours a space receives enough daylight without electric light</li>
+<li><strong>Wellness certification:</strong> a rating system focused on occupant health and wellbeing</li>
+<li><strong>Life cycle cost:</strong> total cost of a feature over its life, including installation, operation and maintenance</li>
+<li><strong>Occupant survey:</strong> a structured questionnaire about comfort, satisfaction and wellbeing</li>
+<li><strong>Baseline:</strong> conditions measured before a change, used for comparison</li>
+<li><strong>Restorative environment:</strong> a setting that supports recovery from stress and fatigue</li>
 </ul>
 
-<h3>Comparing Frameworks</h3>
-<p>Different frameworks slice the same territory in different ways, but they share a structure of direct nature, indirect nature and spatial experience. One widely used pattern set organizes strategies into nature in the space, natural analogues and nature of the space. Another groups many design attributes under direct experience, indirect experience and experience of space and place. Some building certification systems include biophilia as a requirement or credit, which pushes teams to document intent and outcomes.</p>
+<h3>Cost and Maintenance</h3>
+<p>Some biophilic strategies, such as orienting windows toward views and using daylight, add little cost if planned early. Others, such as large living walls, have significant capital and ongoing costs. Life cycle cost analysis weighs these against potential benefits in productivity, absenteeism, patient outcomes or property value, though such benefits are uncertain and hard to attribute.</p>
 
-<h3>Implementation Strategies by Phase</h3>
-<table>
-<thead><tr><th>Project phase</th><th>Key biophilic decisions</th><th>Typical risk</th></tr></thead>
-<tbody>
-<tr><td>Site planning</td><td>Orientation, retained trees, views, access to outdoor space</td><td>Opportunities lost if left to later phases</td></tr>
-<tr><td>Massing and layout</td><td>Floor depth, atriums, courtyards, window-to-wall ratio</td><td>Deep floor plates leave interiors without daylight or views</td></tr>
-<tr><td>Envelope and systems</td><td>Shading, operable windows, mixed-mode ventilation</td><td>Glare, overheating and energy penalties</td></tr>
-<tr><td>Interiors</td><td>Materials, color, plants, varied settings</td><td>Superficial decoration without spatial benefit</td></tr>
-<tr><td>Operations</td><td>Plant care, irrigation, cleaning, monitoring</td><td>Living elements decline without budget and ownership</td></tr>
-</tbody>
-</table>
+<h3>Building-Type Applications</h3>
+<p>Healthcare projects emphasise views, gardens and daylight for patient recovery and staff wellbeing. Workplaces focus on views, plants, varied spaces and outdoor access. Schools combine daylight, outdoor learning and natural materials. Housing emphasises balconies, gardens and green streetscapes.</p>
 
-<h3>Reading the Evidence</h3>
-<p>The research base includes laboratory studies measuring stress indicators while people view natural or urban scenes, field studies in hospitals, schools and offices, and post-occupancy surveys. Evidence is generally consistent that contact with nature is associated with reduced stress and improved mood, and there is supportive evidence for attention and recovery outcomes. However, effect sizes vary, many field studies are small or lack controls, and it is often hard to separate biophilic features from correlated factors such as better daylight, newer buildings or better management. Analysts should treat claims of precise productivity percentages with caution and look for study design, sample size and comparison groups.</p>
-
-<h3>Integrating With Performance Goals</h3>
-<p>Biophilic and energy goals can align or conflict. Narrow floor plates improve daylight and views and can enable natural ventilation, but may increase envelope area. Glazing improves views but must be balanced against heat loss and solar gain; well-placed windows with external shading usually give better outcomes than simply more glass. Interior plants have modest effects on air quality at typical densities, so ventilation remains essential; plants should be justified mainly on psychological grounds.</p>
-
-<h3>Applied Method: A Biophilic Review</h3>
-<ol>
-<li>Map where occupants spend most time and check their access to daylight and views.</li>
-<li>Select patterns that fit the climate, culture and building type rather than a generic list.</li>
-<li>Test glazing and shading with daylight and energy modeling together.</li>
-<li>Assign maintenance responsibility and budget for every living element.</li>
-<li>Plan a post-occupancy evaluation with baseline measures where possible.</li>
-</ol>
+<h3>Evaluation</h3>
+<p>Post-occupancy evaluation should establish baselines, use validated survey instruments, measure environmental conditions and, where possible, compare with control spaces. Publishing results, including failures, builds the evidence base and helps future teams avoid repeating costly mistakes.</p>
 `,
         GRADUATE: `
-<h2>Biophilic Urbanism, Economics and Organizational Practice</h2>
-<p>At the graduate level, biophilic design is examined as a strategy that operates across scales and institutions. Its benefits are partly private, felt by building occupants, and partly public, delivered through urban greening, health and ecosystem services. Making the case requires economic reasoning, careful use of evidence and attention to who gains access to nature. This lesson examines biophilic urbanism, the business case within organizations, and the governance needed to sustain it.</p>
+<h2>Delivering and Evaluating Biophilic Projects</h2>
+<p>Biophilic design is now marketed widely, with claims of improved productivity, health and property value. Professionals delivering biophilic projects need to translate concepts into enforceable briefs and specifications, coordinate across disciplines, and critically evaluate the evidence used to justify investment. This chapter addresses project delivery and the interpretation of evidence.</p>
 
-<h3>Key Concepts</h3>
+<h3>Briefing and Specification</h3>
+<p>Effective briefs define outcomes, such as stress reduction, patient experience or retention, and translate them into design requirements and performance metrics. Specifications should cover plant selection for indoor light levels, irrigation and drainage, growing media, maintenance responsibilities, water treatment, daylight and view metrics, and material sourcing. Assigning ownership for maintenance in operational contracts prevents decline after handover.</p>
+
+<h3>Interdisciplinary Coordination</h3>
+<p>Biophilic features cut across architecture, landscape, structural, mechanical and facilities management. Early integration avoids conflicts, such as living walls without irrigation access, or glazing that conflicts with energy targets. Building information modelling and simulation support coordination of daylight, thermal and view analysis.</p>
 <ul>
-<li><strong>Biophilic urbanism:</strong> planning cities so that daily life includes abundant, varied contact with nature at every scale</li>
-<li><strong>Ecosystem services:</strong> benefits people receive from ecosystems, such as cooling, stormwater retention and recreation</li>
-<li><strong>Green infrastructure:</strong> networks of natural and semi-natural features that provide environmental and social functions</li>
-<li><strong>Total occupancy cost:</strong> the full cost of a workplace including staff, of which salaries usually far exceed energy and rent</li>
-<li><strong>Green gentrification:</strong> rising costs and displacement that can follow new parks or greening in lower-income neighborhoods</li>
-<li><strong>Maintenance endowment:</strong> dedicated long-term funding that keeps living features healthy after installation</li>
+<li><strong>Performance metric:</strong> a measurable indicator used to verify a design outcome</li>
+<li><strong>Confounding:</strong> when an outside factor distorts the apparent effect of an intervention</li>
+<li><strong>Effect size:</strong> a measure of how large an intervention's effect is</li>
+<li><strong>Publication bias:</strong> the tendency for positive results to be published more than null results</li>
+<li><strong>Controlled study:</strong> a study comparing an intervention group with a similar group without it</li>
+<li><strong>Handover:</strong> the transfer of a completed building from the project team to its operators</li>
 </ul>
 
-<h3>Biophilic Urbanism</h3>
-<p>At city scale, biophilic strategies include street trees, pocket parks, green roofs and facades, daylighted streams and connected ecological corridors. These features provide cooling during heat waves, stormwater management, habitat and opportunities for physical activity, alongside psychological benefits. Planning tools include green space ratios, tree canopy targets, green factor scoring for new development and requirements for access to green space within walking distance of homes. The effectiveness of these tools depends on enforcement, long-term maintenance and integration with transport and housing policy.</p>
+<h3>Interpreting the Evidence</h3>
+<p>The evidence base includes laboratory studies of stress recovery, observational studies in hospitals and offices, and a smaller number of controlled field interventions. Laboratory studies show physiological stress reduction with nature exposure, but effect sizes in real buildings are often smaller and context dependent. Many workplace productivity claims rely on surveys, small samples or industry reports without controls. Confounding is common: biophilic buildings are often newer, better lit and better ventilated overall. Publication bias may inflate apparent benefits.</p>
 
-<h3>The Organizational Business Case</h3>
-<p>In workplaces, people costs typically dwarf energy and rent, so even small improvements in wellbeing, absenteeism, retention or recruitment can outweigh the capital cost of biophilic features. This logic is widely used in business cases. However, the evidence linking specific features to specific financial outcomes is uneven, and results reported by vendors or single case studies may not generalize. A credible business case states assumptions, uses ranges rather than point estimates, and plans to measure outcomes after occupancy.</p>
-<table>
-<thead><tr><th>Benefit category</th><th>Who captures it</th><th>Measurement difficulty</th></tr></thead>
-<tbody>
-<tr><td>Occupant satisfaction and retention</td><td>Employer</td><td>Moderate: surveys and HR data</td></tr>
-<tr><td>Patient recovery and experience</td><td>Health system and patients</td><td>Moderate to high: clinical confounders</td></tr>
-<tr><td>Property value and leasing</td><td>Owner</td><td>Moderate: market comparisons</td></tr>
-<tr><td>Urban cooling and stormwater</td><td>Public and neighbors</td><td>Moderate: modeling and monitoring</td></tr>
-<tr><td>Population health</td><td>Society and health budgets</td><td>High: long time lags</td></tr>
-</tbody>
-</table>
+<h3>Building the Business Case Responsibly</h3>
+<p>Business cases should use conservative estimates, cite peer-reviewed evidence, acknowledge uncertainty and plan for evaluation. Combining biophilic goals with other benefits, such as energy savings from daylighting or stormwater management from green roofs, strengthens the case without overstating wellbeing gains.</p>
 
-<h3>Institutional Barriers</h3>
-<p>Split incentives are common: developers pay capital costs while tenants, employers and the public capture benefits. Living features need operational budgets that are vulnerable to cuts. Procurement often separates design, construction and facilities management, so maintenance needs are underweighted. Codes and fire, accessibility or hygiene rules may restrict indoor plants or water features in certain buildings unless addressed early.</p>
+<h3>Climate and Context</h3>
+<p>Biophilic strategies must respond to climate and culture. In hot climates, shaded courtyards, vegetation for evaporative cooling and filtered light may be more appropriate than large glazed views; in cold climates, sheltered sunny spaces and winter gardens extend contact with nature. Plant species should suit local light and humidity, and native species can support urban biodiversity on roofs and terraces.</p>
 
-<h3>Equity and Access</h3>
-<p>Access to nature is unevenly distributed. Lower-income neighborhoods often have less tree canopy and park space, and their residents may work in buildings with few windows. At the same time, greening can raise property values and contribute to displacement. Approaches include prioritizing canopy investment where it is lowest, pairing greening with tenant protections and affordable housing, and co-designing with residents, including Indigenous communities whose relationships with local landscapes are long-standing.</p>
-
-<h3>Evaluation Framework</h3>
-<ol>
-<li>Define outcomes at occupant, organizational and urban scales.</li>
-<li>Identify who pays and who benefits, and address split incentives.</li>
-<li>Use ranges and sensitivity analysis rather than single headline figures.</li>
-<li>Secure maintenance funding and responsibility before installation.</li>
-<li>Assess distribution of access and displacement risk.</li>
-</ol>
+<h3>Evaluation Practice</h3>
+<p>Robust post-occupancy evaluation uses baseline measurement, validated instruments, comparison groups and follow-up over time. Sharing results across projects accelerates learning and improves the evidence base.</p>
 `,
         PHD: `
-<h2>Biophilia Science, Design Effectiveness and Human-Nature Relationships</h2>
-<p>The biophilia hypothesis proposes that humans possess an evolved tendency to affiliate with life and lifelike processes. It has inspired a large design movement, but its scientific status, mechanisms and translation into building design remain active research areas. This lesson examines theoretical foundations, measurement methods, contested questions and directions for advanced research on how built environments mediate human-nature relationships.</p>
+<h2>Evaluating Biophilic Interventions in the Field</h2>
+<p>Laboratory and short-term exposure studies have established that contact with nature can reduce physiological stress and improve mood and attention. Translating these findings into robust evidence for building-scale biophilic interventions is methodologically difficult. Research challenges include study design in real buildings, measurement of exposure and outcomes, confounding, heterogeneity across populations, and synthesising evidence for policy. This chapter examines these challenges.</p>
 
-<h3>Theoretical Foundations</h3>
+<h3>Study Design in Real Buildings</h3>
+<p>Randomised controlled trials are rarely feasible for whole buildings, so researchers use quasi-experimental designs: before-after studies with control sites, stepped-wedge designs where features are introduced in phases, natural experiments created by relocations, and within-building comparisons of rooms with different views. Each design has strengths and threats to validity, such as novelty effects, seasonal changes and selection of occupants.</p>
+
+<h3>Measuring Exposure and Outcomes</h3>
+<p>Defining "dose" is a key challenge: view content, view size, time spent, plant density and attention all vary. Researchers use view quality metrics, wearable sensors, eye tracking and ecological momentary assessment to measure exposure. Outcomes include cortisol, heart rate variability, cognitive tests, self-reported wellbeing, sick leave and clinical outcomes, each with different sensitivity and burden.</p>
 <ul>
-<li><strong>Biophilia hypothesis:</strong> the proposal that humans have an innate, evolved affinity for living systems and natural processes</li>
-<li><strong>Stress reduction theory:</strong> the view that unthreatening natural scenes evoke rapid positive affect and physiological recovery from stress</li>
-<li><strong>Attention restoration theory:</strong> the view that nature engages effortless attention, allowing depleted directed attention to recover</li>
-<li><strong>Perceptual fluency:</strong> the ease of processing certain visual statistics, such as natural fractal patterns, proposed to explain preference</li>
-<li><strong>Nature connectedness:</strong> an individual's trait-like sense of being part of nature, measured with psychometric scales</li>
-<li><strong>Extinction of experience:</strong> the progressive loss of everyday human contact with nature and its possible effects on attitudes and wellbeing</li>
+<li><strong>Quasi-experimental design:</strong> a study comparing groups without random assignment</li>
+<li><strong>Stepped-wedge design:</strong> a design where an intervention is rolled out to groups in sequence</li>
+<li><strong>Ecological momentary assessment:</strong> repeated real-time sampling of experiences in daily life</li>
+<li><strong>Heart rate variability:</strong> variation in time between heartbeats, a marker of stress regulation</li>
+<li><strong>Heterogeneity:</strong> variation in effects across studies, populations or settings</li>
+<li><strong>Novelty effect:</strong> a temporary change caused by something being new rather than by its lasting qualities</li>
 </ul>
 
-<h3>Measurement Methods</h3>
-<p>Research uses physiological measures such as heart rate variability, skin conductance and cortisol; cognitive tasks for attention and working memory; self-report scales for mood and restoration; and behavioral outcomes such as recovery time or absence. Virtual reality allows controlled manipulation of nature exposure in the laboratory, while ecological momentary assessment and wearable sensors capture responses in daily life. Each approach trades internal validity against ecological realism.</p>
-<table>
-<thead><tr><th>Method</th><th>Strength</th><th>Limitation</th></tr></thead>
-<tbody>
-<tr><td>Laboratory images or virtual reality</td><td>Tight control of exposure</td><td>Short exposures, artificial setting</td></tr>
-<tr><td>Field experiments in buildings</td><td>Realistic context</td><td>Hard to randomize, many confounders</td></tr>
-<tr><td>Natural experiments and cohorts</td><td>Long timescales, large samples</td><td>Residual confounding by income and health</td></tr>
-<tr><td>Wearables and momentary sampling</td><td>Everyday exposure in real time</td><td>Measurement noise and privacy concerns</td></tr>
-</tbody>
-</table>
+<h3>Confounding and Mechanisms</h3>
+<p>Biophilic features often coincide with better daylight, ventilation, acoustics and newer buildings, making it hard to isolate effects. Research seeks to separate mechanisms such as stress reduction, attention restoration, thermal and visual comfort, and social interaction, using factorial designs and mediation analysis.</p>
 
-<h3>Contested Questions</h3>
-<p>First, the strength of the evolutionary claim: critics note that preferences for nature vary with culture, experience and context, and that some natural elements provoke fear rather than affiliation. Many researchers therefore treat biophilia as a predisposition shaped by learning rather than a fixed instinct. Second, the theories are not mutually exclusive, and studies rarely discriminate between stress-reduction and attention-restoration mechanisms. Third, the active ingredient is often unclear: is the benefit from living plants, from views, from daylight, from material texture or from perceived care and quality? Fourth, there is a replication and publication-bias concern in parts of the restorative environments literature, especially for small cognitive effects. Finally, dose-response relationships, such as how much exposure, for how long and of what quality, remain poorly specified for indoor settings.</p>
+<h3>Heterogeneity and Equity</h3>
+<p>Responses vary with culture, age, health status and prior nature experience. Access to biophilic environments is unequal, with lower-income communities and workers often having less access to green views and outdoor space. Research on equity examines distribution of benefits and how design can reduce rather than widen disparities.</p>
 
-<h3>Design Effectiveness</h3>
-<p>Translating findings into design requires knowing which features produce which outcomes for which people. Representations of nature, such as images or synthetic plants, sometimes produce smaller effects than real nature, but comparisons are inconsistent. Habituation may reduce responses over time, while variability and seasonal change may sustain them. Individual differences, including nature connectedness, culture and neurodiversity, moderate effects and challenge one-size-fits-all patterns.</p>
+<h3>Evidence Synthesis</h3>
+<p>Systematic reviews and meta-analyses are complicated by diverse interventions, outcomes and study quality. Developing standard exposure metrics, outcome sets and reporting guidelines would make synthesis more reliable and inform building standards.</p>
 
-<h3>Relational and Ethical Perspectives</h3>
-<p>Some scholars argue that a purely instrumental framing, where nature is valued for occupant productivity, misses reciprocal human-nature relationships. Relational values, Indigenous knowledge systems and multispecies design approaches ask what buildings offer to other species as well as to people. These perspectives raise methodological questions about how to evaluate outcomes that are not reducible to human health metrics.</p>
+<h3>From Research to Standards</h3>
+<p>Wellness certifications and building codes increasingly reference biophilic criteria, often ahead of the evidence. Research examines how standards translate findings into requirements, whether certified buildings deliver measured benefits, and how to update criteria as evidence accumulates. Partnerships between researchers, designers and building owners can embed evaluation into projects from the start, turning ordinary buildings into sources of data.</p>
 
-<h3>Open Research Directions</h3>
-<ol>
-<li>Pre-registered, adequately powered field trials that isolate specific biophilic features.</li>
-<li>Dose-response models for daylight, views and greenery in indoor environments.</li>
-<li>Cross-cultural studies testing how universal biophilic preferences are.</li>
-<li>Longitudinal research on habituation, seasonal variation and long-term health effects.</li>
-<li>Frameworks that evaluate biodiversity and relational outcomes alongside human wellbeing.</li>
-</ol>
+<h3>Open Questions</h3>
+<p>Key questions include dose-response relationships, long-term effects beyond novelty, cost-effectiveness compared to other interventions, and how to design for diverse populations and climates.</p>
 `,
       },
     },
   ],
   quiz: [
     {
-      id: 'gbbioq1',
+      id: 'gbbio2-q1',
       question: {
-        ELEMENTARY: 'What is biophilic design?',
-        MIDDLE_SCHOOL: 'What does the word biophilia mean?',
-        HIGH_SCHOOL: 'What are natural analogues?',
-        UNDERGRADUATE: 'What is post-occupancy evaluation?',
-        GRADUATE: 'What is biophilic urbanism?',
-        PHD: 'What does the biophilia hypothesis propose?',
+        ELEMENTARY: 'What do good designers do first?',
+        MIDDLE_SCHOOL: 'What is a design brief?',
+        HIGH_SCHOOL: 'What does site analysis for biophilic design map?',
+        UNDERGRADUATE: 'What turns pattern frameworks into usable project targets?',
+        GRADUATE: 'What should an effective biophilic brief define?',
+        PHD: 'Why are randomised controlled trials rarely feasible for biophilic buildings?',
       },
       options: {
-        ELEMENTARY: ['Making buildings that bring nature inside so people feel good', 'Keeping all plants out of buildings', 'Building robots', 'Painting walls gray'],
-        MIDDLE_SCHOOL: ['Love of living things', 'Fear of plants', 'A type of building block', 'A kind of window'],
-        HIGH_SCHOOL: ['Elements that evoke nature without being alive, like wood grain and organic shapes', 'Only real living plants', 'Machines that copy animals', 'Plastic walls with no pattern'],
-        UNDERGRADUATE: ['Systematic study of how a building performs for users after they move in', 'A survey done before design begins', 'A fire inspection', 'An energy bill review only'],
-        GRADUATE: ['Planning cities so daily life includes abundant, varied contact with nature', 'Removing trees to make room for parking', 'Designing only indoor plants', 'A tax on gardens'],
-        PHD: ['Humans have an evolved, innate affinity for living systems', 'Humans naturally avoid all nature', 'Nature has no effect on people', 'Only cultural learning shapes preference'],
-      },
-      correctIndex: 0,
-      explanation: {
-        ELEMENTARY: 'Biophilic design brings plants, sunlight, water and natural materials into buildings.',
-        MIDDLE_SCHOOL: 'Bio means life and philia means love, so biophilia is a love of living things.',
-        HIGH_SCHOOL: 'Natural analogues remind us of nature through materials, patterns and shapes.',
-        UNDERGRADUATE: 'Post-occupancy evaluation checks how well a building works for the people using it.',
-        GRADUATE: 'Biophilic urbanism brings nature into streets, neighborhoods and whole cities.',
-        PHD: 'The hypothesis suggests an evolved tendency to affiliate with life, though its strength is debated.',
-      },
-    },
-    {
-      id: 'gbbioq2',
-      question: {
-        ELEMENTARY: 'Which sense do you use to hear a fountain trickling?',
-        MIDDLE_SCHOOL: 'What sets your circadian rhythm partly?',
-        HIGH_SCHOOL: 'What is prospect and refuge?',
-        UNDERGRADUATE: 'Why are deep floor plates a risk for biophilic design?',
-        GRADUATE: 'Why is the workplace business case for biophilic design often framed around people costs?',
-        PHD: 'What does attention restoration theory propose?',
-      },
-      options: {
-        ELEMENTARY: ['Smelling', 'Hearing', 'Tasting', 'Touching'],
-        MIDDLE_SCHOOL: ['Loud music', 'Daylight', 'Homework', 'Wooden chairs'],
-        HIGH_SCHOOL: ['Only open views with no shelter', 'A wide outlook paired with a protected place to sit', 'A room with no windows', 'A type of fountain'],
-        UNDERGRADUATE: ['They make buildings too short', 'They leave interiors without daylight or views', 'They require too many plants', 'They always lower energy use'],
-        GRADUATE: ['Energy costs are always higher than salaries', 'Staff costs usually far exceed energy and rent', 'Plants are free', 'People costs do not matter'],
-        PHD: ['Nature causes fear that sharpens focus', 'Nature engages effortless attention so directed attention can recover', 'Attention is fixed and cannot change', 'Only noise restores attention'],
-      },
-      correctIndex: 1,
-      explanation: {
-        ELEMENTARY: 'Your ears help you hear trickling water and singing birds.',
-        MIDDLE_SCHOOL: 'Daylight helps your body clock know when to feel awake and when to feel sleepy.',
-        HIGH_SCHOOL: 'Prospect is the view and refuge is the sheltered spot, a combination many people find relaxing.',
-        UNDERGRADUATE: 'Deep plans put many workspaces far from windows, limiting daylight and views.',
-        GRADUATE: 'Because salaries dominate total occupancy cost, small wellbeing gains can outweigh capital costs.',
-        PHD: 'The theory says gentle natural stimuli let the tired, effortful kind of attention rest.',
-      },
-    },
-    {
-      id: 'gbbioq3',
-      question: {
-        ELEMENTARY: 'What is a living wall?',
-        MIDDLE_SCHOOL: 'How can daylight help the planet?',
-        HIGH_SCHOOL: 'What is a risk of adding large windows for views?',
-        UNDERGRADUATE: 'What should interior plants mainly be justified by?',
-        GRADUATE: 'What is green gentrification?',
-        PHD: 'Why is the active ingredient of biophilic effects often unclear?',
-      },
-      options: {
-        ELEMENTARY: ['A wall that walks', 'A wall made of ice', 'A wall covered with real growing plants', 'A wall with a TV on it'],
-        MIDDLE_SCHOOL: ['It makes buildings colder in winter', 'It uses more electricity', 'It can reduce the need for electric lights', 'It has no effect'],
-        HIGH_SCHOOL: ['Too little light', 'Plants dying from cold', 'Glare and overheating without shading', 'Less view of the sky'],
-        UNDERGRADUATE: ['Replacing all ventilation', 'Cleaning all indoor air on their own', 'Psychological benefits, with ventilation still essential', 'Lowering heating bills by half'],
-        GRADUATE: ['Painting buildings green', 'Planting trees only in rich areas', 'Rising costs and displacement following greening in lower-income areas', 'A type of green roof'],
-        PHD: ['Effects never occur', 'Only plants have ever been studied', 'Views, daylight, materials and perceived quality are often confounded', 'All studies isolate one feature perfectly'],
+        ELEMENTARY: ['Paint the walls', 'Buy furniture', 'Look at the place, like the sun and trees nearby', 'Close all windows'],
+        MIDDLE_SCHOOL: ['A short holiday', 'A type of window', 'A document describing what a building needs and for whom', 'A building permit fee'],
+        HIGH_SCHOOL: ['Only parking spaces', 'Only furniture', 'Views, sun paths, winds, trees, water and habitat', 'Only the paint colours'],
+        UNDERGRADUATE: ['Vague goals only', 'Picking plants at random', 'Specific, measurable criteria like view percentages and daylight autonomy', 'Removing all windows'],
+        GRADUATE: ['Only the colour scheme', 'Only the opening date', 'Outcomes translated into design requirements and metrics', 'Only the logo'],
+        PHD: ['Nature has no effect', 'They are too cheap', 'Whole buildings are hard to randomly assign', 'Buildings have no occupants'],
       },
       correctIndex: 2,
       explanation: {
-        ELEMENTARY: 'A living wall is covered with real plants that grow and need water and care.',
-        MIDDLE_SCHOOL: 'Sunlight through windows can light rooms so fewer electric lights are needed.',
-        HIGH_SCHOOL: 'Big windows need shading so rooms do not get too bright or too hot.',
-        UNDERGRADUATE: 'At typical densities plants do little for air quality, so their value is mainly psychological.',
-        GRADUATE: 'New parks can raise property values and push out residents unless paired with protections.',
-        PHD: 'Biophilic features usually come together with other improvements, making it hard to isolate causes.',
+        ELEMENTARY: 'Designers start by studying the site.',
+        MIDDLE_SCHOOL: 'The brief says what the building must do and for whom.',
+        HIGH_SCHOOL: 'Site analysis maps natural assets to use in the design.',
+        UNDERGRADUATE: 'Measurable targets make patterns actionable.',
+        GRADUATE: 'Briefs connect outcomes to requirements and metrics.',
+        PHD: 'Random assignment of whole buildings is rarely possible.',
       },
     },
     {
-      id: 'gbbioq4',
+      id: 'gbbio2-q2',
       question: {
-        ELEMENTARY: 'Which is a natural material?',
-        MIDDLE_SCHOOL: 'What is multisensory design?',
-        HIGH_SCHOOL: 'Why do living walls need a maintenance plan?',
-        UNDERGRADUATE: 'Which project phase is the best time to decide on orientation and retained trees?',
-        GRADUATE: 'What is a split incentive in biophilic projects?',
-        PHD: 'What is a criticism of the strong evolutionary version of biophilia?',
+        ELEMENTARY: 'What is a living wall?',
+        MIDDLE_SCHOOL: 'What is prospect and refuge?',
+        HIGH_SCHOOL: 'What can poorly integrated glass walls cause?',
+        UNDERGRADUATE: 'What risk must water features be treated for?',
+        GRADUATE: 'Why do early interdisciplinary reviews matter?',
+        PHD: 'What is a stepped-wedge design?',
       },
       options: {
-        ELEMENTARY: ['Plastic', 'Glitter', 'Foam', 'Wood'],
-        MIDDLE_SCHOOL: ['Designing only for eyes', 'Using lots of screens', 'Making rooms silent', 'Designing spaces that appeal to sight, sound, smell and touch together'],
-        HIGH_SCHOOL: ['They grow without any care', 'They are made of plastic', 'They never need water', 'Without water, light and care the plants die'],
-        UNDERGRADUATE: ['Interiors', 'Operations', 'Envelope and systems', 'Site planning'],
-        GRADUATE: ['Two companies sharing a plant', 'Splitting a garden in half', 'A discount on trees', 'Developers pay the cost while tenants and the public capture the benefits'],
-        PHD: ['Everyone responds identically to nature', 'Nature has no effects at all', 'Fractals do not exist', 'Preferences vary with culture and experience, and some nature provokes fear'],
+        ELEMENTARY: ['A wall that walks', 'A wall made of ice', 'A painted wall', 'A wall covered with growing plants'],
+        MIDDLE_SCHOOL: ['A type of garden tool', 'A building permit', 'A water pump', 'A wide view while feeling safe and sheltered'],
+        HIGH_SCHOOL: ['Too little light', 'Lower energy use', 'Better acoustics', 'Overheating and glare'],
+        UNDERGRADUATE: ['Rust on paint', 'Too many fish', 'Sunburn', 'Legionella'],
+        GRADUATE: ['They add conflicts', 'They are only for marketing', 'They remove maintenance', 'They avoid conflicts like living walls without irrigation access'],
+        PHD: ['A staircase design', 'A ramp for wheelchairs', 'A shape of window', 'An intervention rolled out to groups in sequence'],
       },
       correctIndex: 3,
       explanation: {
-        ELEMENTARY: 'Wood comes from trees, so it is a natural material.',
-        MIDDLE_SCHOOL: 'Multisensory design gives nature to several senses at once.',
-        HIGH_SCHOOL: 'Living features decline quickly without someone responsible for their care.',
-        UNDERGRADUATE: 'Site planning decisions like orientation and keeping trees are hard to change later.',
-        GRADUATE: 'When the payer and the beneficiary differ, good investments can be underfunded.',
-        PHD: 'Many researchers see biophilia as a learned, context-dependent predisposition, not a fixed instinct.',
+        ELEMENTARY: 'A living wall is covered in growing plants.',
+        MIDDLE_SCHOOL: 'Prospect is the view; refuge is the shelter.',
+        HIGH_SCHOOL: 'Unshaded glass can overheat spaces and cause glare.',
+        UNDERGRADUATE: 'Water features need treatment to prevent Legionella.',
+        GRADUATE: 'Early coordination prevents costly clashes.',
+        PHD: 'Stepped-wedge designs phase in an intervention across groups.',
       },
     },
     {
-      id: 'gbbioq5',
+      id: 'gbbio2-q3',
       question: {
-        ELEMENTARY: 'What can you do to bring nature into your classroom?',
-        MIDDLE_SCHOOL: 'How can trees and green roofs help cities?',
-        HIGH_SCHOOL: 'Which building type might use healing gardens and views from patient rooms?',
-        UNDERGRADUATE: 'How should analysts treat precise productivity claims for biophilic design?',
-        GRADUATE: 'Why is a maintenance endowment important?',
-        PHD: 'What is a dose-response question in biophilic research?',
+        ELEMENTARY: 'What does a nature design need so plants stay healthy?',
+        MIDDLE_SCHOOL: 'What happens without a maintenance plan?',
+        HIGH_SCHOOL: 'What is post-occupancy evaluation?',
+        UNDERGRADUATE: 'Which biophilic strategies add little cost if planned early?',
+        GRADUATE: 'Why does confounding affect biophilic evidence?',
+        PHD: 'What is a novelty effect?',
       },
       options: {
-        ELEMENTARY: ['Grow a plant and take turns watering it', 'Close all the curtains', 'Throw leaves on the floor', 'Turn off the sunshine'],
-        MIDDLE_SCHOOL: ['They cool buildings and soak up rainwater', 'They make streets hotter', 'They block all sunlight forever', 'They create more traffic'],
-        HIGH_SCHOOL: ['Hospital', 'Parking garage', 'Warehouse', 'Power plant'],
-        UNDERGRADUATE: ['With caution, checking study design, sample size and comparison groups', 'As always exactly correct', 'As impossible to test', 'As proof that plants double output'],
-        GRADUATE: ['It funds living features so they stay healthy after installation', 'It pays for demolition', 'It replaces design fees', 'It is only for paint'],
-        PHD: ['How much nature exposure, for how long and of what quality produces effects', 'How many doses of medicine plants need', 'How to water plants', 'How to price buildings'],
+        ELEMENTARY: ['More paint', 'A plan for who will water and care for them', 'Louder music', 'Fewer windows'],
+        MIDDLE_SCHOOL: ['Plants grow forever', 'Plants die and the space can look worse than before', 'Nothing changes', 'The building gets bigger'],
+        HIGH_SCHOOL: ['Inspecting before construction', 'Assessing how a building performs once people use it', 'Choosing a building name', 'Paying the builders'],
+        UNDERGRADUATE: ['Large living walls', 'Orienting windows toward views and using daylight', 'Indoor waterfalls', 'Imported rare trees'],
+        GRADUATE: ['Nature always has no effect', 'Biophilic buildings are often newer, better lit and ventilated', 'Surveys are perfect', 'All buildings are identical'],
+        PHD: ['A brand-new building code', 'A temporary change caused by something being new', 'A type of plant', 'A lasting benefit'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Someone must care for the plants.',
+        MIDDLE_SCHOOL: 'Without care, features decline.',
+        HIGH_SCHOOL: 'POE checks how buildings work in use.',
+        UNDERGRADUATE: 'Orientation and daylight are low-cost if planned early.',
+        GRADUATE: 'Other improvements can explain apparent biophilic effects.',
+        PHD: 'Novelty can create short-lived effects that fade.',
+      },
+    },
+    {
+      id: 'gbbio2-q4',
+      question: {
+        ELEMENTARY: 'Where might hospitals add nature?',
+        MIDDLE_SCHOOL: 'How can designers check if a biophilic design worked?',
+        HIGH_SCHOOL: 'How can good evaluations compare results?',
+        UNDERGRADUATE: 'What is daylight autonomy?',
+        GRADUATE: 'What is publication bias?',
+        PHD: 'What is ecological momentary assessment?',
+      },
+      options: {
+        ELEMENTARY: ['Gardens where patients can sit', 'Inside the X-ray machine', 'In the parking lot paint', 'Nowhere at all'],
+        MIDDLE_SCHOOL: ['Surveys and measurements after people move in', 'Guessing', 'Asking only the builder', 'Counting the bricks'],
+        HIGH_SCHOOL: ['With similar spaces or conditions before the change', 'With nothing at all', 'With a different country\'s weather', 'With a movie'],
+        UNDERGRADUATE: ['Share of occupied hours with enough daylight without electric light', 'Hours of darkness', 'Lamp brightness', 'Time of sunset'],
+        GRADUATE: ['Positive results are published more than null results', 'Books costing too much', 'Only printing in colour', 'Ignoring positive results'],
+        PHD: ['Repeated real-time sampling of experiences in daily life', 'Measuring soil chemistry', 'A one-time survey', 'Counting animals in a forest'],
       },
       correctIndex: 0,
       explanation: {
-        ELEMENTARY: 'Caring for a class plant brings a bit of nature inside every day.',
-        MIDDLE_SCHOOL: 'Trees and green roofs shade and cool buildings and hold rain so streets flood less.',
-        HIGH_SCHOOL: 'Hospitals use gardens and views to reduce stress and support recovery.',
-        UNDERGRADUATE: 'Evidence varies, so precise figures need careful checking before use.',
-        GRADUATE: 'Without long-term funding, living features decline once budgets are cut.',
-        PHD: 'Dose-response research asks how the amount and quality of exposure relate to outcomes.',
+        ELEMENTARY: 'Hospital gardens help patients relax.',
+        MIDDLE_SCHOOL: 'Surveys and measurements show what changed.',
+        HIGH_SCHOOL: 'Comparisons show whether the change made a difference.',
+        UNDERGRADUATE: 'Daylight autonomy measures daylight sufficiency over time.',
+        GRADUATE: 'Publication bias can inflate apparent benefits.',
+        PHD: 'EMA samples experiences repeatedly in real time.',
+      },
+    },
+    {
+      id: 'gbbio2-q5',
+      question: {
+        ELEMENTARY: 'How do people often feel in places with nature?',
+        MIDDLE_SCHOOL: 'What benefits have studies found in biophilic buildings?',
+        HIGH_SCHOOL: 'Why are biophilic features best integrated with other goals?',
+        UNDERGRADUATE: 'What does life cycle cost include?',
+        GRADUATE: 'How should a responsible business case be built?',
+        PHD: 'What would make evidence synthesis more reliable?',
+      },
+      options: {
+        ELEMENTARY: ['More angry', 'Very sleepy forever', 'Less stressed and happier', 'Hungrier'],
+        MIDDLE_SCHOOL: ['Higher electricity bills only', 'More noise', 'Less stress, better mood and faster recovery', 'Worse sleep'],
+        HIGH_SCHOOL: ['Other goals do not matter', 'Integration always costs more', 'Features like daylight can also save energy and support comfort', 'It makes design slower'],
+        UNDERGRADUATE: ['Only the purchase price', 'Only shipping', 'Installation, operation and maintenance over the feature\'s life', 'Only design fees'],
+        GRADUATE: ['The largest claims available', 'Ignoring uncertainty', 'Conservative estimates, peer-reviewed evidence and planned evaluation', 'Industry adverts only'],
+        PHD: ['Fewer studies', 'Hiding study quality', 'Standard exposure metrics, outcome sets and reporting guidelines', 'Using only laboratory data'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Nature tends to help people feel calm and happy.',
+        MIDDLE_SCHOOL: 'Studies link nature with lower stress and better mood.',
+        HIGH_SCHOOL: 'Integrated features deliver multiple benefits.',
+        UNDERGRADUATE: 'Life cycle cost covers the whole life of a feature.',
+        GRADUATE: 'Honest business cases acknowledge uncertainty.',
+        PHD: 'Standardisation lets studies be compared and combined.',
       },
     },
   ],
