@@ -61,6 +61,7 @@ export function FloatingBook({
   const move = !reduceMotion
 
   const onPointerMove = (e: React.PointerEvent) => {
+    if (onDragMove(e)) return
     if (!move || e.pointerType === 'touch' || !ref.current) return
     const r = ref.current.getBoundingClientRect()
     setPose(
@@ -68,14 +69,49 @@ export function FloatingBook({
       Math.max(-0.5, Math.min(0.5, (e.clientY - r.top) / r.height - 0.5)),
     )
   }
-  const reset = () => { setPose(0, 0); setHovered(false) }
+  const reset = () => { if (!drag.current) setPose(0, 0); setHovered(false) }
 
-  // Touch: a quick turn toward the finger, then settle back
+  // Drag to spin: the book follows the finger (or a held mouse) all the way round,
+  // keeps some momentum on release, then settles facing front again
+  const drag = useRef<{ id: number; x: number; ry: number; t: number; v: number; moved: boolean } | null>(null)
+  const suppressClick = useRef(false)
+  const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
   const onPointerDown = (e: React.PointerEvent) => {
-    if (!move || e.pointerType !== 'touch' || !ref.current) return
-    const r = ref.current.getBoundingClientRect()
-    setPose(((e.clientX - r.left) / r.width - 0.5) * 0.8, ((e.clientY - r.top) / r.height - 0.5) * 0.8)
-    setTimeout(() => setPose(0, 0), 450)
+    if (!move || opening || (e.pointerType === 'mouse' && e.button !== 0)) return
+    if (settleTimer.current) clearTimeout(settleTimer.current)
+    drag.current = { id: e.pointerId, x: e.clientX, ry: ryTarget.get(), t: performance.now(), v: 0, moved: false }
+  }
+  const onDragMove = (e: React.PointerEvent) => {
+    const d = drag.current
+    if (!d || d.id !== e.pointerId) return false
+    const dx = e.clientX - d.x
+    if (!d.moved && Math.abs(dx) < 6) return true
+    if (!d.moved) { d.moved = true; ref.current?.setPointerCapture?.(e.pointerId) }
+    const now = performance.now()
+    const next = d.ry + dx * 0.9
+    const dt = Math.max(1, now - d.t)
+    d.v = (next - ryTarget.get()) / dt // degrees per ms
+    d.t = now
+    ryTarget.set(next)
+    rxTarget.set(restX)
+    px.set(Math.max(-0.5, Math.min(0.5, (((next - restY) % 360) + 360) % 360 < 180 ? 0.4 : -0.4)))
+    return true
+  }
+  const onPointerUp = (e: React.PointerEvent) => {
+    const d = drag.current
+    if (!d || d.id !== e.pointerId) return
+    drag.current = null
+    if (!d.moved) return
+    suppressClick.current = true
+    setTimeout(() => { suppressClick.current = false }, 0)
+    // Carry the flick a little further, then land on the nearest front-facing turn
+    const projected = ryTarget.get() + d.v * 260
+    const turns = Math.round((projected - restY) / 360)
+    ryTarget.set(restY + turns * 360)
+    px.set(0); py.set(0)
+    // Once settled, drop the whole turns so the next spin starts from rest
+    settleTimer.current = setTimeout(() => { ryTarget.jump(restY); ry.jump(restY) }, 1400)
   }
 
   const duration = 6 + (delay % 3) * 0.6
@@ -85,11 +121,15 @@ export function FloatingBook({
     <div
       ref={ref}
       className={`relative ${className}`}
-      style={{ aspectRatio: '3 / 4', perspective: 1400, ...style }}
+      style={{ aspectRatio: '3 / 4', perspective: 1400, touchAction: 'pan-y', ...style }}
       onPointerEnter={(e) => { if (e.pointerType !== 'touch') setHovered(true) }}
       onPointerMove={onPointerMove}
       onPointerLeave={reset}
       onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerUp}
+      onDragStart={(e) => e.preventDefault()}
+      onClickCapture={(e) => { if (suppressClick.current) { e.preventDefault(); e.stopPropagation() } }}
     >
       {glow && (
         <motion.div
@@ -124,7 +164,7 @@ export function FloatingBook({
             <motion.div
               aria-hidden
               className="pointer-events-none absolute inset-0 rounded-r-md rounded-l-sm"
-              style={{ background: glare, transform: 'translateZ(0.5px)', opacity: engaged ? 1 : 0.55 }}
+              style={{ background: glare, transform: 'translateZ(0.5px)', backfaceVisibility: 'hidden', opacity: engaged ? 1 : 0.55 }}
             />
           )}
         </motion.div>

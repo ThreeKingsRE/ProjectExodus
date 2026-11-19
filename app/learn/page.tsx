@@ -28,6 +28,16 @@ export default function LearnPage() {
   const isAuthenticated = status === 'authenticated' && !!session?.user
   const [selectedLevel, setSelectedLevel] = useState<LearningLevel>('HIGH_SCHOOL')
   const [topicProgress, setTopicProgress] = useState<Map<CoreTopic, TopicProgress>>(new Map())
+  // Shelf columns (2 on phones and tablets, 3 on desktop), so each book can turn toward the middle
+  const [shelfColumns, setShelfColumns] = useState(2)
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const sync = () => setShelfColumns(mq.matches ? 3 : 2)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+  const inwardTurn = (i: number) => (shelfColumns === 3 ? [18, 0, -18][i % 3] : i % 2 === 0 ? 18 : -18)
 
   // Fetch topic progress on mount
   useEffect(() => {
@@ -489,8 +499,8 @@ export default function LearnPage() {
                   <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-theme-primary" />
                   <span className="text-xs sm:text-sm lg:text-lg font-black text-theme-primary">SELECT YOUR CLASSROOM LEVEL</span>
                 </div>
-                {/* Mobile: horizontal scroll | Desktop: flex wrap */}
-                <div className="flex gap-1.5 sm:gap-2 justify-start sm:justify-center overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap snap-x snap-mandatory sm:snap-none">
+                {/* Phones: all six levels in a 3×2 grid | Larger: one wrapping row */}
+                <div className="grid grid-cols-3 gap-1.5 sm:flex sm:gap-2 sm:justify-center sm:flex-wrap">
                   {LEARNING_LEVEL_ORDER.map((level) => {
                     const meta = LEARNING_LEVELS[level]
                     const isSelected = level === selectedLevel
@@ -498,16 +508,16 @@ export default function LearnPage() {
                       <button
                         key={level}
                         onClick={() => setSelectedLevel(level)}
-                        className={`px-2 sm:px-3 lg:px-4 py-2 sm:py-2.5 lg:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-1 sm:gap-2 flex-shrink-0 snap-center ${
+                        className={`min-w-0 px-1.5 sm:px-3 lg:px-4 py-2 sm:py-2.5 lg:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 ${
                           isSelected
-                            ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-lg scale-105 ring-2 ring-offset-2 ring-[var(--primary)]'
+                            ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-lg sm:scale-105 sm:ring-2 sm:ring-offset-2 ring-[var(--primary)]'
                             : 'bg-[var(--card)] text-[var(--foreground)] hover:bg-[var(--primary)]/20 hover:scale-102 border border-[var(--border)]'
                         }`}
                       >
-                        <span className="text-base sm:text-lg lg:text-xl">{meta.icon}</span>
-                        <div className="text-left">
-                          <div className="font-black text-[10px] sm:text-xs lg:text-sm">{meta.shortLabel}</div>
-                          <div className="text-[8px] sm:text-[10px] lg:text-xs opacity-70 hidden sm:block">{meta.ageRange}</div>
+                        <span className="text-base sm:text-lg lg:text-xl shrink-0">{meta.icon}</span>
+                        <div className="text-left min-w-0">
+                          <div className="font-black text-[11px] sm:text-xs lg:text-sm truncate">{meta.shortLabel}</div>
+                          <div className="text-[9px] sm:text-[10px] lg:text-xs opacity-70 truncate">{meta.ageRange}</div>
                         </div>
                       </button>
                     )
@@ -536,7 +546,7 @@ export default function LearnPage() {
                 >
                   {/* The topic's textbook, floating on the shelf; turns toward the pointer */}
                   <div className="mx-auto px-[6%] pt-3">
-                    <FloatingBook delay={idx * 0.9} lift={7} restY={-20} tiltRange={14} className="w-full">
+                    <FloatingBook delay={idx * 0.9} lift={7} restY={inwardTurn(idx)} tiltRange={14} className="w-full">
                       <BookCover
                         topicId={topic.slug as CoreTopic}
                         title={topic.title}

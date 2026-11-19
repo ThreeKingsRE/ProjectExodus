@@ -145,8 +145,29 @@ export function BookCover({ topicId, title, subtitle, chapterTitles, currentChap
     <div className="absolute inset-0" style={{ containerType: 'inline-size', transformStyle: 'preserve-3d' }}>
       {depth > 0 && (
         <>
-          {/* Back board */}
-          <div aria-hidden className="absolute inset-0 rounded-md" style={{ transform: `translateZ(calc(-1 * ${d}))`, background: theme.clothDark, boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.3)' }} />
+          {/* Back board, turned to face out, with its own small foil device */}
+          <div
+            aria-hidden
+            className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden rounded-md rounded-l-sm text-center"
+            style={{
+              transform: `translateZ(calc(-1 * ${d})) rotateY(180deg)`,
+              backgroundColor: theme.cloth,
+              backgroundImage: `repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 3px), radial-gradient(120% 90% at 70% 15%, rgba(255,255,255,0.08), transparent 55%), radial-gradient(90% 80% at 20% 100%, rgba(0,0,0,0.35), transparent 60%)`,
+              boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.3), inset 6px 0 14px rgba(0,0,0,0.25)',
+            }}
+          >
+            <svg aria-hidden className="absolute inset-0 h-full w-full" viewBox="0 0 300 400" preserveAspectRatio="none">
+              <Deboss id={`back-frame-${topicId}`} paths={['M14 14 H262 V386 H14 Z']} width={1.2} />
+            </svg>
+            <svg aria-hidden viewBox="0 0 100 100" style={{ width: '22cqw', height: '22cqw' }}>
+              <g fill="none" stroke={theme.foil} strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" opacity={0.75}>
+                {EMBLEMS[topicId].map((path, i) => <path key={i} d={path} />)}
+              </g>
+            </svg>
+            <p className="mt-[4cqw] px-[14%] font-serif italic leading-snug" style={{ color: `${theme.foil}cc`, fontSize: '3.6cqw' }}>{subtitle}</p>
+            <div className="mx-auto my-[3cqw] h-px w-1/4" style={{ background: `linear-gradient(90deg, transparent, ${theme.foil}, transparent)` }} />
+            <p className="font-serif uppercase" style={{ color: `${theme.foil}99`, fontSize: '2.6cqw', letterSpacing: '0.3em' }}>Project Exodus</p>
+          </div>
           {/* Spine: cloth, raised bands and a foil title, seen when the book turns left */}
           <div
             aria-hidden
