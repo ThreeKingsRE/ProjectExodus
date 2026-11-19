@@ -71,7 +71,7 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 
     const existing = await prisma.projectSurvey.findFirst({
       where: { id: surveyId, projectId },
-      select: { id: true, _count: { select: { responses: true } } },
+      select: { id: true, externalUrl: true, _count: { select: { responses: true } } },
     })
     if (!existing) return NextResponse.json({ success: false, error: 'Survey not found.' }, { status: 404 })
 
@@ -80,7 +80,8 @@ export async function PATCH(request: NextRequest, { params }: Params) {
     if (!settings.ok) return NextResponse.json({ success: false, error: settings.error }, { status: 400 })
     const data: Record<string, unknown> = { ...settings.data }
 
-    if (body?.questions !== undefined) {
+    // A linked survey has no questions on this site
+    if (body?.questions !== undefined && !(data.externalUrl ?? existing.externalUrl)) {
       if (existing._count.responses > 0) {
         return NextResponse.json(
           { success: false, error: 'Questions are locked once people have responded. Duplicate the survey to change them.' },

@@ -17,6 +17,8 @@ interface PublicSurvey {
   accepting: boolean
   closesAt: string | null
   questions: SurveyQuestion[]
+  /** Set when the survey is answered on another site */
+  externalUrl?: string | null
   hasResponded: boolean
   isPreview: boolean
   results: (QuestionSummary & { textCount?: number })[] | null
@@ -128,6 +130,11 @@ export default function SurveyPage({ params }: { params: Promise<{ slug: string;
                     <SurveyResultsView results={results} total={Math.max(...results.map(r => r.answered), 0)} />
                   </div>
                 )}
+              </div>
+            ) : survey.externalUrl ? (
+              <div className="space-y-3 rounded-lg bg-[var(--muted)] p-4">
+                <p className="font-bold">This survey is answered on another site.</p>
+                <a href={survey.externalUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-2 font-bold text-[var(--primary-foreground)]">Open the survey</a>
               </div>
             ) : !survey.accepting && !survey.isPreview ? (
               <p className="rounded-lg bg-[var(--muted)] p-4 font-bold">This survey is closed.</p>

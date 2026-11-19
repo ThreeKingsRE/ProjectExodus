@@ -33,6 +33,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
         closesAt: s.closesAt,
         accepting: isAcceptingResponses(s),
         questionCount: storedQuestions(s.questions).length,
+        externalUrl: s.externalUrl ?? null,
         hasResponded: s.responses.length > 0,
         responseCount: who.canManage ? s._count.responses : undefined,
         updatedAt: s.updatedAt,
@@ -58,7 +59,9 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     const body = await request.json().catch(() => null)
     const settings = parseSurveySettings(body, false)
     if (!settings.ok) return NextResponse.json({ success: false, error: settings.error }, { status: 400 })
-    const questions = parseQuestions(body?.questions)
+    // A linked survey lives on another site: no questions are stored here
+    const linked = !!settings.data.externalUrl
+    const questions = linked ? { ok: true as const, data: [] } : parseQuestions(body?.questions)
     if (!questions.ok) return NextResponse.json({ success: false, error: questions.error }, { status: 400 })
 
     const survey = await prisma.projectSurvey.create({
@@ -72,6 +75,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         anonymous: settings.data.anonymous ?? false,
         shareResults: settings.data.shareResults ?? false,
         closesAt: settings.data.closesAt ?? null,
+        externalUrl: settings.data.externalUrl ?? null,
         questions: questions.data,
       },
       select: { id: true },

@@ -1465,7 +1465,19 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             )}
 
             {activeTab === 'surveys' && isMember && (
-              <ProjectSurveys projectId={project.id} projectSlug={project.slug} />
+              <ProjectSurveys
+                projectId={project.id}
+                projectSlug={project.slug}
+                featuredUrl={project.layoutConfig?.surveyUrl || null}
+                onFeature={async (url) => {
+                  const res = await fetch(`/api/projects/${project.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ surveyUrl: url ?? '' }) }).catch(() => null)
+                  const data = await res?.json().catch(() => null)
+                  if (!data?.success) return false
+                  setProject((prev: any) => ({ ...prev, layoutConfig: { ...(prev?.layoutConfig || {}), surveyUrl: url ?? '' } }))
+                  setEditedSurveyUrl(url ?? '')
+                  return true
+                }}
+              />
             )}
 
             {/* Documents Tab */}

@@ -82,3 +82,16 @@ test('results summary and CSV', () => {
   assert.ok(lines[3].includes(`"'=HYPERLINK(""x"")"`), 'formula is neutralized and quoted')
   assert.equal(toCsv(questions, responses, false).includes('Ana'), false)
 })
+
+test('linked surveys: https link required, can be cleared', async () => {
+  const m = await import('../lib/projects/surveys.ts')
+  const { parseSurveySettings } = m.default || m
+  const ok = parseSurveySettings({ title: 'Housing survey', externalUrl: 'https://forms.gle/ZZmocqQbpuf9BHMW8' }, false)
+  assert.equal(ok.ok, true)
+  assert.equal(ok.data.externalUrl, 'https://forms.gle/ZZmocqQbpuf9BHMW8')
+  for (const bad of ['http://forms.gle/x', 'javascript:alert(1)', 'forms.gle/x']) {
+    assert.equal(parseSurveySettings({ title: 'T', externalUrl: bad }, false).ok, false, bad)
+  }
+  assert.equal(parseSurveySettings({ externalUrl: '' }, true).data.externalUrl, null)
+  assert.equal('externalUrl' in parseSurveySettings({ title: 'T' }, false).data, false)
+})

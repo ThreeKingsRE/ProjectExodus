@@ -22,7 +22,7 @@ async function loadSurvey(surveyId: string) {
     where: { id: surveyId },
     select: {
       id: true, projectId: true, title: true, description: true, status: true, audience: true,
-      anonymous: true, shareResults: true, closesAt: true, questions: true,
+      anonymous: true, shareResults: true, closesAt: true, questions: true, externalUrl: true,
       project: { select: { name: true, slug: true } },
     },
   })
@@ -82,6 +82,7 @@ export async function GET(request: NextRequest, { params }: Params) {
         accepting: isAcceptingResponses(survey),
         closesAt: survey.closesAt,
         questions,
+        externalUrl: survey.externalUrl ?? null,
         hasResponded,
         isPreview: survey.status === 'DRAFT',
         results: hasResponded && survey.shareResults ? await publicResults(surveyId, questions) : null,
@@ -117,6 +118,7 @@ export async function POST(request: NextRequest, { params }: Params) {
     // Honeypot: real people never fill the hidden "website" field.
     if (body?.website) return NextResponse.json({ success: true, data: { results: null } })
 
+    if (survey.externalUrl) return NextResponse.json({ success: false, error: 'This survey is answered on another site.' }, { status: 400 })
     const questions = storedQuestions(survey.questions)
     const answers = validateAnswers(questions, body?.answers)
     if (!answers.ok) return NextResponse.json({ success: false, error: answers.error }, { status: 400 })

@@ -6,7 +6,7 @@ import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import {
   ClipboardList, Plus, Loader2, X, Save, Trash2, ArrowUp, ArrowDown, Link2, Check, Download,
-  BarChart3, Pencil, Play, Square, ExternalLink, Users, Globe, Lock,
+  BarChart3, Pencil, Play, Square, ExternalLink, Users, Globe, Lock, Star,
 } from 'lucide-react'
 import {
   AUDIENCE_LABEL, QUESTION_TYPES, QUESTION_TYPE_LABEL,
@@ -27,6 +27,8 @@ interface SurveyListItem {
   questionCount: number
   hasResponded: boolean
   responseCount?: number
+  /** Set for a survey hosted on another site (Google Forms, etc.) */
+  externalUrl?: string | null
 }
 
 interface SurveyDetail extends Omit<SurveyListItem, 'questionCount' | 'hasResponded'> {
@@ -43,7 +45,14 @@ const STATUS_STYLE: Record<SurveyStatus, string> = {
   CLOSED: 'bg-red-500/10 text-red-600',
 }
 
-export function ProjectSurveys({ projectId, projectSlug }: { projectId: string; projectSlug: string }) {
+export function ProjectSurveys({ projectId, projectSlug, featuredUrl = null, onFeature }: {
+  projectId: string
+  projectSlug: string
+  /** The link behind the initiative's "Take the survey" button, if any */
+  featuredUrl?: string | null
+  /** Set (or clear with null) the featured survey link; owners and admins only */
+  onFeature?: (url: string | null) => Promise<boolean>
+}) {
   const [surveys, setSurveys] = useState<SurveyListItem[]>([])
   const [canManage, setCanManage] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -51,6 +60,8 @@ export function ProjectSurveys({ projectId, projectSlug }: { projectId: string; 
   const [builder, setBuilder] = useState<SurveyDetail | 'new' | null>(null)
   const [resultsFor, setResultsFor] = useState<SurveyDetail | null>(null)
   const [copied, setCopied] = useState<string | null>(null)
+  const [linker, setLinker] = useState<SurveyListItem | 'new' | null>(null)
+  const [featuring, setFeaturing] = useState<string | null>(null)
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -71,15 +82,25 @@ export function ProjectSurveys({ projectId, projectSlug }: { projectId: string; 
   useEffect(() => { load() }, [load])
 
   const surveyUrl = (id: string) => `${window.location.origin}/community/projects/${projectSlug}/surveys/${id}`
+  /** Where people answer: the linked site, or this site's survey page */
+  const answerUrl = (s: SurveyListItem) => s.externalUrl || surveyUrl(s.id)
 
-  const copyLink = async (id: string) => {
+  const copyLink = async (s: SurveyListItem) => {
+    const url = answerUrl(s)
     try {
-      await navigator.clipboard.writeText(surveyUrl(id))
-      setCopied(id)
+      await navigator.clipboard.writeText(url)
+      setCopied(s.id)
       setTimeout(() => setCopied(null), 2000)
     } catch {
-      window.prompt('Copy this survey link:', surveyUrl(id))
+      window.prompt('Copy this survey link:', url)
     }
+  }
+
+  const feature = async (s: SurveyListItem | null) => {
+    if (!onFeature) return
+    setFeaturing(s?.id ?? 'clear')
+    await onFeature(s ? answerUrl(s) : null)
+    setFeaturing(null)
   }
 
   const loadDetail = async (id: string) => {
@@ -107,13 +128,19 @@ export function ProjectSurveys({ projectId, projectSlug }: { projectId: string; 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-2xl font-black">SURVEYS</h2>
-          <p className="text-sm text-theme-muted">Collect input from residents, customers, and your team, then see the results here.</p>
+          <p className="text-sm text-theme-muted">Build a survey here, or link one you already run (Google Forms, Microsoft Forms, Typeform and others).</p>
         </div>
         {canManage && (
-          <Button className="font-bold" onClick={() => setBuilder('new')}>
-            <Plus className="w-4 h-4 mr-2" />
-            NEW SURVEY
-          </Button>
+          <div className="flex flex-wrap gap-2">
+            <Button className="font-bold" onClick={() => setBuilder('new')}>
+              <Plus className="w-4 h-4 mr-2" />
+              NEW SURVEY
+            </Button>
+            <Button variant="outline" className="font-bold" onClick={() => setLinker('new')}>
+              <Link2 className="w-4 h-4 mr-2" />
+              LINK EXISTING SURVEY
+            </Button>
+          </div>
         )}
       </div>
 
@@ -127,10 +154,13 @@ export function ProjectSurveys({ projectId, projectSlug }: { projectId: string; 
             <ClipboardList className="w-16 h-16 mx-auto mb-4 text-theme-muted opacity-50" />
             <h3 className="text-xl font-black mb-2 text-theme-muted">NO SURVEYS YET</h3>
             <p className="text-theme-muted mb-4">
-              {canManage ? 'Create a survey and share its link. You can let anyone answer, even without an account.' : 'Surveys from this initiative will show up here.'}
+              {canManage ? 'Create a survey here and share its link (anyone can answer, even without an account), or link a survey you already run elsewhere.' : 'Surveys from this initiative will show up here.'}
             </p>
             {canManage && (
-              <Button className="font-bold" onClick={() => setBuilder('new')}><Plus className="w-4 h-4 mr-2" />CREATE FIRST SURVEY</Button>
+              <div className="flex flex-wrap justify-center gap-2">
+                <Button className="font-bold" onClick={() => setBuilder('new')}><Plus className="w-4 h-4 mr-2" />CREATE A SURVEY</Button>
+                <Button variant="outline" className="font-bold" onClick={() => setLinker('new')}><Link2 className="w-4 h-4 mr-2" />LINK EXISTING SURVEY</Button>
+              </div>
             )}
           </CardContent>
         </Card>
@@ -146,8 +176,15 @@ export function ProjectSurveys({ projectId, projectSlug }: { projectId: string; 
                       <h3 className="font-black text-lg leading-tight">{s.title}</h3>
                       <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-theme-muted">
                         <span className={`rounded-full px-2 py-0.5 font-bold ${STATUS_STYLE[s.status]}`}>{s.accepting ? 'OPEN' : s.status === 'OPEN' ? 'CLOSED' : s.status}</span>
-                        <span>{s.questionCount} questions</span>
-                        {s.responseCount !== undefined && <span>{s.responseCount} responses</span>}
+                        {s.externalUrl ? (
+                          <span className="flex items-center gap-1"><ExternalLink className="w-3 h-3" />Linked · answered on {(() => { try { return new URL(s.externalUrl).hostname.replace(/^www\./, '') } catch { return 'another site' } })()}</span>
+                        ) : (
+                          <>
+                            <span>{s.questionCount} questions</span>
+                            {s.responseCount !== undefined && <span>{s.responseCount} responses</span>}
+                          </>
+                        )}
+                        {featuredUrl && featuredUrl === answerUrl(s) && <span className="flex items-center gap-1 font-bold text-theme-primary"><Star className="w-3 h-3" />Featured on the initiative page</span>}
                         <span className="flex items-center gap-1"><AudienceIcon className="w-3 h-3" />{AUDIENCE_LABEL[s.audience]}</span>
                         {s.closesAt && <span>Closes {new Date(s.closesAt).toLocaleDateString()}</span>}
                       </p>
@@ -155,29 +192,53 @@ export function ProjectSurveys({ projectId, projectSlug }: { projectId: string; 
                   </div>
                   {s.description && <p className="text-sm text-theme-muted line-clamp-2">{s.description}</p>}
                   <div className="flex flex-wrap gap-2">
-                    <Link href={`/community/projects/${projectSlug}/surveys/${s.id}`}>
-                      <Button size="sm" className="font-bold">
-                        <ExternalLink className="w-4 h-4 mr-1" />
-                        {s.status === 'DRAFT' ? 'PREVIEW' : s.hasResponded ? 'VIEW' : s.accepting ? 'ANSWER' : 'VIEW'}
-                      </Button>
-                    </Link>
+                    {s.externalUrl ? (
+                      <a href={s.externalUrl} target="_blank" rel="noreferrer">
+                        <Button size="sm" className="font-bold"><ExternalLink className="w-4 h-4 mr-1" />OPEN SURVEY</Button>
+                      </a>
+                    ) : (
+                      <Link href={`/community/projects/${projectSlug}/surveys/${s.id}`}>
+                        <Button size="sm" className="font-bold">
+                          <ExternalLink className="w-4 h-4 mr-1" />
+                          {s.status === 'DRAFT' ? 'PREVIEW' : s.hasResponded ? 'VIEW' : s.accepting ? 'ANSWER' : 'VIEW'}
+                        </Button>
+                      </Link>
+                    )}
                     {s.status !== 'DRAFT' && (
-                      <Button size="sm" variant="outline" className="font-bold" onClick={() => copyLink(s.id)}>
+                      <Button size="sm" variant="outline" className="font-bold" onClick={() => copyLink(s)}>
                         {copied === s.id ? <Check className="w-4 h-4 mr-1" /> : <Link2 className="w-4 h-4 mr-1" />}
                         {copied === s.id ? 'COPIED' : 'COPY LINK'}
                       </Button>
                     )}
+                    {canManage && onFeature && s.status === 'OPEN' && (
+                      featuredUrl === answerUrl(s) ? (
+                        <Button size="sm" variant="outline" className="font-bold" disabled={featuring !== null} onClick={() => feature(null)} title="Remove the Take the survey button from the initiative page">
+                          <Star className="w-4 h-4 mr-1 fill-current" />FEATURED
+                        </Button>
+                      ) : (
+                        <Button
+                          size="sm" variant="outline" className="font-bold"
+                          disabled={featuring !== null || (!s.externalUrl && s.audience !== 'PUBLIC')}
+                          onClick={() => feature(s)}
+                          title={!s.externalUrl && s.audience !== 'PUBLIC' ? 'Set who can answer to “Anyone with the link” to feature it for visitors' : 'Show a Take the survey button for this survey on the initiative page'}
+                        >
+                          <Star className="w-4 h-4 mr-1" />FEATURE ON PAGE
+                        </Button>
+                      )
+                    )}
                     {canManage && (
                       <>
-                        <Button size="sm" variant="outline" className="font-bold" onClick={async () => setResultsFor(await loadDetail(s.id))}>
-                          <BarChart3 className="w-4 h-4 mr-1" />RESULTS
-                        </Button>
+                        {!s.externalUrl && (
+                          <Button size="sm" variant="outline" className="font-bold" onClick={async () => setResultsFor(await loadDetail(s.id))}>
+                            <BarChart3 className="w-4 h-4 mr-1" />RESULTS
+                          </Button>
+                        )}
                         {s.status === 'OPEN' ? (
                           <Button size="sm" variant="ghost" onClick={() => setStatus(s, 'CLOSED')}><Square className="w-4 h-4 mr-1" />Close</Button>
                         ) : (
                           <Button size="sm" variant="ghost" onClick={() => setStatus(s, 'OPEN')}><Play className="w-4 h-4 mr-1" />{s.status === 'DRAFT' ? 'Open' : 'Reopen'}</Button>
                         )}
-                        <Button size="sm" variant="ghost" onClick={async () => setBuilder(await loadDetail(s.id))} aria-label="Edit survey"><Pencil className="w-4 h-4" /></Button>
+                        <Button size="sm" variant="ghost" onClick={async () => (s.externalUrl ? setLinker(s) : setBuilder(await loadDetail(s.id)))} aria-label="Edit survey"><Pencil className="w-4 h-4" /></Button>
                         <Button size="sm" variant="ghost" onClick={() => remove(s)} aria-label="Delete survey"><Trash2 className="w-4 h-4" /></Button>
                       </>
                     )}
@@ -187,6 +248,15 @@ export function ProjectSurveys({ projectId, projectSlug }: { projectId: string; 
             )
           })}
         </div>
+      )}
+
+      {linker && (
+        <SurveyLinker
+          projectId={projectId}
+          survey={linker === 'new' ? null : linker}
+          onClose={() => setLinker(null)}
+          onSaved={() => { setLinker(null); load() }}
+        />
       )}
 
       {builder && (
@@ -240,6 +310,63 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
         {children}
       </div>
     </div>
+  )
+}
+
+/** Link a survey that already runs on another site. */
+function SurveyLinker({ projectId, survey, onClose, onSaved }: {
+  projectId: string; survey: SurveyListItem | null; onClose: () => void; onSaved: () => void
+}) {
+  const [title, setTitle] = useState(survey?.title ?? '')
+  const [url, setUrl] = useState(survey?.externalUrl ?? '')
+  const [description, setDescription] = useState(survey?.description ?? '')
+  const [audience, setAudience] = useState<SurveyAudience>(survey?.audience ?? 'PUBLIC')
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const save = async () => {
+    setSaving(true)
+    setError(null)
+    const res = await fetch(survey ? `/api/projects/${projectId}/surveys/${survey.id}` : `/api/projects/${projectId}/surveys`, {
+      method: survey ? 'PATCH' : 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, description, audience, externalUrl: url, ...(survey ? {} : { status: 'OPEN' }) }),
+    }).catch(() => null)
+    const data = await res?.json().catch(() => null)
+    setSaving(false)
+    if (data?.success) onSaved()
+    else setError(data?.error ?? 'Could not save. Try again.')
+  }
+
+  return (
+    <Modal title={survey ? 'EDIT LINKED SURVEY' : 'LINK AN EXISTING SURVEY'} onClose={onClose}>
+      <p className="text-sm text-theme-muted">Already running a survey in Google Forms, Microsoft Forms, Typeform or elsewhere? Link it here. People answer it there, and its results stay in that tool.</p>
+      <div className="space-y-1">
+        <label htmlFor="link-survey-url" className="text-sm font-bold">Survey link</label>
+        <input id="link-survey-url" type="url" inputMode="url" value={url} onChange={e => setUrl(e.target.value)} maxLength={500} placeholder="https://forms.gle/…" className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm" />
+      </div>
+      <div className="space-y-1">
+        <label htmlFor="link-survey-title" className="text-sm font-bold">Title</label>
+        <input id="link-survey-title" value={title} onChange={e => setTitle(e.target.value)} maxLength={200} placeholder="e.g. Riverknoll housing survey" className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm" />
+      </div>
+      <div className="space-y-1">
+        <label htmlFor="link-survey-description" className="text-sm font-bold">Description (optional)</label>
+        <textarea id="link-survey-description" value={description} onChange={e => setDescription(e.target.value)} maxLength={4000} rows={2} className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm" />
+      </div>
+      <div className="space-y-1">
+        <label htmlFor="link-survey-audience" className="text-sm font-bold">Who sees it in this tab</label>
+        <select id="link-survey-audience" value={audience} onChange={e => setAudience(e.target.value as SurveyAudience)} className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm">
+          {(Object.keys(AUDIENCE_LABEL) as SurveyAudience[]).map(a => <option key={a} value={a}>{AUDIENCE_LABEL[a]}</option>)}
+        </select>
+      </div>
+      {error && <p className="text-sm font-bold text-red-500" role="alert">{error}</p>}
+      <div className="flex flex-wrap justify-end gap-2">
+        <Button type="button" variant="ghost" onClick={onClose}>Cancel</Button>
+        <Button type="button" className="font-bold" disabled={saving || !url.trim() || !title.trim()} onClick={save}>
+          {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}{survey ? 'SAVE' : 'LINK SURVEY'}
+        </Button>
+      </div>
+    </Modal>
   )
 }
 

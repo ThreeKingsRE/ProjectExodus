@@ -1281,7 +1281,11 @@ model ProjectSurvey {
   title       String
   description String? @db.Text
 
-  questions Json // SurveyQuestion[]
+  questions Json // SurveyQuestion[]; empty for a linked survey
+
+  // A survey hosted elsewhere (Google Forms, Microsoft Forms, Typeform...):
+  // people answer there, so it has no questions or responses on this site.
+  externalUrl String? @db.Text
 
   status       ProjectSurveyStatus   @default(DRAFT)
   audience     ProjectSurveyAudience @default(MEMBERS)

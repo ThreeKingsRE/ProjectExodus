@@ -38,6 +38,7 @@ export const surveyListSelect = {
   anonymous: true,
   shareResults: true,
   closesAt: true,
+  externalUrl: true,
   questions: true,
   createdAt: true,
   updatedAt: true,

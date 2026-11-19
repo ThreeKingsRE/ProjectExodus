@@ -1,3 +1,4 @@
+import { normalizeSurveyUrl } from './linked-text'
 // Native initiative surveys: question definitions, answer validation,
 // access rules, result summaries, and CSV export. Pure functions only so they
 // can be tested without a database.
@@ -170,6 +171,8 @@ export interface SurveySettings {
   anonymous: boolean
   shareResults: boolean
   closesAt: Date | null
+  /** Set for a linked survey hosted on another site */
+  externalUrl: string | null
 }
 
 /** Validate survey settings. `partial` allows omitted fields for updates. */
@@ -192,6 +195,11 @@ export function parseSurveySettings(body: unknown, partial: boolean): Result<Par
     const audience = b.audience ?? 'MEMBERS'
     if (!SURVEY_AUDIENCES.includes(audience as SurveyAudience)) return { ok: false, error: 'Invalid audience.' }
     data.audience = audience as SurveyAudience
+  }
+  if (b.externalUrl !== undefined) {
+    const url = b.externalUrl === null ? '' : normalizeSurveyUrl(b.externalUrl)
+    if (url === null) return { ok: false, error: 'The survey link must be a full https:// address.' }
+    data.externalUrl = url || null
   }
   if (b.anonymous !== undefined) data.anonymous = b.anonymous === true
   if (b.shareResults !== undefined) data.shareResults = b.shareResults === true
