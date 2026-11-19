@@ -9,6 +9,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import type { CoreTopic } from '@/types/modules'
+import { FloatingBook } from './FloatingBook'
 
 interface CoverTheme {
   cloth: string
@@ -16,7 +17,7 @@ interface CoverTheme {
   foil: string
 }
 
-const THEMES: Record<CoreTopic, CoverTheme> = {
+export const BOOK_THEMES: Record<CoreTopic, CoverTheme> = {
   'renewable-energy': { cloth: '#5b3a14', clothDark: '#3f280d', foil: '#e2bf6e' },
   'water-systems': { cloth: '#163a57', clothDark: '#0e283d', foil: '#d9c08a' },
   'regenerative-agriculture': { cloth: '#2c4524', clothDark: '#1d3017', foil: '#dcc283' },
@@ -100,6 +101,8 @@ export interface BookCoverProps {
   windowText?: { kicker: string; big: string; small?: string }
   /** Replaces the chapters · hours · level line */
   imprint?: string
+  /** Give the book real thickness (spine, page edges, back board), in % of its width */
+  depth?: number
 }
 
 export interface ScrollHardcoverProps {
@@ -119,8 +122,8 @@ export interface ScrollHardcoverProps {
  * The book itself, drawn to fill its parent (3:4). Sizes inside are relative
  * to the book's width (cqw), so the same cover works as a hero or a card.
  */
-export function BookCover({ topicId, title, subtitle, chapterTitles, currentChapter, levelLabel, hours, progressPercent, open = false, animate = true, windowText, imprint }: BookCoverProps) {
-  const theme = THEMES[topicId]
+export function BookCover({ topicId, title, subtitle, chapterTitles, currentChapter, levelLabel, hours, progressPercent, open = false, animate = true, windowText, imprint, depth = 0 }: BookCoverProps) {
+  const theme = BOOK_THEMES[topicId]
   const reduceMotion = useReducedMotion()
   const moving = animate && !reduceMotion
 
@@ -135,13 +138,42 @@ export function BookCover({ topicId, title, subtitle, chapterTitles, currentChap
   // Endpaper: a fine diamond lattice in the cover's colours
   const endpaper = `repeating-linear-gradient(45deg, ${theme.cloth}33 0 1px, transparent 1px 9px), repeating-linear-gradient(-45deg, ${theme.cloth}33 0 1px, transparent 1px 9px), radial-gradient(circle, ${theme.foil}55 0 1.2px, transparent 1.6px)`
 
+  const d = `${depth}cqw`
+  const pageEdge = 'repeating-linear-gradient(0deg, #f6f1e4 0 1px, #ddd4bf 1px 2px)'
+
   return (
     <div className="absolute inset-0" style={{ containerType: 'inline-size', transformStyle: 'preserve-3d' }}>
-      {/* Page block behind the board (edges right and bottom), with a title page */}
+      {depth > 0 && (
+        <>
+          {/* Back board */}
+          <div aria-hidden className="absolute inset-0 rounded-md" style={{ transform: `translateZ(calc(-1 * ${d}))`, background: theme.clothDark, boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.3)' }} />
+          {/* Spine: cloth, raised bands and a foil title, seen when the book turns left */}
+          <div
+            aria-hidden
+            className="absolute inset-y-0 left-0 flex items-center justify-center overflow-hidden"
+            style={{ width: d, transformOrigin: 'left center', transform: 'rotateY(90deg)', background: `linear-gradient(90deg, ${theme.clothDark}, ${theme.cloth} 45%, ${theme.clothDark})` }}
+          >
+            {[10, 18, 82, 90].map((t) => (
+              <div key={t} className="absolute inset-x-0" style={{ top: `${t}%`, height: '0.8cqw', background: `linear-gradient(180deg, ${theme.foil}66, rgba(0,0,0,0.35))` }} />
+            ))}
+            <span className="whitespace-nowrap font-serif font-bold uppercase" style={{ writingMode: 'vertical-rl', fontSize: `${Math.min(depth * 0.5, 3.6)}cqw`, letterSpacing: '0.12em', color: theme.foil }}>{title}</span>
+          </div>
+          {/* Page edges: right, top and bottom */}
+          <div aria-hidden className="absolute" style={{ top: '1.6%', bottom: '1.6%', right: '0.6%', width: d, transformOrigin: 'right center', transform: 'rotateY(-90deg)', background: `linear-gradient(90deg, rgba(0,0,0,0.18), transparent 30%), ${pageEdge.replace('0deg', '90deg')}` }} />
+          <div aria-hidden className="absolute" style={{ top: '1.2%', left: '3%', right: '1.2%', height: d, transformOrigin: 'center top', transform: 'rotateX(-90deg)', background: `linear-gradient(180deg, rgba(0,0,0,0.15), transparent 40%), ${pageEdge}` }} />
+          <div aria-hidden className="absolute" style={{ bottom: '1.2%', left: '3%', right: '1.2%', height: d, transformOrigin: 'center bottom', transform: 'rotateX(90deg)', background: `linear-gradient(0deg, rgba(0,0,0,0.25), transparent 40%), ${pageEdge}` }} />
+        </>
+      )}
+
+      {/* Page block behind the board, with a title page (it also fakes thickness on flat books) */}
       <div
         aria-hidden
         className="absolute flex flex-col items-center justify-center rounded-r-sm text-center"
-        style={{
+        style={depth > 0 ? {
+          top: '1.4%', bottom: '1.4%', left: '3%', right: '1%',
+          transform: 'translateZ(-0.4cqw)',
+          background: '#fbf8f1',
+        } : {
           top: '2.2%', bottom: '-1.6%', left: '3%', right: '-2.6%',
           background: 'linear-gradient(90deg, rgba(0,0,0,0.12), transparent 8%), repeating-linear-gradient(90deg, #f8f4ea 0 2px, #e6dfcf 2px 3px)',
           boxShadow: '0 24px 40px -12px rgba(0,0,0,0.55), 0 8px 14px -6px rgba(0,0,0,0.35)',
@@ -290,9 +322,8 @@ export function BookCover({ topicId, title, subtitle, chapterTitles, currentChap
 
 /** The topic page hero: the book you click to open the Digital Scroll. */
 export function ScrollHardcover(props: ScrollHardcoverProps) {
-  const { title, currentChapter, progressPercent, onOpen } = props
+  const { topicId, title, currentChapter, progressPercent, onOpen } = props
   const reduceMotion = useReducedMotion()
-  const [hover, setHover] = useState(false)
   const [opening, setOpening] = useState(false)
   const action = currentChapter === null ? 'Open the book' : `Continue at Chapter ${currentChapter + 1}`
 
@@ -307,30 +338,23 @@ export function ScrollHardcover(props: ScrollHardcoverProps) {
 
   return (
     <div className="flex flex-col items-center">
-      <div style={{ perspective: 1600 }}>
-        <motion.button
+      <FloatingBook glow={BOOK_THEMES[topicId].foil} opening={opening} restY={-20} lift={9} style={{ width: 'clamp(230px, 60vw, 340px)' }}>
+        <button
           type="button"
           onClick={open}
-          onHoverStart={() => setHover(true)}
-          onHoverEnd={() => setHover(false)}
-          onFocus={() => setHover(true)}
-          onBlur={() => setHover(false)}
           aria-label={`${title} textbook. ${action}.`}
-          className="relative block rounded-r-md focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/70"
-          style={{ width: 'clamp(250px, 62vw, 360px)', aspectRatio: '3 / 4', transformStyle: 'preserve-3d' }}
-          initial={false}
-          animate={reduceMotion ? {} : opening ? { rotateY: 0, rotateX: 0, y: -4, scale: 1.04 } : { rotateY: hover ? -16 : -7, rotateX: hover ? 3 : 2, y: hover ? -6 : 0, scale: 1 }}
-          transition={{ type: 'spring', stiffness: 140, damping: 18 }}
+          className="absolute inset-0 rounded-r-md focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/70"
+          style={{ transformStyle: 'preserve-3d' }}
         >
-          <BookCover {...props} open={opening} />
-        </motion.button>
-      </div>
+          <BookCover {...props} open={opening} depth={11} />
+        </button>
+      </FloatingBook>
 
       {/* Caption under the book */}
-      <div className="mt-8 text-center">
+      <div className="mt-12 text-center">
         <p className="font-serif text-lg font-semibold text-[var(--foreground)]">{action}</p>
         <p className="mt-0.5 text-sm text-[var(--muted-foreground)]">
-          {progressPercent > 0 ? `${progressPercent}% complete · ` : ''}Click the cover to begin reading
+          {progressPercent > 0 ? `${progressPercent}% complete · ` : ''}Tap the cover to begin reading
         </p>
       </div>
     </div>

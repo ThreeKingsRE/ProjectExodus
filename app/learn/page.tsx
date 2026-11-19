@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react'
 import { useSession } from 'next-auth/react'
 import { Card, CardContent } from '@/components/ui/Card'
 import { BookCover } from '@/components/learning/ScrollHardcover'
+import { FloatingBook } from '@/components/learning/FloatingBook'
 import { Button } from '@/components/ui/Button'
 import dynamic from 'next/dynamic'
 
@@ -405,7 +406,7 @@ export default function LearnPage() {
                       </div>
                       <div className="min-w-0">
                         <span className="text-xs sm:text-sm font-black text-theme-primary">{path.level}</span>
-                        <h3 className="text-base sm:text-lg lg:text-xl font-black text-[var(--foreground)] truncate">{path.title}</h3>
+                        <h3 className="text-base sm:text-lg lg:text-xl font-black leading-tight text-[var(--foreground)] break-words">{path.title}</h3>
                       </div>
                     </div>
 
@@ -521,7 +522,7 @@ export default function LearnPage() {
 
           {/* Mobile: 2 columns compact | Tablet: 2 columns | Desktop: 3 columns */}
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-8 max-w-7xl mx-auto">
-            {topics.map((topic) => {
+            {topics.map((topic, idx) => {
               const progress = topicProgress.get(topic.slug as CoreTopic)
               const progressPercent = progress?.progressPercent || 0
               const isGraduated = progress?.isGraduated || false
@@ -533,12 +534,9 @@ export default function LearnPage() {
                   className="group block focus:outline-none"
                   aria-label={`${topic.title}: ${isGraduated ? 'review' : progressPercent > 0 ? 'continue' : 'explore'} the textbook`}
                 >
-                  {/* The topic's textbook, closed; tilts open a little on hover */}
-                  <div style={{ perspective: 1200 }} className="mx-auto px-[4%] pt-1" >
-                    <div
-                      className="relative w-full transition-transform duration-500 ease-out [transform:rotateY(-6deg)_rotateX(2deg)] group-hover:[transform:rotateY(-14deg)_rotateX(3deg)_translateY(-6px)] group-focus-visible:[transform:rotateY(-14deg)_rotateX(3deg)_translateY(-6px)] motion-reduce:transform-none"
-                      style={{ aspectRatio: '3 / 4', transformStyle: 'preserve-3d' }}
-                    >
+                  {/* The topic's textbook, floating on the shelf; turns toward the pointer */}
+                  <div className="mx-auto px-[6%] pt-3">
+                    <FloatingBook delay={idx * 0.9} lift={7} restY={-20} tiltRange={14} className="w-full">
                       <BookCover
                         topicId={topic.slug as CoreTopic}
                         title={topic.title}
@@ -549,12 +547,13 @@ export default function LearnPage() {
                         hours={0}
                         progressPercent={progressPercent}
                         animate={false}
+                          depth={10}
                         windowText={{ kicker: 'Chapters', big: String(topic.modules), small: `${Math.ceil(topic.modules / 7)} volumes` }}
                         imprint={`${LEARNING_LEVELS[selectedLevel].label} edition`}
                       />
-                    </div>
+                    </FloatingBook>
                   </div>
-                  <div className="mt-4 flex items-center justify-between gap-2 px-1 sm:mt-6">
+                  <div className="mt-7 flex items-center justify-between gap-2 px-1 sm:mt-9">
                     <span className="text-[11px] font-bold text-theme-muted sm:text-xs lg:text-sm">
                       {isGraduated ? (
                         <span className="inline-flex items-center gap-1 text-green-600"><GraduationCap className="h-3.5 w-3.5" /> Complete</span>

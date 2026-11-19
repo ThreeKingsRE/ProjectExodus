@@ -2731,3 +2731,11 @@ body.textbook-fullscreen button[aria-label="Open Sage"] { display: none; }
 .mobile-menu-in { animation: mobile-menu-in 180ms ease-out; }
 @media (prefers-reduced-motion: reduce) { .mobile-menu-in { animation: none; } }
 body[data-menu-open] .sage-fab { display: none; }
+
+/* Learn: light specks drifting up behind the floating book */
+@keyframes dust-rise {
+  0% { transform: translate(0, 0); opacity: 0; }
+  12% { opacity: 0.7; }
+  80% { opacity: 0.45; }
+  100% { transform: translate(var(--drift, 0px), -110vh); opacity: 0; }
+}

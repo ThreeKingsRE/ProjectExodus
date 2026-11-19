@@ -3,7 +3,9 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/Button'
 import { ArrowLeft, GraduationCap } from 'lucide-react'
-import { ScrollHardcover } from '@/components/learning/ScrollHardcover'
+import { ScrollHardcover, BOOK_THEMES } from '@/components/learning/ScrollHardcover'
+import { DustMotes } from '@/components/learning/FloatingBook'
+import type { CoreTopic } from '@/types/modules'
 import Link from 'next/link'
 import type { TopicDefinition } from '@/types/modules'
 import { LearningLevel, LEARNING_LEVELS, LEARNING_LEVEL_ORDER } from '@/types/learning'
@@ -167,7 +169,10 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
     <div className="min-h-screen bg-[var(--background)]">
       {/* Hero: the Digital Scroll as a closed hardcover; click it to open */}
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-[var(--muted)] pb-14 pt-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* A pool of light under the book, and specks drifting through it */}
+        <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: `radial-gradient(60% 55% at 50% 58%, ${BOOK_THEMES[topic.id as CoreTopic]?.foil ?? '#d6c48f'}26, transparent 70%)` }} />
+        <DustMotes color={BOOK_THEMES[topic.id as CoreTopic]?.foil ?? '#d6c48f'} />
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
             <Link href="/learn" className="mb-6 inline-flex items-center gap-2 font-bold text-theme-muted hover:text-theme-primary">
               <ArrowLeft className="h-5 w-5" />
@@ -231,29 +236,30 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-6xl mx-auto">
-          {/* Level Selector */}
-          <div className="mb-8">
-            <div className="bg-[color-mix(in_srgb,var(--primary)_10%,var(--background))] rounded-2xl p-6 border-2 border-theme-primary">
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <GraduationCap className="w-5 h-5 text-theme-primary" />
-                <span className="font-black text-theme-primary">SELECT YOUR LEVEL</span>
-              </div>
-              <div className="flex flex-wrap gap-2 justify-center">
+          {/* Reading level: a segmented control */}
+          <div className="mb-10 flex flex-col items-center gap-3">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--muted-foreground)]">
+              <GraduationCap className="h-4 w-4" /> Reading level
+            </p>
+            <div className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div role="radiogroup" aria-label="Reading level" className="mx-auto flex w-max gap-1 rounded-full border border-[var(--border)] bg-[var(--card)] p-1 shadow-sm">
                 {LEARNING_LEVEL_ORDER.map((level) => {
                   const meta = LEARNING_LEVELS[level]
                   const isSelected = level === selectedLevel
                   return (
                     <button
                       key={level}
+                      role="radio"
+                      aria-checked={isSelected}
                       onClick={() => setSelectedLevel(level)}
-                      className={`px-3 py-2 rounded-xl text-sm font-bold transition-all duration-200 flex items-center gap-2 ${
+                      className={`flex items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-semibold transition-colors ${
                         isSelected
-                          ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-lg scale-105'
-                          : 'bg-[var(--card)] text-[var(--foreground)] hover:bg-[var(--primary)]/20 border border-[var(--border)]'
+                          ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow'
+                          : 'text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]'
                       }`}
                     >
-                      <span>{meta.icon}</span>
-                      <span>{meta.shortLabel}</span>
+                      <span aria-hidden>{meta.icon}</span>
+                      {meta.shortLabel}
                     </button>
                   )
                 })}
