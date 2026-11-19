@@ -222,18 +222,18 @@ export default function Home() {
       <FeatureShowcase />
 
       {/* Mission Statement */}
-      <section className="py-32 bg-[var(--background)]">
+      <section className="py-14 md:py-32 bg-[var(--background)]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-black mb-8 text-[var(--foreground)]">OUR MISSION</h2>
+            <div className="text-center mb-6 md:mb-12">
+              <h2 className="text-3xl md:text-4xl font-black md:mb-8 text-[var(--foreground)]">OUR MISSION</h2>
             </div>
-            <Card className="border-4 border-theme-primary bg-gradient-to-br from-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[color-mix(in_srgb,var(--accent)_15%,var(--background))] shadow-theme-2xl">
-              <CardContent className="p-12">
-                <div className="flex items-center justify-center mb-8">
-                  <Heart className="w-20 h-20 text-theme-primary" />
+            <Card className="border-2 md:border-4 border-theme-primary bg-gradient-to-br from-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[color-mix(in_srgb,var(--accent)_15%,var(--background))] shadow-theme-2xl">
+              <CardContent className="p-5 md:p-12">
+                <div className="flex items-center justify-center mb-4 md:mb-8">
+                  <Heart className="w-10 h-10 md:w-20 md:h-20 text-theme-primary" />
                 </div>
-                <p className="text-2xl font-bold leading-relaxed text-center text-[var(--foreground)]">
+                <p className="text-lg md:text-2xl font-bold leading-relaxed text-center text-[var(--foreground)]">
                   It is our <span style={{
                     background: 'linear-gradient(135deg, #36763d, #357777)',
                     WebkitBackgroundClip: 'text',
@@ -249,12 +249,12 @@ export default function Home() {
       </section>
 
       {/* The Commandments of Sustainable Agriculture */}
-      <section className="py-4 bg-gradient-to-br from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)] text-[var(--primary-foreground)]">
+      <section className="pb-6 md:py-4 bg-gradient-to-br from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)] text-[var(--primary-foreground)]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-2">
-              <h2 className="text-3xl md:text-4xl font-black mb-1 text-[var(--primary-foreground)]">THE COMMANDMENTS</h2>
-              <p className="text-lg md:text-xl font-bold text-[var(--primary-foreground)]">OF SUSTAINABLE AGRICULTURE</p>
+              <h2 className="text-[1.6rem] leading-tight md:text-4xl font-black mb-1 pt-6 md:pt-0 text-[var(--primary-foreground)]">THE COMMANDMENTS</h2>
+              <p className="text-sm md:text-xl font-bold tracking-wide text-[var(--primary-foreground)]">OF SUSTAINABLE AGRICULTURE</p>
             </div>
 
             <Suspense fallback={<div className="h-96" />}>
@@ -265,60 +265,60 @@ export default function Home() {
       </section>
 
       {/* Team Structure */}
-      <section className="py-32 bg-[var(--background)]">
+      <section className="py-14 md:py-32 bg-[var(--background)]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-20">
-              <h2 className="text-3xl md:text-4xl font-black mb-6 text-[var(--foreground)]">OUR TEAM STRUCTURE</h2>
-              <p className="text-xl font-semibold text-theme-muted">
+            <div className="text-center mb-6 md:mb-20">
+              <h2 className="text-[1.6rem] leading-tight md:text-4xl font-black mb-2 md:mb-6 text-[var(--foreground)]">OUR TEAM STRUCTURE</h2>
+              <p className="text-base md:text-xl font-semibold text-theme-muted">
                 Building the future together through collaborative leadership
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="border-4 border-theme-primary bg-gradient-to-br from-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[color-mix(in_srgb,var(--primary)_25%,var(--background))] shadow-theme-xl">
-                <CardHeader>
-                  <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--primary)] to-[color-mix(in_srgb,var(--primary)_80%,black)] flex items-center justify-center shadow-theme-xl">
-                      <Users className="w-10 h-10 text-[var(--primary-foreground)]" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-8">
+              <Card className="border-2 md:border-4 border-theme-primary bg-gradient-to-br from-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[color-mix(in_srgb,var(--primary)_25%,var(--background))] shadow-theme-xl">
+                <CardHeader className="max-md:p-4 max-md:pb-1">
+                  <div className="flex items-center gap-3 md:block md:text-center">
+                    <div className="w-11 h-11 md:w-20 md:h-20 shrink-0 md:mx-auto md:mb-4 rounded-full bg-gradient-to-br from-[var(--primary)] to-[color-mix(in_srgb,var(--primary)_80%,black)] flex items-center justify-center shadow-theme-xl">
+                      <Users className="w-5 h-5 md:w-10 md:h-10 text-[var(--primary-foreground)]" />
                     </div>
-                    <h3 className="text-2xl font-black text-theme-primary">ROUND TABLE</h3>
+                    <h3 className="text-lg md:text-2xl font-black text-theme-primary">ROUND TABLE</h3>
                   </div>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-base font-bold text-theme-muted">
+                <CardContent className="md:text-center max-md:px-4 max-md:pb-4 max-md:pt-1">
+                  <p className="text-sm md:text-base font-bold text-theme-muted">
                     Our Senate - Collaborative prosumer decision-making body guiding strategic direction
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-4 border-theme-accent bg-gradient-to-br from-[color-mix(in_srgb,var(--accent)_15%,var(--background))] to-[color-mix(in_srgb,var(--accent)_25%,var(--background))] shadow-theme-xl">
-                <CardHeader>
-                  <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--accent)] to-[color-mix(in_srgb,var(--accent)_80%,black)] flex items-center justify-center shadow-theme-xl">
-                      <BookOpen className="w-10 h-10 text-[var(--primary-foreground)]" />
+              <Card className="border-2 md:border-4 border-theme-accent bg-gradient-to-br from-[color-mix(in_srgb,var(--accent)_15%,var(--background))] to-[color-mix(in_srgb,var(--accent)_25%,var(--background))] shadow-theme-xl">
+                <CardHeader className="max-md:p-4 max-md:pb-1">
+                  <div className="flex items-center gap-3 md:block md:text-center">
+                    <div className="w-11 h-11 md:w-20 md:h-20 shrink-0 md:mx-auto md:mb-4 rounded-full bg-gradient-to-br from-[var(--accent)] to-[color-mix(in_srgb,var(--accent)_80%,black)] flex items-center justify-center shadow-theme-xl">
+                      <BookOpen className="w-5 h-5 md:w-10 md:h-10 text-[var(--primary-foreground)]" />
                     </div>
-                    <h3 className="text-2xl font-black text-theme-accent">ITJ COMMITTEE</h3>
+                    <h3 className="text-lg md:text-2xl font-black text-theme-accent">ITJ COMMITTEE</h3>
                   </div>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-base font-bold text-theme-muted">
+                <CardContent className="md:text-center max-md:px-4 max-md:pb-4 max-md:pt-1">
+                  <p className="text-sm md:text-base font-bold text-theme-muted">
                     Innovation, Technology & Justice - Driving our technical and ethical initiatives
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-4 border-theme-secondary bg-gradient-to-br from-[color-mix(in_srgb,var(--secondary)_15%,var(--background))] to-[color-mix(in_srgb,var(--secondary)_25%,var(--background))] shadow-theme-xl">
-                <CardHeader>
-                  <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--secondary)] to-[color-mix(in_srgb,var(--secondary)_80%,black)] flex items-center justify-center shadow-theme-xl">
-                      <Award className="w-10 h-10 text-[var(--primary-foreground)]" />
+              <Card className="border-2 md:border-4 border-theme-secondary bg-gradient-to-br from-[color-mix(in_srgb,var(--secondary)_15%,var(--background))] to-[color-mix(in_srgb,var(--secondary)_25%,var(--background))] shadow-theme-xl">
+                <CardHeader className="max-md:p-4 max-md:pb-1">
+                  <div className="flex items-center gap-3 md:block md:text-center">
+                    <div className="w-11 h-11 md:w-20 md:h-20 shrink-0 md:mx-auto md:mb-4 rounded-full bg-gradient-to-br from-[var(--secondary)] to-[color-mix(in_srgb,var(--secondary)_80%,black)] flex items-center justify-center shadow-theme-xl">
+                      <Award className="w-5 h-5 md:w-10 md:h-10 text-[var(--primary-foreground)]" />
                     </div>
-                    <h3 className="text-2xl font-black text-theme-secondary">BIZ OP</h3>
+                    <h3 className="text-lg md:text-2xl font-black text-theme-secondary">BIZ OP</h3>
                   </div>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-base font-bold text-theme-muted">
+                <CardContent className="md:text-center max-md:px-4 max-md:pb-4 max-md:pt-1">
+                  <p className="text-sm md:text-base font-bold text-theme-muted">
                     Business Operations - Managing partnerships, growth, and sustainability
                   </p>
                 </CardContent>
@@ -329,7 +329,7 @@ export default function Home() {
       </section>
 
       {/* Business Philosophy */}
-      <section className="scroll-mt-24 py-32 bg-gradient-to-b from-[var(--background)] to-[var(--muted)]">
+      <section className="scroll-mt-24 py-14 md:py-32 bg-gradient-to-b from-[var(--background)] to-[var(--muted)]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             {/* Sacred divider */}
@@ -339,7 +339,7 @@ export default function Home() {
               <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[var(--primary)] to-transparent" />
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-black text-center mb-8 text-[var(--foreground)]">OUR PHILOSOPHY</h2>
+            <h2 className="text-[1.6rem] leading-tight sm:text-4xl font-black text-center mb-4 md:mb-8 text-[var(--foreground)]">OUR PHILOSOPHY</h2>
 
             {/* Decorative framed content */}
             <div className="relative">
@@ -349,9 +349,9 @@ export default function Home() {
               <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[var(--primary)]/30" />
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[var(--primary)]/30" />
 
-              <div className="px-8 py-12 text-center space-y-6">
+              <div className="px-5 py-8 md:px-8 md:py-12 text-center space-y-4 md:space-y-6">
                 {/* Core message */}
-                <p className="text-xl sm:text-2xl font-serif italic text-[var(--foreground)] leading-relaxed">
+                <p className="text-lg sm:text-2xl font-serif italic text-[var(--foreground)] leading-relaxed">
                   "Every action we take today becomes the foundation for tomorrow."
                 </p>
 
@@ -421,7 +421,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section - Full Bleed */}
-      <section className="py-56 bg-gradient-to-br from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)] text-[var(--primary-foreground)] relative overflow-hidden">
+      <section className="py-16 md:py-56 bg-gradient-to-br from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)] text-[var(--primary-foreground)] relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-20 right-20 w-96 h-96 bg-[var(--background)] rounded-full blur-3xl opacity-10 animate-pulse" style={{ animationDuration: '8s' }} />
           <div className="absolute bottom-20 left-20 w-96 h-96 bg-[var(--background)] rounded-full blur-3xl opacity-10 animate-pulse" style={{ animationDelay: '2s', animationDuration: '10s' }} />
@@ -433,25 +433,25 @@ export default function Home() {
               fontSize: 'clamp(2rem, 8vw, 6rem)',
               fontWeight: 900,
               lineHeight: 1.1,
-              marginBottom: '2rem'
+              marginBottom: '1.25rem'
             }}>
               READY TO START YOUR SUSTAINABLE JOURNEY?
             </h2>
-            <p className="text-2xl font-semibold mb-12 opacity-90 text-[var(--primary-foreground)]">
+            <p className="text-base md:text-2xl font-semibold mb-8 md:mb-12 opacity-90 text-[var(--primary-foreground)]">
               Every choice matters. Every action counts. Join us today.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-6 justify-center">
               <Link
                 href="/auth/signup"
-                className="inline-flex items-center justify-center text-xl px-12 py-8 rounded-2xl border-4 border-[var(--primary-foreground)] bg-[var(--primary-foreground)] text-[var(--primary)] hover:opacity-90 shadow-theme-2xl hover:scale-110 transition-all duration-300 font-black"
-                style={{ minWidth: '250px' }}
+                className="inline-flex items-center justify-center text-base md:text-xl px-8 py-4 md:px-12 md:py-8 rounded-2xl border-2 md:border-4 border-[var(--primary-foreground)] bg-[var(--primary-foreground)] text-[var(--primary)] hover:opacity-90 shadow-theme-2xl hover:scale-110 transition-all duration-300 font-black"
+                
               >
                 GET STARTED →
               </Link>
               <Link
                 href="/products"
-                className="inline-flex items-center justify-center text-xl px-12 py-8 rounded-2xl border-4 border-[var(--primary-foreground)] text-[var(--primary-foreground)] hover:bg-[var(--primary-foreground)] hover:text-[var(--primary)] transition-all duration-300 font-black"
-                style={{ minWidth: '250px' }}
+                className="inline-flex items-center justify-center text-base md:text-xl px-8 py-4 md:px-12 md:py-8 rounded-2xl border-2 md:border-4 border-[var(--primary-foreground)] text-[var(--primary-foreground)] hover:bg-[var(--primary-foreground)] hover:text-[var(--primary)] transition-all duration-300 font-black"
+                
               >
                 VIEW DEMO
               </Link>

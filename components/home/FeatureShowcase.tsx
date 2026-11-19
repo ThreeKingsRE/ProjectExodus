@@ -479,7 +479,7 @@ export function FeatureShowcase() {
   const showSignUp = !isAuthenticated && status !== 'loading'
 
   return (
-    <section className="py-24 md:py-32 bg-[var(--background)] relative overflow-hidden">
+    <section className="py-14 md:py-32 bg-[var(--background)] relative overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[color-mix(in_srgb,var(--primary)_4%,var(--background))] to-transparent" />
       <div className="absolute inset-0 opacity-[0.03]" style={{
@@ -492,7 +492,7 @@ export function FeatureShowcase() {
 
           {/* Section Header */}
           <motion.div
-            className="text-center mb-16 md:mb-20"
+            className="text-center mb-8 md:mb-20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -513,23 +513,23 @@ export function FeatureShowcase() {
             }}>
               EVERYTHING UNDER ONE ROOF
             </h2>
-            <p className="mt-4 text-lg text-[var(--muted-foreground)] max-w-2xl mx-auto font-medium">
+            <p className="mt-3 md:mt-4 text-base md:text-lg text-[var(--muted-foreground)] max-w-2xl mx-auto font-medium">
               One platform for sustainable living — discover, learn, connect, and create.
             </p>
           </motion.div>
 
           {/* Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:auto-rows-[200px] gap-4 md:gap-5 lg:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 md:auto-rows-[200px] gap-3 md:gap-5 lg:gap-6">
             {features.map((feature, index) => {
               const Icon = feature.icon
               return (
                 <Link
                   key={feature.id}
                   href={feature.href}
-                  className={cn('block', feature.gridClass)}
+                  className={cn('block min-w-0', (feature.hero || (index === features.length - 1 && features.filter(f => !f.hero).length % 2 === 1)) && 'col-span-2 lg:col-span-1', feature.gridClass)}
                 >
                   <motion.div
-                    className="group relative w-full h-full min-h-[200px] md:min-h-0 overflow-hidden rounded-2xl border cursor-pointer bg-[var(--card)]"
+                    className={cn('group relative w-full h-full overflow-hidden rounded-2xl border cursor-pointer bg-[var(--card)] md:min-h-0', feature.hero ? 'min-h-[180px]' : 'min-h-[132px]')}
                     style={{ borderColor: `rgba(${feature.accentRgb}, 0.2)` }}
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -554,22 +554,22 @@ export function FeatureShowcase() {
                     />
 
                     {/* Animated scene */}
-                    <div className="absolute inset-0 overflow-hidden">
+                    <div className="absolute inset-0 overflow-hidden hidden md:block">
                       <AnimatedScene id={feature.id} color={feature.accentColor} rgb={feature.accentRgb} />
                     </div>
 
                     {/* Content */}
-                    <div className="relative z-10 h-full p-5 md:p-6 flex flex-col justify-end">
+                    <div className="relative z-10 h-full p-3.5 md:p-6 flex flex-col justify-end">
                       {/* Icon badge */}
-                      <div className="flex items-center gap-2.5 mb-2.5">
+                      <div className="flex items-center gap-2.5 mb-2 md:mb-2.5">
                         <div
-                          className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300"
+                          className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300"
                           style={{ backgroundColor: `rgba(${feature.accentRgb}, 0.12)`, border: `1px solid rgba(${feature.accentRgb}, 0.15)` }}
                         >
-                          <Icon style={{ width: 20, height: 20, color: feature.accentColor }} />
+                          <Icon className="h-4 w-4 md:h-5 md:w-5" style={{ color: feature.accentColor }} />
                         </div>
                         <span
-                          className="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full"
+                          className={cn('text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full', !feature.hero && 'hidden md:inline')}
                           style={{ backgroundColor: `rgba(${feature.accentRgb}, 0.1)`, color: feature.accentColor }}
                         >
                           {feature.tagline}
@@ -579,15 +579,15 @@ export function FeatureShowcase() {
                       {/* Title */}
                       <h3 className={cn(
                         'font-black text-[var(--foreground)] mb-1',
-                        feature.hero ? 'text-xl md:text-2xl' : 'text-lg',
+                        feature.hero ? 'text-xl md:text-2xl' : 'text-[15px] leading-tight md:text-lg',
                       )}>
                         {feature.title}
                       </h3>
 
                       {/* Description */}
                       <p className={cn(
-                        'text-sm text-[var(--muted-foreground)] leading-relaxed',
-                        !feature.hero && 'line-clamp-2',
+                        'text-xs md:text-sm text-[var(--muted-foreground)] leading-snug md:leading-relaxed',
+                        !feature.hero && 'line-clamp-3 md:line-clamp-2',
                       )}>
                         {feature.description}
                       </p>
@@ -612,7 +612,7 @@ export function FeatureShowcase() {
                       )}
 
                       {/* Hover CTA */}
-                      <div className="flex items-center gap-1.5 mt-3 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                      <div className="hidden md:flex items-center gap-1.5 mt-3 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                         <span className="text-sm font-bold" style={{ color: feature.accentColor }}>
                           Explore
                         </span>
@@ -638,13 +638,13 @@ export function FeatureShowcase() {
           {/* THREE PILLARS BAND */}
           {/* ============================================ */}
           <motion.div
-            className="mt-20 md:mt-24"
+            className="mt-10 md:mt-24"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative rounded-3xl overflow-hidden py-14 md:py-20 px-6 md:px-10">
+            <div className="relative rounded-3xl overflow-hidden py-8 md:py-20 px-4 md:px-10">
               {/* Gradient background */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#36763d] via-[#357777] to-[#c24f31]" />
               {/* Diagonal pattern */}
@@ -658,20 +658,20 @@ export function FeatureShowcase() {
 
               <div className="relative z-10">
                 {/* Heading */}
-                <div className="text-center mb-10 md:mb-14">
+                <div className="text-center mb-6 md:mb-14">
                   <p className="text-[10px] md:text-xs font-bold tracking-[0.3em] mb-3 text-white/70">
                     THREE PILLARS · ONE MISSION
                   </p>
-                  <h3 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+                  <h3 style={{ color: '#fff' }} className="text-[1.65rem] leading-tight md:text-5xl font-black text-white tracking-tight">
                     Off-Grid by Design
                   </h3>
-                  <p className="mt-4 text-base md:text-lg font-medium text-white/85 max-w-2xl mx-auto">
+                  <p className="mt-3 md:mt-4 text-sm md:text-lg font-medium text-white/85 max-w-2xl mx-auto">
                     Sustainable systems engineered to work together within every built environment.
                   </p>
                 </div>
 
                 {/* Pillar cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 max-w-5xl mx-auto">
                   {[
                     {
                       icon: Leaf,
@@ -696,7 +696,7 @@ export function FeatureShowcase() {
                     return (
                       <motion.div
                         key={pillar.title}
-                        className="group/pillar relative rounded-2xl p-6 md:p-7 backdrop-blur-sm overflow-hidden"
+                        className="group/pillar relative flex items-start gap-4 md:block rounded-2xl p-4 md:p-7 backdrop-blur-sm overflow-hidden"
                         style={{
                           backgroundColor: 'rgba(255,255,255,0.08)',
                           border: '1px solid rgba(255,255,255,0.18)',
@@ -716,29 +716,31 @@ export function FeatureShowcase() {
                         />
 
                         <div
-                          className="relative w-14 h-14 rounded-2xl flex items-center justify-center mb-4 group-hover/pillar:scale-110 transition-transform duration-300"
+                          className="relative w-11 h-11 md:w-14 md:h-14 shrink-0 rounded-xl md:rounded-2xl flex items-center justify-center md:mb-4 group-hover/pillar:scale-110 transition-transform duration-300"
                           style={{
                             backgroundColor: 'rgba(255,255,255,0.15)',
                             border: '1px solid rgba(255,255,255,0.22)',
                           }}
                         >
                           <PillarIcon
-                            className="w-7 h-7 text-white"
+                            className="w-5 h-5 md:w-7 md:h-7 text-white"
                             style={{
                               animation: `feat-float ${3.2 + i * 0.4}s ease-in-out infinite ${i * 0.3}s`,
                             }}
                           />
                         </div>
 
-                        <h4 className="relative text-2xl md:text-3xl font-black text-white mb-2 tracking-tight">
+                        <div className="relative min-w-0">
+                        <h4 style={{ color: '#fff' }} className="relative text-xl md:text-3xl font-black text-white mb-1 md:mb-2 tracking-tight">
                           {pillar.title}
                         </h4>
-                        <p className="relative text-sm text-white/85 leading-relaxed mb-4">
+                        <p className="relative text-[13px] md:text-sm text-white/85 leading-snug md:leading-relaxed mb-2 md:mb-4">
                           {pillar.description}
                         </p>
                         <p className="relative text-[11px] font-bold tracking-[0.15em] text-white/65 uppercase">
                           {pillar.stat}
                         </p>
+                        </div>
                       </motion.div>
                     )
                   })}
@@ -752,7 +754,7 @@ export function FeatureShowcase() {
           {/* ============================================ */}
           {showSignUp && (
             <motion.div
-              className="mt-12 text-center"
+              className="mt-8 md:mt-12 text-center"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

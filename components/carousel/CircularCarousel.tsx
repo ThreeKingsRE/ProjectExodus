@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/Card'
 import { ChevronLeft, ChevronRight, Shield, Sprout, Heart, Leaf, BookOpen, Scale, Eye, Handshake, Award } from 'lucide-react'
 
@@ -56,6 +57,93 @@ export function CircularCarousel({ items }: CircularCarouselProps) {
   const handleNext = () => {
     setIsAutoPlaying(false)
     setCurrentIndex((prev) => (prev + 1) % items.length)
+  }
+
+  // Phones get one full-width card you can swipe; the 3D ring needs room
+  const [isPhone, setIsPhone] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)')
+    const sync = () => setIsPhone(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+  const reduceMotion = useReducedMotion()
+  const [direction, setDirection] = useState(1)
+  const touchX = useRef<number | null>(null)
+
+  if (isPhone) {
+    const item = items[currentIndex]
+    const Icon = getIconComponent(item.iconName)
+    const go = (step: number) => {
+      setIsAutoPlaying(false)
+      setDirection(step)
+      setCurrentIndex((prev) => (prev + step + items.length) % items.length)
+    }
+    return (
+      <div className="relative w-full py-3" aria-roledescription="carousel" aria-label="The commandments">
+        <div
+          className="relative overflow-hidden"
+          onTouchStart={(e) => { touchX.current = e.touches[0].clientX }}
+          onTouchEnd={(e) => {
+            if (touchX.current === null) return
+            const dx = e.changedTouches[0].clientX - touchX.current
+            touchX.current = null
+            if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1)
+          }}
+        >
+          <AnimatePresence initial={false} mode="popLayout" custom={direction}>
+            <motion.div
+              key={item.number}
+              custom={direction}
+              initial={reduceMotion ? false : { x: direction * 60, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={reduceMotion ? undefined : { x: direction * -60, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="rounded-2xl border-2 border-[var(--primary)] bg-[var(--card)] p-4 shadow-xl"
+              aria-live="polite"
+            >
+              <div className="flex items-start gap-3">
+                <div
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-lg font-black text-white shadow-md"
+                  style={{ background: `linear-gradient(135deg, ${item.color}, ${item.color}dd)` }}
+                >
+                  {item.number}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="flex items-center gap-2 text-base font-black" style={{ color: item.color }}>
+                    <Icon className="h-5 w-5 shrink-0" />
+                    {item.title}
+                  </p>
+                  <p className="mt-1 text-sm font-semibold leading-relaxed text-theme-muted">{item.description}</p>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="mt-4 flex items-center justify-between gap-3">
+          <button onClick={() => go(-1)} aria-label="Previous" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-white/70 bg-white/15 text-white">
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <div className="flex flex-wrap items-center justify-center gap-1.5">
+            {items.map((it, index) => (
+              <button
+                key={it.number}
+                onClick={() => { setIsAutoPlaying(false); setDirection(index > currentIndex ? 1 : -1); setCurrentIndex(index) }}
+                aria-label={`Go to commandment ${index + 1}`}
+                aria-current={index === currentIndex}
+                className={`no-min-size h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'w-6 bg-white' : 'w-2 bg-white/45'}`}
+              />
+            ))}
+          </div>
+          <button onClick={() => go(1)} aria-label="Next" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-white/70 bg-white/15 text-white">
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+        <p className="mt-2 text-center text-[11px] font-semibold text-white/75">{currentIndex + 1} of {items.length} · swipe to browse</p>
+      </div>
+    )
   }
 
   const getItemStyle = (index: number) => {
@@ -208,7 +296,7 @@ export function CircularCarousel({ items }: CircularCarouselProps) {
               setCurrentIndex(index)
               setIsAutoPlaying(false)
             }}
-            className={`relative before:absolute before:-inset-x-2 before:-inset-y-3 before:content-[''] 
+            className={`no-min-size relative before:absolute before:-inset-x-2 before:-inset-y-3 before:content-[''] 
               h-2 rounded-full transition-all duration-300
               ${index === currentIndex
                 ? 'w-8 bg-[var(--primary)]'
