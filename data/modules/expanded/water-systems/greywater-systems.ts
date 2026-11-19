@@ -1,0 +1,153 @@
+import type { ModuleExpansion } from '../types'
+
+// Quiz-only expansion: the lesson content stays as written; the chapter's single
+// original question is kept and four more are added from the lesson text.
+const expansion: ModuleExpansion = {
+  topicId: 'water-systems',
+  moduleKey: 'greywater-systems',
+  lessons: [],
+  quiz: [
+    {
+      id: 'wgq1',
+      question: {
+        ELEMENTARY: 'What is NOT greywater?',
+        MIDDLE_SCHOOL: 'What must you use with greywater for irrigation?',
+        HIGH_SCHOOL: 'What is the simplest greywater system?',
+        UNDERGRADUATE: 'What is a surge tank for?',
+        GRADUATE: 'What social factor affects greywater adoption?',
+        PHD: 'What is QMRA used for in greywater research?',
+      },
+      options: {
+        ELEMENTARY: ['Toilet water', 'Shower water', 'Sink water', 'Laundry water'],
+        MIDDLE_SCHOOL: ['Plant-safe soaps', 'Any soap', 'Bleach', 'Nothing special'],
+        HIGH_SCHOOL: ['Laundry to landscape', 'Full treatment plant', 'Bottling system', 'Reverse osmosis'],
+        UNDERGRADUATE: ['Temporary storage of variable flows', 'Heating water', 'Adding chemicals', 'Filtration'],
+        GRADUATE: ['Perception of used water', 'Cost only', 'Availability only', 'No social factors exist'],
+        PHD: ['Quantitative microbial risk assessment', 'Quality material review analysis', 'Quick monitoring rapid assessment', 'None of these'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'Toilet water is called blackwater, not greywater - it needs special treatment!',
+        MIDDLE_SCHOOL: 'Plant-safe soaps without harsh chemicals are needed for greywater irrigation.',
+        HIGH_SCHOOL: 'Laundry to landscape is the simplest - direct from washer to mulch basins.',
+        UNDERGRADUATE: 'Surge tanks handle variable greywater generation throughout the day.',
+        GRADUATE: 'Public perception of "used" water significantly affects adoption rates.',
+        PHD: 'QMRA (Quantitative Microbial Risk Assessment) evaluates pathogen exposure risks.',
+      },
+    },
+    {
+      id: 'wgq2',
+      question: {
+        ELEMENTARY: 'What is toilet water called?',
+        MIDDLE_SCHOOL: 'What share of household wastewater is greywater?',
+        HIGH_SCHOOL: 'How soon should greywater be used?',
+        UNDERGRADUATE: 'Which greywater is generally higher quality?',
+        GRADUATE: 'What is the "yuck factor"?',
+        PHD: 'Which antimicrobials in soaps are studied as emerging contaminants?',
+      },
+      options: {
+        ELEMENTARY: ['Greywater', 'Rainwater', 'Seawater', 'Blackwater'],
+        MIDDLE_SCHOOL: ['5 to 10 percent', '20 to 30 percent', '95 to 100 percent', '50 to 80 percent'],
+        HIGH_SCHOOL: ['After one month', 'After one year', 'Only in winter', 'Within 24 hours'],
+        UNDERGRADUATE: ['Dark greywater from kitchens', 'Laundry greywater with bleach', 'They are always identical', 'Light greywater from bathrooms'],
+        GRADUATE: ['A rating for soap brands', 'A measure of pipe cost', 'A type of filter', 'A disgust response to reused water, even when treated'],
+        PHD: ['Chlorophyll and starch', 'Calcium and iron', 'Nitrogen and oxygen', 'Triclosan and triclocarban'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Toilet water is blackwater and needs special treatment.',
+        MIDDLE_SCHOOL: 'Greywater makes up 50 to 80 percent of household wastewater.',
+        HIGH_SCHOOL: 'Using greywater within 24 hours prevents bacterial growth.',
+        UNDERGRADUATE: 'Bathroom (light) greywater is cleaner than kitchen or laundry (dark) greywater.',
+        GRADUATE: 'Disgust at "used" water can block adoption even when it is safe.',
+        PHD: 'Triclosan and triclocarban are antimicrobials of emerging concern.',
+      },
+    },
+    {
+      id: 'wgq3',
+      question: {
+        ELEMENTARY: 'What is a greywater safety rule?',
+        MIDDLE_SCHOOL: 'Which products should be avoided in greywater systems?',
+        HIGH_SCHOOL: 'Why is subsurface application used?',
+        UNDERGRADUATE: 'What filtration do drip systems using greywater need at minimum?',
+        GRADUATE: 'What annual infection risk is typical for subsurface irrigation?',
+        PHD: 'What is an emerging electrochemical treatment approach?',
+      },
+      options: {
+        ELEMENTARY: ['Drink it when thirsty', 'Never drink greywater or play in it', 'Splash in it for fun', 'Pour it on lunch'],
+        MIDDLE_SCHOOL: ['Plant-friendly soaps', 'Bleach, borax and chlorine products', 'Biodegradable soaps', 'Low-sodium soaps'],
+        HIGH_SCHOOL: ['It makes water warmer', 'It prevents human contact', 'It adds nutrients', 'It speeds up evaporation'],
+        UNDERGRADUATE: ['No filter at all', '100 to 200 mesh', 'A window screen', '1 mesh'],
+        GRADUATE: ['About 1 in 2', 'About 10⁻⁴ to 10⁻⁶', 'About 1 in 10', 'Exactly zero'],
+        PHD: ['Boiling the soil', 'Electrooxidation for organic degradation', 'Adding more soap', 'Freezing the tank'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Greywater is for plants, not for drinking or playing.',
+        MIDDLE_SCHOOL: 'Bleach, borax and chlorine can harm plants and soil.',
+        HIGH_SCHOOL: 'Applying water below the surface keeps people from touching it.',
+        UNDERGRADUATE: 'Drip emitters need at least 100 to 200 mesh filtration.',
+        GRADUATE: 'Subsurface irrigation typically has acceptable risk of 10⁻⁴ to 10⁻⁶.',
+        PHD: 'Electrooxidation degrades organics in decentralised treatment.',
+      },
+    },
+    {
+      id: 'wgq4',
+      question: {
+        ELEMENTARY: 'Why give water a second chance?',
+        MIDDLE_SCHOOL: 'What did California change in 2009?',
+        HIGH_SCHOOL: 'Why can sodium in greywater be a problem?',
+        UNDERGRADUATE: 'What is a drawback of chlorine disinfection?',
+        GRADUATE: 'Which regulatory approach offers proportional oversight?',
+        PHD: 'What is a research question about PPCPs in greywater irrigation?',
+      },
+      options: {
+        ELEMENTARY: ['To make more puddles', 'To fill the sewer faster', 'To save clean drinking water', 'To make soap'],
+        MIDDLE_SCHOOL: ['Banned all greywater', 'Required greywater for drinking', 'Made laundry-to-landscape legal without a permit', 'Closed all sewers'],
+        HIGH_SCHOOL: ['It makes water purple', 'It freezes pipes', 'It can harm soil and plants', 'It is always safe'],
+        UNDERGRADUATE: ['It leaves no residual', 'It cannot kill pathogens', 'Potential disinfection byproduct formation', 'It adds sodium only'],
+        GRADUATE: ['Prohibition', 'No rules at all', 'Tiered permits', 'Random enforcement'],
+        PHD: ['How soap smells', 'The colour of greywater', 'Plant uptake and food chain implications', 'Which pipe brand to buy'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Reusing water saves clean water for drinking.',
+        MIDDLE_SCHOOL: 'California made laundry-to-landscape permit-free in 2009.',
+        HIGH_SCHOOL: 'High sodium damages soil structure and plants.',
+        UNDERGRADUATE: 'Chlorine can form disinfection byproducts (DBPs).',
+        GRADUATE: 'Tiered permits match oversight to system complexity.',
+        PHD: 'Researchers study whether plants take up PPCPs and pass them into food.',
+      },
+    },
+    {
+      id: 'wgq5',
+      question: {
+        ELEMENTARY: 'Where does greywater go in a greywater system?',
+        MIDDLE_SCHOOL: 'How much can greywater reuse cut household water use?',
+        HIGH_SCHOOL: 'Which crops should greywater never touch?',
+        UNDERGRADUATE: 'What does cross-connection control use?',
+        GRADUATE: 'What builds public confidence in greywater systems?',
+        PHD: 'Which method is used to study greywater adoption barriers?',
+      },
+      options: {
+        ELEMENTARY: ['Back into the faucet', 'Through pipes to the garden', 'Into the fridge', 'Up the chimney'],
+        MIDDLE_SCHOOL: ['1 to 2 percent', '30 to 50 percent', '90 to 100 percent', 'Not at all'],
+        HIGH_SCHOOL: ['Fruit tree roots below mulch', 'Edible parts of vegetable plants', 'Ornamental shrubs', 'Lawn grass roots'],
+        UNDERGRADUATE: ['Shared pipes', 'Air gaps and reduced pressure backflow devices', 'Open buckets', 'Garden hoses'],
+        GRADUATE: ['Hiding the system', 'Seeing the system operate', 'Higher water prices only', 'Removing all signage'],
+        PHD: ['Only bench chemistry', 'Surveys, interviews and experimental economics', 'Only soil cores', 'Only satellite images'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Special pipes carry greywater to thirsty plants.',
+        MIDDLE_SCHOOL: 'Greywater reuse can reduce household water use by 30 to 50 percent.',
+        HIGH_SCHOOL: 'Greywater should never touch the parts of vegetables we eat.',
+        UNDERGRADUATE: 'Air gaps and backflow devices protect drinking water.',
+        GRADUATE: 'Visibility of a working system builds trust.',
+        PHD: 'Social science methods study why people do or do not adopt greywater.',
+      },
+    },
+  ],
+}
+
+export default expansion

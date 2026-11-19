@@ -1293,5 +1293,20 @@
   "lessonIds": [
    "fs-future-1"
   ]
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "rainwater-harvesting",
+  "lessonIds": []
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "greywater-systems",
+  "lessonIds": []
+ },
+ {
+  "topicId": "water-systems",
+  "moduleKey": "drip-irrigation",
+  "lessonIds": []
  }
 ]

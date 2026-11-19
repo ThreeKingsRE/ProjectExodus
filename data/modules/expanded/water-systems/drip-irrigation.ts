@@ -1,0 +1,153 @@
+import type { ModuleExpansion } from '../types'
+
+// Quiz-only expansion: the lesson content stays as written; the chapter's single
+// original question is kept and four more are added from the lesson text.
+const expansion: ModuleExpansion = {
+  topicId: 'water-systems',
+  moduleKey: 'drip-irrigation',
+  lessons: [],
+  quiz: [
+    {
+      id: 'wdq1',
+      question: {
+        ELEMENTARY: 'How does drip irrigation water plants?',
+        MIDDLE_SCHOOL: 'How much water can drip save vs sprinklers?',
+        HIGH_SCHOOL: 'What prevents emitter clogging?',
+        UNDERGRADUATE: 'What ensures even water distribution in drip?',
+        GRADUATE: 'What is deficit irrigation?',
+        PHD: 'What does variable rate irrigation optimize?',
+      },
+      options: {
+        ELEMENTARY: ['One drop at a time to the roots', 'Big sprays in the air', 'Flooding the whole area', 'Only when it rains'],
+        MIDDLE_SCHOOL: ['30-50% less water', 'Same amount', 'More water', '10% less'],
+        HIGH_SCHOOL: ['A filter', 'Nothing', 'Hot water', 'Fast flow'],
+        UNDERGRADUATE: ['Pressure compensation and uniform emitters', 'Long tubing only', 'No design needed', 'High pressure only'],
+        GRADUATE: ['Purposely applying less than full crop water needs', 'Giving extra water', 'No irrigation', 'Flood irrigation'],
+        PHD: ['Water application matching spatial crop needs', 'Uniform application everywhere', 'Random application', 'Manual scheduling only'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'Drip irrigation slowly drips water right at plant roots!',
+        MIDDLE_SCHOOL: 'Drip irrigation uses 30-50% less water than sprinklers.',
+        HIGH_SCHOOL: 'Filters remove particles that could clog small emitter openings.',
+        UNDERGRADUATE: 'Pressure-compensating emitters ensure uniform flow despite pressure changes.',
+        GRADUATE: 'Deficit irrigation strategically under-waters to improve water productivity.',
+        PHD: 'Variable rate irrigation optimizes application based on spatial variability in crop needs.',
+      },
+    },
+    {
+      id: 'wdq2',
+      question: {
+        ELEMENTARY: 'What are the tiny openings that let water out called?',
+        MIDDLE_SCHOOL: 'What does a backflow preventer do?',
+        HIGH_SCHOOL: 'Where are pressure-compensating emitters essential?',
+        UNDERGRADUATE: 'What emission uniformity should drip systems target?',
+        GRADUATE: 'What does regulated deficit irrigation do?',
+        PHD: 'Which equation governs unsaturated soil water flow?',
+      },
+      options: {
+        ELEMENTARY: ['Sprinklers', 'Emitters', 'Buckets', 'Clouds'],
+        MIDDLE_SCHOOL: ['Speeds up the water', 'Keeps dirty water from flowing back into drinking water', 'Heats the water', 'Adds fertiliser'],
+        HIGH_SCHOOL: ['Only on flat, short runs', 'On slopes or long runs', 'Only indoors', 'Never'],
+        UNDERGRADUATE: ['Below 20 percent', 'Above 85 percent', 'About 50 percent', 'Exactly 10 percent'],
+        GRADUATE: ['Doubles water at all stages', 'Applies controlled water stress in tolerant growth stages', 'Stops irrigation entirely', 'Floods fields during flowering'],
+        PHD: ['The Hazen-Williams equation only', 'The Richards equation', 'Newton\'s second law', 'The ideal gas law'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Emitters release water slowly near each plant.',
+        MIDDLE_SCHOOL: 'Backflow preventers protect the drinking water supply.',
+        HIGH_SCHOOL: 'They keep flow constant where pressure varies, such as slopes and long runs.',
+        UNDERGRADUATE: 'Drip systems should target emission uniformity above 85 percent.',
+        GRADUATE: 'RDI stresses plants only when they tolerate it, saving 20 to 40 percent of water.',
+        PHD: 'The Richards equation describes water movement in unsaturated soil.',
+      },
+    },
+    {
+      id: 'wdq3',
+      question: {
+        ELEMENTARY: 'Why do dry leaves help plants?',
+        MIDDLE_SCHOOL: 'What share of drip water reaches plant roots?',
+        HIGH_SCHOOL: 'How should emitter spacing change in sandy soil?',
+        UNDERGRADUATE: 'What is fertigation?',
+        GRADUATE: 'What does partial root zone drying require?',
+        PHD: 'Which approach is used for real-time irrigation scheduling?',
+      },
+      options: {
+        ELEMENTARY: ['They grow faster than roots', 'They change colour', 'They make more noise', 'They get fewer diseases'],
+        MIDDLE_SCHOOL: ['10 to 20 percent', 'About 40 percent', 'None of it', '90 to 95 percent'],
+        HIGH_SCHOOL: ['Farther apart, about 36 inches', 'No emitters needed', 'Spacing never matters', 'Closer together, about 12 to 18 inches'],
+        UNDERGRADUATE: ['Spraying fertiliser from planes', 'Burning crop residues', 'Testing soil only', 'Injecting fertiliser through the drip system'],
+        GRADUATE: ['No drip lines at all', 'Only flood irrigation', 'Daily soil replacement', 'Dual drip lines to wet root halves alternately'],
+        PHD: ['Fixed calendar only', 'Coin flipping', 'Ignoring weather', 'Model predictive control'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Dry leaves mean fewer plant diseases.',
+        MIDDLE_SCHOOL: 'Drip delivers 90 to 95 percent of water to the roots.',
+        HIGH_SCHOOL: 'Water spreads less in sand, so emitters go closer together.',
+        UNDERGRADUATE: 'Fertigation injects soluble fertiliser into irrigation water.',
+        GRADUATE: 'PRD alternates which half of the roots is wetted, using two lines.',
+        PHD: 'Model predictive control schedules irrigation in real time.',
+      },
+    },
+    {
+      id: 'wdq4',
+      question: {
+        ELEMENTARY: 'What did ancient farmers in China bury to water plants slowly?',
+        MIDDLE_SCHOOL: 'When is the best time to run drip irrigation?',
+        HIGH_SCHOOL: 'What is the maximum typical run for 1/4 inch drip tubing?',
+        UNDERGRADUATE: 'How is crop evapotranspiration calculated?',
+        GRADUATE: 'Which is a biological clogging agent?',
+        PHD: 'What is subsurface drip irrigation?',
+      },
+      options: {
+        ELEMENTARY: ['Metal pipes', 'Plastic bottles', 'Clay pots', 'Glass jars'],
+        MIDDLE_SCHOOL: ['Midday in full sun', 'Only during storms', 'Early morning', 'Never'],
+        HIGH_SCHOOL: ['About 1 mile', 'About 2 feet', 'About 30 to 50 feet', 'There is no limit'],
+        UNDERGRADUATE: ['Rainfall divided by area', 'Pump power times hours', 'Reference ET multiplied by a crop coefficient', 'Soil depth times width'],
+        GRADUATE: ['Sand and silt', 'Calcium carbonate', 'Algae and bacterial slimes', 'Iron precipitation'],
+        PHD: ['Sprinklers above the canopy', 'Flooding furrows', 'Buried emitters for perennial and annual crops', 'Hand watering'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Buried clay pots slowly released water to plant roots.',
+        MIDDLE_SCHOOL: 'Morning watering reduces evaporation.',
+        HIGH_SCHOOL: 'Quarter-inch tubing is limited to about 30 to 50 feet.',
+        UNDERGRADUATE: 'Crop ET = ET₀ × Kc.',
+        GRADUATE: 'Algae and bacterial slimes are biological clogging agents.',
+        PHD: 'SDI buries emitters below the soil surface.',
+      },
+    },
+    {
+      id: 'wdq5',
+      question: {
+        ELEMENTARY: 'What can run a drip system automatically?',
+        MIDDLE_SCHOOL: 'What does a pressure regulator do?',
+        HIGH_SCHOOL: 'How often should filters be cleaned in the growing season?',
+        UNDERGRADUATE: 'When is irrigation triggered in soil water balance scheduling?',
+        GRADUATE: 'What is a water production function?',
+        PHD: 'Which remote sensing tool detects crop water stress?',
+      },
+      options: {
+        ELEMENTARY: ['A kite', 'A drum', 'A timer', 'A book'],
+        MIDDLE_SCHOOL: ['Raises pressure as high as possible', 'Removes sand', 'Reduces pressure to drip-friendly levels', 'Adds colour to water'],
+        HIGH_SCHOOL: ['Once every ten years', 'Never', 'Monthly', 'Only after floods'],
+        UNDERGRADUATE: ['When the soil is flooded', 'Only on weekends', 'At management allowable depletion', 'At random'],
+        GRADUATE: ['A factory making water', 'A pump curve', 'A relationship between water applied and crop yield', 'A tax on water'],
+        PHD: ['A rain gauge', 'A compass', 'Thermal imaging', 'A barometer'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'A timer can water plants while you are away.',
+        MIDDLE_SCHOOL: 'Regulators drop pressure to the 15 to 30 PSI drip range.',
+        HIGH_SCHOOL: 'Filters should be cleaned monthly during the growing season.',
+        UNDERGRADUATE: 'Irrigation starts when depletion reaches the MAD threshold.',
+        GRADUATE: 'Production functions relate water use to yield.',
+        PHD: 'Thermal imagery detects stressed, warmer canopies.',
+      },
+    },
+  ],
+}
+
+export default expansion

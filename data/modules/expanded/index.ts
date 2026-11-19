@@ -130,10 +130,13 @@ import x_water_systems_climate_adaptation_water from './water-systems/climate-ad
 import x_water_systems_climate_and_water from './water-systems/climate-and-water'
 import x_water_systems_desalination__2 from './water-systems/desalination--2'
 import x_water_systems_desalination from './water-systems/desalination'
+import x_water_systems_drip_irrigation from './water-systems/drip-irrigation'
 import x_water_systems_fog_harvesting from './water-systems/fog-harvesting'
 import x_water_systems_green_infrastructure from './water-systems/green-infrastructure'
+import x_water_systems_greywater_systems from './water-systems/greywater-systems'
 import x_water_systems_groundwater_management from './water-systems/groundwater-management'
 import x_water_systems_integrated_water_management from './water-systems/integrated-water-management'
+import x_water_systems_rainwater_harvesting from './water-systems/rainwater-harvesting'
 import x_water_systems_stormwater_management from './water-systems/stormwater-management'
 import x_water_systems_traditional_water_harvesting from './water-systems/traditional-water-harvesting'
 import x_water_systems_urban_water_management from './water-systems/urban-water-management'
@@ -317,10 +320,13 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_water_systems_climate_and_water,
   x_water_systems_desalination__2,
   x_water_systems_desalination,
+  x_water_systems_drip_irrigation,
   x_water_systems_fog_harvesting,
   x_water_systems_green_infrastructure,
+  x_water_systems_greywater_systems,
   x_water_systems_groundwater_management,
   x_water_systems_integrated_water_management,
+  x_water_systems_rainwater_harvesting,
   x_water_systems_stormwater_management,
   x_water_systems_traditional_water_harvesting,
   x_water_systems_urban_water_management,

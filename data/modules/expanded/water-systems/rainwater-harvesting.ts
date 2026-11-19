@@ -1,0 +1,153 @@
+import type { ModuleExpansion } from '../types'
+
+// Quiz-only expansion: the lesson content stays as written; the chapter's single
+// original question is kept and four more are added from the lesson text.
+const expansion: ModuleExpansion = {
+  topicId: 'water-systems',
+  moduleKey: 'rainwater-harvesting',
+  lessons: [],
+  quiz: [
+    {
+      id: 'wrq1',
+      question: {
+        ELEMENTARY: 'Where does rainwater get collected from?',
+        MIDDLE_SCHOOL: 'What does first flush diversion do?',
+        HIGH_SCHOOL: 'What affects collection efficiency?',
+        UNDERGRADUATE: 'What is supply-demand analysis for?',
+        GRADUATE: 'What policy challenge exists for rainwater harvesting?',
+        PHD: 'How does climate change affect rainwater harvesting?',
+      },
+      options: {
+        ELEMENTARY: ['Rooftops', 'Underground', 'Lakes', 'Oceans'],
+        MIDDLE_SCHOOL: ['Removes dirty first rain', 'Collects more water', 'Heats the water', 'Filters air'],
+        HIGH_SCHOOL: ['Roof material, gutters, first flush', 'Color of house', 'Time of year only', 'Nothing'],
+        UNDERGRADUATE: ['Tank sizing optimization', 'Choosing roof color', 'Selecting plants', 'Weather prediction'],
+        GRADUATE: ['Water rights in some jurisdictions', 'Always encouraged', 'No challenges exist', 'Too expensive everywhere'],
+        PHD: ['Changes rainfall patterns and reliability', 'No effect', 'Only positive effects', 'Eliminates need for systems'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'Rain falls on rooftops and we collect it through gutters!',
+        MIDDLE_SCHOOL: 'First flush diverts the initial dirty rainwater away from storage.',
+        HIGH_SCHOOL: 'Collection efficiency depends on roof material, gutter design, and first flush systems.',
+        UNDERGRADUATE: 'Supply-demand analysis matches storage size to rainfall patterns and water needs.',
+        GRADUATE: 'Some areas have water rights laws that complicate rainwater collection.',
+        PHD: 'Climate change alters precipitation patterns, affecting system reliability and design.',
+      },
+    },
+    {
+      id: 'wrq2',
+      question: {
+        ELEMENTARY: 'What carries rain from the roof down to the barrel?',
+        MIDDLE_SCHOOL: 'About how many gallons does a 1,000 sq ft roof collect from 1 inch of rain?',
+        HIGH_SCHOOL: 'In V = R × A × Ce, what does Ce stand for?',
+        UNDERGRADUATE: 'In the tank mass balance, what does O(t) represent?',
+        GRADUATE: 'When did Colorado legalise residential rain barrels?',
+        PHD: 'What does "Stationarity is Dead" argue about hydrological design?',
+      },
+      options: {
+        ELEMENTARY: ['A garden hose from the street', 'Buckets carried by birds', 'Gutters and pipes', 'The kitchen sink'],
+        MIDDLE_SCHOOL: ['About 10 gallons', 'About 6,000 gallons', 'About 623 gallons', 'About 62 gallons'],
+        HIGH_SCHOOL: ['Cement content', 'Cloud elevation', 'Collection efficiency', 'Channel equipment'],
+        UNDERGRADUATE: ['Outdoor temperature', 'Owner demand', 'Overflow when storage exceeds capacity', 'Oxygen level'],
+        GRADUATE: ['1916', '1986', '2016', '2023'],
+        PHD: ['Rainfall never changes', 'Design should ignore climate', 'Rainfall statistics can no longer be assumed constant', 'Only averages matter'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Gutters collect the water and pipes carry it down into the barrel.',
+        MIDDLE_SCHOOL: 'Gallons = roof area × rainfall × 0.623, so about 623 gallons.',
+        HIGH_SCHOOL: 'Ce is collection efficiency, typically 0.75 to 0.85.',
+        UNDERGRADUATE: 'O(t) is overflow, which happens when storage would exceed tank capacity.',
+        GRADUATE: 'Colorado legalised residential rain barrels in 2016, with limits.',
+        PHD: 'Climate change invalidates the assumption that rainfall statistics stay constant.',
+      },
+    },
+    {
+      id: 'wrq3',
+      question: {
+        ELEMENTARY: 'What can saved rainwater be used for?',
+        MIDDLE_SCHOOL: 'What is the catchment in a rainwater system?',
+        HIGH_SCHOOL: 'What share of a roof\'s contaminant load is in the first flush?',
+        UNDERGRADUATE: 'What is volumetric reliability?',
+        GRADUATE: 'Which incentive tends to benefit higher-income households most?',
+        PHD: 'What advantage do real-time controlled tanks that discharge before storms offer?',
+      },
+      options: {
+        ELEMENTARY: ['Making it rain again', 'Watering gardens and filling birdbaths', 'Turning on the lights', 'Filling car fuel tanks'],
+        MIDDLE_SCHOOL: ['The tank that stores water', 'The surface that collects rain, like a roof', 'The pump', 'The garden hose'],
+        HIGH_SCHOOL: ['About 1 percent', 'About 70 to 90 percent', 'About 30 percent', 'None of it'],
+        UNDERGRADUATE: ['The tank\'s volume in litres', 'The percentage of demand met over the analysis period', 'How long the tank lasts', 'The roof\'s area'],
+        GRADUATE: ['Direct rebates', 'Tax credits', 'Stormwater fee credits', 'Expedited permitting'],
+        PHD: ['Lower supply reliability only', 'Greater stormwater detention with similar supply reliability', 'No stormwater benefit', 'They never need sensors'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Rainwater can water gardens, fill birdbaths and wash outdoor toys.',
+        MIDDLE_SCHOOL: 'The catchment is the surface, usually a roof, that collects rain.',
+        HIGH_SCHOOL: 'The first flush carries 70 to 90 percent of the contaminant load.',
+        UNDERGRADUATE: 'Volumetric reliability is the share of demand met over time.',
+        GRADUATE: 'Income tax credits mainly help households with higher tax bills.',
+        PHD: 'Forecast-based release can add 40 to 60 percent more detention benefit.',
+      },
+    },
+    {
+      id: 'wrq4',
+      question: {
+        ELEMENTARY: 'What is rainwater harvesting?',
+        MIDDLE_SCHOOL: 'Why do plants love rainwater?',
+        HIGH_SCHOOL: 'Which roof type typically has the highest collection efficiency?',
+        UNDERGRADUATE: 'Which treatment step targets taste, odour and organics?',
+        GRADUATE: 'What did Austin\'s rebate programme show?',
+        PHD: 'What is a key source of regime resistance to decentralised water?',
+      },
+      options: {
+        ELEMENTARY: ['Making rain with machines', 'Drinking rain straight from clouds', 'Sending rain to the ocean', 'Catching rain and saving it for later'],
+        MIDDLE_SCHOOL: ['It is warm', 'It is salty', 'It is sweet', 'It has no chlorine'],
+        HIGH_SCHOOL: ['Wooden shakes', 'Asphalt shingles', 'Clay tiles', 'Metal'],
+        UNDERGRADUATE: ['Inlet screen', 'Sedimentation', 'First flush diversion', 'Activated carbon'],
+        GRADUATE: ['Rebates never work', 'Rainfall alone decides adoption', 'Mandates are always needed', 'Policy design, not just incentive size, drives uptake'],
+        PHD: ['Too much rainfall', 'Cheap storage tanks', 'Public demand for more water bills', 'Utility revenue models based on volumetric sales'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'We catch rain, save it and use it wisely.',
+        MIDDLE_SCHOOL: 'Rainwater has no chlorine, which plants like.',
+        HIGH_SCHOOL: 'Metal roofs collect about 90 to 95 percent of rain.',
+        UNDERGRADUATE: 'Activated carbon handles taste, odour and organics.',
+        GRADUATE: 'Austin\'s adoption far exceeded similar cities because of programme design.',
+        PHD: 'Utilities that earn from selling water may resist decentralised supply.',
+      },
+    },
+    {
+      id: 'wrq5',
+      question: {
+        ELEMENTARY: 'Why is it smart to catch rain?',
+        MIDDLE_SCHOOL: 'What is needed before rainwater is safe to drink?',
+        HIGH_SCHOOL: 'Why can a system designed for average annual rainfall fail?',
+        UNDERGRADUATE: 'Why is Monte Carlo simulation useful in tank design?',
+        GRADUATE: 'Which programme turned drainage infrastructure into community amenities?',
+        PHD: 'Which emerging contaminants in rainwater systems remain largely uncharacterised?',
+      },
+      options: {
+        ELEMENTARY: ['It makes the sky bluer', 'It saves water for dry days', 'It stops all rain', 'It makes plants grow legs'],
+        MIDDLE_SCHOOL: ['Nothing at all', 'Advanced filtration and treatment', 'Only a lid on the barrel', 'Adding sugar'],
+        HIGH_SCHOOL: ['Average rainfall is always too high', 'Rain is unevenly spread and the dry season matters most', 'Tanks shrink in summer', 'Gutters stop working yearly'],
+        UNDERGRADUATE: ['It removes all uncertainty', 'It quantifies performance uncertainty from rainfall variability', 'It picks the roof colour', 'It replaces rainfall data'],
+        GRADUATE: ['Colorado\'s rain barrel law', 'Singapore\'s ABC Waters programme', 'Austin\'s tax credits', 'A national bottled water scheme'],
+        PHD: ['Leaves and twigs', 'Microplastics and PFAS from atmospheric deposition', 'Ordinary sand', 'Bird feathers'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Saved rain helps plants on dry, sunny days.',
+        MIDDLE_SCHOOL: 'Drinking rainwater requires advanced filtration and treatment.',
+        HIGH_SCHOOL: 'Designs must cover the dry months, not just the yearly average.',
+        UNDERGRADUATE: 'Monte Carlo methods give probabilistic performance estimates.',
+        GRADUATE: 'Singapore\'s ABC Waters combined supply, flood control and liveability.',
+        PHD: 'Microplastic and PFAS loads in harvested rainwater are poorly understood.',
+      },
+    },
+  ],
+}
+
+export default expansion
