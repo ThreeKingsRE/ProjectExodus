@@ -118,6 +118,10 @@ PartyKit: `npm run party:dev`, `npm run party:deploy`
 - `DEPLOYMENT.md` - Vercel deployment guide
 - `LEARNING_MODULES_GUIDE.md` - Learning system documentation
 
+## Design notes (from the owner)
+
+- Mobile: don't be shy about zooming views out. Scale elements down on phones (heroes, books, cards, type) so the whole composition fits the viewport and looks good, rather than one oversized element filling the screen.
+
 ## Owner reminders
 
 `docs/owner-todo.md` lists tasks only the owner can do (account and dashboard actions). At the end of every reply to the owner, briefly list its open items as reminders until the owner confirms each one is complete. When the owner confirms an item, move it to the Done section with the date in that file and commit. Never mark an item done without the owner's confirmation.
