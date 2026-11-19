@@ -1,388 +1,304 @@
 import type { ModuleExpansion } from '../types'
 
+// Rewritten with its own angle: the different ways to compost and how to choose
+// one. Chapter 1 covers why and how composting works.
 const expansion: ModuleExpansion = {
   topicId: 'zero-waste',
   moduleKey: 'composting-fundamentals~2',
+  title: 'Composting Methods: Worms, Bokashi and Community Sites',
+  description: {
+    ELEMENTARY: 'Different ways to turn food scraps into rich soil: worm bins, bucket bins and big neighbourhood piles.',
+    MIDDLE_SCHOOL: 'Comparing composting methods, from worm bins and bokashi buckets to community and city composting.',
+    HIGH_SCHOOL: 'Choosing a composting method for a home, school or town: vermicomposting, bokashi, hot piles and municipal systems.',
+    UNDERGRADUATE: 'Composting systems compared: process conditions, inputs, outputs and scale from household to municipal.',
+    GRADUATE: 'Planning organics recovery: composting technologies, collection systems, quality standards and policy.',
+    PHD: 'Research on composting systems: emissions, contaminants, microbial ecology and organics policy.',
+  },
   lessons: [
     {
       id: 'zw-comp-1',
-      title: "Nature's Recyclers: How Compost Happens",
+      title: 'Composting Methods: Worms, Bokashi and Community Sites',
       content: {
         ELEMENTARY: `
-<h2>From Banana Peel to Brown Soil</h2>
-<p>Hi, I am Wiggles the worm! I live in a compost bin, and my job is very important. I help turn old banana peels, apple cores and crunchy leaves into dark, crumbly soil that helps new plants grow. It is like magic, but it is really science. Let me show you how it works!</p>
+<h2>Many Ways to Make Compost</h2>
+<p>Banana peels, apple cores and coffee grounds do not have to go in the trash. They can become compost, a dark, crumbly soil food that helps gardens grow. There is more than one way to make compost. Some ways use wiggly worms, some use a special bucket, and some use giant piles that a whole town shares.</p>
 
-<h3>Who Does the Work?</h3>
-<p>Compost is made by lots of tiny helpers. Some are so small you cannot see them without a microscope. Others, like me, you can see if you dig a little. Together we eat old food and plants and turn them into something new.</p>
+<h3>Worm Bins</h3>
+<p>A worm bin is a box with holes for air, filled with damp shredded paper and special red worms. You add fruit and vegetable scraps, and the worms eat them. What comes out the other end is called worm castings, one of the best plant foods there is! Worm bins can even live under a kitchen sink or in a classroom.</p>
 <ul>
-<li><strong>Compost:</strong> dark, crumbly material made when old food and plants break down</li>
-<li><strong>Microorganisms:</strong> tiny living things like bacteria and fungi that are too small to see</li>
-<li><strong>Decomposer:</strong> a living thing that breaks down dead plants and food scraps</li>
-<li><strong>Worm:</strong> a wiggly animal that eats scraps and leaves behind rich soil</li>
-<li><strong>Soil:</strong> the ground that plants grow in, full of food for their roots</li>
+<li><strong>Compost:</strong> rich soil made from rotted food scraps and leaves</li>
+<li><strong>Worm bin:</strong> a box where worms turn food scraps into plant food</li>
+<li><strong>Worm castings:</strong> the rich plant food that worms leave behind</li>
+<li><strong>Bokashi:</strong> a way to pickle food scraps in a sealed bucket before burying them</li>
+<li><strong>Community garden:</strong> a garden that many neighbours share</li>
 </ul>
 
-<h3>Greens and Browns</h3>
-<p>Our compost pile needs two kinds of food. "Greens" are wet, fresh things like fruit and vegetable peels and grass clippings. "Browns" are dry things like fallen leaves, small twigs and plain cardboard. When we mix them together and add a little water and air, the tiny helpers get busy. The pile can even get warm inside!</p>
+<h3>The Pickle Bucket</h3>
+<p>Bokashi is a bucket method from Japan. You put food scraps in a bucket with special bran full of helpful microbes, press it down and close the lid tight. The scraps pickle! After a few weeks you bury them in the garden, where they turn into soil quickly.</p>
 
-<h3>What Goes In, What Stays Out</h3>
-<p>Good things for a home compost bin include fruit peels, vegetable scraps, coffee grounds, eggshells and leaves. Keep out plastic, glass, metal and shiny wrappers, because tiny helpers cannot eat them. Most home bins also skip meat and dairy, which can get smelly.</p>
-
-<h3>How You Can Help</h3>
-<ol>
-<li>Ask a grown-up if your home or school can start a compost bin.</li>
-<li>Collect fruit and vegetable scraps in a small container in the kitchen.</li>
-<li>Add a handful of dry leaves each time you add scraps.</li>
-<li>Use your finished compost to help flowers or vegetables grow.</li>
-</ol>
-
-<h3>Think About It</h3>
-<p>Every peel you compost becomes food for the soil instead of trash. When the plants grow, they make new fruits and vegetables, and the circle starts again. That is nature's way of recycling!</p>
+<h3>Sharing a Big Pile</h3>
+<p>Some neighbourhoods and cities collect food scraps from many homes in green bins. Trucks take them to big compost sites, where giant piles get hot and turn everything into compost for parks and farms. It is like a team effort to feed the soil.</p>
 `,
         MIDDLE_SCHOOL: `
-<h2>The Science of Turning Scraps into Soil</h2>
-<p>When leaves fall in a forest, nobody hauls them away. Over time, they disappear into the forest floor and become rich soil. Composting copies this natural process and speeds it up. It is one of the simplest ways to keep food scraps and yard waste out of the trash, and it is full of interesting biology and chemistry.</p>
+<h2>Choosing a Composting Method</h2>
+<p>Composting turns food scraps and yard waste into a valuable soil amendment instead of trash. Food waste in landfills rots without air and releases methane, a powerful greenhouse gas, so composting it helps the climate. But not everyone has a big backyard. Luckily, there are composting methods for apartments, schools, gardens and whole cities. This chapter compares them.</p>
 
-<h3>The Four Ingredients</h3>
-<p>Microorganisms in a compost pile need four things to thrive:</p>
-<ol>
-<li><strong>Carbon</strong> from "browns" such as dry leaves, straw, sawdust and shredded cardboard. Carbon gives microbes energy.</li>
-<li><strong>Nitrogen</strong> from "greens" such as vegetable scraps, coffee grounds and fresh grass. Nitrogen helps microbes build their bodies.</li>
-<li><strong>Water</strong>, so the pile feels about as damp as a wrung-out sponge.</li>
-<li><strong>Oxygen</strong>, because the most helpful microbes breathe air just like we do.</li>
-</ol>
-
-<h3>Getting the Balance Right</h3>
-<p>Composters talk about the carbon-to-nitrogen ratio, or C:N ratio. Microbes work best when there is roughly 25 to 30 parts carbon for every 1 part nitrogen. Because greens and browns contain different amounts of each, many people simply add two or three scoops of browns for every scoop of greens and adjust by smell and feel.</p>
-
-<h3>Key Words</h3>
+<h3>Indoor and Small-Space Methods</h3>
+<p>Vermicomposting uses red wiggler worms in a bin. The worms eat fruit and vegetable scraps and produce castings rich in nutrients. Bins fit indoors and do not smell when managed well. Bokashi, from Japan, ferments food scraps in an airtight bucket using bran inoculated with microbes. It can take meat and dairy, which worm bins cannot, but the fermented scraps must then be buried or added to a compost pile to finish breaking down.</p>
 <ul>
-<li><strong>Organic matter:</strong> material that came from living things, such as plants and food</li>
-<li><strong>Aerobic:</strong> a process that happens with oxygen present, which keeps compost from smelling bad</li>
-<li><strong>C:N ratio:</strong> the balance of carbon to nitrogen in a compost pile, ideally around 25 to 30 to 1</li>
-<li><strong>Humus:</strong> the dark, stable material left after organic matter has fully broken down</li>
-<li><strong>Thermophilic bacteria:</strong> heat-loving bacteria that thrive in the hot middle of a busy compost pile</li>
-<li><strong>Vermicomposting:</strong> using worms to turn food scraps into compost, often in an indoor bin</li>
+<li><strong>Vermicomposting:</strong> composting with worms</li>
+<li><strong>Red wiggler:</strong> a worm species that thrives in compost and eats lots of scraps</li>
+<li><strong>Fermentation:</strong> a process where microbes break down material without much oxygen</li>
+<li><strong>Hot composting:</strong> a managed pile that heats up enough to kill weed seeds and germs</li>
+<li><strong>Curbside collection:</strong> picking up food scraps from homes, like trash pickup</li>
 </ul>
 
-<h3>Three Stages of a Compost Pile</h3>
-<table>
-<thead><tr><th>Stage</th><th>What happens</th></tr></thead>
-<tbody>
-<tr><td>Warming up</td><td>Microbes eat the easiest sugars and the pile starts to warm</td></tr>
-<tr><td>Hot stage</td><td>Heat-loving bacteria take over, breaking material down fast and killing many weed seeds</td></tr>
-<tr><td>Curing</td><td>The pile cools, fungi and worms move in, and the compost becomes stable and earthy</td></tr>
-</tbody>
-</table>
+<h3>Backyard Piles and Bins</h3>
+<p>Cold composting means piling scraps and leaves and letting them rot slowly over a year. Hot composting balances "greens" (food scraps, grass) and "browns" (leaves, cardboard), keeps the pile moist and turns it for air. It heats up and finishes in a couple of months.</p>
 
-<h3>Why Composting Matters</h3>
-<p>Food scraps and yard waste make up a large share of what households throw away. In a landfill, buried organic matter breaks down without oxygen and releases methane, a powerful greenhouse gas. In a well-run compost pile, the same material becomes a soil improver that holds water and feeds plants. Starting a bin at home or school is a real climate action you can take.</p>
+<h3>Community and City Composting</h3>
+<p>Community gardens often run shared bins. Many cities collect food scraps at the curb and send them to large composting facilities or to digesters that also make biogas. The finished compost goes back to farms, parks and gardens, closing the loop between our kitchens and the soil.</p>
 `,
         HIGH_SCHOOL: `
-<h2>Composting: Methods, Chemistry and Troubleshooting</h2>
-<p>Composting is controlled decomposition. Instead of letting organic waste rot in a landfill, we manage moisture, air and food balance so that microorganisms turn it into a useful soil amendment. Doing it well means understanding the biology, choosing the right method and knowing how to diagnose a pile that is not behaving.</p>
+<h2>From Kitchen to Community: Composting Systems</h2>
+<p>About a third of food produced worldwide is lost or wasted, and much of it ends up in landfills, where it decomposes without oxygen and releases methane. Composting diverts that material and turns it into a soil amendment that improves structure, water holding and fertility. The right method depends on space, volume, the types of scraps and the people involved. This chapter compares common methods across scales.</p>
 
-<h3>The Microbial Engine</h3>
-<p>Bacteria do most of the early work, followed by fungi and actinomycetes that break down tougher materials such as woody stems and paper fibers. Larger organisms, including worms, mites and beetles, finish the job as the pile cools. As microbes respire, they release carbon dioxide, water and heat. In a large, well-balanced pile the core can become hot enough to kill many pathogens and weed seeds.</p>
+<h3>Household Methods</h3>
+<p>Vermicomposting relies on epigeic worms such as red wigglers, which live in the top layer of organic matter. Bins kept moist, with bedding of shredded paper or leaves, handle fruit and vegetable scraps and produce castings and liquid "leachate." Bokashi is an anaerobic fermentation method: scraps, including meat and dairy, are layered with inoculated bran in a sealed bucket. After about two weeks the acidic, pickled material is buried or added to a pile, where it breaks down rapidly. Backyard hot composting requires a balanced carbon-to-nitrogen ratio, moisture like a wrung-out sponge, and regular turning to reach temperatures of 55 to 65 °C.</p>
 <ul>
-<li><strong>Mesophilic phase:</strong> the early and late stages when moderate-temperature microbes dominate the pile</li>
-<li><strong>Thermophilic phase:</strong> the hot stage when heat-loving microbes rapidly break down material</li>
-<li><strong>Actinomycetes:</strong> thread-forming bacteria that break down tough material and give compost its earthy smell</li>
-<li><strong>Anaerobic conditions:</strong> a lack of oxygen that lets odor-producing microbes take over</li>
-<li><strong>Leachate:</strong> liquid that drains out of a very wet pile, carrying nutrients with it</li>
-<li><strong>Maturity:</strong> the point at which compost is stable and will not harm plant roots</li>
+<li><strong>Carbon-to-nitrogen ratio:</strong> the balance of carbon-rich browns and nitrogen-rich greens, ideally around 25–30 to 1</li>
+<li><strong>Epigeic worm:</strong> a worm species living in surface organic matter, suited to composting</li>
+<li><strong>Anaerobic:</strong> happening without oxygen, as in a sealed bokashi bucket or a landfill</li>
+<li><strong>Windrow:</strong> a long pile of composting material turned by machines at large sites</li>
+<li><strong>Anaerobic digestion:</strong> breaking down organic material without oxygen in a sealed tank to make biogas</li>
 </ul>
 
-<h3>Comparing Composting Methods</h3>
-<table>
-<thead><tr><th>Method</th><th>Best for</th><th>Trade-offs</th></tr></thead>
-<tbody>
-<tr><td>Cold (passive) pile</td><td>Yard waste with little effort</td><td>Slow, may not kill weed seeds</td></tr>
-<tr><td>Hot (managed) pile</td><td>Faster results, larger volumes</td><td>Needs turning, balance and enough mass to hold heat</td></tr>
-<tr><td>Tumbler</td><td>Small yards, easy mixing</td><td>Limited capacity, can get too wet</td></tr>
-<tr><td>Vermicomposting</td><td>Apartments and classrooms</td><td>Worms dislike heat, citrus in excess and overfeeding</td></tr>
-<tr><td>Bokashi</td><td>Pre-treating scraps, including some cooked food</td><td>A fermentation step that still needs burying or composting afterward</td></tr>
-</tbody>
-</table>
+<h3>Community-Scale Composting</h3>
+<p>Schools, community gardens and urban farms run shared systems such as three-bin setups or in-vessel composters. These build local skills, keep material and value in the neighbourhood and produce compost for local growing. They require volunteer coordination, training to keep out contaminants and attention to pests and odours.</p>
 
-<h3>Troubleshooting Guide</h3>
-<ol>
-<li><strong>Smells like ammonia:</strong> too much nitrogen. Add browns such as leaves or shredded cardboard.</li>
-<li><strong>Smells like rotten eggs:</strong> not enough oxygen, often from too much water or compaction. Turn the pile and add coarse browns.</li>
-<li><strong>Pile stays cold:</strong> too dry, too small or short on nitrogen. Add water, greens or more material.</li>
-<li><strong>Attracts pests:</strong> exposed food. Bury scraps in the middle and avoid meat and oily foods in home systems.</li>
-</ol>
-
-<h3>Why It Matters Beyond the Garden</h3>
-<p>Compost improves soil structure, helps soil hold water and slowly releases nutrients. It reduces the need for some synthetic fertilizer and keeps organic matter out of landfills, where it would produce methane. Many cities now collect food scraps at the curb, and schools are using compost programs to teach biology, chemistry and responsibility at the same time.</p>
+<h3>Municipal Systems</h3>
+<p>Cities with curbside organics collection send material to large facilities. Windrow composting forms long piles turned by machines; aerated static piles force air through piles; in-vessel systems compost in enclosed containers. Anaerobic digestion produces biogas for energy plus digestate that can be composted. Contamination, especially plastic, is the biggest challenge, so clear guidance and compostable bag rules matter.</p>
 `,
         UNDERGRADUATE: `
-<h2>Composting Systems: Process Control, Facility Design and Product Quality</h2>
-<p>At scale, composting is a biological treatment process engineered around a few controllable variables: feedstock chemistry, moisture, oxygen supply, temperature and time. Facility operators balance throughput, odor control, land area and capital cost while producing a product that meets the quality expectations of farmers, landscapers and regulators. This lesson frames composting as a process system rather than a backyard hobby.</p>
+<h2>Composting Systems Compared</h2>
+<p>Composting is the controlled aerobic decomposition of organic material by successive microbial communities, producing a stabilised, humus-like product. Its performance depends on feedstock composition, moisture, oxygen supply, particle size and temperature. Systems range from household vermicomposting to municipal facilities processing hundreds of thousands of tonnes per year. This chapter compares process conditions, inputs, outputs and scale considerations across systems.</p>
 
-<h3>Core Process Variables</h3>
+<h3>Process Fundamentals</h3>
+<p>Thermophilic composting passes through mesophilic, thermophilic (above about 45 °C) and maturation phases. Sustained temperatures of 55 °C or more for several days achieve pathogen and weed seed reduction, a basis for regulatory process standards. Optimal conditions include a C:N ratio of about 25–30:1, moisture of 50–60 percent, oxygen above about 5 percent in pore space and adequate porosity. Imbalances cause odours, slow decomposition or ammonia loss.</p>
 <ul>
-<li><strong>Feedstock C:N ratio:</strong> the carbon-to-nitrogen balance, typically targeted around 25 to 30 to 1 at the start</li>
-<li><strong>Free air space:</strong> the pore volume in a pile that allows oxygen to move through it</li>
-<li><strong>Bulking agent:</strong> coarse material such as wood chips that adds structure and porosity to wet feedstocks</li>
-<li><strong>Process to further reduce pathogens:</strong> a time and temperature standard used to show that compost has been heated enough to be safe</li>
-<li><strong>Stability:</strong> the degree to which microbial activity has slowed, often measured by respiration rate</li>
-<li><strong>Phytotoxicity:</strong> harm to plants from immature compost, often caused by organic acids or ammonia</li>
+<li><strong>Thermophilic phase:</strong> the high-temperature stage of composting dominated by heat-loving microbes</li>
+<li><strong>Process to further reduce pathogens:</strong> a time-temperature standard ensuring compost is safe to use</li>
+<li><strong>Maturity:</strong> the degree to which compost is stable and will not harm plants</li>
+<li><strong>Aerated static pile:</strong> a composting method that forces air through an unturned pile</li>
+<li><strong>Feedstock:</strong> the raw organic materials fed into a composting or digestion system</li>
 </ul>
-<p>These variables interact. Raising moisture improves microbial activity until water fills the pores and blocks oxygen. Adding nitrogen-rich food waste speeds heating but increases ammonia losses and odor risk. A useful mental model is that oxygen demand rises with the readily degradable fraction of the feedstock, so a high-food-waste mix needs more aeration than a leaf-dominated one.</p>
 
-<h3>Facility Technologies Compared</h3>
-<table>
-<thead><tr><th>System</th><th>Aeration</th><th>Footprint and cost</th><th>Typical use</th></tr></thead>
-<tbody>
-<tr><td>Turned windrows</td><td>Mechanical turning plus passive airflow</td><td>Large land area, low capital cost</td><td>Yard trimmings, rural sites</td></tr>
-<tr><td>Aerated static pile</td><td>Blowers push or pull air through pipes</td><td>Moderate area, moderate cost</td><td>Mixed food and yard waste, biosolids</td></tr>
-<tr><td>In-vessel</td><td>Fully controlled inside a drum, tunnel or container</td><td>Small area, high capital cost</td><td>Urban sites, odor-sensitive locations</td></tr>
-<tr><td>Anaerobic digestion followed by composting</td><td>Digestion without oxygen, then aerobic curing</td><td>High capital cost, energy recovery</td><td>Wet food waste and source-separated organics</td></tr>
-</tbody>
-</table>
+<h3>Household and Community Systems</h3>
+<p>Vermicomposting operates below thermophilic temperatures (worms die above about 35 °C), so it does not reliably kill pathogens or weed seeds, but it produces castings with high microbial activity and plant-available nutrients. Bokashi lactic acid fermentation preserves nutrients and accepts broader feedstocks but requires a secondary step for decomposition. Community systems trade economies of scale for local engagement and require management plans for odours, pests and contamination.</p>
 
-<h3>End-Product Quality</h3>
-<p>Buyers care about whether compost is safe, stable and clean. Common quality parameters include pathogen indicators, trace metals, physical contaminants such as plastic and glass fragments, maturity, pH, soluble salts and nutrient content. Immature compost can tie up nitrogen in the soil and stunt seedlings, so curing time is not optional. Contamination is often the factor that decides whether compost reaches high-value markets such as organic farming or is downgraded to lower-value uses.</p>
+<h3>Municipal Systems</h3>
+<p>Turned windrows are low-cost but need space and generate odours; aerated static piles and in-vessel systems allow process control and smaller footprints at higher capital cost. Anaerobic digestion recovers energy as biogas and is suited to wet food waste, with digestate requiring further treatment. System choice depends on feedstock mix, available land, proximity to neighbours, energy prices and end markets.</p>
 
-<h3>A Quick Design Checklist</h3>
-<ol>
-<li>Characterize feedstocks: moisture, C:N ratio, bulk density and expected contamination.</li>
-<li>Choose an aeration strategy that matches the most putrescible feedstock, not the average.</li>
-<li>Size active and curing areas based on retention times and seasonal peaks such as autumn leaves.</li>
-<li>Plan odor management: biofilters, covers, setbacks and community communication.</li>
-<li>Manage stormwater and leachate so nutrients do not reach nearby water bodies.</li>
-<li>Build a quality testing routine and target specific end markets from the start.</li>
-</ol>
-
-<h3>Thinking Quantitatively</h3>
-<p>Mass is lost as carbon leaves as carbon dioxide and water evaporates, so finished compost weighs considerably less than the incoming feedstock, often around half or less depending on the mix. That shrinkage matters for logistics and for calculating how much finished product a facility can sell. It also explains why composting reduces the volume of material that would otherwise occupy landfill space.</p>
+<h3>Product Quality and Markets</h3>
+<p>Compost quality is assessed by maturity, stability, nutrient content, salinity, pathogens, heavy metals and physical contaminants. Certification schemes support market confidence. Plastic contamination from collection is a major quality concern and depends on upstream education and policy. Regular testing and clear feedback to collection programmes help keep finished compost clean enough for farms and gardens.</p>
 `,
         GRADUATE: `
-<h2>Municipal Composting: Policy, Programs and Contamination Management</h2>
-<p>Diverting organics from landfill has become a priority for many cities because organic waste is a major source of landfill methane and makes up a large share of the municipal waste stream. Building a successful municipal composting system, however, is less an engineering problem than a governance one. Collection design, facility siting, contamination control, market development and equitable access must be planned together.</p>
+<h2>Planning Organics Recovery</h2>
+<p>Organic waste typically makes up a large share of municipal solid waste, and diverting it from landfill is among the most effective municipal climate actions because landfills are major sources of methane. Planning organics recovery involves choosing processing technologies, designing collection systems, ensuring product quality and setting supporting policy. This chapter examines these decisions and their trade-offs.</p>
+
+<h3>Technology Choices</h3>
+<p>Composting technologies (windrows, aerated static piles, in-vessel systems) and anaerobic digestion differ in capital and operating costs, footprint, odour control, energy balance and suitability for feedstocks. Digestion recovers energy from wet food waste and can co-digest with wastewater sludge, while composting suits woody yard trimmings and produces a soil amendment directly. Many systems combine them: digestion for food waste followed by composting of digestate. Decentralised options, including community composting and on-site systems at institutions, complement centralised facilities and reduce transport.</p>
+<ul>
+<li><strong>Source separation:</strong> separating organics from other waste where it is generated, before collection</li>
+<li><strong>Contamination rate:</strong> the share of non-compostable material in collected organics</li>
+<li><strong>Digestate:</strong> the material remaining after anaerobic digestion, often composted or applied to land</li>
+<li><strong>Organics disposal ban:</strong> a rule prohibiting organic waste from being landfilled</li>
+<li><strong>End market:</strong> the buyers and uses for finished compost or digestate</li>
+</ul>
+
+<h3>Collection System Design</h3>
+<p>Source-separated collection produces cleaner feedstock than mixed-waste processing. Design variables include container types, collection frequency, whether compostable bags are allowed, and pricing such as pay-as-you-throw. Contamination rates depend heavily on outreach, feedback (for example, bin tagging) and simple, consistent rules. Multi-family buildings have lower participation and higher contamination, requiring targeted strategies.</p>
+
+<h3>Quality Standards and Markets</h3>
+<p>Product standards for pathogens, heavy metals, physical contaminants and maturity protect end users and build markets. Concerns about microplastics and persistent chemicals such as PFAS in compost have prompted stricter feedstock controls and testing. Developing end markets through public procurement, agricultural outreach and specifications for landscaping and road projects stabilises facility revenues.</p>
 
 <h3>Policy Instruments</h3>
-<ul>
-<li><strong>Organics disposal ban:</strong> a rule that prohibits certain generators from sending food or yard waste to landfill</li>
-<li><strong>Source separation mandate:</strong> a requirement that households or businesses sort organics from other waste</li>
-<li><strong>Pay-as-you-throw:</strong> charging for trash by volume or weight so diverting organics saves money</li>
-<li><strong>Procurement requirement:</strong> a commitment by public agencies to buy compost for parks, roads and land projects</li>
-<li><strong>Compostable product standard:</strong> a certification that a product breaks down under defined composting conditions</li>
-<li><strong>Feedstock acceptance policy:</strong> a facility's rules on which materials it will accept and in what condition</li>
-</ul>
+<p>Organics disposal bans, landfill taxes, diversion mandates and funding for infrastructure drive recovery. Jurisdictions with comprehensive programmes combine mandates with collection services, education and enforcement. Equity considerations include ensuring services reach all neighbourhoods and that facilities are not concentrated in disadvantaged communities.</p>
 
-<h3>Why Contamination Is the Central Challenge</h3>
-<p>Plastic bags, packaging, glass and cutlery that enter organics bins are costly to remove and can fragment into small pieces that end up in the finished product. Contamination reduces compost value, raises processing costs and can turn farmers and landscapers away. A recurring tension involves "compostable" packaging: some items break down under industrial conditions, but they can look like conventional plastic, which confuses residents and sorting staff. Some facilities therefore reject compostable packaging entirely, while others accept only certified items.</p>
-<table>
-<thead><tr><th>Stage</th><th>Contamination control options</th><th>Limitations</th></tr></thead>
-<tbody>
-<tr><td>Household</td><td>Clear labeling, kitchen caddies, education campaigns</td><td>Needs sustained effort and multilingual outreach</td></tr>
-<tr><td>Collection</td><td>Cart inspections, feedback tags, targeted follow-up</td><td>Labor costs, potential for perceived unfairness</td></tr>
-<tr><td>Facility intake</td><td>Load inspection, rejection or surcharge policies</td><td>Disputes with haulers, may push loads to landfill</td></tr>
-<tr><td>Processing</td><td>Screening, depackaging, air separation</td><td>Equipment cost, cannot remove every fragment</td></tr>
-</tbody>
-</table>
-
-<h3>Economics and Markets</h3>
-<p>Composting facilities earn revenue from tipping fees and product sales, but tipping fees usually dominate. Programs are most viable where landfill disposal is expensive or restricted. Market development, such as public procurement and agricultural outreach, closes the loop and prevents finished compost from accumulating unsold. Planners should also compare options in the food recovery hierarchy, since preventing waste and feeding people rank above composting.</p>
-
-<h3>Equity and Siting</h3>
-<p>Large facilities can bring truck traffic, odor and noise, and such facilities have historically been sited in lower-income neighborhoods. A fair program pairs centralized processing with community-scale composting, transparent siting criteria and local benefit from the product. Multi-family housing often has lower access to organics collection, which is both an equity issue and a missed diversion opportunity.</p>
-
-<h3>An Evaluation Framework</h3>
-<ol>
-<li>Diversion: how much organic material is captured relative to what is generated.</li>
-<li>Quality: contamination rates at intake and in finished product.</li>
-<li>Cost: net cost per tonne compared with landfill disposal.</li>
-<li>Climate: avoided methane and soil carbon benefits, net of transport and process emissions.</li>
-<li>Equity: participation and access across neighborhoods and housing types.</li>
-</ol>
+<h3>Decentralised Networks</h3>
+<p>Several cities support networks of community composting sites alongside central facilities. These sites process smaller volumes but build public knowledge, create local jobs and supply compost to urban farms. Small grants, technical assistance, model permits suited to small sites and partnerships with parks departments help such networks grow without compromising odour and pest control. Evaluating their combined contribution to diversion and community benefits is an emerging practice.</p>
 `,
         PHD: `
-<h2>Composting Research: Microbial Dynamics, Optimization and Climate Accounting</h2>
-<p>Composting is a heterogeneous, non-steady-state bioprocess in which microbial communities, heat and mass transfer, and feedstock chemistry co-evolve over weeks. Despite its long practical history, many fundamental questions remain open: how microbial succession is shaped by process conditions, how to predict greenhouse gas emissions, how persistent contaminants behave, and how composting should be credited in climate accounting.</p>
+<h2>Research on Composting Systems</h2>
+<p>Composting is often portrayed as a simple, benign process, but research reveals complex trade-offs in greenhouse gas emissions, contaminant fate, microbial ecology and policy effectiveness. As organics diversion expands, these questions shape technology choices, standards and climate accounting. This chapter surveys current research frontiers.</p>
 
-<h3>Microbial Succession and Function</h3>
-<p>High-throughput sequencing has shown that compost communities shift systematically from mesophilic to thermophilic and back, with distinct taxa associated with lignocellulose degradation, nitrogen transformation and humification. A central question is the link between community composition and function: whether specific taxa are reliable indicators of process state, or whether functional redundancy means many different communities achieve similar outcomes. Studies of inoculants remain contested, since native communities often converge regardless of added cultures.</p>
+<h3>Emissions and Climate Accounting</h3>
+<p>Although composting avoids landfill methane, it emits methane and nitrous oxide from anaerobic microsites and nitrogen transformations, as well as ammonia. Emission factors vary widely with technology, feedstock and management, complicating lifecycle assessments that compare composting, anaerobic digestion and landfill gas capture. Research quantifies emissions with chamber and micrometeorological methods, models them as functions of aeration and moisture, and evaluates mitigation through biofilters, covers and process control. Accounting for soil carbon effects of compost application, including priming and long-term stabilisation, is a further source of uncertainty.</p>
 <ul>
-<li><strong>Microbial succession:</strong> the predictable sequence of microbial communities as temperature and substrates change</li>
-<li><strong>Functional redundancy:</strong> the idea that different organisms can perform the same ecological role</li>
-<li><strong>Humification:</strong> the formation of stable, complex organic compounds during maturation</li>
-<li><strong>Nitrous oxide:</strong> a potent greenhouse gas formed during nitrogen transformations in compost</li>
-<li><strong>Forever chemicals:</strong> a common name for PFAS, synthetic compounds that resist breakdown in the environment</li>
-<li><strong>Antibiotic resistance genes:</strong> genetic material conferring drug resistance that may persist through some treatment processes</li>
+<li><strong>Emission factor:</strong> the quantity of a gas emitted per unit of material processed</li>
+<li><strong>Microplastics:</strong> plastic particles smaller than 5 millimetres, which can enter compost from contaminated feedstock</li>
+<li><strong>PFAS:</strong> persistent synthetic chemicals that can accumulate in compost from packaging and other sources</li>
+<li><strong>Microbial succession:</strong> the sequence of microbial communities that dominate as conditions change</li>
+<li><strong>Antibiotic resistance genes:</strong> genes enabling bacteria to survive antibiotics, studied in manure-based composts</li>
 </ul>
 
-<h3>Modeling Approaches</h3>
-<table>
-<thead><tr><th>Approach</th><th>Strength</th><th>Limitation</th></tr></thead>
-<tbody>
-<tr><td>Empirical regression</td><td>Simple, fits site data</td><td>Poor transfer to new feedstocks or climates</td></tr>
-<tr><td>Kinetic models with temperature and moisture corrections</td><td>Mechanistic, interpretable parameters</td><td>Parameters are hard to measure in heterogeneous piles</td></tr>
-<tr><td>Coupled heat, mass and biological transport models</td><td>Capture spatial gradients within piles</td><td>Computationally demanding, need extensive calibration</td></tr>
-<tr><td>Data-driven and sensor-based control</td><td>Adaptive, uses real-time monitoring</td><td>Limited interpretability and transferability</td></tr>
-</tbody>
-</table>
-<p>Spatial heterogeneity is a recurring obstacle: pockets of anaerobic material can produce methane even in a pile that appears well aerated overall, so bulk measurements may underestimate emissions.</p>
+<h3>Contaminants</h3>
+<p>Microplastics from packaging and imperfect sorting, and "compostable" plastics that do not fully degrade under real conditions, raise concerns about soil contamination. PFAS from food packaging and other sources can persist through composting. Research addresses detection methods, fate during processing, plant uptake and the effectiveness of feedstock restrictions. Composting's ability to degrade some pharmaceuticals and reduce antibiotic resistance genes in manure is another active area.</p>
 
-<h3>Climate Implications and Contested Accounting</h3>
-<p>Composting avoids landfill methane but emits some methane and nitrous oxide of its own, plus ammonia that can later form nitrous oxide elsewhere. The size of the net benefit depends on the counterfactual landfill's gas capture, the composting technology and assumptions about soil carbon. Whether compost-derived soil carbon should be counted as durable sequestration is debated, because much added carbon may decompose over years to decades and results depend on soil type, management and the time horizon chosen.</p>
+<h3>Microbial Ecology</h3>
+<p>High-throughput sequencing has characterised microbial succession across composting phases, revealing functional groups responsible for lignocellulose degradation and nitrogen transformations. Research aims to link community composition to process performance and to design inocula or conditions that accelerate composting or reduce emissions, though the benefits of commercial inoculants remain debated.</p>
 
-<h3>Emerging Contaminants</h3>
-<p>PFAS from packaging and other sources, microplastic fragments from contaminated feedstocks, and residues of certain persistent herbicides have raised concerns about compost safety and marketability. Key research questions include analytical methods for complex organic matrices, transfer from compost to soil, crops and water, and how acceptance policies for compostable packaging affect contaminant loads.</p>
+<h3>Policy and Systems</h3>
+<p>Evaluations of disposal bans, pay-as-you-throw and community composting programmes examine participation, contamination and diversion outcomes. Systems research compares centralised and decentralised configurations, transport emissions and the circularity of nutrient flows between cities and farms.</p>
 
-<h3>Open Research Directions</h3>
-<ol>
-<li>Linking microbial community data to predictive, process-level control models.</li>
-<li>Measuring emissions from full-scale facilities across seasons, not just from pilot reactors.</li>
-<li>Establishing harmonized methods for detecting microplastics and PFAS in compost.</li>
-<li>Comparing composting, anaerobic digestion and their combination with consistent system boundaries.</li>
-<li>Quantifying soil health outcomes of long-term compost application under realistic farm conditions.</li>
-</ol>
+<h3>Integrating Evidence</h3>
+<p>Combining emission measurements, contaminant monitoring and lifecycle assessment with field trials of compost use would clarify the net environmental benefit of organics recovery pathways and guide standards and incentives.</p>
+
+<h3>Food Waste Prevention Versus Recovery</h3>
+<p>Waste hierarchy frameworks prioritise preventing food waste over recovering it. Research examines whether convenient composting services reduce incentives to prevent waste, and how prevention and recovery policies can be designed together. Linking household behaviour studies with collection data offers a way to test these interactions and to design messages that encourage both prevention and proper sorting.</p>
 `,
       },
     },
   ],
   quiz: [
     {
-      id: 'zwcq1',
+      id: 'zw-comp2-q1',
       question: {
-        ELEMENTARY: 'What breaks down food scraps into compost?',
-        MIDDLE_SCHOOL: 'What carbon-to-nitrogen ratio do compost microbes like best?',
-        HIGH_SCHOOL: 'A compost pile smells like rotten eggs. What is the most likely cause?',
-        UNDERGRADUATE: 'What is the main role of a bulking agent such as wood chips?',
-        GRADUATE: 'What is usually the biggest operational challenge for municipal composting programs?',
-        PHD: 'Which emerging contaminants raise concern about compost safety?',
+        ELEMENTARY: 'What do worms make from food scraps in a worm bin?',
+        MIDDLE_SCHOOL: 'Why is food waste in landfills bad for the climate?',
+        HIGH_SCHOOL: 'What kind of worms are used in vermicomposting?',
+        UNDERGRADUATE: 'What temperature range defines the thermophilic phase?',
+        GRADUATE: 'Why does source-separated collection matter?',
+        PHD: 'Which gases can composting emit despite avoiding landfill methane?',
       },
       options: {
-        ELEMENTARY: ['Tiny living things like bacteria, fungi and worms', 'Plastic bags', 'Sunlight alone', 'Cold water alone'],
-        MIDDLE_SCHOOL: ['About 25 to 30 parts carbon to 1 part nitrogen', 'Equal parts carbon and nitrogen', 'About 100 parts carbon to 1 part nitrogen', 'About 5 parts carbon to 1 part nitrogen'],
-        HIGH_SCHOOL: ['Not enough oxygen, often from too much water or compaction', 'Too many dry leaves', 'The pile is perfectly balanced', 'The pile is too dry'],
-        UNDERGRADUATE: ['Adding structure and air space to wet feedstocks', 'Killing pathogens directly', 'Adding nitrogen to the mix', 'Making the compost heavier'],
-        GRADUATE: ['Contamination from plastics, glass and other non-compostables', 'Too little organic material being generated', 'No one wanting soil', 'Rainfall at facilities'],
-        PHD: ['PFAS and microplastics', 'Excess earthworms', 'Beneficial fungi', 'Water vapor'],
-      },
-      correctIndex: 0,
-      explanation: {
-        ELEMENTARY: 'Tiny helpers like bacteria and fungi, plus worms, eat old food and plants and turn them into compost.',
-        MIDDLE_SCHOOL: 'Microbes work best with roughly 25 to 30 parts carbon for each part nitrogen.',
-        HIGH_SCHOOL: 'A rotten-egg smell means anaerobic conditions. Turning the pile and adding coarse browns lets air back in.',
-        UNDERGRADUATE: 'Bulking agents create free air space so oxygen can reach microbes in wet, dense feedstocks.',
-        GRADUATE: 'Contamination raises processing costs and lowers compost value, so it is the central program challenge.',
-        PHD: 'PFAS and microplastic fragments from contaminated feedstocks can persist into finished compost.',
-      },
-    },
-    {
-      id: 'zwcq2',
-      question: {
-        ELEMENTARY: 'Which of these is a "brown" for the compost bin?',
-        MIDDLE_SCHOOL: 'Why do helpful compost microbes need oxygen?',
-        HIGH_SCHOOL: 'Which composting method uses worms and works well in classrooms?',
-        UNDERGRADUATE: 'Which facility type uses blowers and pipes to move air through a pile that is not turned?',
-        GRADUATE: 'What does a pay-as-you-throw policy do?',
-        PHD: 'What does functional redundancy mean in compost microbiology?',
-      },
-      options: {
-        ELEMENTARY: ['A banana peel', 'Dry fallen leaves', 'A glass jar', 'A plastic toy'],
-        MIDDLE_SCHOOL: ['The pile would melt without it', 'They are aerobic and breathe air, which keeps the pile from smelling', 'Oxygen turns compost into plastic', 'They do not need oxygen at all'],
-        HIGH_SCHOOL: ['Cold pile', 'Vermicomposting', 'Tumbler', 'Bokashi'],
-        UNDERGRADUATE: ['Turned windrow', 'Aerated static pile', 'Landfill cell', 'Incinerator'],
-        GRADUATE: ['Bans all composting', 'Charges for trash by amount so diverting organics saves money', 'Pays residents to throw away more', 'Makes trash collection free'],
-        PHD: ['Different organisms can perform the same ecological role', 'Microbes repeat the same genes twice', 'Only one species can degrade lignin', 'Compost has no microbes after heating'],
-      },
-      correctIndex: 1,
-      explanation: {
-        ELEMENTARY: 'Dry leaves are a brown. Peels are greens, and glass and plastic never go in compost.',
-        MIDDLE_SCHOOL: 'The most helpful microbes are aerobic. Without air, smelly anaerobic microbes take over.',
-        HIGH_SCHOOL: 'Vermicomposting uses worms in a bin, which works well indoors in apartments and classrooms.',
-        UNDERGRADUATE: 'An aerated static pile uses blowers and pipes instead of turning to supply oxygen.',
-        GRADUATE: 'Pay-as-you-throw makes disposal cost depend on quantity, rewarding separation of organics.',
-        PHD: 'Functional redundancy means many different communities can achieve similar process outcomes.',
-      },
-    },
-    {
-      id: 'zwcq3',
-      question: {
-        ELEMENTARY: 'Which of these should stay OUT of the compost bin?',
-        MIDDLE_SCHOOL: 'What gas do food scraps release when they rot in a landfill without oxygen?',
-        HIGH_SCHOOL: 'What does an ammonia smell in a compost pile usually mean?',
-        UNDERGRADUATE: 'Why must compost be cured until it is mature before use?',
-        GRADUATE: 'Why is "compostable" packaging a source of tension for facilities?',
-        PHD: 'Why can bulk measurements underestimate methane from a compost pile?',
-      },
-      options: {
-        ELEMENTARY: ['Apple cores', 'Eggshells', 'A plastic wrapper', 'Coffee grounds'],
-        MIDDLE_SCHOOL: ['Oxygen', 'Helium', 'Methane', 'Neon'],
-        HIGH_SCHOOL: ['Too many browns', 'The pile is finished', 'Too much nitrogen', 'Too much air'],
-        UNDERGRADUATE: ['Mature compost is heavier', 'Curing adds plastic', 'Immature compost can harm plant roots and tie up nitrogen', 'Curing makes it smell stronger'],
-        GRADUATE: ['It is always banned by law', 'It never breaks down', 'It can look like regular plastic and confuse sorting', 'It makes compost too rich'],
-        PHD: ['Methane cannot be measured', 'Piles never contain methane', 'Anaerobic pockets can exist inside a pile that looks well aerated overall', 'Sensors only measure nitrogen'],
+        ELEMENTARY: ['Plastic', 'Candy', 'Worm castings, a rich plant food', 'Rocks'],
+        MIDDLE_SCHOOL: ['It turns into gold', 'It freezes', 'It rots without air and releases methane', 'It disappears instantly'],
+        HIGH_SCHOOL: ['Deep-burrowing earthworms', 'Ocean worms', 'Epigeic worms like red wigglers', 'Silkworms'],
+        UNDERGRADUATE: ['Below 10 °C', 'About 20 °C', 'Above about 45 °C', 'Exactly 100 °C'],
+        GRADUATE: ['It costs nothing', 'It removes the need for facilities', 'It produces cleaner feedstock', 'It is required everywhere'],
+        PHD: ['Only oxygen', 'Only helium', 'Methane, nitrous oxide and ammonia', 'None at all'],
       },
       correctIndex: 2,
       explanation: {
-        ELEMENTARY: 'Tiny helpers cannot eat plastic, so wrappers belong elsewhere.',
-        MIDDLE_SCHOOL: 'Buried scraps break down without oxygen and release methane, a powerful greenhouse gas.',
-        HIGH_SCHOOL: 'Ammonia means excess nitrogen. Adding browns brings the balance back.',
-        UNDERGRADUATE: 'Immature compost can contain organic acids or ammonia that stunt seedlings, so curing matters.',
-        GRADUATE: 'Compostable items can resemble conventional plastic, so some facilities reject them entirely.',
-        PHD: 'Spatial heterogeneity means local anaerobic zones can emit methane missed by bulk sampling.',
+        ELEMENTARY: 'Worms turn scraps into castings, a great plant food.',
+        MIDDLE_SCHOOL: 'Without air, food rots and makes methane, a strong greenhouse gas.',
+        HIGH_SCHOOL: 'Epigeic worms like red wigglers live in surface organic matter.',
+        UNDERGRADUATE: 'The thermophilic phase is above about 45 °C.',
+        GRADUATE: 'Separating organics at the source keeps contaminants out.',
+        PHD: 'Anaerobic pockets and nitrogen changes emit methane, nitrous oxide and ammonia.',
       },
     },
     {
-      id: 'zwcq4',
+      id: 'zw-comp2-q2',
       question: {
-        ELEMENTARY: 'What can you do with finished compost?',
-        MIDDLE_SCHOOL: 'What is humus?',
-        HIGH_SCHOOL: 'What is the hot stage of composting called?',
-        UNDERGRADUATE: 'Why does finished compost weigh much less than the feedstock?',
-        GRADUATE: 'How do public procurement requirements help composting programs?',
-        PHD: 'Why is counting compost soil carbon as durable sequestration debated?',
+        ELEMENTARY: 'What is bokashi?',
+        MIDDLE_SCHOOL: 'What can bokashi take that worm bins cannot?',
+        HIGH_SCHOOL: 'What carbon-to-nitrogen ratio is ideal for composting?',
+        UNDERGRADUATE: 'Why doesn\'t vermicomposting reliably kill pathogens?',
+        GRADUATE: 'What is digestate?',
+        PHD: 'What concern has prompted stricter compost feedstock controls?',
       },
       options: {
-        ELEMENTARY: ['Throw it in the trash', 'Put it in the recycling bin', 'Wrap presents with it', 'Spread it on gardens to help plants grow'],
-        MIDDLE_SCHOOL: ['A type of plastic', 'A kind of worm', 'A gas from the pile', 'The dark, stable material left after breakdown'],
-        HIGH_SCHOOL: ['The curing phase', 'The frozen phase', 'The anaerobic phase', 'The thermophilic phase'],
-        UNDERGRADUATE: ['Workers remove most of it', 'Worms carry it away', 'It is dried in ovens', 'Carbon leaves as carbon dioxide and water evaporates'],
-        GRADUATE: ['They ban compost sales', 'They raise landfill use', 'They replace collection', 'They create reliable demand for finished compost'],
-        PHD: ['Soil never contains carbon', 'It is always permanent', 'Compost contains no carbon', 'Much added carbon may decompose over years to decades depending on conditions'],
-      },
-      correctIndex: 3,
-      explanation: {
-        ELEMENTARY: 'Finished compost feeds the soil so flowers and vegetables grow strong.',
-        MIDDLE_SCHOOL: 'Humus is the dark, stable organic matter left once breakdown is complete.',
-        HIGH_SCHOOL: 'The thermophilic phase is when heat-loving microbes break material down fast.',
-        UNDERGRADUATE: 'Microbial respiration releases carbon dioxide, and moisture evaporates, so mass drops a lot.',
-        GRADUATE: 'Public purchasing for parks and roads gives facilities a dependable market for their product.',
-        PHD: 'Persistence of compost carbon depends on soil type, management and the time horizon chosen.',
-      },
-    },
-    {
-      id: 'zwcq5',
-      question: {
-        ELEMENTARY: 'What two kinds of food does a compost pile need?',
-        MIDDLE_SCHOOL: 'How damp should a compost pile feel?',
-        HIGH_SCHOOL: 'What should you do if a pile stays cold?',
-        UNDERGRADUATE: 'Which system has the smallest footprint but the highest capital cost?',
-        GRADUATE: 'Which equity concern is common in municipal composting?',
-        PHD: 'Why are results from compost inoculant studies contested?',
-      },
-      options: {
-        ELEMENTARY: ['Rocks and sand', 'Greens and browns', 'Plastic and metal', 'Candy and soda'],
-        MIDDLE_SCHOOL: ['Bone dry like sand', 'Like a wrung-out sponge', 'Soaking wet like a puddle', 'Frozen solid'],
-        HIGH_SCHOOL: ['Add plastic', 'Check moisture and add greens or more material', 'Seal it in a bag', 'Add only glass'],
-        UNDERGRADUATE: ['Turned windrow', 'In-vessel', 'Backyard pile', 'Open field spreading'],
-        GRADUATE: ['Facilities are only sited in wealthy areas', 'Facilities have often been sited in lower-income neighborhoods', 'Everyone always has equal access', 'Compost is too cheap'],
-        PHD: ['Inoculants are illegal', 'Native communities often converge regardless of added cultures', 'No microbes live in compost', 'Inoculants always double speed'],
+        ELEMENTARY: ['A kind of worm', 'Pickling food scraps in a sealed bucket', 'A garden tool', 'A type of flower'],
+        MIDDLE_SCHOOL: ['Only paper', 'Meat and dairy', 'Only leaves', 'Plastic bags'],
+        HIGH_SCHOOL: ['About 1 to 1', 'About 25 to 30 to 1', 'About 100 to 1', 'About 5 to 1'],
+        UNDERGRADUATE: ['Worms eat pathogens', 'It stays below thermophilic temperatures', 'It is too hot', 'It uses chemicals'],
+        GRADUATE: ['Compost from leaves only', 'Material left after anaerobic digestion', 'A type of collection bin', 'A landfill liner'],
+        PHD: ['Too little colour', 'Microplastics and PFAS', 'Too much moisture', 'Lack of worms'],
       },
       correctIndex: 1,
       explanation: {
-        ELEMENTARY: 'Greens are wet scraps and browns are dry leaves. Mixed together, they feed the tiny helpers.',
-        MIDDLE_SCHOOL: 'A pile should be about as damp as a wrung-out sponge: moist but not soggy.',
-        HIGH_SCHOOL: 'A cold pile is often too dry, too small or short on nitrogen.',
-        UNDERGRADUATE: 'In-vessel systems control conditions in a small space but cost the most to build.',
-        GRADUATE: 'Odor and truck traffic burdens have often fallen on lower-income neighborhoods.',
-        PHD: 'Because native microbial communities tend to converge, the added value of inoculants is unclear.',
+        ELEMENTARY: 'Bokashi pickles food scraps in a sealed bucket with helpful microbes.',
+        MIDDLE_SCHOOL: 'Bokashi can handle meat and dairy because it ferments them.',
+        HIGH_SCHOOL: 'A C:N ratio around 25 to 30 to 1 works best.',
+        UNDERGRADUATE: 'Worms die above about 35 °C, so piles never reach pathogen-killing heat.',
+        GRADUATE: 'Digestate is what remains after anaerobic digestion.',
+        PHD: 'Microplastics and PFAS in compost have led to tighter feedstock rules.',
+      },
+    },
+    {
+      id: 'zw-comp2-q3',
+      question: {
+        ELEMENTARY: 'Where do cities take food scraps from green bins?',
+        MIDDLE_SCHOOL: 'What is hot composting?',
+        HIGH_SCHOOL: 'What is the biggest challenge for municipal composting systems?',
+        UNDERGRADUATE: 'What is an aerated static pile?',
+        GRADUATE: 'Which households tend to have lower participation and higher contamination?',
+        PHD: 'What does high-throughput sequencing reveal about composting?',
+      },
+      options: {
+        ELEMENTARY: ['To the moon', 'To the zoo', 'To the ocean', 'To big compost sites'],
+        MIDDLE_SCHOOL: ['Cooking food scraps', 'Burning leaves', 'Composting in summer only', 'A managed pile that heats up enough to kill weed seeds and germs'],
+        HIGH_SCHOOL: ['Too much compost', 'Too many worms', 'Lack of leaves', 'Contamination, especially plastic'],
+        UNDERGRADUATE: ['A pile turned daily', 'A worm bin', 'A frozen pile', 'A method forcing air through an unturned pile'],
+        GRADUATE: ['Rural farms', 'Restaurants', 'Single-family homes with gardens', 'Multi-family buildings'],
+        PHD: ['Compost colour', 'Pile height', 'Weather patterns', 'Microbial succession across composting phases'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Trucks take scraps to big compost sites where giant piles turn them into soil.',
+        MIDDLE_SCHOOL: 'Hot composting balances materials so the pile heats up and works fast.',
+        HIGH_SCHOOL: 'Plastic and other contaminants are the biggest problem for large facilities.',
+        UNDERGRADUATE: 'Aerated static piles push air through instead of turning.',
+        GRADUATE: 'Apartments and other multi-family buildings need targeted strategies.',
+        PHD: 'Sequencing shows how microbial communities change through the phases.',
+      },
+    },
+    {
+      id: 'zw-comp2-q4',
+      question: {
+        ELEMENTARY: 'What is compost?',
+        MIDDLE_SCHOOL: 'What are "greens" in a compost pile?',
+        HIGH_SCHOOL: 'How wet should a hot compost pile be?',
+        UNDERGRADUATE: 'What does compost maturity describe?',
+        GRADUATE: 'Which policy prohibits organic waste from going to landfill?',
+        PHD: 'Why is accounting for compost\'s soil carbon effects uncertain?',
+      },
+      options: {
+        ELEMENTARY: ['Rich soil made from rotted food scraps and leaves', 'A kind of candy', 'A plastic toy', 'A type of rock'],
+        MIDDLE_SCHOOL: ['Food scraps and grass clippings', 'Dry leaves', 'Rocks', 'Plastic bottles'],
+        HIGH_SCHOOL: ['Like a wrung-out sponge', 'Completely dry', 'Flooded with water', 'Frozen solid'],
+        UNDERGRADUATE: ['How stable compost is and whether it will harm plants', 'Its colour', 'Its price', 'Its age in days only'],
+        GRADUATE: ['An organics disposal ban', 'A recycling rebate', 'A plastic tax', 'A fuel subsidy'],
+        PHD: ['Priming and long-term stabilisation are hard to quantify', 'Compost contains no carbon', 'Soil never changes', 'Carbon is easy to see'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'Compost is rich soil made from rotted scraps and leaves.',
+        MIDDLE_SCHOOL: 'Greens are nitrogen-rich, like food scraps and grass.',
+        HIGH_SCHOOL: 'Moisture like a wrung-out sponge keeps microbes working.',
+        UNDERGRADUATE: 'Mature compost is stable and safe for plants.',
+        GRADUATE: 'Organics disposal bans keep food and yard waste out of landfills.',
+        PHD: 'Effects like priming and long-term stabilisation make carbon accounting uncertain.',
+      },
+    },
+    {
+      id: 'zw-comp2-q5',
+      question: {
+        ELEMENTARY: 'Where can a worm bin live?',
+        MIDDLE_SCHOOL: 'What is curbside collection?',
+        HIGH_SCHOOL: 'What does anaerobic digestion produce?',
+        UNDERGRADUATE: 'What is a feedstock?',
+        GRADUATE: 'Why does developing end markets matter for organics facilities?',
+        PHD: 'Why do some "compostable" plastics raise concern?',
+      },
+      options: {
+        ELEMENTARY: ['On the moon', 'Under a kitchen sink or in a classroom', 'In a freezer', 'In a fish tank'],
+        MIDDLE_SCHOOL: ['Recycling cans only', 'Picking up food scraps from homes', 'Collecting rainwater', 'Picking up mail'],
+        HIGH_SCHOOL: ['Plastic', 'Biogas and digestate', 'Clean water only', 'Metal'],
+        UNDERGRADUATE: ['A garden tool', 'The raw organic materials fed into a system', 'Finished compost', 'A type of worm'],
+        GRADUATE: ['They are not important', 'They stabilise revenues by providing buyers for compost', 'They ban compost', 'They raise contamination'],
+        PHD: ['They are too strong', 'They may not fully degrade under real conditions', 'They are edible', 'They always degrade instantly'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Worm bins are small enough for a kitchen or classroom.',
+        MIDDLE_SCHOOL: 'Curbside collection picks up food scraps like trash pickup.',
+        HIGH_SCHOOL: 'Digestion makes biogas for energy and leftover digestate.',
+        UNDERGRADUATE: 'Feedstock is the raw organic material going in.',
+        GRADUATE: 'Buyers for compost keep facilities financially stable.',
+        PHD: 'Some compostable plastics do not break down fully in real facilities.',
       },
     },
   ],

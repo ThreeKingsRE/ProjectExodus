@@ -1,414 +1,313 @@
 import type { ModuleExpansion } from '../types'
 
+// Rewritten with its own angle: how producer responsibility works for specific
+// products in practice. Chapter 10 covers the idea of EPR and why it exists.
 const expansion: ModuleExpansion = {
   topicId: 'zero-waste',
   moduleKey: 'extended-producer-responsibility~2',
+  title: 'Producer Responsibility in Action: Packaging, Electronics and Batteries',
+  description: {
+    ELEMENTARY: 'How companies that make packaging, gadgets and batteries help collect and recycle them when we are done.',
+    MIDDLE_SCHOOL: 'How producer responsibility programmes collect packaging, old electronics and batteries in real life.',
+    HIGH_SCHOOL: 'Producer responsibility in practice for packaging, electronics and batteries: fees, collection and results.',
+    UNDERGRADUATE: 'Implementing EPR for packaging, e-waste and batteries: scheme design, fee modulation and performance.',
+    GRADUATE: 'Comparing EPR programmes across product streams: governance, eco-modulation, enforcement and outcomes.',
+    PHD: 'Research on EPR in practice: design incentives, free-riding, informal sectors and transboundary flows.',
+  },
   lessons: [
     {
       id: 'zw-epr-1',
-      title: 'Maker Responsibility: How Producer Programs Work',
+      title: 'Producer Responsibility in Action: Packaging, Electronics and Batteries',
       content: {
         ELEMENTARY: `
-<h2>The Juice Box Promise</h2>
-<p>Imagine you finish a juice box at lunch. Where should it go next? And who should help pay to recycle it? Many people think the company that made the juice box should help. That idea has a long name: maker responsibility. Let's find out what it means!</p>
+<h2>Companies Helping Clean Up</h2>
+<p>When you finish a juice box, an old phone stops working or a toy's battery runs out, where should it go? In many places, the companies that made those things have to help collect them and recycle them. This idea is called producer responsibility. It is a bit like a rule at home: if you take the toys out, you help put them away.</p>
 
-<h3>Makers Choose the Package</h3>
-<p>You did not pick the plastic straw, the foil inside or the cardboard outside. The company did. Because the company chose the package, it makes sense for the company to help take care of it when it is empty. When companies have to help pay for recycling, they start to think harder about making packages that are easy to recycle.</p>
+<h3>Packaging</h3>
+<p>Companies that sell drinks, snacks and cereal in boxes and bottles pay a little money for each package they make. That money helps pay for recycling trucks and sorting centres. Companies that use less packaging, or packaging that is easy to recycle, pay less. So they try to make better packages!</p>
 <ul>
-<li><strong>Maker:</strong> the company that designs a product and sells it to people</li>
-<li><strong>Package:</strong> the box, bag, bottle or wrapper that holds something you buy</li>
-<li><strong>Recycling:</strong> turning used things into materials that can be made into new things</li>
+<li><strong>Producer:</strong> a company that makes or sells a product</li>
+<li><strong>Packaging:</strong> the box, bottle or wrapper a product comes in</li>
+<li><strong>Electronics:</strong> things that run on electricity, like phones, tablets and computers</li>
+<li><strong>Battery:</strong> a small store of energy that powers toys, phones and remote controls</li>
+<li><strong>Drop-off point:</strong> a place where you can bring old things to be recycled</li>
 </ul>
 
-<h3>Ways Makers Can Help</h3>
-<p>There are different ways a company can do its part. Some ways are simple and some are big jobs.</p>
-<ol>
-<li>Paying money to help run recycling trucks and sorting centers.</li>
-<li>Making packages from one material so they are easier to sort.</li>
-<li>Setting up take-back bins in stores for old batteries or phones.</li>
-<li>Making refill bottles that come back again and again.</li>
-</ol>
-<ul>
-<li><strong>Take-back bin:</strong> a special box in a shop where you can return used items</li>
-<li><strong>Refill:</strong> filling the same container again instead of buying a new one</li>
-<li><strong>Deposit:</strong> a little extra money you pay for a bottle and get back when you return it</li>
-</ul>
+<h3>Old Phones and Gadgets</h3>
+<p>Old phones and computers have tiny bits of gold, copper and other metals inside. Electronics companies set up drop-off points in shops and town centres. The gadgets are taken apart so the metals can be used again.</p>
 
-<h3>Your Part Matters Too</h3>
-<p>Makers help, but families and kids help too! When you put things in the right bin, the recycling center gets clean materials it can use. Here are some things you can do:</p>
-<ul>
-<li>Rinse bottles and cans before putting them in the recycling bin.</li>
-<li>Bring old batteries to a take-back bin with a grown-up, never the trash.</li>
-<li>Choose a reusable water bottle for school.</li>
-</ul>
-
-<h3>Think About It</h3>
-<p>If you owned a juice company, how would you design a box that is easy to recycle or refill? Draw your idea! Good designers think about the end of a product right at the very beginning.</p>
+<h3>Batteries</h3>
+<p>Batteries should never go in the trash, because some can catch fire in garbage trucks. Many shops have special battery boxes where you can drop old ones off. Battery companies pay to collect and recycle them safely. Ask a grown-up to help you find one near you!</p>
 `,
         MIDDLE_SCHOOL: `
-<h2>Following the Money: How Producer Responsibility Works</h2>
-<p>Every year, towns and cities spend a lot of money collecting and sorting packaging, old electronics and other products. For a long time, that bill was paid only by local governments, which means by taxpayers. Extended Producer Responsibility, or EPR, is a policy that moves part or all of that cost to the companies that make and sell the products. Let's follow the money to see how it works.</p>
+<h2>Making Producers Responsible</h2>
+<p>Extended producer responsibility, or EPR, means the companies that put products on the market help pay for, and sometimes run, the collection and recycling of those products when people are finished with them. Instead of towns paying for everything with taxes, producers share the cost, which gives them a reason to design products that are easier to recycle. Here is how EPR works for three kinds of products.</p>
 
-<h3>The Old Way and the EPR Way</h3>
-<table>
-<thead><tr><th>Question</th><th>Old way</th><th>EPR way</th></tr></thead>
-<tbody>
-<tr><td>Who pays for collection and recycling?</td><td>The town, through taxes or trash fees</td><td>Producers, through fees they pay into a program</td></tr>
-<tr><td>Who decides how packages are designed?</td><td>Producers, with no link to disposal costs</td><td>Producers, but hard-to-recycle designs cost more</td></tr>
-<tr><td>Who checks results?</td><td>Often nobody tracks it closely</td><td>The government sets targets and checks reports</td></tr>
-</tbody>
-</table>
-
-<h3>Step by Step</h3>
-<ol>
-<li><strong>A law is passed</strong> saying producers of certain products must take responsibility for them after use.</li>
-<li><strong>Producers join together</strong> in a group that runs the program for all of them.</li>
-<li><strong>Each producer pays a fee</strong> based on how much packaging or how many products it sells.</li>
-<li><strong>The group pays for collection</strong> and recycling, either by running it or by paying towns that do.</li>
-<li><strong>The government checks</strong> that recycling targets are met and reports are honest.</li>
-</ol>
-
-<h3>Key Words</h3>
+<h3>Packaging</h3>
+<p>In many countries, companies that sell packaged goods pay fees to a producer responsibility organisation based on how much packaging they use and what it is made of. That organisation funds recycling collection and sorting. Packaging that is hard to recycle, like some mixed plastics, costs more, so companies have a reason to switch to simpler materials or reuse systems.</p>
 <ul>
-<li><strong>Extended Producer Responsibility:</strong> a policy that makes producers responsible for their products after customers are done with them</li>
-<li><strong>Producer:</strong> the company that makes a product or first sells it in a country</li>
-<li><strong>End of life:</strong> the stage when a product is used up, broken or no longer wanted</li>
-<li><strong>Fee:</strong> money a producer pays into the program for each unit or kilogram it sells</li>
-<li><strong>Recycling target:</strong> a goal set by law for how much material must be collected and recycled</li>
-<li><strong>Free rider:</strong> a company that sells products but avoids paying its share of the program</li>
+<li><strong>Extended producer responsibility (EPR):</strong> making producers responsible for their products after use</li>
+<li><strong>Producer responsibility organisation:</strong> a group run by producers to manage collection and recycling</li>
+<li><strong>Recycling fee:</strong> money producers pay for each unit or tonne of product they sell</li>
+<li><strong>E-waste:</strong> old or broken electronics that people throw out</li>
+<li><strong>Collection target:</strong> a goal for how much of a product must be collected</li>
 </ul>
 
-<h3>Why Companies Change Their Designs</h3>
-<p>When producers pay for what happens to their products, they have a reason to make them cheaper to recycle. A bottle made of one kind of plastic with a paper label that washes off is easier to recycle than a bottle with mixed layers. In many programs, easy-to-recycle packaging pays a lower fee, so smart design saves the company money.</p>
+<h3>Electronics</h3>
+<p>E-waste is one of the fastest-growing kinds of waste. EPR laws require electronics makers to fund take-back through shops, drop-off sites and collection events. Recyclers recover valuable metals and safely handle harmful substances like lead and mercury.</p>
 
-<h3>What You Can Notice</h3>
-<p>Look for take-back bins for batteries, light bulbs or phones in stores near you. Many of these exist because of producer responsibility rules. Ask yourself: who do you think pays for that bin to be emptied?</p>
+<h3>Batteries</h3>
+<p>Battery EPR programmes place collection boxes in shops and require recycling of materials like lithium, nickel and cobalt. Lithium-ion batteries in the trash can start fires in garbage trucks and recycling plants, so safe collection protects workers too.</p>
+
+<h3>Does It Work?</h3>
+<p>EPR has raised recycling rates in many places, but results depend on good rules, clear targets and checking that every company pays its share. Some companies avoid paying, which is unfair to those who follow the rules.</p>
 `,
         HIGH_SCHOOL: `
-<h2>Building an EPR Program: Laws, Organizations and Fees</h2>
-<p>Extended Producer Responsibility began in Europe in the early 1990s and has since spread to many countries and product types, including packaging, batteries, electronics, tires, paint, mattresses and, more recently, textiles. Behind every EPR program is a set of design choices: what is covered, who counts as a producer, who runs collection and how fees are set. This lesson walks through those choices the way a policymaker would.</p>
+<h2>EPR in Practice</h2>
+<p>Extended producer responsibility shifts the cost and often the management of end-of-life products from local governments and taxpayers to the producers who design and sell them. More than a policy idea, it is now a set of working programmes for packaging, electronics, batteries, tyres, mattresses and more. This chapter examines how EPR operates for three major product streams and what results it has produced.</p>
 
-<h3>Choice 1: What Is Covered and Who Is the Producer?</h3>
-<p>A law must define the products covered and the obligated party. For products made overseas, the "producer" is usually the brand owner or the first importer who places the product on the national market. Online sellers create a challenge, because products shipped directly from abroad may escape the rules unless marketplaces are made responsible too.</p>
-
-<h3>Choice 2: Who Runs the System?</h3>
-<p>Most producers do not want to build their own collection networks, so they join a Producer Responsibility Organization (PRO).</p>
-<table>
-<thead><tr><th>Model</th><th>How it works</th><th>Strengths</th><th>Weaknesses</th></tr></thead>
-<tbody>
-<tr><td>Individual take-back</td><td>Each company collects its own products</td><td>Direct link between design and cost</td><td>Expensive and impractical for small items</td></tr>
-<tr><td>Single collective PRO</td><td>One nonprofit PRO serves all producers</td><td>Economies of scale, simple oversight</td><td>Can become a monopoly with little pressure to improve</td></tr>
-<tr><td>Competing PROs</td><td>Several PROs compete for producer members</td><td>Pressure to cut costs</td><td>Risk of cutting corners; needs strong regulation and a clearing system</td></tr>
-<tr><td>Government-run fund</td><td>Producers pay fees to a public agency</td><td>Strong public control</td><td>Less producer engagement in design</td></tr>
-</tbody>
-</table>
-
-<h3>Choice 3: How Are Fees Set?</h3>
-<p>Fees usually depend on the weight or number of units a producer sells, by material type. Many programs now use <em>eco-modulated</em> fees: packaging that is recyclable, contains recycled content or is reusable pays less, while hard-to-recycle formats pay more. This turns the fee schedule into a design signal.</p>
-
-<h3>Key Terms</h3>
+<h3>Packaging Programmes</h3>
+<p>Most packaging EPR systems work through producer responsibility organisations (PROs). Producers report how much packaging they place on the market, by material, and pay fees to the PRO. The PRO funds collection, sorting and recycling, often by reimbursing municipalities. A growing feature is eco-modulation: lower fees for packaging that is recyclable, reusable or contains recycled content, and higher fees for problem materials. Several countries in Europe and Canada have long-running systems, and a number of U.S. states have recently passed packaging EPR laws.</p>
 <ul>
-<li><strong>Producer Responsibility Organization:</strong> a group set up by producers to manage collection and recycling on their behalf</li>
-<li><strong>Obligated producer:</strong> the brand owner or importer that the law requires to join or fund the program</li>
-<li><strong>Eco-modulation:</strong> adjusting fees so products that are easier to reuse or recycle pay less</li>
-<li><strong>Collection target:</strong> the share of products sold that must be gathered back after use</li>
-<li><strong>Recycling rate:</strong> the share of collected material that is actually turned into new material</li>
-<li><strong>Enforcement:</strong> government checks, audits and penalties that make sure producers follow the law</li>
+<li><strong>Eco-modulation:</strong> adjusting EPR fees according to how environmentally friendly a product's design is</li>
+<li><strong>Free rider:</strong> a producer that sells products but avoids paying its EPR obligations</li>
+<li><strong>Recycled content:</strong> the share of a product made from recycled material</li>
+<li><strong>Collection rate:</strong> the share of products sold that are collected at end of life</li>
+<li><strong>Critical minerals:</strong> materials like lithium and cobalt that are essential for technology and have supply risks</li>
 </ul>
 
-<h3>Trade-offs to Weigh</h3>
-<ul>
-<li><strong>Costs passed on:</strong> producers may raise prices slightly, but the cost is spread across buyers instead of all taxpayers.</li>
-<li><strong>Local government role:</strong> towns may lose control over collection if the PRO takes over, or gain funding if the PRO reimburses them.</li>
-<li><strong>Weight-based targets:</strong> they are easy to measure but can favor heavy materials over the most harmful ones.</li>
-</ul>
+<h3>Electronics</h3>
+<p>E-waste EPR programmes set collection targets based on products sold, require free take-back for consumers and set treatment standards to recover metals and handle hazardous substances safely. Collection rates vary widely; much e-waste still ends up stored in drawers, in trash or exported informally.</p>
 
-<h3>Real-World Applications</h3>
-<p>Many European countries have long-running packaging and electronics programs, and several Canadian provinces and US states have adopted packaging EPR laws in recent years. Battery and paint programs are common in North America because those items are hazardous in household trash. When you see a free drop-off point for paint or batteries, there is a good chance an EPR program is paying for it.</p>
+<h3>Batteries</h3>
+<p>Battery EPR has expanded to cover the lithium-ion batteries in phones, tools, e-bikes and electric vehicles. Programmes fund collection points and safe transport, and new rules increasingly require recycled content in new batteries, recovery of critical minerals and battery labelling.</p>
+
+<h3>Lessons Learned</h3>
+<p>Successful programmes combine clear targets, meaningful eco-modulation, strong enforcement against free riders, convenient collection and transparent reporting. For you as a consumer, the practical step is simple: find your local drop-off points for packaging, electronics and batteries, and use them instead of the trash.</p>
 `,
         UNDERGRADUATE: `
-<h2>The Economics and Performance of EPR</h2>
-<p>EPR is best understood as a tool for correcting a market failure. When producers make design and material choices, the costs of collecting, sorting and disposing of their products fall on municipalities and the environment, not on the producer. Economists call this an externality. EPR attempts to internalize those costs so they show up in producer decisions and, ultimately, in prices. This lesson examines the economic logic, system design variables, performance metrics and how programs differ internationally.</p>
+<h2>Implementing EPR for Packaging, E-Waste and Batteries</h2>
+<p>Extended producer responsibility is a policy approach in which producers bear physical and/or financial responsibility for products at the post-consumer stage. Its objectives include shifting costs from municipalities, increasing collection and recycling, and creating incentives for eco-design. Implementation varies widely in scheme structure, fee design, targets and oversight. This chapter analyses EPR implementation for packaging, waste electrical and electronic equipment (WEEE) and batteries.</p>
 
-<h3>Core Concepts</h3>
+<h3>Scheme Design</h3>
+<p>Producers may comply individually or collectively through a PRO; collective schemes dominate because of economies of scale, though individual responsibility offers stronger design incentives in principle. Key design elements include the definition of "producer" (brand owner, importer, online marketplace), scope of products, financial responsibility (full or partial net cost), targets, reporting requirements and government oversight of PROs, including whether multiple competing PROs are allowed.</p>
 <ul>
-<li><strong>Externality:</strong> a cost or benefit of an activity that falls on people who did not choose it and is not reflected in market prices</li>
-<li><strong>Cost internalization:</strong> making producers pay the end-of-life costs of their products so those costs enter design and pricing decisions</li>
-<li><strong>Full net cost:</strong> the total cost of collection, sorting and treatment minus revenue from selling recovered materials</li>
-<li><strong>Free riding:</strong> selling covered products without registering or paying fees, which shifts costs to compliant producers</li>
-<li><strong>Orphan products:</strong> items whose producer no longer exists or cannot be identified, whose costs must be shared</li>
-<li><strong>Pass-through:</strong> the portion of an EPR fee that producers transfer to consumers through higher prices</li>
+<li><strong>Individual producer responsibility:</strong> each producer is responsible for its own products, strengthening design incentives</li>
+<li><strong>Collective scheme:</strong> producers pool obligations through a shared organisation</li>
+<li><strong>Full net cost:</strong> covering all costs of collection and treatment minus revenues from recovered materials</li>
+<li><strong>WEEE:</strong> waste electrical and electronic equipment, the legal term for e-waste in many jurisdictions</li>
+<li><strong>Online marketplace obligation:</strong> making e-commerce platforms responsible for EPR compliance of sellers</li>
 </ul>
 
-<h3>Two Incentive Channels</h3>
-<p>EPR can change outcomes through two channels. The <em>financing channel</em> provides stable money for collection and recycling, which typically raises collection rates quickly. The <em>design channel</em> rewards producers who reduce material, avoid problem substances or improve recyclability. In practice, the financing channel has been stronger. When fees are flat and collective, a single producer that redesigns its packaging captures only a tiny share of the system-wide savings, so the design incentive is weak. Fee modulation tries to fix this by linking each producer's fee to the attributes of its own products.</p>
+<h3>Packaging</h3>
+<p>Packaging EPR fees are typically set per tonne by material. Eco-modulation adjusts fees for recyclability, recycled content or reuse. Evidence suggests fee modulation must be large enough relative to product prices to change design decisions. Full net cost coverage relieves municipalities and can fund improved collection infrastructure.</p>
 
-<h3>Performance Metrics</h3>
-<table>
-<thead><tr><th>Metric</th><th>What it measures</th><th>Watch out for</th></tr></thead>
-<tbody>
-<tr><td>Collection rate</td><td>Share of products placed on the market that are collected</td><td>Lag between sale and disposal for long-lived goods</td></tr>
-<tr><td>Recycling rate</td><td>Share of collected material sent to recyclers</td><td>Whether it is measured at sorting or at actual reprocessing</td></tr>
-<tr><td>Cost per tonne</td><td>Efficiency of the system</td><td>Low cost can mean low quality or exported waste</td></tr>
-<tr><td>Design change indicators</td><td>Shifts in material use, recyclability or reuse</td><td>Hard to attribute to EPR rather than other trends</td></tr>
-<tr><td>Free-rider share</td><td>Unregistered sales as a portion of the market</td><td>Online imports are difficult to estimate</td></tr>
-</tbody>
-</table>
+<h3>Electronics</h3>
+<p>WEEE schemes face complex products with long and uncertain lifetimes, hazardous components and valuable metals. Collection targets based on products placed on the market have been missed in many countries; a large share of e-waste is unreported, informally recycled or illegally exported. Treatment standards and audits aim to ensure safe processing.</p>
 
-<h3>Reasoning About Fees</h3>
-<p>Suppose a producer sells a beverage in a multilayer pouch that the local system cannot recycle, while a competitor uses a single-material bottle that sorts easily. Under a flat fee by weight, the pouch might even pay less because it is lighter, rewarding the format that creates more residual waste. Under a modulated fee, the pouch pays a penalty reflecting its higher net cost, and the bottle pays less. The size of the gap matters: if the penalty is small relative to packaging and marketing costs, it will not change decisions.</p>
+<h3>Batteries</h3>
+<p>Battery regulations increasingly integrate EPR with design requirements: removability and replaceability, labelling, carbon footprint declarations, recycled content minimums and material recovery targets for lithium, cobalt and nickel. Safety risks from lithium-ion batteries in waste streams make collection convenience critical.</p>
 
-<h3>International Comparisons</h3>
-<p>Programs differ along several dimensions: single versus competing PROs, full versus partial cost coverage, whether municipalities or PROs operate collection, and how strictly targets are enforced. Comparing raw recycling rates across countries is risky because definitions and measurement points differ. A fairer comparison looks at what is counted, where it is measured and what share ends up as material actually used again.</p>
-
-<h3>Applied Checklist: Assessing an EPR Program</h3>
-<ol>
-<li>Does the definition of "producer" capture importers and online sellers?</li>
-<li>Do fees cover the full net cost of managing the products?</li>
-<li>Are fees modulated, and is the difference large enough to influence design?</li>
-<li>Are recycling rates measured at the point of actual reprocessing?</li>
-<li>Is there independent auditing and a credible penalty for free riders?</li>
-<li>Does the program include prevention or reuse targets, not just recycling?</li>
-</ol>
+<h3>Performance and Enforcement</h3>
+<p>Performance depends on enforcement against free riders, particularly online sellers, robust data on products placed on the market and transparency in PRO operations and costs.</p>
 `,
         GRADUATE: `
-<h2>Governing EPR Within Circular Economy Policy</h2>
-<p>Three decades of experience have made EPR one of the most widely used waste policy instruments, but they have also exposed governance weaknesses. Programs can deliver high collection rates while doing little to reduce material use, can concentrate power in incumbent PROs, and can sit awkwardly alongside other circular economy goals such as reuse, repair and recycled-content requirements. This lesson treats EPR as a governance system and examines how its design choices shape outcomes.</p>
+<h2>Comparing EPR Programmes Across Product Streams</h2>
+<p>Extended producer responsibility has diffused globally across product streams and jurisdictions, but programme outcomes vary considerably. Comparing packaging, WEEE and battery programmes reveals how governance structures, fee design, enforcement and market conditions shape performance. This chapter analyses these dimensions and draws lessons for policy design.</p>
 
 <h3>Governance Models</h3>
+<p>EPR governance ranges from single, producer-run PROs with government oversight to multiple competing PROs and government-run models funded by producer fees. Monopoly PROs can achieve economies of scale and coordinated infrastructure but may lack incentives for cost efficiency; competing PROs may lower costs but can fragment collection and require clearing mechanisms. Strong government oversight, including approval of plans, performance audits and public reporting, is consistently associated with better outcomes.</p>
 <ul>
-<li><strong>Producer-led governance:</strong> producers control the PRO and its decisions, with government setting targets and monitoring outcomes</li>
-<li><strong>Shared governance:</strong> municipalities, producers and sometimes civil society share decision rights over the program</li>
-<li><strong>State-led governance:</strong> a public body collects fees and contracts services, with producers mainly acting as funders</li>
-<li><strong>Clearing house:</strong> a neutral body that allocates obligations and reconciles data when several PROs compete</li>
-<li><strong>Regulatory capture:</strong> a situation in which the regulated industry gains undue influence over the rules meant to govern it</li>
-<li><strong>Fee modulation:</strong> varying producer fees according to product attributes such as recyclability, recycled content or reusability</li>
+<li><strong>Clearing house:</strong> a body that allocates obligations and costs among competing PROs</li>
+<li><strong>Eco-modulation:</strong> fee differentiation based on environmental attributes of products</li>
+<li><strong>Products placed on the market:</strong> the quantity of products sold, used as the basis for fees and targets</li>
+<li><strong>Enforcement gap:</strong> the difference between legal obligations and actual compliance</li>
+<li><strong>Design for recycling:</strong> designing products so materials can be efficiently recovered</li>
 </ul>
 
-<h3>Designing Fee Modulation</h3>
-<p>Fee modulation is now standard in leading packaging programs, but its design is contested. Key choices include the criteria used, how they are verified, how large the bonus and malus are, and whether modulation is revenue-neutral. Criteria can be binary (recyclable or not) or graduated, and they may reference design guidelines that are updated over time. Effective modulation requires reliable product-level data, which in turn depends on reporting systems and audits. If penalties are small, producers absorb them; if criteria are vague, producers may claim recyclability that local infrastructure does not support.</p>
+<h3>Eco-Modulation in Practice</h3>
+<p>Many packaging schemes now modulate fees, but differences are often small relative to production costs, limiting design effects. Effective modulation requires clear, verifiable criteria (for example, design-for-recycling guidelines), meaningful fee differences and periodic updating as technologies change. For electronics and batteries, modulation is less common because product complexity makes criteria harder to define, and design requirements in product regulation may be more effective.</p>
 
-<h3>Comparing Governance Arrangements</h3>
-<table>
-<thead><tr><th>Arrangement</th><th>Accountability</th><th>Innovation pressure</th><th>Main risk</th></tr></thead>
-<tbody>
-<tr><td>Single producer-led PRO</td><td>Through regulator oversight</td><td>Low without strong targets</td><td>Monopoly and capture</td></tr>
-<tr><td>Competing PROs with clearing house</td><td>Market plus regulator</td><td>Cost-focused</td><td>Race to the bottom on quality</td></tr>
-<tr><td>Shared governance board</td><td>Multiple stakeholders</td><td>Moderate</td><td>Slow decisions and conflict</td></tr>
-<tr><td>Public fund model</td><td>Direct public accountability</td><td>Depends on agency capacity</td><td>Weak link to product design</td></tr>
-</tbody>
-</table>
+<h3>Enforcement and Free Riding</h3>
+<p>Free riding, especially by online sellers based outside the jurisdiction, undermines funding and fairness. Responses include making online marketplaces responsible for compliance, producer registers, mandatory registration numbers on listings and penalties. Data quality on products placed on the market is a persistent weakness.</p>
 
-<h3>Integration With Circular Economy Policy</h3>
-<p>Traditional EPR was built around recycling targets. Circular economy strategies place prevention, reuse and repair higher in the waste hierarchy, so newer programs add reuse targets, funding for refill infrastructure, recycled-content mandates and links to eco-design rules. Coordination problems arise when EPR fees fund recycling capacity that later competes with reuse, or when design guidelines from different jurisdictions conflict and fragment the market for producers that sell across borders.</p>
+<h3>Outcomes and Trade-offs</h3>
+<p>Packaging EPR has generally increased recycling rates and shifted costs from municipalities, though effects on waste prevention and reuse are modest. WEEE collection often falls short of targets because of informal channels and stockpiling. Battery programmes face rising volumes of large lithium-ion batteries with new safety and logistics challenges. Integrating EPR with complementary policies such as deposit-return systems, recycled content mandates and reuse targets addresses goals EPR alone does not achieve.</p>
 
-<h3>Equity and Institutional Barriers</h3>
-<p>EPR redistributes costs from taxpayers to product buyers, which can be more or less progressive depending on pass-through and what is covered. Rural and remote communities often have higher collection costs, so programs need explicit service standards to avoid serving only profitable urban areas. Informal waste pickers, who recover large volumes in many countries, can lose their livelihoods if EPR systems ignore them; inclusive designs contract with or formally integrate them. Institutional barriers include limited regulator capacity, weak data, and the political influence of incumbent producers and PROs.</p>
-
-<h3>Evaluation Framework</h3>
-<ol>
-<li>Clarify objectives: financing, design change, prevention, reuse or equity.</li>
-<li>Map decision rights and identify who can block or shape reforms.</li>
-<li>Test whether modulation signals are large and verifiable enough to change design.</li>
-<li>Check service coverage across rural, remote and low-income areas.</li>
-<li>Assess treatment of informal workers and municipal staff.</li>
-<li>Review data transparency, auditing and enforcement capacity.</li>
-</ol>
+<h3>Design Lessons</h3>
+<p>Key lessons include defining producers broadly, covering full net costs, setting enforceable targets, ensuring transparency and independent oversight, and aligning EPR with product design regulation. Programme reviews should also track whether collected material is actually recycled into high-value uses, rather than downcycled or exported, and should give municipalities, recyclers and civil society a formal role in scheme governance so that producer interests do not dominate decisions about fees, targets and reporting.</p>
 `,
         PHD: `
-<h2>Researching EPR Effectiveness and Political Economy</h2>
-<p>Despite the spread of EPR, rigorous evidence on what it achieves remains thinner than its popularity suggests. Many evaluations report descriptive collection and recycling rates without a credible counterfactual, and few isolate effects on product design or material use. At the same time, EPR is a political creation whose design reflects the interests of producers, municipalities, recyclers and regulators. This lesson examines methods for evaluating effectiveness, analytical lenses on political economy, and directions for next-generation policy design.</p>
+<h2>Research on EPR in Practice</h2>
+<p>Extended producer responsibility is one of the most widespread environmental policy instruments, yet empirical evidence about its effects on product design, waste prevention and recycling quality remains limited and contested. Research frontiers include identifying design incentives, explaining enforcement failures, understanding interactions with informal sectors and assessing transboundary flows of end-of-life products. This chapter surveys these questions.</p>
+
+<h3>Does EPR Change Design?</h3>
+<p>Theory predicts that internalising end-of-life costs should encourage design for recyclability and reduced material use, especially under individual producer responsibility. Empirical studies find weak design effects in collective schemes, where fees are averaged across producers and small relative to product prices. Research uses fee-change natural experiments, product-level data on packaging weight and material composition, and firm interviews to identify when eco-modulation influences design. Attribution is difficult because design also responds to costs, brand strategy and other regulations.</p>
+<ul>
+<li><strong>Internalisation:</strong> making producers bear costs previously borne by society</li>
+<li><strong>Natural experiment:</strong> an observational setting where a policy change creates comparable treated and untreated groups</li>
+<li><strong>Informal sector:</strong> unregulated economic activity, such as independent waste pickers and repairers</li>
+<li><strong>Transboundary movement:</strong> cross-border shipment of waste or used products</li>
+<li><strong>Circular economy indicator:</strong> a metric tracking progress toward reduced resource use and waste</li>
+</ul>
+
+<h3>Enforcement, Free Riding and Data</h3>
+<p>Studies document widespread non-compliance, especially in e-commerce. Political economy research examines how PRO governance, producer influence over regulators and monitoring capacity shape enforcement. Better data infrastructure, such as producer registries, digital tracking and product passports, is proposed, but evidence on effectiveness is early.</p>
+
+<h3>Informal Sectors and Justice</h3>
+<p>In many low- and middle-income countries, informal collectors and recyclers handle most e-waste and packaging. EPR programmes designed for formal systems can displace these workers or fail to reach material they collect. Research examines models that integrate informal actors through registration, fair payment and safer processing, and assesses impacts on livelihoods and environmental health.</p>
+
+<h3>Transboundary Flows</h3>
+<p>Used electronics and batteries are exported for reuse, often blurring the line between reusable goods and waste. Research quantifies flows, evaluates the effects of export controls and international agreements on hazardous waste, and analyses how EPR in exporting countries interacts with recycling capacity and environmental burdens in importing countries.</p>
+
+<h3>Political Economy of Scheme Design</h3>
+<p>EPR laws are negotiated among producers, municipalities, waste companies and environmental groups, and the resulting design reflects their relative power. Producers often favour producer-run PROs and partial cost coverage, while municipalities push for full net cost reimbursement and control over collection. Comparative research traces how these coalitions shape fee structures, target levels and oversight, and whether PROs captured by large incumbents set eco-modulation criteria that favour existing packaging formats. Understanding these dynamics helps explain why programmes with similar legal texts perform very differently in practice.</p>
 
 <h3>Evaluation Methods</h3>
-<ul>
-<li><strong>Counterfactual analysis:</strong> estimating what would have happened without the policy, to separate its effect from background trends</li>
-<li><strong>Difference-in-differences:</strong> comparing changes over time between jurisdictions that adopted EPR and similar ones that did not</li>
-<li><strong>Synthetic control:</strong> building a weighted combination of untreated jurisdictions that resembles the treated one before adoption</li>
-<li><strong>Product-level panel data:</strong> repeated observations of specific products that allow design changes to be tracked over time</li>
-<li><strong>Process tracing:</strong> a qualitative method that follows causal mechanisms through documents, interviews and decisions</li>
-<li><strong>Political economy:</strong> the study of how interests, institutions and power shape the adoption and design of policy</li>
-</ul>
-
-<h3>Identification Challenges</h3>
-<p>EPR adoption is not random. Jurisdictions that adopt it often already have stronger environmental institutions and higher recycling rates, which biases naive comparisons. Programs also tend to arrive bundled with other measures such as landfill taxes, deposit systems or bans, making attribution difficult. Design effects are particularly hard to identify because global brands redesign products for multiple markets at once, so a change observed in one country may be driven by rules elsewhere. Researchers increasingly use product-level data, staggered adoption designs and mixed-methods approaches to address these problems.</p>
-
-<h3>Political Economy Lenses</h3>
-<table>
-<thead><tr><th>Lens</th><th>Core question</th><th>Typical insight</th></tr></thead>
-<tbody>
-<tr><td>Interest group analysis</td><td>Which actors gain or lose and how they mobilize</td><td>Producers may support EPR when they can control the PRO</td></tr>
-<tr><td>Historical institutionalism</td><td>How early choices constrain later reform</td><td>Incumbent PROs and contracts create path dependence</td></tr>
-<tr><td>Policy diffusion</td><td>How designs spread between jurisdictions</td><td>Copying templates can import mismatched assumptions</td></tr>
-<tr><td>Multi-level governance</td><td>How local, national and supranational rules interact</td><td>Fragmented rules raise compliance costs for producers</td></tr>
-</tbody>
-</table>
-
-<h3>Contested Questions</h3>
-<ul>
-<li>Does EPR meaningfully change product design, or mainly finance recycling infrastructure?</li>
-<li>Do competing PROs lower costs without reducing environmental performance?</li>
-<li>Is weight-based target setting compatible with priorities based on environmental harm?</li>
-<li>Should EPR fees be harmonized across jurisdictions to create stronger, consistent design signals?</li>
-<li>How should EPR interact with waste trade, especially exports of used goods to lower-income countries?</li>
-</ul>
-
-<h3>Modeling Approaches</h3>
-<p>Theoretical work models producer decisions under different fee structures, often using industrial organization frameworks to study how collective versus individual responsibility alters incentives. Agent-based and system dynamics models explore interactions between producers, PROs, recyclers and secondary material markets, including price volatility. Life-cycle and material flow models estimate the environmental outcomes of alternative designs. Linking these model types, so that behavioral responses feed into environmental accounting, remains methodologically challenging.</p>
-
-<h3>Next-Generation Policy Design</h3>
-<p>Proposals for next-generation EPR include fees tied to measured environmental impacts rather than weight, explicit reuse and prevention targets, digital product information to verify claims and enable individual producer accountability, responsibility for online marketplaces, and mechanisms that include informal recyclers. Each proposal raises research questions about administrative feasibility, data integrity and unintended consequences.</p>
-
-<h3>Open Research Directions</h3>
-<ol>
-<li>Credible causal estimates of EPR effects on product design and material use.</li>
-<li>Comparative studies of PRO market structures and their long-run performance.</li>
-<li>Methods for linking fee modulation to life-cycle impacts in a verifiable way.</li>
-<li>Analysis of how EPR systems affect informal waste sectors and global used-goods trade.</li>
-<li>Political economy of reform: when and why incumbent arrangements change.</li>
-</ol>
+<p>Progress requires better outcome data on prevention, reuse and recycling quality, not only collection volumes. Combining material flow analysis with policy evaluation methods and comparative cross-jurisdiction studies offers a path to stronger evidence about which EPR designs work.</p>
 `,
       },
     },
   ],
   quiz: [
     {
-      id: 'zwepr2q1',
+      id: 'zw-epr2-q1',
       question: {
-        ELEMENTARY: 'Who should help pay to recycle the packages they make?',
+        ELEMENTARY: 'What is producer responsibility?',
         MIDDLE_SCHOOL: 'What does EPR stand for?',
-        HIGH_SCHOOL: 'What is a Producer Responsibility Organization (PRO)?',
-        UNDERGRADUATE: 'What does cost internalization mean in the context of EPR?',
-        GRADUATE: 'What is fee modulation?',
-        PHD: 'What does a political economy analysis of EPR study?',
+        HIGH_SCHOOL: 'What is eco-modulation?',
+        UNDERGRADUATE: 'Why do collective schemes dominate EPR implementation?',
+        GRADUATE: 'What is consistently associated with better EPR outcomes?',
+        PHD: 'Why do collective EPR schemes tend to show weak design effects?',
       },
       options: {
-        ELEMENTARY: ['The companies that made them', 'Only the people who buy them', 'Nobody at all', 'The garbage truck driver'],
-        MIDDLE_SCHOOL: ['Extended Producer Responsibility', 'Extra Plastic Recycling', 'Everyone Pays Regularly', 'Easy Product Returns'],
-        HIGH_SCHOOL: ['A group set up by producers to manage collection and recycling for them', 'A government public relations office', 'A store that sells recycled products', 'A program that only handles plastic bottles'],
-        UNDERGRADUATE: ['Making producers pay end-of-life costs so they enter design and pricing decisions', 'Hiding disposal costs inside city budgets', 'Having the government pay for all recycling', 'Removing every cost from the product'],
-        GRADUATE: ['Varying producer fees according to attributes such as recyclability or reusability', 'Charging every product the same flat fee', 'Letting producers choose whether to pay', 'Setting fees randomly each year'],
-        PHD: ['How interests, institutions and power shape the adoption and design of EPR', 'Only the chemistry of recycled materials', 'Purely technical engineering of sorting machines', 'Weather patterns that affect collection'],
-      },
-      correctIndex: 0,
-      explanation: {
-        ELEMENTARY: 'The company chose the package, so it makes sense for the company to help pay for recycling it.',
-        MIDDLE_SCHOOL: 'EPR stands for Extended Producer Responsibility, which makes producers responsible for products after use.',
-        HIGH_SCHOOL: 'A PRO is an organization producers join so it can run collection and recycling on their behalf.',
-        UNDERGRADUATE: 'Internalization moves costs that once fell on cities and the environment onto the producer.',
-        GRADUATE: 'Modulated fees reward easier-to-recycle or reusable products with lower fees and penalize hard formats.',
-        PHD: 'Political economy examines how producers, municipalities, recyclers and regulators shape the policy.',
-      },
-    },
-    {
-      id: 'zwepr2q2',
-      question: {
-        ELEMENTARY: 'What is a deposit on a bottle?',
-        MIDDLE_SCHOOL: 'Under the old way, before EPR, who usually paid for collecting and recycling packaging?',
-        HIGH_SCHOOL: 'What is a main weakness of having a single collective PRO?',
-        UNDERGRADUATE: 'Why is the design incentive weak when fees are flat and collective?',
-        GRADUATE: 'Why can informal waste pickers be harmed by EPR systems?',
-        PHD: 'Why do naive comparisons between EPR and non-EPR jurisdictions tend to be biased?',
-      },
-      options: {
-        ELEMENTARY: ['A sticker that shows the bottle color', 'A kind of plastic', 'A little extra money you get back when you return the bottle', 'A tax you never get back'],
-        MIDDLE_SCHOOL: ['The companies that made the packages', 'Recycling machines paid for themselves', 'The town, through taxes or trash fees', 'Shoppers paid a fee at the door'],
-        HIGH_SCHOOL: ['It is always too small to collect anything', 'It cannot collect any electronics', 'It can become a monopoly with little pressure to improve', 'It forces each company to build its own trucks'],
-        UNDERGRADUATE: ['Producers are not allowed to redesign packaging', 'Recycling has no costs', 'A single redesigning producer captures only a tiny share of system-wide savings', 'Fees are always refunded'],
-        GRADUATE: ['They are required to run every PRO', 'They are always paid more under EPR', 'Systems that ignore them can take away the materials they depend on for income', 'They are legally the producers'],
-        PHD: ['EPR is always adopted randomly', 'Jurisdictions that adopt EPR often already have stronger institutions and higher recycling', 'Recycling rates are measured identically everywhere', 'No data exist for any country'],
+        ELEMENTARY: ['Kids buying more toys', 'Shops closing early', 'Companies helping collect and recycle what they make', 'Throwing everything away'],
+        MIDDLE_SCHOOL: ['Electric power recycling', 'Every product returned', 'Extended producer responsibility', 'Energy price reduction'],
+        HIGH_SCHOOL: ['Making products more colourful', 'Removing all fees', 'Adjusting EPR fees by how environmentally friendly a design is', 'Charging everyone the same'],
+        UNDERGRADUATE: ['They are required everywhere', 'They give the strongest design incentives', 'Economies of scale', 'They have no costs'],
+        GRADUATE: ['No oversight at all', 'Secret reporting', 'Strong government oversight with audits and public reporting', 'Letting producers set targets alone'],
+        PHD: ['Producers love redesigning', 'Fees are very large', 'Fees are averaged across producers and small relative to prices', 'Design never matters'],
       },
       correctIndex: 2,
       explanation: {
-        ELEMENTARY: 'You pay a small deposit when you buy the bottle and get the money back when you return it.',
-        MIDDLE_SCHOOL: 'Before EPR, local governments paid, which meant taxpayers covered the bill.',
-        HIGH_SCHOOL: 'With no competitor, a single PRO may have weak pressure to cut costs or improve service.',
-        UNDERGRADUATE: 'Under flat collective fees, savings from one redesign are spread across all producers, so the reward is tiny.',
-        GRADUATE: 'Inclusive designs contract with or integrate informal workers so they are not displaced.',
-        PHD: 'Adoption is not random, so pre-existing differences can be mistaken for policy effects.',
+        ELEMENTARY: 'Companies help collect and recycle the things they make.',
+        MIDDLE_SCHOOL: 'EPR means extended producer responsibility.',
+        HIGH_SCHOOL: 'Eco-modulation charges lower fees for better designs.',
+        UNDERGRADUATE: 'Pooling obligations lets producers share infrastructure and costs.',
+        GRADUATE: 'Oversight, audits and transparency lead to better performance.',
+        PHD: 'Averaged, small fees give little reason for any one producer to redesign.',
       },
     },
     {
-      id: 'zwepr2q3',
+      id: 'zw-epr2-q2',
       question: {
-        ELEMENTARY: 'Why do makers start designing packages that are easier to recycle?',
-        MIDDLE_SCHOOL: 'What is a free rider in an EPR program?',
-        HIGH_SCHOOL: 'For products made overseas, who is usually treated as the producer?',
-        UNDERGRADUATE: 'Why can comparing raw recycling rates across countries be misleading?',
-        GRADUATE: 'What is regulatory capture?',
-        PHD: 'What does the difference-in-differences method compare?',
+        ELEMENTARY: 'Why should batteries never go in the trash?',
+        MIDDLE_SCHOOL: 'Why can lithium-ion batteries in the trash be dangerous?',
+        HIGH_SCHOOL: 'What new requirements are battery rules adding beyond collection?',
+        UNDERGRADUATE: 'Which battery design requirement makes recycling and repair easier?',
+        GRADUATE: 'Why is eco-modulation less common for electronics and batteries?',
+        PHD: 'What makes attributing design changes to EPR difficult?',
       },
       options: {
-        ELEMENTARY: ['Because hard-to-recycle packages are prettier', 'Because they have to help pay for recycling', 'Because trucks like heavy boxes', 'Because nobody uses packages'],
-        MIDDLE_SCHOOL: ['A company that pays double fees', 'A company that sells products but avoids paying its share', 'A worker who drives the recycling truck', 'A customer who uses a reusable bag'],
-        HIGH_SCHOOL: ['The factory workers abroad', 'The brand owner or first importer that places it on the market', 'The shipping company', 'The customer who buys it'],
-        UNDERGRADUATE: ['All countries use the same definitions', 'Definitions and measurement points differ between countries', 'Recycling rates never change', 'Only one country measures recycling'],
-        GRADUATE: ['When regulators refuse to meet companies', 'When the regulated industry gains undue influence over its own rules', 'When a PRO buys a recycling truck', 'When fees are set by auction'],
-        PHD: ['Two products sold in the same store', 'Changes over time in adopting jurisdictions versus similar non-adopting ones', 'Only results before a policy started', 'Two different recycling machines'],
-      },
-      correctIndex: 1,
-      explanation: {
-        ELEMENTARY: 'When companies pay for recycling, easy-to-recycle packages cost them less, so they design better ones.',
-        MIDDLE_SCHOOL: 'Free riders shift costs onto companies that follow the rules.',
-        HIGH_SCHOOL: 'Laws usually obligate the brand owner or first importer, since overseas factories are outside the law.',
-        UNDERGRADUATE: 'Countries count different things at different points, so a fair comparison checks definitions first.',
-        GRADUATE: 'Capture happens when industry shapes the rules meant to govern it, weakening oversight.',
-        PHD: 'Difference-in-differences compares before-and-after changes between treated and comparison jurisdictions.',
-      },
-    },
-    {
-      id: 'zwepr2q4',
-      question: {
-        ELEMENTARY: 'Where should old batteries go?',
-        MIDDLE_SCHOOL: 'In many EPR programs, what kind of packaging pays a lower fee?',
-        HIGH_SCHOOL: 'What is eco-modulation?',
-        UNDERGRADUATE: 'What is the full net cost of managing products?',
-        GRADUATE: 'How do newer EPR programs connect to circular economy goals beyond recycling?',
-        PHD: 'Why are EPR effects on product design especially hard to identify?',
-      },
-      options: {
-        ELEMENTARY: ['In the kitchen trash', 'In the garden', 'Down the drain', 'In a special take-back bin, with a grown-up'],
-        MIDDLE_SCHOOL: ['The heaviest packaging', 'Packaging with many mixed layers', 'Packaging with the brightest colors', 'Packaging that is easy to recycle'],
-        HIGH_SCHOOL: ['Painting packages green', 'Charging all materials the same price', 'Banning all packaging', 'Adjusting fees so products easier to reuse or recycle pay less'],
-        UNDERGRADUATE: ['Only the price of new trucks', 'Material sales revenue alone', 'Advertising costs for the product', 'Collection, sorting and treatment costs minus revenue from recovered materials'],
-        GRADUATE: ['By banning recycling', 'By removing all targets', 'By paying only for landfills', 'By adding reuse targets, refill funding, recycled-content rules and eco-design links'],
-        PHD: ['Products never change', 'Design data are always public', 'EPR has no connection to design', 'Global brands redesign for many markets at once, so changes may be driven by rules elsewhere'],
-      },
-      correctIndex: 3,
-      explanation: {
-        ELEMENTARY: 'Batteries can be dangerous in the trash, so take-back bins collect them safely.',
-        MIDDLE_SCHOOL: 'Lower fees for easy-to-recycle packaging reward smart design.',
-        HIGH_SCHOOL: 'Eco-modulation turns the fee schedule into a design signal.',
-        UNDERGRADUATE: 'Full net cost subtracts material revenue from the total cost of managing the products.',
-        GRADUATE: 'Circular strategies prioritize prevention and reuse, so newer programs add tools that support them.',
-        PHD: 'Because brands sell worldwide, a design change in one country may reflect another jurisdiction\'s rules.',
-      },
-    },
-    {
-      id: 'zwepr2q5',
-      question: {
-        ELEMENTARY: 'What can you do to help recycling centers get clean materials?',
-        MIDDLE_SCHOOL: 'What role does the government play in an EPR program?',
-        HIGH_SCHOOL: 'What is a weakness of weight-based targets?',
-        UNDERGRADUATE: 'Under a flat fee by weight, why might a light, unrecyclable pouch be unfairly rewarded?',
-        GRADUATE: 'Why do EPR programs need explicit service standards for rural and remote areas?',
-        PHD: 'What is a proposal for next-generation EPR design?',
-      },
-      options: {
-        ELEMENTARY: ['Rinse bottles and cans and put them in the right bin', 'Mix food scraps into the recycling', 'Put batteries in the trash', 'Throw everything in one bag'],
-        MIDDLE_SCHOOL: ['It sets targets and checks that reports are honest', 'It designs every package', 'It sells the products', 'It has no role at all'],
-        HIGH_SCHOOL: ['They can favor heavy materials over the most harmful ones', 'They are impossible to measure', 'They only count glass', 'They require counting each item by hand'],
-        UNDERGRADUATE: ['Because it is lighter, it may pay less despite creating more residual waste', 'Because pouches are always recycled', 'Because weight fees are never charged', 'Because pouches pay the highest fee'],
-        GRADUATE: ['Collection there costs more, so programs might otherwise serve only profitable urban areas', 'Rural areas produce no waste', 'Rural collection is always free', 'Remote areas are exempt from all laws'],
-        PHD: ['Fees tied to measured environmental impacts instead of weight', 'Removing all data reporting', 'Ending responsibility for online sales', 'Returning all costs to taxpayers'],
+        ELEMENTARY: ['Some can catch fire in garbage trucks', 'They are too heavy', 'They taste bad', 'They are too small'],
+        MIDDLE_SCHOOL: ['They can start fires in trucks and recycling plants', 'They turn into plastic', 'They are made of wood', 'They make trash smell nice'],
+        HIGH_SCHOOL: ['Recycled content, mineral recovery and labelling', 'Brighter colours', 'Bigger sizes only', 'Removing all labels'],
+        UNDERGRADUATE: ['Removability and replaceability', 'Sealing batteries permanently', 'Hiding battery labels', 'Smaller warranty'],
+        GRADUATE: ['Product complexity makes criteria hard to define', 'Electronics have no environmental impact', 'Fees are banned', 'Batteries are always recyclable'],
+        PHD: ['Design also responds to costs, brands and other regulations', 'Products never change', 'Data are perfect', 'Fees are invisible'],
       },
       correctIndex: 0,
       explanation: {
-        ELEMENTARY: 'Clean, well-sorted materials are easier for recycling centers to turn into new things.',
-        MIDDLE_SCHOOL: 'Governments set the rules and targets and check that producers meet them.',
-        HIGH_SCHOOL: 'Heavy materials can dominate weight-based results even if lighter items cause more harm.',
-        UNDERGRADUATE: 'Weight alone ignores recyclability, so a light pouch may pay less than a recyclable bottle.',
-        GRADUATE: 'Service standards prevent programs from neglecting places where collection is costly.',
-        PHD: 'Impact-based fees aim to match producer payments to environmental harm rather than mass.',
+        ELEMENTARY: 'Some batteries can catch fire in garbage trucks.',
+        MIDDLE_SCHOOL: 'Damaged lithium-ion batteries can spark fires in trucks and plants.',
+        HIGH_SCHOOL: 'New rules require recycled content, recovery of minerals and labelling.',
+        UNDERGRADUATE: 'Removable, replaceable batteries are easier to repair and recycle.',
+        GRADUATE: 'Complex products make it hard to set fair, verifiable fee criteria.',
+        PHD: 'Many forces shape design, so isolating EPR\'s effect is hard.',
+      },
+    },
+    {
+      id: 'zw-epr2-q3',
+      question: {
+        ELEMENTARY: 'What is inside old phones that can be used again?',
+        MIDDLE_SCHOOL: 'What is e-waste?',
+        HIGH_SCHOOL: 'Where does much e-waste still end up?',
+        UNDERGRADUATE: 'What does WEEE stand for?',
+        GRADUATE: 'Why does WEEE collection often fall short of targets?',
+        PHD: 'What tension do transboundary flows of used electronics create?',
+      },
+      options: {
+        ELEMENTARY: ['Chocolate', 'Sand', 'Water', 'Gold, copper and other metals'],
+        MIDDLE_SCHOOL: ['Email messages', 'Electric cars only', 'Wasted electricity', 'Old or broken electronics people throw out'],
+        HIGH_SCHOOL: ['Always in certified recycling', 'On the moon', 'Back in shops as new', 'In drawers, trash or informal exports'],
+        UNDERGRADUATE: ['Water, energy and electric equipment', 'World e-waste exchange', 'Waste energy emission estimates', 'Waste electrical and electronic equipment'],
+        GRADUATE: ['Too many collection points', 'Electronics last forever', 'Targets are too low', 'Informal channels and stockpiling'],
+        PHD: ['All exports are new products', 'No used products cross borders', 'Exports are always recycled safely', 'The line between reusable goods and waste is blurred'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Phones contain tiny amounts of gold, copper and other metals.',
+        MIDDLE_SCHOOL: 'E-waste is old or broken electronics.',
+        HIGH_SCHOOL: 'Much e-waste is stored, trashed or exported informally.',
+        UNDERGRADUATE: 'WEEE means waste electrical and electronic equipment.',
+        GRADUATE: 'Informal collection and devices kept in drawers keep collection low.',
+        PHD: 'Used electronics exported "for reuse" may actually be waste.',
+      },
+    },
+    {
+      id: 'zw-epr2-q4',
+      question: {
+        ELEMENTARY: 'How do companies pay for packaging recycling?',
+        MIDDLE_SCHOOL: 'What is a producer responsibility organisation?',
+        HIGH_SCHOOL: 'What is a free rider in EPR?',
+        UNDERGRADUATE: 'What does "full net cost" coverage mean?',
+        GRADUATE: 'What is a clearing house in EPR systems?',
+        PHD: 'How can EPR programmes affect informal recyclers?',
+      },
+      options: {
+        ELEMENTARY: ['They do not pay anything', 'They pay a little money for each package they make', 'Kids pay with pocket money', 'The weather pays'],
+        MIDDLE_SCHOOL: ['A school club', 'A group run by producers to manage collection and recycling', 'A government tax office', 'A recycling truck'],
+        HIGH_SCHOOL: ['A cyclist', 'A producer that sells products but avoids paying its obligations', 'A free recycling bin', 'A company that recycles everything'],
+        UNDERGRADUATE: ['Paying nothing', 'Covering all collection and treatment costs minus material revenues', 'Covering only advertising', 'Paying twice'],
+        GRADUATE: ['A recycling machine', 'A body that allocates obligations and costs among competing PROs', 'A shop sale', 'A landfill'],
+        PHD: ['They always employ them formally', 'They can displace them or fail to reach material they collect', 'They have no effect', 'They ban recycling'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Companies pay a small fee for every package, which funds recycling.',
+        MIDDLE_SCHOOL: 'A PRO is run by producers to organise collection and recycling.',
+        HIGH_SCHOOL: 'Free riders sell products without paying their share.',
+        UNDERGRADUATE: 'Full net cost covers all costs minus revenue from recovered materials.',
+        GRADUATE: 'A clearing house balances obligations among competing PROs.',
+        PHD: 'Formal schemes can push informal workers out or miss what they collect.',
+      },
+    },
+    {
+      id: 'zw-epr2-q5',
+      question: {
+        ELEMENTARY: 'Why do companies try to make better packages?',
+        MIDDLE_SCHOOL: 'What makes EPR work well?',
+        HIGH_SCHOOL: 'Which countries have long-running packaging EPR systems?',
+        UNDERGRADUATE: 'Why is making online marketplaces responsible important?',
+        GRADUATE: 'Which complementary policies address goals EPR alone does not achieve?',
+        PHD: 'What outcome data are most needed for better EPR evaluation?',
+      },
+      options: {
+        ELEMENTARY: ['Packages are prettier', 'Kids ask them to', 'Packages that are easy to recycle cost them less', 'It is a game'],
+        MIDDLE_SCHOOL: ['No rules at all', 'Letting companies skip paying', 'Good rules, clear targets and checking every company pays', 'Hiding results'],
+        HIGH_SCHOOL: ['None anywhere', 'Only on islands', 'Several in Europe and Canada', 'Only in Antarctica'],
+        UNDERGRADUATE: ['Marketplaces make all products', 'Online sales are banned', 'Many free riders are online sellers outside the jurisdiction', 'Shops never sell online'],
+        GRADUATE: ['Lower landfill fees', 'Single-use mandates', 'Deposit-return systems, recycled content mandates and reuse targets', 'Removing all targets'],
+        PHD: ['Only company names', 'Only packaging colours', 'Prevention, reuse and recycling quality, not only collection volumes', 'Only collection truck counts'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Easy-to-recycle packages cost companies less in fees.',
+        MIDDLE_SCHOOL: 'Clear rules, targets and enforcement make EPR fair and effective.',
+        HIGH_SCHOOL: 'Europe and Canada have long-running packaging EPR systems.',
+        UNDERGRADUATE: 'Platforms can ensure overseas sellers comply.',
+        GRADUATE: 'Deposits, recycled content mandates and reuse targets fill EPR\'s gaps.',
+        PHD: 'Better data on prevention, reuse and quality are needed, not just volumes.',
       },
     },
   ],
