@@ -1,0 +1,153 @@
+import type { ModuleExpansion } from '../types'
+
+// Quiz-only expansion: the lesson content stays as written; the chapter's single
+// original question is kept and four more are added from the lesson text.
+const expansion: ModuleExpansion = {
+  topicId: 'green-building',
+  moduleKey: 'sustainable-materials',
+  lessons: [],
+  quiz: [
+    {
+      id: 'mq1',
+      question: {
+        ELEMENTARY: 'Which material comes from tall grass?',
+        MIDDLE_SCHOOL: 'Why is wood considered a sustainable material?',
+        HIGH_SCHOOL: 'Which material has the highest embodied carbon per kg?',
+        UNDERGRADUATE: 'What document provides standardized environmental data for materials?',
+        GRADUATE: 'What is the primary decarbonization pathway for steel production?',
+        PHD: 'What novel bio-based material uses fungal growth?',
+      },
+      options: {
+        ELEMENTARY: ['Bamboo', 'Steel', 'Glass', 'Plastic'],
+        MIDDLE_SCHOOL: ['It is renewable and stores carbon', 'It is heaviest', 'It comes from mines', 'It is cheapest'],
+        HIGH_SCHOOL: ['Aluminum', 'Concrete', 'Wood', 'Brick'],
+        UNDERGRADUATE: ['Environmental Product Declaration (EPD)', 'Material Safety Data Sheet', 'Building permit', 'User manual'],
+        GRADUATE: ['Electric arc furnace with renewable electricity', 'More coal', 'Larger blast furnaces', 'Offshore production'],
+        PHD: ['Mycelium composites', 'Concrete additives', 'Steel alloys', 'Plastic films'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'Bamboo is actually a type of grass - the fastest-growing plant on Earth!',
+        MIDDLE_SCHOOL: 'Wood is renewable (trees can be replanted) and stores carbon from the atmosphere.',
+        HIGH_SCHOOL: 'Aluminum has very high embodied carbon (8-12 kgCO₂e/kg) due to energy-intensive smelting.',
+        UNDERGRADUATE: 'EPDs (Environmental Product Declarations) provide standardized, third-party verified environmental data.',
+        GRADUATE: 'Electric arc furnaces using renewable electricity and scrap steel can dramatically reduce emissions.',
+        PHD: 'Mycelium composites use fungal root networks grown on agricultural waste.',
+      },
+    },
+    {
+      id: 'mq2',
+      question: {
+        ELEMENTARY: 'How fast can bamboo grow?',
+        MIDDLE_SCHOOL: 'About what share of the world\'s raw materials does construction use?',
+        HIGH_SCHOOL: 'About what share of global CO2 emissions comes from cement?',
+        UNDERGRADUATE: 'Which life cycle stages cover raw material supply, transport and manufacturing?',
+        GRADUATE: 'Which binder is a commercially viable low-carbon cement today?',
+        PHD: 'How does self-healing concrete work?',
+      },
+      options: {
+        ELEMENTARY: ['One inch a year', 'It never grows', 'One foot a century', 'Up to 3 feet in one day'],
+        MIDDLE_SCHOOL: ['About 1 percent', 'About 90 percent', 'None', 'About 40 percent'],
+        HIGH_SCHOOL: ['About 0.1 percent', 'About 50 percent', 'About 80 percent', 'About 8 percent'],
+        UNDERGRADUATE: ['B1 to B7', 'C1 to C4', 'Module D', 'A1 to A3'],
+        GRADUATE: ['Pure Portland clinker', 'Coal ash only', 'Asphalt', 'LC3 (Limestone Calcined Clay Cement)'],
+        PHD: ['It melts and reforms', 'Workers patch it nightly', 'It contains glue', 'Encapsulated bacteria produce calcite to seal cracks'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Some bamboo grows up to 3 feet in a single day!',
+        MIDDLE_SCHOOL: 'Construction uses about 40 percent of all raw materials.',
+        HIGH_SCHOOL: 'Cement causes about 8 percent of global CO2 emissions.',
+        UNDERGRADUATE: 'A1-A3 is the product stage.',
+        GRADUATE: 'LC3 cuts emissions 30 to 40 percent and is available today.',
+        PHD: 'Bacillus bacteria make calcite when cracks let in water.',
+      },
+    },
+    {
+      id: 'mq3',
+      question: {
+        ELEMENTARY: 'What are adobe bricks made from?',
+        MIDDLE_SCHOOL: 'What is cross-laminated timber (CLT)?',
+        HIGH_SCHOOL: 'How much energy does recycling aluminium save?',
+        UNDERGRADUATE: 'What does Global Warming Potential (GWP) measure?',
+        GRADUATE: 'Why is fly ash a declining SCM option?',
+        PHD: 'What is microbially-induced calcite precipitation used for?',
+      },
+      options: {
+        ELEMENTARY: ['Glass and plastic', 'Metal and paint', 'Mud, water and straw', 'Paper and glue'],
+        MIDDLE_SCHOOL: ['Melted wood', 'Plastic shaped like wood', 'Layers of wood glued at 90° angles', 'A single tree trunk'],
+        HIGH_SCHOOL: ['About 5 percent', 'About 50 percent', 'About 95 percent', 'None'],
+        UNDERGRADUATE: ['Ozone depletion', 'Water pollution', 'Climate change contribution in kg CO2e', 'Acid rain'],
+        GRADUATE: ['It is too strong', 'It is illegal', 'Coal power use is decreasing', 'It is made from trees'],
+        PHD: ['Painting walls', 'Making glass', 'Solidifying sand without cement', 'Cooling buildings'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Adobe mixes mud, water and straw, dried in the sun.',
+        MIDDLE_SCHOOL: 'CLT layers are glued at right angles.',
+        HIGH_SCHOOL: 'Recycled aluminium saves about 95 percent of the energy.',
+        UNDERGRADUATE: 'GWP measures climate impact in kg CO2e.',
+        GRADUATE: 'Fly ash comes from coal plants, which are closing.',
+        PHD: 'MICP uses bacteria to bind sand into solid material.',
+      },
+    },
+    {
+      id: 'mq4',
+      question: {
+        ELEMENTARY: 'Why are straw bale walls good?',
+        MIDDLE_SCHOOL: 'How much CO2 does a typical wood-frame house store?',
+        HIGH_SCHOOL: 'For highly efficient buildings, what share of lifetime emissions can be embodied carbon?',
+        UNDERGRADUATE: 'Which EPD type is most useful for comparing products?',
+        GRADUATE: 'What is carbon curing of concrete?',
+        PHD: 'What is a current research challenge for mycelium composites?',
+      },
+      options: {
+        ELEMENTARY: ['They are made of metal', 'They keep houses cool in summer and warm in winter', 'They let rain in', 'They glow at night'],
+        MIDDLE_SCHOOL: ['About 1 pound', 'About 28 tons', 'About 2,800 tons', 'None'],
+        HIGH_SCHOOL: ['1 to 2 percent', '50 to 70 percent', '100 percent', '5 to 10 percent'],
+        UNDERGRADUATE: ['Industry-wide EPDs', 'Product-specific EPDs', 'Advertising brochures', 'Safety data sheets'],
+        GRADUATE: ['Heating concrete with coal', 'Injecting CO2 during concrete curing', 'Painting concrete green', 'Removing cement entirely'],
+        PHD: ['It is too heavy', 'Scaling production and achieving structural properties', 'It cannot be grown', 'It is carbon-intensive'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Thick straw walls insulate in summer and winter.',
+        MIDDLE_SCHOOL: 'A wood-frame house stores about 28 tons of CO2.',
+        HIGH_SCHOOL: 'Embodied carbon can be 50 to 70 percent for efficient buildings.',
+        UNDERGRADUATE: 'Product-specific EPDs best support comparisons.',
+        GRADUATE: 'Carbon curing injects CO2 into fresh concrete.',
+        PHD: 'Scaling up and reaching structural strength remain challenges.',
+      },
+    },
+    {
+      id: 'mq5',
+      question: {
+        ELEMENTARY: 'How does wood help the planet?',
+        MIDDLE_SCHOOL: 'What does straw bale insulation rate as?',
+        HIGH_SCHOOL: 'What chemical reaction releases CO2 in cement making?',
+        UNDERGRADUATE: 'Which standard defines building life cycle stages?',
+        GRADUATE: 'How much must embodied carbon fall by 2030 versus 2020?',
+        PHD: 'What is the thermal conductivity of mycelium composites similar to?',
+      },
+      options: {
+        ELEMENTARY: ['Wood makes smoke', 'Wood blocks sunlight forever', 'Wood melts ice', 'Trees store carbon in their wood'],
+        MIDDLE_SCHOOL: ['R-1, very poor', 'No insulation at all', 'Only for floors', 'R-30 to R-35, excellent insulation'],
+        HIGH_SCHOOL: ['Mixing water and sand', 'Painting walls', 'Cooling steel', 'Converting limestone to calcium oxide'],
+        UNDERGRADUATE: ['ISO 9001', 'ASHRAE 62.1', 'OSHA 1910', 'EN 15978'],
+        GRADUATE: ['1 to 2 percent', '100 percent', 'No reduction', '40 to 50 percent'],
+        PHD: ['Solid steel', 'Window glass', 'Copper wire', 'Mineral wool insulation'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Trees lock carbon away in wood.',
+        MIDDLE_SCHOOL: 'Straw bale walls reach R-30 to R-35.',
+        HIGH_SCHOOL: 'CaCO3 → CaO + CO2 releases carbon dioxide.',
+        UNDERGRADUATE: 'EN 15978 defines stages A1 to D.',
+        GRADUATE: 'Embodied carbon must fall 40 to 50 percent by 2030.',
+        PHD: 'Mycelium insulates comparably to mineral wool.',
+      },
+    },
+  ],
+}
+
+export default expansion

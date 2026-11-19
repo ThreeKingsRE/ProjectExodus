@@ -1,0 +1,153 @@
+import type { ModuleExpansion } from '../types'
+
+// Quiz-only expansion: the lesson content stays as written; the chapter's single
+// original question is kept and four more are added from the lesson text.
+const expansion: ModuleExpansion = {
+  topicId: 'food-sovereignty',
+  moduleKey: 'community-gardens',
+  lessons: [],
+  quiz: [
+    {
+      id: 'fgq1',
+      question: {
+        ELEMENTARY: 'What do people do in community gardens?',
+        MIDDLE_SCHOOL: 'What is a benefit of community gardens for the environment?',
+        HIGH_SCHOOL: 'What is an allotment-style community garden?',
+        UNDERGRADUATE: 'Which governance model gives long-term land security?',
+        GRADUATE: 'What concern exists about gardens and gentrification?',
+        PHD: 'What is challenging about measuring garden social impact?',
+      },
+      options: {
+        ELEMENTARY: ['Grow food together with neighbors', 'Watch TV', 'Play video games', 'Sleep'],
+        MIDDLE_SCHOOL: ['Provides habitat for pollinators', 'Creates more pollution', 'Uses more water', 'Increases traffic'],
+        HIGH_SCHOOL: ['Individual plots for families', 'One big shared plot', 'Only flowers allowed', 'No rules at all'],
+        UNDERGRADUATE: ['Community land trust', 'Annual lease', 'Informal agreement', 'No governance'],
+        GRADUATE: ['Can increase property values and displacement', 'Always prevents gentrification', 'Has no effect on housing', 'Decreases neighborhood value'],
+        PHD: ['Attributing outcomes to garden participation', 'Counting vegetables', 'Measuring plot size', 'Counting visitors'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'Community gardens are places where neighbors grow food together!',
+        MIDDLE_SCHOOL: 'Gardens provide flowers for bees and butterflies to visit.',
+        HIGH_SCHOOL: 'Allotment gardens give individual families their own plot to manage.',
+        UNDERGRADUATE: 'Community land trusts provide permanent protection for garden land.',
+        GRADUATE: 'Green amenities can raise property values and potentially displace residents.',
+        PHD: 'Isolating the effect of garden participation from other factors is methodologically challenging.',
+      },
+    },
+    {
+      id: 'fgq2',
+      question: {
+        ELEMENTARY: 'What were Victory Gardens?',
+        MIDDLE_SCHOOL: 'How many calories per hour can gardening burn?',
+        HIGH_SCHOOL: 'What is a collective community garden?',
+        UNDERGRADUATE: 'How much can gardeners save on food per season?',
+        GRADUATE: 'What is the neoliberal critique of community gardens?',
+        PHD: 'Which method helps address selection bias in garden studies?',
+      },
+      options: {
+        ELEMENTARY: ['Gardens on the moon', 'Gardens for sports trophies', 'Gardens people planted during World War II', 'Gardens with only flowers'],
+        MIDDLE_SCHOOL: ['3 to 4 calories', '3,000 calories', '300 to 400 calories', 'None'],
+        HIGH_SCHOOL: ['Individual private plots', 'A garden for sales only', 'Shared work and shared harvest', 'A garden run by robots'],
+        UNDERGRADUATE: ['About $2', 'About $20,000', 'About $200 to $600', 'Nothing'],
+        GRADUATE: ['Gardens are run by banks', 'Gardens are too expensive', 'Gardens shift responsibility from the state to communities', 'Gardens grow too much food'],
+        PHD: ['Counting plot fees', 'Measuring rainfall', 'Propensity score matching', 'Painting signs'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Victory Gardens grew about 40 percent of America\'s vegetables during the war.',
+        MIDDLE_SCHOOL: 'Gardening burns 300 to 400 calories per hour.',
+        HIGH_SCHOOL: 'Collective gardens share both work and harvest.',
+        UNDERGRADUATE: 'Gardeners save about $200 to $600 per season.',
+        GRADUATE: 'Critics say gardens can mask state failures by shifting responsibility.',
+        PHD: 'Propensity score matching compares similar gardeners and non-gardeners.',
+      },
+    },
+    {
+      id: 'fgq3',
+      question: {
+        ELEMENTARY: 'What is a good garden rule?',
+        MIDDLE_SCHOOL: 'How do gardens help with urban heat?',
+        HIGH_SCHOOL: 'Why is land tenure a common challenge?',
+        UNDERGRADUATE: 'Which is an equity-focused garden practice?',
+        GRADUATE: 'What key question does critical analysis ask about gardens?',
+        PHD: 'Which valuation method uses effects on property values?',
+      },
+      options: {
+        ELEMENTARY: ['Take everyone\'s vegetables', 'Leave the hose running', 'Step on the plants', 'Put tools back when you are done'],
+        MIDDLE_SCHOOL: ['They make cities hotter', 'They block wind forever', 'They add concrete', 'Plants reduce the heat island effect'],
+        HIGH_SCHOOL: ['Land is always free forever', 'Gardens never need land', 'Land is too cold', 'Gardens often use temporary land that can be lost to development'],
+        UNDERGRADUATE: ['Higher fees for everyone', 'English-only signs', 'Daytime-only hours on weekdays', 'Sliding scale or waived fees'],
+        GRADUATE: ['Which seeds are cheapest?', 'How tall is the fence?', 'What colour are the tools?', 'Gardens for whom and controlled by whom?'],
+        PHD: ['Contingent valuation', 'Replacement cost', 'Benefit transfer', 'Hedonic pricing'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Putting tools back keeps the garden working for everyone.',
+        MIDDLE_SCHOOL: 'Plants cool the area around them.',
+        HIGH_SCHOOL: 'Rising land values can push gardens off borrowed land.',
+        UNDERGRADUATE: 'Sliding-scale fees make plots affordable.',
+        GRADUATE: 'Critical analysis asks who benefits and who controls gardens.',
+        PHD: 'Hedonic pricing estimates value from property prices.',
+      },
+    },
+    {
+      id: 'fgq4',
+      question: {
+        ELEMENTARY: 'What do bees and butterflies like in gardens?',
+        MIDDLE_SCHOOL: 'How do community gardens help people in food deserts?',
+        HIGH_SCHOOL: 'What is volunteer burnout?',
+        UNDERGRADUATE: 'Why are community gardens limited as a food security intervention?',
+        GRADUATE: 'How can gardens be sites of resistance?',
+        PHD: 'Which design addresses attribution in garden impact studies?',
+      },
+      options: {
+        ELEMENTARY: ['Plastic bags', 'Flowers', 'Loud music', 'Car exhaust'],
+        MIDDLE_SCHOOL: ['They sell candy', 'They provide fresh produce where stores are lacking', 'They close grocery stores', 'They ship food far away'],
+        HIGH_SCHOOL: ['When plants catch fire', 'When a few people do most of the work and get exhausted', 'When volunteers move away happily', 'When gardens get too much rain'],
+        UNDERGRADUATE: ['They grow too many calories', 'Seasonal production and low calories per square foot', 'They need no labour', 'They work year-round everywhere'],
+        GRADUATE: ['By raising rents', 'Marginalised communities reclaim land and agency', 'By excluding neighbours', 'By banning culture'],
+        PHD: ['A single interview', 'Difference-in-differences with control groups', 'Counting seeds', 'Guessing'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Flowers feed bees and butterflies.',
+        MIDDLE_SCHOOL: 'Gardens bring fresh produce to food deserts.',
+        HIGH_SCHOOL: 'Burnout happens when work is not shared.',
+        UNDERGRADUATE: 'Gardens are seasonal and produce few calories per area.',
+        GRADUATE: 'Gardens can be bases for reclaiming land and organising.',
+        PHD: 'Difference-in-differences compares changes against controls.',
+      },
+    },
+    {
+      id: 'fgq5',
+      question: {
+        ELEMENTARY: 'What do older gardeners do for younger ones?',
+        MIDDLE_SCHOOL: 'How do gardens help immigrants?',
+        HIGH_SCHOOL: 'What strategy helps gardens last?',
+        UNDERGRADUATE: 'Which programmes should gardens connect with?',
+        GRADUATE: 'Which policy should accompany urban greening?',
+        PHD: 'What is a principle of ethical garden research?',
+      },
+      options: {
+        ELEMENTARY: ['Hide the seeds', 'Take their plots', 'Ignore them', 'Teach them how to grow things'],
+        MIDDLE_SCHOOL: ['They must grow only one crop', 'They cannot join', 'They pay double fees', 'They can grow traditional foods'],
+        HIGH_SCHOOL: ['Rely on one volunteer', 'Use only one grant', 'Avoid all rules', 'Diversify funding and distribute leadership'],
+        UNDERGRADUATE: ['Car dealerships', 'Casinos', 'Airlines', 'Food assistance like SNAP and food banks'],
+        GRADUATE: ['Rent increases', 'Fewer community voices', 'Garden closures', 'Anti-displacement policies'],
+        PHD: ['Keeping results secret', 'Taking data without consent', 'Ignoring power dynamics', 'Returning results to communities'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Experienced gardeners teach new ones.',
+        MIDDLE_SCHOOL: 'Gardens help preserve food cultures.',
+        HIGH_SCHOOL: 'Diverse funding and shared leadership build resilience.',
+        UNDERGRADUATE: 'Linking to food assistance strengthens impact.',
+        GRADUATE: 'Anti-displacement policies protect existing residents.',
+        PHD: 'Ethical research returns results to the community.',
+      },
+    },
+  ],
+}
+
+export default expansion

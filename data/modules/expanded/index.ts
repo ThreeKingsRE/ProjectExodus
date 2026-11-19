@@ -3,6 +3,7 @@ import type { ModuleExpansion } from './types'
 import x_food_sovereignty_agroecology from './food-sovereignty/agroecology'
 import x_food_sovereignty_agroforestry_food_forests from './food-sovereignty/agroforestry-food-forests'
 import x_food_sovereignty_climate_resilient_agriculture from './food-sovereignty/climate-resilient-agriculture'
+import x_food_sovereignty_community_gardens from './food-sovereignty/community-gardens'
 import x_food_sovereignty_cooperative_food_models from './food-sovereignty/cooperative-food-models'
 import x_food_sovereignty_farm_to_school from './food-sovereignty/farm-to-school'
 import x_food_sovereignty_farmers_markets from './food-sovereignty/farmers-markets'
@@ -46,6 +47,7 @@ import x_green_building_embodied_carbon from './green-building/embodied-carbon'
 import x_green_building_green_building_certification from './green-building/green-building-certification'
 import x_green_building_green_building_certifications from './green-building/green-building-certifications'
 import x_green_building_green_building_future from './green-building/green-building-future'
+import x_green_building_green_building_masterclass from './green-building/green-building-masterclass'
 import x_green_building_green_retrofits from './green-building/green-retrofits'
 import x_green_building_green_roofs_and_walls from './green-building/green-roofs-and-walls'
 import x_green_building_green_roofs_walls from './green-building/green-roofs-walls'
@@ -59,6 +61,7 @@ import x_green_building_resilient_design from './green-building/resilient-design
 import x_green_building_smart_buildings from './green-building/smart-buildings'
 import x_green_building_sustainable_interiors from './green-building/sustainable-interiors'
 import x_green_building_sustainable_materials__2 from './green-building/sustainable-materials--2'
+import x_green_building_sustainable_materials from './green-building/sustainable-materials'
 import x_green_building_water_efficient_buildings__2 from './green-building/water-efficient-buildings--2'
 import x_green_building_water_efficient_buildings from './green-building/water-efficient-buildings'
 import x_regenerative_agriculture_agroecology from './regenerative-agriculture/agroecology'
@@ -164,6 +167,7 @@ import x_zero_waste_circular_economy__2 from './zero-waste/circular-economy--2'
 import x_zero_waste_circular_economy from './zero-waste/circular-economy'
 import x_zero_waste_community_waste_solutions from './zero-waste/community-waste-solutions'
 import x_zero_waste_composting_fundamentals__2 from './zero-waste/composting-fundamentals--2'
+import x_zero_waste_composting_fundamentals from './zero-waste/composting-fundamentals'
 import x_zero_waste_construction_waste from './zero-waste/construction-waste'
 import x_zero_waste_e_waste from './zero-waste/e-waste'
 import x_zero_waste_electronic_waste from './zero-waste/electronic-waste'
@@ -195,6 +199,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_food_sovereignty_agroecology,
   x_food_sovereignty_agroforestry_food_forests,
   x_food_sovereignty_climate_resilient_agriculture,
+  x_food_sovereignty_community_gardens,
   x_food_sovereignty_cooperative_food_models,
   x_food_sovereignty_farm_to_school,
   x_food_sovereignty_farmers_markets,
@@ -238,6 +243,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_green_building_green_building_certification,
   x_green_building_green_building_certifications,
   x_green_building_green_building_future,
+  x_green_building_green_building_masterclass,
   x_green_building_green_retrofits,
   x_green_building_green_roofs_and_walls,
   x_green_building_green_roofs_walls,
@@ -251,6 +257,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_green_building_smart_buildings,
   x_green_building_sustainable_interiors,
   x_green_building_sustainable_materials__2,
+  x_green_building_sustainable_materials,
   x_green_building_water_efficient_buildings__2,
   x_green_building_water_efficient_buildings,
   x_regenerative_agriculture_agroecology,
@@ -356,6 +363,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_zero_waste_circular_economy,
   x_zero_waste_community_waste_solutions,
   x_zero_waste_composting_fundamentals__2,
+  x_zero_waste_composting_fundamentals,
   x_zero_waste_construction_waste,
   x_zero_waste_e_waste,
   x_zero_waste_electronic_waste,

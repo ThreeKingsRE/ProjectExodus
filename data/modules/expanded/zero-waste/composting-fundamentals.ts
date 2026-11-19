@@ -1,0 +1,153 @@
+import type { ModuleExpansion } from '../types'
+
+// Quiz-only expansion: the lesson content stays as written; the chapter's single
+// original question is kept and four more are added from the lesson text.
+const expansion: ModuleExpansion = {
+  topicId: 'zero-waste',
+  moduleKey: 'composting-fundamentals',
+  lessons: [],
+  quiz: [
+    {
+      id: 'cq1',
+      question: {
+        ELEMENTARY: 'Which of these can go in the compost?',
+        MIDDLE_SCHOOL: 'What is the ideal ratio of browns to greens?',
+        HIGH_SCHOOL: 'What is the optimal C:N ratio for composting?',
+        UNDERGRADUATE: 'What temperature is needed for pathogen reduction (PFRP)?',
+        GRADUATE: 'What is the typical methane yield from anaerobic digestion?',
+        PHD: 'What microbial phase dominates the thermophilic stage?',
+      },
+      options: {
+        ELEMENTARY: ['Apple cores and leaves', 'Plastic bags', 'Glass bottles', 'Metal cans'],
+        MIDDLE_SCHOOL: ['3 parts brown to 1 part green', '1 to 1', 'All browns', 'All greens'],
+        HIGH_SCHOOL: ['25-30:1', '100:1', '5:1', '1:1'],
+        UNDERGRADUATE: ['55°C for 3+ days', '30°C for 1 day', '80°C for 1 hour', '20°C for 1 week'],
+        GRADUATE: ['200-400 m³/ton VS', '10-20 m³/ton VS', '1000+ m³/ton VS', '50 m³/ton VS'],
+        PHD: ['Thermophilic bacteria and actinomycetes', 'Psychrophilic fungi', 'Mesophilic protozoa', 'Cryophilic archaea'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'Fruit scraps and leaves are perfect for composting!',
+        MIDDLE_SCHOOL: 'About 3 parts brown materials to 1 part green gives the right carbon-nitrogen balance.',
+        HIGH_SCHOOL: 'A C:N ratio of 25-30:1 provides optimal conditions for microbial decomposition.',
+        UNDERGRADUATE: '55°C (131°F) for at least 3 days is required by EPA for pathogen reduction.',
+        GRADUATE: 'Typical biogas yields are 200-400 cubic meters per ton of volatile solids.',
+        PHD: 'Thermophilic bacteria and actinomycetes dominate at high temperatures (40-70°C).',
+      },
+    },
+    {
+      id: 'cq2',
+      question: {
+        ELEMENTARY: 'Which of these should stay OUT of the compost?',
+        MIDDLE_SCHOOL: 'What should you do if your compost smells bad?',
+        HIGH_SCHOOL: 'Which material has a very high C:N ratio?',
+        UNDERGRADUATE: 'What moisture content is optimal for composting?',
+        GRADUATE: 'Which organic processing technology is a net energy producer?',
+        PHD: 'What does Black Soldier Fly bioconversion produce besides a compost-like residue?',
+      },
+      options: {
+        ELEMENTARY: ['Leaves', 'Eggshells', 'Meat and bones', 'Coffee grounds'],
+        MIDDLE_SCHOOL: ['Add more greens', 'Add more water', 'Add dry browns and turn it', 'Cover it in plastic'],
+        HIGH_SCHOOL: ['Food scraps', 'Fresh grass', 'Wood chips', 'Coffee grounds'],
+        UNDERGRADUATE: ['10 to 20 percent', '80 to 90 percent', '50 to 60 percent', '0 percent'],
+        GRADUATE: ['Aerobic composting', 'Vermicomposting', 'Anaerobic digestion', 'Windrow turning'],
+        PHD: ['Electricity', 'Glass', 'Protein suitable for animal feed', 'Pure methane'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Meat and bones attract pests and stay out of home compost.',
+        MIDDLE_SCHOOL: 'Bad smells mean too wet or too green, so add browns and turn.',
+        HIGH_SCHOOL: 'Wood chips have a C:N ratio of about 400:1.',
+        UNDERGRADUATE: 'Compost works best at 50 to 60 percent moisture.',
+        GRADUATE: 'Anaerobic digestion produces biogas, so it generates net energy.',
+        PHD: 'Black Soldier Fly larvae produce protein for animal feed.',
+      },
+    },
+    {
+      id: 'cq3',
+      question: {
+        ELEMENTARY: 'Where is the best spot for a compost bin?',
+        MIDDLE_SCHOOL: 'What are "greens" in a compost pile?',
+        HIGH_SCHOOL: 'What happens in the thermophilic phase?',
+        UNDERGRADUATE: 'What is the "squeeze test" used to check?',
+        GRADUATE: 'Which greenhouse gas increases at high temperature and moisture through nitrogen cycling?',
+        PHD: 'Why do composting emission factors vary so widely?',
+      },
+      options: {
+        ELEMENTARY: ['Inside the refrigerator', 'A shady spot on top of soil', 'On the roof', 'In the middle of the road'],
+        MIDDLE_SCHOOL: ['Dry leaves and cardboard', 'Nitrogen-rich materials like food scraps and grass', 'Rocks and sand', 'Plastic wrappers'],
+        HIGH_SCHOOL: ['The pile freezes', 'Rapid decomposition that destroys pathogens and weed seeds', 'Nothing happens', 'The pile turns into plastic'],
+        UNDERGRADUATE: ['Temperature', 'Moisture content', 'Oxygen level', 'Particle size'],
+        GRADUATE: ['Ozone', 'Nitrous oxide', 'Helium', 'Neon'],
+        PHD: ['All composts are identical', 'Methodological differences and real process variability', 'Measurements are always perfect', 'Composting emits nothing'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Shade keeps compost moist, and soil lets worms move in.',
+        MIDDLE_SCHOOL: 'Greens are nitrogen-rich fuel for microbes.',
+        HIGH_SCHOOL: 'At 40-70°C, decomposition speeds up and pathogens die.',
+        UNDERGRADUATE: 'Material should feel like a wrung-out sponge.',
+        GRADUATE: 'Nitrous oxide rises with high temperature and moisture.',
+        PHD: 'Emission factors range from 0.1 to 10 kg CH4 per ton.',
+      },
+    },
+    {
+      id: 'cq4',
+      question: {
+        ELEMENTARY: 'What does compost turn into after many weeks?',
+        MIDDLE_SCHOOL: 'About how much food do Americans throw away each year?',
+        HIGH_SCHOOL: 'What causes compost to smell like rotten eggs?',
+        UNDERGRADUATE: 'Which composting system has the lowest capital cost but high land needs?',
+        GRADUATE: 'Which law requires mandatory organics collection in California?',
+        PHD: 'What is hydrothermal carbonization?',
+      },
+      options: {
+        ELEMENTARY: ['Shiny metal', 'Clean water', 'Plastic toys', 'Dark, rich soil'],
+        MIDDLE_SCHOOL: ['About 40 tons', 'About 4,000 tons', 'None', 'About 40 million tons'],
+        HIGH_SCHOOL: ['Too much oxygen', 'Too many browns', 'Cold weather', 'Anaerobic bacteria working without oxygen'],
+        UNDERGRADUATE: ['In-vessel', 'Vermicomposting indoors', 'Anaerobic digester', 'Windrow'],
+        GRADUATE: ['The Clean Air Act', 'Title IX', 'The Endangered Species Act', 'SB 1383'],
+        PHD: ['Freezing compost', 'Washing compost with water', 'Adding sugar to compost', 'Heat and pressure turning organics into hydrochar'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Scraps become dark, rich soil for plants.',
+        MIDDLE_SCHOOL: 'Americans throw away about 40 million tons of food a year.',
+        HIGH_SCHOOL: 'Without oxygen, bacteria make hydrogen sulfide.',
+        UNDERGRADUATE: 'Windrows are cheap to build but need lots of land.',
+        GRADUATE: 'California SB 1383 mandates organic waste collection.',
+        PHD: 'HTC uses pressure and heat to make hydrochar.',
+      },
+    },
+    {
+      id: 'cq5',
+      question: {
+        ELEMENTARY: 'Who helps break down food in the compost?',
+        MIDDLE_SCHOOL: 'Why do you turn a compost pile?',
+        HIGH_SCHOOL: 'Who is often called the father of modern composting?',
+        UNDERGRADUATE: 'What is the "Achilles heel" of compost quality?',
+        GRADUATE: 'What does product cascading mean in the circular bioeconomy?',
+        PHD: 'What are suppressive composts?',
+      },
+      options: {
+        ELEMENTARY: ['Fish', 'Birds only', 'Bacteria, fungi, worms and beetles', 'Robots'],
+        MIDDLE_SCHOOL: ['To make it colder', 'To remove all water', 'To add air (oxygen)', 'To add plastic'],
+        HIGH_SCHOOL: ['Isaac Newton', 'Charles Darwin', 'Sir Albert Howard', 'Thomas Edison'],
+        UNDERGRADUATE: ['Too many leaves', 'Too much air', 'Contamination by plastics, glass and metals', 'Dark colour'],
+        GRADUATE: ['Pouring compost down stairs', 'Burning everything at once', 'Extracting value in sequence, such as protein then energy then nutrients', 'Landfilling first'],
+        PHD: ['Composts that stop all growth', 'Composts without microbes', 'Composts whose microbes help prevent plant disease', 'Composts that smell bad'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Tiny bacteria, fungi, worms and beetles break food down.',
+        MIDDLE_SCHOOL: 'Turning adds oxygen for aerobic microbes.',
+        HIGH_SCHOOL: 'Sir Albert Howard developed scientific composting in the 1930s.',
+        UNDERGRADUATE: 'Contamination is costly to remove, so source separation matters.',
+        GRADUATE: 'Cascading extracts value in steps before nutrients return to land.',
+        PHD: 'Suppressive composts host microbes that fight plant disease.',
+      },
+    },
+  ],
+}
+
+export default expansion

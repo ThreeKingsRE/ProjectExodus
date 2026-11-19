@@ -1318,5 +1318,25 @@
   "topicId": "regenerative-agriculture",
   "moduleKey": "cover-crops",
   "lessonIds": []
+ },
+ {
+  "topicId": "zero-waste",
+  "moduleKey": "composting-fundamentals",
+  "lessonIds": []
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "sustainable-materials",
+  "lessonIds": []
+ },
+ {
+  "topicId": "green-building",
+  "moduleKey": "green-building-masterclass",
+  "lessonIds": []
+ },
+ {
+  "topicId": "food-sovereignty",
+  "moduleKey": "community-gardens",
+  "lessonIds": []
  }
 ]

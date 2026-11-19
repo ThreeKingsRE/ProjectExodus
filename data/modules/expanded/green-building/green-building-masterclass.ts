@@ -1,0 +1,153 @@
+import type { ModuleExpansion } from '../types'
+
+// Quiz-only expansion: the lesson content stays as written; the chapter's single
+// original question is kept and four more are added from the lesson text.
+const expansion: ModuleExpansion = {
+  topicId: 'green-building',
+  moduleKey: 'green-building-masterclass',
+  lessons: [],
+  quiz: [
+    {
+      id: 'mgbq1',
+      question: {
+        ELEMENTARY: 'What kind of building uses very little energy?',
+        MIDDLE_SCHOOL: 'What is the most common green building certification?',
+        HIGH_SCHOOL: 'What is the benefit of an integrated design process?',
+        UNDERGRADUATE: 'What does net zero energy mean?',
+        GRADUATE: 'What is the "performance gap" in buildings?',
+        PHD: 'What characterizes regenerative building design?',
+      },
+      options: {
+        ELEMENTARY: ['A green building', 'A black building', 'A tall building', 'An old building'],
+        MIDDLE_SCHOOL: ['LEED', 'SPEED', 'NEED', 'FEED'],
+        HIGH_SCHOOL: ['Optimizes whole system, not just parts', 'Only architects are involved', 'No need for energy modeling', 'Slower and more expensive'],
+        UNDERGRADUATE: ['Building produces as much energy as it uses annually', 'Building uses no electricity', 'Building has no windows', 'Building is made of metal'],
+        GRADUATE: ['Difference between modeled and actual performance', 'Gap in building envelope', 'Space between buildings', 'Construction delay'],
+        PHD: ['Net positive impact on environment and community', 'Carbon neutral', 'Energy efficient', 'LEED certified'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'Green buildings are designed to use very little energy and help the planet!',
+        MIDDLE_SCHOOL: 'LEED (Leadership in Energy and Environmental Design) is the most widely used certification.',
+        HIGH_SCHOOL: 'Integrated design optimizes the whole building as a system, finding synergies between elements.',
+        UNDERGRADUATE: 'Net zero energy buildings produce (usually via renewables) as much energy as they consume annually.',
+        GRADUATE: 'The performance gap is the often-significant difference between predicted and measured energy use.',
+        PHD: 'Regenerative design goes beyond net zero to create net positive impacts on ecosystems and communities.',
+      },
+    },
+    {
+      id: 'mgbq2',
+      question: {
+        ELEMENTARY: 'Why do green buildings have big windows?',
+        MIDDLE_SCHOOL: 'Which certification focuses on extreme energy efficiency?',
+        HIGH_SCHOOL: 'What does Energy Use Intensity (EUI) measure?',
+        UNDERGRADUATE: 'What does parametric modelling do?',
+        GRADUATE: 'How much more energy than predicted do buildings often use?',
+        PHD: 'What services can grid-interactive efficient buildings provide?',
+      },
+      options: {
+        ELEMENTARY: ['To let in more noise', 'To let in sunlight so lights can stay off', 'To keep plants out', 'To make them heavier'],
+        MIDDLE_SCHOOL: ['LEED', 'Passive House', 'Living Building Challenge', 'Energy Star for appliances'],
+        HIGH_SCHOOL: ['Number of windows', 'Energy use per square foot per year', 'Height of the building', 'Water use per person'],
+        UNDERGRADUATE: ['Picks paint colours', 'Tests many design variables systematically', 'Builds physical models', 'Replaces commissioning'],
+        GRADUATE: ['Exactly as predicted', '25 to 150 percent more', '90 percent less', '1 percent less'],
+        PHD: ['Only lighting', 'Demand response, load shifting and frequency regulation', 'Only heating', 'Nothing for the grid'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Sunlight means lights can stay off during the day.',
+        MIDDLE_SCHOOL: 'Passive House focuses on extreme energy efficiency.',
+        HIGH_SCHOOL: 'EUI is energy per square foot per year.',
+        UNDERGRADUATE: 'Parametric modelling tests combinations of variables.',
+        GRADUATE: 'Studies show 25 to 150 percent more energy than predicted.',
+        PHD: 'GEBs support the grid with flexible demand.',
+      },
+    },
+    {
+      id: 'mgbq3',
+      question: {
+        ELEMENTARY: 'How do green buildings save water?',
+        MIDDLE_SCHOOL: 'How much less water do low-flow fixtures use?',
+        HIGH_SCHOOL: 'What happens at a design charrette?',
+        UNDERGRADUATE: 'What should come before efficient systems and renewables?',
+        GRADUATE: 'What is a construction-stage cause of the performance gap?',
+        PHD: 'What is still underdeveloped for regenerative design?',
+      },
+      options: {
+        ELEMENTARY: ['Leaving taps running', 'Filling pools every day', 'Catching rain and using special toilets', 'Watering the roof'],
+        MIDDLE_SCHOOL: ['Twice as much', 'The same amount', '30 to 50 percent less', '99 percent more'],
+        HIGH_SCHOOL: ['Only the builder decides', 'The building is demolished', 'All disciplines collaborate early', 'Paint is chosen'],
+        UNDERGRADUATE: ['Buying more equipment', 'Adding more windows', 'Load reduction', 'Bigger boilers'],
+        GRADUATE: ['Too many plants', 'Excellent commissioning', 'Poor installation and substitutions', 'Perfect occupants'],
+        PHD: ['Solar panels', 'Windows', 'Metrics and verification methods', 'Building codes for doors'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Rain catching and efficient toilets save water.',
+        MIDDLE_SCHOOL: 'Low-flow fixtures use 30 to 50 percent less water.',
+        HIGH_SCHOOL: 'Charrettes bring all disciplines together early.',
+        UNDERGRADUATE: 'Reduce loads first, then add efficient systems and renewables.',
+        GRADUATE: 'Installation problems and substitutions widen the gap.',
+        PHD: 'Regenerative design lacks agreed metrics and verification.',
+      },
+    },
+    {
+      id: 'mgbq4',
+      question: {
+        ELEMENTARY: 'What can make a building an energy factory?',
+        MIDDLE_SCHOOL: 'Which certification focuses on regenerative design?',
+        HIGH_SCHOOL: 'Why can a better envelope reduce costs?',
+        UNDERGRADUATE: 'What do IPMVP protocols standardise?',
+        GRADUATE: 'What is fault detection and diagnostics (FDD)?',
+        PHD: 'What is a methodological challenge in performance gap research?',
+      },
+      options: {
+        ELEMENTARY: ['Bigger doors', 'More stairs', 'Dark curtains', 'Solar panels'],
+        MIDDLE_SCHOOL: ['Passive House', 'LEED Silver only', 'A plumbing code', 'Living Building Challenge'],
+        HIGH_SCHOOL: ['It needs more heating', 'It removes daylight', 'It adds lighting loads', 'A smaller HVAC system is needed'],
+        UNDERGRADUATE: ['Paint colours', 'Fire exits', 'Furniture layout', 'Measurement and verification of energy performance'],
+        GRADUATE: ['A fire alarm', 'A type of window', 'A tax form', 'Automated detection of system problems'],
+        PHD: ['Finding buildings', 'Counting floors', 'Naming architects', 'Baseline definition and attribution'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Solar panels let buildings make their own energy.',
+        MIDDLE_SCHOOL: 'The Living Building Challenge targets regenerative design.',
+        HIGH_SCHOOL: 'Less heat loss and gain means smaller HVAC.',
+        UNDERGRADUATE: 'IPMVP standardises M&V of energy performance.',
+        GRADUATE: 'FDD spots faults automatically so they can be fixed.',
+        PHD: 'Defining baselines and attributing causes are hard.',
+      },
+    },
+    {
+      id: 'mgbq5',
+      question: {
+        ELEMENTARY: 'What does nature inside a building do?',
+        MIDDLE_SCHOOL: 'Why does site and location matter for green buildings?',
+        HIGH_SCHOOL: 'What does commissioning do?',
+        UNDERGRADUATE: 'Which is a high-performance HVAC strategy?',
+        GRADUATE: 'What is a digital twin?',
+        PHD: 'What is a research frontier for building lighting?',
+      },
+      options: {
+        ELEMENTARY: ['Makes people sad', 'Makes people happy', 'Makes buildings louder', 'Makes it darker'],
+        MIDDLE_SCHOOL: ['Location never matters', 'Walkable, transit-near sites cut travel impacts', 'Only views matter', 'Farther is always better'],
+        HIGH_SCHOOL: ['Designs the logo', 'Verifies systems work as designed', 'Pays contractors', 'Chooses furniture'],
+        UNDERGRADUATE: ['Oversized boilers', 'Ground source heat pumps', 'Open windows with heating on', 'Incandescent lighting'],
+        GRADUATE: ['A copy of the building nearby', 'A virtual model synchronised with the real building', 'A second architect', 'A paper drawing'],
+        PHD: ['Brighter neon signs', 'Circadian lighting', 'Candle use', 'Removing all light'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Plants and views of nature make people happy.',
+        MIDDLE_SCHOOL: 'Location affects transport, habitat and stormwater.',
+        HIGH_SCHOOL: 'Commissioning checks systems work as intended.',
+        UNDERGRADUATE: 'Ground source heat pumps are high-performance HVAC.',
+        GRADUATE: 'Digital twins mirror the physical building in real time.',
+        PHD: 'Circadian lighting is a research frontier.',
+      },
+    },
+  ],
+}
+
+export default expansion
