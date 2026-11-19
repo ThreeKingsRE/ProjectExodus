@@ -1007,8 +1007,15 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           </div>
         </div>
 
-        {/* Hover reveal */}
-        <div className="absolute inset-0 bg-[var(--card)]/70 backdrop-blur-[3px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center gap-3 z-20">
+        {/* The whole card opens the initiative (phones have no hover to reveal the button) */}
+        <Link
+          href={`/community/projects/${project.slug}`}
+          aria-label={`Open ${project.name}`}
+          className="absolute inset-0 z-[15] rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]"
+        />
+
+        {/* Hover reveal (mouse and trackpad only) */}
+        <div className="absolute inset-0 bg-[var(--card)]/70 backdrop-blur-[3px] opacity-0 group-hover:opacity-100 transition-all duration-300 hidden [@media(hover:hover)]:flex flex-col items-center justify-center gap-3 z-20">
           {project.description && (
             <p className="text-xs text-[var(--muted-foreground)] text-center px-5 line-clamp-3 leading-relaxed max-w-[90%]">
               {project.description}

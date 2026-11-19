@@ -3,10 +3,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, type ComponentType, type ReactNode } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
-import { Menu, X, Leaf, User, LogOut, Settings, Users, ChevronRight, MessageCircle, Bell, ChevronDown, Lock, Crown, GraduationCap, Fish, Search, Compass } from 'lucide-react'
+import { Menu, X, Leaf, User, LogOut, Settings, Users, ChevronRight, MessageCircle, Bell, ChevronDown, Lock, Crown, GraduationCap, Fish, Search, Compass, Home, ShoppingBag, Newspaper, Sprout, Landmark, Ruler, CalendarDays, MessagesSquare, Rocket } from 'lucide-react'
 import NotificationBell from '@/components/notifications/NotificationBell'
 import { useDigitalScrollContext } from '@/components/learning/DigitalScroll/DigitalScrollContext'
 import { useSageContextSafe } from '@/components/ai/SageContext'
@@ -105,11 +105,14 @@ export function Header() {
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden'
+      document.body.dataset.menuOpen = 'true'
     } else {
       document.body.style.overflow = ''
+      delete document.body.dataset.menuOpen
     }
     return () => {
       document.body.style.overflow = ''
+      delete document.body.dataset.menuOpen
     }
   }, [mobileMenuOpen])
 
@@ -553,232 +556,168 @@ export function Header() {
           <div className="lg:hidden flex items-center gap-2">
             <ThemeToggle />
             <button
-              className="p-2.5 rounded-lg hover:bg-[var(--muted)] transition-colors"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] hover:bg-[var(--muted)] transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-expanded={mobileMenuOpen}
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-[var(--foreground)]" />
+                <X className="w-5 h-5 text-[var(--foreground)]" />
               ) : (
-                <Menu className="w-6 h-6 text-[var(--foreground)]" />
+                <Menu className="w-5 h-5 text-[var(--foreground)]" />
               )}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Navigation Overlay */}
+      {/* Mobile Navigation: grouped lists, like a native app's menu */}
       {mobileMenuOpen && (
         <>
-          {/* Backdrop */}
           <div
-            className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[101]"
+            className="lg:hidden fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[101]"
             onClick={() => setMobileMenuOpen(false)}
           />
-
-          {/* Slide-in Menu */}
-          <div className="lg:hidden fixed top-16 sm:top-20 left-0 right-0 bottom-0 bg-[var(--card)] z-[102] overflow-y-auto safe-area-inset">
-            <div className="container mx-auto px-4 py-6 space-y-6">
-              {/* Navigation Links */}
-              <div className="space-y-2">
-                {navigation.map((item) => {
-                  const isActive = pathname === item.href ||
-                    (item.name === 'Community' && (pathname.startsWith('/community') || pathname === '/fishbowl')) ||
-                    (item.name === 'Learn' && (pathname.startsWith('/learn') || pathname.startsWith('/exodology')))
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className={`flex items-center justify-between py-4 px-4 rounded-xl font-bold text-lg transition-all ${
-                        isActive
-                          ? 'bg-theme-primary/10 text-theme-primary border-l-4 border-theme-primary pl-3'
-                          : 'bg-[var(--muted)] text-[var(--foreground)] hover:bg-theme-primary/10'
-                      }`}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                      <ChevronRight className="w-5 h-5" />
-                    </Link>
-                  )
-                })}
-              </div>
-
-              {/* Learn Quick Links - Exodology */}
-              <div className="space-y-2">
-                <p className="text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wide px-2">Learning</p>
-                <div className="flex flex-col gap-2">
-                  {learnMenuItems.map((menuItem) => {
-                    const isLocked = menuItem.requiresAuth && !session
-                    const isIndented = 'indent' in menuItem && menuItem.indent
-
-                    if (isLocked) {
-                      return (
-                        <div
-                          key={menuItem.label}
-                          className={`flex items-center gap-2 py-3 px-6 rounded-xl bg-[var(--muted)]/50 opacity-60 ${isIndented ? 'ml-6' : 'justify-center'}`}
-                        >
-                          <Lock className="w-4 h-4 flex-shrink-0 text-[var(--muted-foreground)]" />
-                          <span className={`font-semibold text-[var(--muted-foreground)] ${isIndented ? 'text-xs' : 'text-sm'}`}>{menuItem.label}</span>
-                        </div>
-                      )
-                    }
-
-                    return (
-                      <Link
-                        key={menuItem.label}
-                        href={menuItem.href}
-                        className={`flex items-center gap-2 py-3 px-6 rounded-xl bg-[var(--muted)] hover:bg-theme-primary/10 transition-colors ${isIndented ? 'ml-6' : 'justify-center'}`}
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <GraduationCap className={`text-[var(--foreground)] ${isIndented ? 'w-3 h-3' : 'w-4 h-4'}`} />
-                        <span className={`font-semibold text-[var(--foreground)] ${isIndented ? 'text-xs' : 'text-sm'}`}>{menuItem.label}</span>
-                      </Link>
-                    )
-                  })}
-                </div>
-              </div>
-
-              {/* Community Quick Links */}
-              <div className="space-y-2">
-                <p className="text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wide px-2">Community Features</p>
-                <div className="grid grid-cols-2 gap-2">
-                  {communityMenuItems.map((menuItem) => {
-                    const isLocked = !session // Guest links open the public introductions
-
-                    if (isLocked) {
-                      return (
-                        <Link
-                          key={menuItem.label}
-                          href={menuItem.href}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-center gap-1.5 py-3 px-2 rounded-xl bg-[var(--muted)]/50 hover:bg-theme-primary/10 transition-colors"
-                        >
-                          <Lock className="w-3 h-3 flex-shrink-0 text-[var(--muted-foreground)]" />
-                          <span className="text-xs font-medium text-[var(--muted-foreground)]">{menuItem.label}</span>
-                        </Link>
-                      )
-                    }
-
-                    return (
-                      <Link
-                        key={menuItem.label}
-                        href={menuItem.href}
-                        className="flex items-center justify-center py-3 px-2 rounded-xl bg-[var(--muted)] hover:bg-theme-primary/10 transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <span className="text-xs font-medium text-[var(--foreground)]">{menuItem.myLabel}</span>
-                      </Link>
-                    )
-                  })}
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div className="border-t-2 border-[var(--border)]" />
-
-              {/* Auth Section — render from `session` directly to avoid
-                  the SSR/CSR mismatch caused by useSession briefly returning
-                  status='loading' on hydration. */}
+          <div className="lg:hidden fixed top-16 sm:top-20 inset-x-0 bottom-0 z-[102] overflow-y-auto overscroll-contain bg-[var(--background)] mobile-menu-in">
+            <nav aria-label="Main menu" className="mx-auto max-w-lg px-4 pt-5 pb-[calc(env(safe-area-inset-bottom)+2rem)] space-y-6">
               {session ? (
-                <div className="space-y-3">
-                  {/* User Info */}
-                  <div className="px-4 py-4 rounded-xl bg-[var(--muted)] border-2 border-theme-primary">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-full bg-theme-primary flex items-center justify-center">
-                        <User className="w-6 h-6 text-[var(--primary-foreground)]" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-bold text-[var(--foreground)] truncate">
-                          {session.user?.name}
-                        </p>
-                        <p className="text-sm text-theme-muted truncate">
-                          {session.user?.email}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* User Menu Links */}
-                  <Link href="/explore" onClick={() => setMobileMenuOpen(false)}>
-                    <div className="flex items-center justify-between py-3 px-4 rounded-xl bg-[var(--muted)] hover:bg-theme-primary/10 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <Search className="w-5 h-5 text-theme-primary" />
-                        <span className="font-bold text-[var(--foreground)]">Search & Explore</span>
-                      </div>
-                      <ChevronRight className="w-5 h-5 text-theme-muted" />
-                    </div>
-                  </Link>
-                  <Link href="/messages" onClick={() => setMobileMenuOpen(false)}>
-                    <div className="flex items-center justify-between py-3 px-4 rounded-xl bg-[var(--muted)] hover:bg-theme-primary/10 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <MessageCircle className="w-5 h-5 text-theme-primary" />
-                        <span className="font-bold text-[var(--foreground)]">Messages</span>
-                      </div>
-                      <ChevronRight className="w-5 h-5 text-theme-muted" />
-                    </div>
-                  </Link>
-                  <Link href="/my/volition" onClick={() => setMobileMenuOpen(false)}>
-                    <div className="flex items-center justify-between py-3 px-4 rounded-xl bg-[var(--muted)] hover:bg-theme-primary/10 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <Compass className="w-5 h-5 text-theme-primary shrink-0" />
-                        <span className="font-bold text-[var(--foreground)] whitespace-nowrap">My Volition</span>
-                      </div>
-                      <ChevronRight className="w-5 h-5 text-theme-muted" />
-                    </div>
-                  </Link>
-                  <Link href="/notifications" onClick={() => setMobileMenuOpen(false)}>
-                    <div className="flex items-center justify-between py-3 px-4 rounded-xl bg-[var(--muted)] hover:bg-theme-primary/10 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <Bell className="w-5 h-5 text-theme-accent" />
-                        <span className="font-bold text-[var(--foreground)]">Notifications</span>
-                      </div>
-                      <ChevronRight className="w-5 h-5 text-theme-muted" />
-                    </div>
-                  </Link>
-                  <Link href="/settings" onClick={() => setMobileMenuOpen(false)}>
-                    <div className="flex items-center justify-between py-3 px-4 rounded-xl bg-[var(--muted)] hover:bg-theme-primary/10 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <Settings className="w-5 h-5 text-theme-muted" />
-                        <span className="font-bold text-[var(--foreground)]">Settings</span>
-                      </div>
-                      <ChevronRight className="w-5 h-5 text-theme-muted" />
-                    </div>
-                  </Link>
-
-                  {/* Sign Out */}
-                  <button
-                    onClick={() => {
-                      setMobileMenuOpen(false)
-                      handleSignOut()
-                    }}
-                    className="w-full flex items-center justify-center gap-2 py-4 px-4 rounded-xl bg-theme-secondary text-[var(--secondary-foreground)] font-bold"
-                  >
-                    <LogOut className="w-5 h-5" />
-                    Sign Out
-                  </button>
-                </div>
+                <Link
+                  href={session.user?.id ? `/profile/${session.user.id}` : '/settings'}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-3"
+                >
+                  {session.user?.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={session.user.image} alt="" className="h-11 w-11 rounded-full object-cover" />
+                  ) : (
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--primary)_14%,transparent)] text-base font-semibold text-[var(--primary)]">
+                      {(session.user?.name || session.user?.email || '?').trim().charAt(0).toUpperCase()}
+                    </span>
+                  )}
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-[15px] font-semibold text-[var(--foreground)]">{session.user?.name || 'Your account'}</span>
+                    <span className="block truncate text-xs text-[var(--muted-foreground)]">View profile</span>
+                  </span>
+                  <ChevronRight className="h-4 w-4 shrink-0 text-[var(--muted-foreground)]" />
+                </Link>
               ) : (
-                <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-2">
                   <Link
                     href="/auth/signin"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="w-full flex items-center justify-center py-4 px-4 rounded-xl font-bold border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--muted)] transition-colors"
+                    className="flex h-11 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--card)] text-sm font-semibold text-[var(--foreground)]"
                   >
-                    Sign In
+                    Sign in
                   </Link>
                   <Link
                     href="/auth/signup"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="w-full flex items-center justify-center py-4 px-4 rounded-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-500 hover:to-teal-500 shadow-lg"
+                    style={{ color: 'var(--primary-foreground)' }}
+                    className="flex h-11 items-center justify-center rounded-xl bg-[var(--primary)] text-sm font-semibold"
                   >
-                    Get Started
+                    Get started
                   </Link>
                 </div>
               )}
-            </div>
+
+              <MenuGroup>
+                {[
+                  { label: 'Home', href: '/', icon: Home, active: pathname === '/' },
+                  { label: 'Products', href: '/products', icon: ShoppingBag, active: pathname.startsWith('/products') },
+                  { label: 'Articles', href: '/articles', icon: Newspaper, active: pathname.startsWith('/articles') },
+                ].map(item => <MenuRow key={item.href} {...item} onNavigate={() => setMobileMenuOpen(false)} />)}
+              </MenuGroup>
+
+              <MenuGroup title="Learn">
+                {[
+                  { label: 'Sustainability', href: '/learn', icon: Sprout, active: pathname.startsWith('/learn'), requiresAuth: false },
+                  { label: 'Exodology', href: '/exodology', icon: GraduationCap, active: pathname.startsWith('/exodology'), requiresAuth: true },
+                  { label: 'Architecture', href: '/architecture', icon: Landmark, active: pathname.startsWith('/architecture') && !pathname.startsWith('/architecture/structural'), requiresAuth: true },
+                  { label: 'Structural Engineering', href: '/architecture/structural', icon: Ruler, active: pathname.startsWith('/architecture/structural'), requiresAuth: true },
+                ].map(({ requiresAuth, ...item }) => (
+                  <MenuRow
+                    key={item.href}
+                    {...item}
+                    href={requiresAuth && !session ? `/auth/signin?callbackUrl=${encodeURIComponent(item.href)}` : item.href}
+                    locked={requiresAuth && !session}
+                    onNavigate={() => setMobileMenuOpen(false)}
+                  />
+                ))}
+              </MenuGroup>
+
+              <MenuGroup title="Community">
+                {[
+                  { label: 'Current Events', href: '/community', icon: CalendarDays, active: pathname === '/community' },
+                  { label: 'Discussions', href: '/community/discussions', icon: MessagesSquare, active: pathname.startsWith('/community/discussions') },
+                  { label: 'Initiatives', href: '/community/projects', icon: Rocket, active: pathname.startsWith('/community/projects') },
+                  { label: 'Fish Tank', href: '/fishbowl', icon: Fish, active: pathname.startsWith('/fishbowl') },
+                ].map(item => <MenuRow key={item.href} {...item} onNavigate={() => setMobileMenuOpen(false)} />)}
+              </MenuGroup>
+
+              {/* Render from `session` directly to avoid the SSR/CSR mismatch caused by
+                  useSession briefly returning status='loading' on hydration. */}
+              {session && (
+                <>
+                  <MenuGroup title="Account">
+                    {[
+                      { label: 'Messages', href: '/messages', icon: MessageCircle, active: pathname.startsWith('/messages') },
+                      { label: 'Notifications', href: '/notifications', icon: Bell, active: pathname.startsWith('/notifications') },
+                      { label: 'My Volition', href: '/my/volition', icon: Compass, active: pathname.startsWith('/my/volition') },
+                      { label: 'Search & Explore', href: '/explore', icon: Search, active: pathname.startsWith('/explore') },
+                      { label: 'Settings', href: '/settings', icon: Settings, active: pathname.startsWith('/settings') },
+                    ].map(item => <MenuRow key={item.href} {...item} onNavigate={() => setMobileMenuOpen(false)} />)}
+                  </MenuGroup>
+
+                  <MenuGroup>
+                    <button
+                      type="button"
+                      onClick={() => { setMobileMenuOpen(false); handleSignOut() }}
+                      className="flex min-h-[52px] w-full items-center gap-3 px-4 text-left text-[15px] font-medium text-red-600 dark:text-red-400 active:bg-[var(--muted)]"
+                    >
+                      <LogOut className="h-[18px] w-[18px]" />
+                      Sign out
+                    </button>
+                  </MenuGroup>
+                </>
+              )}
+
+              <p className="px-1 text-center text-xs text-[var(--muted-foreground)]">Project Exodus · Food, Water, Energy</p>
+            </nav>
           </div>
         </>
       )}
     </header>
+  )
+}
+
+function MenuGroup({ title, children }: { title?: string; children: ReactNode }) {
+  return (
+    <section>
+      {title && <h2 style={{ fontSize: '0.6875rem', lineHeight: '1rem' }} className="mb-2 px-1 font-semibold uppercase tracking-[0.08em] text-[var(--muted-foreground)]">{title}</h2>}
+      <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)] divide-y divide-[var(--border)]">
+        {children}
+      </div>
+    </section>
+  )
+}
+
+function MenuRow({ label, href, icon: Icon, active, locked, onNavigate }: {
+  label: string; href: string; icon: ComponentType<{ className?: string }>; active?: boolean; locked?: boolean; onNavigate: () => void
+}) {
+  return (
+    <Link
+      href={href}
+      onClick={onNavigate}
+      aria-current={active ? 'page' : undefined}
+      className={`flex min-h-[52px] items-center gap-3 px-4 transition-colors active:bg-[var(--muted)] ${active ? 'bg-[color-mix(in_srgb,var(--primary)_8%,transparent)]' : ''}`}
+    >
+      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${active ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[color-mix(in_srgb,var(--primary)_10%,transparent)] text-[var(--primary)]'}`}>
+        <Icon className="h-[18px] w-[18px]" />
+      </span>
+      <span className={`min-w-0 flex-1 truncate text-[15px] ${active ? 'font-semibold text-[var(--primary)]' : 'font-medium text-[var(--foreground)]'}`}>{label}</span>
+      {locked
+        ? <span className="flex items-center gap-1 text-xs text-[var(--muted-foreground)]"><Lock className="h-3.5 w-3.5" />Sign in</span>
+        : <ChevronRight className="h-4 w-4 shrink-0 text-[var(--muted-foreground)] opacity-70" />}
+    </Link>
   )
 }

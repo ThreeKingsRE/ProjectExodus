@@ -2722,3 +2722,12 @@ body.textbook-fullscreen button[aria-label="Open Sage"] { display: none; }
 
 /* Gold-foil shimmer on the Digital Scroll hardcover title */
 @keyframes ds-foil { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0% 0; } }
+
+/* Mobile menu: gentle entrance, and keep the Sage bubble out of the way while it's open */
+@keyframes mobile-menu-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+.mobile-menu-in { animation: mobile-menu-in 180ms ease-out; }
+@media (prefers-reduced-motion: reduce) { .mobile-menu-in { animation: none; } }
+body[data-menu-open] .sage-fab { display: none; }

@@ -231,7 +231,7 @@ export function ProjectExodusAI() {
         <button
           ref={buttonRef}
           onClick={() => !isAnimating && setIsOpen(true)}
-          className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 group ${animationPhase === 'waking-up' ? 'opacity-0' : ''}`}
+          className={`sage-fab fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 group ${animationPhase === 'waking-up' ? 'opacity-0' : ''}`}
           aria-label="Open Sage"
         >
           {/* Pulsing ring animation - pointer-events-none so it doesn't expand hover area */}
