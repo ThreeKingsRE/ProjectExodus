@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { summarizeImported, type ImportedResults } from '@/lib/projects/survey-import'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { isAcceptingResponses, parseQuestions, parseSurveySettings, summarize } from '@/lib/projects/surveys'
@@ -36,6 +37,8 @@ export async function GET(_request: NextRequest, { params }: Params) {
 
     const questions = storedQuestions(survey.questions)
     const responses = survey.responses as { id: string; answers: unknown; createdAt: Date; user: { id: string; name: string | null } | null }[]
+    // A linked survey's results come from its imported CSV
+    const imported = survey.externalUrl && survey.importedResults ? (survey.importedResults as unknown as ImportedResults) : null
     return NextResponse.json({
       success: true,
       data: {
@@ -49,8 +52,12 @@ export async function GET(_request: NextRequest, { params }: Params) {
         closesAt: survey.closesAt,
         accepting: isAcceptingResponses(survey),
         questions,
-        responseCount: responses.length,
-        results: summarize(questions, responses),
+        responseCount: imported ? imported.rows.length : responses.length,
+        results: imported ? summarizeImported(imported) : summarize(questions, responses),
+        externalUrl: survey.externalUrl ?? null,
+        resultsImport: survey.externalUrl
+          ? { connected: !!survey.resultsCsvUrl, source: survey.resultsCsvUrl ? 'sheet' : imported ? 'upload' : null, importedAt: survey.resultsImportedAt }
+          : null,
         respondents: survey.anonymous
           ? []
           : responses.slice(-200).reverse().map(r => ({ name: r.user?.name || 'Guest', at: r.createdAt })),

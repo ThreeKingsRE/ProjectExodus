@@ -1285,7 +1285,11 @@ model ProjectSurvey {
 
   // A survey hosted elsewhere (Google Forms, Microsoft Forms, Typeform...):
   // people answer there, so it has no questions or responses on this site.
-  externalUrl String? @db.Text
+  externalUrl       String?   @db.Text
+  // Results for a linked survey, imported as CSV (owners and admins only)
+  resultsCsvUrl     String?   @db.Text // Google Sheets link the site refreshes from
+  importedResults   Json? // { header: string[], rows: string[][] }
+  resultsImportedAt DateTime?
 
   status       ProjectSurveyStatus   @default(DRAFT)
   audience     ProjectSurveyAudience @default(MEMBERS)

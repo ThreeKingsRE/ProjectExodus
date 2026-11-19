@@ -32,10 +32,13 @@ interface SurveyListItem {
 }
 
 interface SurveyDetail extends Omit<SurveyListItem, 'questionCount' | 'hasResponded'> {
+  externalUrl?: string | null
   questions: SurveyQuestion[]
   responseCount: number
   results: QuestionSummary[]
   respondents: { name: string; at: string }[]
+  /** For linked surveys: where the results came from */
+  resultsImport?: { connected: boolean; source: 'sheet' | 'upload' | null; importedAt: string | null } | null
 }
 
 const AUDIENCE_ICON = { MEMBERS: Lock, SIGNED_IN: Users, PUBLIC: Globe } as const
@@ -228,11 +231,9 @@ export function ProjectSurveys({ projectId, projectSlug, featuredUrl = null, onF
                     )}
                     {canManage && (
                       <>
-                        {!s.externalUrl && (
-                          <Button size="sm" variant="outline" className="font-bold" onClick={async () => setResultsFor(await loadDetail(s.id))}>
-                            <BarChart3 className="w-4 h-4 mr-1" />RESULTS
-                          </Button>
-                        )}
+                        <Button size="sm" variant="outline" className="font-bold" onClick={async () => setResultsFor(await loadDetail(s.id))}>
+                          <BarChart3 className="w-4 h-4 mr-1" />RESULTS
+                        </Button>
                         {s.status === 'OPEN' ? (
                           <Button size="sm" variant="ghost" onClick={() => setStatus(s, 'CLOSED')}><Square className="w-4 h-4 mr-1" />Close</Button>
                         ) : (
@@ -270,16 +271,23 @@ export function ProjectSurveys({ projectId, projectSlug, featuredUrl = null, onF
 
       {resultsFor && (
         <Modal title={resultsFor.title} onClose={() => setResultsFor(null)}>
+          {resultsFor.externalUrl && (
+            <ResultsImport
+              projectId={projectId}
+              survey={resultsFor}
+              onImported={async () => setResultsFor(await loadDetail(resultsFor.id))}
+            />
+          )}
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm text-theme-muted">{resultsFor.responseCount} responses</p>
-            {resultsFor.responseCount > 0 && (
+            {resultsFor.responseCount > 0 && !resultsFor.externalUrl && (
               <a href={`/api/projects/${projectId}/surveys/${resultsFor.id}/export`}>
                 <Button size="sm" variant="outline" className="font-bold"><Download className="w-4 h-4 mr-1" />DOWNLOAD CSV</Button>
               </a>
             )}
           </div>
           {resultsFor.responseCount === 0 ? (
-            <p className="py-8 text-center text-theme-muted">No responses yet. Open the survey and share its link.</p>
+            <p className="py-8 text-center text-theme-muted">{resultsFor.externalUrl ? 'No results imported yet. Connect the form’s results above.' : 'No responses yet. Open the survey and share its link.'}</p>
           ) : (
             <SurveyResultsView results={resultsFor.results} total={resultsFor.responseCount} />
           )}
@@ -309,6 +317,79 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
         </div>
         {children}
       </div>
+    </div>
+  )
+}
+
+/** Bring a linked survey's results in: a Google Sheets link (refreshable) or an uploaded CSV. */
+function ResultsImport({ projectId, survey, onImported }: { projectId: string; survey: SurveyDetail; onImported: () => Promise<void> }) {
+  const [sheetUrl, setSheetUrl] = useState('')
+  const [busy, setBusy] = useState<string | null>(null)
+  const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
+  const info = survey.resultsImport
+
+  const send = async (label: string, body: object | null) => {
+    setBusy(label)
+    setMessage(null)
+    const res = await fetch(`/api/projects/${projectId}/surveys/${survey.id}/import`, {
+      method: body ? 'POST' : 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: body ? JSON.stringify(body) : undefined,
+    }).catch(() => null)
+    const data = await res?.json().catch(() => null)
+    setBusy(null)
+    if (data?.success) {
+      setMessage({ ok: true, text: body ? `Imported ${data.data.responses} responses.` : 'Imported results removed.' })
+      setSheetUrl('')
+      await onImported()
+    } else setMessage({ ok: false, text: data?.error ?? 'Something went wrong. Try again.' })
+  }
+
+  const upload = (file: File | undefined) => {
+    if (!file) return
+    if (file.size > 3 * 1024 * 1024) { setMessage({ ok: false, text: 'That file is too large (3 MB maximum).' }); return }
+    file.text().then(text => send('upload', { csv: text }))
+  }
+
+  return (
+    <div className="space-y-3 rounded-lg border-2 border-[var(--border)] p-3 text-sm">
+      <p className="font-bold">Results from the linked survey</p>
+      {info?.importedAt && (
+        <p className="text-xs text-theme-muted">
+          {info.source === 'sheet' ? 'From the connected Google Sheet' : 'From an uploaded CSV'} · updated {new Date(info.importedAt).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}
+        </p>
+      )}
+      <div className="flex flex-wrap gap-2">
+        {info?.connected && (
+          <Button size="sm" className="font-bold" disabled={busy !== null} onClick={() => send('refresh', { refresh: true })}>
+            {busy === 'refresh' ? <Loader2 className="w-4 h-4 mr-1 animate-spin" /> : <Download className="w-4 h-4 mr-1" />}REFRESH
+          </Button>
+        )}
+        <label className="inline-flex cursor-pointer items-center rounded-md border-2 border-[var(--border)] px-3 py-1.5 text-xs font-bold focus-within:ring-2 focus-within:ring-[var(--primary)]">
+          {busy === 'upload' ? <Loader2 className="w-4 h-4 mr-1 animate-spin" /> : <Download className="w-4 h-4 mr-1 rotate-180" />}UPLOAD CSV
+          <input type="file" accept=".csv,text/csv" className="sr-only" disabled={busy !== null} onChange={e => { upload(e.target.files?.[0]); e.target.value = '' }} />
+        </label>
+        {info?.importedAt && (
+          <Button size="sm" variant="ghost" disabled={busy !== null} onClick={() => send('remove', null)}><Trash2 className="w-4 h-4 mr-1" />Remove</Button>
+        )}
+      </div>
+      <details className="rounded-md bg-[var(--muted)] p-2" open={!info?.importedAt}>
+        <summary className="cursor-pointer text-xs font-bold">Connect a Google Form’s results (updates when you refresh)</summary>
+        <ol className="mt-2 list-decimal space-y-1 pl-5 text-xs text-theme-muted">
+          <li>In Google Forms, open <strong>Responses</strong> and choose <strong>Link to Sheets</strong>.</li>
+          <li>In that sheet, choose <strong>File → Share → Publish to web</strong>, pick the responses sheet and <strong>Comma-separated values (.csv)</strong>, then Publish. (Or share the sheet as “Anyone with the link can view”.)</li>
+          <li>Paste the link here.</li>
+        </ol>
+        <p className="mt-1 text-xs text-theme-muted">Published or shared sheets can be opened by anyone who has the link. If the answers are sensitive, use <strong>Upload CSV</strong> instead (Forms: Responses → ⋮ → Download responses).</p>
+        <div className="mt-2 flex gap-2">
+          <label htmlFor={`sheet-${survey.id}`} className="sr-only">Google Sheets link</label>
+          <input id={`sheet-${survey.id}`} type="url" inputMode="url" value={sheetUrl} onChange={e => setSheetUrl(e.target.value)} placeholder="https://docs.google.com/spreadsheets/…" className="min-w-0 flex-1 rounded-md border-2 border-[var(--border)] bg-[var(--background)] px-2 py-1.5 text-xs" />
+          <Button size="sm" className="font-bold" disabled={busy !== null || !sheetUrl.trim()} onClick={() => send('connect', { csvUrl: sheetUrl })}>
+            {busy === 'connect' ? <Loader2 className="w-4 h-4 animate-spin" /> : 'CONNECT'}
+          </Button>
+        </div>
+      </details>
+      {message && <p role="status" className={`text-xs font-bold ${message.ok ? 'text-green-600' : 'text-red-500'}`}>{message.text}</p>}
     </div>
   )
 }
