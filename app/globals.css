@@ -470,29 +470,44 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--foreground);
 }
 
-h1 {
-  @apply text-5xl md:text-6xl lg:text-7xl;
-  line-height: 1.1;
+/* Desktop: historical heading sizes (unlayered, so they win over size utilities) */
+@media (min-width: 769px) {
+  h1 {
+    @apply text-5xl md:text-6xl lg:text-7xl;
+    line-height: 1.1;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl;
+    line-height: 1.2;
+  }
+
+  h3 {
+    @apply text-3xl md:text-4xl;
+    line-height: 1.2;
+  }
 }
 
-h2 {
-  @apply text-4xl md:text-5xl;
-  line-height: 1.2;
+/* Phones: sensible defaults in the base layer, so a heading's own text-* size wins */
+@layer base {
+  @media (max-width: 768px) {
+    h1 { font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.15; }
+    h2 { font-size: clamp(1.5rem, 6vw, 2.5rem); line-height: 1.2; }
+    h3 { font-size: clamp(1.25rem, 5vw, 2rem); line-height: 1.25; }
+  }
 }
 
-h3 {
-  @apply text-3xl md:text-4xl;
-  line-height: 1.2;
-}
+/* Links - growing interaction. In the base layer so a link's own text-* utility
+   (e.g. a button-styled link) wins; unlayered, this beat every Tailwind color. */
+@layer base {
+  a {
+    color: var(--primary);
+    transition: color 200ms;
+  }
 
-/* Links - growing interaction */
-a {
-  color: var(--primary);
-  transition: colors 200ms;
-}
-
-a:hover {
-  color: var(--moss-700);
+  a:hover {
+    color: var(--moss-700);
+  }
 }
 
 /* Utility classes for organic effects */
@@ -812,17 +827,13 @@ main, section, article, aside, header, footer, nav, div {
     height: auto;
   }
 
-  /* Reduce heading sizes on mobile */
-  h1 {
-    font-size: clamp(2rem, 8vw, 3.5rem) !important;
+  /* Cap oversized heading classes on phones (smaller classes are left alone) */
+  :is(h1, h2, h3, h4)[class~="text-4xl"] {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
   }
 
-  h2 {
-    font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
-  }
-
-  h3 {
-    font-size: clamp(1.25rem, 5vw, 2rem) !important;
+  :is(h1, h2, h3, h4):is([class~="text-5xl"], [class~="text-6xl"], [class~="text-7xl"], [class~="text-8xl"], [class~="text-9xl"]) {
+    font-size: clamp(2rem, 8vw, 3rem);
   }
 }
 

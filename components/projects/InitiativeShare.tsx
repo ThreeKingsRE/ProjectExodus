@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Check, Copy, Download, Share2, X } from 'lucide-react'
 
-export function InitiativeShare({ slug, name }: { slug: string; name: string }) {
+export function InitiativeShare({ slug, name, block = false }: { slug: string; name: string; block?: boolean }) {
   const [open, setOpen] = useState(false)
   const [copied, setCopied] = useState(false)
   const [error, setError] = useState('')
@@ -58,7 +58,7 @@ export function InitiativeShare({ slug, name }: { slug: string; name: string }) 
   }
 
   return <>
-    <button type="button" onClick={() => { setCopied(false); setError(''); setOpen(true) }} className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 font-bold"><Share2 size={17} /> Share / QR code</button>
+    <button type="button" onClick={() => { setCopied(false); setError(''); setOpen(true) }} className={`inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 font-bold ${block ? 'w-full' : ''}`}><Share2 size={17} /> Share / QR code</button>
     <dialog ref={dialog} onCancel={() => setOpen(false)} onClose={() => setOpen(false)} aria-labelledby="initiative-share-title" className="m-auto w-[calc(100%_-_2rem)] max-w-md rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 text-[var(--foreground)] shadow-2xl backdrop:bg-black/60">
       <div className="flex items-start justify-between gap-4"><div><h2 id="initiative-share-title" className="text-xl font-black">Share {name}</h2><p className="mt-2 text-sm leading-6">Scan to view the public initiative. No sign-in needed to read it.</p></div><button type="button" aria-label="Close sharing" onClick={() => setOpen(false)} className="rounded-lg p-2"><X size={20} /></button></div>
       {open && <img src={imageUrl} alt={`QR code linking to ${name}`} width={320} height={320} onLoad={() => setImageReady(true)} onError={() => { setImageReady(false); setError('The QR code could not load. You can still copy the link.') }} className="mx-auto my-5 aspect-square w-full max-w-[320px] bg-white" />}

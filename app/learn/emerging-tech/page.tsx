@@ -35,7 +35,7 @@ export default function EmergingTechPage() {
               </div>
             </div>
             <h1 className="text-[var(--foreground)]" style={{
-              fontSize: 'clamp(2.5rem, 8vw, 6rem)',
+              fontSize: 'clamp(2rem, 8vw, 6rem)',
               fontWeight: 900,
               lineHeight: 1.1
             }}>

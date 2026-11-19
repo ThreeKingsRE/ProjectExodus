@@ -74,10 +74,12 @@ export function ProjectShared({ projectId, slug, isTeam }: { projectId: string; 
               <ul className="space-y-1">
                 {items!.map(i => (
                   <li key={i.id} className="rounded-lg border-2 border-[var(--border)] px-3 py-2">
-                    <div className="flex items-center gap-3">
-                      {i.kind === 'MILESTONE' ? <Diamond className="w-4 h-4 text-purple-500 shrink-0" /> : i.status === 'DONE' ? <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" /> : <CalendarDays className="w-4 h-4 text-theme-muted shrink-0" />}
-                      <span className={`min-w-0 flex-1 truncate font-bold ${i.status === 'DONE' ? 'line-through opacity-60' : ''}`}>{i.title}</span>
-                      <span className="shrink-0 text-xs text-theme-muted">{STATUS_LABEL[i.status]} · {when(i)}</span>
+                    <div className="flex items-start gap-3">
+                      <span className="mt-1 shrink-0">{i.kind === 'MILESTONE' ? <Diamond className="w-4 h-4 text-purple-500" /> : i.status === 'DONE' ? <CheckCircle2 className="w-4 h-4 text-green-600" /> : <CalendarDays className="w-4 h-4 text-theme-muted" />}</span>
+                      <div className="min-w-0 flex-1 sm:flex sm:items-baseline sm:gap-3">
+                        <span className={`block min-w-0 break-words font-bold sm:flex-1 ${i.status === 'DONE' ? 'line-through opacity-60' : ''}`}>{i.title}</span>
+                        <span className="block shrink-0 text-xs text-theme-muted">{STATUS_LABEL[i.status]} · {when(i)}</span>
+                      </div>
                     </div>
                     <div className="mt-1 pl-7"><ItemComments projectId={projectId} type="TIMELINE_ITEM" id={i.id} count={itemCounts[i.id] ?? 0} /></div>
                   </li>
@@ -89,12 +91,12 @@ export function ProjectShared({ projectId, slug, isTeam }: { projectId: string; 
           {docs!.length > 0 && (
             <section className="space-y-2">
               <h3 className="font-black flex items-center gap-2"><FileText className="w-5 h-5" />Documents</h3>
-              <div className="grid gap-3 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 {docs!.map(d => (
                   <Link key={d.id} href={`/community/projects/${slug}/documents/${d.id}`}>
                     <Card className="border-2 hover:border-theme-primary transition-colors h-full">
                       <CardContent className="p-4">
-                        <p className="font-black truncate">{d.title}</p>
+                        <p className="font-black line-clamp-2 break-words">{d.title}</p>
                         {d.description && <p className="text-sm text-theme-muted line-clamp-2">{d.description}</p>}
                         <p className="mt-2 text-xs text-theme-muted">Updated {new Date(d.updatedAt).toLocaleDateString()} · {d._count?.comments ?? 0} comments</p>
                       </CardContent>
@@ -108,12 +110,12 @@ export function ProjectShared({ projectId, slug, isTeam }: { projectId: string; 
           {files!.length > 0 && (
             <section className="space-y-2">
               <h3 className="font-black flex items-center gap-2"><Eye className="w-5 h-5" />Files</h3>
-              <div className="grid gap-3 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 {files!.map(f => (
                   <Card key={f.id} className="border-2">
                     <CardContent className="p-4 space-y-2">
                       <div>
-                        <p className="font-black truncate">{f.title}</p>
+                        <p className="font-black line-clamp-2 break-words">{f.title}</p>
                         <p className="text-xs text-theme-muted">{SECTION_INFO[f.section as FileSection]?.label ?? f.section}</p>
                       </div>
                       {f.description && <p className="text-sm text-theme-muted line-clamp-2">{f.description}</p>}

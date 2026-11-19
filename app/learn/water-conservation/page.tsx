@@ -17,7 +17,7 @@ export default function WaterConservationPage() {
           <div className="max-w-5xl mx-auto text-center space-y-8">
             <div className="text-7xl mb-6">💧</div>
             <h1 className="text-[var(--foreground)]" style={{
-              fontSize: 'clamp(3rem, 10vw, 6rem)',
+              fontSize: 'clamp(2rem, 9vw, 6rem)',
               fontWeight: 900,
               lineHeight: 1
             }}>

@@ -42,18 +42,35 @@ export default function TeamCollaborationVisualization({
   })
   const [dimensions, setDimensions] = useState({ width: 1200, height: 600 })
 
-  // Update dimensions on mount and resize
+  // Size the graph to its own box (it lives in sidebars and phone layouts, not just full width)
+  const boxRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    const updateDimensions = () => {
-      const width = Math.min(window.innerWidth - 100, 1400)
-      const height = 600
+    const el = boxRef.current
+    if (!el) return
+    const update = () => {
+      const width = Math.max(200, Math.floor(el.clientWidth))
+      const height = Math.max(240, Math.floor(el.parentElement?.clientHeight || 600) - 8)
       setDimensions({ width, height })
     }
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [members.length > 0])
+  const compact = dimensions.width < 520
 
-    updateDimensions()
-    window.addEventListener('resize', updateDimensions)
-    return () => window.removeEventListener('resize', updateDimensions)
-  }, [])
+  // Once the layout has settled, fit the team in view. Nodes are drawn 25-35 units
+  // wide, so a small team "fits" by filling the box: cap the zoom to keep it readable.
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const g = graphRef.current
+      if (!g) return
+      g.zoomToFit(0, compact ? 30 : 60)
+      const cap = compact ? 0.9 : 1.4
+      if (g.zoom() > cap) g.zoom(cap, 300)
+    }, 1500)
+    return () => clearTimeout(t)
+  }, [graphData, compact])
 
   // Transform data into graph format
   useEffect(() => {
@@ -165,11 +182,11 @@ export default function TeamCollaborationVisualization({
 
   if (members.length === 0) {
     return (
-      <div className="flex items-center justify-center h-[500px] bg-[var(--muted)] rounded-xl border-4 border-theme-secondary">
+      <div className="flex items-center justify-center h-full min-h-[240px] p-4 bg-[var(--muted)] rounded-xl border-4 border-theme-secondary">
         <div className="text-center space-y-4">
           <Users className="w-16 h-16 text-theme-muted mx-auto opacity-50" />
-          <h3 className="text-2xl font-black text-theme-muted">NO TEAM MEMBERS YET</h3>
-          <p className="text-lg font-semibold text-theme-muted max-w-md">
+          <h3 className="text-lg sm:text-2xl font-black text-theme-muted">NO TEAM MEMBERS YET</h3>
+          <p className="text-sm sm:text-lg font-semibold text-theme-muted max-w-md">
             Be the first to join this project and start collaborating!
           </p>
         </div>
@@ -178,9 +195,9 @@ export default function TeamCollaborationVisualization({
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full" ref={boxRef}>
       {/* Zoom Controls */}
-      <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+      <div className={`absolute z-10 flex flex-col gap-2 ${compact ? 'top-2 right-2' : 'top-4 right-4'}`}>
         <Button
           onClick={handleZoomIn}
           variant="outline"
@@ -211,7 +228,7 @@ export default function TeamCollaborationVisualization({
       </div>
 
       {/* Legend */}
-      <div className="absolute top-4 left-4 z-10 bg-[var(--card)] border-2 border-theme-primary rounded-lg p-4 space-y-2 shadow-xl">
+      <div className={`absolute top-4 left-4 z-10 bg-[var(--card)] border-2 border-theme-primary rounded-lg p-4 space-y-2 shadow-xl ${compact ? 'hidden' : ''}`}>
         <h4 className="text-xs font-black text-[var(--foreground)] mb-2">TEAM LEGEND</h4>
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[var(--accent)] to-[var(--secondary)] flex items-center justify-center">
@@ -250,7 +267,7 @@ export default function TeamCollaborationVisualization({
       </div>
 
       {/* Force Graph */}
-      <div className="bg-[var(--background)] rounded-xl border-4 border-theme-primary overflow-hidden shadow-2xl">
+      <div className={`bg-[var(--background)] rounded-xl overflow-hidden ${compact ? 'border-2 border-theme-primary' : 'border-4 border-theme-primary shadow-2xl'}`}>
         <ForceGraph2D
           ref={graphRef}
           graphData={graphData}

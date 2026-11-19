@@ -71,7 +71,7 @@ export default async function MarketplacePage() {
               </span>
             </div>
             <h1 className="text-[var(--foreground)]" style={{
-              fontSize: 'clamp(2.5rem, 8vw, 5rem)',
+              fontSize: 'clamp(2rem, 8vw, 5rem)',
               fontWeight: 900,
               lineHeight: 1
             }}>

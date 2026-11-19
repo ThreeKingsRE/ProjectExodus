@@ -153,7 +153,7 @@ export function ProjectSurveys({ projectId, projectSlug, featuredUrl = null, onF
         <Card className="border-2 border-dashed"><CardContent className="p-8 text-center text-theme-muted">{error}</CardContent></Card>
       ) : surveys.length === 0 ? (
         <Card className="border-2 border-dashed">
-          <CardContent className="p-12 text-center">
+          <CardContent className="p-6 sm:p-12 text-center">
             <ClipboardList className="w-16 h-16 mx-auto mb-4 text-theme-muted opacity-50" />
             <h3 className="text-xl font-black mb-2 text-theme-muted">NO SURVEYS YET</h3>
             <p className="text-theme-muted mb-4">

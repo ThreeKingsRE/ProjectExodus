@@ -124,7 +124,7 @@ export function ProjectFiles({ projectId, initialSection = 'ALL' }: Props) {
         <Card className="border-2 border-dashed"><CardContent className="p-8 text-center text-theme-muted">{error}</CardContent></Card>
       ) : shown.length === 0 ? (
         <Card className="border-2 border-dashed">
-          <CardContent className="p-12 text-center">
+          <CardContent className="p-6 sm:p-12 text-center">
             <FileSpreadsheet className="w-16 h-16 mx-auto mb-4 text-theme-muted opacity-50" />
             <h3 className="text-xl font-black mb-2 text-theme-muted">NO FILES HERE YET</h3>
             <p className="text-theme-muted mb-4">
@@ -141,7 +141,7 @@ export function ProjectFiles({ projectId, initialSection = 'ALL' }: Props) {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {shown.map(file => (
             <FileCard
               key={file.id}
@@ -223,7 +223,7 @@ function FileCard({ projectId, commentCount, file, canManage, onEdit, onRemove, 
           </button>
         </div>
       ) : (
-        <a href={file.openUrl} target="_blank" rel="noopener noreferrer" className="flex h-32 items-center justify-center bg-[var(--muted)] hover:opacity-90">
+        <a href={file.openUrl} target="_blank" rel="noopener noreferrer" className="hidden sm:flex h-32 items-center justify-center bg-[var(--muted)] hover:opacity-90">
           <Icon className="w-12 h-12 text-theme-primary" />
         </a>
       )}

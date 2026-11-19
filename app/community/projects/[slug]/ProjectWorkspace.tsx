@@ -185,6 +185,30 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
   // New: Sidebar and live features state
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
+  // Below lg the team network sits under the content; start it closed on phones
+  const [isPhone, setIsPhone] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 1023px)')
+    const sync = () => setIsPhone(mq.matches)
+    sync()
+    if (mq.matches) setIsSidebarCollapsed(true)
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  // Tabs: keep the chosen tab visible in the scrolling row, and on phones bring
+  // the tab's content up (the header can be taller than the screen)
+  const tabBarRef = useRef<HTMLElement>(null)
+  const selectTab = (id: TabType) => {
+    setActiveTab(id)
+    const bar = tabBarRef.current
+    if (!bar) return
+    const btn = bar.querySelector<HTMLElement>(`[data-tab="${id}"]`)
+    const row = btn?.parentElement
+    if (btn && row) row.scrollTo({ left: btn.offsetLeft - (row.clientWidth - btn.offsetWidth) / 2, behavior: 'smooth' })
+    const top = bar.getBoundingClientRect().top
+    if (top > 0) window.scrollTo({ top: window.scrollY + top, behavior: 'smooth' })
+  }
   const [editingSection, setEditingSection] = useState<string | null>(null)
 
   // Delete modal state
@@ -596,7 +620,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     return (
       <div className="min-h-screen flex items-center justify-center">
         <Card className="border-4 border-theme-secondary">
-          <CardContent className="p-12 text-center">
+          <CardContent className="p-6 sm:p-12 text-center">
             <h2 className="text-3xl font-black mb-4 text-theme-muted">PROJECT NOT FOUND</h2>
             <p className="text-lg font-semibold mb-8 text-theme-muted">
               This project doesn't exist or has been removed.
@@ -630,7 +654,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   const getRoleBadge = (member: any) => {
     if (member.userId === project.creatorId) {
       return (
-        <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] text-[var(--primary-foreground)] text-xs font-black">
+        <div className="inline-flex w-fit items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] text-[var(--primary-foreground)] text-xs font-black">
           <Crown className="w-3 h-3" />
           OWNER
         </div>
@@ -638,7 +662,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     }
     if (member.role === 'ADMIN') {
       return (
-        <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-[color-mix(in_srgb,var(--primary)_80%,var(--background))] text-[var(--primary-foreground)] text-xs font-black">
+        <div className="inline-flex w-fit items-center gap-1 px-2 py-1 rounded-full bg-[color-mix(in_srgb,var(--primary)_80%,var(--background))] text-[var(--primary-foreground)] text-xs font-black">
           <Shield className="w-3 h-3" />
           ADMIN
         </div>
@@ -646,7 +670,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
     }
     if (member.role === 'MODERATOR') {
       return (
-        <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-[color-mix(in_srgb,var(--secondary)_60%,var(--background))] text-[var(--foreground)] text-xs font-black">
+        <div className="inline-flex w-fit items-center gap-1 px-2 py-1 rounded-full bg-[color-mix(in_srgb,var(--secondary)_60%,var(--background))] text-[var(--foreground)] text-xs font-black">
           <Shield className="w-3 h-3" />
           MOD
         </div>
@@ -675,72 +699,23 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      {/* Owner Superpowers Toolbar - Floating */}
-      {isCreator && !isEditing && (
-        <div className="fixed bottom-6 right-6 z-50">
-          <Card className="border-2 border-theme-primary bg-[var(--background)]/95 backdrop-blur-sm shadow-2xl">
-            <CardContent className="p-3">
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] rounded-full mr-2">
-                  <Crown className="w-3 h-3 text-[var(--primary-foreground)]" />
-                  <span className="text-xs font-black text-[var(--primary-foreground)]">OWNER</span>
-                </div>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={startEditing}
-                  className="font-bold h-8"
-                  title="Edit Project"
-                >
-                  <Pencil className="w-3 h-3 mr-1" />
-                  Edit
-                </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => setActiveTab('settings')}
-                  className="font-bold h-8"
-                  title="Project Settings"
-                >
-                  <SettingsIcon className="w-3 h-3 mr-1" />
-                  Settings
-                </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => setShowSage(true)}
-                  className="font-bold h-8 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-green-500/30"
-                  title="Ask Sage AI"
-                >
-                  <Sparkles className="w-3 h-3 mr-1" />
-                  Sage
-                </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => setShowDeleteModal(true)}
-                  className="font-bold h-8 text-red-500 border-red-500/30 hover:bg-red-500/10"
-                  title="Delete Project"
-                >
-                  <Trash2 className="w-3 h-3" />
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      )}
-
       {/* Header */}
-      <section className="py-8 bg-gradient-to-br from-[color-mix(in_srgb,var(--secondary)_15%,var(--background))] via-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[color-mix(in_srgb,var(--accent)_15%,var(--background))]">
+      <section className="py-4 sm:py-8 bg-gradient-to-br from-[color-mix(in_srgb,var(--secondary)_15%,var(--background))] via-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[color-mix(in_srgb,var(--accent)_15%,var(--background))]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-4">
+          <div className="mb-3 sm:mb-4">
             <BackButton label="Back to Projects" fallbackUrl="/community/projects" />
           </div>
           <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-6">
+            {/* Cover image first: it's what people recognize the initiative by */}
+            {project.coverImage && (
+              <figure className="mb-5 sm:mb-6 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--muted)]">
+                <img src={project.coverImage} alt={`${project.name} initiative cover`} className="aspect-[16/10] sm:aspect-[21/9] max-h-[460px] w-full object-cover" />
+              </figure>
+            )}
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_18rem] gap-6">
               {/* Project Info */}
-              <div className="flex-1">
-                <div className="flex items-start gap-3 mb-3 flex-wrap">
+              <div className="min-w-0">
+                <div className="flex items-center gap-2 sm:gap-3 mb-3 flex-wrap">
                   {isEditing ? (
                     <select
                       value={editedStatus}
@@ -752,7 +727,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                       <option value="COMPLETED">COMPLETED</option>
                     </select>
                   ) : (
-                    <div className={`px-4 py-2 rounded-full ${colors.bg} ${colors.text} font-black text-sm uppercase`}>
+                    <div className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full ${colors.bg} ${colors.text} font-black text-xs sm:text-sm uppercase`}>
                       {project.status}
                     </div>
                   )}
@@ -779,7 +754,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                       )}
                     </div>
                   ) : ventureTypeLabel(project.layoutConfig) && (
-                    <div className="px-4 py-2 rounded-full border-2 border-theme-primary text-theme-primary font-black text-sm uppercase">
+                    <div className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border-2 border-theme-primary text-theme-primary font-black text-xs sm:text-sm uppercase">
                       {ventureTypeLabel(project.layoutConfig)}
                     </div>
                   )}
@@ -789,30 +764,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                       YOUR PROJECT
                     </div>
                   )}
-                  {isCreator && !isEditing && (
-                    <div className="flex items-center gap-2 ml-auto">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={startEditing}
-                        className="font-bold"
-                      >
-                        <Pencil className="w-4 h-4 mr-1" />
-                        EDIT
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setShowDeleteModal(true)}
-                        className="font-bold text-red-500 border-red-500 hover:bg-red-500/10"
-                      >
-                        <Trash2 className="w-4 h-4 mr-1" />
-                        DELETE
-                      </Button>
-                    </div>
-                  )}
                   {isEditing && (
-                    <div className="flex items-center gap-2 ml-auto">
+                    <div className="flex items-center gap-2 w-full sm:w-auto sm:ml-auto">
                       <Button
                         variant="outline"
                         size="sm"
@@ -836,16 +789,33 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   )}
                 </div>
 
+                {isCreator && !isEditing && (
+                  <div className="mb-4 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap" role="toolbar" aria-label="Owner tools">
+                    <Button variant="outline" size="sm" onClick={startEditing} className="font-bold min-w-0 px-2 sm:px-3">
+                      <Pencil className="w-4 h-4 mr-1 shrink-0" />EDIT
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => selectTab('settings')} className="font-bold min-w-0 px-2 sm:px-3">
+                      <SettingsIcon className="w-4 h-4 mr-1 shrink-0" />SETTINGS
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => setShowSage(true)} className="font-bold min-w-0 px-2 sm:px-3 border-green-500/40">
+                      <Sparkles className="w-4 h-4 mr-1 shrink-0" />SAGE
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => setShowDeleteModal(true)} className="font-bold min-w-0 px-2 sm:px-3 text-red-500 border-red-500/40 hover:bg-red-500/10">
+                      <Trash2 className="w-4 h-4 mr-1 shrink-0" />DELETE
+                    </Button>
+                  </div>
+                )}
+
                 {isEditing ? (
                   <input
                     type="text"
                     value={editedName}
                     onChange={(e) => setEditedName(e.target.value)}
-                    className="text-4xl font-black mb-3 text-[var(--foreground)] bg-transparent border-b-4 border-theme-primary focus:outline-none w-full"
+                    className="text-2xl sm:text-4xl font-black mb-3 text-[var(--foreground)] bg-transparent border-b-4 border-theme-primary focus:outline-none w-full"
                     placeholder="Project Name"
                   />
                 ) : (
-                  <h1 className="text-4xl font-black mb-3 text-[var(--foreground)]">
+                  <h1 className="text-[1.75rem] leading-tight sm:text-4xl font-black mb-3 text-[var(--foreground)] break-words">
                     {project.name}
                   </h1>
                 )}
@@ -859,7 +829,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     rows={2}
                   />
                 ) : (
-                  <p className="text-lg font-semibold text-theme-muted mb-4">
+                  <p className="text-base sm:text-lg font-semibold text-theme-muted mb-4 break-words">
                     <LinkedText text={project.description || ''} linkClassName="text-theme-primary underline underline-offset-4 break-all" />
                   </p>
                 )}
@@ -876,11 +846,11 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 )}
                 {!isEditing && project.layoutConfig?.allowPublicView && <p className="mb-4 text-sm font-semibold text-theme-primary">Public web overview enabled · this initiative can be shared without sign-in.</p>}
                 {!isEditing && project.layoutConfig?.surveyUrl && (
-                  <a href={project.layoutConfig.surveyUrl} target="_blank" rel="noreferrer" className="mb-3 inline-flex items-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-bold text-[var(--primary-foreground)]">
+                  <a href={project.layoutConfig.surveyUrl} target="_blank" rel="noreferrer" className="mb-3 flex w-full sm:w-auto sm:inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-2.5 text-sm font-bold text-[var(--primary-foreground)]">
                     <ClipboardList className="h-4 w-4" /> TAKE THE SURVEY
                   </a>
                 )}
-                {!isEditing && <div className="mb-5"><InitiativeParticipation projectId={project.id} role={userMembership?.role || (isCreator ? 'OWNER' : null)} /></div>}
+                {!isEditing && !isCreator && <div className="mb-5"><InitiativeParticipation projectId={project.id} role={userMembership?.role || (isCreator ? 'OWNER' : null)} /></div>}
 
                 {project.layoutConfig?.tagline && (
                   <p className="mb-3 text-base font-bold text-theme-primary">
@@ -889,14 +859,14 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 )}
                 {project.layoutConfig?.mission && (
                   <Card className="mb-5 border border-theme-primary/30 bg-[var(--card)]/70">
-                    <CardContent className="p-5">
+                    <CardContent className="p-4 sm:p-5">
                       <p className="mb-2 text-xs font-black uppercase tracking-widest text-theme-primary">Initiative &amp; invitation</p>
                       <p className="whitespace-pre-line text-sm leading-relaxed text-theme-muted">{project.layoutConfig.mission}</p>
                     </CardContent>
                   </Card>
                 )}
 
-                <div className="flex flex-wrap gap-4 text-sm font-bold text-theme-muted">
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2 sm:flex sm:flex-wrap sm:gap-4 text-sm font-bold text-theme-muted">
                   <div className="flex items-center gap-2">
                     <Users className="w-4 h-4" />
                     <span>{project._count?.members || 0} members</span>
@@ -923,11 +893,11 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
               </div>
 
               {/* Quick Actions Card */}
-              <Card className="lg:w-72 border-2 border-theme-primary">
+              <Card className="min-w-0 border-2 border-theme-primary h-fit">
                 <CardContent className="p-4">
                   <div className="space-y-3">
-                    {project.visibility === 'PUBLIC' && project.layoutConfig?.allowPublicView === true && <InitiativeShare slug={project.slug} name={project.name} />}
-                    {isTeam && (
+                    {project.visibility === 'PUBLIC' && project.layoutConfig?.allowPublicView === true && <InitiativeShare slug={project.slug} name={project.name} block />}
+                    {isTeam && !isCreator && (
                       <Button
                         onClick={() => setShowSage(true)}
                         className="w-full font-bold bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700"
@@ -939,7 +909,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     {isMember && (
                       <Button
                         variant="outline"
-                        onClick={() => setActiveTab('discussions')}
+                        onClick={() => selectTab('discussions')}
                         className="w-full font-bold"
                       >
                         <MessageSquare className="w-4 h-4 mr-2" />
@@ -971,11 +941,10 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       </section>
 
       {/* Tab Navigation */}
-      {project.coverImage && <figure className="mx-auto max-w-7xl px-4 pb-6"><img src={project.coverImage} alt={`${project.name} initiative cover`} className="max-h-[500px] w-full rounded-2xl object-cover" /><figcaption className="mt-2 text-sm text-theme-muted">Initiative cover image</figcaption></figure>}
-      <section className="border-b-2 border-[var(--border)] bg-[var(--background)] sticky top-0 z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex gap-1 overflow-x-auto py-2">
+      <section ref={tabBarRef} className="border-b-2 border-[var(--border)] bg-[var(--background)] sticky top-0 z-10">
+        <div className="container mx-auto px-0 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto relative">
+            <div role="tablist" aria-label="Initiative sections" className="flex gap-1 overflow-x-auto py-2 px-4 sm:px-0 scroll-px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {tabs.map((tab) => {
                 const Icon = tab.icon
                 const isDisabled = (tab.memberOnly && !isMember) || (tab.teamOnly && !isTeam)
@@ -984,9 +953,12 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 return (
                   <button
                     key={tab.id}
-                    onClick={() => !isDisabled && setActiveTab(tab.id)}
+                    role="tab"
+                    aria-selected={isActive}
+                    data-tab={tab.id}
+                    onClick={() => !isDisabled && selectTab(tab.id)}
                     disabled={isDisabled}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-lg font-bold text-sm whitespace-nowrap transition-all ${
+                    className={`flex shrink-0 items-center gap-2 px-3 sm:px-4 py-2.5 rounded-lg font-bold text-sm whitespace-nowrap transition-all ${
                       isActive
                         ? 'bg-[var(--primary)] text-[var(--primary-foreground)]'
                         : isDisabled
@@ -1000,29 +972,31 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 )
               })}
             </div>
+            {/* Hint that the tab row scrolls sideways on narrow screens */}
+            <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[var(--background)] to-transparent sm:hidden" />
           </div>
         </div>
       </section>
 
       {/* Tab Content */}
-      <section className="py-8">
+      <section className="py-5 sm:py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
 
             {/* Overview Tab - Newspaper Style with Collapsible Sidebar */}
             {activeTab === 'overview' && (
-              <div className="flex gap-6">
+              <div className="flex flex-col lg:flex-row gap-6">
                 {/* Collapsible Sidebar - Team Graph */}
                 {isMember && (
-                  <div className={`transition-all duration-300 ${isSidebarCollapsed ? 'w-12' : 'w-80'} flex-shrink-0`}>
-                    <Card className="border-2 border-theme-primary sticky top-20 h-fit">
+                  <div className={`order-last lg:order-first w-full min-w-0 transition-all duration-300 ${isSidebarCollapsed ? 'lg:w-12' : 'lg:w-80'} lg:flex-shrink-0`}>
+                    <Card className="border-2 border-theme-primary lg:sticky lg:top-20 h-fit">
                       <CardHeader className="pb-3">
                         <div className="flex items-center justify-between">
-                          {!isSidebarCollapsed && (
-                            <CardTitle className="text-sm font-black flex items-center gap-2">
+                          {(!isSidebarCollapsed || isPhone) && (
+                            <h2 style={{ fontSize: '0.875rem', lineHeight: '1.25rem' }} className="text-sm font-black tracking-wide flex items-center gap-2">
                               <Network className="w-4 h-4" />
                               TEAM NETWORK
-                            </CardTitle>
+                            </h2>
                           )}
                           <Button
                             variant="ghost"
@@ -1030,13 +1004,13 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                             onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
                             className="p-1 h-8 w-8"
                           >
-                            {isSidebarCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+                            {isPhone ? <ChevronRight className={`w-4 h-4 transition-transform ${isSidebarCollapsed ? '' : 'rotate-90'}`} /> : isSidebarCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
                           </Button>
                         </div>
                       </CardHeader>
                       {!isSidebarCollapsed && (
                         <CardContent className="pt-0">
-                          <div className="h-96">
+                          <div className="h-80 sm:h-96 w-full overflow-hidden rounded-lg">
                             <TeamCollaborationVisualization
                               projectId={project.id}
                               projectName={project.name}
@@ -1060,12 +1034,12 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 )}
 
                 {/* Main Content Area - Newspaper Style */}
-                <div className="flex-1 space-y-6">
-                  {project.layoutConfig?.publicStory && <Card className="border-2 border-theme-primary"><CardContent className="p-6"><h2 className="mb-5 text-xl font-black">INITIATIVE STORY</h2><InitiativeStory text={project.layoutConfig.publicStory} /></CardContent></Card>}
+                <div className="flex-1 min-w-0 space-y-6">
+                  {project.layoutConfig?.publicStory && <Card className="border-2 border-theme-primary"><CardContent className="p-4 sm:p-6"><h2 className="mb-5 text-xl font-black">INITIATIVE STORY</h2><InitiativeStory text={project.layoutConfig.publicStory} /></CardContent></Card>}
                   {/* Goal Section - Editable */}
                   {(project.goal || isCreator) && (
                     <Card className="border-2 border-theme-accent">
-                      <CardContent className="p-6">
+                      <CardContent className="p-4 sm:p-6">
                         <div className="flex items-start gap-4">
                           <div className="p-3 rounded-full bg-[color-mix(in_srgb,var(--accent)_20%,var(--background))]">
                             <Target className="w-6 h-6 text-theme-accent" />
@@ -1182,7 +1156,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                             size="sm"
                             variant="outline"
                             className="font-bold"
-                            onClick={() => { setWorkspaceSection(section); setActiveTab('workspace') }}
+                            onClick={() => { setWorkspaceSection(section); selectTab('workspace') }}
                           >
                             {SECTION_INFO[section].label}
                           </Button>
@@ -1200,13 +1174,13 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                           SUBGROUPS
                         </CardTitle>
                         {isMember && (
-                          <Button variant="ghost" size="sm" onClick={() => setActiveTab('members')}>
+                          <Button variant="ghost" size="sm" onClick={() => selectTab('members')}>
                             View All <ChevronRight className="w-4 h-4 ml-1" />
                           </Button>
                         )}
                       </CardHeader>
                       <CardContent>
-                        <div className="grid md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {subgroups.slice(0, 4).map((sg: Subgroup) => (
                             <div key={sg.id} className="p-4 bg-[var(--muted)] rounded-lg hover:bg-[color-mix(in_srgb,var(--primary)_10%,var(--muted))] transition-colors">
                               <div className="flex items-center justify-between mb-2">
@@ -1240,7 +1214,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                             LIVE
                           </span>
                         </CardTitle>
-                        <Button variant="ghost" size="sm" onClick={() => setActiveTab('discussions')}>
+                        <Button variant="ghost" size="sm" onClick={() => selectTab('discussions')}>
                           Join Discussion <ChevronRight className="w-4 h-4 ml-1" />
                         </Button>
                       </CardHeader>
@@ -1281,8 +1255,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             {/* Learning Tab */}
             {activeTab === 'learning' && isTeam && (
               <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black">LEARNING MODULES</h2>
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <h2 className="text-xl sm:text-2xl font-black">LEARNING MODULES</h2>
                   {totalModules > 0 && (
                     <div className="flex items-center gap-3">
                       <div className="text-sm font-bold text-theme-muted">
@@ -1304,7 +1278,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   </div>
                 ) : learningModules.length === 0 ? (
                   <Card className="border-2 border-dashed">
-                    <CardContent className="p-12 text-center">
+                    <CardContent className="p-6 sm:p-12 text-center">
                       <BookOpen className="w-16 h-16 mx-auto mb-4 text-theme-muted opacity-50" />
                       <h3 className="text-xl font-black mb-2 text-theme-muted">NO LEARNING MODULES YET</h3>
                       <p className="text-theme-muted">This project hasn't added any learning content yet.</p>
@@ -1318,7 +1292,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
                       return (
                         <Card key={module.id} className={`border-2 ${isCompleted ? 'border-green-500/50' : 'border-[var(--border)]'}`}>
-                          <CardContent className="p-6">
+                          <CardContent className="p-4 sm:p-6">
                             <div className="flex items-start gap-4">
                               <div className={`w-12 h-12 rounded-full flex items-center justify-center font-black text-lg ${
                                 isCompleted
@@ -1370,8 +1344,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             {/* Research Tab */}
             {activeTab === 'research' && isTeam && (
               <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black">RESEARCH & RESOURCES</h2>
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <h2 className="text-xl sm:text-2xl font-black">RESEARCH & RESOURCES</h2>
                   <Button className="font-bold" onClick={() => setShowResearchComposer(true)}>
                     <Plus className="w-4 h-4 mr-2" />
                     ADD RESEARCH
@@ -1386,7 +1360,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   </div>
                 ) : researchPosts.length === 0 ? (
                   <Card className="border-2 border-dashed">
-                    <CardContent className="p-12 text-center">
+                    <CardContent className="p-6 sm:p-12 text-center">
                       <FlaskConical className="w-16 h-16 mx-auto mb-4 text-theme-muted opacity-50" />
                       <h3 className="text-xl font-black mb-2 text-theme-muted">NO RESEARCH POSTS YET</h3>
                       <p className="text-theme-muted mb-4">Share research, articles, and resources with your team.</p>
@@ -1400,7 +1374,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   <div className="space-y-4">
                     {researchPosts.map((post: ResearchPost) => (
                       <Card key={post.id} className={`border-2 ${post.isPinned ? 'border-amber-500/50' : ''}`}>
-                        <CardContent className="p-6">
+                        <CardContent className="p-4 sm:p-6">
                           <div className="flex items-start justify-between gap-4">
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-2">
@@ -1483,8 +1457,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             {/* Documents Tab */}
             {activeTab === 'documents' && isTeam && (
               <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black">PROJECT DOCUMENTS</h2>
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <h2 className="text-xl sm:text-2xl font-black">PROJECT DOCUMENTS</h2>
                   <Button className="font-bold" onClick={() => setShowTemplateSelector(true)}>
                     <Plus className="w-4 h-4 mr-2" />
                     NEW DOCUMENT
@@ -1497,7 +1471,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   </div>
                 ) : documents.length === 0 ? (
                   <Card className="border-2 border-dashed">
-                    <CardContent className="p-12 text-center">
+                    <CardContent className="p-6 sm:p-12 text-center">
                       <FileText className="w-16 h-16 mx-auto mb-4 text-theme-muted opacity-50" />
                       <h3 className="text-xl font-black mb-2 text-theme-muted">NO DOCUMENTS YET</h3>
                       <p className="text-theme-muted mb-4">Create collaborative documents for meeting notes, proposals, reports, and more.</p>
@@ -1508,7 +1482,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     </CardContent>
                   </Card>
                 ) : (
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {documents.map((doc: any) => (
                       <Link key={doc.id} href={`/community/projects/${slug}/documents/${doc.id}`}>
                         <Card className="border-2 hover:border-theme-primary transition-colors cursor-pointer h-full">
@@ -1714,11 +1688,11 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 {/* Subgroups Section */}
                 {subgroups.length > 0 && (
                   <div>
-                    <h2 className="text-2xl font-black mb-4 flex items-center gap-2">
+                    <h2 className="text-xl sm:text-2xl font-black mb-4 flex items-center gap-2">
                       <Layers className="w-6 h-6" />
                       SUBGROUPS
                     </h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {subgroups.map((sg: Subgroup) => (
                         <Card key={sg.id} className="border-2 hover:border-theme-primary transition-colors">
                           <CardContent className="p-5">
@@ -1751,7 +1725,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
                 {/* Members List */}
                 <div>
-                  <h2 className="text-2xl font-black mb-4 flex items-center gap-2">
+                  <h2 className="text-xl sm:text-2xl font-black mb-4 flex items-center gap-2">
                     <Users className="w-6 h-6" />
                     ALL MEMBERS ({project.members?.length || 0})
                   </h2>
@@ -1761,7 +1735,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                       <Loader2 className="w-8 h-8 animate-spin text-theme-primary" />
                     </div>
                   ) : (
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {(membersWithBadges.length > 0 ? membersWithBadges : project.members || []).map((member: any) => (
                         <Link key={member.id} href={`/profile/${member.userId}`}>
                           <Card className="border-2 hover:border-theme-primary transition-colors cursor-pointer">
@@ -1832,7 +1806,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             {/* Settings Tab */}
             {activeTab === 'settings' && isTeam && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-black">PROJECT SETTINGS</h2>
+                <h2 className="text-xl sm:text-2xl font-black">PROJECT SETTINGS</h2>
 
                 {isCreator ? (
                   <div className="space-y-6">
@@ -1888,7 +1862,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             {((!isMember && ['shared', 'surveys', 'discussions'].includes(activeTab)) ||
               (!isTeam && ['workspace', 'timeline', 'learning', 'research', 'documents', 'settings'].includes(activeTab))) && (
               <Card className="border-4 border-theme-secondary">
-                <CardContent className="p-12 text-center">
+                <CardContent className="p-6 sm:p-12 text-center">
                   <Lock className="w-16 h-16 text-theme-secondary mx-auto mb-4 opacity-50" />
                   <h3 className="text-2xl font-black mb-4 text-theme-muted">
                     {isMember ? 'FOR THE TEAM' : 'FOLLOW TO SEE MORE'}

@@ -96,7 +96,7 @@ export default async function VendorsPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto text-center space-y-8">
             <h1 className="text-[var(--foreground)]" style={{
-              fontSize: 'clamp(3rem, 10vw, 7rem)',
+              fontSize: 'clamp(2rem, 9vw, 7rem)',
               fontWeight: 900,
               lineHeight: 1
             }}>

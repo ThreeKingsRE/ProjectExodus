@@ -430,7 +430,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             <h2 className="text-[var(--primary-foreground)]" style={{
-              fontSize: 'clamp(2.5rem, 8vw, 6rem)',
+              fontSize: 'clamp(2rem, 8vw, 6rem)',
               fontWeight: 900,
               lineHeight: 1.1,
               marginBottom: '2rem'
