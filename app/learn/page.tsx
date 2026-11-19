@@ -531,18 +531,21 @@ export default function LearnPage() {
           </div>
 
           {/* Mobile: 2 columns compact | Tablet: 2 columns | Desktop: 3 columns */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-8 max-w-7xl mx-auto">
+          {/* The shelf stays touchable for everyone: guests can tilt the books, members open them */}
+          <div className="pointer-events-auto grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-8 max-w-7xl mx-auto">
             {topics.map((topic, idx) => {
+              const ShelfItem = isAuthenticated ? Link : 'div'
+
               const progress = topicProgress.get(topic.slug as CoreTopic)
               const progressPercent = progress?.progressPercent || 0
               const isGraduated = progress?.isGraduated || false
 
               return (
-                <Link
+                <ShelfItem
                   key={topic.title}
                   href={`/learn/topics/${topic.slug}?level=${selectedLevel.toLowerCase()}`}
                   className="group block focus:outline-none"
-                  aria-label={`${topic.title}: ${isGraduated ? 'review' : progressPercent > 0 ? 'continue' : 'explore'} the textbook`}
+                  aria-label={isAuthenticated ? `${topic.title}: ${isGraduated ? 'review' : progressPercent > 0 ? 'continue' : 'explore'} the textbook` : `${topic.title} textbook. Sign in to open it.`}
                 >
                   {/* The topic's textbook, floating on the shelf; turns toward the pointer */}
                   <div className="mx-auto px-[6%] pt-3">
@@ -570,15 +573,21 @@ export default function LearnPage() {
                       ) : progressPercent > 0 ? (
                         <span className="text-theme-primary">{progressPercent}% read</span>
                       ) : (
-                        <span className="inline-flex items-center gap-1"><BookOpen className="h-3.5 w-3.5" /> {topic.modules} chapters</span>
+                        <span className="inline-flex items-center gap-1 whitespace-nowrap"><BookOpen className="h-3.5 w-3.5" /> {topic.modules} chapters</span>
                       )}
                     </span>
-                    <span className="flex items-center gap-0.5 text-[11px] font-black text-theme-primary transition-all group-hover:gap-1.5 sm:text-xs lg:text-sm">
-                      {isGraduated ? 'REVIEW' : progressPercent > 0 ? 'CONTINUE' : 'OPEN'}
-                      <ChevronRight className="h-3.5 w-3.5" />
-                    </span>
+                    {isAuthenticated ? (
+                      <span className="flex items-center gap-0.5 text-[11px] font-black text-theme-primary transition-all group-hover:gap-1.5 sm:text-xs lg:text-sm">
+                        {isGraduated ? 'REVIEW' : progressPercent > 0 ? 'CONTINUE' : 'OPEN'}
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </span>
+                    ) : (
+                      <span className="flex shrink-0 items-center gap-1 whitespace-nowrap text-[11px] font-bold text-theme-muted sm:text-xs lg:text-sm">
+                        <Lock className="h-3 w-3" /> Sign in
+                      </span>
+                    )}
                   </div>
-                </Link>
+                </ShelfItem>
               )
             })}
           </div>

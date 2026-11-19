@@ -43,10 +43,14 @@ export function FloatingBook({
   const spring = { stiffness: 120, damping: 16, mass: 0.6 }
   const ry = useSpring(ryTarget, spring)
   const rx = useSpring(rxTarget, spring)
-  const setPose = (x: number, y: number) => {
+  // x, y: pointer position over the book, -0.5..0.5. A finger turns it much
+  // further than a hovering mouse (up to ~40° each way), but never past the front.
+  const setPose = (x: number, y: number, touch = false) => {
     px.set(x); py.set(y)
-    ryTarget.set(opening ? 0 : restY + x * tiltRange * 2)
-    rxTarget.set(opening ? 0 : restX - y * tiltRange * 1.2)
+    const yaw = touch ? 80 : tiltRange * 2
+    const pitch = touch ? 64 : tiltRange * 1.2
+    ryTarget.set(opening ? 0 : restY + x * yaw)
+    rxTarget.set(opening ? 0 : restX - y * pitch)
   }
 
   // A glint that slides across the cover opposite the light source
@@ -69,49 +73,40 @@ export function FloatingBook({
       Math.max(-0.5, Math.min(0.5, (e.clientY - r.top) / r.height - 0.5)),
     )
   }
-  const reset = () => { if (!drag.current) setPose(0, 0); setHovered(false) }
+  const reset = () => { if (!press.current) setPose(0, 0); setHovered(false) }
 
-  // Drag to spin: the book follows the finger (or a held mouse) all the way round,
-  // keeps some momentum on release, then settles facing front again
-  const drag = useRef<{ id: number; x: number; ry: number; t: number; v: number; moved: boolean } | null>(null)
+  // Touch (and a held mouse button): the book tilts toward the finger in both
+  // axes and follows it; on release it springs back. Always shows the front.
+  const press = useRef<{ id: number; x: number; y: number; moved: boolean } | null>(null)
   const suppressClick = useRef(false)
-  const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const pointAt = (e: React.PointerEvent) => {
+    const r = ref.current!.getBoundingClientRect()
+    return [
+      Math.max(-0.5, Math.min(0.5, (e.clientX - r.left) / r.width - 0.5)),
+      Math.max(-0.5, Math.min(0.5, (e.clientY - r.top) / r.height - 0.5)),
+    ] as const
+  }
 
   const onPointerDown = (e: React.PointerEvent) => {
-    if (!move || opening || (e.pointerType === 'mouse' && e.button !== 0)) return
-    if (settleTimer.current) clearTimeout(settleTimer.current)
-    drag.current = { id: e.pointerId, x: e.clientX, ry: ryTarget.get(), t: performance.now(), v: 0, moved: false }
+    if (!move || opening || !ref.current || (e.pointerType === 'mouse' && e.button !== 0)) return
+    press.current = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: false }
+    if (e.pointerType !== 'mouse') { const [x, y] = pointAt(e); setPose(x, y, true); setHovered(true) }
   }
   const onDragMove = (e: React.PointerEvent) => {
-    const d = drag.current
-    if (!d || d.id !== e.pointerId) return false
-    const dx = e.clientX - d.x
-    if (!d.moved && Math.abs(dx) < 6) return true
-    if (!d.moved) { d.moved = true; ref.current?.setPointerCapture?.(e.pointerId) }
-    const now = performance.now()
-    const next = d.ry + dx * 0.9
-    const dt = Math.max(1, now - d.t)
-    d.v = (next - ryTarget.get()) / dt // degrees per ms
-    d.t = now
-    ryTarget.set(next)
-    rxTarget.set(restX)
-    px.set(Math.max(-0.5, Math.min(0.5, (((next - restY) % 360) + 360) % 360 < 180 ? 0.4 : -0.4)))
+    const p = press.current
+    if (!p || p.id !== e.pointerId || !ref.current) return false
+    if (Math.hypot(e.clientX - p.x, e.clientY - p.y) > 8) p.moved = true
+    const [x, y] = pointAt(e)
+    setPose(x, y, e.pointerType !== 'mouse')
     return true
   }
   const onPointerUp = (e: React.PointerEvent) => {
-    const d = drag.current
-    if (!d || d.id !== e.pointerId) return
-    drag.current = null
-    if (!d.moved) return
-    suppressClick.current = true
-    setTimeout(() => { suppressClick.current = false }, 0)
-    // Carry the flick a little further, then land on the nearest front-facing turn
-    const projected = ryTarget.get() + d.v * 260
-    const turns = Math.round((projected - restY) / 360)
-    ryTarget.set(restY + turns * 360)
-    px.set(0); py.set(0)
-    // Once settled, drop the whole turns so the next spin starts from rest
-    settleTimer.current = setTimeout(() => { ryTarget.jump(restY); ry.jump(restY) }, 1400)
+    const p = press.current
+    if (!p || p.id !== e.pointerId) return
+    press.current = null
+    // A tilt that moved isn't a tap: don't open the book
+    if (p.moved) { suppressClick.current = true; setTimeout(() => { suppressClick.current = false }, 0) }
+    if (e.pointerType !== 'mouse') { setPose(0, 0); setHovered(false) }
   }
 
   const duration = 6 + (delay % 3) * 0.6
