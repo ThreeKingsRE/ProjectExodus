@@ -1,14 +1,11 @@
 import Link from 'next/link'
-import { ArrowRight, Globe2, Lock, Megaphone, MessageSquare, Users } from 'lucide-react'
+import { ArrowRight, ClipboardList, Globe2, Lock, Megaphone, MessageSquare, Users } from 'lucide-react'
 import type { PublicProject } from '@/lib/projects/public-view'
 import { InitiativeShare } from './InitiativeShare'
+import { LinkedText } from './LinkedText'
 
 export function InitiativeStory({ text }: { text: string }) {
-  const inline = (value: string) => value.split(/(\[[^\]]+\]\(https:\/\/[^\s)]+\)|https:\/\/[^\s]+)/g).map((part, i) => {
-    const named = part.match(/^\[([^\]]+)\]\((https:\/\/[^\s)]+)\)$/)
-    if (named || /^https:\/\//.test(part)) return <a key={i} href={named ? named[2] : part} target="_blank" rel="noreferrer" className="underline underline-offset-4">{named ? named[1] : part}</a>
-    return part
-  })
+  const inline = (value: string) => <LinkedText text={value} />
   return <div className="space-y-5 text-base leading-8 text-[var(--foreground)]">
     {text.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => {
       const lines = paragraph.trim().split('\n')
@@ -37,10 +34,11 @@ export function PublicInitiativeOverview({ project }: { project: PublicProject }
         <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wider"><span className="inline-flex items-center gap-2"><Globe2 size={15} />Public overview</span><span>{project.status.toLowerCase().replaceAll('_', ' ')}</span>{project.ventureType && <span>{project.ventureType}</span>}</div>
         <h1 className="mt-4 text-4xl font-black sm:text-5xl">{project.name}</h1>
         {project.tagline && <p className="mt-4 text-xl font-semibold">{project.tagline}</p>}
-        <p className="mt-5 max-w-4xl text-lg leading-8 text-[var(--muted-foreground)]">{project.description}</p>
+        <p className="mt-5 max-w-4xl text-lg leading-8 text-[var(--muted-foreground)]"><LinkedText text={project.description} linkClassName="font-semibold text-[var(--foreground)] underline underline-offset-4 break-all" /></p>
         <p className="mt-5 text-sm">Posted by {project.organizer.name} · {project.participants} {project.participants === 1 ? 'participant' : 'participants'}</p>
         <div className="mt-7 flex flex-wrap gap-3">
-          <Link href={signIn} style={{ color: 'var(--primary-foreground)' }} className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-5 py-3 font-bold"><Users size={17} /> Follow this initiative <ArrowRight size={17} /></Link>
+          {project.surveyUrl && <a href={project.surveyUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--primary-foreground)' }} className="inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-5 py-3 font-bold"><ClipboardList size={17} /> Take the survey</a>}
+          <Link href={signIn} style={project.surveyUrl ? undefined : { color: 'var(--primary-foreground)' }} className={project.surveyUrl ? 'inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 font-bold' : 'inline-flex items-center gap-2 rounded-xl bg-[var(--primary)] px-5 py-3 font-bold'}><Users size={17} /> Follow this initiative <ArrowRight size={17} /></Link>
           <Link href={contact} className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-5 py-3 font-bold"><MessageSquare size={17} /> Message the organizer</Link>
           <InitiativeShare slug={project.slug} name={project.name} />
         </div>

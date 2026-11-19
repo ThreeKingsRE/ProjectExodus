@@ -1,3 +1,5 @@
+import { normalizeSurveyUrl } from './linked-text'
+
 /** Public web visibility is a separate, explicit creator choice. */
 export function projectPublication(visibility: unknown, allowPublicView: unknown) {
   const publication = typeof visibility === 'string' ? visibility : 'PUBLIC'
@@ -27,6 +29,7 @@ export function publicProjectFields(project: {
     description: project.description, goal: project.goal, status: project.status,
     coverImage: project.coverImage, tagline: text('tagline', 200),
     mission: text('mission', 1000), story: text('publicStory', 16000),
+    surveyUrl: normalizeSurveyUrl(layout.surveyUrl) || null,
     organizer: { id: project.creator.id, name: project.creator.name || 'Initiative organizer' },
     participants: project._count.members,
   }

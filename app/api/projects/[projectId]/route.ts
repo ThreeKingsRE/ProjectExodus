@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { normalizeSurveyUrl } from '@/lib/projects/linked-text'
 import { parseVentureType } from '@/lib/projects/ventureType'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
@@ -100,6 +101,11 @@ export async function PUT(
     const { name, description, goal, status } = body
     const previousLayout = (project.layoutConfig || {}) as Record<string, unknown>
     const publication = projectPublication(project.visibility, body.allowPublicView)
+    // Optional owner-set survey link: https only; '' clears it
+    const surveyUrl = typeof body.surveyUrl === 'string' ? normalizeSurveyUrl(body.surveyUrl) : undefined
+    if (surveyUrl === null) {
+      return NextResponse.json({ success: false, error: 'The survey link must be a full https:// address.' }, { status: 400 })
+    }
     const venture = body && typeof body === 'object' ? parseVentureType(body) : null
 
     const updated = await prisma.project.update({
@@ -109,11 +115,12 @@ export async function PUT(
         description: description?.trim() || undefined,
         goal: goal?.trim() || undefined,
         status: status || undefined,
-        ...(typeof body.allowPublicView === 'boolean' || typeof body.publicStory === 'string' || venture ? {
+        ...(typeof body.allowPublicView === 'boolean' || typeof body.publicStory === 'string' || typeof body.surveyUrl === 'string' || venture ? {
           layoutConfig: {
             ...previousLayout,
             ...(typeof body.allowPublicView === 'boolean' ? { allowPublicView: publication.allowPublicView } : {}),
             ...(typeof body.publicStory === 'string' ? { publicStory: body.publicStory.slice(0, 16000) } : {}),
+            ...(typeof body.surveyUrl === 'string' ? { surveyUrl: surveyUrl ?? '' } : {}),
             ...(venture ?? {}),
           },
         } : {}),

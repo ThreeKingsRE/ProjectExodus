@@ -66,6 +66,7 @@ import type { DocumentTemplate } from '@/data/document-templates'
 import { ProjectFiles } from '@/components/projects/workspace/ProjectFiles'
 import { ProjectSurveys } from '@/components/projects/surveys/ProjectSurveys'
 import { ProjectTimeline } from '@/components/projects/timeline/ProjectTimeline'
+import { LinkedText } from '@/components/projects/LinkedText'
 import { ParticipationBar } from '@/components/projects/team/ParticipationBar'
 import { TeamInvitesPanel } from '@/components/projects/team/TeamInvitesPanel'
 import { ProjectShared } from '@/components/projects/team/ProjectShared'
@@ -179,6 +180,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   const [editedVentureType, setEditedVentureType] = useState('')
   const [editedVentureTypeOther, setEditedVentureTypeOther] = useState('')
   const [editedPublicStory, setEditedPublicStory] = useState('')
+  const [editedSurveyUrl, setEditedSurveyUrl] = useState('')
   const [isSaving, setIsSaving] = useState(false)
 
   // New: Sidebar and live features state
@@ -474,6 +476,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       setEditedVentureType(project.layoutConfig?.ventureType || '')
       setEditedVentureTypeOther(project.layoutConfig?.ventureTypeOther || '')
       setEditedPublicStory(project.layoutConfig?.publicStory || '')
+      setEditedSurveyUrl(project.layoutConfig?.surveyUrl || '')
       setIsEditing(true)
     }
   }
@@ -498,6 +501,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
           status: editedStatus,
           allowPublicView: editedPublicView,
           publicStory: editedPublicStory,
+          surveyUrl: editedSurveyUrl,
           ventureType: editedVentureType || null,
           ventureTypeOther: editedVentureTypeOther,
         }),
@@ -856,18 +860,26 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   />
                 ) : (
                   <p className="text-lg font-semibold text-theme-muted mb-4">
-                    {project.description}
+                    <LinkedText text={project.description || ''} linkClassName="text-theme-primary underline underline-offset-4 break-all" />
                   </p>
                 )}
 
                 {isEditing && (
                   <div className="mb-5 space-y-4 rounded-xl border border-[var(--border)] p-4">
                     <label className="flex items-start gap-3"><input type="checkbox" checked={editedPublicView} disabled={project.visibility !== 'PUBLIC'} onChange={event => setEditedPublicView(event.target.checked)} className="mt-1 h-4 w-4" /><span><strong>Allow public web view</strong><span className="block text-sm text-theme-muted">Anyone can read your overview. Member tools still require sign-in. Only Public initiatives can enable this.</span></span></label>
+                    <label htmlFor="edit-survey-url" className="block font-bold">Survey link (optional)</label>
+                    <input id="edit-survey-url" type="url" inputMode="url" value={editedSurveyUrl} onChange={event => setEditedSurveyUrl(event.target.value)} maxLength={500} placeholder="https://forms.gle/…" className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm" />
+                    <p className="-mt-2 text-xs text-theme-muted">Shows a “Take the survey” button next to Follow on the initiative and its public page.</p>
                     <label htmlFor="edit-public-story" className="block font-bold">Public story</label>
                     <textarea id="edit-public-story" value={editedPublicStory} onChange={event => setEditedPublicStory(event.target.value)} maxLength={16000} rows={12} className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] p-3 leading-7" />
                   </div>
                 )}
                 {!isEditing && project.layoutConfig?.allowPublicView && <p className="mb-4 text-sm font-semibold text-theme-primary">Public web overview enabled · this initiative can be shared without sign-in.</p>}
+                {!isEditing && project.layoutConfig?.surveyUrl && (
+                  <a href={project.layoutConfig.surveyUrl} target="_blank" rel="noreferrer" className="mb-3 inline-flex items-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-bold text-[var(--primary-foreground)]">
+                    <ClipboardList className="h-4 w-4" /> TAKE THE SURVEY
+                  </a>
+                )}
                 {!isEditing && <div className="mb-5"><InitiativeParticipation projectId={project.id} role={userMembership?.role || (isCreator ? 'OWNER' : null)} /></div>}
 
                 {project.layoutConfig?.tagline && (
