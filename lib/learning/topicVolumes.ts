@@ -15,6 +15,21 @@ import type { LearningLevel } from '@/types/learning'
 /** Chapters per volume: one per Guardian ribbon and per number key 1–7. */
 export const VOLUME_SIZE = 7
 
+/**
+ * Page layout of each volume in the Digital Scroll (see bookPages in
+ * components/learning/DigitalScroll/DigitalScroll.tsx): four opening pages
+ * (cover, inside cover, contents, learning mission), then seven pages per
+ * chapter (divider, intro, reading, review, notes, games, quiz). Page numbers
+ * restart in each volume.
+ */
+export const OPENING_PAGES = 4
+export const PAGES_PER_CHAPTER = 7
+
+/** The page a chapter starts on within its volume (1-based), as printed in the scroll. */
+export function chapterStartPage(chapterInVolume: number): number {
+  return OPENING_PAGES + chapterInVolume * PAGES_PER_CHAPTER + 1
+}
+
 export function getVolumeCount(moduleCount: number): number {
   return Math.max(1, Math.ceil(moduleCount / VOLUME_SIZE))
 }

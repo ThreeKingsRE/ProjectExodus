@@ -92,3 +92,55 @@ export const BOOK_PITCHES: Record<CoreTopic, Record<LearningLevel, string>> = {
       'An advanced treatment of food sovereignty scholarship and practice. It examines the concept\'s theoretical lineage and justice claims, agroecological and urban production, seed governance, cooperative economics and local markets, and food processing systems. The closing parts take up open questions in Indigenous food sovereignty, policy design, food system resilience and the financing of community-controlled food systems.',
   },
 }
+
+/** "What you'll learn": three outcomes for the whole book, at each reading level. */
+export const BOOK_OUTCOMES: Record<CoreTopic, Record<LearningLevel, string[]>> = {
+  'renewable-energy': {
+    ELEMENTARY: ['How the sun, wind and water make electricity', 'Where we keep energy for later', 'Easy ways your family can save energy'],
+    MIDDLE_SCHOOL: ['How solar, wind, water and other clean sources make power', 'How batteries and the grid store and share electricity', 'How cars, buildings and towns are switching to clean energy'],
+    HIGH_SCHOOL: ['How each renewable source works and where it fits best', 'How storage and smart grids keep power steady', 'How policy, money and communities shape a fair energy transition'],
+    UNDERGRADUATE: ['The physics and engineering of solar, wind, hydro, marine, geothermal, bio and hydrogen energy', 'Storage options, grid integration and microgrids', 'Energy policy, project finance and equity in the transition'],
+    GRADUATE: ['Resource assessment and conversion across renewable technologies', 'Storage economics, grid stability and distributed system design', 'Policy design, financing and distributional effects of decarbonisation'],
+    PHD: ['Conversion limits and variability across renewable pathways', 'Flexibility and reliability in high-renewable power systems', 'Open questions in market design, energy justice and transition modelling'],
+  },
+  'water-systems': {
+    ELEMENTARY: ['Where rain goes after it falls', 'How people clean water and save it', 'Why rivers and wetlands matter to animals and to us'],
+    MIDDLE_SCHOOL: ['How rain can be caught and stored', 'How dirty water is cleaned and used again', 'How towns share water and keep it safe'],
+    HIGH_SCHOOL: ['How to harvest rain and manage storm water', 'How water is treated, reused and used to grow food', 'How ecosystems, technology and policy protect water as the climate changes'],
+    UNDERGRADUATE: ['Harvesting, storm water and green infrastructure', 'Treatment, reuse, groundwater and irrigation efficiency', 'Water governance, economics and climate adaptation'],
+    GRADUATE: ['Decentralised supply and advanced treatment and reuse', 'Ecosystem services, monitoring and data systems', 'Allocation, pricing, governance and the water–energy–food nexus'],
+    PHD: ['Hydrological processes and potable reuse technologies', 'Aquifer management and ecosystem service valuation', 'Open questions in water institutions, nexus modelling and climate resilience'],
+  },
+  'regenerative-agriculture': {
+    ELEMENTARY: ['What lives in healthy soil', 'How compost turns scraps into plant food', 'How trees, animals and bugs help a farm'],
+    MIDDLE_SCHOOL: ['Why soil health matters for food', 'How cover crops, rotation and compost rebuild soil', 'How farms control pests naturally and still earn a living'],
+    HIGH_SCHOOL: ['How to build and measure soil health', 'How cover crops, compost, trees and grazing work together', 'How regenerative farms manage pests, water, money and carbon'],
+    UNDERGRADUATE: ['Soil biology, structure and organic matter', 'Cover cropping, rotation, tillage, agroforestry and managed grazing', 'Integrated pest management, farm economics and carbon accounting'],
+    GRADUATE: ['Soil biogeochemistry and cropping-system design', 'Agroforestry, perennial polycultures and adaptive grazing', 'Enterprise economics, seed systems and soil carbon measurement'],
+    PHD: ['Soil microbial ecology and carbon dynamics', 'Evidence on cropping, tillage, agroforestry and grazing outcomes', 'Open questions in verification, biodiversity and scaling regenerative practice'],
+  },
+  'zero-waste': {
+    ELEMENTARY: ['How food scraps become compost', 'Which things can be recycled', 'Simple ways to reuse and make less trash'],
+    MIDDLE_SCHOOL: ['How composting and recycling really work', 'How products can be designed to last', 'How businesses and towns cut waste'],
+    HIGH_SCHOOL: ['How to compost, recycle well and prevent waste', 'How the circular economy keeps materials in use', 'How community action and policy change whole systems'],
+    UNDERGRADUATE: ['Organics management and materials recovery, including plastics', 'Design for prevention and circular business models', 'Industrial, electronic and textile waste and the policies that address them'],
+    GRADUATE: ['Material flows and recovery systems', 'Circular business models, reuse systems and producer responsibility', 'Measurement, data and systems thinking for circular transitions'],
+    PHD: ['Material flow analysis and recovery limits', 'Design for disassembly and circular business model evidence', 'Open questions in policy instruments, rebound effects and systemic change'],
+  },
+  'green-building': {
+    ELEMENTARY: ['How sunshine and fresh air can heat and cool a building', 'Which building materials are kind to the Earth', 'What makes a building healthy and happy to be in'],
+    MIDDLE_SCHOOL: ['How windows, walls and sunlight keep buildings comfortable', 'How buildings save water and electricity', 'Why fresh air and daylight matter for health'],
+    HIGH_SCHOOL: ['How passive design heats, cools and lights a building', 'How materials, energy systems and water design cut a building\'s footprint', 'How certification and renovation turn ideas into real buildings'],
+    UNDERGRADUATE: ['Passive design and material selection, including embodied carbon', 'Energy systems, efficiency and net-zero strategies', 'Indoor environmental quality, certification and renovation'],
+    GRADUATE: ['Climate-responsive design and whole-life carbon assessment', 'Building energy systems and net-zero performance', 'Rating systems, deep retrofit, resilience and operations'],
+    PHD: ['Building physics and life-cycle impact methods', 'Performance gaps between design and operation', 'Open questions in retrofit at scale, resilience and certification'],
+  },
+  'food-sovereignty': {
+    ELEMENTARY: ['Where our food comes from', 'How people grow food in cities and save seeds', 'How communities share food and food traditions'],
+    MIDDLE_SCHOOL: ['What food sovereignty means and why it matters', 'How city farms, seed saving and co-ops work', 'How Indigenous food traditions and local rules shape what we eat'],
+    HIGH_SCHOOL: ['The ideas of food justice and community control', 'How urban farms, seeds, markets and co-ops build local food systems', 'How culture, policy and planning help a place feed itself'],
+    UNDERGRADUATE: ['Foundations of food sovereignty, justice and equity', 'Urban agriculture, seed systems, agroecology and cooperatives', 'Indigenous food knowledge and food system policy'],
+    GRADUATE: ['Theory and politics of food sovereignty', 'Agroecological production, seed governance and cooperative economics', 'Indigenous food systems, governance and food system planning'],
+    PHD: ['The theoretical lineage and justice claims of food sovereignty', 'Evidence on agroecology, seed governance and local market structures', 'Open questions in Indigenous food sovereignty, resilience and finance'],
+  },
+}
