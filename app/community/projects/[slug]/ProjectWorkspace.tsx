@@ -496,7 +496,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       setEditedDescription(project.description || '')
       setEditedGoal(project.goal || '')
       setEditedStatus(project.status || 'PLANNING')
-      setEditedPublicView(project.layoutConfig?.allowPublicView === true)
+      setEditedPublicView(project.layoutConfig?.hideFromPublic !== true)
       setEditedVentureType(project.layoutConfig?.ventureType || '')
       setEditedVentureTypeOther(project.layoutConfig?.ventureTypeOther || '')
       setEditedPublicStory(project.layoutConfig?.publicStory || '')
@@ -523,7 +523,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
           description: editedDescription,
           goal: editedGoal,
           status: editedStatus,
-          allowPublicView: editedPublicView,
+          hideFromPublic: !editedPublicView,
           publicStory: editedPublicStory,
           surveyUrl: editedSurveyUrl,
           ventureType: editedVentureType || null,
@@ -836,7 +836,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
                 {isEditing && (
                   <div className="mb-5 space-y-4 rounded-xl border border-[var(--border)] p-4">
-                    <label className="flex items-start gap-3"><input type="checkbox" checked={editedPublicView} disabled={project.visibility !== 'PUBLIC'} onChange={event => setEditedPublicView(event.target.checked)} className="mt-1 h-4 w-4" /><span><strong>Allow public web view</strong><span className="block text-sm text-theme-muted">Anyone can read your overview. Member tools still require sign-in. Only Public initiatives can enable this.</span></span></label>
+                    <label className="flex items-start gap-3"><input type="checkbox" checked={editedPublicView} disabled={project.visibility !== 'PUBLIC'} onChange={event => setEditedPublicView(event.target.checked)} className="mt-1 h-4 w-4" /><span><strong>Show the overview to everyone</strong><span className="block text-sm text-theme-muted">On by default: anyone with the link, account or not, can read your overview, story and updates and take your survey. Turn off to show it to signed-in people only. Team tools always need sign-in.</span></span></label>
                     <label htmlFor="edit-survey-url" className="block font-bold">Survey link (optional)</label>
                     <input id="edit-survey-url" type="url" inputMode="url" value={editedSurveyUrl} onChange={event => setEditedSurveyUrl(event.target.value)} maxLength={500} placeholder="https://forms.gle/…" className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm" />
                     <p className="-mt-2 text-xs text-theme-muted">Shows a “Take the survey” button next to Follow on the initiative and its public page.</p>
@@ -844,7 +844,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     <textarea id="edit-public-story" value={editedPublicStory} onChange={event => setEditedPublicStory(event.target.value)} maxLength={16000} rows={12} className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] p-3 leading-7" />
                   </div>
                 )}
-                {!isEditing && project.layoutConfig?.allowPublicView && <p className="mb-4 text-sm font-semibold text-theme-primary">Public web overview enabled · this initiative can be shared without sign-in.</p>}
+                {!isEditing && project.visibility === 'PUBLIC' && project.layoutConfig?.hideFromPublic !== true && <p className="mb-4 text-sm font-semibold text-theme-primary">Public web overview enabled · this initiative can be shared without sign-in.</p>}
                 {!isEditing && project.layoutConfig?.surveyUrl && (
                   <a href={project.layoutConfig.surveyUrl} target="_blank" rel="noreferrer" className="mb-3 flex w-full sm:w-auto sm:inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-2.5 text-sm font-bold text-[var(--primary-foreground)]">
                     <ClipboardList className="h-4 w-4" /> TAKE THE SURVEY
@@ -896,7 +896,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
               <Card className="min-w-0 border-2 border-theme-primary h-fit">
                 <CardContent className="p-4">
                   <div className="space-y-3">
-                    {project.visibility === 'PUBLIC' && project.layoutConfig?.allowPublicView === true && <InitiativeShare slug={project.slug} name={project.name} block />}
+                    {project.visibility === 'PUBLIC' && project.layoutConfig?.hideFromPublic !== true && <InitiativeShare slug={project.slug} name={project.name} block />}
                     {isTeam && !isCreator && (
                       <Button
                         onClick={() => setShowSage(true)}

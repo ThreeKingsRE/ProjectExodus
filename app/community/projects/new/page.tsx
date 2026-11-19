@@ -175,7 +175,7 @@ export default function NewProjectPage() {
 
   // Step 2: Foundation
   const [visibility, setVisibility] = useState('PUBLIC')
-  const [allowPublicView, setAllowPublicView] = useState(false)
+  const [allowPublicView, setAllowPublicView] = useState(true)
   const [publicStory, setPublicStory] = useState('')
   const [publicSlug, setPublicSlug] = useState('')
   const [category, setCategory] = useState('')
@@ -223,7 +223,7 @@ export default function NewProjectPage() {
         setVisibility(saved.visibility || 'PUBLIC'); setCategory(saved.category || '')
         setTags(Array.isArray(saved.tags) ? saved.tags : []); setTheme(saved.theme || 'nature')
         setPublicSlug(saved.publicSlug || ''); setPublicStory(saved.publicStory || '')
-        setAllowPublicView(saved.allowPublicView === true)
+        setAllowPublicView(saved.allowPublicView !== false)
         setEnableDiscussions(saved.enableDiscussions !== false); setEnableResearch(saved.enableResearch !== false)
         setEnableLearning(saved.enableLearning !== false); setRequireApproval(saved.requireApproval === true)
         setProjectStatus(saved.projectStatus || 'PLANNING')
@@ -481,7 +481,7 @@ export default function NewProjectPage() {
         ventureTypeOther,
         status: projectStatus,
         visibility,
-        allowPublicView,
+        hideFromPublic: !allowPublicView,
         publicStory,
         category,
         tags,
@@ -1058,7 +1058,7 @@ export default function NewProjectPage() {
 
                         <label className="flex items-start gap-3 rounded-xl border-2 border-[var(--border)] p-4">
                           <input type="checkbox" checked={allowPublicView && visibility === 'PUBLIC'} disabled={visibility !== 'PUBLIC'} onChange={event => setAllowPublicView(event.target.checked)} className="mt-1 h-4 w-4" />
-                          <span><strong className="block text-sm">Allow public web view</strong><span className="mt-1 block text-xs leading-5 text-theme-muted">Anyone with the link can read your overview and public story without an account. Discussions, research, documents, and member tools stay behind sign-in. Available for Public initiatives only.</span></span>
+                          <span><strong className="block text-sm">Show the overview to everyone</strong><span className="mt-1 block text-xs leading-5 text-theme-muted">Anyone with the link, account or not, can read your overview, story and updates and take your survey. Discussions, research, documents, and team tools stay behind sign-in. Public initiatives only.</span></span>
                         </label>
 
                         {/* Category */}

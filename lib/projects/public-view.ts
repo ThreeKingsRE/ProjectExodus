@@ -1,18 +1,21 @@
 import { normalizeSurveyUrl } from './linked-text'
 
-/** Public web visibility is a separate, explicit creator choice. */
-export function projectPublication(visibility: unknown, allowPublicView: unknown) {
+/**
+ * Public initiatives can be read by anyone, account or not, unless the owner
+ * hides the overview. Private and draft initiatives (stored as UNLISTED) never are.
+ */
+export function projectPublication(visibility: unknown, hideFromPublic: unknown) {
   const publication = typeof visibility === 'string' ? visibility : 'PUBLIC'
   return {
     visibility: publication === 'PUBLIC' ? 'PUBLIC' as const : 'UNLISTED' as const,
     publication,
-    allowPublicView: publication === 'PUBLIC' && allowPublicView === true,
+    hideFromPublic: publication !== 'PUBLIC' || hideFromPublic === true,
   }
 }
 
 export function isPublicProject(project: { visibility: string; layoutConfig: unknown }) {
   const layout = project.layoutConfig as Record<string, unknown> | null
-  return project.visibility === 'PUBLIC' && layout?.allowPublicView === true
+  return project.visibility === 'PUBLIC' && layout?.hideFromPublic !== true
 }
 
 export function publicProjectFields(project: {
@@ -21,7 +24,7 @@ export function publicProjectFields(project: {
   creator: { id: string; name: string | null }; _count: { members: number };
 }) {
   if (!isPublicProject(project)) return null
-  const layout = project.layoutConfig as Record<string, unknown>
+  const layout = (project.layoutConfig ?? {}) as Record<string, unknown>
   const text = (key: string, max: number) => typeof layout[key] === 'string' ? (layout[key] as string).slice(0, max) : ''
   // Never serialize the full JSON config, membership list, research, or messages.
   return {

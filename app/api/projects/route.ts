@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
     if (typeof body.slug !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(body.slug) || body.slug.length > 120) {
       return NextResponse.json({ success: false, error: 'Use a short URL with lowercase letters, numbers, and hyphens.' }, { status: 400 })
     }
-    const publication = projectPublication(body.visibility, body.allowPublicView)
+    const publication = projectPublication(body.visibility, body.hideFromPublic)
 
     // Validate required fields
     if (!body.name || !body.slug || !body.description) {
@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
         visibility: publication.visibility,
         coverImage: body.coverImage || null,
         layoutConfig: {
-          allowPublicView: publication.allowPublicView,
+          hideFromPublic: publication.hideFromPublic,
           publication: publication.publication,
           publicStory: typeof body.publicStory === 'string' ? body.publicStory.slice(0, 16000) : '',
           tagline: typeof body.tagline === 'string' ? body.tagline : '',

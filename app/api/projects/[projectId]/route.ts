@@ -100,7 +100,7 @@ export async function PUT(
     const body = await request.json()
     const { name, description, goal, status } = body
     const previousLayout = (project.layoutConfig || {}) as Record<string, unknown>
-    const publication = projectPublication(project.visibility, body.allowPublicView)
+    const publication = projectPublication(project.visibility, body.hideFromPublic)
     // Optional owner-set survey link: https only; '' clears it
     const surveyUrl = typeof body.surveyUrl === 'string' ? normalizeSurveyUrl(body.surveyUrl) : undefined
     if (surveyUrl === null) {
@@ -115,10 +115,10 @@ export async function PUT(
         description: description?.trim() || undefined,
         goal: goal?.trim() || undefined,
         status: status || undefined,
-        ...(typeof body.allowPublicView === 'boolean' || typeof body.publicStory === 'string' || typeof body.surveyUrl === 'string' || venture ? {
+        ...(typeof body.hideFromPublic === 'boolean' || typeof body.publicStory === 'string' || typeof body.surveyUrl === 'string' || venture ? {
           layoutConfig: {
             ...previousLayout,
-            ...(typeof body.allowPublicView === 'boolean' ? { allowPublicView: publication.allowPublicView } : {}),
+            ...(typeof body.hideFromPublic === 'boolean' ? { hideFromPublic: publication.hideFromPublic } : {}),
             ...(typeof body.publicStory === 'string' ? { publicStory: body.publicStory.slice(0, 16000) } : {}),
             ...(typeof body.surveyUrl === 'string' ? { surveyUrl: surveyUrl ?? '' } : {}),
             ...(venture ?? {}),

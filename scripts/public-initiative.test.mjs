@@ -13,15 +13,21 @@ const project = {
   members: [{ user: { email: 'private@example.com' } }], messages: ['private'],
 }
 
-test('public viewing requires explicit opt-in; private and draft choices cannot enable it', () => {
+test('public initiatives are open to everyone unless the owner hides them; private and draft never are', () => {
   for (const visibility of ['PRIVATE', 'DRAFT', 'UNLISTED']) {
-    assert.deepEqual(projectPublication(visibility, true), { visibility: 'UNLISTED', publication: visibility, allowPublicView: false })
+    assert.deepEqual(projectPublication(visibility, false), { visibility: 'UNLISTED', publication: visibility, hideFromPublic: true })
     assert.equal(publicProjectFields({ ...project, visibility: 'UNLISTED' }), null)
   }
-  assert.equal(publicProjectFields({ ...project, layoutConfig: {} }), null)
-  assert.equal(publicProjectFields({ ...project, layoutConfig: { allowPublicView: 'true' } }), null)
-  assert.equal(projectPublication('PUBLIC', false).allowPublicView, false)
-  assert.equal(projectPublication('PUBLIC', true).allowPublicView, true)
+  // Open by default, with or without older settings
+  assert.notEqual(publicProjectFields({ ...project, layoutConfig: {} }), null)
+  assert.notEqual(publicProjectFields({ ...project, layoutConfig: null }), null)
+  assert.notEqual(publicProjectFields({ ...project, layoutConfig: { allowPublicView: false } }), null)
+  // The owner's opt-out
+  assert.equal(publicProjectFields({ ...project, layoutConfig: { hideFromPublic: true } }), null)
+  assert.notEqual(publicProjectFields({ ...project, layoutConfig: { hideFromPublic: 'true' } }), null, 'only a real true hides it')
+  assert.equal(projectPublication('PUBLIC', true).hideFromPublic, true)
+  assert.equal(projectPublication('PUBLIC', false).hideFromPublic, false)
+  assert.equal(projectPublication('PUBLIC', undefined).hideFromPublic, false)
 })
 
 test('public output contains saved overview fields and no member or private configuration data', () => {
