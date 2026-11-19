@@ -1308,5 +1308,15 @@
   "topicId": "water-systems",
   "moduleKey": "drip-irrigation",
   "lessonIds": []
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "soil-health-fundamentals",
+  "lessonIds": []
+ },
+ {
+  "topicId": "regenerative-agriculture",
+  "moduleKey": "cover-crops",
+  "lessonIds": []
  }
 ]

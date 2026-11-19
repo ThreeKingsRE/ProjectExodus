@@ -1,0 +1,153 @@
+import type { ModuleExpansion } from '../types'
+
+// Quiz-only expansion: the lesson content stays as written; the chapter's single
+// original question is kept and four more are added from the lesson text.
+const expansion: ModuleExpansion = {
+  topicId: 'regenerative-agriculture',
+  moduleKey: 'soil-health-fundamentals',
+  lessons: [],
+  quiz: [
+    {
+      id: 'rsq1',
+      question: {
+        ELEMENTARY: 'What lives in healthy soil?',
+        MIDDLE_SCHOOL: 'How many bacteria can be in one teaspoon of soil?',
+        HIGH_SCHOOL: 'What are the four soil health principles?',
+        UNDERGRADUATE: 'What is a key indicator of soil biological activity?',
+        GRADUATE: 'What ecosystem service does soil provide for climate?',
+        PHD: 'What is mineral-associated organic matter important for?',
+      },
+      options: {
+        ELEMENTARY: ['Earthworms, fungi, and bacteria', 'Only rocks', 'Nothing', 'Just water'],
+        MIDDLE_SCHOOL: ['Billions', 'Hundreds', 'A few', 'None'],
+        HIGH_SCHOOL: ['Minimize disturbance, maximize diversity, keep covered, living roots', 'Plow often', 'Remove all plants', 'Add chemicals'],
+        UNDERGRADUATE: ['Soil respiration rate', 'Soil color only', 'Temperature', 'Depth'],
+        GRADUATE: ['Carbon sequestration', 'No climate services', 'Heat production', 'Ozone creation'],
+        PHD: ['Carbon permanence and stability', 'Short-term storage', 'Instant release', 'No importance'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'Healthy soil is full of life - worms, fungi, and billions of tiny bacteria!',
+        MIDDLE_SCHOOL: 'One teaspoon of healthy soil can contain billions of bacteria!',
+        HIGH_SCHOOL: 'The four principles: minimize disturbance, maximize diversity, keep soil covered, maintain living roots.',
+        UNDERGRADUATE: 'Soil respiration measures CO2 released by microbial activity - a direct measure of biological activity.',
+        GRADUATE: 'Healthy soils sequester carbon from the atmosphere, helping mitigate climate change.',
+        PHD: 'Mineral-associated organic matter is more stable and persistent than free particulate organic matter.',
+      },
+    },
+    {
+      id: 'rsq2',
+      question: {
+        ELEMENTARY: 'What do soil creatures turn dead leaves into?',
+        MIDDLE_SCHOOL: 'What is the mycorrhizal network sometimes called?',
+        HIGH_SCHOOL: 'How much extra water per acre can each 1% of soil organic matter hold?',
+        UNDERGRADUATE: 'What aggregate stability is considered good?',
+        GRADUATE: 'Which soil carbon pool has the slowest turnover?',
+        PHD: 'What is the "cry for help" in rhizosphere science?',
+      },
+      options: {
+        ELEMENTARY: ['Plastic', 'Rocks', 'Plant food and rich soil', 'Sand castles'],
+        MIDDLE_SCHOOL: ['The Root Railway', 'The Leaf Highway', 'The Wood Wide Web', 'The Dirt Phone'],
+        HIGH_SCHOOL: ['About 20 gallons', 'About 2,000,000 gallons', 'About 20,000 gallons', 'None'],
+        UNDERGRADUATE: ['Less than 5% stable', 'Exactly 30%', 'More than 60% stable', 'It does not matter'],
+        GRADUATE: ['Particulate organic matter', 'Fresh leaf litter', 'Pyrogenic carbon', 'Root sugars'],
+        PHD: ['Farmers calling agronomists', 'Microbes leaving the soil', 'Stressed plants recruiting beneficial microbes through root exudates', 'Plants dropping their leaves'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Bacteria and other creatures turn dead leaves into plant food.',
+        MIDDLE_SCHOOL: 'Scientists call the fungal network the "Wood Wide Web".',
+        HIGH_SCHOOL: 'Each 1% of organic matter holds about 20,000 more gallons per acre.',
+        UNDERGRADUATE: 'Over 60% stable aggregates is considered good.',
+        GRADUATE: 'Charred, pyrogenic carbon can last centuries to millennia.',
+        PHD: 'Stressed plants use exudates to attract helpful microbes.',
+      },
+    },
+    {
+      id: 'rsq3',
+      question: {
+        ELEMENTARY: 'Why do creatures make tunnels in soil?',
+        MIDDLE_SCHOOL: 'What do protozoa and nematodes do in the soil food web?',
+        HIGH_SCHOOL: 'How far can mycorrhizal fungi extend a root\'s reach?',
+        UNDERGRADUATE: 'How long does it typically take to see substantial biological improvement?',
+        GRADUATE: 'What is the "yield dip" in soil health transitions?',
+        PHD: 'What does the emerging view say determines soil carbon persistence?',
+      },
+      options: {
+        ELEMENTARY: ['To hide treasure', 'To make noise', 'To keep plants out', 'So water and air reach plant roots'],
+        MIDDLE_SCHOOL: ['Make sunlight', 'Build roots', 'Pump water uphill', 'Eat bacteria and fungi and release nutrients'],
+        HIGH_SCHOOL: ['Twice as far', 'Not at all', 'Exactly 10 times', '100 to 1,000 times'],
+        UNDERGRADUATE: ['1 week', '50 years', 'It never happens', '3 to 7 years'],
+        GRADUATE: ['Permanent yield loss', 'Yield doubling in year one', 'Prices falling', 'Lower yields in years 2 to 4 before biology establishes'],
+        PHD: ['Molecular structure alone', 'Soil colour', 'The crop\'s market price', 'Environmental conditions and mineral associations'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Tunnels let water soak in and air reach roots.',
+        MIDDLE_SCHOOL: 'Grazers eat bacteria and fungi, releasing nutrients.',
+        HIGH_SCHOOL: 'Mycorrhizal fungi extend root reach 100 to 1,000 times.',
+        UNDERGRADUATE: 'It typically takes 3 to 7 years of consistent practice.',
+        GRADUATE: 'Yields may dip while inputs drop and biology establishes.',
+        PHD: 'Mineral associations and conditions matter more than molecular structure.',
+      },
+    },
+    {
+      id: 'rsq4',
+      question: {
+        ELEMENTARY: 'What does healthy soil help grow?',
+        MIDDLE_SCHOOL: 'What share of soil species have scientists identified?',
+        HIGH_SCHOOL: 'What do plants trade with soil organisms?',
+        UNDERGRADUATE: 'What does the Haney Test measure?',
+        GRADUATE: 'Why does soil health justify public investment?',
+        PHD: 'What does shotgun metagenomics reveal?',
+      },
+      options: {
+        ELEMENTARY: ['Plastic toys', 'Big, healthy plants and food', 'Clouds', 'Cars'],
+        MIDDLE_SCHOOL: ['About 50%', 'Less than 1%', 'Nearly all', 'Exactly 100%'],
+        HIGH_SCHOOL: ['Water for sunlight', 'Sugars for minerals', 'Seeds for leaves', 'Nothing at all'],
+        UNDERGRADUATE: ['Soil colour only', 'Water-extractable nutrients and biological activity', 'Rock hardness', 'Rainfall'],
+        GRADUATE: ['It has no benefits', 'It creates public benefits farmers cannot capture in markets', 'Farmers are paid too much', 'Markets already pay fully'],
+        PHD: ['Only soil colour', 'Functional gene potential', 'Only active gene expression', 'Only metabolite fluxes'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Healthy soil means healthy plants and food.',
+        MIDDLE_SCHOOL: 'We have identified less than 1% of soil species.',
+        HIGH_SCHOOL: 'Plants trade sugars with soil life for minerals.',
+        UNDERGRADUATE: 'The Haney Test combines nutrients and biological activity.',
+        GRADUATE: 'Carbon, water and biodiversity benefits are positive externalities.',
+        PHD: 'Shotgun metagenomics shows what functions genes could perform.',
+      },
+    },
+    {
+      id: 'rsq5',
+      question: {
+        ELEMENTARY: 'Who is called nature\'s farmer?',
+        MIDDLE_SCHOOL: 'Which soil service locks carbon underground?',
+        HIGH_SCHOOL: 'What does the CO2 respiration test measure?',
+        UNDERGRADUATE: 'What is a challenge in soil health assessment?',
+        GRADUATE: 'What is additionality in soil carbon debates?',
+        PHD: 'Why is soil spatial heterogeneity a methodological challenge?',
+      },
+      options: {
+        ELEMENTARY: ['The cloud', 'The tractor', 'The earthworm', 'The rock'],
+        MIDDLE_SCHOOL: ['Disease spreading', 'Soil erosion', 'Carbon storage', 'Water pollution'],
+        HIGH_SCHOOL: ['Soil colour', 'Rock size', 'Microbial metabolism', 'Wind speed'],
+        UNDERGRADUATE: ['Measuring anything at all', 'Finding soil', 'Interpreting indicators in context of soil type', 'Naming the farm'],
+        GRADUATE: ['Adding more fertiliser', 'Adding extra fields', 'Whether storage would have happened anyway', 'Counting tractors'],
+        PHD: ['Soil is identical everywhere', 'Soil cannot be sampled', 'Properties vary by orders of magnitude within centimetres', 'Soil has no depth'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Earthworms plough and mix the soil like farmers.',
+        MIDDLE_SCHOOL: 'Soil stores carbon instead of releasing it to the air.',
+        HIGH_SCHOOL: 'The respiration test measures microbial activity.',
+        UNDERGRADUATE: 'The same number means different things in sand and clay.',
+        GRADUATE: 'Additionality asks what would have happened without the practice.',
+        PHD: 'Huge small-scale variation complicates sampling and scaling.',
+      },
+    },
+  ],
+}
+
+export default expansion

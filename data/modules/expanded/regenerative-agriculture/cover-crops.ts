@@ -1,0 +1,153 @@
+import type { ModuleExpansion } from '../types'
+
+// Quiz-only expansion: the lesson content stays as written; the chapter's single
+// original question is kept and four more are added from the lesson text.
+const expansion: ModuleExpansion = {
+  topicId: 'regenerative-agriculture',
+  moduleKey: 'cover-crops',
+  lessons: [],
+  quiz: [
+    {
+      id: 'rcq1',
+      question: {
+        ELEMENTARY: 'What do cover crops do for soil?',
+        MIDDLE_SCHOOL: 'Which cover crops can add nitrogen to soil?',
+        HIGH_SCHOOL: 'What is a roller-crimper used for?',
+        UNDERGRADUATE: 'What affects nitrogen credit from legume cover crops?',
+        GRADUATE: 'What is a cocktail mix?',
+        PHD: 'What do root exudates influence?',
+      },
+      options: {
+        ELEMENTARY: ['Protect it like a blanket', 'Make it hotter', 'Remove nutrients', 'Nothing'],
+        MIDDLE_SCHOOL: ['Legumes like clover', 'Grasses only', 'Brassicas only', 'No cover crops can'],
+        HIGH_SCHOOL: ['Terminating cover crops without tillage', 'Planting seeds', 'Harvesting grain', 'Watering'],
+        UNDERGRADUATE: ['Biomass, termination timing, C:N ratio', 'Color of flowers', 'Seed size', 'Nothing'],
+        GRADUATE: ['Multi-species cover crop blend', 'A drink recipe', 'Single species planting', 'Cash crop variety'],
+        PHD: ['Soil microbiome recruitment', 'Weather patterns', 'Market prices', 'Seed color'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'Cover crops protect soil from sun, wind, and rain - like a cozy blanket!',
+        MIDDLE_SCHOOL: 'Legumes like clover and vetch work with bacteria to add nitrogen to soil.',
+        HIGH_SCHOOL: 'A roller-crimper flattens and kills cover crops without tillage.',
+        UNDERGRADUATE: 'Nitrogen credit depends on legume biomass, when terminated, and the carbon-to-nitrogen ratio.',
+        GRADUATE: 'Cocktail mixes combine multiple species for diverse benefits.',
+        PHD: 'Root exudates are chemicals that attract and feed specific soil microbes.',
+      },
+    },
+    {
+      id: 'rcq2',
+      question: {
+        ELEMENTARY: 'Do farmers grow cover crops to eat?',
+        MIDDLE_SCHOOL: 'What does tillage radish do?',
+        HIGH_SCHOOL: 'Which cover crop group has a high C:N ratio?',
+        UNDERGRADUATE: 'How do drilled seeding rates compare with broadcast rates?',
+        GRADUATE: 'What is transgressive overyielding?',
+        PHD: 'What share of fixed carbon is released by roots as rhizodeposition?',
+      },
+      options: {
+        ELEMENTARY: ['Yes, for dinner every night', 'Yes, to sell as candy', 'No, they grow them to make paper', 'No, they grow them to help the soil'],
+        MIDDLE_SCHOOL: ['It fixes nitrogen from air', 'It attracts deer', 'It shades the cash crop', 'Its deep taproot breaks compaction'],
+        HIGH_SCHOOL: ['Cool-season legumes like clover', 'Warm-season legumes like cowpeas', 'Brassicas like turnips', 'Cool-season grasses like cereal rye'],
+        UNDERGRADUATE: ['Twice the broadcast rate', 'Exactly the same', 'About 5 percent', 'About 60 to 70 percent of broadcast rates'],
+        GRADUATE: ['A mix yielding less than any component', 'A single species planting', 'A crop failure', 'A mix outproducing even its best monoculture component'],
+        PHD: ['About 90 percent', 'Exactly 50 percent', 'None', 'About 5 to 21 percent'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Cover crops are grown to help the soil, not to eat.',
+        MIDDLE_SCHOOL: 'Tillage radish roots dig deep and break up hard soil.',
+        HIGH_SCHOOL: 'Cool-season grasses have C:N ratios of about 40-80:1.',
+        UNDERGRADUATE: 'Drilling gives better seed contact, so rates are 60 to 70 percent of broadcast.',
+        GRADUATE: 'Transgressive overyielding beats the best single species.',
+        PHD: 'Roots release about 5 to 21 percent of fixed carbon.',
+      },
+    },
+    {
+      id: 'rcq3',
+      question: {
+        ELEMENTARY: 'When do farmers plant cover crop seeds?',
+        MIDDLE_SCHOOL: 'How much nitrogen can crimson clover fix per acre?',
+        HIGH_SCHOOL: 'What share of fixed nitrogen typically credits to the next crop?',
+        UNDERGRADUATE: 'What is a sensible way to start with cover crops?',
+        GRADUATE: 'Which cover crops can disrupt mycorrhizal networks?',
+        PHD: 'What does 13C pulse labelling show?',
+      },
+      options: {
+        ELEMENTARY: ['Only at midnight', 'In fall, after harvest', 'In the middle of the main crop\'s harvest', 'Never'],
+        MIDDLE_SCHOOL: ['1 to 2 pounds', '70 to 150 pounds', '1,000 pounds', 'None'],
+        HIGH_SCHOOL: ['All of it', '30 to 50 percent', 'None of it', 'About 95 percent'],
+        UNDERGRADUATE: ['An 8-way mix on every field', 'A single species on limited acreage', 'No planning', 'Only herbicide termination'],
+        GRADUATE: ['Cereal rye', 'Brassicas, which are non-mycorrhizal', 'Crimson clover', 'Hairy vetch'],
+        PHD: ['Soil colour change', 'Carbon flow from plant to soil', 'Market prices', 'Rainfall totals'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Farmers plant cover crops in fall after harvest.',
+        MIDDLE_SCHOOL: 'Crimson clover fixes about 70 to 150 pounds of nitrogen per acre.',
+        HIGH_SCHOOL: 'About 30 to 50 percent credits to the following crop.',
+        UNDERGRADUATE: 'Starting small with one species reduces risk.',
+        GRADUATE: 'Brassicas do not form mycorrhizae and can break networks.',
+        PHD: 'Pulse labelling traces carbon from plants into soil.',
+      },
+    },
+    {
+      id: 'rcq4',
+      question: {
+        ELEMENTARY: 'Which cover crop family can make plant food from air?',
+        MIDDLE_SCHOOL: 'Why is tillage a less ideal way to end cover crops?',
+        HIGH_SCHOOL: 'What is the main drawback of winterkill?',
+        UNDERGRADUATE: 'How much should each species be cut in a mix?',
+        GRADUATE: 'What is temporal niche partitioning?',
+        PHD: 'What is a goal of breeding cover crops?',
+      },
+      options: {
+        ELEMENTARY: ['The grass family', 'The radish family', 'The bean family', 'The rock family'],
+        MIDDLE_SCHOOL: ['It is too gentle', 'It adds nitrogen', 'It damages soil structure', 'It saves fuel'],
+        HIGH_SCHOOL: ['Needs herbicide', 'Requires a roller', 'Limited species and less spring biomass', 'Destroys soil structure'],
+        UNDERGRADUATE: ['To 100 percent', 'To 200 percent', 'To 30 to 50 percent of its monoculture rate', 'To 1 percent'],
+        GRADUATE: ['Planting at night', 'Harvesting twice', 'Species growing early versus late in the season', 'Using one species'],
+        PHD: ['Slower establishment', 'Fewer roots', 'Rapid establishment and reliable winterkill or hardiness', 'Lower biomass'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Bean-family plants like clover make plant food from air.',
+        MIDDLE_SCHOOL: 'Tillage incorporates cover crops but harms soil structure.',
+        HIGH_SCHOOL: 'Winterkill limits species and spring biomass.',
+        UNDERGRADUATE: 'Mixes use 30 to 50 percent of each species\' solo rate.',
+        GRADUATE: 'Species growing at different times share resources.',
+        PHD: 'Breeding targets fast establishment and dependable winter traits.',
+      },
+    },
+    {
+      id: 'rcq5',
+      question: {
+        ELEMENTARY: 'What happens to cover crops in spring?',
+        MIDDLE_SCHOOL: 'How do flowering cover crops help wildlife?',
+        HIGH_SCHOOL: 'Which bacteria help legumes fix nitrogen?',
+        UNDERGRADUATE: 'What yield effect has research found for cover crops?',
+        GRADUATE: 'How do cover crops help with climate adaptation?',
+        PHD: 'Which models are used to simulate cover crop effects?',
+      },
+      options: {
+        ELEMENTARY: ['They are sent to the store', 'They are rolled flat into a mulch blanket', 'They fly away', 'They turn into rocks'],
+        MIDDLE_SCHOOL: ['They scare birds away', 'They feed bees and butterflies', 'They block sunlight', 'They poison insects'],
+        HIGH_SCHOOL: ['E. coli', 'Rhizobium', 'Salmonella', 'Lactobacillus'],
+        UNDERGRADUATE: ['Always +100%', 'Variable, from about -5% to +15%', 'Always zero', 'Always -50%'],
+        GRADUATE: ['Hotter, drier soil', 'Better infiltration and fewer temperature extremes', 'Less infiltration', 'More bare soil'],
+        PHD: ['Spreadsheets of prices', 'DSSAT, APSIM and DAYCENT', 'Weather radar only', 'Social media data'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Rolled cover crops become mulch that feeds the soil.',
+        MIDDLE_SCHOOL: 'Flowers provide food for pollinators.',
+        HIGH_SCHOOL: 'Rhizobium bacteria fix nitrogen with legumes.',
+        UNDERGRADUATE: 'Research shows yield effects ranging from -5% to +15%.',
+        GRADUATE: 'Cover crops improve drought resilience and buffer temperature.',
+        PHD: 'Process-based models like DSSAT, APSIM and DAYCENT are used.',
+      },
+    },
+  ],
+}
+
+export default expansion

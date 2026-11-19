@@ -67,6 +67,7 @@ import x_regenerative_agriculture_biochar from './regenerative-agriculture/bioch
 import x_regenerative_agriculture_carbon_markets from './regenerative-agriculture/carbon-markets'
 import x_regenerative_agriculture_climate_smart_farming from './regenerative-agriculture/climate-smart-farming'
 import x_regenerative_agriculture_composting from './regenerative-agriculture/composting'
+import x_regenerative_agriculture_cover_crops from './regenerative-agriculture/cover-crops'
 import x_regenerative_agriculture_crop_rotation from './regenerative-agriculture/crop-rotation'
 import x_regenerative_agriculture_farm_biodiversity from './regenerative-agriculture/farm-biodiversity'
 import x_regenerative_agriculture_farm_diversification from './regenerative-agriculture/farm-diversification'
@@ -90,6 +91,7 @@ import x_regenerative_agriculture_regenerative_ranching from './regenerative-agr
 import x_regenerative_agriculture_seed_saving from './regenerative-agriculture/seed-saving'
 import x_regenerative_agriculture_silvopasture_systems from './regenerative-agriculture/silvopasture-systems'
 import x_regenerative_agriculture_soil_carbon_sequestration from './regenerative-agriculture/soil-carbon-sequestration'
+import x_regenerative_agriculture_soil_health_fundamentals from './regenerative-agriculture/soil-health-fundamentals'
 import x_regenerative_agriculture_soil_testing from './regenerative-agriculture/soil-testing'
 import x_regenerative_agriculture_water_smart_agriculture from './regenerative-agriculture/water-smart-agriculture'
 import x_renewable_energy_biomass_biofuels from './renewable-energy/biomass-biofuels'
@@ -257,6 +259,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_regenerative_agriculture_carbon_markets,
   x_regenerative_agriculture_climate_smart_farming,
   x_regenerative_agriculture_composting,
+  x_regenerative_agriculture_cover_crops,
   x_regenerative_agriculture_crop_rotation,
   x_regenerative_agriculture_farm_biodiversity,
   x_regenerative_agriculture_farm_diversification,
@@ -280,6 +283,7 @@ export const MODULE_EXPANSIONS: ModuleExpansion[] = [
   x_regenerative_agriculture_seed_saving,
   x_regenerative_agriculture_silvopasture_systems,
   x_regenerative_agriculture_soil_carbon_sequestration,
+  x_regenerative_agriculture_soil_health_fundamentals,
   x_regenerative_agriculture_soil_testing,
   x_regenerative_agriculture_water_smart_agriculture,
   x_renewable_energy_biomass_biofuels,
