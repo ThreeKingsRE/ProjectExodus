@@ -284,6 +284,8 @@ function applyExpansions() {
       const index = keys.indexOf(exp.moduleKey)
       if (index === -1) throw new Error(`Expansion for unknown module ${exp.topicId}/${exp.moduleKey}`)
       const mod = topic.modules[index]
+      if (exp.title) mod.title = exp.title
+      if (exp.description) mod.description = exp.description
       mod.lessons = mod.lessons.map((lesson) => {
         const expanded = exp.lessons.find((l) => l.id === lesson.id)
         return expanded ? { ...lesson, title: expanded.title, content: expanded.content } : lesson

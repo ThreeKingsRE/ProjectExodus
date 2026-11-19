@@ -1,399 +1,301 @@
 import type { ModuleExpansion } from '../types'
 
+// Rewritten with its own angle: planning and building a microgrid for a real
+// community, step by step. Chapter 9 covers what microgrids are.
 const expansion: ModuleExpansion = {
   topicId: 'renewable-energy',
   moduleKey: 'microgrids~2',
+  title: 'Building a Resilient Community Microgrid',
+  description: {
+    ELEMENTARY: 'How a town plans its own little power system to keep important places running in a storm.',
+    MIDDLE_SCHOOL: 'The steps a community takes to plan, build and run a microgrid that keeps power on in emergencies.',
+    HIGH_SCHOOL: 'Planning a community microgrid: choosing critical loads, sizing solar and batteries, and deciding who runs it.',
+    UNDERGRADUATE: 'Community microgrid design: load assessment, resource sizing, islanding, controls and ownership.',
+    GRADUATE: 'Resilience-driven microgrid planning: valuing resilience, techno-economic design, governance and finance.',
+    PHD: 'Research on community microgrids: resilience metrics, design optimisation under uncertainty and governance.',
+  },
   lessons: [
     {
       id: 're-mg-1',
-      title: 'Small but Mighty: Microgrids That Keep the Lights On',
+      title: 'Building a Resilient Community Microgrid',
       content: {
         ELEMENTARY: `
 <h2>Keeping the Lights On When Storms Come</h2>
-<p>Have you ever been home when the power went out? The lights turn off, the fridge goes quiet and everything feels strange. Big storms, heavy snow or strong winds can knock down power lines. But some places have a special trick that keeps their lights on. It is called a microgrid!</p>
+<p>Sometimes a big storm knocks down power lines, and whole towns go dark. Fridges stop, phones cannot charge and hospitals have to use noisy backup machines. Some towns have a plan: they build their own small power system, called a microgrid, that can keep important places running even when the big grid is broken.</p>
 
-<h3>What Is a Microgrid?</h3>
-<p>The big power grid is like a giant web of wires that brings electricity to a whole city or country. A microgrid is a tiny power grid for just one place, like a hospital, a school, a fire station or a small town. It has its own way to make electricity and its own way to store it.</p>
+<h3>Step One: Pick the Most Important Places</h3>
+<p>First, the town asks, "Which places must stay open in an emergency?" Usually the answer is the fire station, the health clinic, a school that can be a shelter, and the store where people get food and water. These are called critical places.</p>
 <ul>
-<li><strong>Power grid:</strong> the giant web of wires that carries electricity to homes and buildings</li>
-<li><strong>Microgrid:</strong> a small power system that can make and share its own electricity</li>
-<li><strong>Power outage:</strong> a time when the electricity stops working, often because of a storm</li>
-<li><strong>Solar panel:</strong> a flat panel that turns sunlight into electricity</li>
-<li><strong>Battery:</strong> a box that saves electricity so it can be used later, even at night</li>
+<li><strong>Microgrid:</strong> a small power system that can run on its own, apart from the big grid</li>
+<li><strong>Critical place:</strong> a building that must keep working in an emergency, like a clinic</li>
+<li><strong>Shelter:</strong> a safe place where people can stay during a storm</li>
+<li><strong>Battery:</strong> something that stores electricity for later</li>
+<li><strong>Solar panel:</strong> a panel that makes electricity from sunlight</li>
 </ul>
 
-<h3>The Island Trick</h3>
-<p>Most of the time, a microgrid is connected to the big grid, like a small boat tied to a big ship. When a storm breaks the big grid, the microgrid unties itself and keeps going on its own. People call this being an island. The solar panels and batteries keep important things running until the big grid is fixed.</p>
+<h3>Step Two: Add Sunshine and Batteries</h3>
+<p>Next, the town puts solar panels on roofs and parking lots, and big batteries nearby. On normal days the panels help save money. When a storm hits, a special switch separates the microgrid from the big grid, and the solar panels and batteries keep the critical places powered.</p>
 
-<h3>Who Needs a Microgrid Most?</h3>
-<p>Some places must never be without power. Hospitals need electricity for machines that help sick people. Fire stations need it to answer emergency calls. Some schools and community centers become safe places where neighbors can warm up, cool off or charge their phones during a storm.</p>
-
-<h3>How You Can Be Storm Ready</h3>
-<ol>
-<li>Help your family make a box with a flashlight, water and snacks.</li>
-<li>Learn where the safe places are in your town during a storm.</li>
-<li>Look around your school or library: do you see solar panels on the roof?</li>
-</ol>
-
-<h3>Think About It</h3>
-<p>A microgrid is small, but it is mighty! When neighbors share clean power during a storm, everyone stays a little safer and warmer.</p>
+<h3>Step Three: Work Together</h3>
+<p>Neighbours, the town council and the power company all help decide where things go and who takes care of them. When everyone works together, the town is ready for the next storm.</p>
 `,
         MIDDLE_SCHOOL: `
-<h2>Microgrids: Backup Power and Energy Independence</h2>
-<p>Most people get electricity from a huge, connected grid. That grid is very reliable, but it has a weakness: when a big storm, wildfire or equipment failure damages power lines, thousands of people can lose power at once. A microgrid is a local energy system that can keep running even when the main grid goes down. That ability to bounce back from trouble is called <em>resilience</em>.</p>
+<h2>Planning a Microgrid for Your Town</h2>
+<p>Hurricanes, wildfires, ice storms and heat waves are knocking out power more often in many places. A community microgrid is a local power system, usually made of solar panels, batteries and sometimes a backup generator, that can disconnect from the main grid and keep important buildings running. Building one is a community project that takes careful planning.</p>
 
-<h3>How a Microgrid Works</h3>
-<p>A microgrid has three main parts working together:</p>
-<ol>
-<li><strong>Generation:</strong> sources that make electricity, like solar panels, small wind turbines or a backup generator</li>
-<li><strong>Storage:</strong> batteries that save extra energy for later</li>
-<li><strong>Controls:</strong> a smart computer system that decides where the electricity goes and when to disconnect from the main grid</li>
-</ol>
-<p>When the main grid fails, a special switch opens and the microgrid separates. This is called <em>islanding</em>. The controller then balances supply and demand so the lights stay steady.</p>
-
-<h3>Key Words</h3>
+<h3>Choosing What to Power</h3>
+<p>Planners start by listing critical loads: places such as a fire station, health centre, water pump, emergency shelter and grocery store. They measure how much electricity each one needs and for how long it must run, perhaps three days after a hurricane. This tells them how big the microgrid must be.</p>
 <ul>
-<li><strong>Resilience:</strong> the ability of a system to keep working or recover quickly after a disruption</li>
-<li><strong>Islanding:</strong> when a microgrid disconnects from the main grid and runs on its own power</li>
-<li><strong>Critical load:</strong> the most important equipment that must keep running, like hospital machines or water pumps</li>
-<li><strong>Backup generator:</strong> an engine that makes electricity in emergencies, often burning diesel or gas</li>
-<li><strong>Energy independence:</strong> being able to meet your own energy needs without relying fully on outside sources</li>
-<li><strong>Controller:</strong> the brain of a microgrid that manages power flow and switching</li>
+<li><strong>Critical load:</strong> electricity use that must continue during an emergency</li>
+<li><strong>Islanding:</strong> when a microgrid disconnects from the main grid and runs on its own</li>
+<li><strong>Resilience:</strong> the ability to keep working through and recover from disasters</li>
+<li><strong>Controller:</strong> the computer that runs the microgrid and decides when to island</li>
+<li><strong>Feasibility study:</strong> an early study that checks whether a project can work and what it would cost</li>
 </ul>
 
-<h3>Backup Generator vs. Clean Microgrid</h3>
-<table>
-<thead><tr><th>Feature</th><th>Diesel generator only</th><th>Solar plus battery microgrid</th></tr></thead>
-<tbody>
-<tr><td>Works during outages</td><td>Yes, while fuel lasts</td><td>Yes, recharging from the sun each day</td></tr>
-<tr><td>Pollution</td><td>Smoke and noise</td><td>Quiet and clean</td></tr>
-<tr><td>Useful on normal days</td><td>Usually sits unused</td><td>Saves money every day</td></tr>
-<tr><td>Needs fuel deliveries</td><td>Yes, which can be hard after storms</td><td>No fuel needed</td></tr>
-</tbody>
-</table>
+<h3>Choosing the Parts</h3>
+<p>Solar panels provide clean energy every sunny day. Batteries store it for nights and cloudy days. A small generator might be kept for very long emergencies. A controller decides when to separate, or island, from the main grid and how to share power among buildings.</p>
 
-<h3>Where Microgrids Help</h3>
-<p>Microgrids protect hospitals, military bases, college campuses and water treatment plants. They also bring power to remote villages and islands that are far from any big grid. In some towns, a microgrid keeps a community center open as a shelter during heat waves or winter storms.</p>
-
-<h3>Why It Matters</h3>
-<p>As extreme weather becomes more common, keeping power on in emergencies matters more than ever. Microgrids that use clean energy help communities stay safe and fight climate change at the same time.</p>
+<h3>Who Owns It and Who Pays?</h3>
+<p>Microgrids cost a lot, so towns look for grants and partners. Some are owned by the power company, some by the city and some by a community cooperative. On normal days the microgrid can earn money by selling solar power or helping the grid, which helps pay it off. The best projects ask residents what they need and make sure poorer neighbourhoods are protected too, not just wealthy ones.</p>
 `,
         HIGH_SCHOOL: `
-<h2>Designing Microgrids for Resilience</h2>
-<p>The large interconnected grid is efficient, but it is also exposed: a single fallen tree or flooded substation can cut power to many customers. A microgrid is a group of connected loads and energy resources within clear electrical boundaries that acts as a single controllable unit and can operate either connected to the grid or as an island. This lesson focuses on how microgrids are designed specifically to withstand and recover from disruptions.</p>
+<h2>From Idea to Island: Planning a Community Microgrid</h2>
+<p>A microgrid is a group of connected loads and energy resources that can operate either connected to the main grid or as an island on its own. Community microgrids extend this idea beyond a single campus or military base to serve a neighbourhood's critical facilities. As climate-driven outages grow longer and more frequent, more towns are asking how to build one. This chapter walks through the planning process.</p>
 
-<h3>Building Blocks of a Resilient Microgrid</h3>
+<h3>1. Define Goals and Critical Loads</h3>
+<p>Planning begins by deciding what the microgrid is for: keeping a hospital and shelters running for 72 hours after a hurricane, protecting a water treatment plant, or cutting bills and emissions day to day. Engineers then audit the critical loads, measuring peak demand in kilowatts and daily energy in kilowatt-hours, often finding that efficiency upgrades shrink the system needed.</p>
 <ul>
-<li><strong>Distributed generation:</strong> local sources such as solar, wind, combined heat and power or fuel-based generators</li>
-<li><strong>Energy storage:</strong> batteries that cover the night, smooth fluctuations and help restart the system</li>
-<li><strong>Point of common coupling:</strong> the connection point where the microgrid joins or separates from the main grid</li>
-<li><strong>Microgrid controller:</strong> software and hardware that balance supply and demand and manage islanding</li>
-<li><strong>Load prioritization:</strong> ranking loads so critical equipment stays on when supply is limited</li>
-<li><strong>Black start capability:</strong> the ability to restart from a complete shutdown without outside power</li>
+<li><strong>Critical facility:</strong> a building whose operation is essential during emergencies, such as a hospital or shelter</li>
+<li><strong>Point of common coupling:</strong> the connection point where a microgrid joins or separates from the main grid</li>
+<li><strong>Black start:</strong> restarting a power system from a complete outage without help from the outside grid</li>
+<li><strong>Load shedding:</strong> deliberately disconnecting less important loads to keep critical ones running</li>
+<li><strong>Resilience hub:</strong> a community building with backup power that offers shelter, charging and supplies in emergencies</li>
 </ul>
 
-<h3>Islanding Step by Step</h3>
-<ol>
-<li>Sensors detect a fault or outage on the main grid.</li>
-<li>The switch at the point of common coupling opens, separating the microgrid.</li>
-<li>Batteries or generators immediately take over keeping voltage and frequency stable.</li>
-<li>The controller sheds non-critical loads if supply is short.</li>
-<li>When the grid returns, the microgrid synchronizes and reconnects smoothly.</li>
-</ol>
+<h3>2. Size the Resources</h3>
+<p>Designers model hourly solar output and load to size panels and batteries for the target outage. A common result is solar plus battery for most needs, with a small generator or extra storage for long, cloudy outages. The controller must be able to black start the microgrid and shed less important loads if energy runs short.</p>
 
-<h3>Comparing Resilience Strategies</h3>
-<table>
-<thead><tr><th>Strategy</th><th>Strength</th><th>Weakness</th></tr></thead>
-<tbody>
-<tr><td>Diesel generator only</td><td>Proven, can run for long periods with fuel</td><td>Fuel supply can fail after disasters; pollution</td></tr>
-<tr><td>Solar plus storage</td><td>No fuel, works every day, clean</td><td>Limited during long cloudy periods</td></tr>
-<tr><td>Hybrid (solar, storage, generator)</td><td>Long endurance with reduced fuel use</td><td>More complex controls and higher cost</td></tr>
-<tr><td>Burying power lines</td><td>Protects against wind and ice</td><td>Very expensive; vulnerable to flooding</td></tr>
-</tbody>
-</table>
+<h3>3. Engineer the Connection</h3>
+<p>The microgrid joins the main grid at a point of common coupling with a fast switch. When the grid fails, the switch opens and the microgrid islands; when the grid returns, it resynchronises. Protection equipment must be redesigned, because faults behave differently in a small, inverter-based island than on the big grid.</p>
 
-<h3>Real-World Applications</h3>
-<p>Hospitals, emergency operations centers, water and wastewater plants, and military bases are common microgrid hosts because losing power there can endanger lives. Communities in wildfire, hurricane and ice-storm regions are building microgrids around "resilience hubs," such as libraries or community centers that provide cooling, heating, charging and information during emergencies. Remote and island communities use microgrids to replace expensive imported diesel with local renewable power.</p>
-
-<h3>Trade-offs to Consider</h3>
-<p>A resilient microgrid costs more than a simple grid connection, so designers must decide how long it should survive an outage and which loads must stay on. Sizing for every possible event would be unaffordable, so planners pick realistic scenarios, such as a multi-day storm outage, and design around the critical loads that matter most.</p>
+<h3>4. Decide Ownership and Finance</h3>
+<p>Options include utility ownership, municipal ownership, a cooperative of residents and businesses, or a private developer with long-term contracts. Grants for resilience, savings on energy bills and payments for grid services help cover costs. Community engagement matters: many towns build resilience hubs in community centres so the benefits reach renters, older adults and low-income households.</p>
 `,
         UNDERGRADUATE: `
-<h2>Microgrid Resilience Economics and Control</h2>
-<p>Microgrids create value in two modes. In grid-connected operation they can lower energy bills, provide grid services and integrate renewables. In islanded operation they deliver resilience, the ability to maintain critical services through outages. The analytical challenge is that resilience value is large but rare and hard to price, while everyday savings are smaller but steady. This lesson builds tools to evaluate both.</p>
+<h2>Community Microgrid Design</h2>
+<p>The U.S. Department of Energy defines a microgrid as a group of interconnected loads and distributed energy resources within clearly defined electrical boundaries that acts as a single controllable entity with respect to the grid and can connect and disconnect from it. Community microgrids apply this concept to multiple customers and critical facilities in a neighbourhood or town, raising engineering, regulatory and governance challenges that single-owner microgrids avoid.</p>
 
-<h3>Core Concepts</h3>
+<h3>Load Assessment and Resilience Targets</h3>
+<p>Design starts with resilience targets, such as supplying defined critical loads for a specified outage duration with a stated probability. Load assessment uses interval meter data to build hourly profiles for critical facilities, separating essential from deferrable loads. Efficiency and load-shedding schemes often reduce required capacity substantially. Seasonal worst cases (a multi-day winter storm with little solar) usually drive sizing.</p>
+
+<h3>Resource Sizing and Dispatch</h3>
+<p>Techno-economic tools optimise the mix of photovoltaics, batteries and dispatchable backup (diesel, natural gas or, increasingly, fuel-flexible generators) to minimise lifecycle cost subject to resilience constraints. Grid-connected operation generates value through bill savings, demand charge reduction and wholesale or ancillary services, which offsets resilience investment. Dispatch strategies keep batteries partly charged when storms are forecast.</p>
 <ul>
-<li><strong>Reliability:</strong> how often and how long customers lose power under normal conditions, measured with standard outage indices</li>
-<li><strong>Resilience:</strong> the ability to withstand, adapt to and recover from rare, high-impact events such as major storms</li>
-<li><strong>Value of lost load:</strong> an estimate of the economic cost to customers per unit of electricity not supplied during an outage</li>
-<li><strong>Survivability duration:</strong> how long a microgrid can serve its critical loads while islanded under a given scenario</li>
-<li><strong>Load shedding:</strong> intentionally disconnecting lower-priority loads to keep the system balanced</li>
-<li><strong>Value stacking:</strong> combining multiple revenue or savings streams to justify a project's cost</li>
+<li><strong>Grid-forming inverter:</strong> an inverter that sets voltage and frequency, allowing an inverter-based island to operate</li>
+<li><strong>Resilience target:</strong> a stated goal for which loads must be served, for how long and with what probability</li>
+<li><strong>Protection coordination:</strong> arranging protective devices so faults are isolated correctly in both grid-connected and islanded modes</li>
+<li><strong>Lifecycle cost:</strong> the total cost of building, operating and maintaining a system over its life</li>
+<li><strong>Franchise rights:</strong> a utility's legal right to be the sole provider of electricity distribution in an area</li>
 </ul>
 
-<h3>Reliability Versus Resilience</h3>
-<p>Standard reliability indices average outage frequency and duration over a year and often exclude major events. Resilience concerns exactly those excluded events: hurricanes, wildfires, floods and extreme cold. A microgrid may barely change average reliability statistics yet dramatically reduce harm during the rare long outages that matter most to hospitals or water systems. Analysts therefore evaluate microgrids against specific outage scenarios rather than averages alone.</p>
+<h3>Controls and Protection</h3>
+<p>Inverter-dominated islands require grid-forming inverters to establish voltage and frequency, replacing the role traditionally played by rotating generators. A microgrid controller manages transitions between modes, dispatch and load shedding. Protection is a key engineering challenge: inverter fault currents are small, so conventional overcurrent protection may not detect faults when islanded, requiring adaptive or differential protection schemes.</p>
 
-<h3>Control Modes</h3>
-<table>
-<thead><tr><th>Control function</th><th>Grid-connected mode</th><th>Islanded mode</th></tr></thead>
-<tbody>
-<tr><td>Frequency and voltage</td><td>Set by the main grid</td><td>Set by local grid-forming inverters or generators</td></tr>
-<tr><td>Dispatch objective</td><td>Minimize cost, earn grid revenue</td><td>Maximize survival of critical loads</td></tr>
-<tr><td>Battery strategy</td><td>Arbitrage and peak shaving</td><td>Preserve reserve for night and cloudy days</td></tr>
-<tr><td>Load management</td><td>Demand response for savings</td><td>Priority-based load shedding</td></tr>
-</tbody>
-</table>
-<p>A key design tension is the battery reserve: energy kept in reserve for possible outages cannot be used for everyday savings. Some operators raise the reserve when storms are forecast, a practice that ties operations to weather information.</p>
-
-<h3>Economic Reasoning</h3>
-<p>Project economics combine everyday value streams, such as demand charge reduction, energy arbitrage and grid service payments, with avoided outage costs. Avoided outage cost can be estimated by multiplying expected unserved energy by a value of lost load, though such values vary widely by customer type and outage length. For critical facilities, losses during long outages can be far larger than simple per-kilowatt-hour estimates suggest, because of cascading impacts like spoiled medicine or halted water treatment.</p>
-
-<h3>Applied Checklist for a Resilience Microgrid</h3>
-<ol>
-<li>Identify critical loads and their power and energy requirements.</li>
-<li>Define design outage scenarios, including duration and season.</li>
-<li>Size generation and storage to meet survivability targets in those scenarios.</li>
-<li>Specify grid-forming capability, protection and black start.</li>
-<li>Quantify everyday value streams and the cost of holding reserve.</li>
-<li>Estimate avoided outage costs and test sensitivity to assumptions.</li>
-</ol>
+<h3>Regulatory and Ownership Issues</h3>
+<p>Serving multiple customers across public streets can conflict with utility franchise rights, so many community microgrids are utility-owned or built through partnerships. Alternatives include municipal utilities, cooperatives and third-party models under special tariffs. Clear rules on cost allocation, who gets served during outages and who pays are essential for public support.</p>
 `,
         GRADUATE: `
-<h2>Community Microgrids: Policy, Utility Integration and Resilience Planning</h2>
-<p>As climate-driven disasters increase, public agencies and utilities are asking how microgrids fit into broader resilience strategies. The technical case is often clear; the harder questions concern who may build and own microgrids that cross property lines, how costs are recovered, how they interact with utility planning, and whether resilience investments reach the communities most exposed to outages. This lesson examines these governance questions.</p>
+<h2>Resilience-Driven Microgrid Planning</h2>
+<p>As outages from extreme weather increase in frequency and duration, utilities and communities are investing in microgrids explicitly for resilience. Yet resilience is hard to value: outage costs are uncertain, unevenly distributed and often borne by people who are not part of the investment decision. This chapter examines how to value resilience, design microgrids that deliver it cost-effectively, and govern and finance community-scale systems.</p>
 
-<h3>Key Concepts</h3>
+<h3>Valuing Resilience</h3>
+<p>Standard reliability indices such as SAIDI and SAIFI capture routine outages but not long, high-impact events. Resilience valuation approaches include customer damage functions (survey-based estimates of outage costs by customer type), interruption cost estimate tools, and the value of avoided critical service loss (for example, hospital function or water treatment). Each has limitations: damage functions are poorly calibrated for multi-day outages and undervalue impacts on vulnerable groups, so planners increasingly complement monetary metrics with performance-based targets.</p>
 <ul>
-<li><strong>Community microgrid:</strong> a microgrid that serves multiple customers across a neighborhood or town, often using utility distribution lines</li>
-<li><strong>Resilience hub:</strong> a trusted community facility equipped with backup power to provide services during emergencies</li>
-<li><strong>Franchise rights:</strong> the exclusive rights a utility often holds to distribute and sell electricity in its territory</li>
-<li><strong>Cost recovery:</strong> the regulatory process by which utilities recover investment costs through customer rates</li>
-<li><strong>Grid hardening:</strong> traditional resilience measures such as stronger poles, undergrounding and vegetation management</li>
-<li><strong>Public safety power shutoff:</strong> a deliberate de-energization of lines to reduce wildfire ignition risk during dangerous weather</li>
+<li><strong>SAIDI:</strong> System Average Interruption Duration Index, the average outage duration per customer per year</li>
+<li><strong>Customer damage function:</strong> an estimate of the economic cost of an outage for a type of customer and duration</li>
+<li><strong>Value of lost load:</strong> the average value customers place on avoiding a unit of unserved electricity</li>
+<li><strong>Stochastic outage modelling:</strong> simulating many possible outage events with their probabilities to test a design</li>
+<li><strong>Resilience-as-a-service:</strong> a business model in which a provider guarantees backup power for a fee</li>
 </ul>
 
-<h3>Regulatory and Ownership Barriers</h3>
-<p>Single-site microgrids behind one customer's meter are relatively simple. Multi-customer microgrids raise questions that existing rules often do not answer: whether a non-utility owner may sell power across property lines, who operates shared distribution wires during islanding, how standby and departing-load charges apply, and how liability is assigned. Different jurisdictions have taken different approaches, ranging from utility-owned community microgrids to third-party models enabled by specific legislation.</p>
+<h3>Techno-Economic Design Under Uncertainty</h3>
+<p>Design optimisation must handle uncertainty in outage timing and duration, weather, loads and prices. Stochastic outage modelling evaluates designs across many simulated events, revealing trade-offs between cost and probability of serving critical loads. Results frequently show that modest additions of storage and controls to existing solar and backup generation provide large resilience gains, and that coordinated microgrids across a neighbourhood can share resources more efficiently than isolated systems.</p>
 
-<h3>Microgrids Versus Grid Hardening</h3>
-<table>
-<thead><tr><th>Approach</th><th>Benefit</th><th>Limitation</th></tr></thead>
-<tbody>
-<tr><td>Grid hardening</td><td>Protects many customers on a feeder</td><td>Cannot prevent all failures; high capital cost</td></tr>
-<tr><td>Single-site microgrids</td><td>Targeted protection of critical facilities</td><td>Does not help surrounding homes</td></tr>
-<tr><td>Community microgrids</td><td>Extends resilience to neighborhoods</td><td>Complex regulation, protection and ownership</td></tr>
-<tr><td>Networked microgrids</td><td>Mutual support across sites</td><td>Requires advanced coordination and standards</td></tr>
-</tbody>
-</table>
-<p>Integrated resilience planning compares these options side by side, recognizing they are complements rather than substitutes.</p>
+<h3>Governance, Finance and Equity</h3>
+<p>Community microgrids span multiple owners and public rights-of-way, so governance models determine feasibility. Utility ownership fits within existing regulation but may prioritise system benefits; municipal and cooperative models offer community control but face financing and franchise barriers; third-party resilience-as-a-service contracts shift risk but can be costly. Equity considerations include prioritising critical facilities serving vulnerable populations, siting resilience hubs in disadvantaged neighbourhoods and ensuring costs are not recovered regressively.</p>
 
-<h3>Valuing Resilience in Planning</h3>
-<p>Utility planning has traditionally relied on reliability metrics and cost-effectiveness tests that do not capture resilience well. Agencies are experimenting with methods such as scenario-based assessments of critical service loss, customer surveys of outage costs, and metrics focused on the duration of critical service restoration. Without an agreed valuation approach, resilience benefits risk being undercounted relative to cheaper but less robust alternatives.</p>
-
-<h3>Equity and Community Development</h3>
-<p>Outages harm people unequally. Households relying on powered medical devices, older residents, people without air conditioning or heating alternatives and those without means to relocate face the greatest risks. Equity-focused programs locate resilience hubs in high-vulnerability areas, involve residents in choosing which services to protect, and support community ownership models. Indigenous, rural and island communities have often led microgrid development to increase energy sovereignty and reduce dependence on imported fuels.</p>
-
-<h3>Evaluation Framework</h3>
-<ol>
-<li>Map hazards, critical services and social vulnerability together.</li>
-<li>Compare microgrids with hardening and other options on shared scenarios.</li>
-<li>Clarify ownership, operation and cost recovery before design.</li>
-<li>Value resilience explicitly using a transparent method.</li>
-<li>Include community governance and benefit-sharing provisions.</li>
-<li>Plan for operations, maintenance and testing over the project life.</li>
-</ol>
+<h3>Implementation Lessons</h3>
+<p>Experience from deployed community microgrids highlights long interconnection and permitting timelines, the importance of operations and maintenance budgets after grants end, and the value of exercising islanding regularly. Systems that are never tested in island mode can fail when they are finally needed. Training local operators, keeping spare parts and documenting procedures are as important as the hardware itself.</p>
 `,
         PHD: `
-<h2>Research Frontiers: Quantifying Resilience and Optimizing Networked Microgrids</h2>
-<p>Microgrid research now extends well beyond single-site design. Active questions include how to define and measure resilience rigorously, how to plan microgrids under deep uncertainty about rare events, and how networked microgrids can support each other and the bulk grid during disasters. This lesson surveys methods, debates and open directions, with an emphasis on resilience quantification.</p>
+<h2>Research on Community Microgrids and Resilience</h2>
+<p>Community microgrids sit at the intersection of power engineering, disaster science, economics and governance. Despite rapid deployment, fundamental questions remain about how to define and measure resilience, how to design and operate networked microgrids under deep uncertainty, and how institutions should allocate the costs and benefits of resilience. This chapter surveys those research frontiers.</p>
 
-<h3>Methods and Concepts</h3>
+<h3>Defining and Measuring Resilience</h3>
+<p>Resilience frameworks distinguish phases of an event: resistance, absorption, recovery and adaptation. Metrics proposed include resilience trapezoids that capture performance degradation and recovery over time, probabilistic measures of critical load served, and community-level indicators linking electricity to services such as water and health care. Open problems include aggregating heterogeneous impacts into decision-relevant metrics without obscuring distributional effects, and validating models against scarce data from real long-duration outages.</p>
 <ul>
-<li><strong>Resilience trapezoid:</strong> a conceptual curve describing system performance through disruption, degraded operation and recovery phases</li>
-<li><strong>Two-stage stochastic programming:</strong> optimization that separates investment decisions from operational responses across sampled scenarios</li>
-<li><strong>Robust optimization:</strong> planning that protects against the worst case within a defined uncertainty set rather than an expected value</li>
-<li><strong>Tri-level defender-attacker-defender model:</strong> a formulation in which a planner hardens a system, an adversary or hazard disrupts it, and an operator responds</li>
-<li><strong>Fragility curve:</strong> a function giving the probability that a component fails as hazard intensity increases</li>
-<li><strong>Dynamic microgrid formation:</strong> reconfiguring distribution switches after a disaster to create islands around available resources</li>
+<li><strong>Resilience trapezoid:</strong> a representation of system performance over the phases of disruption, degradation and recovery</li>
+<li><strong>Networked microgrids:</strong> multiple microgrids that can interconnect to share resources during emergencies</li>
+<li><strong>Deep uncertainty:</strong> situations where probabilities of key future conditions cannot be reliably estimated</li>
+<li><strong>Interdependent infrastructure:</strong> systems such as power, water and communications that depend on one another</li>
+<li><strong>Procedural justice:</strong> fairness in how decisions are made, including who participates and whose knowledge counts</li>
 </ul>
 
-<h3>Defining Resilience Metrics</h3>
-<p>There is no single accepted resilience metric. Proposals include performance-loss integrals over the disruption period, critical load served over time, time to restore critical services, and risk measures such as conditional value at risk applied to unserved energy distributions. Each embeds normative choices: whether all load counts equally, whether long outages are penalized nonlinearly, and whether social vulnerability is weighted. Critics note that purely engineering metrics may miss community outcomes, motivating hybrid socio-technical measures.</p>
+<h3>Design and Operation Under Deep Uncertainty</h3>
+<p>Two-stage and multi-stage stochastic programming, robust optimisation and decision-making under deep uncertainty methods are applied to microgrid planning, capturing uncertain hazards, climate change and technology costs. Networked microgrids raise operational problems: forming and reconfiguring islands dynamically, coordinating grid-forming inverters for stability and allocating scarce energy among critical loads. Research on interdependent infrastructure models how microgrids supporting water pumping, communications and fuel supply affect overall community recovery.</p>
 
-<h3>Planning Under Rare Events</h3>
-<p>Resilience planning must account for low-probability, high-impact events that are poorly represented in historical data. Approaches combine hazard models, component fragility curves and Monte Carlo simulation to generate outage scenarios, then optimize microgrid siting and sizing using stochastic or robust formulations. A methodological tension exists between expected-value approaches, which may underinvest in rare catastrophes, and worst-case approaches, which may be overly conservative and costly.</p>
+<h3>Institutions and Justice</h3>
+<p>Empirical studies of microgrid deployment reveal that funding and siting decisions often follow institutional capacity rather than need, potentially widening resilience gaps. Research on procedural and distributive justice asks who participates in planning, whose critical services are prioritised, and how costs are recovered. Comparative analysis of ownership models, from utility-owned to cooperative, and of regulatory innovations such as resilience tariffs and shared ownership remains limited.</p>
 
-<h3>Networked Microgrids</h3>
-<table>
-<thead><tr><th>Research question</th><th>Why it is open</th></tr></thead>
-<tbody>
-<tr><td>How to share power among adjacent microgrids during outages</td><td>Requires coordination protocols, protection settings and trust between owners</td></tr>
-<tr><td>Centralized versus distributed coordination</td><td>Trade-offs among optimality, communication dependence and cyber risk</td></tr>
-<tr><td>Stability with many inverter-based sources</td><td>Low inertia and interacting grid-forming controls complicate dynamics</td></tr>
-<tr><td>Use of microgrids to support bulk grid restoration</td><td>Coordination with transmission black start plans is underdeveloped</td></tr>
-</tbody>
-</table>
+<h3>Methodological Needs</h3>
+<p>Progress requires better outage and impact data, co-simulation linking power systems with other infrastructure and social systems, and participatory modelling that incorporates community knowledge. Longitudinal studies of how microgrids actually perform during disasters, and how communities use them, would ground design methods in evidence rather than assumptions.</p>
 
-<h3>Cyber-Physical and Interdependency Risks</h3>
-<p>Microgrid controllers depend on communications and software, creating cyber vulnerabilities that could undermine resilience. Microgrids also depend on other infrastructure: natural gas supply for generators, communications for coordination and roads for fuel delivery. Interdependency modeling seeks to capture how failures cascade across sectors, but data sharing between sectors is limited and models are difficult to validate.</p>
-
-<h3>Methodological Debates</h3>
-<p>Debates center on validation, since rare events provide few observations; on whether resilience should be valued in monetary terms at all; and on the transferability of results across hazards and regions. Empirical studies of microgrid performance during actual disasters are valuable but scarce and often anecdotal.</p>
-
-<h3>Open Research Directions</h3>
-<ol>
-<li>Standardized, socially informed resilience metrics suitable for regulatory use.</li>
-<li>Scalable stochastic and robust planning methods for many candidate microgrid sites.</li>
-<li>Stable control of networked, inverter-dominated microgrids.</li>
-<li>Cyber-resilient coordination architectures.</li>
-<li>Integration of climate projections into hazard and fragility modeling.</li>
-<li>Systematic empirical evaluation of microgrid performance in real disasters.</li>
-</ol>
+<h3>Climate Adaptation and Long-Term Planning</h3>
+<p>Microgrids are long-lived assets designed against hazards that are themselves changing. Research is beginning to integrate downscaled climate projections, such as future hurricane intensity, wildfire weather and extreme heat, into microgrid siting and sizing, and to examine adaptive pathways in which systems are expanded or reconfigured as risks evolve. Linking these methods with community-led adaptation planning could ensure that resilience investments anticipate future conditions rather than reflecting only past disasters.</p>
 `,
       },
     },
   ],
   quiz: [
     {
-      id: 'rmgq1',
+      id: 're-mg2-q1',
       question: {
-        ELEMENTARY: 'What can a microgrid do when a storm breaks the big grid?',
-        MIDDLE_SCHOOL: 'What is islanding?',
+        ELEMENTARY: 'What is a microgrid?',
+        MIDDLE_SCHOOL: 'What is "islanding"?',
         HIGH_SCHOOL: 'What is the point of common coupling?',
-        UNDERGRADUATE: 'How does resilience differ from reliability?',
-        GRADUATE: 'What is a community microgrid?',
-        PHD: 'What does a fragility curve describe?',
+        UNDERGRADUATE: 'Why are grid-forming inverters needed in an inverter-based island?',
+        GRADUATE: 'Why do standard reliability indices like SAIDI undervalue microgrid resilience?',
+        PHD: 'What do networked microgrids allow during emergencies?',
       },
       options: {
-        ELEMENTARY: ['Keep working on its own', 'Make the storm stop', 'Turn into a boat', 'Make the wind blow harder'],
-        MIDDLE_SCHOOL: ['When a microgrid disconnects from the main grid and runs on its own', 'Building power plants on islands only', 'Turning off all the lights', 'Shipping fuel to an island'],
-        HIGH_SCHOOL: ['The connection point where the microgrid joins or separates from the main grid', 'The place where batteries are recycled', 'The middle of a solar panel', 'A type of fuel'],
-        UNDERGRADUATE: ['Resilience concerns rare, high-impact events, while reliability averages normal outages', 'They are exactly the same', 'Reliability only applies to batteries', 'Resilience means lower prices'],
-        GRADUATE: ['A microgrid serving multiple customers across a neighborhood or town', 'A microgrid inside one house', 'A type of power plant', 'A utility billing system'],
-        PHD: ['The probability that a component fails as hazard intensity increases', 'The cost of building a microgrid', 'How fast batteries charge', 'The shape of a solar panel'],
-      },
-      correctIndex: 0,
-      explanation: {
-        ELEMENTARY: 'A microgrid can untie itself from the big grid and keep power on for important places.',
-        MIDDLE_SCHOOL: 'Islanding means the microgrid separates and powers itself like an island.',
-        HIGH_SCHOOL: 'The point of common coupling is where the switch opens or closes between the microgrid and the main grid.',
-        UNDERGRADUATE: 'Reliability indices often exclude major events, which are exactly what resilience is about.',
-        GRADUATE: 'Community microgrids extend resilience beyond one site, often over utility distribution lines.',
-        PHD: 'Fragility curves link hazard intensity, like wind speed, to the chance a component fails.',
-      },
-    },
-    {
-      id: 'rmgq2',
-      question: {
-        ELEMENTARY: 'Which place most needs power during a storm?',
-        MIDDLE_SCHOOL: 'What is a critical load?',
-        HIGH_SCHOOL: 'What is black start capability?',
-        UNDERGRADUATE: 'What is the value of lost load?',
-        GRADUATE: 'Why can multi-customer microgrids face regulatory barriers?',
-        PHD: 'What is a key weakness of expected-value planning for resilience?',
-      },
-      options: {
-        ELEMENTARY: ['A toy store', 'A hospital', 'A playground', 'A movie theater'],
-        MIDDLE_SCHOOL: ['The heaviest object in a building', 'The most important equipment that must keep running', 'The amount of fuel in a generator', 'The loudest machine'],
-        HIGH_SCHOOL: ['Starting a race', 'The ability to restart from a complete shutdown without outside power', 'Painting generators black', 'Turning on lights at night'],
-        UNDERGRADUATE: ['The price of a battery', 'An estimate of the economic cost per unit of electricity not supplied', 'The weight of power lines', 'The energy lost in wires'],
-        GRADUATE: ['They use no electricity', 'Utility franchise rights and unclear rules for selling across property lines', 'They are always illegal', 'They cannot use solar panels'],
-        PHD: ['It is too conservative', 'It may underinvest in rare catastrophic events', 'It cannot use data', 'It ignores costs'],
+        ELEMENTARY: ['A very tiny phone', 'A small power system that can run on its own', 'A kind of fishing net', 'A cloud'],
+        MIDDLE_SCHOOL: ['Building houses on islands', 'When a microgrid disconnects from the main grid and runs on its own', 'Moving power plants to the sea', 'Turning off all lights'],
+        HIGH_SCHOOL: ['The town square', 'The connection point where a microgrid joins or separates from the main grid', 'A type of battery', 'A charging cable'],
+        UNDERGRADUATE: ['They are cheaper than wires', 'They set voltage and frequency when no rotating generator does', 'They store hydrogen', 'They replace solar panels'],
+        GRADUATE: ['They count only renewable energy', 'They capture routine outages but not long, high-impact events', 'They measure electricity prices', 'They ignore all outages'],
+        PHD: ['Selling microgrids abroad', 'Interconnecting to share resources across microgrids', 'Turning off all critical loads', 'Replacing transmission entirely'],
       },
       correctIndex: 1,
       explanation: {
-        ELEMENTARY: 'Hospitals need electricity for machines that help sick people, so they must stay powered.',
-        MIDDLE_SCHOOL: 'Critical loads are things like hospital machines and water pumps that must not stop.',
-        HIGH_SCHOOL: 'Black start lets a microgrid restart itself after everything has shut down.',
-        UNDERGRADUATE: 'Value of lost load puts a money value on electricity that customers do not receive during outages.',
-        GRADUATE: 'Utilities often hold exclusive rights to sell and distribute power, which complicates shared microgrids.',
-        PHD: 'Averaging over scenarios can give little weight to rare but devastating events.',
+        ELEMENTARY: 'A microgrid is a small power system that can keep running when the big grid is broken.',
+        MIDDLE_SCHOOL: 'Islanding means the microgrid separates and powers its buildings on its own.',
+        HIGH_SCHOOL: 'The point of common coupling is where the switch connects or separates the microgrid.',
+        UNDERGRADUATE: 'Without rotating generators, grid-forming inverters must establish voltage and frequency.',
+        GRADUATE: 'SAIDI and SAIFI reflect everyday outages, not rare multi-day disasters.',
+        PHD: 'Networked microgrids can interconnect to share generation and storage.',
       },
     },
     {
-      id: 'rmgq3',
+      id: 're-mg2-q2',
       question: {
-        ELEMENTARY: 'What does a battery do in a microgrid?',
-        MIDDLE_SCHOOL: 'Which is an advantage of a solar plus battery microgrid over a diesel generator alone?',
-        HIGH_SCHOOL: 'What does a microgrid controller do if supply is short during islanding?',
-        UNDERGRADUATE: 'Why is the battery reserve a design tension?',
-        GRADUATE: 'What is a resilience hub?',
-        PHD: 'What is dynamic microgrid formation?',
+        ELEMENTARY: 'Which place is a "critical place" in an emergency?',
+        MIDDLE_SCHOOL: 'What is the first step when planning a community microgrid?',
+        HIGH_SCHOOL: 'Why do engineers often find efficiency upgrades helpful when auditing critical loads?',
+        UNDERGRADUATE: 'What usually drives the sizing of a solar-plus-storage microgrid?',
+        GRADUATE: 'What do stochastic outage models reveal about microgrid designs?',
+        PHD: 'Which methods are applied to microgrid planning under deep uncertainty?',
       },
       options: {
-        ELEMENTARY: ['Makes wind', 'Cleans the windows', 'Saves electricity to use later, even at night', 'Waters the plants'],
-        MIDDLE_SCHOOL: ['It makes more noise', 'It needs fuel deliveries', 'It needs no fuel and is useful every day', 'It only works in winter'],
-        HIGH_SCHOOL: ['Adds more customers', 'Turns off the solar panels', 'Sheds non-critical loads to keep the system balanced', 'Reconnects to the broken grid'],
-        UNDERGRADUATE: ['Batteries cannot hold energy', 'Reserve makes the battery heavier', 'Energy held for outages cannot be used for everyday savings', 'Reserve is required by law to be zero'],
-        GRADUATE: ['A power plant', 'A battery factory', 'A trusted community facility with backup power that provides services in emergencies', 'A utility office'],
-        PHD: ['Building new power plants', 'Designing microgrids on paper', 'Reconfiguring distribution switches after a disaster to create islands around available resources', 'Forming a utility company'],
-      },
-      correctIndex: 2,
-      explanation: {
-        ELEMENTARY: 'Batteries store electricity from the sun so it can be used later.',
-        MIDDLE_SCHOOL: 'Solar and batteries need no fuel and save money on normal days too.',
-        HIGH_SCHOOL: 'Load shedding protects critical loads when there is not enough power for everything.',
-        UNDERGRADUATE: 'Keeping energy in reserve for outages means giving up some everyday value.',
-        GRADUATE: 'Resilience hubs offer cooling, heating, charging and information during disasters.',
-        PHD: 'After damage, operators can reconfigure switches to form islands powered by local resources.',
-      },
-    },
-    {
-      id: 'rmgq4',
-      question: {
-        ELEMENTARY: 'What can you put in a storm-ready box?',
-        MIDDLE_SCHOOL: 'What does resilience mean?',
-        HIGH_SCHOOL: 'What is a weakness of relying only on a diesel generator?',
-        UNDERGRADUATE: 'What is value stacking?',
-        GRADUATE: 'Why are microgrids and grid hardening described as complements?',
-        PHD: 'Why is validating resilience models difficult?',
-      },
-      options: {
-        ELEMENTARY: ['Ice cream', 'A goldfish', 'A paper kite', 'A flashlight, water and snacks'],
-        MIDDLE_SCHOOL: ['Using more energy', 'Building bigger houses', 'Paying lower bills', 'The ability to keep working or recover quickly after a disruption'],
-        HIGH_SCHOOL: ['It is too quiet', 'It works only in sunshine', 'It cannot make electricity', 'Fuel supply can fail after disasters'],
-        UNDERGRADUATE: ['Stacking batteries vertically', 'Adding more solar panels', 'Building taller towers', 'Combining multiple revenue or savings streams to justify cost'],
-        GRADUATE: ['They are the same thing', 'One is always cheaper', 'Hardening is no longer used', 'Each protects different things, so they work best together'],
-        PHD: ['Models have no inputs', 'Resilience never matters', 'There is too much data', 'Rare events provide few observations to test against'],
+        ELEMENTARY: ['A toy shop', 'A movie theatre', 'A skate park', 'The health clinic'],
+        MIDDLE_SCHOOL: ['Painting the solar panels', 'Choosing a logo', 'Buying the biggest generator', 'Listing critical loads and how long they must run'],
+        HIGH_SCHOOL: ['They make loads bigger', 'They remove the need for any batteries', 'They are required by law everywhere', 'They shrink the system needed'],
+        UNDERGRADUATE: ['Sunny summer afternoons', 'Average spring days', 'Days with no load at all', 'Seasonal worst cases like multi-day winter storms'],
+        GRADUATE: ['Only the cost of solar panels', 'The colour of equipment', 'Nothing useful', 'Trade-offs between cost and probability of serving critical loads'],
+        PHD: ['Coin flips', 'Ignoring uncertainty', 'Single deterministic forecasts only', 'Stochastic programming, robust optimisation and deep-uncertainty methods'],
       },
       correctIndex: 3,
       explanation: {
-        ELEMENTARY: 'A flashlight, water and snacks help your family during a power outage.',
-        MIDDLE_SCHOOL: 'Resilience is about bouncing back from trouble like storms.',
-        HIGH_SCHOOL: 'After a disaster, roads may be blocked and fuel deliveries may not arrive.',
-        UNDERGRADUATE: 'Value stacking adds up savings and revenues like demand charge reduction and grid services.',
-        GRADUATE: 'Hardening protects whole feeders while microgrids protect specific sites and neighborhoods.',
-        PHD: 'Because catastrophic events are rare, there is little real data to check model predictions.',
+        ELEMENTARY: 'A health clinic must stay open to help people during an emergency.',
+        MIDDLE_SCHOOL: 'Planners first list critical loads and how long they must keep running.',
+        HIGH_SCHOOL: 'Using less energy means smaller, cheaper solar and battery systems can do the job.',
+        UNDERGRADUATE: 'The hardest periods, like long winter storms with little sun, set the size.',
+        GRADUATE: 'Simulating many outages shows how much extra cost buys how much extra resilience.',
+        PHD: 'These methods handle uncertainty that cannot be captured by single forecasts.',
       },
     },
     {
-      id: 'rmgq5',
+      id: 're-mg2-q3',
       question: {
-        ELEMENTARY: 'What usually knocks down power lines?',
-        MIDDLE_SCHOOL: 'Which part of a microgrid is its "brain"?',
-        HIGH_SCHOOL: 'Why do designers pick specific outage scenarios instead of designing for every possible event?',
-        UNDERGRADUATE: 'Who sets frequency and voltage when a microgrid is islanded?',
-        GRADUATE: 'Who faces the greatest risks from long outages?',
-        PHD: 'What normative choice is embedded in resilience metrics?',
+        ELEMENTARY: 'What does the special switch do when a storm hits?',
+        MIDDLE_SCHOOL: 'What does the microgrid controller do?',
+        HIGH_SCHOOL: 'What is "black start"?',
+        UNDERGRADUATE: 'Why is protection a key engineering challenge in islanded microgrids?',
+        GRADUATE: 'What is resilience-as-a-service?',
+        PHD: 'What does the resilience trapezoid represent?',
       },
       options: {
-        ELEMENTARY: ['Big storms, heavy snow or strong winds', 'Butterflies', 'Rainbows', 'Quiet sunny days'],
-        MIDDLE_SCHOOL: ['The controller', 'The solar panel', 'The battery case', 'The fence'],
-        HIGH_SCHOOL: ['Sizing for every possible event would be unaffordable', 'Storms never happen', 'Scenarios are required to be one hour long', 'Microgrids cannot store energy'],
-        UNDERGRADUATE: ['Local grid-forming inverters or generators', 'The main grid', 'The customers', 'Nobody, they float freely'],
-        GRADUATE: ['People relying on powered medical devices, older residents and those without alternatives', 'Only large factories', 'Everyone equally', 'Only people with generators'],
-        PHD: ['Whether all load counts equally and how long outages are weighted', 'The color of graphs', 'Which software language to use', 'Whether to use metric units'],
+        ELEMENTARY: ['It separates the microgrid from the big grid', 'It turns off the sun', 'It calls the fire station', 'It plays music'],
+        MIDDLE_SCHOOL: ['Decides when to island and how to share power', 'Paints the buildings', 'Bills customers for water', 'Plants trees'],
+        HIGH_SCHOOL: ['Restarting a power system from a full outage without outside help', 'Painting batteries black', 'Starting cars in winter', 'Turning off all solar'],
+        UNDERGRADUATE: ['Inverter fault currents are small, so conventional protection may miss faults', 'Protection is not needed', 'Faults never happen in islands', 'Wires cannot carry current'],
+        GRADUATE: ['A provider guarantees backup power for a fee', 'A government tax', 'A type of inverter', 'Free electricity for all'],
+        PHD: ['System performance over disruption, degradation and recovery', 'A shape of solar panel', 'A battery chemistry', 'A pricing schedule'],
       },
       correctIndex: 0,
       explanation: {
-        ELEMENTARY: 'Storms, snow and wind can break power lines and cause outages.',
-        MIDDLE_SCHOOL: 'The controller manages where power goes and when to disconnect.',
-        HIGH_SCHOOL: 'Planners choose realistic scenarios and focus on the most critical loads to keep costs reasonable.',
-        UNDERGRADUATE: 'Without the main grid, local grid-forming sources must hold voltage and frequency steady.',
-        GRADUATE: 'Outage harms fall hardest on vulnerable households, which equity programs aim to address.',
-        PHD: 'Metric design decides whose losses count and how heavily, which is a value judgment.',
+        ELEMENTARY: 'The switch separates the microgrid so it can keep critical places running.',
+        MIDDLE_SCHOOL: 'The controller manages islanding and decides how to share power among buildings.',
+        HIGH_SCHOOL: 'Black start means restarting from a complete outage using only local resources.',
+        UNDERGRADUATE: 'Inverters supply little fault current, so new protection schemes are needed.',
+        GRADUATE: 'In resilience-as-a-service, a provider guarantees backup power for a fee.',
+        PHD: 'The trapezoid shows how performance drops and recovers through an event.',
+      },
+    },
+    {
+      id: 're-mg2-q4',
+      question: {
+        ELEMENTARY: 'What do solar panels do for the microgrid on normal days?',
+        MIDDLE_SCHOOL: 'How can a microgrid help pay for itself on normal days?',
+        HIGH_SCHOOL: 'What is a resilience hub?',
+        UNDERGRADUATE: 'Why are many community microgrids utility-owned or built through partnerships?',
+        GRADUATE: 'Why can customer damage functions be problematic for resilience planning?',
+        PHD: 'What have empirical studies found about microgrid funding and siting?',
+      },
+      options: {
+        ELEMENTARY: ['Nothing at all', 'Make it snow', 'Help save money', 'Turn off the lights'],
+        MIDDLE_SCHOOL: ['By charging residents for storms', 'By selling the batteries', 'By selling solar power or helping the grid', 'It cannot'],
+        HIGH_SCHOOL: ['A gym', 'A power plant', 'A community building with backup power offering shelter and supplies', 'A bus station'],
+        UNDERGRADUATE: ['Solar panels require it', 'Batteries cannot be privately owned', 'Serving many customers across streets can conflict with utility franchise rights', 'Utilities forbid all microgrids'],
+        GRADUATE: ['They are too accurate', 'They ignore businesses', 'They are poorly calibrated for multi-day outages and undervalue vulnerable groups', 'They only measure wind'],
+        PHD: ['They always follow need', 'They are random', 'They often follow institutional capacity rather than need', 'They never favour any area'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'On normal days the solar panels help the town save money.',
+        MIDDLE_SCHOOL: 'Selling solar power or providing grid services earns money between emergencies.',
+        HIGH_SCHOOL: 'Resilience hubs are community buildings with backup power that support residents in emergencies.',
+        UNDERGRADUATE: 'Franchise rights often reserve multi-customer distribution for the utility.',
+        GRADUATE: 'Damage functions underestimate long outages and their effects on vulnerable people.',
+        PHD: 'Places with more institutional capacity tend to get microgrids, which can widen gaps.',
+      },
+    },
+    {
+      id: 're-mg2-q5',
+      question: {
+        ELEMENTARY: 'Who helps plan a town\'s microgrid?',
+        MIDDLE_SCHOOL: 'Why might a microgrid keep a small generator?',
+        HIGH_SCHOOL: 'What is load shedding?',
+        UNDERGRADUATE: 'What is a resilience target?',
+        GRADUATE: 'Why should microgrids be tested regularly in island mode?',
+        PHD: 'Why is interdependent infrastructure modelling important for microgrid research?',
+      },
+      options: {
+        ELEMENTARY: ['Only one person', 'Neighbours, the town council and the power company', 'Nobody', 'Only animals'],
+        MIDDLE_SCHOOL: ['To make noise', 'For very long emergencies when solar and batteries run low', 'To charge phones only', 'To replace the solar panels'],
+        HIGH_SCHOOL: ['Cutting trees', 'Deliberately disconnecting less important loads to keep critical ones running', 'Moving boxes', 'Shedding old batteries'],
+        UNDERGRADUATE: ['A sports score', 'A stated goal for which loads to serve, for how long and with what probability', 'The price of solar panels', 'A battery brand'],
+        GRADUATE: ['Testing is forbidden', 'Untested systems can fail when they are finally needed', 'Islanding damages equipment', 'Tests raise electricity prices'],
+        PHD: ['Power systems are independent of water and communications', 'Microgrids supporting water, communications and fuel affect community recovery', 'Only electricity matters', 'It replaces engineering design'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Neighbours, leaders and the power company all work together.',
+        MIDDLE_SCHOOL: 'A generator can help in very long outages when solar and batteries are not enough.',
+        HIGH_SCHOOL: 'Load shedding switches off less important loads so critical ones keep power.',
+        UNDERGRADUATE: 'A resilience target defines which loads must be served, for how long and how reliably.',
+        GRADUATE: 'Regular island tests reveal problems before a real emergency.',
+        PHD: 'Power supports water pumping, communications and fuel, so their links shape recovery.',
       },
     },
   ],

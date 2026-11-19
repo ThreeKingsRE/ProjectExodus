@@ -1,406 +1,295 @@
 import type { ModuleExpansion } from '../types'
 
+// Rewritten with its own angle: heating and cooling buildings with the ground's
+// steady temperature. Chapter 4 covers geothermal power from deep heat.
 const expansion: ModuleExpansion = {
   topicId: 'renewable-energy',
   moduleKey: 'geothermal-energy~2',
+  title: 'Geothermal Heat Pumps for Homes and Districts',
+  description: {
+    ELEMENTARY: 'How the steady warmth under our feet can heat homes in winter and cool them in summer.',
+    MIDDLE_SCHOOL: 'How ground-source heat pumps use the ground\'s steady temperature to heat and cool buildings.',
+    HIGH_SCHOOL: 'How ground-source heat pumps and district geothermal networks heat and cool buildings with little energy.',
+    UNDERGRADUATE: 'Ground-source heat pump design: loops, coefficient of performance, sizing and district networks.',
+    GRADUATE: 'Shallow geothermal systems at building and district scale: design, performance, economics and policy.',
+    PHD: 'Research frontiers in shallow geothermal and thermal networks: ground modelling, seasonal balance and decarbonisation pathways.',
+  },
   lessons: [
     {
       id: 're-geo-1',
-      title: 'Earth\'s Heat Beneath Our Feet',
+      title: 'Geothermal Heat Pumps for Homes and Districts',
       content: {
         ELEMENTARY: `
-<h2>The Warm Ground Under Your Home</h2>
-<p>Did you know the ground under your feet is a little bit like a giant, cozy blanket? Deep inside, our planet is very, very hot. That heat slowly moves up toward the surface. People have found clever ways to use this heat to warm homes, take baths and even make electricity. This is called <em>geothermal energy</em>. "Geo" means Earth and "thermal" means heat.</p>
+<h2>The Ground Stays Just Right</h2>
+<p>On a freezing winter day the air is icy, and on a hot summer day the air is baking. But a few steps under the ground, the dirt stays about the same temperature all year long. It is cooler than summer air and warmer than winter air. People have found a clever way to use that steady ground to make homes comfortable.</p>
 
-<h3>Hot Water From the Ground</h3>
-<p>In some places, the heat comes so close to the surface that water underground gets hot. Sometimes that hot water bubbles up as a warm pool called a hot spring. In a few special places, the water gets so hot that it shoots up into the air with a whoosh of steam. That is a geyser!</p>
+<h3>A Pipe Loop Under the Yard</h3>
+<p>Workers bury long loops of pipe under a yard or a playground. Water flows through the pipes. In winter, the water picks up warmth from the ground and carries it into the house. A machine called a heat pump makes that warmth stronger and sends it into the rooms. In summer, it works the other way: the heat pump takes heat out of the house and puts it back into the cool ground.</p>
 <ul>
-<li><strong>Hot spring:</strong> a pool of warm water that comes up naturally from under the ground</li>
-<li><strong>Geyser:</strong> a hot spring that sometimes shoots water and steam high into the air</li>
-<li><strong>Steam:</strong> the hot cloud that rises when water gets very hot and boils</li>
+<li><strong>Heat pump:</strong> a machine that moves heat from one place to another</li>
+<li><strong>Pipe loop:</strong> long pipes buried in the ground that carry water</li>
+<li><strong>Ground temperature:</strong> how warm the dirt is a few steps underground</li>
+<li><strong>Heating:</strong> making a place warmer</li>
+<li><strong>Cooling:</strong> making a place cooler</li>
 </ul>
 
-<h3>The Ground Stays the Same</h3>
-<p>Here is a fun secret. Just a few steps down under the ground, the soil stays about the same temperature all year long. In winter it feels warmer than the cold air. In summer it feels cooler than the hot air. A machine called a heat pump can use this steady ground to warm a house in winter and cool it in summer.</p>
-<ul>
-<li><strong>Heat pump:</strong> a machine that moves heat from one place to another to warm or cool a building</li>
-<li><strong>Pipe loop:</strong> long tubes buried in the ground that carry water to collect the ground's warmth</li>
-<li><strong>Power plant:</strong> a big building that makes electricity for many homes</li>
-</ul>
+<h3>Sharing Ground Warmth</h3>
+<p>Some towns connect many houses, schools and shops to one big shared loop. Everyone takes warmth from the ground and puts it back, like a team passing a ball around.</p>
 
-<h3>Why It Is a Great Idea</h3>
-<p>Earth's heat is always there, day and night, sunny or rainy. Using it does not make smoky air. That is why many people think geothermal energy is a wonderful helper for a cleaner planet.</p>
-
-<h3>Things You Can Try</h3>
-<ol>
-<li>Touch a stone in the shade and a stone in the sun. Which feels warmer? The ground can store heat too!</li>
-<li>Ask a grown-up if your town has any hot springs nearby.</li>
-<li>Draw a picture of a house with pipes going deep into the ground to collect warmth.</li>
-</ol>
-<p>Next time you stand on the ground, remember: there is a warm, sleepy giant of heat far below you, ready to help!</p>
+<h3>Why It Is Good for the Planet</h3>
+<p>Heat pumps use a little electricity to move a lot of heat. That means less burning of gas or oil, cleaner air and lower bills for families. Once the pipes are buried, they can keep working quietly for fifty years or more.</p>
 `,
         MIDDLE_SCHOOL: `
-<h2>The Heat Beneath Our Feet</h2>
-<p>Earth is hot inside. The deeper you go, the hotter it gets. Part of this heat is left over from when the planet formed, and part comes from radioactive elements in rocks that slowly break down and release energy. This heat flows outward all the time. We can tap into it in three main ways: using hot water directly, making electricity, and using the steady temperature of shallow ground with heat pumps.</p>
+<h2>Borrowing Heat From the Earth</h2>
+<p>Dig about two metres down almost anywhere and the soil sits at a steady temperature, often around 10 to 15 °C, whatever the season. Above ground, winter air might be −10 °C and summer air 35 °C. A ground-source heat pump, sometimes called a geothermal heat pump, takes advantage of that difference to heat and cool buildings using much less energy than a furnace or an ordinary air conditioner.</p>
 
-<h3>Why Is It Hot Underground?</h3>
-<p>Miners noticed long ago that deep mines are warm. On average, temperature rises by a few tens of degrees Celsius for every kilometer you go down. In volcanic areas, near the edges of tectonic plates, hot rock and magma come much closer to the surface. That is why countries such as Iceland, New Zealand and parts of the western United States have so many hot springs and geysers.</p>
-
-<h3>Three Ways to Use Earth's Heat</h3>
-<table>
-<thead><tr><th>Method</th><th>What it does</th><th>Where it works</th></tr></thead>
-<tbody>
-<tr><td>Direct use</td><td>Hot water heats buildings, greenhouses, fish farms and pools</td><td>Places with warm water fairly close to the surface</td></tr>
-<tr><td>Power plants</td><td>Very hot water or steam spins turbines to make electricity</td><td>Mostly volcanic and tectonically active regions</td></tr>
-<tr><td>Ground-source heat pumps</td><td>Move heat between a building and the shallow ground</td><td>Almost anywhere on Earth</td></tr>
-</tbody>
-</table>
-
-<h3>Key Words</h3>
+<h3>How It Works</h3>
+<p>A ground loop of plastic pipe is buried in trenches or drilled into deep vertical holes. A water-based fluid circulates through it. In winter the fluid absorbs heat from the ground; the heat pump, which works like a refrigerator running in reverse, concentrates that heat and delivers warm air or warm water to the building. In summer, the heat pump moves heat out of the building and dumps it into the cooler ground.</p>
 <ul>
-<li><strong>Geothermal gradient:</strong> how quickly temperature increases as you go deeper into the Earth</li>
-<li><strong>Magma:</strong> melted rock beneath the surface that heats the rock and water around it</li>
-<li><strong>Geyser:</strong> a hot spring that erupts water and steam into the air from time to time</li>
-<li><strong>Direct use:</strong> using geothermal hot water for heating without turning it into electricity</li>
-<li><strong>District heating:</strong> a system of pipes that carries hot water to warm many buildings in a town</li>
-<li><strong>Heat pump:</strong> a machine that moves heat from a cooler place to a warmer place using electricity</li>
+<li><strong>Ground-source heat pump:</strong> a heat pump that exchanges heat with the ground instead of the outside air</li>
+<li><strong>Ground loop:</strong> buried pipes that carry fluid to collect or release heat</li>
+<li><strong>Borehole:</strong> a narrow, deep hole drilled to hold a vertical ground loop</li>
+<li><strong>Efficiency:</strong> how much useful heating or cooling you get for the energy you put in</li>
+<li><strong>District network:</strong> a shared system of pipes that serves many buildings</li>
 </ul>
 
-<h3>How a Ground-Source Heat Pump Works</h3>
-<p>A few meters below the surface, the ground stays at a fairly steady temperature all year. A ground-source heat pump circulates fluid through buried pipes. In winter, the fluid picks up warmth from the ground and the heat pump concentrates it to heat the house. In summer, it runs the other way, moving heat out of the house and into the cooler ground. Because it moves heat instead of making it by burning fuel, it can deliver several units of heat for every unit of electricity it uses.</p>
+<h3>Why It Saves Energy</h3>
+<p>Moving heat takes far less energy than making it by burning fuel. A good ground-source heat pump can deliver three to five units of heat for every unit of electricity it uses. If that electricity comes from solar or wind, the home's heating can be almost carbon-free.</p>
 
-<h3>Why It Matters</h3>
-<p>Unlike sunshine and wind, Earth's heat is available all the time. It produces very little air pollution and uses little land. The main challenges are cost, because drilling is expensive, and location, because the hottest resources are only found in certain places. Heat pumps help solve the location problem, since shallow ground works for heating and cooling almost everywhere.</p>
+<h3>Whole Neighbourhoods</h3>
+<p>Drilling boreholes is expensive for one house, so some towns build district geothermal networks. Many buildings share the boreholes and pipes, which spreads the cost and lets buildings that need cooling share heat with buildings that need warming.</p>
 `,
         HIGH_SCHOOL: `
-<h2>Geothermal Energy: Power Plants, Heat Pumps and Direct Use</h2>
-<p>Geothermal energy is heat stored in rock and fluids beneath Earth's surface. It is one of the few renewable resources that can run around the clock, which makes it valuable for a clean grid. This lesson looks at how geothermal heat is turned into electricity, how it heats buildings directly, and how heat pumps use the shallow ground almost anywhere.</p>
+<h2>Heating and Cooling With Shallow Geothermal Energy</h2>
+<p>"Geothermal" often brings to mind steam erupting from volcanic regions and turning turbines. That is deep geothermal power. This chapter is about shallow geothermal energy: using the ground just below our feet, which stays at a steady temperature year-round, as a source of heat in winter and a sink for heat in summer. It works almost anywhere, not just near volcanoes, and it is one of the most efficient ways to keep buildings comfortable.</p>
 
-<h3>Where the Resource Comes From</h3>
-<p>Heat flows outward from Earth's interior, fed by leftover heat from planetary formation and the decay of radioactive isotopes in the crust. In most places, the rock gets hotter at a moderate rate with depth. Near plate boundaries, volcanoes and hot spots, the gradient is much steeper. A usable <em>hydrothermal</em> resource needs three things together: heat, water and permeable rock that lets the water flow.</p>
-
-<h3>Turning Heat Into Electricity</h3>
-<table>
-<thead><tr><th>Plant type</th><th>How it works</th><th>Resource needed</th></tr></thead>
-<tbody>
-<tr><td>Dry steam</td><td>Steam from the reservoir flows straight into the turbine</td><td>Rare, very hot, steam-dominated fields</td></tr>
-<tr><td>Flash steam</td><td>High-pressure hot water is depressurized so part of it "flashes" into steam</td><td>Hot water reservoirs, the most common type</td></tr>
-<tr><td>Binary cycle</td><td>Moderate-temperature water heats a second fluid with a lower boiling point, which drives the turbine in a closed loop</td><td>Lower-temperature resources, which are far more widespread</td></tr>
-</tbody>
-</table>
-<p>After use, cooled geothermal water is usually injected back underground. This helps maintain reservoir pressure and keeps dissolved minerals and gases out of rivers.</p>
-
-<h3>Direct Use and District Heating</h3>
-<p>Turning heat into electricity is inefficient at moderate temperatures, so in many places it makes more sense to use the hot water directly. Geothermal district heating networks pipe hot water to homes, schools and offices. Other direct uses include heating greenhouses, drying crops and timber, warming fish farms, melting snow on sidewalks, and supplying spas and pools.</p>
-
-<h3>Ground-Source Heat Pumps</h3>
-<p>Ground-source heat pumps do not need a volcanic hot spot. They use the stable temperature of the shallow ground as a heat source in winter and a heat sink in summer. Loops can be buried horizontally in trenches, placed in vertical boreholes, or laid in a pond. Because the ground is milder than the outdoor air in extreme weather, these systems are often more efficient than air-source heat pumps on the coldest and hottest days.</p>
-
-<h3>Key Terms</h3>
+<h3>The Heat Pump Cycle</h3>
+<p>A heat pump uses a refrigerant that boils at a low temperature. In heating mode, the refrigerant absorbs heat from the ground loop and evaporates. A compressor squeezes the vapour, raising its temperature, and the hot refrigerant releases heat into the building as it condenses. An expansion valve then drops its pressure and the cycle repeats. Reversing the flow turns the system into an air conditioner that rejects heat into the ground.</p>
 <ul>
-<li><strong>Hydrothermal reservoir:</strong> an underground zone of hot water or steam in permeable rock</li>
-<li><strong>Permeability:</strong> how easily fluid can flow through the cracks and pores in rock</li>
-<li><strong>Binary cycle plant:</strong> a power plant that uses geothermal heat to boil a second working fluid in a closed loop</li>
-<li><strong>Reinjection:</strong> pumping used geothermal fluid back into the reservoir to sustain pressure</li>
-<li><strong>Coefficient of performance:</strong> the heat delivered by a heat pump divided by the electricity it uses</li>
+<li><strong>Refrigerant:</strong> a fluid that absorbs and releases heat as it changes between liquid and gas</li>
+<li><strong>Compressor:</strong> the part that raises the pressure and temperature of the refrigerant vapour</li>
+<li><strong>Coefficient of performance (COP):</strong> units of heat delivered per unit of electricity used</li>
+<li><strong>Closed loop:</strong> a sealed pipe circuit that recirculates the same fluid through the ground</li>
+<li><strong>Fifth-generation district network:</strong> a low-temperature shared loop where each building has its own heat pump</li>
 </ul>
 
-<h3>Benefits, Challenges and Solutions</h3>
-<ul>
-<li><strong>Benefit:</strong> steady, weather-independent output with a small land footprint.</li>
-<li><strong>Challenge:</strong> high up-front drilling costs and the risk that a well finds less heat or flow than expected.</li>
-<li><strong>Challenge:</strong> some fluids release gases such as hydrogen sulfide and carbon dioxide, which need managing.</li>
-<li><strong>Solution:</strong> binary plants and reinjection keep fluids in a closed loop with very low emissions.</li>
-<li><strong>Solution:</strong> heat pumps bring geothermal heating and cooling to regions without hot resources.</li>
-</ul>
+<h3>Loops, Sizing and Cost</h3>
+<p>Horizontal loops are laid in trenches one to two metres deep and need lots of land; vertical loops use boreholes 50 to 150 metres deep and fit on small lots. Installers size the loop from the building's heating and cooling loads and the soil's thermal properties. Because the ground is milder than winter air, ground-source systems often reach a COP of 3.5 to 5, beating air-source heat pumps on the coldest days. Their drawback is up-front cost, mainly drilling, which is why incentives and shared networks matter.</p>
+
+<h3>District Networks</h3>
+<p>In a modern district system, a shared loop of pipes runs at near-ground temperature. Each building has its own heat pump. A supermarket that must cool its fridges dumps heat into the loop, and nearby homes draw that heat back out. Shared boreholes cut costs per building, and utilities in several countries now plan these networks as a gas replacement for whole neighbourhoods.</p>
 `,
         UNDERGRADUATE: `
-<h2>Analyzing Geothermal Resources and Project Economics</h2>
-<p>Geothermal projects are best understood as subsurface engineering ventures with an energy plant on top. The plant itself is conventional; the uncertainty, cost and value lie mostly underground. This lesson develops the vocabulary and reasoning needed to classify resources, compare conversion options, and evaluate the economics of geothermal power and heat.</p>
+<h2>Ground-Source Heat Pumps: Principles and Practice</h2>
+<p>Shallow geothermal systems exploit the thermal inertia of the subsurface. Below roughly 10 metres, ground temperature approaches the local mean annual air temperature and varies little through the year. Ground-source heat pumps (GSHPs) couple a vapour-compression heat pump to this stable reservoir, achieving higher and steadier efficiencies than air-source units, especially in cold climates. They are a cornerstone of building decarbonisation strategies that replace fossil boilers with electrified heat.</p>
 
-<h3>Core Concepts</h3>
+<h3>Thermodynamics and Performance</h3>
+<p>The ideal Carnot COP for heating is T_hot / (T_hot − T_cold), using absolute temperatures. Raising the source temperature or lowering the delivery temperature narrows the lift and improves performance, which is why GSHPs pair best with low-temperature distribution such as underfloor heating. Real systems reach 45 to 60 percent of the Carnot limit. Seasonal performance factors (SPF), which include pumps and auxiliary loads over a year, are the more honest metric; well-designed systems achieve SPFs of 3.5 to 4.5.</p>
 <ul>
-<li><strong>Temperature gradient:</strong> the rate at which rock temperature rises with depth, typically expressed in degrees Celsius per kilometer</li>
-<li><strong>Enthalpy:</strong> the heat content of a geothermal fluid, which sets how much useful work or heat it can deliver</li>
-<li><strong>Exploration risk:</strong> the chance that wells fail to find adequate temperature, flow or fluid chemistry</li>
-<li><strong>Capacity factor:</strong> actual energy produced divided by what the plant would produce running at full output all year</li>
-<li><strong>Enhanced geothermal system:</strong> a reservoir created by increasing the permeability of hot, dry or tight rock</li>
-<li><strong>Cascading use:</strong> using geothermal fluid first for high-temperature tasks and then for lower-temperature ones</li>
+<li><strong>Seasonal performance factor (SPF):</strong> total heat delivered over a year divided by total electricity used, including auxiliaries</li>
+<li><strong>Temperature lift:</strong> the difference between the source temperature and the delivery temperature a heat pump must overcome</li>
+<li><strong>Borehole heat exchanger:</strong> a vertical U-tube or coaxial pipe grouted into a borehole to exchange heat with the ground</li>
+<li><strong>Thermal conductivity:</strong> how readily the ground conducts heat, which sets how much loop length is needed</li>
+<li><strong>Thermal response test:</strong> a field test that measures the ground's effective conductivity and borehole resistance</li>
 </ul>
 
-<h3>Classifying Resources</h3>
-<table>
-<thead><tr><th>Resource class</th><th>Typical temperature</th><th>Best uses</th></tr></thead>
-<tbody>
-<tr><td>High enthalpy</td><td>Well above 150 degrees Celsius</td><td>Flash or dry steam electricity, often with cascaded heat use</td></tr>
-<tr><td>Medium enthalpy</td><td>Roughly 90 to 150 degrees Celsius</td><td>Binary cycle electricity, district heating, industrial heat</td></tr>
-<tr><td>Low enthalpy</td><td>Below roughly 90 degrees Celsius</td><td>Direct use for buildings, greenhouses and aquaculture</td></tr>
-<tr><td>Shallow ground</td><td>Near the local average air temperature</td><td>Ground-source heat pumps for heating and cooling</td></tr>
-</tbody>
-</table>
+<h3>Design and Sizing</h3>
+<p>Loop design starts from the building's peak and annual loads. Software applying line-source or g-function models predicts fluid temperatures over 20 to 50 years; undersized fields drift colder each winter as heat extraction outpaces natural recovery. A thermal response test on a pilot borehole refines conductivity estimates, often reducing total drilling. Open-loop systems that draw groundwater directly can be cheaper where aquifers allow, but need permits and careful reinjection.</p>
 
-<h3>Thermodynamic Limits in Words</h3>
-<p>The maximum fraction of heat that any engine can convert to work depends on the gap between the hot source and the cold sink. Because geothermal fluids are much cooler than combustion flames, conversion efficiencies are low, often around a tenth of the heat extracted for moderate resources. This is why using the same heat directly, where a demand exists nearby, frequently delivers more useful energy per well than generating electricity.</p>
+<h3>From Buildings to Districts</h3>
+<p>Fifth-generation district heating and cooling networks circulate water at 10 to 25 °C through a shared ambient loop. Each building's heat pump lifts or rejects heat as needed, so simultaneous heating and cooling loads cancel, and shared borefields can be sized for the net load. Such networks avoid the heat losses of high-temperature district heating and can integrate waste heat from data centres or sewers.</p>
 
-<h3>The Cost Structure</h3>
-<p>Geothermal electricity has very high capital costs and very low fuel costs, because there is no fuel to buy. Drilling and well completion can account for a large share of total project cost, and exploration happens before the developer knows whether the resource is commercial. The typical development sequence is:</p>
-<ol>
-<li>Surface exploration: geology, geochemistry of springs and gases, and geophysical surveys.</li>
-<li>Exploration drilling: temperature-gradient holes and slim wells to confirm heat.</li>
-<li>Resource confirmation: full-size wells and flow tests to estimate reservoir capacity.</li>
-<li>Field development: production and injection wells, pipelines and the power plant.</li>
-<li>Operation: monitoring pressure and temperature, with make-up wells drilled as output declines.</li>
-</ol>
-<p>Risk is front-loaded. Lenders are reluctant to finance the early stages, so public risk-sharing schemes, drilling insurance and government exploration programs often play a key role.</p>
-
-<h3>Why Capacity Factor Matters</h3>
-<p>Geothermal plants commonly run at high capacity factors because heat is available continuously. Two projects with the same capital cost per kilowatt can therefore have very different costs per unit of energy: the one that runs most hours spreads its fixed cost over far more output. This firmness also has system value that a simple cost comparison misses, because it reduces the need for storage and backup in a high-renewable grid.</p>
-
-<h3>Applied Checklist for a Project Screen</h3>
-<ol>
-<li>What temperature, flow rate and fluid chemistry are expected, and how confident is that estimate?</li>
-<li>Is there a nearby heat demand that could use the fluid directly or in cascade?</li>
-<li>Which plant type matches the resource, and what is its expected efficiency?</li>
-<li>How will declining reservoir pressure be managed through reinjection and make-up wells?</li>
-<li>Who carries exploration risk, and what instruments reduce it?</li>
-</ol>
+<h3>Ground-Source Versus Air-Source</h3>
+<p>Air-source heat pumps are cheaper to install because they need no drilling, and modern cold-climate models work well down to around −20 °C. Ground-source systems cost more up front but deliver higher seasonal efficiency, lower peak electricity demand and longer equipment life, since the loop lasts decades. The right choice depends on climate, lot size, drilling costs and whether a shared network is available.</p>
 `,
         GRADUATE: `
-<h2>Geothermal Policy, Advanced Drilling and Hybrid Systems</h2>
-<p>Geothermal energy offers firm, low-carbon power and heat, yet it supplies a small share of global energy compared with its technical potential. The gap is not primarily about plant technology. It reflects exploration risk, drilling cost, permitting complexity and the difficulty of financing subsurface uncertainty. This lesson examines the policy and institutional landscape, the drilling innovations that could expand the resource base, and hybrid configurations that combine geothermal with other energy systems.</p>
+<h2>Shallow Geothermal Systems at Building and District Scale</h2>
+<p>Electrifying space heating is among the hardest parts of decarbonisation because heat demand is large, seasonal and peaky. Shallow geothermal systems address all three: they deliver high seasonal efficiency, use the ground as interseasonal storage and reduce the winter peak that air-source heat pumps impose on electricity networks. This chapter treats ground-source heat pumps and ambient-temperature thermal networks as integrated building and infrastructure systems.</p>
 
-<h3>Key Concepts</h3>
+<h3>System Performance and Grid Interaction</h3>
+<p>Because ground temperatures are stable, GSHP coefficient of performance stays high during cold snaps, when air-source units degrade and resort to resistance backup. At scale this matters for distribution networks: modelling studies of high heat-pump adoption show that ground-source systems can substantially lower coincident winter peak demand compared with an all-air-source scenario, deferring network reinforcement. Pairing GSHPs with thermal storage in the building fabric or buffer tanks adds load-shifting capability that can respond to time-varying tariffs.</p>
 <ul>
-<li><strong>Risk mitigation fund:</strong> a public or blended finance facility that reimburses part of the cost of unsuccessful exploration wells</li>
-<li><strong>Resource rights:</strong> the legal framework that defines who may explore, extract and reinject geothermal fluids or heat</li>
-<li><strong>Firm clean power:</strong> low-carbon generation that can deliver output on demand regardless of weather</li>
-<li><strong>Hybrid plant:</strong> an installation that combines geothermal heat with another source such as solar thermal, biomass or storage</li>
-<li><strong>Repurposed wells:</strong> oil and gas wells converted for geothermal heat extraction or reused as data sources</li>
-<li><strong>Social license:</strong> the ongoing acceptance of a project by local communities and stakeholders</li>
+<li><strong>Coincident peak demand:</strong> the highest simultaneous demand across many customers, which sets network capacity needs</li>
+<li><strong>Ambient loop:</strong> a district pipe network operating near ground temperature, with heat pumps in each building</li>
+<li><strong>Borefield:</strong> an array of borehole heat exchangers serving one building or a network</li>
+<li><strong>Seasonal thermal balance:</strong> how closely annual heat extraction and injection match, which governs long-term ground temperature</li>
+<li><strong>Levelised cost of heat:</strong> the lifetime cost of a heating system divided by the heat it delivers</li>
 </ul>
 
-<h3>Policy Barriers and Instruments</h3>
-<p>Geothermal developers face a funding valley: private capital typically enters only after the resource is confirmed, yet confirmation requires expensive drilling. Countries that have expanded geothermal have often used public geological surveys, government-led exploration, or cost-sharing for early wells. Permitting is another bottleneck, because geothermal straddles mining, water and energy law, and projects may need approvals from several agencies.</p>
-<table>
-<thead><tr><th>Instrument</th><th>What it addresses</th><th>Trade-off</th></tr></thead>
-<tbody>
-<tr><td>Public exploration data</td><td>Lowers information costs for all developers</td><td>Requires sustained public budgets and data sharing rules</td></tr>
-<tr><td>Drilling risk insurance or cost sharing</td><td>Reduces losses from dry or weak wells</td><td>Needs careful design to avoid moral hazard</td></tr>
-<tr><td>Long-term offtake contracts</td><td>Provides revenue certainty for high capital costs</td><td>Can lock in prices if technology costs fall</td></tr>
-<tr><td>Streamlined permitting</td><td>Shortens development timelines</td><td>Must still protect water, land and cultural values</td></tr>
-<tr><td>Valuing firm capacity</td><td>Rewards round-the-clock output in planning and markets</td><td>Requires market rules that recognize reliability services</td></tr>
-</tbody>
-</table>
+<h3>Design Under Uncertainty</h3>
+<p>Borefield design hinges on long-term thermal balance. Heating-dominated buildings progressively cool the ground unless heat is recharged, for example by summer cooling loads, solar thermal input or waste heat. Design tools based on g-functions and simulation of hourly loads over decades quantify this drift; sensitivity to conductivity, borehole spacing and load assumptions is significant, so thermal response tests and conservative margins are standard. Groundwater flow can enhance performance but complicates modelling.</p>
 
-<h3>Advanced Drilling</h3>
-<p>Drilling cost rises steeply with depth and rock hardness, which limits access to hot rock outside volcanic regions. Transfer of techniques from the oil and gas industry, such as horizontal drilling, multi-well pads and improved drill bits, has lowered costs in pilot projects. Research also explores non-contact methods that would weaken or remove rock without conventional bits. If drilling costs fall substantially, the resource base expands from a few favored regions toward much of the world.</p>
+<h3>Economics, Business Models and Policy</h3>
+<p>High capital costs, dominated by drilling, are the main barrier. Levelised-cost comparisons favour GSHPs over long horizons, but households discount future savings heavily. Utility-owned shared borefields, analogous to gas mains, spread costs over many decades and many customers; several utilities are piloting "networked geothermal" as a pathway to retire gas distribution. Policy levers include treating borefields as regulated infrastructure, offering low-interest finance, streamlining drilling permits and setting building codes that favour low-temperature distribution.</p>
 
-<h3>Hybrid and Integrated Systems</h3>
-<p>Hybrids can raise output or flexibility. Solar thermal can boost the temperature of geothermal fluid during sunny hours, improving binary plant efficiency on hot days when air-cooled plants otherwise lose output. Geothermal reservoirs can also be operated flexibly, storing heat or pressure and dispatching when prices are high. Co-production of minerals from brines, such as lithium in some fields, can add revenue, though it brings its own regulatory and environmental questions.</p>
-
-<h3>Equity and Governance</h3>
-<p>Many high-temperature resources lie on land with deep cultural significance, including Indigenous territories where hot springs and volcanic features hold spiritual and community value. Early, genuine consultation, benefit-sharing arrangements and community ownership models influence whether projects proceed and whether benefits stay local. Induced seismicity, subsidence and water use need transparent monitoring so that affected residents can trust the data.</p>
-
-<h3>Evaluation Framework</h3>
-<ol>
-<li>Characterize the resource and the uncertainty around it, not just the central estimate.</li>
-<li>Identify who carries exploration risk and which public instruments are available.</li>
-<li>Compare power-only, heat-only, cascaded and hybrid configurations.</li>
-<li>Value firmness and flexibility in system terms, not only cost per unit of energy.</li>
-<li>Assess community consent, benefit-sharing and environmental monitoring arrangements.</li>
-</ol>
+<h3>Lessons From Early Networks</h3>
+<p>Early ambient-loop districts in Europe and pilot networked-geothermal projects in North America show that technical performance is usually good, while the hard parts are organisational: securing rights to drill under streets and parks, coordinating connection timelines with building owners, and setting tariffs that are fair to early and late joiners. Projects that start with an anchor load, such as a hospital, campus or supermarket with large cooling needs, tend to reach a viable heat balance and customer base faster.</p>
 `,
         PHD: `
-<h2>Research Frontiers: Enhanced Systems, Reservoir Modeling and Induced Seismicity</h2>
-<p>Most of the world's accessible crustal heat sits in rock that is hot but not naturally permeable. Enhanced geothermal systems aim to engineer permeability in such rock, potentially turning geothermal from a regional niche into a widely available firm resource. Doing so requires predicting coupled processes in fractured rock that are poorly observed, and managing the seismic hazard that stimulation can create. This lesson surveys the modeling methods, debates and open questions at the frontier.</p>
+<h2>Research Frontiers in Shallow Geothermal and Thermal Networks</h2>
+<p>Shallow geothermal energy is technologically mature at the scale of a single building, yet its role in decarbonising heat at urban scale remains under-researched. Key open questions concern the long-term behaviour of densely exploited subsurfaces, the optimal design and control of ambient thermal networks, and the institutional models that could finance shared ground infrastructure. This chapter surveys those frontiers.</p>
 
-<h3>Concepts and Methods</h3>
+<h3>Subsurface Modelling at Urban Scale</h3>
+<p>As borefields multiply in cities, thermal interference between neighbouring systems and cumulative cooling of the subsurface become real concerns. Analytical g-function methods assume isolated fields in homogeneous ground; urban reality includes heterogeneous geology, groundwater advection and the "subsurface urban heat island" created by buildings and infrastructure, which can raise ground temperatures by several degrees. Coupled thermo-hydraulic models at district or city scale, calibrated with distributed temperature sensing, are being developed to support spatial planning and fair allocation of subsurface thermal capacity.</p>
 <ul>
-<li><strong>Hydraulic stimulation:</strong> injecting fluid at pressure to open or shear existing fractures and increase permeability</li>
-<li><strong>Coupled thermo-hydro-mechanical modeling:</strong> simulation that links heat transport, fluid flow and rock deformation in one framework</li>
-<li><strong>Discrete fracture network:</strong> a model representing individual fractures explicitly rather than averaging them into a continuum</li>
-<li><strong>Thermal drawdown:</strong> the gradual cooling of produced fluid as injected water extracts heat from the rock</li>
-<li><strong>Traffic light protocol:</strong> an operational rule set that changes injection when observed seismicity crosses defined thresholds</li>
-<li><strong>Closed-loop system:</strong> a design that circulates fluid through sealed wellbores so heat is gained by conduction without contacting the formation</li>
+<li><strong>Thermal interference:</strong> the effect one borefield's heat extraction or injection has on neighbouring fields</li>
+<li><strong>Subsurface urban heat island:</strong> elevated ground temperatures beneath cities caused by buildings, basements and infrastructure</li>
+<li><strong>Groundwater advection:</strong> heat transport by moving groundwater, which alters borefield performance</li>
+<li><strong>Distributed temperature sensing:</strong> fibre-optic measurement of temperature along the full depth of a borehole</li>
+<li><strong>Sector coupling:</strong> integrating heat, electricity and other energy systems so that flexibility in one supports another</li>
 </ul>
 
-<h3>Reservoir Modeling</h3>
-<p>Reservoir models must represent how injected fluid finds pathways, how quickly it heats up, and how stress changes as rock cools and pressure rises. Continuum models with equivalent permeability are computationally efficient but can miss short-circuiting, where fluid races through a single dominant fracture and causes early thermal breakthrough. Discrete fracture models capture this channeling but require fracture geometry that is rarely known. Hybrid approaches embed key fractures within a continuum. Calibration relies on sparse data: microseismic locations, tracer tests, pressure transients and temperature logs, which together constrain but do not uniquely determine the fracture network.</p>
+<h3>Design and Control of Ambient Networks</h3>
+<p>Fifth-generation networks raise optimisation problems: sizing shared borefields for the net load of diverse buildings, choosing network temperature setpoints that trade pumping energy against heat pump efficiency, and coordinating hundreds of heat pumps as flexible loads for the electricity grid. Research applies mixed-integer and model-predictive control methods, and investigates how waste heat from data centres, sewers and industry can be integrated without creating dependency on a single source.</p>
 
-<h3>Induced Seismicity</h3>
-<p>Raising pore pressure reduces the effective normal stress on faults and can trigger slip on those already close to failure. Most induced events are small, but several stimulation projects have been paused or abandoned after felt earthquakes. Research questions include how to forecast the largest expected event during and after injection, whether maximum magnitude is controlled by injected volume or by the size of nearby critically stressed faults, and why significant events sometimes occur after injection stops.</p>
-<table>
-<thead><tr><th>Approach</th><th>Strength</th><th>Limitation</th></tr></thead>
-<tbody>
-<tr><td>Statistical forecasting from seismicity rates</td><td>Updates quickly with real-time catalogs</td><td>Weak physical basis for extrapolation</td></tr>
-<tr><td>Physics-based coupled models</td><td>Links operations to stress change mechanistically</td><td>Depends on uncertain fault and stress inputs</td></tr>
-<tr><td>Hybrid physics-statistical models</td><td>Combines mechanistic insight with data assimilation</td><td>Complex to validate and communicate</td></tr>
-<tr><td>Adaptive traffic light systems</td><td>Operationally practical risk management</td><td>Thresholds may lag the hazard after shut-in</td></tr>
-</tbody>
-</table>
+<h3>Decarbonisation Pathways and Institutions</h3>
+<p>Energy-system models increasingly include shallow geothermal explicitly, but they often represent it with fixed costs and efficiencies, missing spatial constraints and network effects. Open questions include how shared ground-loop infrastructure should be regulated and priced, whether utilities can repurpose gas distribution business models toward thermal networks, and how to protect low-income households during the transition away from gas. Interdisciplinary work combining geoscience, building physics, operations research and energy policy is needed to answer them.</p>
 
-<h3>Contested Questions</h3>
-<ul>
-<li>Whether multi-stage stimulation in horizontal wells, adapted from the oil and gas sector, scales reliably across different geologies.</li>
-<li>Whether closed-loop designs can extract enough heat by conduction alone to be economic without very long wellbores.</li>
-<li>How to define acceptable seismic risk, and who decides, given that hazard and benefit fall on different groups.</li>
-<li>How sustainable long-term output is when thermal drawdown and fracture evolution are uncertain over decades.</li>
-</ul>
-
-<h3>Methodological Debates</h3>
-<p>A central debate concerns how much prediction is possible before drilling versus how much must be learned adaptively. Some researchers favor extensive pre-characterization and physics-based design; others argue that subsurface heterogeneity makes adaptive, data-driven operation unavoidable. Uncertainty quantification is costly for coupled models, so surrogate models and machine learning emulators are increasingly used, raising questions about their reliability outside the training range.</p>
-
-<h3>Open Research Directions</h3>
-<ol>
-<li>Field-scale validation of coupled models using long-term circulation data from demonstration sites.</li>
-<li>Methods to detect and mitigate flow channeling and early thermal breakthrough.</li>
-<li>Seismic hazard forecasts that remain reliable after injection stops.</li>
-<li>Integration of public risk perception and procedural justice into stimulation decisions.</li>
-<li>Techno-economic models linking drilling cost reductions to resource potential across regions.</li>
-</ol>
+<h3>Evidence Needs</h3>
+<p>Long-term monitoring data from operating districts remain scarce, and most published performance figures come from design-stage simulations rather than measured operation. Systematic field monitoring, open datasets and comparisons between predicted and observed ground temperatures would sharpen design methods and build investor confidence. Standardised reporting of seasonal performance, including auxiliary energy, would also make results comparable across climates and system types. Life-cycle assessments that account for drilling, refrigerant leakage and grid carbon intensity over the system's lifetime are a further gap, since they determine the true climate benefit of shallow geothermal compared with other low-carbon heat options.</p>
 `,
       },
     },
   ],
   quiz: [
     {
-      id: 'rgeoq1',
+      id: 're-geo2-q1',
       question: {
-        ELEMENTARY: 'Where does geothermal energy come from?',
-        MIDDLE_SCHOOL: 'What is a geyser?',
-        HIGH_SCHOOL: 'What is a binary cycle plant?',
-        UNDERGRADUATE: 'What does the temperature gradient describe?',
-        GRADUATE: 'What does a risk mitigation fund do for geothermal projects?',
-        PHD: 'What is induced seismicity in enhanced geothermal systems?',
+        ELEMENTARY: 'What is special about the ground a few steps under our feet?',
+        MIDDLE_SCHOOL: 'Why can a ground-source heat pump work well in both winter and summer?',
+        HIGH_SCHOOL: 'How does shallow geothermal energy differ from deep geothermal power?',
+        UNDERGRADUATE: 'Below about 10 metres, ground temperature approaches which value?',
+        GRADUATE: 'Why do ground-source heat pumps help distribution networks during cold snaps?',
+        PHD: 'What urban phenomenon can raise subsurface temperatures and affect borefield modelling?',
       },
       options: {
-        ELEMENTARY: ['Heat from inside the Earth', 'Light from the Moon', 'Wind blowing over the sea', 'Rain falling on roofs'],
-        MIDDLE_SCHOOL: ['A hot spring that erupts water and steam into the air', 'A cold underground lake', 'A type of volcanic rock', 'A pipe used in heat pumps'],
-        HIGH_SCHOOL: ['A plant that uses geothermal heat to boil a second fluid in a closed loop', 'A plant that burns two kinds of fuel', 'A plant with two separate buildings', 'A plant that only works at night'],
-        UNDERGRADUATE: ['The rate at which rock temperature rises with depth', 'The slope of the land surface above a reservoir', 'The color change of rocks with depth', 'The temperature of surface rivers only'],
-        GRADUATE: ['It reimburses part of the cost of unsuccessful exploration wells', 'It pays customers to use less electricity', 'It funds only solar projects', 'It guarantees that every well finds hot water'],
-        PHD: ['Earthquakes triggered when fluid injection raises pore pressure on faults', 'Natural earthquakes far from any wells', 'Vibration from turbines on the surface', 'Cracking of pipes caused by cold weather'],
-      },
-      correctIndex: 0,
-      explanation: {
-        ELEMENTARY: 'Geothermal energy is the heat that lives deep inside our planet.',
-        MIDDLE_SCHOOL: 'A geyser is a hot spring that shoots water and steam into the air from time to time.',
-        HIGH_SCHOOL: 'Binary plants pass geothermal heat to a working fluid with a lower boiling point, which drives the turbine.',
-        UNDERGRADUATE: 'The temperature gradient measures how quickly rock gets hotter per kilometer of depth.',
-        GRADUATE: 'Risk mitigation funds share the losses from dry or weak wells, helping projects cross the early funding valley.',
-        PHD: 'Raising pore pressure lowers effective normal stress on faults, which can trigger slip on critically stressed faults.',
-      },
-    },
-    {
-      id: 'rgeoq2',
-      question: {
-        ELEMENTARY: 'How does the ground just under our feet feel in winter compared with the cold air?',
-        MIDDLE_SCHOOL: 'What is a ground-source heat pump?',
-        HIGH_SCHOOL: 'Why are ground-source heat pumps often more efficient than air-source ones in extreme weather?',
-        UNDERGRADUATE: 'Why can direct use of geothermal heat deliver more useful energy than generating electricity from it?',
-        GRADUATE: 'Why do private lenders often avoid the early stages of geothermal projects?',
-        PHD: 'What is thermal breakthrough caused by flow channeling?',
-      },
-      options: {
-        ELEMENTARY: ['Much colder than the air', 'Warmer than the cold air', 'Exactly as cold as ice', 'It has no temperature'],
-        MIDDLE_SCHOOL: ['A machine that burns wood underground', 'A machine that moves heat between a building and the shallow ground', 'A pump that brings oil to the surface', 'A fan that blows air into the soil'],
-        HIGH_SCHOOL: ['The ground is milder than the outdoor air on the coldest and hottest days', 'They burn natural gas as a backup', 'They need no electricity at all', 'They only work in volcanic regions'],
-        UNDERGRADUATE: ['Electricity generation from geothermal fluid has no losses', 'Converting moderate-temperature heat to electricity is inefficient, so using the heat directly wastes less', 'Direct use requires deeper wells', 'Direct use produces more carbon dioxide'],
-        GRADUATE: ['Geothermal plants have high fuel costs', 'Exploration risk is high and the resource is unconfirmed before expensive drilling', 'Geothermal output is too variable', 'Lenders are forbidden from funding energy projects'],
-        PHD: ['Injected fluid heating up too slowly everywhere', 'Fluid racing through a dominant fracture so produced fluid cools earlier than expected', 'The surface plant overheating in summer', 'A sudden rise in reservoir temperature'],
-      },
-      correctIndex: 1,
-      explanation: {
-        ELEMENTARY: 'A little way down, the ground stays about the same temperature, so in winter it is warmer than the cold air.',
-        MIDDLE_SCHOOL: 'It circulates fluid through buried pipes to collect or dump heat, warming the house in winter and cooling it in summer.',
-        HIGH_SCHOOL: 'The ground stays at a steadier, milder temperature than the air, so the heat pump does less work.',
-        UNDERGRADUATE: 'Heat engines convert only a small share of moderate-temperature heat to work, while direct use delivers most of it.',
-        GRADUATE: 'Capital usually enters only after the resource is confirmed, leaving a funding gap for exploration drilling.',
-        PHD: 'Channeling short-circuits the reservoir, so injected cold water reaches production wells before it has gained much heat.',
-      },
-    },
-    {
-      id: 'rgeoq3',
-      question: {
-        ELEMENTARY: 'Which of these is a good thing about geothermal energy?',
-        MIDDLE_SCHOOL: 'What is district heating?',
-        HIGH_SCHOOL: 'Why is used geothermal water usually injected back underground?',
-        UNDERGRADUATE: 'What is cascading use of geothermal fluid?',
-        GRADUATE: 'How can solar thermal help a binary geothermal plant in a hybrid system?',
-        PHD: 'What is the main purpose of a traffic light protocol?',
-      },
-      options: {
-        ELEMENTARY: ['It only works on sunny days', 'It makes lots of smoke', 'It is there day and night', 'It needs gasoline'],
-        MIDDLE_SCHOOL: ['A heater for one room only', 'A power line between cities', 'Pipes that carry hot water to warm many buildings in a town', 'A district where heating is banned'],
-        HIGH_SCHOOL: ['To make the water hotter for drinking', 'To create new geysers', 'To maintain reservoir pressure and keep minerals and gases out of rivers', 'To cool down the turbines'],
-        UNDERGRADUATE: ['Mixing geothermal fluid with seawater', 'Drilling many wells in a straight line', 'Using fluid for high-temperature tasks first, then lower-temperature ones', 'Storing fluid in tanks for winter'],
-        GRADUATE: ['It replaces the geothermal well entirely', 'It removes minerals from the brine', 'It boosts fluid temperature during sunny hours when air-cooled plants lose output', 'It lowers drilling costs'],
-        PHD: ['Scheduling truck traffic at the drill site', 'Setting electricity prices for geothermal plants', 'Changing injection when observed seismicity crosses defined thresholds', 'Measuring reservoir temperature at the surface'],
+        ELEMENTARY: ['It is always on fire', 'It changes colour', 'It stays about the same temperature all year', 'It is always frozen'],
+        MIDDLE_SCHOOL: ['The ground is always hotter than the air', 'Pipes never need electricity', 'The ground stays at a steady temperature all year', 'It only works near volcanoes'],
+        HIGH_SCHOOL: ['Shallow geothermal only works in volcanoes', 'Shallow geothermal uses no electricity', 'Shallow geothermal uses the steady temperature just below the surface for heating and cooling', 'They are exactly the same'],
+        UNDERGRADUATE: ['The local maximum summer air temperature', 'The boiling point of water', 'The local mean annual air temperature', 'Zero degrees Celsius'],
+        GRADUATE: ['They stop running in winter', 'They use gas backup', 'Their COP stays high when air-source units degrade', 'They store electricity'],
+        PHD: ['Polar vortices', 'Ocean upwelling', 'The subsurface urban heat island', 'Permafrost thaw'],
       },
       correctIndex: 2,
       explanation: {
-        ELEMENTARY: 'Earth\'s heat is always there, whether it is sunny, rainy, day or night.',
-        MIDDLE_SCHOOL: 'District heating networks pipe hot water to many homes and buildings at once.',
-        HIGH_SCHOOL: 'Reinjection sustains reservoir pressure and keeps dissolved substances from polluting surface water.',
-        UNDERGRADUATE: 'Cascading squeezes more value from each well by matching fluid temperature to successive uses.',
-        GRADUATE: 'Solar heat can raise fluid temperature, improving binary plant efficiency on hot afternoons.',
-        PHD: 'Traffic light systems reduce or stop injection as seismic activity rises past preset levels.',
+        ELEMENTARY: 'Just under the ground, the dirt stays about the same temperature in summer and winter.',
+        MIDDLE_SCHOOL: 'The ground is warmer than winter air and cooler than summer air, so it works as a heat source and a heat sink.',
+        HIGH_SCHOOL: 'Deep geothermal uses volcanic heat to make electricity; shallow geothermal uses near-surface ground for heating and cooling almost anywhere.',
+        UNDERGRADUATE: 'At depth the seasonal swing fades and the temperature settles near the mean annual air temperature.',
+        GRADUATE: 'Stable ground temperatures keep efficiency high on the coldest days, lowering coincident winter peaks.',
+        PHD: 'Buildings and infrastructure warm the ground beneath cities, which must be included in urban-scale models.',
       },
     },
     {
-      id: 'rgeoq4',
+      id: 're-geo2-q2',
       question: {
-        ELEMENTARY: 'What is a hot spring?',
-        MIDDLE_SCHOOL: 'Which way of using Earth\'s heat works almost anywhere on Earth?',
-        HIGH_SCHOOL: 'Which three things does a usable hydrothermal resource need together?',
-        UNDERGRADUATE: 'Why do geothermal plants usually have high capacity factors?',
-        GRADUATE: 'Why does reducing drilling cost matter so much for geothermal potential?',
-        PHD: 'What is a closed-loop geothermal design?',
+        ELEMENTARY: 'What carries warmth from the ground into the house?',
+        MIDDLE_SCHOOL: 'What is a borehole in a geothermal system?',
+        HIGH_SCHOOL: 'Which part of a heat pump raises the refrigerant\'s pressure and temperature?',
+        UNDERGRADUATE: 'Why is a thermal response test carried out before designing a borefield?',
+        GRADUATE: 'What does seasonal thermal balance describe?',
+        PHD: 'Which measurement technique records temperature along the full depth of a borehole?',
       },
       options: {
-        ELEMENTARY: ['A pool of ice', 'A spring toy', 'A cloud of rain', 'A pool of warm water that comes up from the ground'],
-        MIDDLE_SCHOOL: ['Dry steam power plants', 'Flash steam power plants', 'Geysers', 'Ground-source heat pumps'],
-        HIGH_SCHOOL: ['Sunlight, wind and soil', 'Coal, water and air', 'Ice, sand and salt', 'Heat, water and permeable rock'],
-        UNDERGRADUATE: ['They shut down every night', 'They depend on daily weather', 'They burn fuel continuously', 'Heat is available continuously, so they run most hours of the year'],
-        GRADUATE: ['Drilling has no effect on cost', 'Only surface plants determine cost', 'Cheaper drilling lowers electricity demand', 'Lower costs to reach deep hot rock expand the resource beyond a few volcanic regions'],
-        PHD: ['A system that injects water into open fractures', 'A plant that recycles its turbines', 'A well that is permanently sealed and abandoned', 'Fluid circulates through sealed wellbores and gains heat by conduction without touching the formation'],
-      },
-      correctIndex: 3,
-      explanation: {
-        ELEMENTARY: 'A hot spring is warm water that rises naturally out of the ground.',
-        MIDDLE_SCHOOL: 'Shallow ground keeps a steady temperature nearly everywhere, so heat pumps can use it widely.',
-        HIGH_SCHOOL: 'A hydrothermal resource needs heat, water to carry it, and rock permeable enough for the water to flow.',
-        UNDERGRADUATE: 'Continuous heat lets geothermal plants run most hours, spreading fixed costs over more energy.',
-        GRADUATE: 'Hot rock exists at depth almost everywhere; drilling cost decides how much of it is economic.',
-        PHD: 'Closed loops avoid contact with formation fluids and stimulation, but rely on conduction alone for heat gain.',
-      },
-    },
-    {
-      id: 'rgeoq5',
-      question: {
-        ELEMENTARY: 'What does a heat pump do?',
-        MIDDLE_SCHOOL: 'Why are there many hot springs in places like Iceland and New Zealand?',
-        HIGH_SCHOOL: 'Which type of geothermal power plant can use lower-temperature resources?',
-        UNDERGRADUATE: 'In the development sequence, what happens during resource confirmation?',
-        GRADUATE: 'Why are early consultation and benefit-sharing important for geothermal projects?',
-        PHD: 'Why are discrete fracture network models hard to use in practice?',
-      },
-      options: {
-        ELEMENTARY: ['It moves heat to warm or cool a building', 'It pumps air into tires', 'It makes ice cream', 'It turns on the lights'],
-        MIDDLE_SCHOOL: ['Hot rock and magma come close to the surface near plate edges', 'They are close to the North Pole', 'It rains more there', 'They have more cities'],
-        HIGH_SCHOOL: ['Binary cycle plants', 'Dry steam plants', 'Coal plants', 'Wind farms'],
-        UNDERGRADUATE: ['Full-size wells and flow tests estimate reservoir capacity', 'The power plant is demolished', 'Electricity is sold to customers for the first time', 'Surface maps are drawn for the first time'],
-        GRADUATE: ['Many resources lie on culturally significant land, and acceptance shapes whether projects proceed', 'They are never needed for energy projects', 'They make drilling physically easier', 'They raise the temperature of the reservoir'],
-        PHD: ['They need fracture geometry that is rarely known', 'They cannot represent fractures at all', 'They ignore fluid flow', 'They always run faster than continuum models'],
+        ELEMENTARY: ['Water flowing in buried pipes', 'A garden hose on the roof', 'A fan in the yard', 'Snow'],
+        MIDDLE_SCHOOL: ['A narrow, deep hole drilled to hold a vertical ground loop', 'A hole for planting trees', 'A tunnel for cars', 'A well for drinking water only'],
+        HIGH_SCHOOL: ['The compressor', 'The expansion valve', 'The ground loop', 'The thermostat'],
+        UNDERGRADUATE: ['To measure the ground\'s effective thermal conductivity', 'To find oil', 'To test the building\'s windows', 'To check the electricity tariff'],
+        GRADUATE: ['How closely annual heat extraction and injection match', 'The colour of the borefield', 'Daily electricity prices', 'Wind speed at the site'],
+        PHD: ['Distributed temperature sensing', 'Satellite infrared imaging', 'Smart meter readings', 'Weather balloons'],
       },
       correctIndex: 0,
       explanation: {
-        ELEMENTARY: 'A heat pump moves heat from one place to another to make a building warmer or cooler.',
-        MIDDLE_SCHOOL: 'Near plate boundaries and volcanoes, heat sits much closer to the surface.',
-        HIGH_SCHOOL: 'Binary plants use a second fluid with a low boiling point, so moderate-temperature water is enough.',
-        UNDERGRADUATE: 'Resource confirmation uses full-size wells and flow tests to check how much the reservoir can deliver.',
-        GRADUATE: 'Hot springs and volcanic features often hold cultural value, and community consent affects project success.',
-        PHD: 'Discrete models capture channeling well, but they depend on fracture data that sparse observations rarely provide.',
+        ELEMENTARY: 'Water in buried pipes picks up the ground\'s warmth and carries it to the heat pump.',
+        MIDDLE_SCHOOL: 'Vertical loops sit in boreholes 50 to 150 metres deep, which fit on small lots.',
+        HIGH_SCHOOL: 'The compressor squeezes the vapour, raising its temperature so it can release heat indoors.',
+        UNDERGRADUATE: 'A thermal response test measures conductivity, which sets how much loop length is needed.',
+        GRADUATE: 'If extraction and injection are unbalanced, the ground drifts colder or warmer over the years.',
+        PHD: 'Fibre-optic distributed temperature sensing records temperature along the whole borehole.',
+      },
+    },
+    {
+      id: 're-geo2-q3',
+      question: {
+        ELEMENTARY: 'Why are heat pumps good for the planet?',
+        MIDDLE_SCHOOL: 'How much heat can a good ground-source heat pump deliver for each unit of electricity?',
+        HIGH_SCHOOL: 'What does COP stand for in heat pumps?',
+        UNDERGRADUATE: 'Why do ground-source heat pumps pair best with underfloor heating?',
+        GRADUATE: 'What is the main barrier to ground-source heat pump adoption?',
+        PHD: 'Why is thermal interference a growing concern in cities?',
+      },
+      options: {
+        ELEMENTARY: ['They make the ground hot', 'They are very loud', 'They need lots of oil', 'They use a little electricity to move lots of heat'],
+        MIDDLE_SCHOOL: ['None', 'Half a unit', 'Exactly one unit', 'Three to five units'],
+        HIGH_SCHOOL: ['Cost of piping', 'Cold outdoor pressure', 'Carbon output percentage', 'Coefficient of performance'],
+        UNDERGRADUATE: ['Underfloor heating needs no pipes', 'It uses gas', 'It is cheaper to drill', 'Low delivery temperatures reduce the temperature lift and raise efficiency'],
+        GRADUATE: ['Lack of electricity', 'They cannot cool', 'Noise', 'High up-front capital cost, mainly drilling'],
+        PHD: ['Borefields are always far apart', 'Heat pumps interfere with radio', 'Groundwater never moves', 'Dense borefields affect each other\'s ground temperatures'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Moving heat takes much less energy than burning fuel, so there is less pollution.',
+        MIDDLE_SCHOOL: 'A good system delivers three to five units of heat per unit of electricity.',
+        HIGH_SCHOOL: 'COP, the coefficient of performance, is heat delivered divided by electricity used.',
+        UNDERGRADUATE: 'Lower delivery temperatures narrow the lift, which raises the COP.',
+        GRADUATE: 'Drilling dominates the high capital cost, which is why shared borefields and finance matter.',
+        PHD: 'When many borefields are close together, one field\'s heat use changes the ground for its neighbours.',
+      },
+    },
+    {
+      id: 're-geo2-q4',
+      question: {
+        ELEMENTARY: 'What happens in summer with a geothermal heat pump?',
+        MIDDLE_SCHOOL: 'Why do some towns build shared district geothermal networks?',
+        HIGH_SCHOOL: 'In a fifth-generation district network, where are the heat pumps?',
+        UNDERGRADUATE: 'What temperature range do fifth-generation ambient networks typically run at?',
+        GRADUATE: 'Which business model spreads the cost of shared borefields like a gas main?',
+        PHD: 'Which research problem arises in choosing setpoints for ambient networks?',
+      },
+      options: {
+        ELEMENTARY: ['It makes snow', 'It takes heat out of the house and puts it in the cool ground', 'It turns off forever', 'It heats the house more'],
+        MIDDLE_SCHOOL: ['To make drilling more expensive', 'To share the cost of boreholes and swap heat between buildings', 'Because single houses cannot have heating', 'To stop using electricity'],
+        HIGH_SCHOOL: ['In one central power plant', 'In each building on the shared loop', 'Under the ocean', 'There are no heat pumps'],
+        UNDERGRADUATE: ['80 to 120 °C', 'About 10 to 25 °C', 'Below −20 °C', 'Over 200 °C'],
+        GRADUATE: ['Individual homeowner loans only', 'Utility-owned shared borefields recovered over decades', 'Crowdfunding single boreholes', 'Paying in cash up front'],
+        PHD: ['Choosing pipe colours', 'Trading pumping energy against heat pump efficiency', 'Picking refrigerant brands', 'Setting electricity meter clocks'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'In summer the heat pump moves heat from the house into the cool ground.',
+        MIDDLE_SCHOOL: 'Sharing boreholes spreads the cost, and buildings can pass heat to one another.',
+        HIGH_SCHOOL: 'Each building has its own heat pump connected to a shared low-temperature loop.',
+        UNDERGRADUATE: 'Ambient networks run near ground temperature, about 10 to 25 °C, avoiding heat losses.',
+        GRADUATE: 'Utilities can own shared borefields and recover costs over decades, like gas networks.',
+        PHD: 'Network temperature affects both pumping energy and heat pump COP, so setpoints are an optimisation problem.',
+      },
+    },
+    {
+      id: 're-geo2-q5',
+      question: {
+        ELEMENTARY: 'What is a heat pump?',
+        MIDDLE_SCHOOL: 'What kind of electricity makes a ground-source heat pump almost carbon-free?',
+        HIGH_SCHOOL: 'Why do vertical ground loops suit small lots better than horizontal loops?',
+        UNDERGRADUATE: 'What happens to an undersized borefield over many winters?',
+        GRADUATE: 'How can heating-dominated borefields be recharged?',
+        PHD: 'Why are measured performance data especially valuable for shallow geothermal research?',
+      },
+      options: {
+        ELEMENTARY: ['A machine that moves heat from one place to another', 'A pump for bicycle tyres', 'A kind of oven', 'A garden sprinkler'],
+        MIDDLE_SCHOOL: ['Solar or wind electricity', 'Electricity from burning coal', 'Electricity from diesel generators', 'Electricity from gas plants'],
+        HIGH_SCHOOL: ['They go deep instead of spreading wide', 'They are made of metal', 'They need no drilling', 'They work only in summer'],
+        UNDERGRADUATE: ['Fluid temperatures drift colder as extraction outpaces recovery', 'The ground gets hotter', 'Nothing changes', 'It produces electricity'],
+        GRADUATE: ['With summer cooling loads, solar thermal or waste heat', 'By adding more antifreeze only', 'By turning off the heat pump in winter', 'It cannot be recharged'],
+        PHD: ['Most published figures come from simulations rather than operation', 'Measurements are cheaper than models', 'Simulations are illegal', 'Data are never needed'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'A heat pump moves heat: into the house in winter and out of it in summer.',
+        MIDDLE_SCHOOL: 'If the heat pump runs on clean solar or wind electricity, heating is almost carbon-free.',
+        HIGH_SCHOOL: 'Vertical loops go 50 to 150 metres down, so they need little land.',
+        UNDERGRADUATE: 'When extraction outpaces natural recovery, the ground and fluid get colder each year.',
+        GRADUATE: 'Injecting heat in summer from cooling, solar thermal or waste heat keeps the ground balanced.',
+        PHD: 'Long-term measured data are scarce, so field monitoring would sharpen design methods.',
       },
     },
   ],

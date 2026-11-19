@@ -25,6 +25,10 @@ export interface ModuleExpansion {
   topicId: string
   /** Module progress key (see moduleProgressKeys in lib/learning/topicVolumes.ts) */
   moduleKey: string
+  /** New chapter title (used when a chapter is rewritten with a new angle) */
+  title?: string
+  /** New chapter summary per level, to match a new title */
+  description?: Record<LearningLevel, string>
   lessons: ExpandedLesson[]
   /** Exactly five questions */
   quiz: ExpandedQuizQuestion[]

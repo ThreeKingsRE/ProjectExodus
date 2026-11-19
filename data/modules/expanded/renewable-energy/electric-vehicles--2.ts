@@ -1,408 +1,298 @@
 import type { ModuleExpansion } from '../types'
 
+// Rewritten with its own angle: shared transport and the charging networks that
+// make electric travel work. Chapter 10 covers how electric vehicles work.
 const expansion: ModuleExpansion = {
   topicId: 'renewable-energy',
   moduleKey: 'electric-vehicles~2',
+  title: 'Clean Transit and Charging Networks',
+  description: {
+    ELEMENTARY: 'How electric buses, trains and bikes move lots of people, and where electric vehicles get recharged.',
+    MIDDLE_SCHOOL: 'How cities switch buses, trains and bikes to clean power, and how charging stations are planned.',
+    HIGH_SCHOOL: 'Electrifying public transport and building the charging networks that let everyone travel cleanly.',
+    UNDERGRADUATE: 'Electric public transit, charging infrastructure types, siting and grid impacts.',
+    GRADUATE: 'Planning electrified transit and charging networks: fleet transition, siting, grid integration and equity.',
+    PHD: 'Research on electrified mobility systems: charging network optimisation, fleet-grid integration and access.',
+  },
   lessons: [
     {
       id: 're-ev-1',
-      title: 'Electric Cars, Buses and Clean Ways to Travel',
+      title: 'Clean Transit and Charging Networks',
       content: {
         ELEMENTARY: `
-<h2>Clean Ways to Get Around</h2>
-<p>Every day, people travel to school, to work and to visit friends. Some ride in cars, some take a bus, some ride bikes and some walk. Many cars and buses burn gasoline or diesel, which puts smoke and dirty air into the sky. But there is a cleaner way: vehicles that run on electricity! Let's take a ride and find out how they work.</p>
+<h2>Lots of People, One Clean Ride</h2>
+<p>A car carries a few people. A bus can carry fifty! When a bus runs on electricity instead of diesel fuel, it gets lots of people where they need to go without puffing smoke into the air. Electric trains, trams and even e-bikes do the same. This chapter is about clean ways to travel together and the places where electric vehicles fill up.</p>
 
-<h3>Cars and Buses With Batteries</h3>
-<p>An electric car has a big battery instead of a gas tank. The battery sends electricity to a motor, and the motor turns the wheels. There is no tailpipe, so no smoke comes out the back. Many cities now have electric buses too. They are big, quiet and carry lots of people at once.</p>
+<h3>Buses and Trains That Plug In</h3>
+<p>Electric buses have big batteries under the floor. At night they park in a garage and plug in to recharge, like a phone. Some trains and trams get power from wires above the track, so they never need to stop to fill up. They are quiet, too, so streets near the bus stop are calmer.</p>
 <ul>
-<li><strong>Battery:</strong> a box that stores electricity so the vehicle can use it later</li>
-<li><strong>Electric motor:</strong> a machine that uses electricity to make the wheels spin</li>
-<li><strong>Charger:</strong> a plug that fills the battery with electricity, a bit like a phone charger</li>
-<li><strong>Tailpipe:</strong> the pipe on a gas car where smoky exhaust comes out</li>
-<li><strong>Electric bus:</strong> a big bus that runs on a battery and carries many riders quietly</li>
+<li><strong>Electric bus:</strong> a bus that runs on a battery instead of diesel fuel</li>
+<li><strong>Tram:</strong> a train that runs on tracks in the street and gets power from overhead wires</li>
+<li><strong>Charger:</strong> a machine that puts electricity into a vehicle's battery</li>
+<li><strong>Charging station:</strong> a place with chargers where vehicles stop to recharge</li>
+<li><strong>Public transport:</strong> buses and trains that anyone can ride</li>
 </ul>
 
-<h3>Plugging In Instead of Filling Up</h3>
-<p>A gas car goes to a gas station. An electric car plugs in, often at home at night while the family sleeps. Some chargers are at stores, schools and parking lots. Electric buses usually charge at a bus depot, which is a big garage where buses rest.</p>
+<h3>Places to Plug In</h3>
+<p>Electric cars and scooters need chargers too. Towns put chargers in parking lots, at shops and along highways so drivers can recharge on long trips. Planners try to put chargers where everyone can reach them, not just in a few neighbourhoods.</p>
 
-<h3>Why Is It Better for the Air?</h3>
-<p>Because electric vehicles have no tailpipe, the air on the street stays cleaner. That helps people breathe more easily, especially kids. When the electricity comes from the sun or the wind, the whole trip is even cleaner!</p>
-
-<h3>The Cleanest Trips of All</h3>
-<p>Electric cars are great, but some trips are even cleaner. Walking and riding a bike use no fuel at all. A full bus or train carries many people, so each person makes much less pollution than driving alone.</p>
-<ol>
-<li>Walk or bike to places that are close by, with a grown-up.</li>
-<li>Take the bus or train with your family when you can.</li>
-<li>Count the electric cars and buses you see on your street this week.</li>
-</ol>
-
-<h3>Think About It</h3>
-<p>Imagine a city where buses hum quietly, bikes zip along safe paths and the air smells fresh. You can help build that city by choosing clean ways to travel!</p>
+<h3>Why It Matters</h3>
+<p>When more people ride clean buses and trains, there are fewer cars on the road, less traffic and cleaner air for everyone, especially for kids who walk to school beside busy streets.</p>
 `,
         MIDDLE_SCHOOL: `
-<h2>How Electric Vehicles Help Clean Up Transportation</h2>
-<p>Transportation is one of the biggest sources of greenhouse gas emissions in many countries, because most vehicles still burn oil-based fuels. Electric vehicles, often called EVs, offer a cleaner path. But clean transportation is about more than swapping one kind of car for another. It also includes buses, trains, bikes, scooters and smart city design.</p>
+<h2>Moving Cities on Clean Power</h2>
+<p>Transportation is one of the biggest sources of air pollution and climate-warming gases in many countries. Switching private cars to electric helps, but the biggest wins come when whole buses, trains and delivery fleets go electric, because each vehicle carries many people or packages and runs all day long.</p>
 
-<h3>How an EV Works</h3>
-<p>A gas engine burns fuel in small explosions to push pistons. Most of the energy in the fuel turns into wasted heat. An electric vehicle is much simpler: a battery pack sends electricity to a motor, and the motor turns the wheels directly. Electric motors turn most of their energy into motion, so EVs need much less energy to travel the same distance.</p>
-<p>EVs also use <em>regenerative braking</em>. When the driver slows down, the motor runs backward like a generator and puts some energy back into the battery instead of wasting it as heat in the brakes.</p>
-
-<h3>Key Words</h3>
+<h3>Electric Buses and Trains</h3>
+<p>Battery-electric buses charge overnight at the depot, and some top up quickly at the end of their route using a charger mounted on a pole. Electric trains, subways and trams usually draw power continuously from overhead wires or a third rail. Because electric motors are quiet and produce no exhaust, they improve air quality right where people wait and walk.</p>
 <ul>
-<li><strong>Electric vehicle (EV):</strong> a vehicle powered fully or partly by electricity stored in a battery</li>
-<li><strong>Regenerative braking:</strong> using the motor to slow down and recharge the battery at the same time</li>
-<li><strong>Charging station:</strong> a place where EVs plug in to refill their batteries with electricity</li>
-<li><strong>Range:</strong> how far a vehicle can travel on one full charge or one full tank</li>
-<li><strong>Public transit:</strong> shared transportation like buses, trains and trams that many people ride together</li>
-<li><strong>Emissions:</strong> gases and particles released into the air, such as carbon dioxide and soot</li>
+<li><strong>Depot charging:</strong> recharging buses overnight in the garage where they park</li>
+<li><strong>Opportunity charging:</strong> quick top-ups at bus stops or at the end of a route</li>
+<li><strong>Fast charger:</strong> a high-power charger that refills a battery in minutes instead of hours</li>
+<li><strong>Charging network:</strong> all the charging stations across a city or country</li>
+<li><strong>Micromobility:</strong> small electric vehicles like e-bikes and e-scooters for short trips</li>
 </ul>
 
-<h3>Different Ways to Travel</h3>
-<table>
-<thead><tr><th>Way to travel</th><th>Pollution per person</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td>Walking or biking</td><td>Almost none</td><td>Healthy and free, best for short trips</td></tr>
-<tr><td>Electric bus or train</td><td>Very low</td><td>Carries many people with one vehicle</td></tr>
-<tr><td>Electric car</td><td>Low</td><td>Depends on how clean the electricity is</td></tr>
-<tr><td>Gas car with one driver</td><td>High</td><td>Burns fuel and releases exhaust</td></tr>
-</tbody>
-</table>
+<h3>Building a Charging Network</h3>
+<p>For people to choose electric cars and vans, they need to know they can charge. Cities put slower chargers where vehicles park for hours, such as homes, workplaces and street curbs, and fast chargers along highways for long trips. Planners study where people drive and park so chargers are useful, and they check that renters and people without driveways can charge too.</p>
 
-<h3>Is the Electricity Clean?</h3>
-<p>An EV is only as clean as the electricity that charges it. If power comes from coal, the EV still causes some pollution at the power plant. Even so, studies in most places find that EVs cause less pollution over their lifetime than gas cars, and they get cleaner every year as more solar and wind power is added to the grid.</p>
-
-<h3>Making Batteries</h3>
-<p>EV batteries need minerals such as lithium, nickel and cobalt. Mining these materials can harm land, water and workers if it is done carelessly. That is why recycling old batteries and mining responsibly are important parts of clean transportation.</p>
-
-<h3>Try This</h3>
-<p>Make a map of your neighborhood. Mark places you could reach by walking, biking or bus. You may be surprised how many trips do not need a car at all!</p>
+<h3>Challenges</h3>
+<p>Electric buses cost more to buy, though they cost less to fuel and maintain. Many fast chargers in one spot can strain local power lines, so utilities and cities plan together. Getting the plan right means cleaner air, quieter streets and travel that runs on renewable energy for everyone in the city.</p>
 `,
         HIGH_SCHOOL: `
-<h2>Decarbonizing Transportation: EVs, Charging and Beyond</h2>
-<p>Road transportation burns a large share of the world's oil and is a major source of both climate pollution and local air pollution. Electrification is the leading strategy for cutting those emissions, but the transportation system is more than vehicles. It includes charging networks, the electricity grid, public transit, land use and the choices people make every day. This lesson looks at how all these pieces fit together.</p>
+<h2>Electrifying How We Move Together</h2>
+<p>An electric car parked in a driveway is the familiar picture of clean transport, but it is only part of the story. The fastest way to cut transport emissions per person is to electrify shared transport, such as buses, trains, trams, delivery vans and taxis, and to build charging networks that serve everyone. This chapter looks at those systems rather than at individual vehicles.</p>
 
-<h3>Types of Electrified Vehicles</h3>
+<h3>Electrifying Public Transport</h3>
+<p>Rail has run on electricity for over a century, drawing power from overhead lines or a third rail. Buses are now following. A battery-electric bus uses roughly three to four times less energy per kilometre than a diesel bus, because electric motors waste far less energy as heat and recover energy when braking. Agencies choose between depot charging, where buses charge overnight and carry big batteries, and opportunity charging, where pantograph chargers at route ends top them up in a few minutes, allowing smaller batteries.</p>
 <ul>
-<li><strong>Battery electric vehicle (BEV):</strong> runs only on electricity from a battery and has no engine or tailpipe</li>
-<li><strong>Plug-in hybrid (PHEV):</strong> has a smaller battery for short electric trips plus a gasoline engine for longer ones</li>
-<li><strong>Hybrid electric vehicle:</strong> uses a small battery to assist a gasoline engine but cannot be plugged in</li>
-<li><strong>Fuel cell electric vehicle:</strong> makes electricity on board from hydrogen and releases only water vapor</li>
-<li><strong>Electric micromobility:</strong> small electric vehicles such as e-bikes and e-scooters for short trips</li>
+<li><strong>Regenerative braking:</strong> using the motor to slow the vehicle and recover energy into the battery</li>
+<li><strong>Pantograph charger:</strong> an overhead arm that connects to a bus roof for fast charging</li>
+<li><strong>Level 2 charger:</strong> a medium-power charger that refills a car over several hours</li>
+<li><strong>DC fast charger:</strong> a high-power charger that can add hundreds of kilometres of range in under an hour</li>
+<li><strong>Charging desert:</strong> an area with too few public chargers for residents to rely on electric vehicles</li>
 </ul>
 
-<h3>Why Electric Drivetrains Are Efficient</h3>
-<p>A typical gasoline engine turns only a minority of its fuel energy into motion; the rest is lost as heat. Electric motors convert most of the battery's energy into motion, and regenerative braking recovers energy that would otherwise be lost. That is why an EV usually needs a fraction of the energy of a comparable gas car to travel the same distance.</p>
+<h3>Designing Charging Networks</h3>
+<p>Good networks match charger speed to how long vehicles stay parked. Homes and workplaces need slow chargers; shopping centres need medium ones; highways need fast chargers spaced so drivers never run low. Reliability matters as much as numbers: a broken charger on a long trip is a serious problem. Many cities now map charging deserts, often in lower-income or rental-heavy areas, and target new curbside chargers there.</p>
 
-<h3>Charging Infrastructure</h3>
-<table>
-<thead><tr><th>Charging type</th><th>Speed</th><th>Typical use</th></tr></thead>
-<tbody>
-<tr><td>Level 1 (standard outlet)</td><td>Slow, a few kilometers of range per hour</td><td>Overnight home charging for short daily trips</td></tr>
-<tr><td>Level 2 (dedicated circuit)</td><td>Medium, a full charge overnight</td><td>Homes, workplaces, apartment garages</td></tr>
-<tr><td>DC fast charging</td><td>Fast, large share of a charge in under an hour</td><td>Highway road trips, taxis, delivery fleets</td></tr>
-<tr><td>Depot charging</td><td>Medium to high power</td><td>Buses and trucks charging overnight at a base</td></tr>
-</tbody>
-</table>
-<p>Most EV charging happens at home or work. A major challenge is people who live in apartments or rent and cannot install a home charger. Public and curbside chargers are essential for them.</p>
+<h3>The Grid Connection</h3>
+<p>A bus depot charging dozens of buses at night can draw as much power as a small town. Managed charging spreads that load over the night and avoids peak hours, and depot batteries or solar canopies can cushion demand. When charging is scheduled for times when wind and solar are plentiful, clean transport becomes a tool for using more renewable energy, not just a new demand.</p>
 
-<h3>Beyond the Car: Avoid, Shift, Improve</h3>
-<p>Transportation planners often use a three-part approach:</p>
-<ol>
-<li><strong>Avoid</strong> unnecessary trips through compact neighborhoods where shops and schools are close by.</li>
-<li><strong>Shift</strong> trips to walking, cycling and public transit, which use far less energy per person.</li>
-<li><strong>Improve</strong> the vehicles that remain, mainly by electrifying them and making them efficient.</li>
-</ol>
-<p>Electric buses are a powerful example of combining shift and improve: they serve many riders and remove diesel exhaust from busy streets.</p>
-
-<h3>Trade-offs and Challenges</h3>
-<ul>
-<li>Battery production requires mining, which has environmental and human-rights risks.</li>
-<li>Heavy trucks need large batteries, so long-haul trucking is harder to electrify than city driving.</li>
-<li>Charging many vehicles at once can strain local power lines.</li>
-<li>EVs still produce tire and brake dust, so cleaner cars do not solve every air problem.</li>
-</ul>
-
-<h3>Real-World Solutions</h3>
-<p>Cities are adding bus lanes and electric bus fleets, utilities are offering cheaper night-time charging rates, and battery recycling is growing. Combined with a grid that gets cleaner each year, these steps make transportation one of the fastest-changing parts of the energy transition.</p>
+<h3>Beyond the Bus</h3>
+<p>Delivery companies are electrifying vans because they drive predictable routes and return to a depot each night. Shared e-bikes and e-scooters cover short trips and connect people to train stations. Together these pieces form a clean mobility system.</p>
 `,
         UNDERGRADUATE: `
-<h2>EV Economics, Grid Integration and Fleet Electrification</h2>
-<p>Electrifying transportation shifts energy demand from oil to the power grid. Whether that shift delivers the expected climate, cost and air-quality benefits depends on vehicle economics, the carbon intensity of electricity, how and when vehicles charge, and how quickly fleets turn over. This lesson develops the analytical tools to evaluate those factors.</p>
+<h2>Electric Mobility Systems: Transit and Charging Infrastructure</h2>
+<p>Decarbonising transport requires more than replacing internal-combustion vehicles one-for-one. System-level choices, such as how much travel shifts to public transport, how fleets are electrified and how charging infrastructure is deployed, determine emissions, costs and who benefits. This chapter examines electrified public transit and charging networks as engineered systems connected to the power grid.</p>
 
-<h3>Core Concepts</h3>
+<h3>Transit Electrification</h3>
+<p>Electric rail and trolleybuses use continuous power from catenary or third rail, avoiding large batteries entirely. Battery-electric buses (BEBs) now account for a large share of new bus sales in many cities. Fleet planning must reconcile battery capacity, route length, climate (cabin heating can raise winter energy use substantially) and charging strategy. Depot-charged buses need larger batteries and more depot power; opportunity charging allows smaller batteries but requires high-power chargers on route and tighter scheduling. Total cost of ownership comparisons often favour BEBs over their lifetime because of lower energy and maintenance costs, despite higher purchase prices.</p>
 <ul>
-<li><strong>Total cost of ownership:</strong> the full cost of a vehicle over its life, including purchase, energy, maintenance, insurance and resale value</li>
-<li><strong>Energy efficiency (vehicle):</strong> the energy a vehicle uses per distance traveled, usually in kilowatt-hours per kilometer for EVs</li>
-<li><strong>Grid carbon intensity:</strong> the emissions released per unit of electricity generated, which varies by region and hour</li>
-<li><strong>Managed charging:</strong> scheduling or modulating charging to reduce costs, avoid peaks or follow renewable output</li>
-<li><strong>Duty cycle:</strong> the pattern of distance, speed, stops and idle time a vehicle experiences in daily service</li>
-<li><strong>Fleet turnover:</strong> the rate at which old vehicles are retired and replaced, which limits how fast the stock can change</li>
+<li><strong>Total cost of ownership (TCO):</strong> purchase, energy, maintenance and other costs over a vehicle's life</li>
+<li><strong>Catenary:</strong> overhead wires that supply continuous power to trains, trams or trolleybuses</li>
+<li><strong>Managed charging:</strong> controlling when and how fast vehicles charge to reduce costs and grid impacts</li>
+<li><strong>Utilisation rate:</strong> the share of time a charger is actually in use, which drives its economics</li>
+<li><strong>Demand charge:</strong> a utility fee based on a site's highest power draw, which can dominate fast-charging costs</li>
 </ul>
 
-<h3>Total Cost of Ownership Reasoning</h3>
-<p>EVs typically have a higher purchase price than comparable combustion vehicles, mainly because of the battery, but lower energy and maintenance costs. Electricity per kilometer is usually cheaper than gasoline, and electric drivetrains have far fewer moving parts, with no oil changes and less brake wear. The break-even point depends on distance driven per year, local fuel and electricity prices, incentives and financing costs. High-mileage vehicles such as taxis, delivery vans and buses reach break-even fastest, which is why fleets are often early adopters.</p>
-
-<h3>Comparing Fleet Segments</h3>
-<table>
-<thead><tr><th>Segment</th><th>Electrification readiness</th><th>Key constraint</th></tr></thead>
-<tbody>
-<tr><td>Urban transit buses</td><td>High</td><td>Depot power capacity and route scheduling</td></tr>
-<tr><td>Last-mile delivery vans</td><td>High</td><td>Charger installation at depots</td></tr>
-<tr><td>Ride-hailing and taxis</td><td>Moderate to high</td><td>Access to fast charging and driver downtime</td></tr>
-<tr><td>Regional trucks</td><td>Moderate</td><td>Battery weight and payload trade-offs</td></tr>
-<tr><td>Long-haul trucks</td><td>Lower today</td><td>Megawatt-scale charging and route coverage</td></tr>
-</tbody>
-</table>
+<h3>Charging Infrastructure Types and Siting</h3>
+<p>Charging spans AC Level 1 and Level 2 (roughly 1 to 20 kW) and DC fast charging (50 to 350 kW and beyond). Siting models use travel surveys, parking duration and traffic flows to locate chargers where dwell times match charging speed. Public fast chargers face a chicken-and-egg problem: low early utilisation makes them unprofitable, while their absence slows EV adoption. Demand charges can make low-utilisation fast chargers especially costly, prompting tariff reform and on-site batteries.</p>
 
 <h3>Grid Integration</h3>
-<p>Each EV adds a substantial new load, but the aggregate impact depends on timing. Uncontrolled charging tends to cluster in the early evening when people return home, overlapping with existing peaks and stressing distribution transformers. Managed charging can move most of that load to overnight or midday solar hours with little inconvenience, because the average vehicle is parked most of the day. At the distribution level, clusters of fast chargers or bus depots may require transformer and feeder upgrades, so siting and coordination with utilities matter.</p>
+<p>Aggregated charging can add significant evening peaks if unmanaged. Time-of-use tariffs, smart charging and depot energy management shift loads to off-peak or high-renewable periods. Vehicle-to-grid (V2G) technology, which lets parked vehicles discharge to the grid, is being piloted with school buses, whose long summer idle periods align with peak demand.</p>
 
-<h3>Emissions Accounting</h3>
-<p>Comparing EVs to combustion vehicles requires counting emissions from vehicle and battery manufacturing, fuel or electricity production, and operation. EVs usually start with a higher manufacturing footprint because of the battery, then pay it back through lower operating emissions. The payback is faster on cleaner grids and for vehicles driven more. Using average versus marginal grid emissions can change results, so analysts should state which they use.</p>
-
-<h3>Applied Checklist for a Fleet Electrification Study</h3>
-<ol>
-<li>Characterize duty cycles: daily distance, dwell times and depot locations.</li>
-<li>Match vehicle range and charging power to those duty cycles with a safety margin.</li>
-<li>Estimate total cost of ownership under several fuel and electricity price scenarios.</li>
-<li>Engage the utility early on service capacity and managed charging tariffs.</li>
-<li>Calculate life-cycle emissions with stated grid assumptions.</li>
-<li>Plan a phased rollout aligned with natural vehicle replacement cycles.</li>
-</ol>
+<h3>Equity Considerations</h3>
+<p>Early charging deployment concentrated in affluent areas with high EV ownership. Equity-focused planning prioritises transit electrification on routes serving pollution-burdened neighbourhoods and curbside or multi-unit housing chargers for residents without garages.</p>
 `,
         GRADUATE: `
-<h2>Transforming Transportation Systems: Policy, Planning and Equity</h2>
-<p>Transportation decarbonization is a system transformation, not a product swap. Vehicles, fuels, infrastructure, land use and institutions co-evolve, and decisions made today about roads, charging networks and transit will shape emissions for decades. This lesson examines the policy frameworks, planning tools and equity questions that determine whether electrification delivers broad public benefit.</p>
+<h2>Planning Electrified Transit and Charging Networks</h2>
+<p>Transport electrification is a planning problem as much as a technology problem. Transit agencies, utilities, municipalities and private charge-point operators must coordinate fleet replacement schedules, depot power upgrades, public charger deployment and tariff design. Decisions made now lock in infrastructure for decades. This chapter examines those planning problems and the trade-offs between system cost, reliability, grid impact and equity.</p>
 
-<h3>Key Concepts</h3>
+<h3>Fleet Transition Planning</h3>
+<p>Transit agencies typically replace buses on 12- to 15-year cycles, so fleet transition plans phase in battery-electric buses as vehicles retire. Planning tools combine block-level energy simulation (accounting for route profile, passenger load, temperature and HVAC) with charging strategy and depot layout. Key constraints include depot grid connection capacity, which can take years to upgrade, and operational resilience: agencies keep diesel or hybrid backup during transition and plan for charger failures. Mixed strategies, depot charging for most blocks plus on-route charging for the longest, often minimise cost.</p>
 <ul>
-<li><strong>Vehicle emissions standards:</strong> regulations that cap average emissions or require a rising share of zero-emission vehicles in manufacturers' sales</li>
-<li><strong>Infrastructure lock-in:</strong> the tendency of long-lived roads, depots and land-use patterns to sustain particular travel behaviors for decades</li>
-<li><strong>Induced demand:</strong> additional travel generated when road capacity expands or travel becomes cheaper</li>
-<li><strong>Charging deserts:</strong> areas with few public chargers, often lower-income or rural, where adoption lags as a result</li>
-<li><strong>Mode share:</strong> the proportion of trips made by each travel mode, such as car, transit, walking or cycling</li>
-<li><strong>Just transition (transport):</strong> managing the shift so that workers, communities and low-income travelers share in the benefits</li>
+<li><strong>Block:</strong> the full sequence of trips a single bus performs between leaving and returning to the depot</li>
+<li><strong>Interconnection queue:</strong> the waiting list for new or upgraded grid connections, a frequent bottleneck for depots</li>
+<li><strong>Charge-point operator:</strong> a company that owns or operates public chargers and sells charging services</li>
+<li><strong>Vehicle-to-grid (V2G):</strong> bidirectional charging that lets vehicles supply power back to the grid</li>
+<li><strong>Accessibility metric:</strong> a measure of how easily residents can reach chargers or transit within a given time or distance</li>
 </ul>
 
-<h3>The Policy Toolkit</h3>
-<table>
-<thead><tr><th>Instrument</th><th>Mechanism</th><th>Main limitation</th></tr></thead>
-<tbody>
-<tr><td>Purchase incentives</td><td>Lower upfront cost to speed adoption</td><td>Can favor higher-income buyers unless income-targeted</td></tr>
-<tr><td>Zero-emission vehicle mandates</td><td>Require manufacturers to sell a rising share of EVs</td><td>Depends on enforcement and charging readiness</td></tr>
-<tr><td>Fuel and carbon pricing</td><td>Raise the cost of fossil fuels relative to electricity</td><td>Politically difficult and regressive without rebates</td></tr>
-<tr><td>Public charging investment</td><td>Reduce range anxiety and serve renters</td><td>Utilization risk in early years</td></tr>
-<tr><td>Transit and active travel investment</td><td>Shift trips to lower-energy modes</td><td>Long lead times and land-use dependence</td></tr>
-<tr><td>Low-emission or clean-air zones</td><td>Restrict polluting vehicles in dense areas</td><td>Can burden low-income drivers of older vehicles</td></tr>
-</tbody>
-</table>
+<h3>Public Charging Network Design</h3>
+<p>Network design balances coverage (no gaps along corridors), capacity (enough ports at busy times) and reliability (uptime). Location models range from flow-refuelling location models for highway corridors to agent-based simulations of urban charging demand. Market failures in low-demand areas justify public investment or obligations on operators; standards for payment, connectors and uptime reporting improve user experience and competition.</p>
 
-<h3>Why Electrification Alone Is Not Enough</h3>
-<p>Even an all-electric car fleet requires very large amounts of electricity, battery materials and road space, and it does not address congestion, road safety or the travel needs of people who cannot drive. Scenario analyses commonly find that combining electrification with reduced vehicle travel lowers total system cost and material demand. Planners therefore pair electrification with transit investment, safe cycling networks, compact development and pricing reforms.</p>
+<h3>Grid Integration and Tariffs</h3>
+<p>Fleet depots and fast-charging hubs are large, concentrated loads. Managed charging, on-site storage and solar, and utility programmes that coordinate connection planning can reduce upgrade costs. Tariff design is decisive: demand charges calibrated for industrial loads can make low-utilisation fast chargers uneconomic, so many jurisdictions have introduced EV-specific rates or demand-charge holidays. V2G pilots with school buses and fleets test whether vehicle batteries can provide valuable services without compromising mobility.</p>
 
-<h3>Utility and Institutional Coordination</h3>
-<p>Charging infrastructure sits at the boundary of transport agencies, utilities, municipalities and private operators. Common barriers include slow interconnection of high-power sites, demand charges that penalize low-utilization fast chargers, permitting delays and unclear ownership of curbside space. Regulators can respond with tariffs designed for early-stage charging, utility-funded make-ready infrastructure and coordinated planning between transport and grid agencies.</p>
-
-<h3>Equity and Distribution</h3>
-<p>Early EV benefits have flowed disproportionately to wealthier households who own homes with garages. Meanwhile, communities near highways, ports and freight corridors bear the heaviest diesel pollution. Equity-focused strategies prioritize electrifying buses, school buses, drayage trucks and ride-hailing fleets, invest in chargers in underserved areas, support used-EV markets and retrain workers in vehicle maintenance and manufacturing.</p>
-
-<h3>Evaluation Framework</h3>
-<ol>
-<li>Define the goal: emissions, air quality, cost, access or a combination.</li>
-<li>Assess the full mobility system, including mode shift and travel demand.</li>
-<li>Model grid and infrastructure requirements across scenarios.</li>
-<li>Analyze who pays, who benefits and who bears residual pollution.</li>
-<li>Identify institutional barriers and the agencies responsible for each.</li>
-<li>Design monitoring to track adoption, utilization and distributional outcomes.</li>
-</ol>
+<h3>Equity and Mode Shift</h3>
+<p>Electrifying private cars alone does not address congestion, road safety or the transport needs of people who cannot drive. Planning frameworks therefore pair charging deployment with transit investment and mode shift, and use accessibility metrics to target chargers and electric routes to underserved and pollution-burdened communities. Monitoring frameworks that track air quality, ridership and charger use by neighbourhood help agencies check whether investments actually reach the people they were meant to serve.</p>
 `,
         PHD: `
-<h2>Research Frontiers: Vehicle-Grid Integration, Mobility Systems and Life-Cycle Impacts</h2>
-<p>Research on transportation electrification has moved from questions of technical feasibility to questions of system integration, behavior and sustainability across supply chains. Open problems span power systems engineering, transport modeling, materials science and social science. This lesson surveys the main research threads, methods and debates.</p>
+<h2>Research on Electrified Mobility Systems</h2>
+<p>Transport is now one of the largest sources of greenhouse gas emissions in many economies, and its electrification couples transport and power systems tightly. Research on electrified mobility spans optimisation of charging networks, joint planning of fleets and grids, behavioural responses to infrastructure and prices, and the distributional consequences of deployment. This chapter surveys open problems at these interfaces.</p>
 
-<h3>Methods and Concepts</h3>
+<h3>Charging Network Optimisation Under Uncertainty</h3>
+<p>Facility location formulations for charging, including flow-capturing and flow-refuelling models, have evolved toward stochastic and robust programmes that account for uncertain adoption trajectories, travel behaviour and technology change (higher charging power, larger batteries). Coupled transport-power models capture feedback between charging prices, route choice and congestion at chargers. Open questions include how to plan networks robust to uncertain future vehicle ranges and how to value charger reliability, which surveys identify as a major barrier yet models rarely represent.</p>
 <ul>
-<li><strong>Vehicle-grid integration:</strong> the umbrella term for coordinating EV charging, and potentially discharging, with power system needs</li>
-<li><strong>Vehicle-to-grid (V2G):</strong> bidirectional power flow that lets parked EVs export energy to the grid or a building</li>
-<li><strong>Agent-based travel simulation:</strong> models that represent individual travelers and vehicles to capture emergent charging and traffic patterns</li>
-<li><strong>Consequential life-cycle assessment:</strong> an approach that estimates the system-wide change in impacts caused by a decision, rather than averaging existing flows</li>
-<li><strong>Battery degradation modeling:</strong> methods that predict capacity loss from cycling, temperature and state-of-charge patterns over time</li>
-<li><strong>Prospective LCA:</strong> life-cycle assessment that projects future technologies, supply chains and grids rather than using current data</li>
+<li><strong>Flow-refuelling location model:</strong> an optimisation model that places chargers to serve trips along travel paths given vehicle range</li>
+<li><strong>Stochastic programming:</strong> optimisation that explicitly represents uncertain parameters with probability distributions</li>
+<li><strong>Coupled transport-power model:</strong> a model linking traffic and travel decisions with electricity network operation</li>
+<li><strong>Battery degradation cost:</strong> the economic cost of capacity loss caused by charging and discharging, relevant to V2G</li>
+<li><strong>Transport poverty:</strong> lacking affordable, accessible transport to reach work, services and opportunities</li>
 </ul>
 
-<h3>Vehicle-Grid Integration</h3>
-<p>Aggregated EV fleets represent a large, distributed and mostly idle storage resource. Research questions include how to coordinate millions of vehicles with privacy and limited communication, how to design incentives that respect driver mobility needs, and whether V2G services justify the added battery wear and hardware cost. Optimization formulations range from centralized model predictive control to decentralized schemes such as price-based coordination and distributed optimization, each with trade-offs between optimality, scalability and robustness to forecast error. A recurring finding is that smart unidirectional charging captures much of the available value, leaving the marginal value of bidirectional flow contested and context-dependent.</p>
+<h3>Fleet-Grid Co-Optimisation</h3>
+<p>Bus and freight fleets offer controllable, predictable loads. Research co-optimises vehicle scheduling, charging and depot energy assets, sometimes including bidirectional charging. Key uncertainties include battery degradation under V2G cycling, the value of fleet flexibility in markets with high renewable shares, and contractual arrangements that let fleets participate without risking service. Large-scale studies suggest managed charging can substantially reduce the generation and network capacity needed for electrified transport, but realised flexibility depends on operational realities that pilots are only beginning to quantify.</p>
 
-<h3>Mobility System Modeling</h3>
-<p>Electrification interacts with shared mobility, automation and land use. Coupled transport-energy models attempt to represent how charging availability affects route choice, how shared fleets change vehicle counts and kilometers traveled, and how these feed back into grid load. Challenges include behavioral parameters that are poorly observed, spatial resolution mismatches between transport zones and distribution feeders, and the computational cost of large agent-based simulations.</p>
+<h3>Behaviour, Distribution and Policy</h3>
+<p>Charging behaviour departs from rational models: drivers over-rely on fast chargers, avoid unfamiliar networks and respond to perceived rather than actual reliability. Distributionally, subsidies and infrastructure have favoured higher-income adopters, while transport poverty persists among households without cars. Research integrates accessibility analysis, environmental justice data and policy evaluation to assess whether electrification programmes reduce or reproduce inequities, and whether investment should prioritise transit and active mobility over private vehicle charging.</p>
 
-<h3>Life-Cycle and Supply-Chain Questions</h3>
-<table>
-<thead><tr><th>Question</th><th>Why it is contested</th></tr></thead>
-<tbody>
-<tr><td>Average versus marginal grid emissions for charging</td><td>Choice of method can change estimated benefits substantially</td></tr>
-<tr><td>Future battery chemistries and their footprints</td><td>Rapid technology change makes current inventories age quickly</td></tr>
-<tr><td>Recycling rates and second-life use</td><td>Outcomes depend on future markets, policy and collection systems</td></tr>
-<tr><td>Non-exhaust particulate emissions</td><td>Heavier vehicles may emit more tire wear, partly offset by regenerative braking</td></tr>
-<tr><td>Critical mineral supply and social impacts</td><td>Environmental and labor conditions vary widely across mining regions</td></tr>
-</tbody>
-</table>
-
-<h3>Methodological Debates</h3>
-<p>Comparative studies often disagree because of differences in system boundaries, functional units, vehicle lifetimes, grid trajectories and driving cycles. Attributional assessments describe the footprint of a vehicle within today's economy, while consequential assessments ask what changes when adoption grows. Both are legitimate but answer different questions, and conflating them fuels public confusion. Harmonization efforts and transparent sensitivity analysis are active areas of methodological work.</p>
-
-<h3>Open Research Directions</h3>
-<ol>
-<li>Scalable, privacy-preserving coordination of large EV populations on distribution networks.</li>
-<li>Empirical evidence on driver acceptance of managed charging and V2G participation.</li>
-<li>Integrated models linking travel demand, land use and grid capacity expansion.</li>
-<li>Prospective life-cycle assessment of emerging chemistries and recycling pathways.</li>
-<li>Electrification strategies for heavy freight, including charging corridors and alternative fuels.</li>
-<li>Distributional analysis of electrification benefits and burdens across communities.</li>
-</ol>
+<h3>Methodological Directions</h3>
+<p>Progress depends on open charging session data, linked travel and electricity datasets, and evaluation designs that can attribute outcomes to policies. Agent-based simulation calibrated with such data, combined with natural experiments from staggered infrastructure rollouts, offers a path to stronger causal evidence on what actually changes travel and emissions. Integrating life-cycle emissions, including battery manufacturing and the carbon intensity of charging electricity by hour, would further clarify which electrification pathways deliver the largest real reductions.</p>
 `,
       },
     },
   ],
   quiz: [
     {
-      id: 'revq1',
+      id: 're-ev2-q1',
       question: {
-        ELEMENTARY: 'What does an electric car use instead of a gas tank?',
-        MIDDLE_SCHOOL: 'What is regenerative braking?',
-        HIGH_SCHOOL: 'What is DC fast charging mainly used for?',
-        UNDERGRADUATE: 'Why do high-mileage fleets often reach EV cost break-even fastest?',
-        GRADUATE: 'What is a common equity concern with untargeted EV purchase incentives?',
-        PHD: 'What is vehicle-to-grid (V2G)?',
+        ELEMENTARY: 'Why is an electric bus better for clean air than many cars?',
+        MIDDLE_SCHOOL: 'Why do electric buses and trains cut pollution so much?',
+        HIGH_SCHOOL: 'Why is electrifying shared transport especially effective at cutting emissions per person?',
+        UNDERGRADUATE: 'Why do total cost of ownership comparisons often favour battery-electric buses?',
+        GRADUATE: 'Why is depot grid connection capacity a key constraint in transit fleet transition?',
+        PHD: 'Why do surveys suggest charger reliability deserves more attention in network models?',
       },
       options: {
-        ELEMENTARY: ['A big battery', 'A bag of coal', 'A water tank', 'A sail'],
-        MIDDLE_SCHOOL: ['Using the motor to slow down and recharge the battery', 'Braking hard to save tires', 'Filling the tank while driving', 'Turning off the engine at red lights'],
-        HIGH_SCHOOL: ['Highway road trips and busy fleets that need a quick charge', 'Charging phones in the car', 'Only charging bicycles', 'Heating the car in winter'],
-        UNDERGRADUATE: ['Lower energy and maintenance costs add up faster with more distance driven', 'They pay no electricity bills', 'Their batteries are free', 'They never need tires'],
-        GRADUATE: ['Benefits can flow mainly to higher-income buyers', 'They always raise fuel prices', 'They ban older cars immediately', 'They only apply to buses'],
-        PHD: ['Bidirectional power flow that lets parked EVs export energy to the grid', 'A rule requiring EVs on highways', 'A type of gasoline engine', 'A battery recycling process'],
-      },
-      correctIndex: 0,
-      explanation: {
-        ELEMENTARY: 'Electric cars store their energy in a big battery and plug in to fill it up.',
-        MIDDLE_SCHOOL: 'When slowing down, the motor acts like a generator and sends energy back into the battery.',
-        HIGH_SCHOOL: 'DC fast chargers deliver a large share of a charge in under an hour, useful for long trips and fleets.',
-        UNDERGRADUATE: 'The savings per kilometer are what pay back the higher purchase price, so more kilometers means faster payback.',
-        GRADUATE: 'Without income targeting, incentives tend to help households who could already afford new cars and home chargers.',
-        PHD: 'V2G lets an EV battery discharge to the grid or a building, not only charge from it.',
-      },
-    },
-    {
-      id: 'revq2',
-      question: {
-        ELEMENTARY: 'Which way of getting to a nearby park makes no pollution at all?',
-        MIDDLE_SCHOOL: 'What decides how clean an EV really is?',
-        HIGH_SCHOOL: 'In the avoid-shift-improve approach, what does "shift" mean?',
-        UNDERGRADUATE: 'Why does uncontrolled EV charging often stress the grid?',
-        GRADUATE: 'What is infrastructure lock-in?',
-        PHD: 'What does consequential life-cycle assessment estimate?',
-      },
-      options: {
-        ELEMENTARY: ['Driving a big truck', 'Walking or riding a bike', 'Riding in a smoky old car', 'Taking a plane'],
-        MIDDLE_SCHOOL: ['The color of the car', 'How clean the electricity that charges it is', 'How loud the radio is', 'The number of doors'],
-        HIGH_SCHOOL: ['Moving trips to walking, cycling and public transit', 'Changing gears in a car', 'Moving gas stations to new places', 'Switching which side of the road people drive on'],
-        UNDERGRADUATE: ['It tends to cluster in the early evening, overlapping existing peaks', 'EVs can only charge at noon', 'Chargers produce smoke', 'EVs use no electricity'],
-        GRADUATE: ['Long-lived roads and land-use patterns sustaining certain travel behaviors for decades', 'Locking cars at night', 'A type of charging plug', 'A ban on new roads'],
-        PHD: ['The system-wide change in impacts caused by a decision', 'Only the emissions of the factory', 'The average emissions of all cars today', 'The price of batteries'],
-      },
-      correctIndex: 1,
-      explanation: {
-        ELEMENTARY: 'Walking and biking use no fuel, so they make no pollution at all.',
-        MIDDLE_SCHOOL: 'If the electricity comes from sun or wind, the EV is very clean; if from coal, less so.',
-        HIGH_SCHOOL: 'Shift means moving trips to modes that use much less energy per person.',
-        UNDERGRADUATE: 'People plug in when they get home, which adds load at the same time as the evening peak.',
-        GRADUATE: 'Infrastructure lasts for decades, so today choices shape travel and emissions far into the future.',
-        PHD: 'Consequential LCA asks what changes across the system when adoption grows, rather than averaging current flows.',
-      },
-    },
-    {
-      id: 'revq3',
-      question: {
-        ELEMENTARY: 'Why is the air cleaner on a street with electric buses?',
-        MIDDLE_SCHOOL: 'Why do EVs need less energy than gas cars to go the same distance?',
-        HIGH_SCHOOL: 'Which kind of vehicle has a small battery plus a gasoline engine and can be plugged in?',
-        UNDERGRADUATE: 'What is managed charging?',
-        GRADUATE: 'Why do scenario studies often pair electrification with reduced vehicle travel?',
-        PHD: 'Why is the value of bidirectional V2G considered contested?',
-      },
-      options: {
-        ELEMENTARY: ['They are painted green', 'They drive faster', 'They have no tailpipe smoke', 'They have bigger windows'],
-        MIDDLE_SCHOOL: ['They are always lighter', 'They never stop at lights', 'Electric motors turn most of their energy into motion', 'They only drive downhill'],
-        HIGH_SCHOOL: ['Battery electric vehicle', 'Fuel cell vehicle', 'Plug-in hybrid', 'Electric scooter'],
-        UNDERGRADUATE: ['Charging only at gas stations', 'Driving more slowly', 'Scheduling charging to reduce costs, avoid peaks or follow renewable output', 'Charging every vehicle at full power at once'],
-        GRADUATE: ['Because EVs cannot travel far', 'Because transit is always cheaper to build', 'It lowers total system cost and demand for electricity and materials', 'Because roads are being removed'],
-        PHD: ['V2G is illegal everywhere', 'Batteries cannot discharge', 'Smart one-way charging captures much of the value, while V2G adds battery wear and hardware cost', 'EVs are never parked'],
-      },
-      correctIndex: 2,
-      explanation: {
-        ELEMENTARY: 'Electric buses have no tailpipe, so no smoky exhaust goes into the air on the street.',
-        MIDDLE_SCHOOL: 'Gas engines waste most fuel energy as heat; electric motors waste far less.',
-        HIGH_SCHOOL: 'A plug-in hybrid has a battery for short electric trips and a gas engine for longer ones.',
-        UNDERGRADUATE: 'Managed charging shifts or adjusts charging, often to overnight or sunny hours.',
-        GRADUATE: 'Fewer vehicle kilometers means less electricity, fewer batteries and less road space are needed.',
-        PHD: 'Research often finds smart unidirectional charging captures much value, so the extra benefit of V2G depends on context.',
-      },
-    },
-    {
-      id: 'revq4',
-      question: {
-        ELEMENTARY: 'Where do electric buses usually charge?',
-        MIDDLE_SCHOOL: 'What does "range" mean for a vehicle?',
-        HIGH_SCHOOL: 'Why is long-haul trucking harder to electrify than city driving?',
-        UNDERGRADUATE: 'Why do EVs usually start with a higher manufacturing carbon footprint?',
-        GRADUATE: 'What is a charging desert?',
-        PHD: 'Why might heavier EVs raise non-exhaust particle concerns?',
-      },
-      options: {
-        ELEMENTARY: ['At a swimming pool', 'At the library shelves', 'Under a tree', 'At a bus depot'],
-        MIDDLE_SCHOOL: ['The color options', 'The top speed', 'The price', 'How far it can travel on one full charge or tank'],
-        HIGH_SCHOOL: ['Trucks have no wheels', 'Highways have no electricity', 'Trucks are always slow', 'Heavy trucks need very large batteries for long distances'],
-        UNDERGRADUATE: ['Because of the paint', 'Because of their tires', 'Because they are larger', 'Because producing the battery is energy- and material-intensive'],
-        GRADUATE: ['A desert with solar farms', 'A charger in a hot climate', 'A parking lot with many chargers', 'An area with few public chargers, often lower-income or rural'],
-        PHD: ['EVs have exhaust pipes', 'Batteries emit dust', 'Electric motors burn fuel', 'Greater weight can increase tire wear, partly offset by regenerative braking'],
+        ELEMENTARY: ['It is painted green', 'It drives faster', 'It honks less', 'It carries lots of people without smoke'],
+        MIDDLE_SCHOOL: ['They are smaller', 'They only run at night', 'They have no seats', 'They carry many people all day with no exhaust'],
+        HIGH_SCHOOL: ['Shared vehicles never need charging', 'Buses are lighter than cars', 'Trains use diesel', 'Each vehicle carries many people and runs all day'],
+        UNDERGRADUATE: ['They have cheaper purchase prices', 'They need no drivers', 'They never need maintenance', 'Lower energy and maintenance costs outweigh higher purchase prices'],
+        GRADUATE: ['Buses cannot charge at depots', 'Depots need no electricity', 'Diesel is required by law', 'Upgrades can take years through interconnection queues'],
+        PHD: ['Chargers never fail', 'Reliability is easy to model', 'Drivers ignore reliability', 'Reliability is a major barrier but rarely represented in models'],
       },
       correctIndex: 3,
       explanation: {
-        ELEMENTARY: 'Electric buses rest and charge at a bus depot, a big garage for buses.',
-        MIDDLE_SCHOOL: 'Range tells you how far a vehicle can go before it needs to recharge or refuel.',
-        HIGH_SCHOOL: 'Long trips with heavy loads need big, heavy batteries, which reduces payload.',
-        UNDERGRADUATE: 'Battery manufacturing adds emissions up front, which are paid back by lower operating emissions.',
-        GRADUATE: 'Charging deserts slow adoption where people already have fewer options.',
-        PHD: 'Heavier vehicles can wear tires faster, while regenerative braking reduces brake dust.',
+        ELEMENTARY: 'One electric bus can carry fifty people with no smoke at all.',
+        MIDDLE_SCHOOL: 'Buses and trains carry many riders all day, so going electric removes a lot of exhaust.',
+        HIGH_SCHOOL: 'Shared vehicles move many people and run constantly, so each electric one replaces lots of emissions.',
+        UNDERGRADUATE: 'Despite higher purchase prices, lower fuel and maintenance costs make lifetime costs competitive.',
+        GRADUATE: 'Depot grid upgrades can be slow, so they often set the pace of fleet transition.',
+        PHD: 'Users rank reliability highly, yet most location models assume chargers always work.',
       },
     },
     {
-      id: 'revq5',
+      id: 're-ev2-q2',
       question: {
-        ELEMENTARY: 'Why is a full bus a clean way to travel?',
-        MIDDLE_SCHOOL: 'Why is recycling EV batteries important?',
-        HIGH_SCHOOL: 'What is a big charging challenge for people who rent apartments?',
-        UNDERGRADUATE: 'What is a duty cycle in fleet planning?',
-        GRADUATE: 'Why do equity-focused strategies often prioritize electrifying buses and drayage trucks?',
-        PHD: 'Why do comparative EV life-cycle studies often disagree?',
+        ELEMENTARY: 'Where do electric buses usually recharge at night?',
+        MIDDLE_SCHOOL: 'What is opportunity charging for buses?',
+        HIGH_SCHOOL: 'What is regenerative braking?',
+        UNDERGRADUATE: 'What fee can dominate the costs of a low-utilisation fast charger?',
+        GRADUATE: 'In transit planning, what is a "block"?',
+        PHD: 'What does a flow-refuelling location model optimise?',
       },
       options: {
-        ELEMENTARY: ['It carries many people at once, so each person makes less pollution', 'It is the fastest vehicle', 'It never needs a driver', 'It is the biggest vehicle on the road'],
-        MIDDLE_SCHOOL: ['It reduces the need for new mining of minerals like lithium', 'It makes batteries heavier', 'It makes cars faster', 'It is required to drive at night'],
-        HIGH_SCHOOL: ['They often cannot install a home charger', 'Apartments have no electricity', 'Renters cannot drive EVs', 'Chargers only work on houses'],
-        UNDERGRADUATE: ['The pattern of distance, speed, stops and idle time in daily service', 'How often a vehicle is washed', 'The number of seats', 'The color code of a fleet'],
-        GRADUATE: ['They reduce diesel pollution in communities near highways, ports and freight corridors', 'They are the cheapest vehicles to make', 'They are used only by wealthy people', 'They need no charging'],
-        PHD: ['Differences in system boundaries, lifetimes, grid trajectories and driving cycles', 'All studies use identical data', 'EVs have no life cycle', 'Only one country studies EVs'],
+        ELEMENTARY: ['In the river', 'In the bus garage', 'At the beach', 'On the roof of a school'],
+        MIDDLE_SCHOOL: ['Charging only on holidays', 'Quick top-ups at stops or at the end of a route', 'Charging with gasoline', 'Never charging'],
+        HIGH_SCHOOL: ['Braking that uses a parachute', 'Using the motor to slow down and recover energy into the battery', 'Braking only in rain', 'Replacing the brakes every week'],
+        UNDERGRADUATE: ['A parking ticket', 'A demand charge based on peak power', 'A carbon tax on electricity', 'A registration fee'],
+        GRADUATE: ['A city block of houses', 'The full sequence of trips a bus runs between leaving and returning to the depot', 'A traffic jam', 'A charger cable'],
+        PHD: ['Paint colours for chargers', 'Charger placement to serve trips along paths given vehicle range', 'Battery chemistry choice', 'Ticket prices'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Buses park in their garage at night and plug in, like a phone.',
+        MIDDLE_SCHOOL: 'Opportunity charging gives buses short, fast top-ups during their day.',
+        HIGH_SCHOOL: 'The motor works as a generator when braking, sending energy back to the battery.',
+        UNDERGRADUATE: 'Demand charges based on a site\'s peak power can outweigh the energy cost when chargers are rarely used.',
+        GRADUATE: 'A block is one bus\'s full workday, which sets how much energy it must carry or get on route.',
+        PHD: 'These models place chargers so trips along travel paths can be completed within vehicle range.',
+      },
+    },
+    {
+      id: 're-ev2-q3',
+      question: {
+        ELEMENTARY: 'Why do towns put chargers in many different neighbourhoods?',
+        MIDDLE_SCHOOL: 'Where should slow chargers go?',
+        HIGH_SCHOOL: 'What is a "charging desert"?',
+        UNDERGRADUATE: 'What does equity-focused charging planning prioritise?',
+        GRADUATE: 'What do accessibility metrics measure in charging and transit planning?',
+        PHD: 'What is "transport poverty"?',
+      },
+      options: {
+        ELEMENTARY: ['So everyone can reach one', 'To make streets darker', 'To scare birds', 'Because chargers are free to build'],
+        MIDDLE_SCHOOL: ['Where vehicles park for hours, like homes and workplaces', 'Only on highways', 'In the middle of roads', 'Nowhere'],
+        HIGH_SCHOOL: ['An area with too few public chargers for residents to rely on EVs', 'A desert with solar chargers', 'A charger that only works in heat', 'A broken car'],
+        UNDERGRADUATE: ['Routes in pollution-burdened areas and chargers for residents without garages', 'Affluent areas only', 'Highway rest stops only', 'Areas with the most luxury cars'],
+        GRADUATE: ['How easily residents can reach chargers or transit', 'Charger brand loyalty', 'Electricity prices only', 'Vehicle top speed'],
+        PHD: ['Lacking affordable, accessible transport to reach work and services', 'Owning too many cars', 'Spending on luxury vehicles', 'Living near a train station'],
       },
       correctIndex: 0,
       explanation: {
-        ELEMENTARY: 'Sharing one bus spreads its energy use over many riders.',
-        MIDDLE_SCHOOL: 'Recycling recovers materials so less new mining is needed.',
-        HIGH_SCHOOL: 'Without a home charger, renters depend on public, workplace or curbside charging.',
-        UNDERGRADUATE: 'Duty cycles determine the range and charging power a fleet vehicle actually needs.',
-        GRADUATE: 'Those communities bear the heaviest diesel exhaust, so cleaning those vehicles brings large local health benefits.',
-        PHD: 'Different assumptions about boundaries and future grids can produce quite different results.',
+        ELEMENTARY: 'Chargers spread across town mean every family can reach one.',
+        MIDDLE_SCHOOL: 'Slow chargers suit places where vehicles stay parked for a long time.',
+        HIGH_SCHOOL: 'Charging deserts are areas, often renter-heavy, where too few chargers exist.',
+        UNDERGRADUATE: 'Equity planning targets polluted neighbourhoods and people who cannot charge at home.',
+        GRADUATE: 'Accessibility metrics show how easily people can reach chargers or transit in a given time.',
+        PHD: 'Transport poverty means lacking affordable, accessible ways to reach opportunities.',
+      },
+    },
+    {
+      id: 're-ev2-q4',
+      question: {
+        ELEMENTARY: 'How do many trams and trains get their electricity?',
+        MIDDLE_SCHOOL: 'What is micromobility?',
+        HIGH_SCHOOL: 'About how much less energy per kilometre does a battery-electric bus use than a diesel bus?',
+        UNDERGRADUATE: 'Which charging power range describes DC fast charging?',
+        GRADUATE: 'Why are school buses attractive for vehicle-to-grid pilots?',
+        PHD: 'What remains uncertain about fleet participation in vehicle-to-grid services?',
+      },
+      options: {
+        ELEMENTARY: ['From candles', 'From wind blowing on them', 'From wires above the track', 'From the passengers'],
+        MIDDLE_SCHOOL: ['Very tiny cars for toys', 'Microwave ovens on buses', 'Small electric vehicles like e-bikes for short trips', 'Trains underground'],
+        HIGH_SCHOOL: ['About the same', 'Twice as much', 'Roughly three to four times less', 'Ten times more'],
+        UNDERGRADUATE: ['1 to 2 kW', '5 to 10 kW', '50 to 350 kW and beyond', 'Under 1 kW'],
+        GRADUATE: ['They are always moving', 'They have no batteries', 'Long summer idle periods align with peak demand', 'They run on diesel'],
+        PHD: ['Whether vehicles have wheels', 'Whether chargers use cables', 'Battery degradation under V2G cycling and contractual arrangements', 'Whether electricity exists'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Trams and many trains get power from wires above the track, so they never stop to fill up.',
+        MIDDLE_SCHOOL: 'Micromobility means small electric rides like e-bikes and e-scooters.',
+        HIGH_SCHOOL: 'Efficient motors and regenerative braking make electric buses use roughly three to four times less energy.',
+        UNDERGRADUATE: 'DC fast chargers deliver about 50 to 350 kW or more.',
+        GRADUATE: 'School buses sit idle in summer when grid demand peaks, so they can help without disrupting service.',
+        PHD: 'How much V2G wears batteries and how fleets can contract safely are still open questions.',
+      },
+    },
+    {
+      id: 're-ev2-q5',
+      question: {
+        ELEMENTARY: 'What is a charger?',
+        MIDDLE_SCHOOL: 'Why might many fast chargers in one spot cause a problem?',
+        HIGH_SCHOOL: 'How can a bus depot avoid overloading the grid when charging at night?',
+        UNDERGRADUATE: 'What is managed charging?',
+        GRADUATE: 'Why have many jurisdictions introduced EV-specific tariffs or demand-charge holidays?',
+        PHD: 'What evidence would most strengthen causal claims about charging policy?',
+      },
+      options: {
+        ELEMENTARY: ['A kind of bus seat', 'A road sign', 'A traffic light', 'A machine that puts electricity into a vehicle battery'],
+        MIDDLE_SCHOOL: ['They make cars slower', 'They are too quiet', 'They need petrol', 'They can strain local power lines'],
+        HIGH_SCHOOL: ['Charge every bus at 6 p.m.', 'Turn off the lights', 'Use more diesel', 'Spread charging across the night with managed charging'],
+        UNDERGRADUATE: ['Charging only with cash', 'Hiring charger managers', 'Charging at the fastest speed always', 'Controlling when and how fast vehicles charge'],
+        GRADUATE: ['To make charging more expensive', 'To ban fast chargers', 'To fund diesel buses', 'Industrial-style demand charges made low-utilisation fast chargers uneconomic'],
+        PHD: ['Single opinion surveys', 'Press releases', 'Assuming outcomes', 'Natural experiments and linked session, travel and electricity data'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'A charger fills an electric vehicle\'s battery with electricity.',
+        MIDDLE_SCHOOL: 'Many fast chargers together draw lots of power, which can strain local lines.',
+        HIGH_SCHOOL: 'Spreading charging over the night avoids big peaks and can use clean power when it is plentiful.',
+        UNDERGRADUATE: 'Managed charging controls timing and speed to cut costs and grid impacts.',
+        GRADUATE: 'Demand charges designed for factories made rarely used fast chargers lose money, so tariffs were adapted.',
+        PHD: 'Natural experiments and linked datasets let researchers attribute changes to policies.',
       },
     },
   ],
