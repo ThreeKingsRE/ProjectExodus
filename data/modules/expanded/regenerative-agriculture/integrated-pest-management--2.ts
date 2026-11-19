@@ -37,7 +37,7 @@ const expansion: ModuleExpansion = {
 <p>Bug sprays kill pests, but they often kill the helper bugs too. Then pests can come back even worse, because nobody is left to eat them. Farmers who protect helper bugs often need to spray much less.</p>
 
 <h3>A Team in the Field</h3>
-<p>When there are lots of different flowers, bugs, birds and plants, the farm becomes like a busy town where everyone has a job. Keeping that team healthy helps the crops grow.</p>
+<p>When there are lots of different flowers, bugs, birds and plants, the farm becomes like a busy town where everyone has a job. Keeping that team healthy helps the crops grow. You can help too, by planting flowers in a garden or a window box for the helper bugs near your home.</p>
 `,
         MIDDLE_SCHOOL: `
 <h2>Natural Pest Control With Beneficial Insects</h2>
@@ -57,7 +57,7 @@ const expansion: ModuleExpansion = {
 <p>Farmers plant flower strips with plants that bloom at different times, so there is food all season. Hedgerows and beetle banks give shelter in winter. Leaving some areas unmown and reducing pesticide sprays help helpers survive.</p>
 
 <h3>Does It Work?</h3>
-<p>Studies show that flower strips often bring more natural enemies into fields and can reduce pests on nearby crops. The results vary, though. Helpers work best when habitat is close to the crop, flowers match the helpers' needs, and sprays are used only when truly needed. Flower strips also feed bees and butterflies, so one planting helps several kinds of wildlife at once.</p>
+<p>Studies show that flower strips often bring more natural enemies into fields and can reduce pests on nearby crops. The results vary, though. Helpers work best when habitat is close to the crop, flowers match the helpers' needs, and sprays are used only when truly needed. Flower strips also feed bees and butterflies, so one planting helps several kinds of wildlife at once, and the farm looks beautiful too, all summer long.</p>
 `,
         HIGH_SCHOOL: `
 <h2>Conservation Biological Control</h2>
