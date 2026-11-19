@@ -1,406 +1,310 @@
 import type { ModuleExpansion } from '../types'
 
+// Rewritten with its own angle: the practical transition to no-till on a real
+// farm. Chapter 3 covers what no-till is and why it helps soil.
 const expansion: ModuleExpansion = {
   topicId: 'regenerative-agriculture',
   moduleKey: 'no-till-farming~2',
+  title: 'Making the Switch to No-Till: Equipment, Weeds and Yields',
+  description: {
+    ELEMENTARY: 'How farmers change the way they plant so they never have to dig up their fields again.',
+    MIDDLE_SCHOOL: 'The tools, weed tricks and patience farmers need when they switch to no-till farming.',
+    HIGH_SCHOOL: 'A practical guide to converting a farm to no-till: planters, residue, weeds and the yield dip.',
+    UNDERGRADUATE: 'No-till transition management: equipment, residue, weed and pest control, fertility and economics.',
+    GRADUATE: 'Managing the no-till transition: agronomic trade-offs, herbicide dependence, risk and farm economics.',
+    PHD: 'Research on no-till adoption and performance: yield meta-analyses, soil carbon debates and herbicide resistance.',
+  },
   lessons: [
     {
       id: 'ra-nt-1',
-      title: 'No Digging Needed: Managing Living Soil',
+      title: 'Making the Switch to No-Till: Equipment, Weeds and Yields',
       content: {
         ELEMENTARY: `
-<h2>Earthworm City Under the Farm</h2>
-<p>Imagine a busy city hiding under a farm field. There are tunnels and rooms, little roads and tiny workers. The workers are earthworms, beetles, fungi and millions of tiny living things too small to see. Some farmers have found a simple way to keep this underground city safe: they do not dig it up!</p>
+<h2>Planting Without Digging</h2>
+<p>For a very long time, farmers used big ploughs to turn over the soil before planting. Some farmers now plant without ploughing at all. This is called no-till farming. It keeps the soil covered and full of life. But switching is a big change, like learning to ride a bike a whole new way. Farmers need new tools, new tricks for weeds and some patience.</p>
 
-<h3>What Is Tilling?</h3>
-<p>For a long time, many farmers used a big tool called a plow to turn the soil over before planting. This is called tilling. It makes the field look neat and brown. But tilling is a bit like an earthquake for the creatures living in the soil. Their tunnels collapse and their homes get broken.</p>
+<h3>A Special Planter</h3>
+<p>Without ploughing, the ground is covered with old stalks and leaves from last year. A no-till planter has sharp round blades that slice a thin slot through all that cover. It drops a seed in the slot and closes it up. The rest of the soil stays snug under its blanket of plant leftovers.</p>
 <ul>
-<li><strong>Soil:</strong> the top layer of the ground, made of tiny rocks, old plants and living things</li>
-<li><strong>Plow:</strong> a farm tool that cuts and flips the soil over before seeds are planted</li>
-<li><strong>Tilling:</strong> digging up and turning over the soil to get it ready for planting</li>
+<li><strong>Plough:</strong> a tool that turns over and loosens soil</li>
+<li><strong>No-till:</strong> planting crops without ploughing the soil</li>
+<li><strong>Planter:</strong> a machine that puts seeds into the ground</li>
+<li><strong>Crop leftovers:</strong> old stalks and leaves left on the field after harvest</li>
+<li><strong>Weed:</strong> a plant growing where farmers do not want it</li>
 </ul>
 
-<h3>How Earthworms Help</h3>
-<p>Earthworms are amazing helpers. They eat old leaves and stems, and leave behind rich crumbs that plants love. As they wiggle, they dig tunnels. Rain can flow down the tunnels instead of running away, and plant roots can follow them deep into the ground. When farmers stop tilling, earthworms can keep their tunnels, and often more earthworms come to live there.</p>
-<ul>
-<li><strong>Earthworm:</strong> a soft, wiggly animal that eats dead plants and makes soil better</li>
-<li><strong>Tunnel:</strong> a long path under the ground that worms dig as they move</li>
-<li><strong>Crumbs:</strong> small soft lumps of soil that hold water and air for roots</li>
-</ul>
+<h3>Tricky Weeds</h3>
+<p>Ploughing used to bury weeds. Without it, farmers find other ways. They plant cover crops that crowd weeds out, like a busy playground with no space left. They also roll down cover crops into a thick mat that keeps weed seeds in the dark.</p>
 
-<h3>A Blanket for the Soil</h3>
-<p>No-till farmers leave the old stems and leaves from last year's crop lying on top of the field. This makes a cozy blanket. The blanket keeps the soil from drying out in the sun and stops rain from washing it away. Some farmers also grow special plants called cover crops between harvests, so the soil always has roots in it.</p>
-
-<h3>Planting Without Digging</h3>
-<p>So how do the seeds get in? Farmers use a special machine that cuts a thin slit in the ground, drops in a seed and closes the slit again. Only a tiny line of soil is moved. The rest of the earthworm city stays safe!</p>
-
-<h3>You Can Help Too</h3>
-<ol>
-<li>In a garden, spread old leaves on top of the soil instead of digging them in.</li>
-<li>Poke a small hole with your finger to plant a seed, instead of digging a big hole.</li>
-<li>After rain, look for earthworms and count how many you see.</li>
-</ol>
+<h3>Being Patient</h3>
+<p>The first few years can be bumpy, and crops may grow a little less. But as worms and tiny soil helpers move back in, the soil gets spongier and healthier, and many farms grow just as much as before.</p>
 `,
         MIDDLE_SCHOOL: `
-<h2>How No-Till Farming Builds Better Soil</h2>
-<p>Healthy soil is not just dirt. It is a structure, a bit like a sponge, with spaces for air and water and glue that holds it together. No-till farming is a way of growing crops without plowing or turning the soil. Instead of breaking the soil apart every year, farmers let it build its own structure and organic matter over time.</p>
+<h2>Switching a Farm to No-Till</h2>
+<p>No-till farming leaves crop residue on the surface and plants seeds directly into it, without ploughing. It protects soil from erosion, saves fuel and helps build soil life. But converting a farm is a process, not a single decision. Farmers must change their equipment, manage weeds and pests differently and expect a learning period. This chapter looks at what that switch involves.</p>
 
-<h3>Soil Structure: The Hidden Architecture</h3>
-<p>In good soil, tiny sand, silt and clay particles stick together into crumbs called <em>aggregates</em>. The glue comes from roots, fungal threads, bacteria and the sticky substances they produce. Between the aggregates are pores, the spaces where water and air move. Plowing smashes aggregates and mixes in lots of oxygen, which makes microbes break down organic matter quickly. Over many years, frequent tillage tends to lower soil organic matter.</p>
-
-<h3>Key Words</h3>
+<h3>New Equipment</h3>
+<p>The biggest change is the planter. A no-till planter or drill uses heavy coulters and disc openers to cut through residue and place seed at the right depth. Row cleaners push residue aside right over the row so the soil warms up. Farmers can often sell their ploughs and some tillage tools, which saves money and fuel.</p>
 <ul>
-<li><strong>Aggregate:</strong> a crumb of soil made of particles glued together by roots, fungi and microbes</li>
-<li><strong>Organic matter:</strong> the part of soil made from living things and their decaying remains</li>
-<li><strong>Pore space:</strong> the gaps between soil particles that hold air and water</li>
-<li><strong>Crop residue:</strong> the stems, leaves and stalks left on a field after harvest</li>
-<li><strong>Cover crop:</strong> a plant grown mainly to protect and improve the soil rather than to sell</li>
-<li><strong>Erosion:</strong> the loss of soil when wind or water carries it away</li>
+<li><strong>Residue:</strong> crop stalks, leaves and roots left on the field after harvest</li>
+<li><strong>Coulter:</strong> a sharp, round blade that slices through residue ahead of the seed</li>
+<li><strong>Row cleaner:</strong> a planter attachment that moves residue away from the seed row</li>
+<li><strong>Cover crop:</strong> a crop grown mainly to protect and feed the soil, not to sell</li>
+<li><strong>Roller-crimper:</strong> a tool that flattens and crimps cover crops into a weed-blocking mat</li>
 </ul>
 
-<h3>Comparing Two Fields</h3>
-<table>
-<thead><tr><th>Feature</th><th>Plowed field</th><th>No-till field with cover</th></tr></thead>
-<tbody>
-<tr><td>Soil surface</td><td>Bare and exposed</td><td>Covered with residue</td></tr>
-<tr><td>Earthworm tunnels</td><td>Broken each year</td><td>Kept and added to over time</td></tr>
-<tr><td>Rain soaking in</td><td>Often forms a crust and runs off</td><td>Usually soaks in better</td></tr>
-<tr><td>Erosion</td><td>Higher</td><td>Much lower</td></tr>
-<tr><td>Fuel and labor</td><td>More trips across the field</td><td>Fewer trips</td></tr>
-</tbody>
-</table>
+<h3>Managing Weeds</h3>
+<p>Without ploughing, weeds are not buried. Many no-till farmers use herbicides, but more are adding cover crops, crop rotations and roller-crimpers to reduce chemical use. A thick cover crop mat can block sunlight from weed seeds. Rotating different crops also keeps any one weed from taking over.</p>
 
-<h3>Why Cover Crops Are Partners</h3>
-<p>No-till works best when combined with cover crops. Plants such as cereal rye, clover or radish grow between cash crops. Their roots feed soil life and keep aggregates glued together. Legume cover crops like clover can add nitrogen. When the cover crop is ended, often by rolling it flat, it becomes a thick mulch that shades out weeds.</p>
-
-<h3>Building Organic Matter Slowly</h3>
-<p>Organic matter builds up slowly, over years or decades. Much of the gain under no-till shows up in the top few centimeters of soil. It acts like a sponge, holding water for dry spells, and like a pantry, slowly releasing nutrients as microbes break it down.</p>
-
-<h3>Challenges</h3>
-<p>No-till is not magic. Soils can stay cooler and wetter in spring, which can slow planting. Without plowing, farmers need other ways to control weeds. And it can take several years before the soil fully responds, so patience and learning from neighbors help a lot.</p>
+<h3>The Transition Years</h3>
+<p>Cold, wet soils under residue can slow spring planting, and nitrogen can be tied up as residue breaks down, so yields sometimes dip for the first few years. Farmers adjust by adding a little nitrogen near the seed, choosing well-drained fields first and being patient. Over time, many see better soil structure, more water soaking in and lower costs.</p>
 `,
         HIGH_SCHOOL: `
-<h2>No-Till Systems: Soil Health, Cover Crops and Residue</h2>
-<p>No-till is often described by what it removes: the plow. But a successful no-till system is defined by what it adds: continuous soil cover, living roots and a soil food web that does the work tillage used to do. This lesson looks at no-till as a soil management system and explains why it is usually paired with cover crops and diverse rotations.</p>
+<h2>A Practical Guide to Going No-Till</h2>
+<p>The benefits of no-till, including less erosion, more water infiltration, lower fuel use and healthier soil biology, are well documented. Less often discussed is how farmers actually make the switch. Converting a farm involves new equipment, different ways of handling residue, weeds and pests, and a transition period that can test a farm's finances. This chapter focuses on the practical side.</p>
 
-<h3>What Tillage Did, and What Replaces It</h3>
-<p>Farmers tilled for real reasons. Tillage buries weeds, loosens compacted soil, incorporates fertilizer and residue, and dries and warms the seedbed. No-till must find substitutes for each of these functions.</p>
-<table>
-<thead><tr><th>Function of tillage</th><th>No-till substitute</th></tr></thead>
-<tbody>
-<tr><td>Weed control</td><td>Cover crop mulch, rotation, targeted herbicides</td></tr>
-<tr><td>Loosening soil</td><td>Root channels and earthworm burrows, called biopores</td></tr>
-<tr><td>Mixing in residue</td><td>Soil fauna pulling residue down and microbes decomposing it</td></tr>
-<tr><td>Seedbed preparation</td><td>No-till planters with coulters and closing wheels</td></tr>
-<tr><td>Warming the soil</td><td>Row cleaners that move residue off the seed row</td></tr>
-</tbody>
-</table>
-
-<h3>Key Terms</h3>
+<h3>Equipment and Planting</h3>
+<p>Successful no-till starts at the planter. Key adjustments include sharp coulters to cut residue, enough down-pressure for consistent seeding depth in firmer soil, closing wheels that seal the seed slot, and row cleaners that clear a strip of residue so soil warms and dries faster. Many farmers start by converting their existing planter with aftermarket parts rather than buying new equipment. Spreading residue evenly at harvest, with a good combine chopper and spreader, prevents thick piles that cause uneven emergence.</p>
 <ul>
-<li><strong>Biopore:</strong> a channel in the soil created by roots or burrowing animals that lets water and roots move deeper</li>
-<li><strong>Infiltration:</strong> the rate at which water enters the soil surface</li>
-<li><strong>Roller-crimper:</strong> a tool that flattens and crimps a cover crop so it dies and forms a mulch</li>
-<li><strong>Planting green:</strong> planting a cash crop directly into a living cover crop before ending it</li>
-<li><strong>Soil food web:</strong> the community of organisms in soil that eat organic matter and each other, cycling nutrients</li>
-<li><strong>Stratification:</strong> the build-up of organic matter and nutrients near the soil surface when soil is not mixed</li>
+<li><strong>Down-pressure:</strong> force applied to planter row units to keep seed depth consistent</li>
+<li><strong>Seed slot:</strong> the narrow furrow opened by a planter for placing seed</li>
+<li><strong>Nitrogen immobilisation:</strong> soil microbes temporarily tying up nitrogen while breaking down residue</li>
+<li><strong>Herbicide resistance:</strong> when weeds evolve the ability to survive a herbicide</li>
+<li><strong>Strip-till:</strong> tilling only narrow strips where crops are planted, leaving the rest undisturbed</li>
 </ul>
 
-<h3>Soil Health Improvements</h3>
-<p>When tillage stops and residue stays on the surface, several changes follow over time. Raindrops hit residue instead of bare soil, so surface crusts form less often and infiltration usually improves. Fungal networks and earthworm populations tend to recover. Aggregate stability increases because roots, hyphae and microbial glues are no longer broken apart every season. Erosion by wind and water drops sharply, which is one of the best-documented benefits of no-till.</p>
+<h3>Weeds, Pests and Fertility</h3>
+<p>Without tillage, weed control relies on herbicides, cover crops, rotation and timely planting. Overreliance on a single herbicide has led to resistant weeds, so integrated weed management combining several tactics is essential. Residue can harbour slugs and some diseases, while also supporting beneficial predators. Nitrogen immobilisation during residue breakdown may require placing some nitrogen near the seed in early years.</p>
 
-<h3>Cover Crop Integration</h3>
-<p>Cover crops fill the gaps between cash crops with living roots. Grasses like cereal rye produce lots of biomass for mulch and scavenge leftover nitrogen. Legumes such as hairy vetch or clover fix nitrogen. Brassicas like radish grow thick taproots that can open channels in compacted soil. Mixes combine these strengths. Timing matters: ending a cover crop too late can tie up nitrogen or dry out the soil before planting, while ending it too early leaves little mulch.</p>
+<h3>The Yield Question</h3>
+<p>Large studies show no-till yields average slightly lower than ploughed yields at first, with the gap shrinking over time and often disappearing in dry climates, where retained moisture is a major advantage. Yields suffer most in cold, wet, poorly drained soils. Strip-till is a compromise for those conditions.</p>
 
-<h3>Trade-offs to Manage</h3>
-<ol>
-<li><strong>Cool, wet springs:</strong> residue can slow soil warming and delay emergence, especially on poorly drained soils.</li>
-<li><strong>Weed shifts:</strong> perennial weeds may increase, and reliance on herbicides can promote resistance.</li>
-<li><strong>Nutrient stratification:</strong> nutrients concentrate near the surface, which can matter in dry years.</li>
-<li><strong>Pests in residue:</strong> slugs and some diseases may survive in surface residue.</li>
-<li><strong>Transition time:</strong> soil benefits build gradually, while the learning curve comes first.</li>
-</ol>
-<p>Many of these problems shrink when no-till is combined with diverse rotations and well-managed cover crops, which is why experts describe no-till as one part of a system rather than a single practice.</p>
+<h3>Economics</h3>
+<p>No-till saves fuel, labour and machinery costs, which often offsets any small yield dip. Pairing no-till with cover crops and rotation builds the biggest long-term gains, though it adds management complexity.</p>
 `,
         UNDERGRADUATE: `
-<h2>Engineering the No-Till System: Equipment, Transition and Economics</h2>
-<p>Adopting no-till is a change in capital, management and risk, not just a decision to park the plow. This lesson analyzes the equipment that makes planting into residue possible, the agronomic transition period, and the economic logic farmers use when deciding whether and how to convert.</p>
+<h2>Managing the Transition to No-Till</h2>
+<p>No-till and other conservation tillage systems now cover a substantial share of cropland worldwide, notably in the Americas and Australia. Adoption depends less on proven soil benefits than on whether farmers can manage the agronomic and economic transition. This chapter examines equipment, residue management, weed and pest control, fertility and the economics of conversion.</p>
 
-<h3>Core Concepts</h3>
+<h3>Equipment and Residue Management</h3>
+<p>No-till planters and drills require adequate weight and down-pressure, residue-cutting coulters, appropriately set disc openers and effective closing systems to achieve uniform emergence in untilled, residue-covered soil. Residue management begins at harvest with uniform chopping and spreading. High-residue systems (for example, corn following corn) are most challenging, which is one reason no-till works best within diverse rotations.</p>
 <ul>
-<li><strong>Seed-to-soil contact:</strong> firm contact between seed and moist soil, needed for even germination and emergence</li>
-<li><strong>Hair-pinning:</strong> residue pushed into the seed slot by the planter, which can keep the seed from contacting soil</li>
-<li><strong>Partial budget:</strong> an analysis of only the costs and revenues that change when a practice is adopted</li>
-<li><strong>Transition period:</strong> the years after conversion when soil biology and management adjust and yields may fluctuate</li>
-<li><strong>Strip-till:</strong> a reduced tillage method that loosens only narrow bands where seeds will be planted</li>
-<li><strong>Residue management:</strong> handling crop remains at harvest and planting so they protect soil without hindering seeding</li>
+<li><strong>Residue management:</strong> handling crop residue from harvest to planting to ensure good seeding and soil cover</li>
+<li><strong>Integrated weed management:</strong> combining cultural, mechanical, biological and chemical tactics against weeds</li>
+<li><strong>Soil structure:</strong> the arrangement of soil particles and pores that affects water, air and root movement</li>
+<li><strong>Stratification:</strong> the concentration of nutrients and organic matter near the soil surface under no-till</li>
+<li><strong>Partial budget:</strong> an economic analysis comparing only the costs and returns that change with a decision</li>
 </ul>
 
-<h3>Equipment</h3>
-<p>No-till planters and drills must cut through residue, open a clean slot, place seed at uniform depth and close the slot. Key components include coulters that slice residue, double-disc openers, row cleaners that sweep residue aside, gauge wheels for depth control and closing wheels suited to the soil. Adequate down-pressure is critical in firm soils. Even residue spread from the combine at harvest is often the overlooked first step: uneven chaff rows create uneven planting conditions.</p>
+<h3>Weed and Pest Dynamics</h3>
+<p>Weed communities shift under no-till toward small-seeded annuals and perennials that were once controlled by tillage. Herbicide dependence increases, and repeated use of glyphosate has selected for resistant populations. Integrated weed management uses diverse rotations, cover crops, competitive crop stands, narrow rows and rotation of herbicide modes of action. Residue can increase slug and some disease pressure but supports carabid beetles and other predators.</p>
 
-<h3>Managing the Transition</h3>
-<p>Early years can bring yield variability as soils remain compacted from past tillage, nitrogen is temporarily immobilized by microbes decomposing surface residue, and weed communities shift. Over time, biopores, aggregate stability and biological activity improve. Practical strategies include starting on well-drained fields, using starter nitrogen near the seed, adding cover crops gradually and considering strip-till as a bridge on cold, poorly drained soils.</p>
+<h3>Fertility and Soil Changes</h3>
+<p>No-till causes stratification of phosphorus, potassium and organic carbon near the surface. Early years may see nitrogen immobilisation, addressed by starter fertiliser. Over time, improved aggregation, macropore continuity and earthworm activity enhance infiltration and reduce runoff.</p>
 
-<h3>Comparing Systems</h3>
-<table>
-<thead><tr><th>System</th><th>Soil disturbance</th><th>Residue cover</th><th>Typical fit</th></tr></thead>
-<tbody>
-<tr><td>Conventional tillage</td><td>Full-width, deep</td><td>Low</td><td>Heavy residue, cold soils, certain weed problems</td></tr>
-<tr><td>Reduced or mulch tillage</td><td>Full-width, shallow</td><td>Moderate</td><td>Transitional systems</td></tr>
-<tr><td>Strip-till</td><td>Narrow bands only</td><td>High between rows</td><td>Cool, wet soils with row crops</td></tr>
-<tr><td>Continuous no-till</td><td>Seed slot only</td><td>High</td><td>Well-drained soils, erosion-prone land, dry climates</td></tr>
-</tbody>
-</table>
+<h3>Yield and Economics</h3>
+<p>Meta-analyses report average no-till yields slightly below conventional tillage, with smaller or no penalties in dry climates and when combined with residue retention and rotation, and larger penalties in humid, cool regions. Partial budgets typically show savings in fuel, labour and machinery that offset modest yield losses, though transition-year risks and herbicide costs matter.</p>
 
-<h3>The Economic Logic</h3>
-<p>A partial budget for no-till typically shows savings in fuel, labor, machinery wear and the number of tractors needed, because fewer passes cross the field. Added costs may include a new or modified planter, possible extra herbicide, cover crop seed and management time. Revenue effects depend on yield response, which varies by soil, climate and crop: no-till tends to perform relatively well in drier conditions where conserved moisture matters, and may lag on cold, poorly drained soils, especially at first. Long-term benefits such as reduced erosion and improved water holding are real but harder to price.</p>
-
-<h3>An Applied Checklist</h3>
-<ol>
-<li>Start on fields with good drainage and modest residue loads.</li>
-<li>Set up the combine to spread residue evenly across the full header width.</li>
-<li>Adjust the planter for down-pressure, depth and closing in residue conditions.</li>
-<li>Plan weed control around rotation and cover crops, not herbicides alone.</li>
-<li>Adjust nitrogen timing to account for residue immobilization.</li>
-<li>Track yields, costs and soil indicators against a few unconverted comparison strips.</li>
-</ol>
+<h3>Learning From Other Farmers</h3>
+<p>Studies of adoption consistently find that seeing no-till succeed on a neighbour's farm, joining farmer networks and getting hands-on advice shape decisions more than published research alone. Field days, on-farm trials and mentoring help farmers adapt general principles to their own soils and equipment.</p>
 `,
         GRADUATE: `
-<h2>Long-Term Carbon Dynamics, Weed Ecology and System Optimization</h2>
-<p>Decades of experiments show that no-till's benefits for erosion control and soil structure are robust, while its effects on total soil carbon and yields are more conditional. This lesson examines long-term soil carbon dynamics under no-till, the ecological basis of weed management without tillage, and how practitioners and programs can optimize systems rather than promote a single practice.</p>
+<h2>The No-Till Transition: Agronomic Trade-offs and Farm Economics</h2>
+<p>No-till is often promoted as a cornerstone of conservation and regenerative agriculture, yet its performance is context-dependent and its transition can impose costs and risks on farmers. Understanding where and how no-till succeeds, and what trade-offs accompany it, is essential for advisers, researchers and policymakers. This chapter analyses agronomic trade-offs, herbicide dependence, risk and the economics of adoption.</p>
 
-<h3>Key Concepts</h3>
+<h3>Context-Dependent Agronomic Performance</h3>
+<p>Global meta-analyses find that no-till alone reduces yields on average, but that combining it with residue retention and crop rotation, the three principles of conservation agriculture, narrows the gap substantially. Yield responses are positive in rainfed, water-limited environments and negative in humid, cool or poorly drained soils. Soil texture, drainage and climate thus determine where no-till is agronomically favourable and where strip-till or reduced tillage may be better.</p>
 <ul>
-<li><strong>Equivalent soil mass:</strong> a method that compares carbon stocks in the same mass of soil rather than the same depth, correcting for density differences</li>
-<li><strong>Carbon saturation:</strong> the idea that a soil has a finite capacity to stabilize carbon on mineral surfaces</li>
-<li><strong>Weed seedbank:</strong> the reserve of viable weed seeds in the soil that determines future weed pressure</li>
-<li><strong>Herbicide resistance:</strong> the evolved ability of a weed population to survive a herbicide that once controlled it</li>
 <li><strong>Conservation agriculture:</strong> a system combining minimal soil disturbance, permanent soil cover and crop diversification</li>
-<li><strong>Occasional tillage:</strong> a single strategic tillage pass in a long-term no-till system to address a specific problem</li>
+<li><strong>Mode of action:</strong> the biochemical mechanism by which a herbicide kills a plant</li>
+<li><strong>Transition cost:</strong> temporary losses or expenses incurred while switching practices</li>
+<li><strong>Cost-share programme:</strong> a public programme that pays part of the cost of adopting conservation practices</li>
+<li><strong>Risk aversion:</strong> a preference for more certain outcomes, even at lower expected returns</li>
 </ul>
 
-<h3>Soil Carbon: Where and How Much</h3>
-<p>No-till typically increases carbon concentration near the surface. When sampling extends deeper, some studies find that lower layers in tilled soils hold comparable or greater carbon, because tillage buries residue. Net whole-profile gains from no-till alone are therefore smaller and more variable than surface measurements suggest, and depend on climate, soil texture and residue inputs. Because no-till changes bulk density, comparing fixed depths can bias results; equivalent soil mass methods are now considered best practice. Gains also slow over time as soils approach a new equilibrium, and a single intensive tillage event can release part of what was accumulated.</p>
+<h3>Herbicide Dependence and Resistance</h3>
+<p>No-till expanded alongside glyphosate-tolerant crops, increasing reliance on few herbicide modes of action. Resistant weeds now affect large areas, leading some farmers to return to tillage. Sustainable no-till therefore depends on integrated weed management, including diverse rotations, cover crops, harvest weed seed control and herbicide mixtures with multiple effective modes of action. Roller-crimped cover crops in organic no-till offer herbicide-free options but require precise timing and high biomass.</p>
 
-<h3>Weed Ecology Without the Plow</h3>
-<p>Tillage buries weed seeds and stimulates some to germinate; without it, seeds stay near the surface where they are exposed to predation by insects and rodents but also find good germination conditions. Small-seeded annuals and perennials often become more prominent. Heavy reliance on a single herbicide mode of action has driven resistance in several major weeds, which threatens no-till systems built on that chemistry. Ecological weed management uses many small hammers: diverse rotations that vary planting dates, competitive crops, high-biomass cover crop mulches, narrower rows and multiple herbicide modes of action where herbicides are used.</p>
+<h3>Risk and the Transition Period</h3>
+<p>Transition costs include equipment modification, learning, possible yield dips and changes in nitrogen management. Risk-averse farmers may delay adoption even when long-run returns are favourable. Cost-share programmes, technical assistance, peer learning networks and crop insurance rules that do not penalise conservation practices reduce barriers.</p>
 
-<h3>Optimization Levers</h3>
-<table>
-<thead><tr><th>Lever</th><th>Soil benefit</th><th>Weed or yield benefit</th></tr></thead>
-<tbody>
-<tr><td>Diverse rotations</td><td>Varied root systems and residue quality</td><td>Disrupts weed and pest life cycles</td></tr>
-<tr><td>High-biomass cover crops</td><td>More carbon inputs and cover</td><td>Mulch suppresses small-seeded weeds</td></tr>
-<tr><td>Controlled traffic</td><td>Limits compaction to permanent wheel tracks</td><td>More uniform crop growth</td></tr>
-<tr><td>Strategic tillage</td><td>Can correct stratification or compaction</td><td>Can reset problem weeds, with some carbon cost</td></tr>
-<tr><td>Integrated livestock grazing</td><td>Cycles nutrients from residue and covers</td><td>Grazes weeds and offsets cover crop cost</td></tr>
-</tbody>
-</table>
+<h3>Economics and Policy</h3>
+<p>Farm-level analyses often show no-till profitable through reduced fuel, labour and machinery costs. Policy debates centre on whether payments should support adoption, which may be privately profitable, or continued practice, given evidence that some farmers periodically till no-till fields, undermining soil carbon gains.</p>
 
-<h3>Policy and Program Design</h3>
-<p>Programs that pay for no-till adoption should recognize its strongest, best-evidenced benefits: erosion reduction and water quality. Carbon claims require careful measurement depth and baselines. Payments may be most effective when tied to systems that combine no-till with cover crops and diverse rotations, and when they support farmers through the transition with technical assistance and shared equipment. Smallholders in some regions face distinct constraints, such as competing uses of residue for livestock feed and limited access to suitable planters.</p>
-
-<h3>Evaluation Framework</h3>
-<ol>
-<li>State the objective: erosion, water quality, carbon, profit or resilience.</li>
-<li>Choose appropriate metrics, such as full-depth carbon on an equivalent mass basis.</li>
-<li>Compare against tilled controls over a long enough time frame.</li>
-<li>Monitor weed communities and herbicide use, not just yield.</li>
-<li>Account for regional fit and farmer constraints in scaling recommendations.</li>
-</ol>
+<h3>Advisory Practice</h3>
+<p>Effective advisers help farmers sequence the transition: starting on suitable fields, upgrading the planter, planning residue management at harvest, adding cover crops gradually and setting up simple on-farm comparisons to track results. Matching advice to local soils and weather, and sharing data from farmer networks, reduces the trial-and-error costs that make early years risky. Monitoring infiltration, earthworms and aggregate stability gives farmers early evidence of soil improvement before yield gains appear.</p>
 `,
         PHD: `
-<h2>Research Frontiers: No-Till Soil Biology, Greenhouse Gases and Global Applicability</h2>
-<p>No-till is among the most studied agricultural practices, yet major questions remain about its biological mechanisms, its net climate effect and where it should be promoted. Global syntheses reveal strong context dependence, and methodological choices often determine conclusions. This lesson surveys the evidence base and research agenda.</p>
+<h2>Research Frontiers in No-Till Adoption and Performance</h2>
+<p>No-till has been studied for decades, yet major debates remain about its yield effects, its contribution to soil carbon sequestration, and the sustainability of herbicide-reliant systems. Adoption patterns also raise questions about permanence, policy design and the measurement of practice change. This chapter surveys these research frontiers.</p>
 
-<h3>Methodological Toolkit</h3>
+<h3>Yield Meta-Analyses and Heterogeneity</h3>
+<p>Large meta-analyses compiling thousands of paired observations show average no-till yield penalties that vary by crop, climate, aridity and management. Methodological questions include publication bias, heterogeneity across experiments and the representativeness of research stations. Machine-learning analyses of meta-analytic data aim to predict where no-till is likely to succeed, while on-farm experiments using precision agriculture data offer larger, more representative samples.</p>
 <ul>
-<li><strong>Meta-analysis:</strong> statistical synthesis of results across many experiments to estimate average effects and their moderators</li>
-<li><strong>Eddy covariance:</strong> a micrometeorological technique that measures greenhouse gas exchange between a field and the atmosphere</li>
-<li><strong>Static chamber:</strong> an enclosure placed on the soil to measure gas fluxes such as nitrous oxide over short periods</li>
-<li><strong>Water-filled pore space:</strong> the fraction of soil pores filled with water, a key control on nitrous oxide production</li>
-<li><strong>Global warming potential:</strong> a measure that expresses different greenhouse gases in carbon dioxide equivalents over a time horizon</li>
-<li><strong>Long-term experiment:</strong> a field trial maintained for decades to observe slow soil changes and rare weather events</li>
+<li><strong>Meta-analysis:</strong> a statistical synthesis of results from many independent studies</li>
+<li><strong>Soil organic carbon redistribution:</strong> movement of carbon within the soil profile rather than net gain</li>
+<li><strong>Equivalent soil mass:</strong> a method comparing carbon stocks on the same mass of soil to avoid bulk density bias</li>
+<li><strong>Permanence:</strong> how long a climate benefit such as stored carbon lasts before it may be reversed</li>
+<li><strong>Remote sensing of tillage:</strong> using satellite data to detect tillage practices and residue cover</li>
 </ul>
 
-<h3>Soil Biology Under No-Till</h3>
-<p>Reduced disturbance generally favors fungal networks, larger soil fauna such as anecic earthworms and more stable aggregate hierarchies. Microbial communities become more stratified, with high activity near the surface residue layer. Sequencing studies report shifts in community composition, but linking taxonomy to function remains difficult. Key questions concern whether these biological changes translate into measurable improvements in nutrient cycling efficiency, disease suppression or drought resilience across environments, or whether they are mostly redistributions of activity within the profile.</p>
+<h3>The Soil Carbon Debate</h3>
+<p>Early studies suggested no-till sequesters substantial carbon, but many sampled only shallow depths. Deeper sampling shows that no-till often redistributes carbon toward the surface rather than increasing total stocks, with gains in topsoil partially offset by losses deeper down. Comparisons on an equivalent soil mass basis and full-profile sampling have revised estimates downward. Nitrous oxide emissions may increase in some no-till systems, further complicating climate accounting. These findings bear on carbon market protocols that credit tillage changes.</p>
 
-<h3>Greenhouse Gas Fluxes</h3>
-<p>No-till usually reduces fuel-related emissions and can increase surface carbon, but its net climate effect also depends on nitrous oxide, a potent greenhouse gas. In some poorly aerated or poorly drained soils, higher water-filled pore space under no-till can raise nitrous oxide emissions, particularly in the early years. Other syntheses suggest emissions may decline in long-term systems as soil structure improves. Because nitrous oxide fluxes are episodic, driven by rain and fertilization events, low-frequency sampling can miss peaks. Net assessments must integrate carbon changes measured at adequate depth, nitrous oxide over full seasons, and in some soils methane uptake, using consistent global warming potential conventions.</p>
+<h3>Herbicide Resistance and System Sustainability</h3>
+<p>Herbicide-resistant weeds threaten the viability of chemically managed no-till. Research on integrated weed management, harvest weed seed control, cover-crop-based systems and robotic weed control explores pathways to reduce chemical dependence. Evolutionary models of resistance inform herbicide stewardship strategies.</p>
 
-<h3>Global Applicability</h3>
-<table>
-<thead><tr><th>Context</th><th>Typical evidence pattern</th><th>Key constraint</th></tr></thead>
-<tbody>
-<tr><td>Dry and semi-arid climates</td><td>Yields often comparable or better due to conserved moisture</td><td>Residue supply may be limited</td></tr>
-<tr><td>Humid, cool, poorly drained soils</td><td>Yield penalties more common, especially early</td><td>Slow warming and wetness</td></tr>
-<tr><td>Smallholder mixed farming systems</td><td>Variable; strongly shaped by labor and residue use</td><td>Competing demand for residue as feed</td></tr>
-<tr><td>Large mechanized systems</td><td>Widely adopted in parts of the Americas and Australia</td><td>Herbicide resistance and weed shifts</td></tr>
-</tbody>
-</table>
-<p>Global syntheses commonly report a modest average yield penalty for no-till that shrinks or disappears when combined with residue retention and crop rotation, and in drier environments. These averages conceal wide variation, and research on smallholder adoption shows that farmer constraints and incentives often matter as much as agronomy.</p>
+<h3>Adoption, Permanence and Measurement</h3>
+<p>Studies using remote sensing reveal that many fields alternate between no-till and tillage, challenging assumptions of permanence in policy and carbon accounting. Behavioural research examines how risk, information, social networks and policy incentives drive adoption and continuation. Remote sensing of tillage and residue provides scalable monitoring but requires validation against field observations.</p>
 
-<h3>Contested Questions</h3>
-<ol>
-<li>How much net soil carbon no-till adds once deeper layers are sampled and mass-corrected.</li>
-<li>Whether nitrous oxide trade-offs offset carbon gains in particular soil classes.</li>
-<li>How dependent large-scale no-till is on herbicides, and what alternatives can sustain it.</li>
-<li>Whether conservation agriculture should be promoted broadly or targeted to suitable contexts.</li>
-</ol>
+<h3>Integrated Assessment</h3>
+<p>Evaluating no-till's overall contribution requires integrating yield, soil carbon, nitrous oxide, erosion, water quality, herbicide use and farm economics. Multi-objective analyses suggest that no-till delivers clearer benefits for erosion and water conservation than for climate mitigation, underscoring the importance of clear goals in policy design.</p>
 
-<h3>Open Research Directions</h3>
-<ol>
-<li>Linking microbial and faunal changes to functional outcomes using integrated isotope and molecular methods.</li>
-<li>Continuous greenhouse gas monitoring to capture episodic fluxes across full rotations.</li>
-<li>Process models calibrated with long-term experiments to predict regional outcomes.</li>
-<li>Research on herbicide-reduced no-till systems using cover crop mulches and ecological weed management.</li>
-<li>Participatory studies on adoption pathways in diverse smallholder systems.</li>
-</ol>
+<h3>Methodological Directions</h3>
+<p>Long-term experiments with full-profile soil sampling, paired with farm-scale data from yield monitors and satellites, could reconcile station results with real-world outcomes. Coordinated networks using shared protocols would make comparisons across climates more robust and reduce the publication bias that affects current syntheses.</p>
 `,
       },
     },
   ],
   quiz: [
     {
-      id: 'rnt2q1',
+      id: 'ra-nt2-q1',
       question: {
-        ELEMENTARY: 'Why is no-till good for earthworms?',
-        MIDDLE_SCHOOL: 'What does plowing break apart in the soil?',
-        HIGH_SCHOOL: 'What is a biopore?',
-        UNDERGRADUATE: 'What is a partial budget used for when considering no-till?',
-        GRADUATE: 'Why is equivalent soil mass sampling recommended for no-till carbon studies?',
-        PHD: 'Why can no-till sometimes increase nitrous oxide emissions?',
+        ELEMENTARY: 'What is no-till farming?',
+        MIDDLE_SCHOOL: 'What is the biggest equipment change when switching to no-till?',
+        HIGH_SCHOOL: 'What do row cleaners on a planter do?',
+        UNDERGRADUATE: 'Why do high-residue systems like corn following corn make no-till harder?',
+        GRADUATE: 'What are the three principles of conservation agriculture?',
+        PHD: 'What did deeper soil sampling reveal about no-till and soil carbon?',
       },
       options: {
-        ELEMENTARY: ['It keeps their tunnels and homes safe', 'It makes them fly', 'It gives them hats', 'It paints them blue'],
-        MIDDLE_SCHOOL: ['Aggregates, the crumbs that give soil its structure', 'Only weeds', 'Rocks deep underground', 'Nothing at all'],
-        HIGH_SCHOOL: ['A channel made by roots or burrowing animals that lets water and roots move deeper', 'A pore in a leaf', 'A hole drilled by a planter', 'A type of seed'],
-        UNDERGRADUATE: ['Analyzing only the costs and revenues that change with the practice', 'Listing every cost on the whole farm', 'Calculating taxes only', 'Measuring soil carbon'],
-        GRADUATE: ['No-till changes bulk density, so fixed-depth comparisons can be biased', 'It is the cheapest method', 'It avoids sampling soil at all', 'It only measures the top centimeter'],
-        PHD: ['Higher water-filled pore space in some poorly drained soils can favor nitrous oxide production', 'No-till uses more fuel', 'No-till removes all soil water', 'Nitrous oxide only comes from tractors'],
-      },
-      correctIndex: 0,
-      explanation: {
-        ELEMENTARY: 'When the soil is not dug up, earthworm tunnels and homes stay in one piece.',
-        MIDDLE_SCHOOL: 'Plowing smashes aggregates and speeds up the loss of organic matter.',
-        HIGH_SCHOOL: 'Biopores from roots and earthworms replace some of the loosening that tillage used to do.',
-        UNDERGRADUATE: 'A partial budget compares the changes, such as fuel savings and planter costs, caused by adoption.',
-        GRADUATE: 'Comparing the same soil mass corrects for density differences between tilled and untilled soils.',
-        PHD: 'Wetter, less aerated conditions can boost denitrification, especially in early years on poorly drained soils.',
-      },
-    },
-    {
-      id: 'rnt2q2',
-      question: {
-        ELEMENTARY: 'What blanket do no-till farmers leave on the soil?',
-        MIDDLE_SCHOOL: 'What is a cover crop?',
-        HIGH_SCHOOL: 'What does a roller-crimper do?',
-        UNDERGRADUATE: 'What problem does hair-pinning cause at planting?',
-        GRADUATE: 'Why do deeper samples sometimes show smaller carbon gains from no-till?',
-        PHD: 'Why can low-frequency sampling misjudge nitrous oxide emissions?',
-      },
-      options: {
-        ELEMENTARY: ['A plastic sheet', 'Old stems and leaves from last year\'s crop', 'A pile of sand', 'Snow from the mountains'],
-        MIDDLE_SCHOOL: ['A crop grown only to sell at the market', 'A plant grown mainly to protect and improve the soil', 'A tarp put over a field', 'A crop planted on a roof'],
-        HIGH_SCHOOL: ['It plows the soil deeply', 'It flattens and crimps a cover crop so it dies and forms a mulch', 'It sprays fertilizer', 'It harvests grain'],
-        UNDERGRADUATE: ['Seeds are planted too deep', 'Residue pushed into the slot keeps seed from contacting soil', 'Too much rain falls', 'Weeds grow on the planter'],
-        GRADUATE: ['Deep soil has no carbon', 'Tillage buries residue, so lower layers in tilled soils can hold comparable carbon', 'Samplers cannot reach below the surface', 'No-till removes deep carbon instantly'],
-        PHD: ['Emissions are constant every day', 'Fluxes are episodic and peaks after rain or fertilizer can be missed', 'Chambers measure only carbon dioxide', 'Nitrous oxide cannot be measured'],
-      },
-      correctIndex: 1,
-      explanation: {
-        ELEMENTARY: 'Leftover stems and leaves cover the soil, keeping it moist and stopping rain from washing it away.',
-        MIDDLE_SCHOOL: 'Cover crops protect and feed the soil between cash crops.',
-        HIGH_SCHOOL: 'Rolling and crimping kills the cover crop and leaves a thick mulch that shades out weeds.',
-        UNDERGRADUATE: 'Hair-pinned residue holds the seed away from moist soil, causing poor germination.',
-        GRADUATE: 'Surface gains under no-till can be partly offset by deeper carbon placed by tillage in tilled fields.',
-        PHD: 'Nitrous oxide comes in bursts, so infrequent measurements can under- or overestimate totals.',
-      },
-    },
-    {
-      id: 'rnt2q3',
-      question: {
-        ELEMENTARY: 'How do no-till farmers put seeds in the ground?',
-        MIDDLE_SCHOOL: 'Where does most of the organic matter gain under no-till usually show up?',
-        HIGH_SCHOOL: 'Why can residue make spring planting harder on some soils?',
-        UNDERGRADUATE: 'Where does strip-till disturb the soil?',
-        GRADUATE: 'What is a major threat to no-till systems that rely on one herbicide?',
-        PHD: 'Where do global syntheses find no-till yields compare most favorably?',
-      },
-      options: {
-        ELEMENTARY: ['They throw them in the air', 'They plow the whole field first', 'A machine cuts a thin slit, drops in a seed and closes it', 'They bury them very deep with shovels'],
-        MIDDLE_SCHOOL: ['Deep under the bedrock', 'In the air above the field', 'In the top few centimeters of soil', 'Only in the crop leaves'],
-        HIGH_SCHOOL: ['Residue makes soil too hot', 'Residue removes all water', 'Residue can keep soil cool and wet, slowing emergence', 'Residue grows weeds on purpose'],
-        UNDERGRADUATE: ['Across the whole field deeply', 'Nowhere at all', 'Only in narrow bands where seeds will be planted', 'Only along field edges'],
-        GRADUATE: ['Too much earthworm activity', 'Excess rainfall every year', 'Evolved herbicide resistance in weeds', 'Too many cover crops'],
-        PHD: ['Only on cold, poorly drained soils', 'Only without any rotation', 'In drier climates and with residue retention and rotation', 'Nowhere in the world'],
-      },
-      correctIndex: 2,
-      explanation: {
-        ELEMENTARY: 'A special planter moves only a tiny line of soil, leaving the rest undisturbed.',
-        MIDDLE_SCHOOL: 'Without mixing, organic matter builds up mostly near the surface.',
-        HIGH_SCHOOL: 'Surface residue insulates the soil and keeps it wet, which can delay warming on poorly drained fields.',
-        UNDERGRADUATE: 'Strip-till loosens narrow planting bands and leaves residue between rows.',
-        GRADUATE: 'Relying on one mode of action has driven resistance in several important weeds.',
-        PHD: 'Conserved moisture helps in dry areas, and residue plus rotation narrows the average yield gap.',
-      },
-    },
-    {
-      id: 'rnt2q4',
-      question: {
-        ELEMENTARY: 'What happens to rain in earthworm tunnels?',
-        MIDDLE_SCHOOL: 'What usually happens to erosion when a field switches to no-till with cover?',
-        HIGH_SCHOOL: 'Which cover crop type can add nitrogen to the soil?',
-        UNDERGRADUATE: 'Why might nitrogen be temporarily short in early no-till years?',
-        GRADUATE: 'What is conservation agriculture?',
-        PHD: 'What constraint often limits no-till in smallholder mixed farming systems?',
-      },
-      options: {
-        ELEMENTARY: ['It turns into snow', 'It disappears into the sky', 'It makes the tunnels explode', 'It flows down into the ground instead of running away'],
-        MIDDLE_SCHOOL: ['It gets much higher', 'It stays exactly the same', 'It only happens in winter', 'It usually becomes much lower'],
-        HIGH_SCHOOL: ['Cereal rye', 'Radish', 'Weeds', 'Legumes such as clover or vetch'],
-        UNDERGRADUATE: ['Rain washes away all nitrogen instantly', 'Planters remove nitrogen', 'Earthworms eat fertilizer', 'Microbes decomposing surface residue immobilize nitrogen'],
-        GRADUATE: ['Tilling deeply every season', 'Growing one crop forever', 'Burning residue', 'Minimal soil disturbance, permanent soil cover and crop diversification'],
-        PHD: ['Too much residue everywhere', 'No one owns planters anywhere', 'Soils are always too cold', 'Residue is also needed as livestock feed'],
+        ELEMENTARY: ['Planting only in winter', 'Ploughing twice a year', 'Growing plants in water', 'Planting crops without ploughing the soil'],
+        MIDDLE_SCHOOL: ['A bigger barn', 'A new tractor colour', 'A heavier plough', 'The planter'],
+        HIGH_SCHOOL: ['Wash the seeds', 'Plant extra rows', 'Spray herbicide', 'Clear residue from the row so soil warms and dries faster'],
+        UNDERGRADUATE: ['Corn makes no residue', 'Residue is too thin', 'Corn cannot be planted twice', 'Heavy residue makes seeding and emergence difficult'],
+        GRADUATE: ['Ploughing, spraying and irrigation', 'Monoculture, tillage and fallow', 'Fertiliser, pesticide and seed', 'Minimal disturbance, permanent cover and crop diversification'],
+        PHD: ['No-till always doubles carbon', 'Carbon disappears completely', 'Depth does not matter', 'No-till often redistributes carbon toward the surface rather than increasing total stocks'],
       },
       correctIndex: 3,
       explanation: {
-        ELEMENTARY: 'Tunnels let rain soak deep into the soil where roots can use it.',
-        MIDDLE_SCHOOL: 'Residue cover and intact structure greatly reduce soil loss from wind and water.',
-        HIGH_SCHOOL: 'Legumes partner with bacteria that fix nitrogen from the air.',
-        UNDERGRADUATE: 'Microbes use soil nitrogen while breaking down carbon-rich residue, so starter nitrogen can help.',
-        GRADUATE: 'Conservation agriculture combines three principles, of which no-till is only one.',
-        PHD: 'Where crop residue feeds animals, keeping it on the field as mulch has a real cost.',
+        ELEMENTARY: 'No-till means planting without ploughing the soil.',
+        MIDDLE_SCHOOL: 'A no-till planter must cut through residue and place seed correctly.',
+        HIGH_SCHOOL: 'Row cleaners move residue off the row so soil warms and dries.',
+        UNDERGRADUATE: 'Thick residue interferes with planting and seedling emergence.',
+        GRADUATE: 'Conservation agriculture combines minimal disturbance, soil cover and rotation.',
+        PHD: 'Deeper sampling shows carbon is often moved toward the surface, not added overall.',
       },
     },
     {
-      id: 'rnt2q5',
+      id: 'ra-nt2-q2',
       question: {
-        ELEMENTARY: 'What can you do in a garden to act like a no-till farmer?',
-        MIDDLE_SCHOOL: 'What is one challenge of no-till farming?',
-        HIGH_SCHOOL: 'Why is no-till described as one part of a system?',
-        UNDERGRADUATE: 'Which fields are best to start no-till on?',
-        GRADUATE: 'Which benefits of no-till are best supported by evidence?',
-        PHD: 'Why is linking soil microbial community shifts to function difficult?',
+        ELEMENTARY: 'How do cover crops help with weeds?',
+        MIDDLE_SCHOOL: 'What does a roller-crimper do?',
+        HIGH_SCHOOL: 'Why is integrated weed management essential in no-till?',
+        UNDERGRADUATE: 'How do weed communities tend to shift under no-till?',
+        GRADUATE: 'Why have some farmers returned to tillage?',
+        PHD: 'Which method avoids bulk density bias when comparing soil carbon stocks?',
       },
       options: {
-        ELEMENTARY: ['Spread old leaves on top of the soil instead of digging', 'Dig the whole garden every week', 'Leave the soil bare and dry', 'Pull out every worm'],
-        MIDDLE_SCHOOL: ['Farmers need other ways to control weeds', 'Soil gets too many crumbs', 'Rain stops falling', 'Earthworms disappear forever'],
-        HIGH_SCHOOL: ['Its problems shrink when combined with cover crops and diverse rotations', 'It only works with plowing', 'It needs no planning', 'It replaces all other farm practices'],
-        UNDERGRADUATE: ['Well-drained fields with modest residue loads', 'The wettest fields on the farm', 'Fields with the worst compaction', 'Fields under water'],
-        GRADUATE: ['Reduced erosion and improved soil structure', 'Guaranteed large yield increases everywhere', 'Elimination of all weeds', 'Large carbon gains at every depth'],
-        PHD: ['Sequencing shows composition, but connecting taxa to processes like nutrient cycling is hard', 'Microbes cannot be sequenced', 'No-till has no effect on microbes', 'Function is measured by yield alone'],
+        ELEMENTARY: ['They feed the weeds', 'They make weeds taller', 'They crowd weeds out', 'They paint the weeds'],
+        MIDDLE_SCHOOL: ['Rolls hay bales', 'Waters the crops', 'Flattens cover crops into a weed-blocking mat', 'Plants seeds deeper'],
+        HIGH_SCHOOL: ['Weeds disappear with no-till', 'Herbicides are banned', 'Overreliance on one herbicide has led to resistant weeds', 'Weeds help crops'],
+        UNDERGRADUATE: ['Toward large-seeded annuals only', 'No change at all', 'Toward small-seeded annuals and perennials', 'Weeds disappear entirely'],
+        GRADUATE: ['Tillage is cheaper', 'Ploughs became fashionable', 'Herbicide-resistant weeds became hard to control', 'Soil carbon became too high'],
+        PHD: ['Shallow sampling only', 'Volume-based sampling', 'Equivalent soil mass', 'Visual estimation'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Cover crops fill the space so weeds have no room.',
+        MIDDLE_SCHOOL: 'A roller-crimper flattens cover crops into a mat that blocks weed light.',
+        HIGH_SCHOOL: 'Relying on one herbicide caused resistance, so several tactics are needed.',
+        UNDERGRADUATE: 'Without tillage, small-seeded annuals and perennials become more common.',
+        GRADUATE: 'Resistant weeds pushed some farmers back to tillage.',
+        PHD: 'Equivalent soil mass compares the same mass of soil, avoiding bulk density errors.',
+      },
+    },
+    {
+      id: 'ra-nt2-q3',
+      question: {
+        ELEMENTARY: 'Why might crops grow a little less in the first few years of no-till?',
+        MIDDLE_SCHOOL: 'Why can nitrogen be tied up in early no-till years?',
+        HIGH_SCHOOL: 'Where do no-till yields tend to suffer most?',
+        UNDERGRADUATE: 'What is nutrient stratification under no-till?',
+        GRADUATE: 'Why do risk-averse farmers sometimes delay no-till adoption?',
+        PHD: 'What do remote sensing studies reveal about no-till permanence?',
+      },
+      options: {
+        ELEMENTARY: ['The soil is still changing and the helpers are moving back in', 'Farmers forget to plant', 'The sun stops shining', 'Weeds grow faster than ever'],
+        MIDDLE_SCHOOL: ['Microbes use it while breaking down residue', 'It washes into the sky', 'Plants refuse it', 'It turns into salt'],
+        HIGH_SCHOOL: ['Cold, wet, poorly drained soils', 'Dry climates', 'Sandy deserts only', 'Every field equally'],
+        UNDERGRADUATE: ['Concentration of nutrients and organic matter near the surface', 'Nutrients mixing evenly', 'Nutrients leaving the field', 'A type of fertiliser'],
+        GRADUATE: ['Transition costs and uncertain outcomes, even with good long-run returns', 'No-till is illegal', 'Planters are unavailable', 'Yields always double'],
+        PHD: ['Many fields alternate between no-till and tillage', 'All fields stay no-till forever', 'Satellites cannot see fields', 'Tillage has disappeared'],
       },
       correctIndex: 0,
       explanation: {
-        ELEMENTARY: 'Leaving leaves on top makes a soil blanket and protects the creatures underneath.',
-        MIDDLE_SCHOOL: 'Without plowing to bury weeds, farmers use cover crops, rotations and other tools.',
-        HIGH_SCHOOL: 'Cover crops and rotations fill the gaps that tillage used to cover, such as weed control.',
-        UNDERGRADUATE: 'Well-drained fields warm faster and reduce early risk while farmers learn.',
-        GRADUATE: 'Erosion control and structural benefits are robust; carbon and yield effects are more conditional.',
-        PHD: 'Knowing which organisms are present does not directly show what processes they perform.',
+        ELEMENTARY: 'It takes time for worms and soil helpers to build up again.',
+        MIDDLE_SCHOOL: 'Microbes break down residue and temporarily use nitrogen.',
+        HIGH_SCHOOL: 'Cold, wet soils under residue slow planting and growth.',
+        UNDERGRADUATE: 'Without mixing, nutrients and carbon build up near the surface.',
+        GRADUATE: 'Uncertain transition costs deter farmers who prefer certainty.',
+        PHD: 'Satellite data show many fields switch back and forth, challenging permanence.',
+      },
+    },
+    {
+      id: 'ra-nt2-q4',
+      question: {
+        ELEMENTARY: 'What does a no-till planter do?',
+        MIDDLE_SCHOOL: 'What is a coulter?',
+        HIGH_SCHOOL: 'What is strip-till?',
+        UNDERGRADUATE: 'What is a partial budget?',
+        GRADUATE: 'What makes organic no-till with roller-crimped cover crops challenging?',
+        PHD: 'Why might nitrous oxide complicate no-till climate accounting?',
+      },
+      options: {
+        ELEMENTARY: ['Digs deep holes everywhere', 'Slices a thin slot and drops in a seed', 'Waters the field', 'Picks the crops'],
+        MIDDLE_SCHOOL: ['A type of seed', 'A sharp round blade that slices through residue', 'A weed', 'A tractor tyre'],
+        HIGH_SCHOOL: ['Tilling the whole field twice', 'Tilling only narrow strips where crops are planted', 'Removing all residue', 'Burning the field'],
+        UNDERGRADUATE: ['A complete farm accounting statement', 'A comparison of only the costs and returns that change with a decision', 'A seed budget', 'A weather forecast'],
+        GRADUATE: ['It needs no planning', 'It requires precise timing and high cover crop biomass', 'Cover crops are illegal', 'It always fails'],
+        PHD: ['No-till removes all nitrous oxide', 'Emissions may increase in some no-till systems', 'Nitrous oxide is not a greenhouse gas', 'It only affects water'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'It cuts a thin slot through the cover and places a seed.',
+        MIDDLE_SCHOOL: 'A coulter is a sharp disc that cuts residue ahead of the seed.',
+        HIGH_SCHOOL: 'Strip-till only tills narrow strips for planting.',
+        UNDERGRADUATE: 'A partial budget includes only costs and returns that change.',
+        GRADUATE: 'Rolling must happen at the right growth stage with enough biomass to suppress weeds.',
+        PHD: 'Higher nitrous oxide in some systems can offset carbon gains.',
+      },
+    },
+    {
+      id: 'ra-nt2-q5',
+      question: {
+        ELEMENTARY: 'What helps the soil get spongier over time with no-till?',
+        MIDDLE_SCHOOL: 'Which fields should farmers try no-till on first?',
+        HIGH_SCHOOL: 'Why is no-till often profitable even with a small yield dip?',
+        UNDERGRADUATE: 'Where are no-till yield penalties smallest?',
+        GRADUATE: 'What policy debate concerns payments for no-till?',
+        PHD: 'Which benefits does multi-objective analysis find no-till delivers most clearly?',
+      },
+      options: {
+        ELEMENTARY: ['More ploughing', 'Rocks', 'Worms and tiny soil helpers', 'Plastic sheets'],
+        MIDDLE_SCHOOL: ['The wettest fields', 'Fields under water', 'Well-drained fields', 'Fields with no soil'],
+        HIGH_SCHOOL: ['Prices for no-till crops are higher', 'It needs no seed', 'Fuel, labour and machinery savings offset it', 'Governments buy all the crops'],
+        UNDERGRADUATE: ['In cold, wet soils', 'In flooded fields', 'In dry climates with residue retention and rotation', 'Everywhere equally'],
+        GRADUATE: ['Whether to ban tillage', 'Whether to tax seeds', 'Whether to pay for adoption or for continued practice', 'Whether to stop farming'],
+        PHD: ['Climate mitigation only', 'Herbicide reduction', 'Erosion and water conservation', 'Higher yields everywhere'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'Worms and soil helpers make tunnels that make soil spongy.',
+        MIDDLE_SCHOOL: 'Well-drained fields warm and dry faster, so no-till works best there first.',
+        HIGH_SCHOOL: 'Saving fuel, labour and machinery costs often makes up for slightly lower yields.',
+        UNDERGRADUATE: 'Dry climates with residue and rotation show the smallest penalties.',
+        GRADUATE: 'Policymakers debate paying for adoption versus paying for continued practice.',
+        PHD: 'No-till clearly reduces erosion and conserves water; climate benefits are less certain.',
       },
     },
   ],
