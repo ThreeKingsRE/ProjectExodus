@@ -74,6 +74,23 @@ export function ProjectExodusAI() {
   const pathname = usePathname()
   const isHomepage = pathname === '/'
   const [isOpen, setIsOpen] = useState(false)
+
+  // While the chat is open: Esc closes it, and on phones (where it fills the
+  // screen) the page behind is pinned so swipes can't scroll it
+  useEffect(() => {
+    if (!isOpen) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setIsOpen(false) }
+    window.addEventListener('keydown', onKey)
+    const phone = window.matchMedia('(max-width: 639px)').matches
+    const y = window.scrollY
+    const body = document.body.style
+    const prev = { position: body.position, top: body.top, left: body.left, right: body.right, overflow: body.overflow, width: body.width }
+    if (phone) Object.assign(body, { position: 'fixed', top: `-${y}px`, left: '0', right: '0', width: '100%', overflow: 'hidden' })
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      if (phone) { Object.assign(body, prev); window.scrollTo(0, y) }
+    }
+  }, [isOpen])
   const [messages, setMessages] = useState<Message[]>([])
   const [inputValue, setInputValue] = useState('')
   const [hasGreeted, setHasGreeted] = useState(false)
@@ -274,15 +291,20 @@ export function ProjectExodusAI() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 max-w-md h-[calc(100vh-2rem)] sm:h-[600px] max-h-[90vh] bg-[var(--card)] rounded-2xl shadow-2xl border-4 border-theme-primary flex flex-col overflow-hidden">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Chat with Sage"
+          className="fixed inset-0 z-[130] flex h-[100dvh] w-full flex-col overflow-hidden overscroll-none bg-[var(--card)] sm:inset-auto sm:bottom-6 sm:right-6 sm:h-[600px] sm:max-h-[85dvh] sm:w-96 sm:max-w-md sm:rounded-2xl sm:border-4 sm:border-theme-primary sm:shadow-2xl"
+        >
           {/* Header */}
-          <div className="bg-gradient-to-r from-moss-600 to-ocean-600 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between flex-shrink-0">
+          <div className="bg-gradient-to-r from-moss-600 to-ocean-600 px-4 sm:px-6 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))] sm:py-4 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
               <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
                 <Leaf className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="text-white font-black text-base sm:text-lg truncate">Sage</h3>
+                <h3 style={{ color: '#fff' }} className="text-white font-black text-base sm:text-lg truncate">Sage</h3>
                 <p className="text-white/80 text-xs font-semibold flex items-center gap-1">
                   <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse flex-shrink-0" />
                   <span className="truncate">Online</span>
@@ -315,7 +337,7 @@ export function ProjectExodusAI() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 sm:space-y-4 bg-[var(--muted)]">
+          <div className="flex-1 overflow-y-auto overscroll-contain p-4 sm:p-6 space-y-3 sm:space-y-4 bg-[var(--muted)]">
             {messages.length === 0 && (
               <div className="text-center py-12">
                 <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-moss-600 to-ocean-600 flex items-center justify-center">
@@ -369,7 +391,7 @@ export function ProjectExodusAI() {
           </div>
 
           {/* Input */}
-          <div className="p-3 sm:p-4 bg-[var(--card)] border-t-2 border-[var(--border)] flex-shrink-0">
+          <div className="px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-4 bg-[var(--card)] border-t-2 border-[var(--border)] flex-shrink-0">
             <div className="flex gap-2">
               <input
                 type="text"
@@ -377,7 +399,7 @@ export function ProjectExodusAI() {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !e.nativeEvent.isComposing && handleSendMessage()}
                 placeholder="Ask about sustainability..."
-                className="flex-1 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-xl bg-[var(--muted)] border-2 border-[var(--border)] focus:border-theme-primary focus:outline-none text-[var(--foreground)] placeholder:text-theme-muted font-medium"
+                className="min-w-0 flex-1 px-3 sm:px-4 py-2 sm:py-3 text-base rounded-xl bg-[var(--muted)] border-2 border-[var(--border)] focus:border-theme-primary focus:outline-none text-[var(--foreground)] placeholder:text-theme-muted font-medium"
               />
               <button
                 onClick={handleSendMessage}
