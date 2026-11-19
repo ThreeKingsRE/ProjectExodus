@@ -33,8 +33,6 @@ export {
   usePageTurnSound,
 } from './PageFlip'
 
-// Ribbon Bookmarks
-export { RibbonBookmarks } from './RibbonBookmarks'
 
 // Opening Animation
 export { ScrollOpenAnimation } from './ScrollOpenAnimation'

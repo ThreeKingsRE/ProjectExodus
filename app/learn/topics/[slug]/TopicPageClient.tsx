@@ -5,6 +5,9 @@ import { Button } from '@/components/ui/Button'
 import { ArrowLeft } from 'lucide-react'
 import { ScrollHardcover, BOOK_THEMES } from '@/components/learning/ScrollHardcover'
 import { DustMotes } from '@/components/learning/FloatingBook'
+import { useReadingRibbon, moveRibbon } from '@/components/learning/ribbon/useReadingRibbon'
+import { RibbonCustomizer } from '@/components/learning/ribbon/RibbonCustomizer'
+import { OPENING_PAGES, PAGES_PER_CHAPTER, VOLUME_SIZE } from '@/lib/learning/topicVolumes'
 import type { CoreTopic } from '@/types/modules'
 import Link from 'next/link'
 import type { TopicDefinition } from '@/types/modules'
@@ -64,6 +67,15 @@ export default function TopicPageClient({ topic, initialLevel, hasLevelParam = f
   // undefined = resume where the reader left off; a number = open at that chapter
   const [initialChapter, setInitialChapter] = useState<number | undefined>(undefined)
   const [volumeIndex, setVolumeIndex] = useState(0)
+  // The reader's ribbon: its design, and where it sits in this book
+  const { style: ribbonStyle, bookmarks, signedIn } = useReadingRibbon()
+  const ribbonSpot = bookmarks[topic.id] ?? null
+  const [resumePage, setResumePage] = useState<number | undefined>(undefined)
+  const [customizing, setCustomizing] = useState(false)
+  const ribbonChapter = ribbonSpot && ribbonSpot.page >= OPENING_PAGES
+    ? ribbonSpot.volume * VOLUME_SIZE + Math.floor((ribbonSpot.page - OPENING_PAGES) / PAGES_PER_CHAPTER) + 1
+    : null
+  const ribbonLabel = ribbonSpot && ribbonChapter ? `Chapter ${ribbonChapter} · p. ${ribbonSpot.page + 1}` : null
   const [contentLevel, setContentLevel] = useState<LearningLevel>(initialLevel)
   const [volumeData, setVolumeData] = useState<TopicVolume | null>(null)
   const [isLoadingVolume, setIsLoadingVolume] = useState(false)
@@ -77,7 +89,13 @@ export default function TopicPageClient({ topic, initialLevel, hasLevelParam = f
 
   // Open the scroll at a module (index into topic.modules), or resume (no index)
   const handleOpenDigitalScroll = (moduleIndex?: number) => {
-    if (moduleIndex === undefined) {
+    setResumePage(undefined)
+    if (moduleIndex === undefined && ribbonSpot) {
+      // Open at the reader's ribbon
+      setVolumeIndex(Math.min(Math.max(ribbonSpot.volume, 0), volumeCount - 1))
+      setInitialChapter(undefined)
+      setResumePage(ribbonSpot.page)
+    } else if (moduleIndex === undefined) {
       let lastVolume = 0
       lastVolume = Number(readScoped(storageScope, lastVolumeKey) ?? 0) || 0
       setVolumeIndex(Math.min(Math.max(lastVolume, 0), volumeCount - 1))
@@ -203,6 +221,9 @@ export default function TopicPageClient({ topic, initialLevel, hasLevelParam = f
               hours={totalHours}
               progressPercent={progressPercent}
               onOpen={() => handleOpenDigitalScroll()}
+              ribbon={ribbonStyle}
+              ribbonSpot={ribbonLabel}
+              onEditRibbon={signedIn ? () => setCustomizing(true) : undefined}
             />
           </div>
         </div>
@@ -223,11 +244,19 @@ export default function TopicPageClient({ topic, initialLevel, hasLevelParam = f
             volumeCount={volumeCount}
             onVolumeChange={(v) => {
               setInitialChapter(undefined)
+              setResumePage(undefined)
               setVolumeIndex(v)
             }}
             onLevelChange={(level) => { setContentLevel(level); setSelectedLevel(level); rememberLevel(level) }}
             isLoadingContent={isLoadingVolume}
             onClose={handleCloseDigitalScroll}
+            resumePage={resumePage}
+            onPageChange={(page) => {
+              // The ribbon follows the reader once they're past the opening pages
+              if (signedIn && page >= OPENING_PAGES) moveRibbon(topic.id, { volume: volumeData.volume, page })
+            }}
+            ribbon={ribbonStyle}
+            onEditRibbon={signedIn ? () => setCustomizing(true) : undefined}
           />
         )}
       </AnimatePresence>
@@ -274,6 +303,7 @@ export default function TopicPageClient({ topic, initialLevel, hasLevelParam = f
           />
         </div>
       </div>
+      {customizing && <RibbonCustomizer initial={ribbonStyle} onClose={() => setCustomizing(false)} />}
     </div>
   )
 }

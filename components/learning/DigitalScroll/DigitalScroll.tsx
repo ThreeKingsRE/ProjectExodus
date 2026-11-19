@@ -17,7 +17,8 @@ import { X, Volume2, VolumeX, Maximize2, Minimize2, ChevronLeft, ChevronRight, G
 // Scroll components
 import ScrollContainer, { ScrollWrapper, PageContainer, ScrollSpine, PageEdges } from './ScrollContainer'
 import { ScrollCover, InsideCover } from './ScrollCover'
-import { RibbonBookmarks, type ChapterStatus, type ChapterSection } from './RibbonBookmarks'
+import { BookRibbon } from '../ribbon/BookRibbon'
+import type { RibbonStyle } from '@/lib/learning/ribbon'
 import { ScrollPage, PageContent, VerseHeader, ChapterDivider } from './ScrollPage'
 import { PageFlip, RapidPageFlip, usePageTurnSound } from './PageFlip'
 import { ScrollOpenAnimation } from './ScrollOpenAnimation'
@@ -77,6 +78,14 @@ interface DigitalScrollProps {
   onProgressSaved?: () => void
   onClose: () => void
   className?: string
+  /** Open at this page of the volume (the reader's ribbon), after the opening sequence */
+  resumePage?: number
+  /** Called when the reader turns to another page (to move their ribbon) */
+  onPageChange?: (pageIndex: number) => void
+  /** The reader's ribbon design */
+  ribbon?: RibbonStyle | null
+  /** Open the ribbon customizer (signed-in readers) */
+  onEditRibbon?: () => void
 }
 
 interface ScrollContent {
@@ -192,6 +201,10 @@ export function DigitalScroll({
   onProgressSaved,
   onClose,
   className,
+  resumePage,
+  onPageChange,
+  ribbon = null,
+  onEditRibbon,
 }: DigitalScrollProps) {
   // Positions and chapter progress are stored per volume. Volume 0 keeps the
   // bare topic id so reading positions saved before volumes existed still work.
@@ -474,6 +487,8 @@ export function DigitalScroll({
   // ============================================
 
   const [currentPageIndex, setCurrentPageIndex] = useState(0)
+  // Tell the parent which page is open (moves the reader's ribbon), once the book is showing
+  const pageReportReady = useRef(false)
   const totalPages = bookPages.length
 
   // Switching volumes inside the book lands on that volume's table of contents
@@ -586,20 +601,6 @@ export function DigitalScroll({
     ))
   }, [bookPages, jumpToPage])
 
-  // Ribbon jump links: each section starts a spread (or is the single lesson page)
-  const SECTION_PAGE: Record<ChapterSection, ScrollContent['type']> = {
-    opener: 'chapter-divider',
-    lesson: 'content',
-    review: 'chapter-review',
-    practice: 'games',
-  }
-  const goToSection = useCallback((chapterIndex: number, section: ChapterSection) => {
-    jumpToPage(bookPages.findIndex(
-      (page) => page.type === SECTION_PAGE[section] && page.chapterIndex === chapterIndex
-    ))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bookPages, jumpToPage])
-
   const handleClose = useCallback(() => {
     closeScroll()
     onClose()
@@ -687,6 +688,9 @@ export function DigitalScroll({
     if (initialChapter !== undefined) {
       // Opened from a specific lesson card: go straight to that chapter
       goToChapter(initialChapter)
+    } else if (resumePage !== undefined && resumePage > 0) {
+      // Opened from the cover or the ribbon: go to where the reader's ribbon sits
+      goToPage(resumePage)
     } else {
       // Opened from the main button: resume where the reader left off, if anywhere
       // A saved position at chapter 0 / page 0 is still a real position (first chapter)
@@ -697,7 +701,7 @@ export function DigitalScroll({
         setCurrentPageIndex(0)
       }
     }
-  }, [scrollState, bookKey, continueReading, initialChapter, goToChapter])
+  }, [scrollState, bookKey, continueReading, initialChapter, goToChapter, resumePage, goToPage])
 
   // ============================================
   // SAVE POSITION ON PAGE CHANGE
@@ -1692,20 +1696,6 @@ export function DigitalScroll({
     return [...new Set([...local, ...saved])]
   }, [scrollState.topicProgress, bookKey, moduleProgress, moduleKeys])
 
-  // Per-chapter progress for the ribbons: passed comes from completedChapters
-  const chapterStatus: ChapterStatus[] = modules.slice(0, 7).map((_, i) => {
-    if (isPracticeDone(i)) return 'practiced'
-    const key = moduleKeys[i]
-    const started = moduleProgress.some((p) => p.moduleKey === key) || startedChapters.current.has(key ?? '')
-    return started ? 'started' : 'none'
-  })
-
-  // Where the Continue ribbon goes (only once a lesson position has been saved)
-  const savedPosition = scrollState.readingPositions[bookKey]
-  const continueLabel = savedPosition
-    ? `Ch. ${String(chapterOffset + savedPosition.chapter + 1).padStart(2, '0')} · ${modules[savedPosition.chapter]?.title ?? 'Lesson'}`
-    : null
-
   // ============================================
   // PAGE FRAME WRAPPER
   // Wraps page content in ScrollPage for consistent framing
@@ -1749,6 +1739,13 @@ export function DigitalScroll({
       </ScrollPage>
     )
   }
+
+  useEffect(() => {
+    if (showOpenAnimation) { pageReportReady.current = false; return }
+    // Skip the first report: it's the page we just opened at, not a move
+    if (!pageReportReady.current) { pageReportReady.current = true; return }
+    onPageChange?.(currentPageIndex)
+  }, [currentPageIndex, showOpenAnimation, onPageChange])
 
   // ============================================
   // RENDER
@@ -1804,22 +1801,15 @@ export function DigitalScroll({
         >
           {/* Book Wrapper */}
           <ScrollWrapper>
-            {/* Ribbon Bookmarks - inside the book so they emerge from pages */}
-            <RibbonBookmarks
-              currentChapter={currentChapter}
-              completedChapters={completedChapters}
-              onChapterClick={goToChapter}
-              onContinueClick={continueReading}
-              continuePosition={scrollState.currentPosition || undefined}
-              isExpanded={isExpanded}
-              isFlipping={isFlipping || isRapidFlipping}
-              chapterOffset={chapterOffset}
-              chapterCount={Math.min(modules.length, 7)}
-              chapterTitles={modules.slice(0, 7).map((m) => m.title)}
-              chapterStatus={chapterStatus}
-              onSectionClick={goToSection}
-              continueLabel={continueLabel}
-            />
+            {/* The reader's ribbon, sewn in at the top of the book. It moves as they read. */}
+            {ribbon && (
+              <BookRibbon
+                ribbon={ribbon}
+                pageNumber={currentPageIndex + 1}
+                chapterNumber={bookPages[currentPageIndex]?.chapterIndex !== undefined ? chapterOffset + (bookPages[currentPageIndex]!.chapterIndex as number) + 1 : null}
+                onEdit={onEditRibbon}
+              />
+            )}
 
             {/* Page Flip Container */}
             <PageFlip

@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import type { CoreTopic } from '@/types/modules'
 import { FloatingBook } from './FloatingBook'
+import type { RibbonStyle } from '@/lib/learning/ribbon'
+import { ReadingRibbon, RibbonArt } from './ribbon/ReadingRibbon'
 
 interface CoverTheme {
   cloth: string
@@ -103,6 +105,8 @@ export interface BookCoverProps {
   imprint?: string
   /** Give the book real thickness (spine, page edges, back board), in % of its width */
   depth?: number
+  /** The reader's ribbon, hanging out of the bottom of the closed book */
+  ribbon?: RibbonStyle | null
 }
 
 export interface ScrollHardcoverProps {
@@ -116,13 +120,18 @@ export interface ScrollHardcoverProps {
   hours: number
   progressPercent: number
   onOpen: () => void
+  /** The reader's ribbon (tap it to resume; long-press/hover to customize) */
+  ribbon?: RibbonStyle | null
+  /** Where the ribbon sits, e.g. "Chapter 9 · p. 12" */
+  ribbonSpot?: string | null
+  onEditRibbon?: () => void
 }
 
 /**
  * The book itself, drawn to fill its parent (3:4). Sizes inside are relative
  * to the book's width (cqw), so the same cover works as a hero or a card.
  */
-export function BookCover({ topicId, title, subtitle, chapterTitles, currentChapter, levelLabel, hours, progressPercent, open = false, animate = true, windowText, imprint, depth = 0 }: BookCoverProps) {
+export function BookCover({ topicId, title, subtitle, chapterTitles, currentChapter, levelLabel, hours, progressPercent, open = false, animate = true, windowText, imprint, depth = 0, ribbon = null }: BookCoverProps) {
   const theme = BOOK_THEMES[topicId]
   const reduceMotion = useReducedMotion()
   const moving = animate && !reduceMotion
@@ -335,8 +344,14 @@ export function BookCover({ topicId, title, subtitle, chapterTitles, currentChap
         </div>
       </motion.div>
 
-      {/* Ribbon marker once the reader has made progress */}
-      {progressPercent > 0 && (
+      {/* The reader's ribbon, sewn in at the head and hanging out below the pages */}
+      {ribbon && (
+        <div aria-hidden className="pointer-events-none absolute drop-shadow-md" style={{ right: '16%', top: '84%', width: '9%', height: '31%', transform: depth ? `translateZ(calc(-0.5 * ${depth}cqw))` : undefined }}>
+          <RibbonArt style={ribbon} />
+        </div>
+      )}
+      {/* Older marker for flat books without a ribbon */}
+      {!ribbon && progressPercent > 0 && (
         <div aria-hidden className="absolute" style={{ right: '16%', bottom: '-7%', width: '5.5%', height: '12%' }}>
           <div className="h-full w-full" style={{ background: `linear-gradient(90deg, #8a6a2a, ${theme.foil}, #8a6a2a)`, clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%)' }} />
         </div>
@@ -347,10 +362,10 @@ export function BookCover({ topicId, title, subtitle, chapterTitles, currentChap
 
 /** The topic page hero: the book you click to open the Digital Scroll. */
 export function ScrollHardcover(props: ScrollHardcoverProps) {
-  const { topicId, title, currentChapter, progressPercent, onOpen } = props
+  const { topicId, title, currentChapter, progressPercent, onOpen, ribbon, ribbonSpot, onEditRibbon } = props
   const reduceMotion = useReducedMotion()
   const [opening, setOpening] = useState(false)
-  const action = currentChapter === null ? 'Open the book' : `Continue at Chapter ${currentChapter + 1}`
+  const action = ribbonSpot ? `Continue at ${ribbonSpot}` : currentChapter === null ? 'Open the book' : `Continue at Chapter ${currentChapter + 1}`
 
   // Swing the cover open, then hand over to the scroll; close it again behind the scroll
   const open = () => {
@@ -371,15 +386,26 @@ export function ScrollHardcover(props: ScrollHardcoverProps) {
           className="absolute inset-0 rounded-r-md focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/70"
           style={{ transformStyle: 'preserve-3d' }}
         >
-          <BookCover {...props} open={opening} depth={11} />
+          <BookCover {...props} open={opening} depth={11} ribbon={null} />
         </button>
+        {ribbon && !opening && (
+          <ReadingRibbon
+            ribbon={ribbon}
+            className="drop-shadow-md"
+            style={{ position: 'absolute', right: '16%', top: '84%', width: '9%', height: '31%' }}
+            label={ribbonSpot ? `Your ribbon: continue at ${ribbonSpot}` : 'Your ribbon: open the book'}
+            onClick={open}
+            editable={!!onEditRibbon}
+            onEdit={onEditRibbon}
+          />
+        )}
       </FloatingBook>
 
       {/* Caption under the book */}
       <div className="mt-12 text-center">
         <p className="font-serif text-lg font-semibold text-[var(--foreground)]">{action}</p>
         <p className="mt-0.5 text-sm text-[var(--muted-foreground)]">
-          {progressPercent > 0 ? `${progressPercent}% complete · ` : ''}Tap the cover to begin reading
+          {progressPercent > 0 ? `${progressPercent}% complete · ` : ''}{ribbonSpot ? 'Your ribbon keeps your place' : 'Tap the cover to begin reading'}
         </p>
       </div>
     </div>

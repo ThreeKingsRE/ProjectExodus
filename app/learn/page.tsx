@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react'
 import { Card, CardContent } from '@/components/ui/Card'
 import { BookCover } from '@/components/learning/ScrollHardcover'
 import { FloatingBook } from '@/components/learning/FloatingBook'
+import { useReadingRibbon } from '@/components/learning/ribbon/useReadingRibbon'
 import { Button } from '@/components/ui/Button'
 import dynamic from 'next/dynamic'
 
@@ -28,6 +29,8 @@ export default function LearnPage() {
   const isAuthenticated = status === 'authenticated' && !!session?.user
   const [selectedLevel, setSelectedLevel] = useState<LearningLevel>('HIGH_SCHOOL')
   const [topicProgress, setTopicProgress] = useState<Map<CoreTopic, TopicProgress>>(new Map())
+  // The reader's ribbon hangs out of every book on the shelf (classic red for guests)
+  const { style: ribbonStyle } = useReadingRibbon()
   // Shelf columns (2 on phones and tablets, 3 on desktop), so each book can turn toward the middle
   const [shelfColumns, setShelfColumns] = useState(2)
   useEffect(() => {
@@ -525,6 +528,7 @@ export default function LearnPage() {
                         progressPercent={progressPercent}
                         animate={false}
                           depth={10}
+                          ribbon={ribbonStyle}
                         windowText={{ kicker: 'Chapters', big: String(topic.modules), small: `${Math.ceil(topic.modules / 7)} volumes` }}
                         imprint="Elementary to PhD editions"
                       />

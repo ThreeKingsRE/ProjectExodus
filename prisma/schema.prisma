@@ -119,6 +119,8 @@ model User {
   sentConnections        Connection[]            @relation("SentConnections")
   receivedConnections    Connection[]            @relation("ReceivedConnections")
   learningProgress       UserLearningProgress[]
+  readingBookmarks       ReadingBookmark[]
+  readingRibbon          Json? // The reader's bookmark ribbon design (lib/learning/ribbon.ts)
   topicModuleProgress    TopicModuleProgress[]
   learnerProfile         LearnerProfile?
   scrollNotes            ScrollNote[]
@@ -3818,5 +3820,21 @@ model CommentReaction {
 
   @@unique([commentId, userId, emoji]) // One reaction type per user per comment
   @@index([commentId])
+  @@index([userId])
+}
+
+// Where a reader's ribbon sits in each Digital Scroll book: one spot per book,
+// saved as they read so they can pick up on any device
+model ReadingBookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  topicId   String
+  volume    Int      @default(0)
+  page      Int      @default(0) // Page index within the volume (page number - 1)
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, topicId])
   @@index([userId])
 }
