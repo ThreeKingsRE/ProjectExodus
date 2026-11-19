@@ -1,383 +1,330 @@
 import type { ModuleExpansion } from '../types'
 
+// Rewritten with its own angle: farming on roofs and indoors in stacked layers.
+// The first urban farming chapter covers community and backyard growing.
 const expansion: ModuleExpansion = {
   topicId: 'food-sovereignty',
   moduleKey: 'urban-farming~2',
+  title: 'Rooftop and Vertical Farms',
+  description: {
+    ELEMENTARY: 'Farms on top of buildings and inside warehouses, where plants grow in stacks under special lights.',
+    MIDDLE_SCHOOL: 'How rooftop gardens, greenhouses and vertical farms grow food in cities, and their pros and cons.',
+    HIGH_SCHOOL: 'Rooftop and indoor vertical farming: growing systems, energy and water use, crops and who benefits.',
+    UNDERGRADUATE: 'Engineering and economics of rooftop and controlled-environment farms, and their role in city food systems.',
+    GRADUATE: 'Assessing rooftop and vertical farms: life cycle impacts, business models, policy and food justice.',
+    PHD: 'Research on building-integrated and vertical agriculture: energy, resource flows, systems roles and equity.',
+  },
   lessons: [
     {
       id: 'fs-urban-1',
-      title: 'Rooftop Gardens and City Farms',
+      title: 'Rooftop and Vertical Farms',
       content: {
         ELEMENTARY: `
-<h2>Gardens in the Sky!</h2>
-<p>Look up! In many cities, there are gardens growing on top of buildings. Tomatoes, lettuce, herbs and even bees can live up there. City people are also turning empty lots into green, leafy farms. Let's climb the stairs and explore a rooftop garden together.</p>
+<h2>Farms Up High and Indoors</h2>
+<p>In big cities, there isn't much open land for farms. So people are getting creative! They grow vegetables on the flat roofs of buildings, and inside big rooms where plants grow on shelves stacked high like a bookcase. These are called rooftop farms and vertical farms.</p>
 
-<h3>How Does a Garden Get on a Roof?</h3>
-<p>A roof is not like the ground. It has no soil, and rain usually runs right off it. So city gardeners bring the garden up with them. They use raised boxes, pots and big grow bags filled with special light soil. Light soil is important because a roof can only hold so much weight.</p>
+<h3>Rooftop Farms</h3>
+<p>On a rooftop farm, soil is spread in beds or boxes on top of a strong building. Plants like tomatoes, herbs, lettuce and peppers grow in the sunshine. Some rooftops have greenhouses, glass houses that keep plants warm all year. Bees can even live on rooftops and help flowers make fruit!</p>
+
+<h3>Vertical Farms</h3>
+<p>A vertical farm is inside a building. Plants grow on many shelves, one on top of another. Instead of the sun, special LED lights shine on them. Many vertical farms don't use soil at all. The plants' roots sit in water mixed with plant food. This is called hydroponics.</p>
 <ul>
-<li><strong>Rooftop garden:</strong> a garden built on the flat top of a building where food or flowers can grow</li>
-<li><strong>Raised bed:</strong> a big box filled with soil that sits above the ground or roof</li>
-<li><strong>Green roof:</strong> a roof covered with living plants that help keep the building cool</li>
-<li><strong>Empty lot:</strong> a piece of city land with no building on it that can become a garden</li>
-<li><strong>Pollinator:</strong> a bee, butterfly or other helper that carries pollen so plants can make fruit</li>
+<li><strong>Rooftop farm:</strong> a farm on top of a building</li>
+<li><strong>Vertical farm:</strong> a farm where plants grow on stacked shelves indoors</li>
+<li><strong>Greenhouse:</strong> a glass or plastic building that keeps plants warm</li>
+<li><strong>Hydroponics:</strong> growing plants in water with plant food instead of soil</li>
+<li><strong>LED light:</strong> a bright light that uses little electricity</li>
 </ul>
 
-<h3>Why Are Roof Gardens So Cool?</h3>
-<p>Plants on a roof work like a shady hat for the building. They keep it cooler in summer. They also soak up rain, so less water rushes into the streets during a storm. Bees and butterflies get a place to rest and eat. And people who live nearby get fresh food that only traveled down a few flights of stairs!</p>
+<h3>Why Grow Food in Cities?</h3>
+<p>Food from a city farm doesn't have to travel far, so it's very fresh when it reaches your plate. City farms also let kids see where food comes from. But indoor farms need lots of electricity for their lights, so they mostly grow small, leafy plants like lettuce and herbs.</p>
 
-<h3>Rooftop Gardening Rules</h3>
-<ol>
-<li>Always go up with a grown-up, and stay away from the edge.</li>
-<li>Choose plants that like sun and wind, like herbs, beans and cherry tomatoes.</li>
-<li>Water often, because roofs get hot and pots dry out fast.</li>
-<li>Share the harvest with neighbors!</li>
-</ol>
-
-<h3>Start Your Own Mini Sky Garden</h3>
-<p>You do not need a roof to begin. A sunny windowsill or balcony works too. Plant a few herb seeds in a pot, give them water and light, and watch them grow. You will be a city farmer in no time.</p>
-
-<h3>Think About It</h3>
-<p>If you could plant a garden on top of your school, what would you grow first?</p>
+<h3>Imagine!</h3>
+<p>If your school had a rooftop farm, what would you plant? Draw a picture of your dream city farm!</p>
 `,
         MIDDLE_SCHOOL: `
-<h2>From Rooftops to Vertical Farms: Growing Food in the City</h2>
-<p>More than half of the world's people live in cities, and most of their food is grown far away. Urban farmers are bringing some of that growing back home. They use rooftops, walls, empty lots and even indoor rooms stacked with plants. Each technique solves a different city problem: not much space, no good soil, or not enough sunlight.</p>
+<h2>Growing Up: Rooftop and Vertical Farms</h2>
+<p>As more people live in cities, some growers are finding ways to farm in places without open fields: on rooftops and inside buildings. Rooftop farms and vertical farms can grow fresh food close to where people live. But they also have costs and limits. Let's look at how they work and what they can and can't do.</p>
 
-<h3>Ways to Farm in a City</h3>
+<h3>Rooftop Farms and Greenhouses</h3>
+<p>Rooftop farms use soil beds or containers on roofs strong enough to hold the weight of wet soil. They use sunlight, and many collect rainwater. Rooftop greenhouses add a glass or plastic cover so crops can grow year-round, and they can use heat escaping from the building below. Rooftop farms also cool buildings, absorb rain and create habitat for pollinators.</p>
+
+<h3>Vertical Farms</h3>
+<p>Vertical farms grow plants indoors in stacked layers under LED lights, with computers controlling temperature, humidity, light and nutrients. Most use hydroponics or aeroponics, where roots are misted with nutrient water. Because the water is recycled, they can use far less water than field farms. They grow quickly, without pesticides, all year, but the lights and air conditioning use a lot of electricity.</p>
 <ul>
-<li><strong>Rooftop farm:</strong> a garden or greenhouse on top of a building, using containers or a layer of growing material</li>
-<li><strong>Vertical farm:</strong> an indoor farm that grows plants in stacked layers under artificial lights</li>
-<li><strong>Hydroponics:</strong> growing plants with their roots in water mixed with nutrients instead of soil</li>
-<li><strong>Aquaponics:</strong> a system where fish waste feeds plants and the plants help clean the water for the fish</li>
-<li><strong>Growing medium:</strong> the material that roots grow in, such as soil, compost, coconut fiber or lightweight mixes</li>
+<li><strong>Controlled environment agriculture:</strong> growing crops indoors with controlled light, temperature and nutrients</li>
+<li><strong>Aeroponics:</strong> growing plants with roots hanging in air and misted with nutrient water</li>
 <li><strong>Load capacity:</strong> how much weight a roof can safely hold</li>
+<li><strong>Leafy greens:</strong> plants grown for their leaves, like lettuce, kale and spinach</li>
+<li><strong>Pollinator:</strong> an animal like a bee that carries pollen between flowers</li>
+<li><strong>Yield:</strong> the amount of food a farm produces</li>
 </ul>
 
-<h3>Comparing City Farming Techniques</h3>
-<table>
-<thead><tr><th>Technique</th><th>Where it happens</th><th>Good for</th><th>Challenge</th></tr></thead>
-<tbody>
-<tr><td>Rooftop soil garden</td><td>Flat roofs</td><td>Vegetables, herbs, flowers</td><td>Weight limits, wind and heat</td></tr>
-<tr><td>Rooftop greenhouse</td><td>Strong flat roofs</td><td>Growing all year</td><td>Costly to build</td></tr>
-<tr><td>Vertical farm</td><td>Indoor rooms or warehouses</td><td>Leafy greens and herbs</td><td>Uses a lot of electricity for lights</td></tr>
-<tr><td>Community lot garden</td><td>Empty city land</td><td>Many crops, gathering space</td><td>Soil may need testing; land may not be secure</td></tr>
-</tbody>
-</table>
+<h3>What Grows Best?</h3>
+<p>Vertical farms mostly grow leafy greens, herbs and microgreens because they grow fast and stay small. Grains like wheat and rice need too much light and space to make sense indoors. Rooftop farms can grow a wider range of vegetables.</p>
 
-<h3>Why Roofs Need Special Planning</h3>
-<p>Wet soil is very heavy. Before anyone builds a rooftop farm, an engineer checks how much weight the roof can carry. Gardeners use lightweight growing mixes and place heavy planters over strong supports. They also protect the roof with a waterproof layer so water and roots do not leak into the building below.</p>
-
-<h3>What Cities Gain</h3>
-<p>Green roofs help cool buildings and neighborhoods, which matters because cities are often hotter than the countryside around them. They hold rainwater during storms, give homes to pollinators, and let people learn where food comes from. Rooftop and vertical farms will not feed a whole city, but they can add fresh, local food and bring neighbors together.</p>
+<h3>Who Benefits?</h3>
+<p>City farms can provide fresh food, jobs and education. But some vertical farm produce is expensive and sold in fancy stores. Community-run rooftop gardens can help make sure neighbourhoods that need fresh food the most actually get it.</p>
 `,
         HIGH_SCHOOL: `
-<h2>Urban Agriculture Models, Zoning and Community Benefits</h2>
-<p>Urban agriculture ranges from a few planters on an apartment roof to commercial greenhouses and warehouse-sized indoor farms. Each model has different costs, rules and benefits. This lesson focuses on the built environment: how buildings and city land are adapted for growing food, which rules shape what is possible, and who benefits.</p>
+<h2>Rooftop and Indoor Vertical Farming</h2>
+<p>Building-integrated agriculture brings food production into cities by using rooftops, walls and indoor spaces. It ranges from community rooftop gardens to large commercial greenhouses and high-tech indoor vertical farms. Supporters highlight fresh local food, water savings and year-round production; critics point to high energy use, costs and a narrow range of crops. Understanding the trade-offs helps judge where these farms fit in a city's food system.</p>
 
-<h3>Models of Urban Food Production</h3>
+<h3>Rooftop Systems</h3>
+<p>Open-air rooftop farms use lightweight growing media in beds or containers, designed within the roof's structural load capacity, with waterproofing and drainage. They provide stormwater retention, building cooling, habitat and community space. Rooftop greenhouses can be integrated with the building's heating, ventilation and water systems, using waste heat and capturing carbon dioxide from the building to boost plant growth.</p>
+
+<h3>Indoor Vertical Farms</h3>
+<p>Indoor vertical farms use stacked growing racks with LED lighting tuned to the wavelengths plants use most. Hydroponic or aeroponic systems recirculate nutrient solution, cutting water use dramatically compared with field farming. Climate control enables consistent, pesticide-free production all year. However, replacing sunlight with electric light makes energy the largest operating cost, and several well-funded vertical farming companies have struggled financially.</p>
 <ul>
-<li><strong>Intensive green roof:</strong> a roof with a deep growing layer that can support vegetables, shrubs and even small trees</li>
-<li><strong>Extensive green roof:</strong> a roof with a thin, light growing layer, usually planted with hardy groundcovers rather than food crops</li>
-<li><strong>Building-integrated agriculture:</strong> food production designed into a building so it can share heat, water or space with the building</li>
-<li><strong>Controlled environment agriculture:</strong> growing crops indoors or in greenhouses where light, temperature and humidity are managed</li>
-<li><strong>Zoning:</strong> local rules that divide land into areas and say what activities are allowed in each</li>
-<li><strong>Building code:</strong> rules about construction safety, including how much load a roof can carry and how people can access it</li>
+<li><strong>Building-integrated agriculture:</strong> growing food on or within buildings using their structure and systems</li>
+<li><strong>Growing medium:</strong> the material, such as soil or coir, that plant roots grow in</li>
+<li><strong>Nutrient solution:</strong> water mixed with the minerals plants need</li>
+<li><strong>Photosynthetically active radiation:</strong> the wavelengths of light plants use for photosynthesis</li>
+<li><strong>Operating cost:</strong> the ongoing cost of running a farm, such as electricity and labour</li>
+<li><strong>Food miles:</strong> the distance food travels from farm to consumer</li>
 </ul>
 
-<h3>Comparing Models</h3>
-<table>
-<thead><tr><th>Model</th><th>Start-up cost</th><th>Main products</th><th>Main benefit</th><th>Main limitation</th></tr></thead>
-<tbody>
-<tr><td>Community rooftop garden</td><td>Low to moderate</td><td>Vegetables, herbs</td><td>Education and social connection</td><td>Small harvests; roof access rules</td></tr>
-<tr><td>Commercial rooftop farm</td><td>Moderate to high</td><td>Greens, tomatoes, herbs</td><td>Fresh local sales to restaurants and markets</td><td>Structural upgrades and insurance</td></tr>
-<tr><td>Rooftop greenhouse</td><td>High</td><td>Year-round greens and vine crops</td><td>Long season; can use building heat</td><td>Capital cost and permits</td></tr>
-<tr><td>Indoor vertical farm</td><td>Very high</td><td>Leafy greens, herbs, microgreens</td><td>Very high output per area</td><td>Heavy electricity use for lighting and cooling</td></tr>
-</tbody>
-</table>
+<h3>Crops and Productivity</h3>
+<p>Vertical farms produce very high yields per square metre of floor area for leafy greens and herbs. Fruiting crops like tomatoes and strawberries are possible but need more light. Staple crops remain impractical indoors because their energy requirements are enormous.</p>
 
-<h3>How Rules Shape Urban Farms</h3>
-<p>Zoning can allow or block farming on vacant lots, limit whether farm products can be sold on site, and restrict structures like greenhouses, hoop houses or compost bins. Building codes determine whether a roof can host people and planters, often requiring guardrails, safe stairs and engineering approval. Some cities have updated their codes to explicitly permit urban agriculture, while others still treat it as an unclear or unpermitted use.</p>
+<h3>Environmental Balance</h3>
+<p>Food miles are only a small part of most foods' carbon footprints. If indoor farms use fossil-fuel electricity, their carbon footprint can exceed that of field-grown or greenhouse produce. Renewable power, efficient lighting and smart siting improve the balance.</p>
 
-<h3>Community Benefits and Concerns</h3>
-<p>Urban farms can provide fresh produce in neighborhoods with few grocery stores, create jobs and training, and offer green space. Green roofs reduce stormwater runoff and help moderate building temperatures. However, high-tech farms often sell premium greens that low-income residents may not be able to afford, and new green amenities can raise property values in ways that contribute to displacement. Projects designed with residents tend to deliver more lasting benefits.</p>
-
-<h3>Solutions and Good Practices</h3>
-<ol>
-<li>Have a structural engineer assess any roof before installing soil or greenhouses.</li>
-<li>Test vacant-lot soil for contaminants such as lead, and use raised beds with clean soil if needed.</li>
-<li>Work with neighbors to decide what to grow and how produce will be shared or sold.</li>
-<li>Advocate for zoning and code updates that clearly allow food growing and on-site sales.</li>
-</ol>
+<h3>Equity</h3>
+<p>Benefits depend on who owns and eats from these farms. Community and nonprofit rooftop farms often focus on education, jobs and access in underserved neighbourhoods.</p>
 `,
         UNDERGRADUATE: `
-<h2>Economics, Policy and Design of Urban Food Production</h2>
-<p>Urban agriculture is often discussed as if it were one thing, but rooftop beds, rooftop greenhouses and indoor vertical farms have very different cost structures, design requirements and policy needs. Analyzing them requires attention to the building as a system, the economics of high-value crops on expensive land, and the regulatory frameworks that enable or block production.</p>
+<h2>Engineering and Economics of Urban Building Farms</h2>
+<p>Rooftop farms, rooftop greenhouses and indoor vertical farms represent different points on a spectrum of controlled environment agriculture (CEA) in cities. Each makes different trade-offs between natural and artificial inputs, capital and operating costs, crop range and integration with buildings. This chapter examines their engineering, resource use and economics, and their role in urban food systems.</p>
 
-<h3>Core Concepts</h3>
+<h3>Rooftop Engineering</h3>
+<p>Rooftop agriculture requires structural assessment of load capacity, including saturated growing media, people and equipment; waterproofing and root barriers; drainage and irrigation; wind exposure; and safe access. Retrofitting existing roofs is often limited by load capacity, favouring lightweight media or containers. Rooftop greenhouses can exchange heat, carbon dioxide and water with the host building, improving overall resource efficiency.</p>
+
+<h3>Indoor Vertical Farm Design</h3>
+<p>Indoor farms are designed around light, climate and nutrient control. LED efficacy, measured in micromoles of photons per joule, has improved substantially, but lighting and the cooling needed to remove its heat still dominate energy use. Heating, ventilation and air conditioning manage temperature, humidity and carbon dioxide. Hydroponic systems such as nutrient film technique and deep water culture, or aeroponics, recirculate water and nutrients. Automation and sensors reduce labour and increase consistency.</p>
 <ul>
-<li><strong>Dead load and live load:</strong> the permanent weight of a structure and its materials versus the variable weight of people, water and equipment, both of which a roof must carry</li>
-<li><strong>Saturated weight:</strong> the weight of growing media when fully soaked with water, which is the design case for rooftop loads</li>
-<li><strong>Yield per unit area:</strong> the quantity of produce harvested from a given growing area over a period, used to compare systems</li>
-<li><strong>Capital expenditure:</strong> upfront spending on structures, equipment and installation</li>
-<li><strong>Operating expenditure:</strong> recurring costs such as labor, energy, water, seeds and nutrients</li>
-<li><strong>Land value capture:</strong> the way public or private actors benefit from increases in property value created by improvements nearby</li>
+<li><strong>Controlled environment agriculture:</strong> crop production in enclosed, environmentally controlled facilities</li>
+<li><strong>Photon efficacy:</strong> the amount of plant-usable light an LED produces per unit of electricity</li>
+<li><strong>Nutrient film technique:</strong> a hydroponic method where a thin film of nutrient solution flows past roots</li>
+<li><strong>Daily light integral:</strong> the total amount of photosynthetic light a plant receives per day</li>
+<li><strong>Capital expenditure:</strong> upfront investment in buildings and equipment</li>
+<li><strong>Resource use efficiency:</strong> output produced per unit of input such as water, land or energy</li>
 </ul>
 
-<h3>Designing for the Roof</h3>
-<p>Because saturated growing media is heavy, roof capacity is the first design constraint. Retrofitting an existing building often limits growers to shallow, lightweight systems, while new buildings can be designed with farms in mind. Other design factors include waterproofing and root barriers, drainage, wind exposure (which increases water loss and can damage plants), safe access for workers and deliveries, and irrigation that can cope with fast drying on hot, sunny roofs.</p>
+<h3>Resource Use</h3>
+<p>Indoor farms achieve very high land and water use efficiency but low energy efficiency compared with sunlight-based systems. Energy needs scale with crop daily light integral: leafy greens need far less light than fruiting crops, and staples are impractical. Greenhouses, including rooftop greenhouses, use sunlight and offer a middle path.</p>
 
-<h3>The Economics of Urban Farms</h3>
-<p>Urban land and building space are expensive, so most commercial urban farms grow high-value, perishable crops such as salad greens, herbs and microgreens, which benefit from short distribution distances. Staple crops like grains rarely make economic sense in cities. Labor is typically a major operating cost for soil-based rooftop farms, while energy for lighting and climate control dominates in indoor vertical farms. Many urban farms combine revenue streams, such as produce sales, education programs, events, rooftop rent arrangements and grants.</p>
-<table>
-<thead><tr><th>System</th><th>Capital cost</th><th>Dominant operating cost</th><th>Typical revenue strategy</th></tr></thead>
-<tbody>
-<tr><td>Rooftop soil farm</td><td>Moderate</td><td>Labor</td><td>Restaurant sales, community supported agriculture, education</td></tr>
-<tr><td>Rooftop hydroponic greenhouse</td><td>High</td><td>Labor and heating</td><td>Year-round retail contracts</td></tr>
-<tr><td>Indoor vertical farm</td><td>Very high</td><td>Electricity for lighting and cooling</td><td>Premium greens sold at scale</td></tr>
-<tr><td>Nonprofit community garden</td><td>Low</td><td>Volunteer coordination</td><td>Grants, donations, shared harvest</td></tr>
-</tbody>
-</table>
+<h3>Economics</h3>
+<p>High capital costs, energy prices and labour make indoor farm economics challenging; many firms rely on premium pricing for freshness, consistency and pesticide-free claims. Rooftop farms face high costs for structural work and access but may generate value from stormwater credits, education, events and building amenity.</p>
 
-<h3>Policy Frameworks</h3>
-<p>Supportive policies include zoning that names agriculture as a permitted use, clear building-code pathways for rooftop farms, access to municipal water at reasonable rates, tax incentives or density bonuses for green roofs, and stormwater fee credits when green roofs reduce runoff. Land access tools such as long-term leases on public land and community land trusts help non-commercial growers who cannot compete on price.</p>
-
-<h3>Applied Checklist: Evaluating a Rooftop Farm Proposal</h3>
-<ol>
-<li>Confirm roof load capacity, waterproofing condition and safe access with a qualified engineer.</li>
-<li>Match the growing system to the load limit: shallow beds, containers or a greenhouse.</li>
-<li>Estimate yield, labor and water needs using realistic assumptions for exposure and climate.</li>
-<li>Identify revenue streams and check zoning for on-site sales and events.</li>
-<li>Assess stormwater, cooling and community benefits that might qualify for incentives.</li>
-<li>Plan for who will benefit, including affordability of produce for nearby residents.</li>
-</ol>
+<h3>Role in Urban Food Systems</h3>
+<p>Building-integrated farms can supply a meaningful share of a city's leafy greens and herbs, but only a small share of total calories. Their greatest value may lie in fresh produce, education, jobs and resilience rather than replacing rural agriculture.</p>
 `,
         GRADUATE: `
-<h2>Urban Food Systems, Controlled Environment Agriculture and Food Planning</h2>
-<p>For planners and policymakers, rooftop and indoor farms are pieces of a larger urban food system that includes retail, distribution, waste, land use and public health. The key questions are what role urban production should play, how controlled environment agriculture fits with energy and climate goals, and how food can be integrated into city planning processes that have historically ignored it.</p>
+<h2>Assessing Rooftop and Vertical Farms</h2>
+<p>Rooftop and vertical farms attract investment, media attention and policy support as solutions for urban food security and sustainability. Rigorous assessment shows a more nuanced picture: strong performance on some metrics, weak performance on others, and outcomes highly dependent on context. This chapter examines life cycle impacts, business models, policy instruments and food justice.</p>
 
-<h3>Key Concepts</h3>
+<h3>Life Cycle Impacts</h3>
+<p>Life cycle assessments of indoor vertical farms consistently find low land and water use and no pesticide use, but high electricity demand. Their carbon footprint depends strongly on the electricity grid: on fossil-heavy grids, footprints for leafy greens can exceed those of field or greenhouse production, while renewable electricity and efficient lighting can make them competitive. Rooftop greenhouses integrated with buildings can reduce impacts through waste heat use and avoided transport. Infrastructure, such as building construction and equipment, also contributes significantly.</p>
+
+<h3>Business Models</h3>
+<p>Commercial vertical farming has seen rapid growth followed by high-profile bankruptcies, as energy costs, capital intensity and competition from field and greenhouse produce strained margins. Surviving models include smaller, efficient farms, farms co-located with retailers or restaurants, and those growing high-value crops. Rooftop farms often blend revenue from produce with education, events, consulting and building services.</p>
 <ul>
-<li><strong>Urban food system:</strong> the full set of activities and actors that produce, process, distribute, sell, consume and dispose of food in a city region</li>
-<li><strong>Food planning:</strong> integrating food production, access and waste into land-use, transport and public health planning</li>
-<li><strong>Food policy council:</strong> a body of stakeholders that advises governments on food system issues and coordinates across sectors</li>
-<li><strong>Controlled environment agriculture:</strong> production in greenhouses or indoor facilities where climate and light are actively managed to increase control and yield</li>
-<li><strong>Building-integrated agriculture:</strong> designing farms into buildings to exchange heat, water, carbon dioxide or space with building systems</li>
-<li><strong>Green gentrification:</strong> displacement pressure created when environmental amenities raise property values and rents</li>
+<li><strong>Life cycle assessment:</strong> an evaluation of environmental impacts across a product's whole life</li>
+<li><strong>Grid carbon intensity:</strong> the emissions per unit of electricity from a power grid</li>
+<li><strong>Co-location:</strong> placing a farm next to a user or source of resources, like a store or waste heat</li>
+<li><strong>Zoning:</strong> rules that govern how land and buildings may be used</li>
+<li><strong>Food justice:</strong> fair access to healthy food and fair conditions in food systems</li>
+<li><strong>Greenwashing:</strong> making misleading environmental claims about a product or company</li>
 </ul>
 
-<h3>Controlled Environment Agriculture in the City</h3>
-<p>Controlled environment agriculture promises reliable, year-round production with high yields per area, low water use through recirculation and little or no pesticide use. Its weaknesses are energy demand and capital cost. Fully indoor vertical farms replace sunlight with electric light, so their climate performance depends heavily on electricity sources and lighting efficiency. Rooftop greenhouses use daylight and can capture waste heat from the buildings below, which some studies suggest can improve energy performance, though results depend strongly on climate and building type. Several high-profile indoor farming companies have struggled financially, highlighting how sensitive the model is to energy prices and financing.</p>
+<h3>Policy Instruments</h3>
+<p>Cities support building-integrated agriculture through zoning changes, green roof requirements or incentives, stormwater credits, property tax relief and procurement. Building codes may need adapting for rooftop occupancy and greenhouses. Policies can prioritise community benefit by supporting nonprofit and cooperative farms and linking them to food access programmes.</p>
 
-<table>
-<thead><tr><th>Approach</th><th>Energy profile</th><th>Water profile</th><th>Planning implication</th></tr></thead>
-<tbody>
-<tr><td>Open rooftop farm</td><td>Low; sunlight driven</td><td>Moderate; high evaporation on exposed roofs</td><td>Fits green roof and stormwater policies</td></tr>
-<tr><td>Rooftop greenhouse</td><td>Moderate; can share building heat</td><td>Low with recirculation</td><td>Needs code pathways for rooftop structures</td></tr>
-<tr><td>Indoor vertical farm</td><td>High; electric lighting and cooling</td><td>Very low with recirculation</td><td>Interacts with grid planning and industrial zoning</td></tr>
-</tbody>
-</table>
+<h3>Food Justice</h3>
+<p>Critics argue that high-tech farms often serve affluent consumers and may contribute to gentrification or divert attention from structural causes of food insecurity, such as poverty and land access. Community rooftop farms can provide jobs, education and food access when residents shape their goals. Assessments should consider who controls, works at and benefits from these farms.</p>
 
-<h3>Integrating Food into Urban Planning</h3>
-<p>Comprehensive plans, zoning codes and capital budgets have traditionally treated food as a private market matter. Food planning places it alongside housing, transport and parks. Tools include food system assessments, urban agriculture zoning overlays, requirements or incentives for rooftop growing space in new development, inclusion of food infrastructure such as aggregation hubs and composting facilities, and procurement policies that buy from local growers for schools and public institutions.</p>
+<h3>Labour and Skills</h3>
+<p>Building farms create jobs ranging from horticulture and maintenance to engineering and data analysis. Automation may reduce entry-level jobs while raising demand for technical skills. Training programmes linked to community colleges and workforce agencies can help local residents access these roles, and job quality, wages and safety deserve attention alongside environmental metrics.</p>
 
-<h3>Institutional Barriers</h3>
-<ol>
-<li>Fragmented authority across planning, buildings, health, environment and economic development departments.</li>
-<li>Insurance and liability concerns for rooftop access and public programs.</li>
-<li>Short-term leases that deter investment in soil, structures and equipment.</li>
-<li>Funding streams that favor capital projects over long-term operating support.</li>
-<li>Limited data on outcomes, making it harder to justify public support.</li>
-</ol>
-
-<h3>Equity and Evaluation</h3>
-<p>Planners should ask who controls urban farms, who works on them and who eats their produce. Community-led gardens may generate fewer marketable crops but strong social outcomes, while commercial controlled environment farms may produce more food with fewer local benefits. Evaluation frameworks should combine production metrics with indicators of food access, employment quality, environmental services and community governance, and should monitor displacement risk near new green amenities.</p>
+<h3>Avoiding Overstated Claims</h3>
+<p>Claims about feeding cities or eliminating food miles should be examined carefully. Honest communication about crop range, energy use and costs avoids greenwashing and builds public trust.</p>
 `,
         PHD: `
-<h2>Research Frontiers: Productivity, Resilience and Social Outcomes of Urban Agriculture</h2>
-<p>Research on urban agriculture spans agronomy, building science, ecology, economics and social science. Claims about its potential range from transformative to marginal, partly because studies use different system boundaries, scales and metrics. This lesson reviews methods for assessing productivity and environmental performance, debates about resilience contributions, and approaches to measuring social outcomes, with emphasis on rooftop and building-integrated systems.</p>
+<h2>Research on Building-Integrated and Vertical Agriculture</h2>
+<p>Urban building-integrated agriculture raises research questions spanning plant science, engineering, energy systems, urban metabolism, economics and social justice. Researchers seek to reduce energy demand, understand resource flows between buildings and farms, define the appropriate role of these systems in urban food provisioning and examine their social consequences. This chapter outlines these frontiers.</p>
 
-<h3>Measuring Productivity and Potential</h3>
+<h3>Energy and Plant Science</h3>
+<p>Research aims to reduce energy per unit of food through improved LED efficacy, light recipes tuned to crop needs, dynamic lighting that follows electricity prices or renewable availability, and plant breeding for indoor conditions, such as compact architecture and high light use efficiency. Studies examine how spectrum and photoperiod affect yield, nutrition and flavour, and whether gains justify energy use.</p>
+
+<h3>Urban Metabolism and Symbiosis</h3>
+<p>Urban metabolism research tracks flows of energy, water, nutrients and carbon through cities. Building-integrated farms can use waste heat, carbon dioxide from occupants, greywater or recovered nutrients from wastewater, a form of industrial symbiosis. Modelling and pilot projects quantify these exchanges and their effects on overall building and city resource efficiency, along with risks such as contamination.</p>
 <ul>
-<li><strong>Self-sufficiency estimate:</strong> the share of a city's demand for a food group that could be met by local production under stated assumptions</li>
-<li><strong>Geospatial potential analysis:</strong> using remote sensing and building data to estimate rooftop and vacant land area suitable for growing</li>
-<li><strong>Life cycle assessment:</strong> quantifying environmental impacts across construction, operation and end of life per unit of produce</li>
-<li><strong>Functional unit:</strong> the reference quantity, such as a kilogram of lettuce or a square meter of roof, against which impacts are compared</li>
-<li><strong>Ecosystem services:</strong> benefits people obtain from ecosystems, including stormwater retention, cooling, habitat and recreation</li>
-<li><strong>Social-ecological system:</strong> a framework treating people and ecosystems as interlinked components with feedbacks</li>
+<li><strong>Urban metabolism:</strong> the study of material and energy flows through cities</li>
+<li><strong>Industrial symbiosis:</strong> exchanges where one facility's waste becomes another's input</li>
+<li><strong>Light recipe:</strong> a tailored combination of light spectrum, intensity and duration for a crop</li>
+<li><strong>Demand flexibility:</strong> shifting electricity use in time to match supply or prices</li>
+<li><strong>Green gentrification:</strong> rising property values and displacement linked to green amenities</li>
+<li><strong>Techno-optimism:</strong> belief that technology alone will solve social and environmental problems</li>
 </ul>
-<p>Geospatial studies typically find that suitable rooftop and vacant area could supply a meaningful share of some vegetables in certain cities but only a small share of total dietary energy. Results are sensitive to assumptions about structural capacity, shading, access, yield and crop mix, so ranges are wide. Yield data from real urban farms remain scarce relative to modeled estimates, and reported yields from intensive plots may not scale to whole-city potential.</p>
 
-<h3>Environmental Performance</h3>
-<p>Life cycle studies of rooftop farms often find that infrastructure, such as structures, growing media and irrigation equipment, contributes a large share of impacts per kilogram, so lifespan and productivity strongly affect results. Avoided transport is usually a smaller benefit than commonly assumed. For indoor farms, electricity source and lighting efficiency dominate. Including co-benefits such as stormwater retention and building energy savings can change conclusions, but how to allocate impacts among multiple functions remains contested.</p>
+<h3>System Roles</h3>
+<p>Research uses spatial modelling and scenario analysis to estimate how much of a city's demand building-integrated farms could meet, which crops make sense indoors versus in greenhouses or fields, and how these systems contribute to resilience during supply chain disruptions. Comparisons with peri-urban agriculture and improved regional supply chains help determine where investment yields the greatest benefit.</p>
 
-<h3>Contested Questions</h3>
-<table>
-<thead><tr><th>Question</th><th>Why it is contested</th></tr></thead>
-<tbody>
-<tr><td>Does urban agriculture increase food system resilience?</td><td>Local production is small relative to demand, but may matter for specific foods, social networks and response capacity during disruptions</td></tr>
-<tr><td>Are indoor vertical farms environmentally favorable?</td><td>Outcomes depend on grid carbon intensity, crop choice and what production they displace</td></tr>
-<tr><td>Should success be judged by yield or by social outcomes?</td><td>Different actors value food quantity, education, health, cohesion and political empowerment differently</td></tr>
-<tr><td>Does greening drive displacement?</td><td>Causal attribution is difficult among many drivers of neighborhood change</td></tr>
-</tbody>
-</table>
+<h3>Economics and Innovation</h3>
+<p>Studies analyse the boom-and-bust trajectory of vertical farming investment, cost structures and the conditions under which business models are viable. Innovation research examines how technology hype, venture capital and policy shape adoption.</p>
 
-<h3>Resilience and Social Outcomes</h3>
-<p>Resilience arguments rest less on tonnage than on diversity, redundancy, skills and social capital. Community gardens can function as hubs for mutual aid and knowledge exchange during crises, but evidence is often qualitative and context specific. Social outcome research examines effects on diet, mental health, civic participation and food sovereignty, yet faces selection bias because participants choose to engage. Critical scholarship asks whether urban agriculture addresses structural causes of food insecurity, such as low wages and land markets, or shifts responsibility onto communities.</p>
+<h3>Social Dimensions and Equity</h3>
+<p>Critical scholarship examines techno-optimistic narratives, the risk of green gentrification, labour conditions in automated farms, and whose knowledge and priorities shape urban agriculture. Comparative studies of community-led and commercial farms analyse differences in access, governance and benefits.</p>
 
-<h3>Methodological Challenges</h3>
-<p>Comparability is limited by inconsistent functional units, system boundaries and reporting. Many studies examine single sites over short periods. Quasi-experimental designs, longitudinal cohorts and participatory action research each address different weaknesses, and mixed-method approaches are increasingly used to connect biophysical and social outcomes.</p>
+<h3>Health and Nutrition</h3>
+<p>Research examines whether indoor-grown produce differs nutritionally from field produce and how lighting can enhance nutrient content. Food safety research addresses pathogen risks in recirculating systems, while public health studies ask whether proximity to urban farms changes diets, especially in neighbourhoods with poor access to fresh produce. Evidence that urban farms improve diet quality at population scale remains limited and calls for longer, better-controlled studies.</p>
 
-<h3>Open Research Directions</h3>
-<ol>
-<li>Standardized protocols for measuring and reporting urban farm yields and inputs.</li>
-<li>Coupled building-energy and crop models for rooftop greenhouses across climates.</li>
-<li>Multi-functional life cycle methods that credit stormwater, cooling and biodiversity consistently.</li>
-<li>Longitudinal studies of health, social cohesion and displacement around urban farms.</li>
-<li>Analysis of how governance and land tenure shape who benefits from urban agriculture.</li>
-</ol>
+<h3>Open Questions</h3>
+<p>Priorities include energy-efficient production, integrated urban resource models, robust life cycle comparisons and frameworks ensuring building-integrated agriculture advances food justice.</p>
 `,
       },
     },
   ],
   quiz: [
     {
-      id: 'furbanq1',
+      id: 'fsurban2-q1',
       question: {
-        ELEMENTARY: 'Where can you grow food in a city?',
-        MIDDLE_SCHOOL: 'What is a vertical farm?',
-        HIGH_SCHOOL: 'What is zoning?',
-        UNDERGRADUATE: 'Why is saturated weight the key design case for rooftop farms?',
-        GRADUATE: 'What is a food policy council?',
-        PHD: 'Which ecosystem services can rooftop and urban farms provide?',
+        ELEMENTARY: 'What is a vertical farm?',
+        MIDDLE_SCHOOL: 'What is aeroponics?',
+        HIGH_SCHOOL: 'What is the largest operating cost for indoor vertical farms?',
+        UNDERGRADUATE: 'What dominates indoor vertical farm energy use?',
+        GRADUATE: 'What strongly determines an indoor farm\'s carbon footprint?',
+        PHD: 'What is industrial symbiosis?',
       },
       options: {
-        ELEMENTARY: ['On rooftops, in yards and in empty lots', 'Only far away in the country', 'Nowhere in cities', 'Only inside stores'],
-        MIDDLE_SCHOOL: ['An indoor farm that grows plants in stacked layers under lights', 'Any tall building', 'A farm on a mountain', 'A very wide field'],
-        HIGH_SCHOOL: ['Local rules that say what activities are allowed on different land', 'Time zones around the world', 'Weather zones for planting', 'A rule that bans all gardens'],
-        UNDERGRADUATE: ['Growing media is heaviest when fully soaked, so the roof must carry that load', 'Dry soil is always heavier than wet soil', 'Plants weigh nothing on roofs', 'Water drains instantly so weight never matters'],
-        GRADUATE: ['A body of stakeholders that advises governments on food system issues', 'A council of restaurant owners only', 'A food court in a mall', 'A committee that runs one kitchen'],
-        PHD: ['Stormwater retention, cooling, habitat and recreation', 'No services at all', 'Food only and nothing else', 'Decoration only'],
-      },
-      correctIndex: 0,
-      explanation: {
-        ELEMENTARY: 'City people grow food on rooftops, in backyards and in empty lots.',
-        MIDDLE_SCHOOL: 'Vertical farms stack layers of plants indoors and use artificial lights instead of sunlight.',
-        HIGH_SCHOOL: 'Zoning divides land into areas and says what activities, like farming, are allowed in each.',
-        UNDERGRADUATE: 'Engineers design for the heaviest realistic condition, which is soaked growing media plus people and equipment.',
-        GRADUATE: 'Food policy councils bring people together across sectors to advise and coordinate on food policy.',
-        PHD: 'Urban farms and green roofs retain stormwater, cool surroundings, support habitat and offer recreation.',
-      },
-    },
-    {
-      id: 'furbanq2',
-      question: {
-        ELEMENTARY: 'Why do rooftop gardeners use light soil?',
-        MIDDLE_SCHOOL: 'What is hydroponics?',
-        HIGH_SCHOOL: 'How does an extensive green roof differ from an intensive one?',
-        UNDERGRADUATE: 'Which crops do most commercial urban farms grow, and why?',
-        GRADUATE: 'What is the main weakness of fully indoor vertical farms?',
-        PHD: 'In life cycle studies of rooftop farms, what often contributes a large share of impacts per kilogram?',
-      },
-      options: {
-        ELEMENTARY: ['Light soil tastes better', 'Light soil is a brighter color', 'A roof can only hold so much weight', 'Light soil never needs water'],
-        MIDDLE_SCHOOL: ['Growing plants in sand only', 'Growing plants in the dark', 'Growing plants with roots in nutrient-rich water instead of soil', 'Growing plants on mountains'],
-        HIGH_SCHOOL: ['Extensive roofs have deeper soil for trees', 'They are exactly the same', 'Extensive roofs have a thin, light layer with hardy groundcovers rather than food crops', 'Extensive roofs have no plants'],
-        UNDERGRADUATE: ['Grains, because they need the most space', 'Large orchards of fruit trees', 'High-value perishable crops such as greens and herbs, because land is expensive', 'Cotton, because it sells well'],
-        GRADUATE: ['They use too much soil', 'They cannot grow leafy greens', 'High energy demand for lighting and climate control, plus high capital cost', 'They need very large amounts of pesticide'],
-        PHD: ['Transport of produce across continents', 'Customer car trips only', 'Infrastructure such as structures, growing media and irrigation equipment', 'Nothing measurable'],
-      },
-      correctIndex: 2,
-      explanation: {
-        ELEMENTARY: 'Wet soil is heavy, so light soil keeps the roof safe.',
-        MIDDLE_SCHOOL: 'In hydroponics, roots get nutrients from water mixed with plant food, not from soil.',
-        HIGH_SCHOOL: 'Extensive green roofs are shallow and light; intensive roofs are deeper and can support food crops.',
-        UNDERGRADUATE: 'Expensive urban space favors valuable, perishable crops that benefit from short distribution.',
-        GRADUATE: 'Replacing sunlight with electric light makes energy cost and electricity source critical.',
-        PHD: 'Because infrastructure dominates, a farm\'s lifespan and productivity strongly shape its footprint.',
-      },
-    },
-    {
-      id: 'furbanq3',
-      question: {
-        ELEMENTARY: 'How does a green roof help the building?',
-        MIDDLE_SCHOOL: 'Why must an engineer check a roof before building a rooftop farm?',
-        HIGH_SCHOOL: 'Why should vacant-lot soil be tested before planting food?',
-        UNDERGRADUATE: 'Which is typically the dominant operating cost for an indoor vertical farm?',
-        GRADUATE: 'How can rooftop greenhouses improve energy performance compared with fully indoor farms?',
-        PHD: 'Why is avoided transport often a smaller benefit than people assume?',
-      },
-      options: {
-        ELEMENTARY: ['It makes the building taller', 'It keeps the building cooler like a shady hat', 'It makes the building louder', 'It paints the building green'],
-        MIDDLE_SCHOOL: ['To choose the color of the plants', 'Wet soil is heavy, and the roof must be strong enough to hold it', 'To count the windows', 'Engineers grow all the food'],
-        HIGH_SCHOOL: ['To check if it is too sandy for flowers', 'It may contain contaminants such as lead', 'To measure how pretty it is', 'Soil testing is never needed'],
-        UNDERGRADUATE: ['Seeds', 'Electricity for lighting and cooling', 'Pots', 'Signage'],
-        GRADUATE: ['They avoid any need for water', 'They use daylight and can capture waste heat from the building below', 'They grow only grains', 'They never need permits'],
-        PHD: ['Transport has no environmental impact', 'Infrastructure and production impacts usually outweigh transport savings', 'Urban produce is always shipped overseas', 'Studies never consider transport'],
-      },
-      correctIndex: 1,
-      explanation: {
-        ELEMENTARY: 'Plants on the roof shade the building and keep it cooler in summer.',
-        MIDDLE_SCHOOL: 'Engineers make sure the roof can safely carry the weight of wet soil, planters and people.',
-        HIGH_SCHOOL: 'Old city land can contain lead and other contaminants, so raised beds with clean soil may be needed.',
-        UNDERGRADUATE: 'Indoor farms replace sunlight with electric light, so electricity is the major running cost.',
-        GRADUATE: 'Daylight cuts lighting needs, and building waste heat can reduce heating demand in some climates.',
-        PHD: 'Transport is often a small share of a food\'s footprint compared with how it is produced.',
-      },
-    },
-    {
-      id: 'furbanq4',
-      question: {
-        ELEMENTARY: 'What is the most important rule when visiting a rooftop garden?',
-        MIDDLE_SCHOOL: 'How does aquaponics work?',
-        HIGH_SCHOOL: 'What is a concern about high-tech urban farms in low-income neighborhoods?',
-        UNDERGRADUATE: 'Which policy tool rewards green roofs for reducing runoff?',
-        GRADUATE: 'What is green gentrification?',
-        PHD: 'Why is selection bias a problem in research on social outcomes of urban gardens?',
-      },
-      options: {
-        ELEMENTARY: ['Run as fast as you can', 'Lean over the edge to look down', 'Go alone at night', 'Go with a grown-up and stay away from the edge'],
-        MIDDLE_SCHOOL: ['Fish eat all the plants', 'Plants grow in dry sand next to fish', 'Fish live in soil', 'Fish waste feeds the plants and plants help clean the water for the fish'],
-        HIGH_SCHOOL: ['They always give food away free', 'They grow only staple grains', 'They are banned everywhere', 'Premium greens may be unaffordable and green amenities can raise rents'],
-        UNDERGRADUATE: ['A ban on rooftop access', 'A tax on all vegetables', 'Higher water rates for gardens', 'Stormwater fee credits'],
-        GRADUATE: ['Painting buildings green', 'A program that plants trees in rural areas', 'A way to grow food faster', 'Displacement pressure when environmental amenities raise property values and rents'],
-        PHD: ['Gardens have no participants', 'Selection bias only affects soil samples', 'Researchers never survey people', 'Participants choose to engage, so differences may reflect who joins rather than the garden itself'],
+        ELEMENTARY: ['A farm on a mountain', 'A farm with only tall trees', 'A farm in the ocean', 'A farm where plants grow on stacked shelves indoors'],
+        MIDDLE_SCHOOL: ['Growing plants in airplanes', 'Flying seeds with drones', 'Growing plants only in soil', 'Growing plants with roots misted with nutrient water'],
+        HIGH_SCHOOL: ['Seeds', 'Packaging', 'Soil', 'Energy'],
+        UNDERGRADUATE: ['Watering cans', 'Paper records', 'Delivery bikes', 'Lighting and the cooling to remove its heat'],
+        GRADUATE: ['The colour of the building', 'The number of shelves', 'The farm\'s name', 'The carbon intensity of the electricity grid'],
+        PHD: ['Two factories competing', 'A factory with no waste', 'Music made by machines', 'Exchanges where one facility\'s waste becomes another\'s input'],
       },
       correctIndex: 3,
       explanation: {
-        ELEMENTARY: 'Roofs can be dangerous, so always go with an adult and stay away from the edge.',
-        MIDDLE_SCHOOL: 'In aquaponics, fish and plants help each other in a shared water system.',
-        HIGH_SCHOOL: 'Without community planning, expensive produce and rising rents can mean nearby residents do not benefit.',
-        UNDERGRADUATE: 'Some cities lower stormwater fees for properties whose green roofs reduce runoff.',
-        GRADUATE: 'New green amenities can increase property values and push out long-time residents.',
-        PHD: 'People who choose to garden may already differ in health or civic engagement, confounding comparisons.',
+        ELEMENTARY: 'Vertical farms stack plants on shelves indoors.',
+        MIDDLE_SCHOOL: 'Aeroponics mists roots with nutrient water.',
+        HIGH_SCHOOL: 'Replacing sunlight with electric light makes energy the biggest cost.',
+        UNDERGRADUATE: 'Lights and cooling use most of the energy.',
+        GRADUATE: 'Fossil-heavy grids raise the footprint.',
+        PHD: 'Symbiosis turns wastes like heat and CO2 into inputs.',
       },
     },
     {
-      id: 'furbanq5',
+      id: 'fsurban2-q2',
       question: {
-        ELEMENTARY: 'Which plants like a sunny, windy roof?',
-        MIDDLE_SCHOOL: 'Why are cities often hotter than the countryside, and how do green roofs help?',
-        HIGH_SCHOOL: 'What is building-integrated agriculture?',
-        UNDERGRADUATE: 'What is the first design constraint when planning a rooftop farm?',
-        GRADUATE: 'Which is an institutional barrier to urban agriculture?',
-        PHD: 'What do geospatial studies typically find about rooftop and vacant-land potential?',
+        ELEMENTARY: 'What is hydroponics?',
+        MIDDLE_SCHOOL: 'Why can vertical farms use less water than field farms?',
+        HIGH_SCHOOL: 'How can rooftop greenhouses use the building below?',
+        UNDERGRADUATE: 'What is daily light integral?',
+        GRADUATE: 'Which vertical farm business models have tended to survive?',
+        PHD: 'What is demand flexibility for indoor farms?',
       },
       options: {
-        ELEMENTARY: ['Big shade-loving ferns only', 'Herbs, beans and cherry tomatoes', 'Plants that need deep forest soil', 'Giant oak trees'],
-        MIDDLE_SCHOOL: ['Cities are colder; green roofs warm them up', 'Buildings and pavement hold heat; plants on roofs help cool', 'Cities are never hotter', 'Green roofs make cities hotter'],
-        HIGH_SCHOOL: ['Farming only on rural land', 'Food production designed into a building to share heat, water or space', 'Building a farmhouse', 'Selling food inside a building'],
-        UNDERGRADUATE: ['The color of the planters', 'The roof load capacity', 'The name of the farm', 'The number of customers'],
-        GRADUATE: ['Long secure leases', 'Short-term leases that deter investment', 'Clear zoning for agriculture', 'Coordinated city departments'],
-        PHD: ['Cities could meet all their dietary energy needs', 'A meaningful share of some vegetables but only a small share of total dietary energy', 'No rooftop area is ever suitable', 'Results do not depend on assumptions'],
+        ELEMENTARY: ['Growing plants in water with plant food instead of soil', 'Growing plants in sand', 'Watering plants with juice', 'Growing plants on the moon'],
+        MIDDLE_SCHOOL: ['They recycle the water', 'They never water plants', 'Plants drink less indoors', 'They use rain only'],
+        HIGH_SCHOOL: ['Using waste heat and CO2 from the building', 'Taking the building\'s furniture', 'Blocking the building\'s windows', 'Using the elevator for plants'],
+        UNDERGRADUATE: ['Total photosynthetic light a plant receives per day', 'Hours of darkness', 'Number of lamps', 'Electricity bill per day'],
+        GRADUATE: ['Smaller efficient farms, co-located farms and high-value crops', 'The largest farms growing wheat', 'Farms with no customers', 'Farms with the most debt'],
+        PHD: ['Shifting electricity use in time to match supply or prices', 'Growing more crops on demand only', 'Turning lights on all the time', 'Selling flexible plants'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'Hydroponics grows plants in nutrient water.',
+        MIDDLE_SCHOOL: 'Recirculating systems reuse water.',
+        HIGH_SCHOOL: 'Greenhouses can use the building\'s heat and CO2.',
+        UNDERGRADUATE: 'DLI totals the plant\'s daily usable light.',
+        GRADUATE: 'Lean, co-located and high-value models have fared better.',
+        PHD: 'Flexible lighting can follow cheap or renewable power.',
+      },
+    },
+    {
+      id: 'fsurban2-q3',
+      question: {
+        ELEMENTARY: 'What do indoor farms use instead of the sun?',
+        MIDDLE_SCHOOL: 'What must a roof have to hold a rooftop farm?',
+        HIGH_SCHOOL: 'Why are food miles a weak argument on their own?',
+        UNDERGRADUATE: 'Why do rooftop retrofits often use lightweight media or containers?',
+        GRADUATE: 'What is greenwashing?',
+        PHD: 'What is green gentrification?',
+      },
+      options: {
+        ELEMENTARY: ['Candles', 'Flashlights', 'Special LED lights', 'Fireworks'],
+        MIDDLE_SCHOOL: ['A swimming pool', 'A painted logo', 'Enough load capacity to hold wet soil', 'A chimney'],
+        HIGH_SCHOOL: ['Food never travels', 'Food miles are always huge', 'Transport is only a small part of most foods\' carbon footprints', 'Trucks use no fuel'],
+        UNDERGRADUATE: ['Heavy soil is illegal', 'Plants prefer plastic', 'Existing roofs often have limited load capacity', 'They are cheaper to ship'],
+        GRADUATE: ['Painting things green', 'Growing more greens', 'Making misleading environmental claims', 'Washing vegetables'],
+        PHD: ['Painting houses green', 'Planting gardens everywhere', 'Rising property values and displacement linked to green amenities', 'Recycling buildings'],
+      },
+      correctIndex: 2,
+      explanation: {
+        ELEMENTARY: 'LED lights replace sunlight indoors.',
+        MIDDLE_SCHOOL: 'Wet soil is heavy, so roofs must be strong.',
+        HIGH_SCHOOL: 'Production methods usually matter more than transport.',
+        UNDERGRADUATE: 'Load limits favour lightweight systems.',
+        GRADUATE: 'Greenwashing overstates environmental benefits.',
+        PHD: 'Green amenities can raise rents and displace residents.',
+      },
+    },
+    {
+      id: 'fsurban2-q4',
+      question: {
+        ELEMENTARY: 'What plants do indoor farms mostly grow?',
+        MIDDLE_SCHOOL: 'Why do vertical farms not grow wheat or rice?',
+        HIGH_SCHOOL: 'What is photosynthetically active radiation?',
+        UNDERGRADUATE: 'What is photon efficacy?',
+        GRADUATE: 'What is a food justice concern about high-tech farms?',
+        PHD: 'What is a light recipe?',
+      },
+      options: {
+        ELEMENTARY: ['Giant oak trees', 'Small leafy plants like lettuce and herbs', 'Pumpkins only', 'Coconut palms'],
+        MIDDLE_SCHOOL: ['They are not food', 'They need too much light and space', 'They grow too fast', 'They only grow in snow'],
+        HIGH_SCHOOL: ['Radio signals', 'Light wavelengths plants use for photosynthesis', 'Heat from soil', 'Sound waves'],
+        UNDERGRADUATE: ['How bright a lamp looks to people', 'Plant-usable light produced per unit of electricity', 'The colour of a lamp', 'The price of a lamp'],
+        GRADUATE: ['They grow too much food for everyone', 'They often serve affluent consumers', 'They are always free', 'They only hire experts'],
+        PHD: ['A cooking recipe with light ingredients', 'A tailored mix of light spectrum, intensity and duration for a crop', 'A low-calorie meal', 'A lamp design'],
       },
       correctIndex: 1,
       explanation: {
-        ELEMENTARY: 'Herbs, beans and cherry tomatoes enjoy sun and can handle a breezy roof.',
-        MIDDLE_SCHOOL: 'Pavement and buildings soak up heat; green roofs shade and cool buildings and neighborhoods.',
-        HIGH_SCHOOL: 'Building-integrated agriculture links farms to building systems like heating and water.',
-        UNDERGRADUATE: 'Load capacity decides what kind of growing system a roof can safely support.',
-        GRADUATE: 'Growers rarely invest in soil and structures if they might lose the site soon.',
-        PHD: 'Urban production can supply some vegetables meaningfully, but staples and total calories mostly come from elsewhere.',
+        ELEMENTARY: 'Indoor farms grow small leafy plants.',
+        MIDDLE_SCHOOL: 'Staple crops need far too much light indoors.',
+        HIGH_SCHOOL: 'PAR is the light plants use.',
+        UNDERGRADUATE: 'Efficacy measures plant light per unit of electricity.',
+        GRADUATE: 'Benefits may flow mainly to wealthier buyers.',
+        PHD: 'Light recipes tune light to crop needs.',
+      },
+    },
+    {
+      id: 'fsurban2-q5',
+      question: {
+        ELEMENTARY: 'Why is food from a city farm very fresh?',
+        MIDDLE_SCHOOL: 'What benefits do rooftop farms give buildings?',
+        HIGH_SCHOOL: 'What improves the environmental balance of indoor farms?',
+        UNDERGRADUATE: 'Where might building-integrated farms add the most value?',
+        GRADUATE: 'Which city policy supports building-integrated agriculture?',
+        PHD: 'What do comparisons with peri-urban agriculture help determine?',
+      },
+      options: {
+        ELEMENTARY: ['It is frozen', 'It is made in a factory', 'It is very old', 'It does not have to travel far'],
+        MIDDLE_SCHOOL: ['More noise', 'Higher heating bills', 'Leaky roofs', 'Cooling, absorbing rain and habitat for pollinators'],
+        HIGH_SCHOOL: ['More fossil fuel power', 'Older lights', 'Longer delivery trips', 'Renewable power, efficient lighting and smart siting'],
+        UNDERGRADUATE: ['Replacing all rural farms', 'Supplying all calories', 'Growing grains', 'Fresh produce, education, jobs and resilience'],
+        GRADUATE: ['Banning rooftop access', 'Taxing gardens heavily', 'Forbidding greenhouses', 'Zoning changes and stormwater credits'],
+        PHD: ['Which city has tallest buildings', 'Which crops taste sweetest', 'How many farmers own cars', 'Where investment yields the greatest benefit'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Short distances mean fresher food.',
+        MIDDLE_SCHOOL: 'Rooftop farms cool roofs, hold rain and support pollinators.',
+        HIGH_SCHOOL: 'Clean power and efficiency cut the carbon footprint.',
+        UNDERGRADUATE: 'Their value is fresh produce and community benefits, not calories.',
+        GRADUATE: 'Zoning and stormwater credits make rooftop farms easier.',
+        PHD: 'Comparisons guide where to invest.',
       },
     },
   ],
