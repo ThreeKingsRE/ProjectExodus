@@ -223,10 +223,10 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
                   <button
                     onClick={onPrevPage}
                     disabled={isFirstPage}
-                    className="p-1 rounded hover:bg-[var(--muted)]/50 disabled:opacity-20 transition-colors"
+                    className="-ml-2 flex h-11 w-11 items-center justify-center rounded-full hover:bg-[var(--muted)]/50 disabled:opacity-20 transition-colors"
                     aria-label="Previous page"
                   >
-                    <ChevronLeft className="w-4 h-4" />
+                    <ChevronLeft className="w-5 h-5" />
                   </button>
                 )}
                 <span className="font-medium tabular-nums">{pageNumber}</span>
@@ -246,10 +246,10 @@ export const ScrollPage = forwardRef<HTMLDivElement, ScrollPageProps>(
                 <button
                   onClick={onNextPage}
                   disabled={isLastPage}
-                  className="p-1 rounded hover:bg-[var(--muted)]/50 disabled:opacity-20 transition-colors"
+                  className="-mr-2 flex h-11 w-11 items-center justify-center rounded-full hover:bg-[var(--muted)]/50 disabled:opacity-20 transition-colors"
                   aria-label="Next page"
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-5 h-5" />
                 </button>
               )}
             </>

@@ -1801,13 +1801,14 @@ export function DigitalScroll({
         >
           {/* Book Wrapper */}
           <ScrollWrapper>
-            {/* The reader's ribbon, sewn in at the top of the book. It moves as they read. */}
+            {/* The reader's ribbon: out of the top of the spine and down the binding, never over text. It moves as they read. */}
             {ribbon && (
               <BookRibbon
                 ribbon={ribbon}
                 pageNumber={currentPageIndex + 1}
                 chapterNumber={bookPages[currentPageIndex]?.chapterIndex !== undefined ? chapterOffset + (bookPages[currentPageIndex]!.chapterIndex as number) + 1 : null}
                 onEdit={onEditRibbon}
+                layout={isSinglePageMode || !isDesktop ? 'single' : 'spread'}
               />
             )}
 

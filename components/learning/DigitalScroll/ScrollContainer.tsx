@@ -14,8 +14,9 @@ import { SCROLL_DIMENSIONS, PERSPECTIVE_CONFIG, A11Y_CONFIG, getDeviceType } fro
 const FULLSCREEN_DIMENSIONS = {
   width: '100vw',
   maxWidth: '100vw',
-  height: '100vh',
-  maxHeight: '100vh',
+  // dvh: the visible height, so iPhone Safari's toolbar never covers the page footer
+  height: '100dvh',
+  maxHeight: '100dvh',
   pageWidth: '50%',
   spineWidth: '40px',
   ribbonTop: '-60px',
@@ -264,7 +265,8 @@ export function PageContainer({ children, side, className }: PageContainerProps)
         // - Inner edge (centerfold) gets minimal padding since spine provides visual separation
         side === 'left' && isDesktop && 'pl-4 pr-3 py-3',  // Left page: outer=4 (16px), inner=3 (12px)
         side === 'right' && isDesktop && 'pl-3 pr-4 py-3', // Right page: inner=3 (12px), outer=4 (16px)
-        !isDesktop && 'p-3',
+        // Phones/tablets: the left margin is the binding, where the ribbon lies
+        !isDesktop && 'py-3 pr-3 pl-7',
         // Page styling - book colors for proper theme sync
         'bg-[var(--book-paper,var(--card))]',
         'text-[var(--book-text,var(--foreground))]',

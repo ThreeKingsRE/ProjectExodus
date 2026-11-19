@@ -5,7 +5,7 @@
 // Realistic 3D page turning with physics
 // ============================================
 
-import { motion, useAnimation, PanInfo } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 import { useState, useRef, useEffect, useCallback, ReactNode } from 'react'
 import { cn } from '@/lib/utils/cn'
 import { ANIMATION_TIMINGS, PERSPECTIVE_CONFIG, A11Y_CONFIG, getDeviceType } from './scrollConstants'
@@ -30,7 +30,14 @@ interface PageFlipProps {
   className?: string
 }
 
-type FlipState = 'idle' | 'flipping-next' | 'flipping-prev' | 'dragging'
+type FlipState = 'idle' | 'flipping-next' | 'flipping-prev'
+
+// Share of the page width on each side that turns the page when tapped (phones/tablets)
+const TAP_ZONE = 0.3
+// On a full-width text box, only this outer strip on each side turns the page
+const WIDE_FIELD_EDGE = 0.15
+// Taps on these never turn the page
+const INTERACTIVE_SELECTOR = 'button, a, input, textarea, select, label, summary, [role="button"], [role="link"], [role="checkbox"], [role="radio"], [role="tab"], [contenteditable="true"], [data-no-flip]'
 
 // ============================================
 // MAIN COMPONENT
@@ -52,10 +59,16 @@ export function PageFlip({
   className,
 }: PageFlipProps) {
   const [flipState, setFlipState] = useState<FlipState>('idle')
-  const [dragProgress, setDragProgress] = useState(0) // -1 to 1 (negative = prev, positive = next)
   const [deviceType, setDeviceType] = useState<'desktop' | 'tablet' | 'mobile'>('desktop')
   const containerRef = useRef<HTMLDivElement>(null)
   const flipControls = useAnimation()
+  // Which way the last mobile turn went, for the slide-in direction
+  const lastDirection = useRef<'next' | 'prev'>('next')
+  const lastSpread = useRef(currentSpread)
+  if (lastSpread.current !== currentSpread) {
+    lastDirection.current = currentSpread < lastSpread.current ? 'prev' : 'next'
+    lastSpread.current = currentSpread
+  }
 
   useEffect(() => {
     function updateDevice() {
@@ -112,53 +125,6 @@ export function PageFlip({
     setFlipState('idle')
     onFlipComplete?.('prev')
   }, [canFlipPrev, flipState, flipControls, onFlipStart, onFlipComplete])
-
-  // ============================================
-  // GESTURE HANDLING
-  // ============================================
-
-  const handleDragStart = () => {
-    if (flipState !== 'idle') return
-    setFlipState('dragging')
-  }
-
-  const handleDrag = (_: any, info: PanInfo) => {
-    if (flipState !== 'dragging') return
-
-    const containerWidth = containerRef.current?.offsetWidth || 1
-    const dragPercent = info.offset.x / (containerWidth / 2)
-    const clampedDrag = Math.max(-1, Math.min(1, -dragPercent))
-    setDragProgress(clampedDrag)
-  }
-
-  const handleDragEnd = (_: any, info: PanInfo) => {
-    if (flipState !== 'dragging') return
-
-    const containerWidth = containerRef.current?.offsetWidth || 1
-    const velocity = info.velocity.x
-    const threshold = containerWidth * 0.25
-
-    // Determine if we should complete the flip
-    let flipped = false
-    if (info.offset.x < -threshold || velocity < -500) {
-      if (canFlipNext) {
-        flipToNext()
-        flipped = true
-      }
-    } else if (info.offset.x > threshold || velocity > 500) {
-      if (canFlipPrev) {
-        flipToPrev()
-        flipped = true
-      }
-    }
-
-    // Only reset to idle if no flip was triggered — otherwise flipToNext/flipToPrev
-    // sets the correct state and we must not clobber it
-    if (!flipped) {
-      setFlipState('idle')
-      setDragProgress(0)
-    }
-  }
 
   // ============================================
   // KEYBOARD NAVIGATION
@@ -350,65 +316,61 @@ export function PageFlip({
   }
 
   // ============================================
-  // RENDER - TABLET/MOBILE (SINGLE PAGE WITH SWIPE)
+  // RENDER - TABLET/MOBILE (SINGLE PAGE, TAP ZONES)
+  // Tap the left edge of the page to go back, the right edge to go forward.
+  // Taps on buttons, links, form fields or while selecting text are left alone,
+  // so notes, quizzes and highlights keep working. No swipe: vertical scrolling
+  // inside a long page never turns it by accident.
   // ============================================
 
+  const handleTapZone = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width
+    const interactive = target.closest<HTMLElement>(INTERACTIVE_SELECTOR)
+    if (interactive) {
+      // A full-width notes box would otherwise swallow every edge tap; its outer
+      // strip still turns the page (tapping further in edits the notes as usual).
+      const isWideField = /^(TEXTAREA|INPUT)$/.test(interactive.tagName) && interactive.getBoundingClientRect().width > rect.width * 0.7
+      if (!isWideField || (x > WIDE_FIELD_EDGE && x < 1 - WIDE_FIELD_EDGE)) return
+      interactive.blur()
+    }
+    const selection = typeof window !== 'undefined' ? window.getSelection() : null
+    if (selection && selection.toString().trim().length > 0) return
+    if (x <= TAP_ZONE && canFlipPrev) onFlipComplete?.('prev')
+    else if (x >= 1 - TAP_ZONE && canFlipNext) onFlipComplete?.('next')
+  }
+
   return (
-    <motion.div
+    <div
       ref={containerRef}
-      className={cn('relative w-full h-full touch-pan-y', className)}
-      style={{
-        perspective: '1000px',
-      }}
-      drag="x"
-      dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.2}
-      onDragStart={handleDragStart}
-      onDrag={handleDrag}
-      onDragEnd={handleDragEnd}
+      className={cn('relative w-full h-full', className)}
+      onClick={handleTapZone}
+      data-testid="mobile-page"
     >
-      {/* Current Page */}
+      {/* Current page; a short slide shows which way the page turned */}
       <motion.div
+        key={currentSpread}
         className="absolute inset-0"
-        style={{
-          x: dragProgress * -100,
-          scale: 1 - Math.abs(dragProgress) * 0.05,
-        }}
+        initial={{ opacity: 0.4, x: lastDirection.current === 'prev' ? -24 : 24 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.22, ease: 'easeOut' }}
       >
         {rightPage}
       </motion.div>
 
-      {/* Next Page (peeking from right) */}
-      {canFlipNext && dragProgress > 0 && (
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            x: `${100 - dragProgress * 100}%`,
-            opacity: dragProgress,
-          }}
-        >
-          {nextRightPage}
-        </motion.div>
+      {/* Edge hints: faint arrows showing where to tap. They pass taps through to the page. */}
+      {canFlipPrev && (
+        <div aria-hidden className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 flex h-24 w-6 items-center justify-center rounded-full bg-[var(--book-text,var(--foreground))]/5 text-[var(--book-text,var(--foreground))]/40">
+          <span className="text-lg leading-none">‹</span>
+        </div>
       )}
-
-      {/* Previous Page (peeking from left) */}
-      {canFlipPrev && dragProgress < 0 && (
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            x: `${-100 - dragProgress * 100}%`,
-            opacity: -dragProgress,
-          }}
-        >
-          {prevRightPage}
-        </motion.div>
+      {canFlipNext && (
+        <div aria-hidden className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 flex h-24 w-6 items-center justify-center rounded-l-full bg-[var(--book-text,var(--foreground))]/5 text-[var(--book-text,var(--foreground))]/40">
+          <span className="text-lg leading-none">›</span>
+        </div>
       )}
-
-      {/* Swipe hint */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-[var(--muted-foreground)]">
-        ← Swipe to turn →
-      </div>
-    </motion.div>
+    </div>
   )
 }
 

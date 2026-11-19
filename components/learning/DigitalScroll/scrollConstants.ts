@@ -176,7 +176,7 @@ export const SCROLL_DIMENSIONS = {
   tablet: {
     width: '90vw',
     maxWidth: '768px',
-    height: '85vh',
+    height: '85dvh',
     maxHeight: '1000px',
     pageWidth: '100%',
     spineWidth: '0px',
@@ -188,7 +188,9 @@ export const SCROLL_DIMENSIONS = {
   mobile: {
     width: '100vw',
     maxWidth: '100%',
-    height: '100vh',
+    // dvh = the visible height. 100vh on iPhone Safari is taller than the screen,
+    // which hid the page footer (and its turn arrows) under the toolbar.
+    height: '100dvh',
     maxHeight: '100%',
     pageWidth: '100%',
     spineWidth: '0px',
