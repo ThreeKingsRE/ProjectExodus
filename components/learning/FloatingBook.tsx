@@ -75,11 +75,13 @@ export function FloatingBook({
   }
   const reset = () => { if (!press.current) setPose(0, 0); setHovered(false) }
 
-  // Touch (and a held mouse button): the book tilts toward the finger in both
-  // axes and follows it; on release it springs back. Always shows the front.
-  const press = useRef<{ id: number; x: number; y: number; moved: boolean } | null>(null)
+  // Touch: the first direction a finger moves decides the gesture. Sideways
+  // first and the book takes it: page scrolling stops for that touch and the
+  // book tilts toward the finger in both axes. Up or down first and the page
+  // scrolls as normal. A held mouse button tilts in both axes straight away.
+  const press = useRef<{ id: number; x: number; y: number; moved: boolean; mode: 'pending' | 'tilt' | 'scroll'; touch: boolean } | null>(null)
   const suppressClick = useRef(false)
-  const pointAt = (e: React.PointerEvent) => {
+  const pointAt = (e: { clientX: number; clientY: number }) => {
     const r = ref.current!.getBoundingClientRect()
     return [
       Math.max(-0.5, Math.min(0.5, (e.clientX - r.left) / r.width - 0.5)),
@@ -87,17 +89,33 @@ export function FloatingBook({
     ] as const
   }
 
+  // Block page scrolling only while a touch has claimed the book (needs a non-passive listener)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const onTouchMove = (e: TouchEvent) => { if (press.current?.mode === 'tilt' && e.cancelable) e.preventDefault() }
+    el.addEventListener('touchmove', onTouchMove, { passive: false })
+    return () => el.removeEventListener('touchmove', onTouchMove)
+  }, [])
+
   const onPointerDown = (e: React.PointerEvent) => {
     if (!move || opening || !ref.current || (e.pointerType === 'mouse' && e.button !== 0)) return
-    press.current = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: false }
-    if (e.pointerType !== 'mouse') { const [x, y] = pointAt(e); setPose(x, y, true); setHovered(true) }
+    const touch = e.pointerType !== 'mouse'
+    press.current = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: false, mode: touch ? 'pending' : 'tilt', touch }
   }
   const onDragMove = (e: React.PointerEvent) => {
     const p = press.current
     if (!p || p.id !== e.pointerId || !ref.current) return false
-    if (Math.hypot(e.clientX - p.x, e.clientY - p.y) > 8) p.moved = true
+    const dx = e.clientX - p.x, dy = e.clientY - p.y
+    if (Math.hypot(dx, dy) > 8) p.moved = true
+    if (p.mode === 'pending') {
+      if (Math.hypot(dx, dy) < 8) return true
+      p.mode = Math.abs(dx) > Math.abs(dy) ? 'tilt' : 'scroll'
+      if (p.mode === 'tilt') { ref.current.setPointerCapture?.(e.pointerId); setHovered(true) }
+    }
+    if (p.mode === 'scroll') return true
     const [x, y] = pointAt(e)
-    setPose(x, y, e.pointerType !== 'mouse')
+    setPose(x, y, p.touch)
     return true
   }
   const onPointerUp = (e: React.PointerEvent) => {
@@ -106,7 +124,7 @@ export function FloatingBook({
     press.current = null
     // A tilt that moved isn't a tap: don't open the book
     if (p.moved) { suppressClick.current = true; setTimeout(() => { suppressClick.current = false }, 0) }
-    if (e.pointerType !== 'mouse') { setPose(0, 0); setHovered(false) }
+    if (p.touch) { setPose(0, 0); setHovered(false) }
   }
 
   const duration = 6 + (delay % 3) * 0.6
@@ -116,7 +134,7 @@ export function FloatingBook({
     <div
       ref={ref}
       className={`relative ${className}`}
-      style={{ aspectRatio: '3 / 4', perspective: 1400, touchAction: 'pan-y', ...style }}
+      style={{ aspectRatio: '3 / 4', perspective: 1400, touchAction: 'pan-y pinch-zoom', ...style }}
       onPointerEnter={(e) => { if (e.pointerType !== 'touch') setHovered(true) }}
       onPointerMove={onPointerMove}
       onPointerLeave={reset}
