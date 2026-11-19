@@ -12,9 +12,10 @@ date; never mark one done without the owner's confirmation.
 4. **Check the "2-minute survey" wording** in Riverknoll's first update against the form's real length; edit the post if it's longer.
 5. **Disconnect John's Vercel copy** of the project (it fails its builds).
 6. **Set up PartyKit** if live co-editing in documents is wanted (documents otherwise work one person at a time with autosave).
-7. **Check the Riverknoll QR code** on a phone (signed in).
 
 ## Done
+
+- 2026-11-19: Riverknoll QR code checked on a phone and working (owner confirmed).
 
 - 2026-11-19: Riverknoll survey featured on the page and its results sheet connected (owner confirmed).
 
