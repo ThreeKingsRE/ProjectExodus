@@ -1,407 +1,304 @@
 import type { ModuleExpansion } from '../types'
 
+// Rewritten with its own angle: saving water across whole cities and farms.
+// Chapter 5 covers water conservation basics at home.
 const expansion: ModuleExpansion = {
   topicId: 'water-systems',
   moduleKey: 'water-conservation~2',
+  title: 'Water Conservation at Scale: Cities and Farms',
+  description: {
+    ELEMENTARY: 'How whole towns and farms save water by fixing leaks, watering smartly and sharing what they have.',
+    MIDDLE_SCHOOL: 'How cities cut water waste and farms grow more food with less water.',
+    HIGH_SCHOOL: 'Large-scale water conservation: leak control, pricing and outdoor rules in cities, and efficient irrigation on farms.',
+    UNDERGRADUATE: 'Urban and agricultural water conservation: non-revenue water, demand management and irrigation efficiency.',
+    GRADUATE: 'Designing conservation programmes for utilities and irrigation districts: evaluation, rebound and allocation.',
+    PHD: 'Research on water conservation at scale: paradoxes of efficiency, behavioural response and governance.',
+  },
   lessons: [
     {
       id: 'ws-cons-1',
-      title: 'Saving Water: Habits, Incentives and Lasting Change',
+      title: 'Water Conservation at Scale: Cities and Farms',
       content: {
         ELEMENTARY: `
-<h2>A Water-Saving Day</h2>
-<p>Hi there! I am Drip, a little water drop, and I want to spend a whole day with you. From the moment you wake up until you go to bed, you use water again and again. The good news is that small habits can save a lot of me. Let's follow your day and find the easy wins!</p>
+<h2>Saving Water Together</h2>
+<p>You might turn off the tap while you brush your teeth. That is a great habit! But what if a whole town worked together to save water? Or a farm that grows food for thousands of people? When big places save water, the savings are huge, like filling a swimming pool every few minutes.</p>
 
-<h3>Good Morning!</h3>
-<p>In the bathroom, water is busy. Brushing teeth, washing hands and flushing the toilet all use clean water that was carried a long way to reach you.</p>
+<h3>How Towns Save Water</h3>
+<p>Water travels to our homes through long pipes under the streets. Some pipes are old and have tiny cracks that leak. Towns send workers with special listening tools to find the leaks and fix them. Towns also ask people to water their lawns only on certain days, and some plant gardens that need very little water.</p>
 <ul>
-<li><strong>Tap:</strong> the handle that lets water flow out into the sink when you turn it</li>
-<li><strong>Drip:</strong> a tiny drop that falls from a tap that is not closed tightly</li>
-<li><strong>Leak:</strong> water that escapes from a pipe, tap or toilet when it should not</li>
-</ul>
-<p>Turn off the tap while you brush your teeth. Then turn it back on to rinse. That one habit can save a whole bucket of water over a few days!</p>
-
-<h3>At School and at Lunch</h3>
-<p>Fill your water bottle and drink it all, instead of pouring half away. If you see a tap dripping at school, tell a teacher. Grown-ups can only fix leaks they know about, so you can be a water helper.</p>
-
-<h3>After School Outside</h3>
-<p>Plants love water, but they do not need it in the hot middle of the day, when the sun dries it up fast. Watering in the cool morning or evening helps more water soak into the soil.</p>
-<ul>
-<li><strong>Watering can:</strong> a container with a spout that gives plants just the water they need</li>
-<li><strong>Rain barrel:</strong> a big container that catches rain from the roof to use on the garden</li>
-<li><strong>Mulch:</strong> a cozy blanket of leaves or wood chips that keeps soil damp for longer</li>
+<li><strong>Leak:</strong> a crack or hole where water escapes by accident</li>
+<li><strong>Water pipe:</strong> a tube that carries water under the ground</li>
+<li><strong>Drought:</strong> a long time with very little rain</li>
+<li><strong>Drip irrigation:</strong> watering plants slowly, drop by drop, right at their roots</li>
+<li><strong>Water meter:</strong> a tool that measures how much water is used</li>
 </ul>
 
-<h3>Good Night!</h3>
-<p>A short shower can use less water than a very full bath. Try a shower song: when the song ends, you are done! Before bed, check that every tap is closed tightly.</p>
-<ol>
-<li>Turn off the tap while brushing.</li>
-<li>Drink all the water you pour.</li>
-<li>Tell a grown-up about drips and leaks.</li>
-<li>Water plants in the morning or evening.</li>
-<li>Keep showers short and fun.</li>
-</ol>
+<h3>How Farms Save Water</h3>
+<p>Farms use more water than anything else. Some farmers use drip irrigation, which gives each plant just the water it needs. Others use sensors in the soil that tell them when plants are thirsty, so they do not water too much.</p>
 
-<h3>Think About It</h3>
-<p>Can you make a chart of your own water-saving day? Draw a sun for morning, a book for school, a flower for outside and a moon for night. Put a sticker on each part when you save water. Every drop you save helps rivers, fish, frogs and people too!</p>
+<h3>Why It Matters</h3>
+<p>When towns and farms save water, rivers and lakes stay fuller, fish have homes and there is enough water for everyone, even during a drought. Every drop saved by a town or a farm is a drop that can stay in nature for plants and animals.</p>
 `,
         MIDDLE_SCHOOL: `
-<h2>Using Less Water at Home and at School</h2>
-<p>Most of the clean water that reaches our buildings has been collected, pumped, treated and tested before it ever comes out of a tap. Using it carefully means less water taken from rivers and underground, less energy used for pumping and heating, and lower bills. This lesson shows where water goes, how to measure it and which changes make the biggest difference.</p>
+<h2>Saving Water Across Cities and Farms</h2>
+<p>Individual habits like shorter showers matter, but the biggest water savings come from changing how whole systems work. A city might lose a fifth of its treated water through leaky pipes before it ever reaches a tap. Farms, which use about 70 percent of the fresh water people take worldwide, can often grow the same crops with much less. This chapter looks at conservation on that big scale.</p>
 
-<h3>Where Does the Water Go?</h3>
-<p>In a typical home, the biggest indoor uses are toilets, showers, washing machines and taps. Leaks are a surprisingly large hidden use. Outdoors, watering lawns and gardens can be the single largest use in dry, warm places, especially in summer.</p>
-<table>
-<thead><tr><th>Place</th><th>Common use</th><th>Simple saving idea</th></tr></thead>
-<tbody>
-<tr><td>Bathroom</td><td>Toilet flushing, showers, handwashing</td><td>Shorter showers, fix running toilets</td></tr>
-<tr><td>Kitchen</td><td>Dishes, cooking, drinking</td><td>Run the dishwasher only when it is full</td></tr>
-<tr><td>Laundry</td><td>Washing clothes</td><td>Wash full loads</td></tr>
-<tr><td>Garden</td><td>Lawns, flowers, vegetables</td><td>Water early, use mulch, choose local plants</td></tr>
-</tbody>
-</table>
-
-<h3>Key Words</h3>
+<h3>In the City</h3>
+<p>Cities save water by finding and fixing leaks in their pipe networks, installing smart meters that spot unusual use, and setting rules during droughts, such as limiting lawn watering to certain days. Many cities pay residents rebates to replace thirsty lawns with native plants or to buy efficient toilets and washing machines. Water prices can also encourage saving: some cities charge more per gallon for very high use.</p>
 <ul>
-<li><strong>Low-flow fixture:</strong> a faucet, showerhead or toilet designed to use less water while still working well</li>
-<li><strong>Flow rate:</strong> how much water comes out in a set time, such as liters or gallons per minute</li>
-<li><strong>Water audit:</strong> a careful survey that finds where water is used and where it is wasted</li>
-<li><strong>Water meter:</strong> a device that measures how much water flows into a building</li>
-<li><strong>Drought:</strong> a long period with much less rain than usual, when water supplies run low</li>
-<li><strong>Native plants:</strong> plants that naturally grow in a region and are adapted to its rainfall</li>
+<li><strong>Water loss:</strong> treated water that leaks or disappears before reaching customers</li>
+<li><strong>Smart meter:</strong> a meter that sends frequent readings and can flag leaks</li>
+<li><strong>Tiered pricing:</strong> charging a higher price per unit as water use goes up</li>
+<li><strong>Turf replacement:</strong> swapping grass lawns for plants that need little water</li>
+<li><strong>Soil moisture sensor:</strong> a device that measures how wet the soil is</li>
 </ul>
 
-<h3>How Low-Flow Fixtures Work</h3>
-<p>A low-flow showerhead mixes air into the water or uses smaller openings, so the spray still feels strong while less water passes through. Modern toilets use better bowl shapes so a smaller flush clears the bowl. Aerators on taps break the stream into tiny bubbles. These designs save water every single time, without anyone having to remember.</p>
+<h3>On the Farm</h3>
+<p>Farmers can switch from flooding fields to sprinklers or drip lines, which deliver water more precisely. Soil moisture sensors and weather data help them water only when crops need it. Choosing crops that suit the local climate, and practices that keep soil spongy and full of organic matter, also help hold water in the ground.</p>
 
-<h3>Try a Bucket Test</h3>
-<p>You can measure a flow rate yourself. Hold a bucket with volume markings under the shower or tap for ten seconds, then multiply by six to get the amount per minute. Compare the kitchen tap, bathroom tap and shower. Repeat after an adult adds an aerator and see the difference.</p>
-
-<h3>Habits Matter Too</h3>
-<p>Technology helps, but habits matter just as much. A school can run a water challenge: students read the meter each week, track the numbers on a chart and set a goal. When people can see their water use, they often use less. Choosing native plants and catching rainwater help gardens stay green with less tap water.</p>
+<h3>Working Together</h3>
+<p>Rivers are shared by cities, farms and nature. In dry regions, cities and farmers sometimes make deals where cities help pay for farm efficiency upgrades and share the water saved. Done fairly, this keeps farms in business, keeps taps running and leaves more water in rivers.</p>
 `,
         HIGH_SCHOOL: `
-<h2>Indoor and Outdoor Conservation: Strategies and Technologies</h2>
-<p>Water conservation means reducing the amount of water we take and use, without giving up the services water provides: health, comfort, food and beauty. It combines three approaches: fixing waste (such as leaks), using better technology (such as efficient fixtures) and changing behavior (such as watering schedules). Understanding how these fit together lets households, schools and cities save water reliably.</p>
+<h2>Conservation as a System</h2>
+<p>When people hear "water conservation," they often picture turning off the tap. Household habits help, but most opportunities lie in systems: the pipes that carry water across a city, the way water is priced, the landscapes we choose and, above all, irrigation, which accounts for roughly 70 percent of global freshwater withdrawals. This chapter looks at conservation strategies used by utilities, cities and farmers.</p>
 
-<h3>Conservation Versus Efficiency</h3>
-<p>The two words are related but not identical. <em>Efficiency</em> means getting the same result with less water, like a dishwasher that cleans the same load using less water. <em>Conservation</em> is broader and includes using less water by changing what we do, like taking shorter showers or letting a lawn go dormant in summer. Good programs use both.</p>
-
-<h3>Indoor Strategies</h3>
+<h3>Cities: Losses, Meters and Landscapes</h3>
+<p>Utilities track non-revenue water: water treated and pumped but never billed because it leaks, is stolen or is measured wrongly. In many systems this is 20 to 30 percent of supply. Acoustic leak detection, pressure management (lowering pressure at night reduces leaks) and pipe replacement cut losses. Smart meters give hourly data so households can spot leaks quickly. In dry cities, outdoor irrigation can be half of summer demand, so turf-replacement rebates, watering-day schedules and drought-tolerant landscaping deliver big savings.</p>
 <ul>
-<li><strong>Efficient toilets:</strong> use far less per flush than older models; dual-flush designs offer a smaller flush for liquids</li>
-<li><strong>Showerheads and aerators:</strong> reduce flow rate while maintaining pressure and comfort</li>
-<li><strong>Efficient appliances:</strong> modern front-loading washers and dishwashers use much less water per load</li>
-<li><strong>Leak repair:</strong> a silently running toilet can waste more than the whole household drinks</li>
-<li><strong>Hot water savings:</strong> because hot water also needs energy, saving it brings a double benefit</li>
+<li><strong>Non-revenue water:</strong> water a utility produces but does not bill, mainly due to leaks and metering errors</li>
+<li><strong>Pressure management:</strong> lowering water pressure in pipes to reduce leaks and bursts</li>
+<li><strong>Conservation pricing:</strong> water rates designed to encourage efficient use, such as increasing block rates</li>
+<li><strong>Irrigation efficiency:</strong> the share of applied water that crops actually use</li>
+<li><strong>Deficit irrigation:</strong> deliberately giving crops slightly less water than full demand at less sensitive growth stages</li>
 </ul>
 
-<h3>Outdoor Strategies</h3>
-<p>In dry climates, outdoor irrigation can account for a large share of household water use, and much of it is lost to evaporation, runoff or overwatering. Effective outdoor conservation includes:</p>
-<ol>
-<li><strong>Smart irrigation controllers</strong> that adjust watering to weather and soil moisture.</li>
-<li><strong>Drip irrigation</strong> that delivers water directly to plant roots.</li>
-<li><strong>Climate-appropriate landscaping</strong> with native or drought-tolerant plants.</li>
-<li><strong>Mulch and healthy soil</strong> that hold moisture longer.</li>
-<li><strong>Rainwater harvesting</strong> to replace tap water for gardens.</li>
-</ol>
+<h3>Farms: More Crop Per Drop</h3>
+<p>Flood irrigation can lose much of its water to evaporation and runoff. Drip and micro-sprinkler systems apply water directly to roots, often achieving efficiencies of 85 to 95 percent. Scheduling with soil moisture sensors, weather stations or satellite estimates of crop water use avoids over-watering. Deficit irrigation, used at growth stages when crops tolerate stress, can save water with little yield loss for crops like grapes and almonds.</p>
 
-<h3>Comparing Approaches</h3>
-<table>
-<thead><tr><th>Approach</th><th>Typical cost</th><th>How long savings last</th><th>Main limitation</th></tr></thead>
-<tbody>
-<tr><td>Behavior change</td><td>Very low</td><td>Can fade without reminders</td><td>Depends on motivation</td></tr>
-<tr><td>Efficient fixtures</td><td>Low to moderate</td><td>Many years, automatic</td><td>Upfront cost and installation</td></tr>
-<tr><td>Landscape change</td><td>Moderate</td><td>Long-lasting</td><td>Requires design and plant establishment</td></tr>
-<tr><td>Leak repair</td><td>Often low</td><td>Until the next leak</td><td>Leaks must first be found</td></tr>
-</tbody>
-</table>
+<h3>A Surprising Catch</h3>
+<p>Efficiency does not always mean less water used overall. If a farmer saves water with drip irrigation and then plants more acres, total consumption can rise. That is why basins that want real savings pair efficiency upgrades with limits on total water use.</p>
 
-<h3>Finding Waste With a Water Audit</h3>
-<p>A water audit identifies where water is being used and wasted. It starts with reading the meter when nothing is running: if the meter moves, there is a leak. Next, measure fixture flow rates, check toilets with a few drops of food coloring in the tank, inspect sprinklers for broken heads and compare monthly bills to spot unusual spikes. The audit produces a priority list, starting with cheap, high-impact fixes.</p>
-
-<h3>Real-World Applications</h3>
-<p>Many cities offer rebates for efficient toilets and smart controllers, free fixture kits, or payments for replacing thirsty lawns. During droughts, utilities often set watering days or temporary restrictions. Schools, hospitals and businesses run audits to cut bills. Together these show that conservation is often one of the cheapest ways to stretch a water supply.</p>
+<h3>Sharing Savings</h3>
+<p>In some regions, cities fund farm efficiency projects in exchange for some of the conserved water, or pay farmers to fallow fields temporarily in droughts. Fair deals protect farm communities while keeping rivers and cities supplied.</p>
 `,
         UNDERGRADUATE: `
-<h2>Designing Conservation Programs and Changing Water-Use Behavior</h2>
-<p>Water conservation is often called the cheapest new source of supply. That claim depends on program design: which measures are offered, who adopts them, how long savings persist and how they are verified. This lesson analyzes conservation as an engineered and social intervention, drawing on efficiency concepts, behavioral science and program evaluation.</p>
+<h2>Water Conservation at Utility and Basin Scale</h2>
+<p>Water conservation is most effective when treated as a resource strategy rather than a set of household tips. Utilities increasingly compare conservation with new supply options on a cost-per-acre-foot basis, and basin managers recognise that agricultural efficiency, which dominates consumptive use in many regions, determines how much water remains for cities and ecosystems. This chapter covers urban demand management, water loss control and agricultural efficiency, along with the hydrological subtleties that complicate them.</p>
 
-<h3>Core Concepts</h3>
+<h3>Urban Demand Management</h3>
+<p>Demand management combines price signals, regulations, incentives and information. Increasing block rates raise marginal prices for high users; price elasticity of residential demand is typically low (around −0.1 to −0.4) but higher for outdoor use. Codes requiring efficient fixtures lock in savings in new buildings, while rebates accelerate replacement in existing ones. Programmes are evaluated by comparing participants with matched non-participants, accounting for weather and economic conditions.</p>
 <ul>
-<li><strong>Water-use efficiency:</strong> the ratio of useful output or service to the water applied, such as clean dishes per liter or crop yield per unit of irrigation</li>
-<li><strong>Per capita demand:</strong> water use divided by population served, a common but imperfect benchmark for comparing communities</li>
-<li><strong>Free-rider effect:</strong> paying incentives to people who would have adopted a measure anyway, which inflates apparent program savings</li>
-<li><strong>Persistence:</strong> how long savings last after a measure is installed or a behavior is adopted</li>
-<li><strong>Social norms:</strong> shared expectations about behavior, which can be used to encourage conservation by showing how one compares to neighbors</li>
-<li><strong>Measurement and verification:</strong> the process of estimating actual savings by comparing observed use with a credible baseline</li>
+<li><strong>Price elasticity of water demand:</strong> the percentage change in water use for a one percent change in price</li>
+<li><strong>Infrastructure leakage index:</strong> a performance indicator comparing actual leakage to an unavoidable minimum</li>
+<li><strong>Consumptive use:</strong> water evaporated, transpired or incorporated into products, no longer available downstream</li>
+<li><strong>Return flow:</strong> applied water that returns to rivers or aquifers and can be reused downstream</li>
+<li><strong>Water budget:</strong> an allocation of water to a customer based on household size, landscape area and weather</li>
 </ul>
 
-<h3>Drivers of Adoption</h3>
-<p>Households and businesses adopt conservation for many reasons, and programs typically combine several levers:</p>
-<table>
-<thead><tr><th>Lever</th><th>Mechanism</th><th>Strength</th><th>Weakness</th></tr></thead>
-<tbody>
-<tr><td>Rebates and incentives</td><td>Lower upfront cost of efficient devices</td><td>Targets durable hardware</td><td>Free riders, administrative cost</td></tr>
-<tr><td>Education and outreach</td><td>Raise awareness and skills</td><td>Low cost, broad reach</td><td>Awareness does not always change action</td></tr>
-<tr><td>Pricing</td><td>Higher marginal price for higher use</td><td>Affects all uses continuously</td><td>Equity concerns, modest short-run response</td></tr>
-<tr><td>Rules and codes</td><td>Mandate efficient fixtures or watering schedules</td><td>Reliable, wide coverage</td><td>Enforcement, perceived fairness</td></tr>
-<tr><td>Feedback and norms</td><td>Show use relative to peers or goals</td><td>Inexpensive, scalable with data</td><td>Effects may shrink over time</td></tr>
-</tbody>
-</table>
+<h3>Water Loss Control</h3>
+<p>The International Water Association water balance distinguishes real losses (leaks and bursts) from apparent losses (metering inaccuracies and theft). The infrastructure leakage index benchmarks performance. Active leak detection, district metered areas, pressure management and asset renewal reduce real losses; meter replacement and data analytics reduce apparent losses.</p>
 
-<h3>Behavior Change in Practice</h3>
-<p>Behavioral research suggests that information alone is a weak lever. More effective approaches make the desired action easy (pre-set irrigation schedules), timely (alerts during heat waves), social (comparisons with similar homes) and concrete (feedback in familiar units). Home water reports that compare a household with efficient neighbors have produced measurable reductions in several utility trials, although the size of the effect varies by context. Feedback is strongest when people know what action to take next.</p>
+<h3>Agricultural Efficiency and the Paradox</h3>
+<p>Field application efficiency rises from roughly 40 to 60 percent for surface irrigation to 85 to 95 percent for drip. However, much of the "lost" water in inefficient systems returns to rivers and aquifers as return flow and is reused downstream. Efficiency upgrades often increase consumptive use by enabling crops to use more water or expanding irrigated area. Real savings therefore require caps on consumptive use or water rights adjustments alongside technology.</p>
 
-<h3>Reasoning About Savings</h3>
-<p>Consider a toilet replacement program. The savings per unit equal the difference in flush volume times the number of flushes per day times the years the toilet remains in service. Total program savings are then reduced by the fraction of participants who would have replaced their toilets anyway. Comparing the program cost per unit of water saved over its life with the cost of new supply gives a levelized cost of conserved water, which allows like-for-like comparison with reservoirs, wells or desalination.</p>
-
-<h3>Applied Program Checklist</h3>
-<ol>
-<li>Segment demand by sector and end use, using meter data where available.</li>
-<li>Estimate technical potential, then realistic potential after adoption limits.</li>
-<li>Choose a mix of incentives, rules, pricing and feedback suited to each segment.</li>
-<li>Design evaluation from the start, ideally with comparison groups.</li>
-<li>Account for free riders, persistence and interactions between measures.</li>
-<li>Report cost per unit of water saved over the measure life.</li>
-</ol>
+<h3>Urban-Agricultural Partnerships</h3>
+<p>Arrangements such as conservation-for-transfer agreements and rotational fallowing programmes let cities compensate farmers for conserved or forgone water. Their success depends on measuring consumptive use reductions (often by satellite evapotranspiration estimates) and on protecting third parties and rural economies.</p>
 `,
         GRADUATE: `
-<h2>Conservation Pricing, Demand Management and Durable Savings</h2>
-<p>At the planning level, conservation is a portfolio decision. Demand management competes with and complements supply investments, and it interacts with utility finance, drought response and equity. This lesson examines how pricing and other demand-side tools are designed, why savings sometimes erode or rebound, and how institutions can lock in long-term reductions.</p>
+<h2>Designing Conservation Programmes for Utilities and Irrigation Districts</h2>
+<p>As climate change intensifies droughts and new supply becomes costlier and more contested, conservation has become a core resource for water utilities and irrigation districts. Yet programmes are frequently evaluated poorly, and agricultural efficiency investments can fail to deliver basin-level savings. This chapter examines programme design, evaluation methods, rebound and paradox effects, and the allocation frameworks that determine whether conservation translates into real water left in rivers and aquifers.</p>
 
-<h3>Key Policy Concepts</h3>
+<h3>Programme Portfolios and Evaluation</h3>
+<p>Utilities assemble portfolios of measures (fixture rebates, landscape transformation, leak alerts, pricing, outreach) and compare their cost-effectiveness against supply alternatives using levelised cost per volume saved. Credible evaluation requires counterfactuals: difference-in-differences designs with matched comparison groups, randomised trials for behavioural interventions such as social-comparison reports, and correction for free riders who would have acted anyway. Persistence of savings matters, since behavioural effects can decay while hardware savings persist.</p>
 <ul>
-<li><strong>Demand management:</strong> the set of strategies that reduce, shift or reshape water demand rather than expanding supply</li>
-<li><strong>Increasing block tariff:</strong> a rate structure in which the price per unit rises as consumption crosses defined thresholds</li>
-<li><strong>Drought surcharge:</strong> a temporary price increase during shortages that signals scarcity and helps protect utility revenue</li>
-<li><strong>Revenue stability:</strong> the ability of a utility to cover largely fixed costs when sales volumes fall</li>
-<li><strong>Demand hardening:</strong> the reduced ability to cut use in an emergency after easy savings have already been made permanent</li>
-<li><strong>Avoided cost:</strong> the value of supply, treatment or capacity investments that conservation makes unnecessary or delays</li>
+<li><strong>Levelised cost of conserved water:</strong> lifetime programme cost divided by lifetime volume saved</li>
+<li><strong>Free rider:</strong> a participant who receives an incentive for an action they would have taken anyway</li>
+<li><strong>Difference-in-differences:</strong> an evaluation method comparing changes over time in treated and comparison groups</li>
+<li><strong>Paradox of irrigation efficiency:</strong> efficiency gains that increase rather than decrease total consumptive use</li>
+<li><strong>Prior appropriation:</strong> a water rights system in which earlier rights holders have priority in shortages</li>
 </ul>
 
-<h3>Pricing as a Demand Signal</h3>
-<p>Volumetric prices convey the cost of each additional unit. Block tariffs aim to keep essential use affordable while charging more for discretionary use such as large-scale outdoor irrigation. Their design involves trade-offs: block thresholds that ignore household size can penalize large families; steep upper blocks may raise revenue volatility; and if customers rarely see the marginal price clearly, price signals lose force. Budget-based rates, which set allocations from household size and landscape area, attempt to address fairness but require detailed data.</p>
+<h3>Revenue and Equity Impacts</h3>
+<p>Because utility costs are largely fixed, successful conservation can reduce revenue and force rate increases, which may frustrate customers who saved. Rate designs that separate fixed and variable cost recovery, and drought surcharges designed in advance, stabilise finances. Equity analysis checks that conservation pricing does not burden large low-income households, for example through water budgets based on household size.</p>
 
-<h3>The Revenue Paradox</h3>
-<p>Most utility costs are fixed: pipes, plants and debt service. When conservation succeeds, sales fall and utilities may need to raise rates, which customers can perceive as a penalty for saving. Mitigation options include higher fixed charges (which reduce the conservation signal and can be regressive), rate stabilization reserves, decoupling mechanisms and clear communication that conservation still lowers long-run costs by deferring expensive new supply.</p>
+<h3>Agriculture: Accounting for Consumptive Use</h3>
+<p>Evidence from many basins shows that subsidised drip irrigation often increased consumptive use through expanded area or intensified cropping. Policy responses include tying subsidies to reductions in water rights or consumptive use, basin-level caps and remote-sensing-based accounting of evapotranspiration. Within prior-appropriation systems, "use it or lose it" rules can discourage conservation; reforms allow conserved water to be leased or banked without forfeiting rights.</p>
 
-<h3>Comparing Demand Management Instruments</h3>
-<table>
-<thead><tr><th>Instrument</th><th>Speed of effect</th><th>Durability</th><th>Equity considerations</th></tr></thead>
-<tbody>
-<tr><td>Block or budget-based pricing</td><td>Gradual</td><td>Ongoing while in place</td><td>Needs affordability protections</td></tr>
-<tr><td>Fixture codes and standards</td><td>Slow, as stock turns over</td><td>Very durable</td><td>Spreads benefits broadly over time</td></tr>
-<tr><td>Rebates and direct installation</td><td>Moderate</td><td>Durable for hardware</td><td>Direct install can reach renters and low-income homes</td></tr>
-<tr><td>Watering restrictions</td><td>Fast</td><td>Temporary unless made permanent</td><td>Enforcement may be uneven</td></tr>
-<tr><td>Landscape transformation</td><td>Slow</td><td>Long-lasting</td><td>Incentives often favor owners with capital</td></tr>
-</tbody>
-</table>
+<h3>Drought Response</h3>
+<p>Drought contingency plans define staged restrictions, communication strategies and triggers based on storage or streamflow. Combining long-term efficiency with short-term curtailment, and planning them together, avoids "demand hardening," where efficient customers have little left to cut in emergencies.</p>
 
-<h3>Long-Term Savings and Demand Hardening</h3>
-<p>Permanent efficiency gains reduce baseline demand, which lowers the cost of future supply and treatment capacity. However, they also remove the slack that utilities once relied on during droughts. Planners therefore distinguish structural conservation (lasting reductions) from emergency curtailment (temporary cuts) and maintain explicit drought response stages. Demand forecasts should reflect codes, appliance turnover and climate-driven outdoor demand, rather than extrapolating historical per capita use.</p>
-
-<h3>Equity and Governance</h3>
-<p>Rebates often flow to homeowners who can afford upfront costs, while renters and low-income households may face higher bills without access to savings. Equitable programs use direct installation, landlord partnerships, lifeline rates and bill assistance. Engaging communities, including Indigenous nations with their own water rights and knowledge, improves program legitimacy.</p>
-
-<h3>Evaluation Framework</h3>
-<ol>
-<li>Define objectives: peak reduction, long-run demand, drought resilience or affordability.</li>
-<li>Estimate avoided costs and compare with the cost of conserved water.</li>
-<li>Model revenue impacts and plan financial safeguards in advance.</li>
-<li>Assess distributional effects across income, tenure and household size.</li>
-<li>Verify savings with metered data and comparison groups over several years.</li>
-</ol>
+<h3>Data and Digital Tools</h3>
+<p>Advanced metering infrastructure, customer portals and leak alerts have changed what utilities can do. Hourly data allow targeted outreach to the highest outdoor users, early detection of customer-side leaks and better demand forecasting. Irrigation districts use telemetry on canals and satellite crop-water estimates to manage deliveries more precisely. Realising these benefits requires investment in data systems, staff skills and privacy safeguards.</p>
 `,
         PHD: `
-<h2>Research Frontiers: Conservation Potential, Price Elasticity and Behavioral Interventions</h2>
-<p>Conservation research asks deceptively simple questions: how much could demand fall, what causes it to fall and how confident can we be in those estimates? Answering them requires econometric identification, careful measurement and attention to heterogeneity across households, climates and institutions. This lesson surveys the methods and debates that shape the field.</p>
+<h2>Research Frontiers in Water Conservation at Scale</h2>
+<p>Water conservation research has moved from engineering estimates of potential savings toward questions about realised outcomes in coupled human-water systems. Central puzzles include why efficiency gains often fail to reduce basin-level consumption, how behaviour responds to prices and information over time, and which institutions convert conservation into reallocated water for cities and ecosystems. This chapter surveys those frontiers.</p>
 
-<h3>Key Research Concepts</h3>
+<h3>Efficiency Paradoxes and Hydrological Accounting</h3>
+<p>The paradox of irrigation efficiency, documented across basins in South Asia, the Middle East, Spain and the western United States, arises because field-scale "losses" are often recoverable return flows. Rigorous assessment requires basin-scale water accounting that tracks consumptive and non-consumptive fractions, return flow pathways and timing. Remote sensing of evapotranspiration has advanced accounting, but uncertainties in energy-balance models, especially in heterogeneous landscapes, remain significant. Socio-hydrological models that represent farmer decisions about cropping and expansion help explain when efficiency translates into savings.</p>
 <ul>
-<li><strong>Price elasticity of demand:</strong> the percentage change in quantity demanded associated with a one percent change in price, usually found to be inelastic for residential water</li>
-<li><strong>Short-run versus long-run elasticity:</strong> the distinction between immediate behavioral responses and later responses that include changes in appliances and landscapes</li>
-<li><strong>Randomized controlled trial:</strong> an experiment that randomly assigns treatment, allowing causal estimates of an intervention's effect</li>
-<li><strong>Heterogeneous treatment effects:</strong> differences in how strongly various groups respond to the same intervention</li>
-<li><strong>Technical conservation potential:</strong> the savings achievable if all cost-effective measures were fully adopted, an upper bound rather than a forecast</li>
-<li><strong>Rebound effect:</strong> an increase in use that partly offsets efficiency gains, for example longer showers after installing an efficient showerhead</li>
+<li><strong>Socio-hydrology:</strong> the study of co-evolving interactions between human and water systems</li>
+<li><strong>Evapotranspiration:</strong> water evaporated from soil and transpired by plants, the main consumptive use in agriculture</li>
+<li><strong>Rebound effect:</strong> an increase in use that offsets part of the savings from an efficiency improvement</li>
+<li><strong>Demand hardening:</strong> reduced capacity to cut use in emergencies after routine efficiency gains</li>
+<li><strong>Polycentric governance:</strong> governance by multiple, overlapping decision-making centres</li>
 </ul>
 
-<h3>Estimating Price Elasticity</h3>
-<p>Most studies find residential water demand to be price inelastic, with outdoor use more responsive than indoor use and long-run responses larger than short-run ones. Estimation is complicated by nonlinear block tariffs, which make the marginal and average price differ and create simultaneity between price and quantity. Researchers use instrumental variables, discrete-continuous choice models and structural approaches to address this. A further question is which price customers actually respond to: evidence suggests many react to average price or to the bill total, because marginal price is rarely visible.</p>
+<h3>Behaviour, Prices and Information</h3>
+<p>Field experiments with social-comparison reports show modest, often persistent reductions, with heterogeneous effects across households. Studies of drought pricing and restrictions find that mandates and moral suasion can produce rapid reductions but that rebound follows when restrictions lift. Open questions concern long-run elasticity, interactions between pricing and non-price measures, and how smart metering data, combined with machine learning, can personalise interventions without compromising privacy or equity.</p>
 
-<h3>Behavioral Interventions</h3>
-<p>Field experiments with social comparisons, goal setting, real-time feedback and moral appeals have produced measurable reductions in many settings. Open questions concern persistence after treatment ends, whether repeated messages habituate recipients, spillovers to energy use, and whether effects concentrate among high users. Advanced metering infrastructure enables high-frequency measurement and disaggregation into end uses, supporting more precise evaluation, but also raises privacy concerns.</p>
+<h3>Institutions and Reallocation</h3>
+<p>Whether conserved water benefits other users depends on property rights and governance. Research compares water markets, administrative reallocation and polycentric arrangements, evaluating transaction costs, third-party effects and outcomes for rural communities. Environmental water acquisition programmes test whether conservation can be directed to restoring flows. Comparative institutional analysis across basins suggests that secure, well-defined rights to consumptive use, combined with monitoring, are prerequisites for effective reallocation.</p>
 
-<h3>Methodological Debates</h3>
-<table>
-<thead><tr><th>Question</th><th>Why it is contested</th></tr></thead>
-<tbody>
-<tr><td>Which price signal matters</td><td>Marginal, average and perceived prices predict different responses under block tariffs</td></tr>
-<tr><td>External validity of trials</td><td>Results from one utility, climate or season may not transfer elsewhere</td></tr>
-<tr><td>Engineering versus metered savings</td><td>Engineering estimates often exceed observed savings because of behavior and installation quality</td></tr>
-<tr><td>Baseline construction</td><td>Weather, economic shocks and drought messaging confound before-after comparisons</td></tr>
-<tr><td>Welfare effects of restrictions</td><td>Non-price rationing may impose hidden costs compared with pricing</td></tr>
-</tbody>
-</table>
+<h3>Climate and Equity</h3>
+<p>Climate change raises crop water demand and intensifies droughts, raising the stakes of conservation policy. Distributional analysis examines who bears the costs of conservation (through prices, fallowing or restrictions) and who benefits. Integrated assessment that links hydrology, agronomy, behaviour and institutions, with explicit attention to equity, is a key research need.</p>
 
-<h3>Estimating Conservation Potential</h3>
-<p>End-use models build demand from the stock of fixtures, appliances and landscapes, then simulate adoption under alternative policies. Their credibility depends on stock data, adoption curves and assumptions about behavior. Bottom-up estimates are increasingly calibrated with smart meter data and remote sensing of irrigated area. Climate change complicates potential estimates, because warmer conditions raise outdoor demand even as efficiency improves indoor use.</p>
-
-<h3>Equity, Welfare and Institutions</h3>
-<p>Researchers increasingly examine who bears the burden of conservation policy. Pricing may be economically efficient yet regressive without rebates; mandatory restrictions may be seen as fair yet impose larger welfare losses. Institutional analysis explores how utility governance, political acceptability and public trust shape which instruments are adopted.</p>
-
-<h3>Open Research Directions</h3>
-<ol>
-<li>Long-run persistence and habit formation following behavioral interventions.</li>
-<li>Integration of smart meter data with causal inference methods while protecting privacy.</li>
-<li>Joint water-energy behavioral responses and cross-sector spillovers.</li>
-<li>Distributional analysis of pricing and rebate programs across households.</li>
-<li>Demand modeling that combines climate projections, efficiency stock turnover and land use change.</li>
-</ol>
+<h3>Methodological Directions</h3>
+<p>Advances will come from combining high-resolution metering and satellite data with causal inference methods, coupling hydrological and agent-based models, and long-term monitoring of conservation programmes beyond their initial evaluation periods, so that persistence and rebound can be measured directly.</p>
 `,
       },
     },
   ],
   quiz: [
     {
-      id: 'wconsq1',
+      id: 'ws-cons2-q1',
       question: {
-        ELEMENTARY: 'How can you save water when brushing your teeth?',
-        MIDDLE_SCHOOL: 'What is a low-flow fixture?',
-        HIGH_SCHOOL: 'What does a water audit find?',
-        UNDERGRADUATE: 'Which combination of levers do conservation programs typically use to drive adoption?',
-        GRADUATE: 'What is demand management?',
-        PHD: 'What is the price elasticity of water demand?',
+        ELEMENTARY: 'What uses more water than anything else?',
+        MIDDLE_SCHOOL: 'About what share of the fresh water people take worldwide do farms use?',
+        HIGH_SCHOOL: 'What is non-revenue water?',
+        UNDERGRADUATE: 'What is consumptive use?',
+        GRADUATE: 'What is a free rider in conservation programme evaluation?',
+        PHD: 'What is socio-hydrology?',
       },
       options: {
-        ELEMENTARY: ['Turn off the tap while brushing', 'Leave the tap running', 'Brush with a full bucket of water', 'Brush for an extra long time with the tap on'],
-        MIDDLE_SCHOOL: ['A faucet, showerhead or toilet designed to use less water while still working well', 'A drain that empties slowly', 'A drinking fountain at school', 'A pipe placed low under the floor'],
-        HIGH_SCHOOL: ['Where water is being used and where it is wasted', 'Only the names of customers', 'Only the source of the water', 'How much the house is worth'],
-        UNDERGRADUATE: ['Rebates, education, pricing, rules and feedback', 'Only education campaigns', 'Only higher prices', 'No levers, since adoption happens by itself'],
-        GRADUATE: ['Strategies that reduce, shift or reshape water demand rather than expanding supply', 'Building new reservoirs', 'Ignoring how much water people use', 'Adding more pipes to the network'],
-        PHD: ['The percentage change in quantity demanded associated with a one percent change in price', 'The idea that demand never changes', 'How far water pipes can stretch', 'The pressure inside a water main'],
-      },
-      correctIndex: 0,
-      explanation: {
-        ELEMENTARY: 'Turning off the tap while you brush can save a whole bucket of water over a few days.',
-        MIDDLE_SCHOOL: 'Low-flow fixtures use smaller openings, air mixing or better designs to deliver less water per use.',
-        HIGH_SCHOOL: 'A water audit maps uses and finds waste such as leaks, high-flow fixtures and broken sprinklers.',
-        UNDERGRADUATE: 'Programs combine incentives, education, pricing, rules and feedback because each lever has strengths and weaknesses.',
-        GRADUATE: 'Demand management works on the demand side as an alternative or complement to new supply.',
-        PHD: 'Elasticity measures responsiveness of quantity to price; residential water demand is usually inelastic.',
-      },
-    },
-    {
-      id: 'wconsq2',
-      question: {
-        ELEMENTARY: 'When is the best time to water plants?',
-        MIDDLE_SCHOOL: 'How can you measure the flow rate of a shower with a bucket?',
-        HIGH_SCHOOL: 'What is the difference between efficiency and conservation?',
-        UNDERGRADUATE: 'What is the free-rider effect in a rebate program?',
-        GRADUATE: 'What is the revenue paradox of conservation?',
-        PHD: 'Why do block tariffs make price elasticity hard to estimate?',
-      },
-      options: {
-        ELEMENTARY: ['In the hot middle of the day', 'In the cool morning or evening', 'Only when it is raining', 'Never'],
-        MIDDLE_SCHOOL: ['Weigh the showerhead', 'Collect water for ten seconds and multiply by six', 'Count the drops for an hour', 'Look at the color of the water'],
-        HIGH_SCHOOL: ['They mean exactly the same thing', 'Efficiency gets the same result with less water; conservation also includes using less by changing what we do', 'Conservation only applies to farms', 'Efficiency means using more water faster'],
-        UNDERGRADUATE: ['Paying incentives to people who would have adopted the measure anyway', 'Giving away free fixtures to everyone', 'Customers who never pay their bills', 'Programs that cost nothing to run'],
-        GRADUATE: ['Conservation always raises utility profits', 'Successful conservation reduces sales, so rates may rise to cover largely fixed costs', 'Utilities have no fixed costs', 'Lower use always lowers every bill immediately'],
-        PHD: ['Marginal and average prices differ and price depends on quantity, creating simultaneity', 'Block tariffs have only one price', 'Water use is never metered', 'Elasticity is always exactly one'],
+        ELEMENTARY: ['Fish tanks', 'Farms', 'Toothbrushes', 'Swimming pools'],
+        MIDDLE_SCHOOL: ['About 5 percent', 'About 70 percent', 'Exactly half', 'Almost none'],
+        HIGH_SCHOOL: ['Bottled water', 'Water a utility produces but does not bill', 'Free drinking fountains', 'Rainwater'],
+        UNDERGRADUATE: ['Water sold to customers', 'Water evaporated, transpired or incorporated, no longer available downstream', 'Water returned to rivers', 'Water stored in tanks'],
+        GRADUATE: ['Someone who rides bikes for free', 'A participant rewarded for an action they would have taken anyway', 'A utility worker', 'A customer who never pays'],
+        PHD: ['Water in social media', 'The study of co-evolving human and water systems', 'Hydropower economics', 'Ocean chemistry'],
       },
       correctIndex: 1,
       explanation: {
-        ELEMENTARY: 'In the cool morning or evening less water dries up in the sun, so more soaks into the soil.',
-        MIDDLE_SCHOOL: 'Ten seconds times six gives the amount of water per minute, which is the flow rate.',
-        HIGH_SCHOOL: 'Efficiency improves the water needed per task; conservation includes behavior changes like shorter showers.',
-        UNDERGRADUATE: 'Free riders inflate apparent savings because their adoption was not caused by the program.',
-        GRADUATE: 'Because pipes, plants and debt are fixed costs, lower sales can force rate increases.',
-        PHD: 'Under block tariffs the price a customer faces depends on how much they use, complicating causal estimation.',
+        ELEMENTARY: 'Farms use the most water, to grow our food.',
+        MIDDLE_SCHOOL: 'Farms use about 70 percent of the fresh water people withdraw.',
+        HIGH_SCHOOL: 'Non-revenue water is produced but not billed, mostly due to leaks and meter errors.',
+        UNDERGRADUATE: 'Consumptive use leaves the local system through evaporation, transpiration or products.',
+        GRADUATE: 'Free riders would have acted without the incentive, so they inflate apparent savings.',
+        PHD: 'Socio-hydrology studies how human and water systems shape each other over time.',
       },
     },
     {
-      id: 'wconsq3',
+      id: 'ws-cons2-q2',
       question: {
-        ELEMENTARY: 'What should you do if you see a dripping tap at school?',
-        MIDDLE_SCHOOL: 'Why do native plants help save water?',
-        HIGH_SCHOOL: 'What does it mean if the water meter moves when nothing is running?',
-        UNDERGRADUATE: 'According to behavioral research, which approach tends to change behavior more than information alone?',
-        GRADUATE: 'What is demand hardening?',
-        PHD: 'Why do engineering estimates of savings often exceed metered savings?',
+        ELEMENTARY: 'How do towns find leaks in pipes under the street?',
+        MIDDLE_SCHOOL: 'What is tiered pricing for water?',
+        HIGH_SCHOOL: 'How does pressure management save water?',
+        UNDERGRADUATE: 'What does the infrastructure leakage index measure?',
+        GRADUATE: 'Why can successful conservation create financial problems for utilities?',
+        PHD: 'What explains the paradox of irrigation efficiency?',
       },
       options: {
-        ELEMENTARY: ['Ignore it', 'Turn it on more', 'Tell a teacher so it can be fixed', 'Put a cup under it forever'],
-        MIDDLE_SCHOOL: ['They grow only indoors', 'They need to be watered every hour', 'They are adapted to the local rainfall', 'They are made of plastic'],
-        HIGH_SCHOOL: ['The meter is brand new', 'The water is very clean', 'There is probably a leak', 'The toilet has been flushed'],
-        UNDERGRADUATE: ['Making action easy, timely and social, such as peer comparisons with clear next steps', 'Sending longer brochures', 'Removing all water bills', 'Avoiding any feedback'],
-        GRADUATE: ['Water freezing in pipes', 'Making demand forecasts more accurate', 'Reduced ability to cut use in an emergency after easy savings become permanent', 'Building harder pipes'],
-        PHD: ['Meters always overcount', 'Engineering models include rebound effects perfectly', 'Behavior, rebound and installation quality reduce real-world savings', 'Metered data are never available'],
+        ELEMENTARY: ['They ask the fish', 'They guess', 'They use special listening tools', 'They dig up every street'],
+        MIDDLE_SCHOOL: ['A cake recipe', 'The same price for everyone forever', 'Charging more per unit as use goes up', 'Free water for big users'],
+        HIGH_SCHOOL: ['It raises pressure to push leaks out', 'It adds more pipes', 'Lower pressure reduces leaks and bursts', 'It stops all water flow'],
+        UNDERGRADUATE: ['Water quality', 'Customer satisfaction', 'Actual leakage compared with an unavoidable minimum', 'Pipe colour'],
+        GRADUATE: ['Water becomes free', 'Pipes break more', 'Costs are largely fixed, so lower sales cut revenue', 'Customers stop paying'],
+        PHD: ['Drip lines always leak', 'Farmers ignore technology', 'Field losses are often recoverable return flows, and savings fund expansion', 'Rain increases with drip irrigation'],
       },
       correctIndex: 2,
       explanation: {
-        ELEMENTARY: 'Grown-ups can only fix leaks they know about, so telling a teacher helps save water.',
-        MIDDLE_SCHOOL: 'Native plants naturally grow with local rainfall, so they need less extra watering.',
-        HIGH_SCHOOL: 'If the meter turns while all taps and appliances are off, water is escaping somewhere.',
-        UNDERGRADUATE: 'Information alone is weak; easy, timely, social and concrete prompts work better.',
-        GRADUATE: 'Once efficiency is locked in, there is less slack left to cut during a drought.',
-        PHD: 'Real behavior, rebound and imperfect installation make observed savings smaller than modeled ones.',
+        ELEMENTARY: 'Workers use tools that listen for the sound of water escaping.',
+        MIDDLE_SCHOOL: 'Tiered pricing charges more per unit for higher use.',
+        HIGH_SCHOOL: 'Lowering pressure, especially at night, means less water escapes through cracks.',
+        UNDERGRADUATE: 'The ILI compares real leakage with the minimum unavoidable level.',
+        GRADUATE: 'Most utility costs are fixed, so selling less water lowers revenue and can force rate increases.',
+        PHD: 'What looks like loss often returns to rivers, and efficiency enables more consumption.',
       },
     },
     {
-      id: 'wconsq4',
+      id: 'ws-cons2-q3',
       question: {
-        ELEMENTARY: 'What does a rain barrel do?',
-        MIDDLE_SCHOOL: 'What does a water meter measure?',
-        HIGH_SCHOOL: 'Which outdoor tool delivers water directly to plant roots?',
-        UNDERGRADUATE: 'What does the levelized cost of conserved water allow planners to do?',
-        GRADUATE: 'Which instrument can reach renters and low-income homes most directly?',
-        PHD: 'What is the rebound effect in water conservation?',
+        ELEMENTARY: 'What is drip irrigation?',
+        MIDDLE_SCHOOL: 'What does a soil moisture sensor do?',
+        HIGH_SCHOOL: 'About how efficient are drip and micro-sprinkler systems?',
+        UNDERGRADUATE: 'What is return flow?',
+        GRADUATE: 'What does "demand hardening" mean?',
+        PHD: 'What happens after drought restrictions are lifted, according to studies?',
       },
       options: {
-        ELEMENTARY: ['Makes it rain', 'Cleans the roof', 'Holds bath water', 'Catches rain from the roof to use on the garden'],
-        MIDDLE_SCHOOL: ['The temperature of water', 'The color of water', 'The taste of water', 'How much water flows into a building'],
-        HIGH_SCHOOL: ['A fire hose', 'An overhead sprinkler at noon', 'A pressure washer', 'Drip irrigation'],
-        UNDERGRADUATE: ['Ignore the cost of programs', 'Measure water quality', 'Forecast rainfall', 'Compare conservation with new supply on a like-for-like cost basis'],
-        GRADUATE: ['Rebates that require upfront purchases', 'Higher fixed charges', 'Landscape incentives for property owners', 'Direct installation programs'],
-        PHD: ['Water bouncing off surfaces', 'Prices returning to earlier levels', 'Pipes recovering after repair', 'An increase in use that partly offsets efficiency gains'],
-      },
-      correctIndex: 3,
-      explanation: {
-        ELEMENTARY: 'A rain barrel stores rainwater so you can water plants without using tap water.',
-        MIDDLE_SCHOOL: 'A water meter records the volume of water used, which helps track savings and find leaks.',
-        HIGH_SCHOOL: 'Drip irrigation puts water right at the roots, losing less to evaporation and runoff.',
-        UNDERGRADUATE: 'Dividing program cost by lifetime water saved gives a cost per unit comparable with supply options.',
-        GRADUATE: 'Direct installation removes the upfront cost barrier that keeps many renters and low-income homes out of rebate programs.',
-        PHD: 'Rebound occurs when efficiency encourages more use, such as longer showers with efficient showerheads.',
-      },
-    },
-    {
-      id: 'wconsq5',
-      question: {
-        ELEMENTARY: 'What does mulch do for a garden?',
-        MIDDLE_SCHOOL: 'Why can a school water challenge reduce water use?',
-        HIGH_SCHOOL: 'Why does saving hot water bring a double benefit?',
-        UNDERGRADUATE: 'What does measurement and verification do?',
-        GRADUATE: 'Why should demand forecasts not simply extrapolate historical per capita use?',
-        PHD: 'What is technical conservation potential?',
-      },
-      options: {
-        ELEMENTARY: ['Keeps the soil damp for longer', 'Makes the soil dry out faster', 'Scares away all the birds', 'Turns plants blue'],
-        MIDDLE_SCHOOL: ['When people can see their water use, they often use less', 'Meters use up water', 'Charts make pipes stronger', 'Students drink less water'],
-        HIGH_SCHOOL: ['It also saves the energy used to heat that water', 'Hot water is free', 'Hot water cleans pipes', 'Hot water never leaks'],
-        UNDERGRADUATE: ['Estimates actual savings by comparing observed use with a credible baseline', 'Measures only pipe length', 'Verifies customer names', 'Counts the number of brochures sent'],
-        GRADUATE: ['Codes, appliance turnover and climate-driven outdoor demand change future use', 'History always repeats exactly', 'Population never changes', 'Forecasts are not used in planning'],
-        PHD: ['An upper bound of savings if all cost-effective measures were fully adopted', 'The savings that will definitely happen next year', 'The amount of water a pump can lift', 'The minimum water a household needs'],
+        ELEMENTARY: ['Watering plants slowly at their roots', 'Spraying water into the sky', 'Pouring buckets on roads', 'Watering only the leaves'],
+        MIDDLE_SCHOOL: ['Measures how wet the soil is', 'Counts worms', 'Measures sunlight', 'Plants seeds'],
+        HIGH_SCHOOL: ['About 85 to 95 percent', 'About 10 percent', 'About 30 percent', 'Exactly 50 percent'],
+        UNDERGRADUATE: ['Applied water that returns to rivers or aquifers for reuse', 'Water sold back to utilities', 'Water flowing uphill', 'Rain that falls twice'],
+        GRADUATE: ['Less ability to cut use in emergencies after routine efficiency gains', 'Pipes becoming harder', 'Prices rising during floods', 'Soil becoming compacted'],
+        PHD: ['Use rebounds as restrictions lift', 'Use falls to zero', 'Nothing changes', 'Prices drop permanently'],
       },
       correctIndex: 0,
       explanation: {
-        ELEMENTARY: 'Mulch is like a blanket that keeps moisture in the soil so plants need less watering.',
-        MIDDLE_SCHOOL: 'Tracking meter readings and setting goals helps people notice and reduce their use.',
-        HIGH_SCHOOL: 'Heating water takes energy, so less hot water means saving both water and energy.',
-        UNDERGRADUATE: 'Measurement and verification compares real use against a baseline to estimate true savings.',
-        GRADUATE: 'Efficiency standards and climate change shift demand, so past per capita trends can mislead.',
-        PHD: 'Technical potential is a ceiling; realistic potential is lower because of adoption limits.',
+        ELEMENTARY: 'Drip irrigation gives water drop by drop right at the roots.',
+        MIDDLE_SCHOOL: 'Soil moisture sensors tell farmers when the soil is dry.',
+        HIGH_SCHOOL: 'Drip and micro-sprinklers deliver about 85 to 95 percent of water to crops.',
+        UNDERGRADUATE: 'Return flow is water that goes back to rivers or aquifers and can be reused.',
+        GRADUATE: 'Once everyone is efficient, there is less easy water to cut in a crisis.',
+        PHD: 'Studies find use rebounds after restrictions end.',
+      },
+    },
+    {
+      id: 'ws-cons2-q4',
+      question: {
+        ELEMENTARY: 'What is a drought?',
+        MIDDLE_SCHOOL: 'What is turf replacement?',
+        HIGH_SCHOOL: 'How can saving water with drip irrigation sometimes increase total water use?',
+        UNDERGRADUATE: 'Typical residential price elasticity of water demand is about:',
+        GRADUATE: 'How can "use it or lose it" water rights rules discourage conservation?',
+        PHD: 'What institutional conditions appear to be prerequisites for effective reallocation of conserved water?',
+      },
+      options: {
+        ELEMENTARY: ['A big flood', 'A snowstorm', 'A sunny afternoon', 'A long time with very little rain'],
+        MIDDLE_SCHOOL: ['Painting grass green', 'Planting more lawns', 'Mowing more often', 'Swapping grass lawns for low-water plants'],
+        HIGH_SCHOOL: ['Drip lines leak more', 'Farmers stop farming', 'Rain stops', 'Farmers may plant more acres with the saved water'],
+        UNDERGRADUATE: ['−5 to −10', 'Exactly zero', '+1 to +2', '−0.1 to −0.4'],
+        GRADUATE: ['They make water free', 'They require meters', 'They ban irrigation', 'Saving water can forfeit rights to it'],
+        PHD: ['No monitoring', 'Unclear rights', 'Open access with no rules', 'Secure, well-defined rights to consumptive use plus monitoring'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'A drought is a long time with very little rain.',
+        MIDDLE_SCHOOL: 'Turf replacement swaps thirsty lawns for plants that need little water.',
+        HIGH_SCHOOL: 'If the saved water is used on more land, total use can go up.',
+        UNDERGRADUATE: 'Residential demand responds weakly to price, around −0.1 to −0.4.',
+        GRADUATE: 'If unused water rights are lost, users have reason to keep using water.',
+        PHD: 'Clear rights to consumptive use and monitoring make reallocation work.',
+      },
+    },
+    {
+      id: 'ws-cons2-q5',
+      question: {
+        ELEMENTARY: 'What does a water meter do?',
+        MIDDLE_SCHOOL: 'How can cities and farmers work together in dry regions?',
+        HIGH_SCHOOL: 'What do basins that want real savings pair with efficiency upgrades?',
+        UNDERGRADUATE: 'How are reductions in consumptive use often measured for urban-agricultural deals?',
+        GRADUATE: 'Which method compares changes over time in treated and comparison groups?',
+        PHD: 'Which environmental policy tests whether conservation can restore river flows?',
+      },
+      options: {
+        ELEMENTARY: ['Measures how much water is used', 'Makes water colder', 'Cleans the water', 'Plays a song'],
+        MIDDLE_SCHOOL: ['Cities help pay for farm upgrades and share the saved water', 'Cities buy all farms', 'Farmers move to cities', 'They stop using rivers'],
+        HIGH_SCHOOL: ['Limits on total water use', 'More flood irrigation', 'Bigger lawns', 'Lower prices'],
+        UNDERGRADUATE: ['Satellite estimates of evapotranspiration', 'Counting tractors', 'Phone surveys of farmers only', 'Measuring rainfall in cities'],
+        GRADUATE: ['Difference-in-differences', 'Simple averages', 'Asking participants how they feel', 'Counting rebates issued'],
+        PHD: ['Environmental water acquisition programmes', 'Building more dams', 'Expanding irrigated area', 'Removing all meters'],
+      },
+      correctIndex: 0,
+      explanation: {
+        ELEMENTARY: 'A water meter measures how much water a home or farm uses.',
+        MIDDLE_SCHOOL: 'Cities can fund farm efficiency and share the water saved.',
+        HIGH_SCHOOL: 'Caps on total use stop saved water from being used elsewhere.',
+        UNDERGRADUATE: 'Satellites estimate evapotranspiration to measure consumptive use.',
+        GRADUATE: 'Difference-in-differences compares before-and-after changes against a comparison group.',
+        PHD: 'Environmental water acquisition directs conserved water to river flows.',
       },
     },
   ],

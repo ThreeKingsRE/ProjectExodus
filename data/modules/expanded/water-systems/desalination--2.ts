@@ -1,411 +1,304 @@
 import type { ModuleExpansion } from '../types'
 
+// Rewritten with its own angle: the costs and side effects of desalination and
+// the alternatives to weigh first. Chapter 10 covers how desalination works.
 const expansion: ModuleExpansion = {
   topicId: 'water-systems',
   moduleKey: 'desalination~2',
+  title: 'Desalination Trade-offs: Brine, Energy and Alternatives',
+  description: {
+    ELEMENTARY: 'Turning seawater into drinking water is amazing, but it uses lots of energy and leaves very salty water behind.',
+    MIDDLE_SCHOOL: 'The energy, cost and salty waste of desalination, and other ways towns can find water first.',
+    HIGH_SCHOOL: 'Weighing desalination\'s energy use, brine and cost against conservation, reuse and other supplies.',
+    UNDERGRADUATE: 'Desalination trade-offs: energy intensity, brine management, marine impacts, cost and alternatives.',
+    GRADUATE: 'Planning decisions on desalination: lifecycle impacts, portfolio planning and governance of new supply.',
+    PHD: 'Research on desalination sustainability: brine valorisation, renewable coupling and water-energy planning.',
+  },
   lessons: [
     {
       id: 'ws-desal-1',
-      title: 'Fresh from Salt: Inside the Machines',
+      title: 'Desalination Trade-offs: Brine, Energy and Alternatives',
       content: {
         ELEMENTARY: `
-<h2>The Amazing Salt-Removing Machines</h2>
-<p>Imagine a giant machine by the beach that drinks up ocean water and gives back fresh water you can drink. That is real! These machines are called desalination plants. Engineers build them for towns near the sea that do not have enough rivers or rain. Let's peek inside and see how they work.</p>
+<h2>Ocean Water to Drinking Water</h2>
+<p>The ocean holds almost all the water on Earth, but it is far too salty to drink. Some places with very little rain build big factories called desalination plants. These plants push seawater through very fine filters that let water through but hold the salt back. Out comes fresh water people can drink!</p>
 
-<h3>Why Can't We Drink Sea Water?</h3>
-<p>Sea water has lots of salt mixed into it. You cannot see the salt because it is dissolved, just like sugar disappears in lemonade. If you drink salty sea water, your body has to work hard to get rid of the salt, and you end up even more thirsty. So the salt has to come out first.</p>
-
-<h3>The Super Tiny Sieve</h3>
-<p>Most new plants use a very special kind of sieve called a <em>membrane</em>. It looks like a thin sheet of plastic, but it has holes so tiny that water can squeeze through while the salt stays behind. Big pumps push the sea water hard against the membrane, like squeezing water through a sponge. Fresh water comes out the other side!</p>
+<h3>It Takes Lots of Energy</h3>
+<p>Pushing seawater through those filters takes a lot of pushing, and pushing takes energy. A desalination plant uses much more electricity than getting water from a river or lake. If that electricity comes from burning coal or gas, it adds pollution to the air.</p>
 <ul>
-<li><strong>Desalination:</strong> taking the salt out of sea water so people can drink it</li>
-<li><strong>Membrane:</strong> a very thin sheet with tiny holes that lets water pass but stops salt</li>
-<li><strong>Pump:</strong> a strong machine that pushes water through pipes and membranes</li>
-<li><strong>Engineer:</strong> a person who designs and builds machines to solve problems</li>
-<li><strong>Brine:</strong> the extra-salty water that is left over after fresh water is made</li>
+<li><strong>Desalination:</strong> taking the salt out of seawater to make fresh water</li>
+<li><strong>Filter:</strong> something that lets some things through and holds others back</li>
+<li><strong>Brine:</strong> extra-salty water left over after desalination</li>
+<li><strong>Energy:</strong> the power needed to make machines work</li>
+<li><strong>Reuse:</strong> cleaning used water so it can be used again</li>
 </ul>
 
-<h3>Cleaning Before Squeezing</h3>
-<p>Ocean water also has sand, seaweed and tiny sea creatures in it. Those would clog the tiny holes in the membrane. So first the water goes through screens and filters, a bit like how you rinse sand off your feet before going inside.</p>
+<h3>What Happens to the Salt?</h3>
+<p>The salt does not disappear. It ends up in leftover water called brine, which is twice as salty as the sea. If brine is dumped in one spot, it can sink and harm sea creatures on the seafloor. Plants must spread it out carefully.</p>
 
-<h3>Machines Need Energy</h3>
-<p>Pushing water through a membrane takes a lot of energy, so desalination uses lots of electricity. Clever engineers have found ways to reuse some of that push, and some plants use power from the sun or wind. Still, making fresh water from the sea costs more than using rain or river water.</p>
-
-<h3>How You Can Help</h3>
-<ol>
-<li>Use water carefully, so towns need less from big machines.</li>
-<li>Turn off the tap while you brush your teeth.</li>
-<li>Draw your own design for a water machine and explain how it would work.</li>
-</ol>
-
-<h3>Think About It</h3>
-<p>If you were an engineer, how would you make a salt-removing machine that uses less energy? Lots of scientists are working on that very question right now!</p>
+<h3>Try Other Ways First</h3>
+<p>Before building a plant, towns can fix leaky pipes, catch rainwater and clean used water to use again. These ways often cost less. Desalination can be a helpful extra, especially in very dry places by the sea where rain hardly ever falls.</p>
 `,
         MIDDLE_SCHOOL: `
-<h2>How a Desalination Plant Works, Step by Step</h2>
-<p>Desalination is the process of removing dissolved salts from seawater or salty groundwater so it can be used for drinking, farming or industry. Today, the most common technology is <em>reverse osmosis</em>, which uses pressure and special membranes. In this lesson you will follow the water through the main parts of a reverse osmosis plant and learn why each part is needed.</p>
+<h2>The Price of Fresh Water From the Sea</h2>
+<p>Desalination can make drinking water from an almost endless source: the ocean. Countries in the Middle East, North Africa and dry coastal cities in places like Australia and California rely on it. But desalination comes with trade-offs in energy, money and the environment. Smart planners weigh those trade-offs against other ways to get water.</p>
 
-<h3>First, What Is Osmosis?</h3>
-<p>Osmosis is a natural process. When fresh water and salty water are separated by a membrane that lets only water through, water naturally moves toward the saltier side. This is how plant roots take in water. <em>Reverse</em> osmosis does the opposite: a pump pushes so hard on the salty side that water is forced through the membrane, leaving the salt behind.</p>
-
-<h3>The Journey Through the Plant</h3>
-<ol>
-<li><strong>Intake:</strong> pipes draw seawater from the ocean, with screens to keep fish and debris out.</li>
-<li><strong>Pretreatment:</strong> filters remove sand, algae and tiny particles that could clog the membranes.</li>
-<li><strong>High-pressure pumps:</strong> powerful pumps raise the water pressure far above normal tap pressure.</li>
-<li><strong>Membranes:</strong> rolled-up membrane sheets inside long tubes let fresh water through and hold back salt.</li>
-<li><strong>Post-treatment:</strong> a few minerals are added back so the water tastes good and does not corrode pipes, and it is disinfected.</li>
-<li><strong>Brine discharge:</strong> the leftover salty water is carefully returned to the sea.</li>
-</ol>
-
-<h3>Key Words</h3>
+<h3>Energy and Cost</h3>
+<p>Most modern plants use reverse osmosis, which forces seawater through membranes at high pressure. Making a cubic metre of drinking water this way takes around 3 to 4 kilowatt-hours of electricity, several times more than treating river water. Energy is the biggest running cost, and building a large plant can cost billions. Pairing plants with solar or wind power can cut their pollution and help keep energy costs steady.</p>
 <ul>
-<li><strong>Osmosis:</strong> the natural movement of water through a membrane toward the saltier side</li>
-<li><strong>Reverse osmosis:</strong> using pressure to push water through a membrane away from the salt</li>
-<li><strong>Pretreatment:</strong> cleaning seawater before it reaches the membranes so they do not clog</li>
-<li><strong>Fouling:</strong> a buildup of dirt, minerals or living things that clogs a membrane</li>
-<li><strong>Energy recovery device:</strong> a machine that reuses the pressure left in the brine to save energy</li>
-<li><strong>Brackish water:</strong> water that is saltier than fresh water but less salty than the sea</li>
+<li><strong>Reverse osmosis:</strong> pushing water through a membrane at high pressure to remove salt</li>
+<li><strong>Membrane:</strong> a thin sheet with tiny pores that blocks salt</li>
+<li><strong>Brine discharge:</strong> releasing leftover salty water back into the sea</li>
+<li><strong>Intake:</strong> the pipe that draws seawater into a plant</li>
+<li><strong>Water recycling:</strong> treating wastewater so it can be used again</li>
 </ul>
 
-<h3>Comparing Desalination Methods</h3>
-<table>
-<thead><tr><th>Method</th><th>How it works</th><th>Where it is common</th></tr></thead>
-<tbody>
-<tr><td>Reverse osmosis</td><td>Pushes water through membranes using pressure</td><td>Most new plants around the world</td></tr>
-<tr><td>Thermal distillation</td><td>Boils water and collects the steam</td><td>Older plants, often where fuel is cheap</td></tr>
-<tr><td>Electrodialysis</td><td>Uses electricity to pull salt particles out of water</td><td>Slightly salty (brackish) water</td></tr>
-</tbody>
-</table>
+<h3>Effects on the Ocean</h3>
+<p>For every litre of fresh water, plants produce more than a litre of brine. Brine is denser than seawater, so it can settle on the seafloor and stress plants and animals there. Intakes can also suck in fish eggs and tiny creatures. Well-designed plants use diffusers to mix brine quickly and screened or under-seafloor intakes to protect marine life.</p>
 
-<h3>The Energy Challenge</h3>
-<p>Squeezing water through a membrane takes a lot of energy. Engineers found a smart trick: the leftover brine leaves the membranes still under high pressure. An <em>energy recovery device</em> passes that pressure back to incoming seawater, like passing a push from one swing to another. This simple idea has cut the energy use of modern plants a great deal compared with older ones.</p>
-
-<h3>Why It Matters</h3>
-<p>Desalination gives dry coastal places a water source that does not depend on rain. But it uses more energy and money than most other sources, and the brine must be handled carefully to protect sea life. That is why saving water usually comes first, and desalination is often used alongside other sources.</p>
+<h3>Alternatives to Weigh</h3>
+<p>Fixing leaks, saving water, capturing stormwater and recycling wastewater often cost less and use less energy than desalination. Many cities build a mix: conservation and recycling first, with desalination as a drought-proof backup that can run harder when rain is scarce.</p>
 `,
         HIGH_SCHOOL: `
-<h2>Desalination Technologies: Pressure, Heat and Energy</h2>
-<p>Desalination turns seawater or brackish groundwater into fresh water. It is technically mature and used in many dry coastal regions, from the Middle East to Australia to parts of the Americas. Yet it remains one of the most energy-hungry ways to supply water. Understanding the main technologies, why they need energy and how engineers reduce that need helps explain both the promise and the limits of desalination.</p>
+<h2>Is Desalination the Answer?</h2>
+<p>When droughts strike coastal cities, desalination looks like a perfect solution: an unlimited, drought-proof supply of fresh water. Global desalination capacity has grown rapidly, and some countries now get most of their drinking water from the sea. Yet desalination is one of the most energy-intensive and expensive ways to supply water, and it produces large volumes of brine. This chapter weighs those trade-offs and the alternatives planners compare it with.</p>
 
-<h3>The Physics: Osmotic Pressure</h3>
-<p>Seawater contains roughly 35 grams of dissolved salt per liter. Because of this, it has an <em>osmotic pressure</em> of roughly 25 bar, meaning water would naturally flow into seawater from fresh water with that much force. To push water the other way, a reverse osmosis plant must apply more than that pressure. In practice, seawater plants operate at roughly 55 to 70 bar, because as fresh water is removed, the remaining water gets saltier and its osmotic pressure rises. Brackish water has far less salt, so it can be treated at much lower pressure and lower cost.</p>
-
-<h3>Main Technologies</h3>
+<h3>The Energy Question</h3>
+<p>Reverse osmosis (RO) seawater plants typically use about 3 to 4 kWh of electricity per cubic metre of fresh water, compared with well under 1 kWh for conventional treatment of fresh water. Energy recovery devices recapture pressure from the brine stream and have cut energy use dramatically since the 1990s, but the thermodynamic minimum for separating salt means energy will always be significant. Where electricity comes from fossil fuels, desalination adds to greenhouse emissions; powering plants with renewable energy or buying renewable electricity offsets this.</p>
 <ul>
-<li><strong>Reverse osmosis (RO):</strong> high-pressure pumps force water through semi-permeable membranes that reject most dissolved salts</li>
-<li><strong>Multi-stage flash (MSF):</strong> heated seawater flashes into steam in a series of chambers at progressively lower pressure</li>
-<li><strong>Multi-effect distillation (MED):</strong> steam from one chamber heats the next, reusing heat several times</li>
-<li><strong>Electrodialysis:</strong> an electric field pulls charged salt ions through ion-exchange membranes, suited to brackish water</li>
-<li><strong>Recovery ratio:</strong> the fraction of feed water that becomes fresh product water, the rest leaving as brine</li>
+<li><strong>Energy recovery device:</strong> equipment that reuses pressure from the brine stream to cut energy use</li>
+<li><strong>Brine:</strong> the concentrated salty water left after fresh water is removed</li>
+<li><strong>Diffuser:</strong> a pipe outlet with many nozzles that mixes brine quickly with seawater</li>
+<li><strong>Impingement and entrainment:</strong> harm to marine life trapped against or drawn into an intake</li>
+<li><strong>Potable reuse:</strong> purifying wastewater to drinking water standards</li>
 </ul>
 
-<h3>Comparing Processes</h3>
-<table>
-<thead><tr><th>Technology</th><th>Energy type</th><th>Relative energy use</th><th>Typical use</th></tr></thead>
-<tbody>
-<tr><td>Seawater RO</td><td>Electricity</td><td>Moderate, lowest for seawater</td><td>Most new municipal plants</td></tr>
-<tr><td>Brackish RO</td><td>Electricity</td><td>Low</td><td>Inland salty aquifers</td></tr>
-<tr><td>MSF and MED</td><td>Heat plus some electricity</td><td>High</td><td>Often paired with power plants</td></tr>
-<tr><td>Electrodialysis</td><td>Electricity</td><td>Rises with salinity</td><td>Low-salinity brackish water</td></tr>
-</tbody>
-</table>
+<h3>Brine and Marine Life</h3>
+<p>Seawater RO recovers roughly 40 to 50 percent of intake water as fresh water; the rest returns as brine about twice as salty, sometimes warmer and containing treatment chemicals. Because brine sinks, it can harm seafloor communities like seagrass if poorly dispersed. Diffusers, siting in high-energy waters and limits on salinity at the edge of a mixing zone reduce impacts. Intakes can kill fish larvae through impingement and entrainment; subsurface intakes or fine screens and slow intake velocities help.</p>
 
-<h3>Cutting the Energy Bill</h3>
-<p>Seawater RO energy use has fallen dramatically over recent decades, mainly due to three advances: better membranes that let more water through at a given pressure, efficient high-pressure pumps, and <em>energy recovery devices</em>. A pressure exchanger, for example, transfers the high pressure of the outgoing brine directly to the incoming seawater, recovering most of that energy. Even so, desalinated seawater generally needs several times more energy per liter than conventional treatment of river or lake water.</p>
-
-<h3>Environmental Trade-Offs</h3>
-<ol>
-<li><strong>Brine:</strong> concentrated salt water, often around twice as salty as seawater, can harm seafloor life if not diluted with diffusers.</li>
-<li><strong>Intakes:</strong> open-ocean intakes can trap fish and plankton; subsurface intakes and fine screens reduce this.</li>
-<li><strong>Energy emissions:</strong> if powered by fossil fuels, desalination adds greenhouse gases; renewable power reduces this.</li>
-<li><strong>Chemicals:</strong> pretreatment and cleaning chemicals must be managed so they do not reach the sea untreated.</li>
-</ol>
-
-<h3>Real-World Applications</h3>
-<p>Cities often treat desalination as drought insurance: a reliable supply that runs harder in dry years. Many pair it with conservation, water recycling and renewable electricity purchases. Small solar-powered units also serve islands and remote communities. The key lesson is that desalination works best as one part of a diverse water portfolio, not a replacement for using water wisely.</p>
+<h3>Comparing Options</h3>
+<p>Planners compare desalination with demand reduction, leak reduction, stormwater capture, groundwater banking and water recycling. Potable reuse of treated wastewater typically uses about half the energy of seawater desalination and is also drought-proof, though public acceptance must be built. Many cities treat desalination as an "insurance" supply that runs at full output only in droughts, which raises its cost per unit when it does run.</p>
 `,
         UNDERGRADUATE: `
-<h2>Engineering Analysis of Reverse Osmosis and Thermal Desalination</h2>
-<p>This lesson treats desalination as an engineering system to be analyzed quantitatively. We examine the thermodynamics that set a floor on energy use, the design variables of reverse osmosis trains, the role of thermal processes, and how capital, energy and operating costs combine into the cost of desalinated water. The goal is to be able to reason about why plants are designed as they are and where improvements remain possible.</p>
+<h2>Desalination Trade-offs</h2>
+<p>Desalination capacity worldwide exceeds 100 million cubic metres per day, concentrated in the Middle East, North Africa and arid coastal regions. Reverse osmosis has largely displaced thermal processes for new seawater plants because of its lower energy use. Nonetheless, desalination remains among the most energy- and capital-intensive water supply options, with environmental impacts at both intake and outfall. This chapter analyses those trade-offs and how desalination compares with alternative supplies.</p>
 
-<h3>Core Concepts</h3>
+<h3>Energy Intensity and Thermodynamics</h3>
+<p>The theoretical minimum energy to desalinate standard seawater at 50 percent recovery is roughly 1 kWh per cubic metre. Modern seawater RO plants with isobaric energy recovery devices achieve about 2.5 to 3.5 kWh per cubic metre for the RO stage, and 3 to 4 including intake, pre-treatment and conveyance. Brackish water desalination, with lower salinity, requires far less energy. The carbon footprint depends on the electricity mix, ranging from near zero with renewable supply to over 2 kg CO₂ per cubic metre with coal-heavy grids.</p>
 <ul>
-<li><strong>Minimum energy of separation:</strong> the thermodynamic lower bound on the work needed to separate fresh water from salt water, which rises with recovery and salinity</li>
-<li><strong>Specific energy consumption:</strong> the energy used per cubic meter of product water, usually expressed in kilowatt-hours per cubic meter</li>
-<li><strong>Concentration polarization:</strong> the buildup of salt in a thin layer next to the membrane surface, which raises local osmotic pressure</li>
-<li><strong>Salt rejection:</strong> the percentage of dissolved salt held back by the membrane, typically above 99 percent for seawater elements</li>
-<li><strong>Levelized cost of water:</strong> the total lifetime cost of a plant divided by the total water it produces, expressed per cubic meter</li>
-<li><strong>Gain output ratio:</strong> for thermal plants, the mass of distilled water produced per mass of heating steam used</li>
+<li><strong>Recovery ratio:</strong> the fraction of feedwater that becomes fresh product water</li>
+<li><strong>Specific energy consumption:</strong> energy used per cubic metre of product water</li>
+<li><strong>Mixing zone:</strong> the area around an outfall where discharge standards may be exceeded while brine dilutes</li>
+<li><strong>Zero liquid discharge:</strong> treatment that recovers water and solids so no liquid brine is discharged</li>
+<li><strong>Levelised cost of water:</strong> lifetime cost of a supply divided by the volume it delivers</li>
 </ul>
 
-<h3>Thermodynamic Limits</h3>
-<p>For typical seawater at around 50 percent recovery, the theoretical minimum separation energy is on the order of 1 kilowatt-hour per cubic meter. Well-designed modern seawater RO plants typically use roughly 3 to 4 kilowatt-hours per cubic meter for the RO step, within a few multiples of the floor. The gap comes from irreversibilities: applying pressure above the local osmotic pressure to sustain flux, pump and motor inefficiencies, friction losses, and incomplete energy recovery. Higher recovery saves pretreatment and intake costs but raises brine osmotic pressure and the required feed pressure, so recovery for seawater RO is usually kept to roughly 40 to 50 percent.</p>
+<h3>Brine Management</h3>
+<p>Global brine production is estimated to exceed the volume of desalinated water produced. Ocean outfalls with multiport diffusers achieve rapid dilution; regulations set salinity limits at the edge of the mixing zone. Pre-treatment chemicals (antiscalants, coagulants) and occasional cleaning chemicals require management. Inland plants face harder choices: evaporation ponds, deep-well injection or energy-intensive zero liquid discharge.</p>
 
-<h3>Anatomy of an RO Train</h3>
-<table>
-<thead><tr><th>Component</th><th>Function</th><th>Key design variable</th></tr></thead>
-<tbody>
-<tr><td>Intake (open or subsurface)</td><td>Supplies feed water</td><td>Impingement and entrainment of marine life</td></tr>
-<tr><td>Pretreatment (media filters, ultrafiltration, flotation)</td><td>Removes particles, algae and organics</td><td>Feed quality indicators such as silt density index</td></tr>
-<tr><td>Spiral-wound membrane elements in pressure vessels</td><td>Separate permeate from concentrate</td><td>Flux, recovery, number of stages and passes</td></tr>
-<tr><td>High-pressure pump and energy recovery device</td><td>Supply and recycle pressure</td><td>Pump efficiency, isobaric versus turbine recovery</td></tr>
-<tr><td>Post-treatment</td><td>Remineralize and disinfect</td><td>Hardness, alkalinity and corrosion control</td></tr>
-</tbody>
-</table>
-<p>Most seawater membranes are thin-film composite polyamide. They offer high rejection and permeability but are damaged by chlorine, so disinfectant used in pretreatment must be removed before the membranes. Some constituents, such as boron, are only partially rejected in a single pass, so plants may add a second pass, sometimes at elevated pH, to meet drinking or irrigation targets.</p>
+<h3>Costs and Planning</h3>
+<p>Levelised costs for large seawater RO plants often fall around 0.5 to 1.5 US dollars per cubic metre, higher for small plants or where land, energy and financing are expensive. Because capital costs dominate, plants that run below capacity during wet years have higher unit costs. Integrated resource planning compares desalination with conservation, recycling, stormwater capture and transfers on cost, energy, reliability and environmental impacts.</p>
 
-<h3>Thermal Processes</h3>
-<p>Multi-stage flash and multi-effect distillation evaporate water and condense the vapor. Their energy demand is mostly heat, which is why they are commonly co-located with power plants that supply waste or extraction steam. They tolerate poor feed quality well but generally use more total energy than RO. Mechanical vapor compression is a thermal variant driven by electricity, used at smaller scale.</p>
-
-<h3>Economics</h3>
-<p>The cost of desalinated water combines capital recovery (intake, outfall, membranes, buildings), energy, membrane replacement, chemicals, labor and maintenance. Energy is typically one of the largest single operating costs, so electricity price strongly influences the cost per cubic meter. Capacity utilization also matters: a plant built for drought insurance that runs at low output in wet years has a high cost per cubic meter actually delivered.</p>
-
-<h3>Analytical Checklist</h3>
-<ol>
-<li>Characterize feed salinity, temperature and fouling potential through the seasons.</li>
-<li>Choose recovery by balancing intake and pretreatment costs against feed pressure.</li>
-<li>Estimate specific energy consumption and compare it with the thermodynamic minimum.</li>
-<li>Specify product water quality targets, including boron and remineralization.</li>
-<li>Calculate levelized cost under different utilization and energy price scenarios.</li>
-</ol>
+<h3>Alternatives</h3>
+<p>Indirect and direct potable reuse typically require around 1 to 1.5 kWh per cubic metre, less than half that of seawater RO, while also reducing wastewater discharges. Combining options often yields more resilient portfolios than relying on any single source, and spreads risk across different weather and energy conditions.</p>
 `,
         GRADUATE: `
-<h2>Sustainable Desalination: Brine, Renewables and System Integration</h2>
-<p>Graduate-level analysis moves from how desalination works to whether, when and how it should be deployed. Desalination plants are long-lived, capital-intensive assets with environmental footprints at sea and on the grid. Making them sustainable involves brine management, energy sourcing, integration with wider water portfolios and governance arrangements that protect ecosystems and affordability.</p>
+<h2>Planning Decisions on Desalination</h2>
+<p>Few water supply decisions are as consequential as committing to a large desalination plant. Plants are capital-intensive, long-lived and energy-hungry, and their value depends on uncertain future demand, climate and alternative supplies. Several cities have built plants during droughts that then sat largely idle when rains returned, while others rely on desalination as a core supply. This chapter examines lifecycle impacts, portfolio planning under uncertainty and governance.</p>
 
-<h3>Key Concepts for Sustainable Deployment</h3>
+<h3>Lifecycle and Environmental Assessment</h3>
+<p>Lifecycle assessments show operation dominates impacts through electricity use, so siting near renewable resources or contracting renewable power is the main lever for climate impact. Local marine effects depend on intake design, brine dilution and receiving-water ecology. Cumulative impacts matter in semi-enclosed seas with many plants, where brine and thermal discharges may raise salinity and temperature regionally.</p>
 <ul>
-<li><strong>Brine management:</strong> the set of methods for disposing of, diluting, treating or reusing the concentrated stream left after desalination</li>
-<li><strong>Outfall diffuser:</strong> a discharge structure that mixes brine rapidly with seawater to limit salinity increases near the seabed</li>
-<li><strong>Zero liquid discharge:</strong> a treatment approach that recovers almost all water and leaves only solid salts, at high energy and cost</li>
-<li><strong>Renewable integration:</strong> powering desalination with wind, solar or other low-carbon sources through direct coupling, contracts or grid procurement</li>
-<li><strong>Operational flexibility:</strong> the ability of a plant to vary its output, which affects how well it can follow variable renewable supply</li>
-<li><strong>Take-or-pay contract:</strong> a purchase agreement under which a utility pays for contracted water whether or not it uses it</li>
+<li><strong>Integrated resource planning:</strong> evaluating supply and demand options together against multiple objectives</li>
+<li><strong>Real options analysis:</strong> valuing flexibility to expand, delay or adapt investments as uncertainty resolves</li>
+<li><strong>Stranded asset:</strong> an investment that is underused or uneconomic before the end of its expected life</li>
+<li><strong>Take-or-pay contract:</strong> an agreement requiring payment for a minimum volume whether or not it is taken</li>
+<li><strong>Cumulative impact:</strong> combined environmental effects of multiple facilities or stressors</li>
 </ul>
 
-<h3>Brine Management Options</h3>
-<table>
-<thead><tr><th>Option</th><th>Typical setting</th><th>Main concerns</th></tr></thead>
-<tbody>
-<tr><td>Ocean outfall with diffusers</td><td>Coastal seawater plants</td><td>Benthic habitats, local mixing conditions, residual chemicals</td></tr>
-<tr><td>Co-discharge with wastewater or cooling water</td><td>Plants near treatment works or power plants</td><td>Dependence on the partner facility's flows</td></tr>
-<tr><td>Deep-well injection</td><td>Inland brackish plants</td><td>Geological suitability, groundwater protection</td></tr>
-<tr><td>Evaporation ponds</td><td>Small plants in arid regions</td><td>Large land area, wildlife exposure, leakage</td></tr>
-<tr><td>Concentration and mineral recovery</td><td>Emerging, often pilot scale</td><td>High energy demand, market value of recovered products</td></tr>
-</tbody>
-</table>
-<p>For inland brackish desalination, brine disposal is often the binding constraint, because there is no ocean for dilution. This is a major reason why inland projects can cost far more than their energy use alone suggests.</p>
+<h3>Portfolio Planning Under Uncertainty</h3>
+<p>Because desalination provides drought-independent supply, its value is partly as insurance. Robust decision-making and real options approaches compare building large plants early with modular, staged capacity triggered by storage levels or demand. Studies of drought-era plants show the risks of take-or-pay contracts and plants sized for worst-case scenarios that become stranded assets. Combining desalination with aquifer storage, so surplus production in wet years is banked, can improve utilisation.</p>
 
-<h3>Renewable Integration</h3>
-<p>Desalination's large, steady electricity demand makes its carbon footprint a central policy issue. Options include on-site solar or wind, long-term renewable power purchase agreements, and grid supply in systems with low-carbon generation. Direct coupling to variable renewables raises engineering questions: membranes and pumps prefer steady operation, but storage of product water is usually cheaper than storing electricity. Designing plants with some modular, variable capacity and treating water storage as a buffer can let desalination absorb surplus renewable power.</p>
-
-<h3>Portfolio Planning</h3>
-<p>Desalination is often justified as climate-independent supply, but its high fixed costs mean planners must compare it with demand management, leakage reduction, stormwater capture and potable reuse. A sound comparison uses marginal costs, considers reliability value under drought scenarios, and accounts for the risk of building capacity that sits idle. Staged or modular construction can reduce that risk.</p>
+<h3>Comparing With Alternatives</h3>
+<p>Potable reuse offers drought-resilient supply at lower energy use and often lower cost, with public acceptance as the main barrier. Demand management and loss reduction often have the lowest levelised costs. Multi-criteria analysis weighing cost, energy, greenhouse emissions, reliability, ecological impacts and social acceptance supports transparent comparison.</p>
 
 <h3>Governance and Equity</h3>
-<p>Desalination costs flow into water tariffs, which weigh most heavily on low-income households. Long-term private contracts can shift risks between utilities and investors in ways that are hard for the public to see. Coastal siting can affect fisheries, recreation and Indigenous and local communities with ties to marine areas. Transparent environmental assessment, meaningful consultation and affordability measures are therefore part of sustainable deployment, not optional extras.</p>
+<p>Large desalination plants are often delivered through public-private partnerships, which allocate construction and operational risk but can lock utilities into long contracts. Cost recovery through water rates raises affordability concerns, particularly when plants are underused. Transparent planning processes, independent review of demand forecasts and attention to who pays and who benefits are central to legitimate decisions.</p>
 
-<h3>Evaluation Framework</h3>
-<ol>
-<li>Establish the need through a demand and supply portfolio analysis under climate scenarios.</li>
-<li>Assess intake and brine impacts with site-specific marine studies and monitoring plans.</li>
-<li>Define the energy strategy and its emissions over the plant's life.</li>
-<li>Compare costs per cubic meter delivered, including standby periods.</li>
-<li>Review contract structures, affordability and community engagement.</li>
-</ol>
+<h3>Lessons From Drought-Era Plants</h3>
+<p>Several large plants commissioned during severe droughts were placed in standby soon after rains returned, while ratepayers continued to cover capital and contract costs. Later reviews emphasised staged capacity, realistic demand forecasts, flexible contracts and integration with storage. Cities that planned desalination as part of a diversified portfolio, rather than as an emergency response, generally achieved better utilisation and public support.</p>
 `,
         PHD: `
-<h2>Research Frontiers in Membranes, Energy Recovery and Desalination Optimization</h2>
-<p>Desalination research sits at the meeting point of materials science, transport phenomena, process engineering and systems analysis. Seawater reverse osmosis already operates within a few multiples of the thermodynamic minimum, so remaining gains are harder to win and must be justified at the system level. This lesson surveys advanced membranes, alternative processes, energy recovery and optimization methods, along with the methodological debates that shape the field.</p>
+<h2>Research Frontiers in Desalination Sustainability</h2>
+<p>Desalination's role in global water security is growing, yet its sustainability depends on resolving three challenges: reducing energy and carbon intensity, managing brine as a resource rather than a waste, and integrating desalination into water and energy planning under deep uncertainty. This chapter surveys research addressing each.</p>
 
-<h3>Key Research Concepts</h3>
+<h3>Energy and Renewable Coupling</h3>
+<p>Seawater reverse osmosis now operates within a factor of about two to three of the thermodynamic minimum, limiting further gains from membranes alone. Research targets reduced pre-treatment and intake energy, novel processes such as closed-circuit and osmotically assisted RO for high recovery, and direct coupling with variable renewable energy. Flexible operation, ramping output with renewable availability, raises questions about membrane fouling, capital utilisation and storage of product water. Desalination as a flexible load could help balance high-renewable grids, an area where coupled water-energy system modelling is still developing.</p>
 <ul>
-<li><strong>Permeability-selectivity trade-off:</strong> the tendency for membranes that pass water faster to reject solutes less effectively</li>
-<li><strong>Forward osmosis:</strong> a process that draws water across a membrane into a concentrated draw solution, which must then be regenerated</li>
-<li><strong>Membrane distillation:</strong> a thermally driven process in which water vapor crosses a hydrophobic membrane, able to use low-grade heat</li>
-<li><strong>Batch and closed-circuit reverse osmosis:</strong> configurations that raise pressure over time to track rising concentration, reducing wasted pressure</li>
-<li><strong>Capacitive deionization:</strong> an electrochemical method that stores ions in porous electrodes, mainly suited to low-salinity water</li>
-<li><strong>Exergy analysis:</strong> an accounting of useful work destroyed at each process step, used to locate inefficiencies</li>
+<li><strong>Brine valorisation:</strong> recovering valuable products such as minerals, salts or chemicals from brine</li>
+<li><strong>Osmotically assisted reverse osmosis:</strong> an RO variant that reduces osmotic pressure to reach higher recovery</li>
+<li><strong>Water-energy nexus:</strong> interdependencies between water and energy systems in planning and operation</li>
+<li><strong>Deep uncertainty:</strong> conditions where probabilities of future states cannot be reliably estimated</li>
+<li><strong>Membrane fouling:</strong> accumulation of material on membranes that reduces performance and raises energy use</li>
 </ul>
 
-<h3>Advanced Membranes</h3>
-<p>Research explores materials such as graphene and other two-dimensional sheets, carbon nanotubes, biomimetic membranes incorporating water-channel proteins, and improved polyamide chemistries. A recurring finding is that higher permeability yields diminishing returns for seawater RO: once permeability is high enough, the energy floor is dominated by osmotic pressure and concentration polarization rather than membrane resistance. As a result, many researchers argue the bigger opportunities lie in selectivity (for example, for boron and small neutral solutes), fouling and chlorine resistance, and durability, rather than raw water flux.</p>
+<h3>Brine Valorisation and Environmental Science</h3>
+<p>Brine contains magnesium, lithium and other resources, motivating research on selective recovery through crystallisation, electrodialysis and membrane distillation. Economic viability depends on concentrations, energy cost and markets; most approaches remain at pilot scale. Environmental research addresses long-term, cumulative effects of discharges in semi-enclosed seas, interactions with warming and deoxygenation, and ecotoxicology of treatment chemicals, informing outfall standards that are often based on limited data.</p>
 
-<h3>Process Innovation</h3>
-<table>
-<thead><tr><th>Approach</th><th>Potential advantage</th><th>Open challenge</th></tr></thead>
-<tbody>
-<tr><td>Batch or closed-circuit RO</td><td>Approaches reversible pressurization, lowering energy</td><td>Control complexity and scale-up</td></tr>
-<tr><td>Forward osmosis</td><td>Low fouling propensity, useful for hard-to-treat feeds</td><td>Draw solution regeneration often costs as much energy as RO</td></tr>
-<tr><td>Membrane distillation</td><td>Uses low-grade or waste heat, tolerates high salinity</td><td>Wetting, low thermal efficiency, module design</td></tr>
-<tr><td>Osmotically assisted and high-pressure RO</td><td>Extends membranes to brine concentration</td><td>Membrane compaction, pressure limits</td></tr>
-<tr><td>Hybrid membrane-thermal systems</td><td>Matches each process to the salinity range it handles best</td><td>Integration and operational coordination</td></tr>
-</tbody>
-</table>
+<h3>Planning Under Deep Uncertainty</h3>
+<p>Decision-making under deep uncertainty methods, such as robust decision-making and dynamic adaptive pathways, are applied to evaluate when and how much desalination capacity to build relative to reuse, conservation and transfers. Studies of drought-era investments provide natural experiments on how institutions respond to crisis and the long-term costs of rapid commitments.</p>
 
-<h3>Energy Recovery and Optimization</h3>
-<p>Isobaric pressure exchangers recover most of the brine's hydraulic energy, so remaining losses lie in mixing, leakage, pump efficiency and the pressure margin above osmotic pressure. Optimization research spans several scales: element and vessel design (spacer geometry, flow channels), train configuration (stages, passes, inter-stage boosting), plant operation under varying temperature and salinity, and fleet scheduling with time-varying electricity prices. Mathematical programming, computational fluid dynamics of spacer-filled channels, and data-driven fouling prediction are all active areas.</p>
+<h3>Equity and Governance</h3>
+<p>Desalination can reshape who controls water, shifting supply from shared river systems to energy-dependent infrastructure owned or operated by private firms. Research on affordability, the distribution of costs across ratepayers and the political economy of mega-projects is needed, particularly in water-stressed countries where desalination is expanding rapidly.</p>
 
-<h3>Methodological Debates</h3>
-<ol>
-<li><strong>Metrics:</strong> specific energy consumption alone can mislead; exergy, cost per cubic meter and life-cycle emissions may rank options differently.</li>
-<li><strong>Lab versus field:</strong> small-coupon tests with synthetic feeds often overstate the performance of new materials compared with real seawater over long periods.</li>
-<li><strong>System boundaries:</strong> claims about novel processes depend on whether draw-solution recovery, pretreatment and brine handling are included.</li>
-<li><strong>Brine valorization:</strong> whether recovering minerals from brine can be economically meaningful at scale remains disputed.</li>
-</ol>
+<h3>Methodological Needs</h3>
+<p>Integrated models linking hydrology, energy systems, ocean processes and economics, combined with transparent data on plant performance and discharges, would support more balanced comparisons of desalination with other supply and demand options.</p>
 
-<h3>Open Research Directions</h3>
-<ol>
-<li>Chlorine- and fouling-resistant membranes with high selectivity for problem solutes.</li>
-<li>Scalable batch and hybrid configurations validated at demonstration scale.</li>
-<li>Coupling desalination with variable renewables using water storage as flexibility.</li>
-<li>Life-cycle and techno-economic studies with consistent, transparent boundaries.</li>
-<li>Ecological studies of long-term brine and intake effects to guide regulation.</li>
-</ol>
+<h3>Small-Scale and Decentralised Systems</h3>
+<p>Research also explores small, solar-powered desalination for remote communities and islands, including membrane distillation and capacitive deionisation for brackish water. These systems face challenges in maintenance, fouling and cost per unit, but could expand access where centralised infrastructure is impractical. Evaluating their long-term reliability in the field is an important gap.</p>
 `,
       },
     },
   ],
   quiz: [
     {
-      id: 'wdesal2q1',
+      id: 'ws-desal2-q1',
       question: {
-        ELEMENTARY: 'What does a desalination machine take out of sea water?',
-        MIDDLE_SCHOOL: 'What is reverse osmosis?',
-        HIGH_SCHOOL: 'Why must seawater reverse osmosis plants run at high pressure?',
-        UNDERGRADUATE: 'What is the role of an energy recovery device in a reverse osmosis plant?',
-        GRADUATE: 'What is brine in desalination?',
-        PHD: 'What is forward osmosis?',
+        ELEMENTARY: 'What is brine?',
+        MIDDLE_SCHOOL: 'About how much electricity does reverse osmosis need per cubic metre of drinking water?',
+        HIGH_SCHOOL: 'What do energy recovery devices do in a desalination plant?',
+        UNDERGRADUATE: 'What is the approximate theoretical minimum energy to desalinate seawater at 50 percent recovery?',
+        GRADUATE: 'Which stage dominates desalination\'s lifecycle environmental impacts?',
+        PHD: 'Why are further energy gains from membranes alone limited?',
       },
       options: {
-        ELEMENTARY: ['Salt', 'Fish', 'Sand castles', 'Bubbles'],
-        MIDDLE_SCHOOL: ['Using pressure to push water through a membrane away from the salt', 'Letting water flow backward down a river', 'Boiling water in a kettle', 'Adding salt to fresh water'],
-        HIGH_SCHOOL: ['They must overcome the osmotic pressure of salty water, which rises as water is removed', 'High pressure makes the water taste better', 'Pressure kills all the fish in the water', 'Low pressure would melt the membranes'],
-        UNDERGRADUATE: ['It recaptures the hydraulic pressure of the brine and transfers it to incoming feed', 'It recovers lost membranes from the brine', 'It stores electricity in batteries', 'It generates power from ocean waves'],
-        GRADUATE: ['The concentrated salt stream left after fresh water is extracted', 'Fresh water ready for drinking', 'A cleaning chemical for membranes', 'Rainwater collected on the plant roof'],
-        PHD: ['A process that draws water across a membrane into a concentrated draw solution, which must then be regenerated', 'Reverse osmosis run at double pressure', 'Distillation using forward-facing pipes', 'A process that needs no membrane at all'],
-      },
-      correctIndex: 0,
-      explanation: {
-        ELEMENTARY: 'Desalination means taking the salt out of sea water so people can drink it.',
-        MIDDLE_SCHOOL: 'Reverse osmosis uses pumps to force water through a membrane, leaving the salt behind.',
-        HIGH_SCHOOL: 'Seawater has an osmotic pressure of roughly 25 bar, and it rises as the water gets saltier, so plants run well above it.',
-        UNDERGRADUATE: 'Pressure exchangers and similar devices pass the brine pressure back to the feed, cutting pump energy.',
-        GRADUATE: 'Brine is the concentrated stream, often around twice as salty as seawater, that must be managed carefully.',
-        PHD: 'Forward osmosis relies on a natural osmotic gradient, but regenerating the draw solution often costs significant energy.',
-      },
-    },
-    {
-      id: 'wdesal2q2',
-      question: {
-        ELEMENTARY: 'What is a membrane in a desalination machine?',
-        MIDDLE_SCHOOL: 'Why does seawater go through pretreatment first?',
-        HIGH_SCHOOL: 'Which technology is used in most new municipal desalination plants?',
-        UNDERGRADUATE: 'Why is seawater reverse osmosis recovery usually kept to roughly 40 to 50 percent?',
-        GRADUATE: 'Why is brine disposal often the binding constraint for inland brackish desalination?',
-        PHD: 'Why do higher-permeability membranes give diminishing energy savings in seawater reverse osmosis?',
-      },
-      options: {
-        ELEMENTARY: ['A big water tank', 'A type of fish net', 'A thin sheet with tiny holes that lets water through but stops salt', 'A pump handle'],
-        MIDDLE_SCHOOL: ['To add more salt', 'To warm the water up', 'To remove sand, algae and particles that would clog the membranes', 'To make the water fizzy'],
-        HIGH_SCHOOL: ['Multi-stage flash', 'Solar stills', 'Seawater reverse osmosis', 'Freezing'],
-        UNDERGRADUATE: ['Membranes cannot hold more than half the water', 'Regulations ban higher recovery everywhere', 'Higher recovery raises brine osmotic pressure and the required feed pressure', 'Lower recovery produces more fresh water'],
-        GRADUATE: ['Inland plants never produce brine', 'Brine is valuable and sold immediately', 'Without an ocean for dilution, options like injection or ponds are costly and site-limited', 'Brackish water has no salt'],
-        PHD: ['Permeable membranes cannot be manufactured', 'Permeability has no effect on anything', 'The energy floor becomes dominated by osmotic pressure and concentration polarization', 'Higher permeability always lowers salt rejection to zero'],
+        ELEMENTARY: ['A kind of fish', 'A sweet drink', 'Extra-salty water left after desalination', 'Rainwater'],
+        MIDDLE_SCHOOL: ['0.01 kWh', 'About 50 kWh', 'About 3 to 4 kWh', 'None'],
+        HIGH_SCHOOL: ['Add more salt', 'Clean the beach', 'Reuse pressure from the brine stream to cut energy use', 'Heat the water'],
+        UNDERGRADUATE: ['About 10 kWh per cubic metre', 'About 0.01 kWh per cubic metre', 'About 1 kWh per cubic metre', 'Zero'],
+        GRADUATE: ['Construction', 'Decommissioning', 'Operation, through electricity use', 'Membrane shipping'],
+        PHD: ['Membranes cannot be made', 'Salt is not dissolved in water', 'SWRO already operates within a factor of about two to three of the thermodynamic minimum', 'Energy use is already zero'],
       },
       correctIndex: 2,
       explanation: {
-        ELEMENTARY: 'The membrane is like a super tiny sieve: water squeezes through and the salt stays behind.',
-        MIDDLE_SCHOOL: 'Pretreatment protects the membranes from fouling by removing particles and living things.',
-        HIGH_SCHOOL: 'Reverse osmosis is the most energy-efficient option for seawater and dominates new plants.',
-        UNDERGRADUATE: 'Recovery is a balance: more recovery saves intake and pretreatment but needs higher pressure.',
-        GRADUATE: 'Inland plants must use deep-well injection, evaporation ponds or concentration, all costly and site-specific.',
-        PHD: 'Once membranes are permeable enough, thermodynamics and polarization, not membrane resistance, set the energy floor.',
+        ELEMENTARY: 'Brine is the very salty water left over after taking out fresh water.',
+        MIDDLE_SCHOOL: 'Reverse osmosis uses roughly 3 to 4 kWh per cubic metre.',
+        HIGH_SCHOOL: 'Energy recovery devices recapture pressure from brine, cutting energy use.',
+        UNDERGRADUATE: 'Thermodynamics sets a minimum near 1 kWh per cubic metre at 50 percent recovery.',
+        GRADUATE: 'Electricity use during operation dominates lifecycle impacts.',
+        PHD: 'With SWRO close to the thermodynamic limit, other parts of the process offer more room.',
       },
     },
     {
-      id: 'wdesal2q3',
+      id: 'ws-desal2-q2',
       question: {
-        ELEMENTARY: 'Why does ocean water go through screens and filters first?',
-        MIDDLE_SCHOOL: 'What is fouling?',
-        HIGH_SCHOOL: 'How does multi-effect distillation save energy?',
-        UNDERGRADUATE: 'Why must chlorine be removed before water reaches polyamide RO membranes?',
-        GRADUATE: 'What is zero liquid discharge?',
-        PHD: 'What is the main idea behind batch or closed-circuit reverse osmosis?',
+        ELEMENTARY: 'Why can brine harm sea creatures?',
+        MIDDLE_SCHOOL: 'Why can brine settle on the seafloor?',
+        HIGH_SCHOOL: 'What are impingement and entrainment?',
+        UNDERGRADUATE: 'What is a mixing zone?',
+        GRADUATE: 'What is a stranded asset?',
+        PHD: 'What is brine valorisation?',
       },
       options: {
-        ELEMENTARY: ['To make it saltier', 'To keep sand, seaweed and tiny creatures from clogging the membrane', 'To turn it blue', 'To make it warm'],
-        MIDDLE_SCHOOL: ['A new kind of membrane', 'A buildup of dirt, minerals or living things that clogs a membrane', 'The salt added after treatment', 'A type of pump'],
-        HIGH_SCHOOL: ['It uses no heat at all', 'Steam from one chamber is reused to heat the next', 'It freezes the salt out', 'It runs only at night'],
-        UNDERGRADUATE: ['Chlorine makes the water taste salty', 'Chlorine damages thin-film composite polyamide membranes', 'Chlorine increases recovery too much', 'Chlorine blocks energy recovery devices'],
-        GRADUATE: ['Discharging all brine directly to rivers', 'Recovering almost all water and leaving only solid salts, at high energy and cost', 'A plant that produces no fresh water', 'Turning off the plant during drought'],
-        PHD: ['Running at constant maximum pressure throughout', 'Raising pressure over time to track rising concentration, reducing wasted pressure', 'Using no pumps at all', 'Mixing brine back into the product water'],
-      },
-      correctIndex: 1,
-      explanation: {
-        ELEMENTARY: 'Screens and filters catch the things that would block the tiny holes in the membrane.',
-        MIDDLE_SCHOOL: 'Fouling clogs membranes, which is why plants clean water first and wash membranes regularly.',
-        HIGH_SCHOOL: 'Each effect reuses the heat from the one before, so the same energy evaporates water several times.',
-        UNDERGRADUATE: 'Polyamide membranes are chlorine-sensitive, so disinfectant is removed before the RO stage.',
-        GRADUATE: 'Zero liquid discharge eliminates liquid brine but is energy-intensive and expensive.',
-        PHD: 'Batch configurations approach reversible pressurization by matching pressure to concentration as it rises.',
-      },
-    },
-    {
-      id: 'wdesal2q4',
-      question: {
-        ELEMENTARY: 'What is the leftover extra-salty water called?',
-        MIDDLE_SCHOOL: 'What happens in post-treatment?',
-        HIGH_SCHOOL: 'Which is a way to reduce harm to marine life from seawater intakes?',
-        UNDERGRADUATE: 'What does specific energy consumption measure?',
-        GRADUATE: 'Why can direct coupling to variable renewables be challenging for desalination?',
-        PHD: 'Why can small lab tests overstate the performance of new membrane materials?',
-      },
-      options: {
-        ELEMENTARY: ['Juice', 'Rain', 'Snow', 'Brine'],
-        MIDDLE_SCHOOL: ['Salt is added until the water is like seawater', 'The membranes are thrown away', 'Fish are returned to the plant', 'Minerals are added back and the water is disinfected'],
-        HIGH_SCHOOL: ['Using bigger open pipes with no screens', 'Pumping faster at the intake', 'Adding chemicals at the beach', 'Using subsurface intakes and fine screens'],
-        UNDERGRADUATE: ['The salt removed per day', 'The cost of membranes', 'The number of pumps in the plant', 'Energy used per cubic meter of product water'],
-        GRADUATE: ['Renewables cannot power pumps', 'Desalination plants need no electricity', 'Water storage is always more expensive than batteries', 'Membranes and pumps prefer steady operation, while renewable output varies'],
-        PHD: ['Lab tests always use real seawater for years', 'Field conditions are always easier', 'Membranes perform better as they age', 'They use synthetic feeds over short periods, unlike long-term real seawater operation'],
+        ELEMENTARY: ['It is too cold', 'It is too sweet', 'It glows', 'If dumped in one spot, it sinks and is very salty'],
+        MIDDLE_SCHOOL: ['It floats on top', 'It turns into gas', 'It evaporates instantly', 'It is denser than seawater'],
+        HIGH_SCHOOL: ['Types of filters', 'Ways to save energy', 'Brine chemicals', 'Harm to marine life trapped against or drawn into an intake'],
+        UNDERGRADUATE: ['A kitchen blender', 'A beach for swimming', 'A type of membrane', 'The area around an outfall where standards may be exceeded while brine dilutes'],
+        GRADUATE: ['A plant that runs perfectly', 'A new pipeline', 'A budget surplus', 'An investment underused or uneconomic before the end of its expected life'],
+        PHD: ['Making brine saltier', 'Pumping brine inland', 'Painting brine pipes', 'Recovering valuable products such as minerals from brine'],
       },
       correctIndex: 3,
       explanation: {
-        ELEMENTARY: 'Brine is the very salty water left over after the fresh water is made.',
-        MIDDLE_SCHOOL: 'Adding a few minerals back makes the water taste good and protects pipes, then it is disinfected.',
-        HIGH_SCHOOL: 'Subsurface intakes and fine screens reduce how many fish and plankton are pulled in.',
-        UNDERGRADUATE: 'Specific energy consumption is usually given in kilowatt-hours per cubic meter of fresh water.',
-        GRADUATE: 'Plants can be designed with modular capacity and water storage so they can follow renewable supply.',
-        PHD: 'Real seawater fouls and ages membranes in ways short synthetic-feed tests do not capture.',
+        ELEMENTARY: 'Brine is very salty and sinks, which can harm creatures on the seafloor.',
+        MIDDLE_SCHOOL: 'Brine is denser than seawater, so it sinks.',
+        HIGH_SCHOOL: 'Animals can be trapped on intake screens or drawn into the plant.',
+        UNDERGRADUATE: 'Regulations allow higher salinity within a defined area while brine dilutes.',
+        GRADUATE: 'Plants built for worst-case droughts can sit idle and become stranded assets.',
+        PHD: 'Valorisation recovers resources like magnesium and lithium from brine.',
       },
     },
     {
-      id: 'wdesal2q5',
+      id: 'ws-desal2-q3',
       question: {
-        ELEMENTARY: 'Why do desalination machines use a lot of electricity?',
-        MIDDLE_SCHOOL: 'What is brackish water?',
-        HIGH_SCHOOL: 'What is the recovery ratio of a desalination plant?',
-        UNDERGRADUATE: 'Why does capacity utilization affect the cost of desalinated water?',
-        GRADUATE: 'Why is a take-or-pay contract important in desalination planning?',
-        PHD: 'What is exergy analysis used for in desalination research?',
+        ELEMENTARY: 'What should towns try before building a desalination plant?',
+        MIDDLE_SCHOOL: 'How do well-designed plants protect sea life from brine?',
+        HIGH_SCHOOL: 'About what share of intake water does seawater RO recover as fresh water?',
+        UNDERGRADUATE: 'What options do inland desalination plants face for brine?',
+        GRADUATE: 'Why can take-or-pay contracts be risky for utilities?',
+        PHD: 'What question arises when desalination plants ramp output with renewable availability?',
       },
       options: {
-        ELEMENTARY: ['Pushing water through the membrane takes a lot of energy', 'They play loud music', 'They light up the beach', 'They heat the ocean'],
-        MIDDLE_SCHOOL: ['Water saltier than fresh water but less salty than the sea', 'Water with no salt at all', 'Water saltier than the sea', 'Frozen sea water'],
-        HIGH_SCHOOL: ['The fraction of feed water that becomes fresh product water', 'How fast the plant was built', 'How much salt is sold', 'The number of workers at the plant'],
-        UNDERGRADUATE: ['High fixed costs are spread over less water when the plant runs at low output', 'Utilization has no link to cost', 'Running less always lowers the cost per cubic meter', 'Only electricity price matters'],
-        GRADUATE: ['The utility pays for contracted water whether or not it uses it, shifting risk', 'It guarantees free water', 'It bans the plant from running', 'It sets the salt content of the brine'],
-        PHD: ['Locating where useful work is destroyed in each process step', 'Measuring how salty the brine tastes', 'Counting membrane elements', 'Predicting rainfall'],
+        ELEMENTARY: ['Fixing leaks, catching rainwater and reusing water', 'Building more swimming pools', 'Using more water', 'Nothing'],
+        MIDDLE_SCHOOL: ['Using diffusers to mix brine quickly', 'Dumping brine in one place', 'Adding sugar', 'Heating the ocean'],
+        HIGH_SCHOOL: ['About 40 to 50 percent', 'About 99 percent', 'About 5 percent', 'Exactly 100 percent'],
+        UNDERGRADUATE: ['Evaporation ponds, deep-well injection or zero liquid discharge', 'Dumping in rivers freely', 'Selling brine as drinking water', 'Nothing is needed'],
+        GRADUATE: ['They require payment for minimum volumes whether or not water is taken', 'They lower prices', 'They forbid desalination', 'They have no obligations'],
+        PHD: ['Effects on membrane fouling, capital utilisation and product water storage', 'Whether plants can be painted', 'Whether seawater is salty', 'How to stop the wind'],
       },
       correctIndex: 0,
       explanation: {
-        ELEMENTARY: 'Big pumps must push hard to squeeze water through the tiny holes, and that takes electricity.',
-        MIDDLE_SCHOOL: 'Brackish water is in between fresh and seawater, so it is easier and cheaper to desalinate.',
-        HIGH_SCHOOL: 'If recovery is 45 percent, 45 out of every 100 liters become fresh water and the rest leaves as brine.',
-        UNDERGRADUATE: 'A plant built for drought insurance that runs at low output in wet years has a high cost per cubic meter delivered.',
-        GRADUATE: 'Take-or-pay terms can leave utilities paying for idle capacity, which affects tariffs and risk.',
-        PHD: 'Exergy analysis pinpoints irreversibilities, guiding where engineering effort can save the most.',
+        ELEMENTARY: 'Fixing leaks, saving rainwater and reusing water often cost less.',
+        MIDDLE_SCHOOL: 'Diffusers spread brine quickly so it does not collect on the seafloor.',
+        HIGH_SCHOOL: 'Seawater RO turns about 40 to 50 percent of intake into fresh water.',
+        UNDERGRADUATE: 'Without an ocean outfall, inland plants must use ponds, injection or ZLD.',
+        GRADUATE: 'Utilities pay for minimum volumes even if they do not need the water.',
+        PHD: 'Flexible operation affects fouling, capital use and the need to store product water.',
+      },
+    },
+    {
+      id: 'ws-desal2-q4',
+      question: {
+        ELEMENTARY: 'Why does a desalination plant need so much energy?',
+        MIDDLE_SCHOOL: 'What is an intake?',
+        HIGH_SCHOOL: 'How does potable reuse compare with seawater desalination on energy?',
+        UNDERGRADUATE: 'Why do plants that run below capacity in wet years have higher unit costs?',
+        GRADUATE: 'What can improve the utilisation of a desalination plant?',
+        PHD: 'Which planning methods are applied to desalination under deep uncertainty?',
+      },
+      options: {
+        ELEMENTARY: ['To make music', 'Lots of pushing is needed to force water through filters', 'To heat the beach', 'To light up the sky'],
+        MIDDLE_SCHOOL: ['A water bottle', 'The pipe that draws seawater into a plant', 'A beach towel', 'A type of fish'],
+        HIGH_SCHOOL: ['It uses ten times more', 'It typically uses about half the energy', 'It uses exactly the same', 'It uses no energy'],
+        UNDERGRADUATE: ['Energy is free', 'Capital costs dominate and are spread over less water', 'Membranes get cheaper', 'Brine is valuable'],
+        GRADUATE: ['Building it twice as big', 'Banking surplus production in aquifers during wet years', 'Turning it off permanently', 'Raising prices only'],
+        PHD: ['Coin flips', 'Robust decision-making and dynamic adaptive pathways', 'Ignoring uncertainty', 'Single-year budgets'],
+      },
+      correctIndex: 1,
+      explanation: {
+        ELEMENTARY: 'Pushing seawater through very fine filters takes a lot of energy.',
+        MIDDLE_SCHOOL: 'The intake is the pipe that brings seawater into the plant.',
+        HIGH_SCHOOL: 'Potable reuse usually needs around half the energy of seawater RO.',
+        UNDERGRADUATE: 'Fixed capital costs spread over less water raise the cost per unit.',
+        GRADUATE: 'Banking water produced in wet years keeps the plant running and useful.',
+        PHD: 'These methods help plan when uncertainty about the future is deep.',
+      },
+    },
+    {
+      id: 'ws-desal2-q5',
+      question: {
+        ELEMENTARY: 'What does desalination do?',
+        MIDDLE_SCHOOL: 'How can desalination plants cut their pollution?',
+        HIGH_SCHOOL: 'Why do many cities treat desalination as "insurance"?',
+        UNDERGRADUATE: 'What is a levelised cost of water?',
+        GRADUATE: 'Which approach supports transparent comparison of desalination with other options?',
+        PHD: 'How can desalination reshape who controls water?',
+      },
+      options: {
+        ELEMENTARY: ['Makes water saltier', 'Freezes the ocean', 'Makes fish', 'Takes salt out of seawater to make fresh water'],
+        MIDDLE_SCHOOL: ['Using more coal', 'Running all night on diesel', 'Using more brine', 'Pairing plants with solar or wind power'],
+        HIGH_SCHOOL: ['It never works', 'It is the cheapest supply', 'It replaces all rivers', 'It is drought-proof but costly, so it runs fully mainly in droughts'],
+        UNDERGRADUATE: ['The price of one bottle', 'Daily electricity price', 'A membrane rating', 'Lifetime cost of a supply divided by the volume it delivers'],
+        GRADUATE: ['Choosing randomly', 'Only cost comparisons', 'Political announcements', 'Multi-criteria analysis'],
+        PHD: ['It has no effect on control', 'It returns water to rivers', 'It ends all private involvement', 'It shifts supply toward energy-dependent infrastructure often operated by private firms'],
+      },
+      correctIndex: 3,
+      explanation: {
+        ELEMENTARY: 'Desalination removes salt from seawater so people can drink it.',
+        MIDDLE_SCHOOL: 'Using solar or wind electricity cuts the plant\'s pollution.',
+        HIGH_SCHOOL: 'Desalination keeps working in droughts, but it is expensive to run all the time.',
+        UNDERGRADUATE: 'Levelised cost spreads lifetime cost over all the water delivered.',
+        GRADUATE: 'Multi-criteria analysis weighs cost, energy, reliability, ecology and acceptance together.',
+        PHD: 'Desalination moves supply from shared rivers to plants that may be privately run.',
       },
     },
   ],
