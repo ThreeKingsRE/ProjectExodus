@@ -489,45 +489,9 @@ export default function LearnPage() {
           <div className="text-center mb-4 sm:mb-6 lg:mb-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-2 sm:mb-4 text-[var(--foreground)]">CORE TOPICS</h2>
             <p className="text-xs sm:text-sm md:text-base lg:text-xl font-semibold text-theme-muted px-2 sm:px-4 mb-4 sm:mb-6 lg:mb-8">
-              Choose your classroom level and explore our comprehensive curriculum
+              Six textbooks, each written for every level from elementary to PhD. Pick one up.
             </p>
 
-            {/* Learning Level Selector - Responsive */}
-            <div className="max-w-5xl mx-auto mb-6 sm:mb-8 lg:mb-12">
-              <div className="bg-[color-mix(in_srgb,var(--primary)_10%,var(--background))] rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border-2 border-theme-primary">
-                <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-                  <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-theme-primary" />
-                  <span className="text-xs sm:text-sm lg:text-lg font-black text-theme-primary">SELECT YOUR CLASSROOM LEVEL</span>
-                </div>
-                {/* Phones: all six levels in a 3×2 grid | Larger: one wrapping row */}
-                <div className="grid grid-cols-3 gap-1.5 sm:flex sm:gap-2 sm:justify-center sm:flex-wrap">
-                  {LEARNING_LEVEL_ORDER.map((level) => {
-                    const meta = LEARNING_LEVELS[level]
-                    const isSelected = level === selectedLevel
-                    return (
-                      <button
-                        key={level}
-                        onClick={() => setSelectedLevel(level)}
-                        className={`min-w-0 px-1.5 sm:px-3 lg:px-4 py-2 sm:py-2.5 lg:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 ${
-                          isSelected
-                            ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-lg sm:scale-105 sm:ring-2 sm:ring-offset-2 ring-[var(--primary)]'
-                            : 'bg-[var(--card)] text-[var(--foreground)] hover:bg-[var(--primary)]/20 hover:scale-102 border border-[var(--border)]'
-                        }`}
-                      >
-                        <span className="text-base sm:text-lg lg:text-xl shrink-0">{meta.icon}</span>
-                        <div className="text-left min-w-0">
-                          <div className="font-black text-[11px] sm:text-xs lg:text-sm truncate">{meta.shortLabel}</div>
-                          <div className="text-[9px] sm:text-[10px] lg:text-xs opacity-70 truncate">{meta.ageRange}</div>
-                        </div>
-                      </button>
-                    )
-                  })}
-                </div>
-                <p className="text-[10px] sm:text-xs lg:text-sm text-theme-muted mt-2 sm:mt-3 lg:mt-4">
-                  All modules adapt to your level: <span className="font-black text-theme-primary">{LEARNING_LEVELS[selectedLevel].icon} {LEARNING_LEVELS[selectedLevel].label}</span>
-                </p>
-              </div>
-            </div>
           </div>
 
           {/* Mobile: 2 columns compact | Tablet: 2 columns | Desktop: 3 columns */}
@@ -543,7 +507,7 @@ export default function LearnPage() {
               return (
                 <ShelfItem
                   key={topic.title}
-                  href={`/learn/topics/${topic.slug}?level=${selectedLevel.toLowerCase()}`}
+                  href={`/learn/topics/${topic.slug}`}
                   className="group block focus:outline-none"
                   aria-label={isAuthenticated ? `${topic.title}: ${isGraduated ? 'review' : progressPercent > 0 ? 'continue' : 'explore'} the textbook` : `${topic.title} textbook. Sign in to open it.`}
                 >
@@ -562,7 +526,7 @@ export default function LearnPage() {
                         animate={false}
                           depth={10}
                         windowText={{ kicker: 'Chapters', big: String(topic.modules), small: `${Math.ceil(topic.modules / 7)} volumes` }}
-                        imprint={`${LEARNING_LEVELS[selectedLevel].label} edition`}
+                        imprint="Elementary to PhD editions"
                       />
                     </FloatingBook>
                   </div>

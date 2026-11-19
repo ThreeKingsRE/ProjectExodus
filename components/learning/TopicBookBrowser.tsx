@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { BookOpen, ChevronDown, CheckCircle2 } from 'lucide-react'
 import type { Module, CoreTopic, TopicDefinition } from '@/types/modules'
-import { LearningLevel, LEARNING_LEVELS } from '@/types/learning'
+import type { LearningLevel } from '@/types/learning'
 import { moduleProgressKeys } from '@/lib/learning/topicVolumes'
 
 interface TopicBookProps {
@@ -237,17 +237,16 @@ export function TopicBookBrowser({ topicSlug, topic, selectedLevel, completedMod
   const totalChapters = topic.modules.length
   const read = topic.modules.filter(isCompleted).length
   const percent = totalChapters > 0 ? Math.round((read / totalChapters) * 100) : 0
-  const level = LEARNING_LEVELS[selectedLevel]
 
   return (
     <section aria-labelledby="contents-heading" className="mx-auto max-w-3xl">
       <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)] shadow-sm">
         {/* Heading, like the top of a contents page */}
         <header className="border-b border-[var(--border)] px-5 pb-5 pt-7 text-center sm:px-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--muted-foreground)]">Contents</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--muted-foreground)]">Table of Contents</p>
           <h2 id="contents-heading" style={{ fontSize: 'clamp(1.6rem, 5vw, 2.1rem)', lineHeight: 1.15 }} className="mt-2 font-serif font-bold text-[var(--foreground)]">{topic.title}</h2>
           <p className="mt-2 text-sm text-[var(--muted-foreground)]">
-            {parts.length} parts · {totalChapters} chapters · {level.label} edition
+            {parts.length} parts · {totalChapters} chapters
           </p>
           <div className="mx-auto mt-5 w-full" style={{ maxWidth: '24rem' }}>
             <div className="flex items-center justify-between text-xs text-[var(--muted-foreground)]">

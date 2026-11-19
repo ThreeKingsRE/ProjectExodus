@@ -151,6 +151,7 @@ export function BookCover({ topicId, title, subtitle, chapterTitles, currentChap
             className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden rounded-md rounded-l-sm text-center"
             style={{
               transform: `translateZ(calc(-1 * ${d})) rotateY(180deg)`,
+              backfaceVisibility: 'hidden',
               backgroundColor: theme.cloth,
               backgroundImage: `repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 3px), radial-gradient(120% 90% at 70% 15%, rgba(255,255,255,0.08), transparent 55%), radial-gradient(90% 80% at 20% 100%, rgba(0,0,0,0.35), transparent 60%)`,
               boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.3), inset 6px 0 14px rgba(0,0,0,0.25)',
@@ -194,6 +195,9 @@ export function BookCover({ topicId, title, subtitle, chapterTitles, currentChap
           top: '1.4%', bottom: '1.4%', left: '3%', right: '1%',
           transform: 'translateZ(-0.4cqw)',
           background: '#fbf8f1',
+          // Only drawn while the cover swings open: some browsers otherwise paint it
+          // over the cover when the book is partly scrolled out of view
+          visibility: open ? 'visible' : 'hidden',
         } : {
           top: '2.2%', bottom: '-1.6%', left: '3%', right: '-2.6%',
           background: 'linear-gradient(90deg, rgba(0,0,0,0.12), transparent 8%), repeating-linear-gradient(90deg, #f8f4ea 0 2px, #e6dfcf 2px 3px)',

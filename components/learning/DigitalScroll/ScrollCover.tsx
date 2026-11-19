@@ -381,34 +381,45 @@ export function InsideCover({
         }}
       />
 
-      {/* Level selection */}
-      <div className="mb-4 w-full max-w-[280px] shrink-0">
-        <h3 className="text-[10px] font-bold text-[var(--muted-foreground)] mb-2 tracking-wider uppercase">
-          Select Your Path
-        </h3>
-        <div className="grid grid-cols-3 gap-1.5" role="radiogroup" aria-label="Learning level">
-          {levels.map((level) => (
-            <button
-              key={level.id}
-              type="button"
-              role="radio"
-              aria-checked={selectedLevel === level.id}
-              data-level={level.id}
-              onClick={() => onLevelSelect?.(level.id)}
-              className={cn(
-                'px-2 py-1.5 rounded text-[11px] font-medium transition-all',
-                'border',
-                selectedLevel === level.id
-                  ? 'border-[var(--primary)] bg-[var(--primary)] text-[var(--primary-foreground)]'
-                  : 'border-[var(--border)] hover:border-[var(--primary)] hover:bg-[var(--muted)]'
-              )}
-            >
-              <span className="block text-base mb-0.5">{level.icon}</span>
-              {level.label}
-            </button>
-          ))}
+      {/* Edition: the reading level is chosen when the book opens */}
+      {onLevelSelect ? (
+        <div className="mb-4 w-full max-w-[280px] shrink-0">
+          <h3 className="text-[10px] font-bold text-[var(--muted-foreground)] mb-2 tracking-wider uppercase">
+            Select Your Path
+          </h3>
+          <div className="grid grid-cols-3 gap-1.5" role="radiogroup" aria-label="Learning level">
+            {levels.map((level) => (
+              <button
+                key={level.id}
+                type="button"
+                role="radio"
+                aria-checked={selectedLevel === level.id}
+                data-level={level.id}
+                onClick={() => onLevelSelect?.(level.id)}
+                className={cn(
+                  'px-2 py-1.5 rounded text-[11px] font-medium transition-all',
+                  'border',
+                  selectedLevel === level.id
+                    ? 'border-[var(--primary)] bg-[var(--primary)] text-[var(--primary-foreground)]'
+                    : 'border-[var(--border)] hover:border-[var(--primary)] hover:bg-[var(--muted)]'
+                )}
+              >
+                <span className="block text-base mb-0.5">{level.icon}</span>
+                {level.label}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        (() => {
+          const current = levels.find((l) => l.id === selectedLevel)
+          return current ? (
+            <p className="mb-4 shrink-0 font-serif text-sm italic text-[var(--muted-foreground)]">
+              <span aria-hidden className="not-italic">{current.icon}</span> {current.label} edition
+            </p>
+          ) : null
+        })()
+      )}
 
       {/* Divider */}
       <div

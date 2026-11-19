@@ -29,6 +29,7 @@ export default async function TopicPage({ params, searchParams }: PageProps) {
       // Summary only: lesson HTML is fetched per volume when the Digital Scroll opens
       topic={toTopicSummary(topic)}
       initialLevel={initialLevel}
+      hasLevelParam={!!(levelParam && LEARNING_LEVELS[levelParam])}
     />
   )
 }

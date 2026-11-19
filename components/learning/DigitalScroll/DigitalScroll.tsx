@@ -759,10 +759,6 @@ export function DigitalScroll({
               verseCount={modules.reduce((acc, m) => acc + m.lessons.length, 0)}
               pageCount={totalPages}
               selectedLevel={selectedLevel}
-              onLevelSelect={(level) => {
-                setSelectedLevel(level as LearningLevel)
-                onLevelChange?.(level as LearningLevel)
-              }}
               onStartReading={() => goToPage(4)}
             />
           </div>
@@ -1769,6 +1765,12 @@ export function DigitalScroll({
             topicDescription={topic.description}
             onAnimationComplete={handleAnimationComplete}
             reducedMotion={scrollState.preferences.reducedMotion}
+            level={selectedLevel}
+            onLevelChosen={(level) => {
+              if (level === selectedLevel) return
+              setSelectedLevel(level)
+              onLevelChange?.(level)
+            }}
           />
         )}
       </AnimatePresence>

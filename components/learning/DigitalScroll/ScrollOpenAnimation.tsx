@@ -2,13 +2,14 @@
 
 // ============================================
 // SCROLL OPEN ANIMATION
-// Flow: Descend → Cover opens → Instructions → Title → Complete
+// Flow: Descend → Cover opens → Reading level → Instructions → Title → Complete
 // ============================================
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils/cn'
 import { SCROLL_DIMENSIONS, CORE_TOPIC_ICONS, getDeviceType } from './scrollConstants'
+import { LEARNING_LEVELS, LEARNING_LEVEL_ORDER, type LearningLevel } from '@/types/learning'
 
 // ============================================
 // TYPES
@@ -21,9 +22,13 @@ interface ScrollOpenAnimationProps {
   onAnimationComplete: () => void
   reducedMotion?: boolean
   className?: string
+  /** The reading level to preselect (the reader's last choice) */
+  level: LearningLevel
+  /** Called once the reader confirms a level (also when they skip: the preselected one) */
+  onLevelChosen: (level: LearningLevel) => void
 }
 
-type AnimationPhase = 'descend' | 'opening' | 'instructions' | 'title' | 'complete'
+type AnimationPhase = 'descend' | 'opening' | 'level' | 'instructions' | 'title' | 'complete'
 
 // ============================================
 // MAIN COMPONENT
@@ -36,8 +41,18 @@ export function ScrollOpenAnimation({
   onAnimationComplete,
   reducedMotion = false,
   className,
+  level,
+  onLevelChosen,
 }: ScrollOpenAnimationProps) {
-  const [phase, setPhase] = useState<AnimationPhase>('descend')
+  // With reduced motion there's no animation, but the reader still picks a level
+  const [phase, setPhase] = useState<AnimationPhase>(reducedMotion ? 'level' : 'descend')
+  const [choice, setChoice] = useState<LearningLevel>(level)
+  const chosenRef = useRef(false)
+  const confirmLevel = useCallback((next: LearningLevel) => {
+    if (chosenRef.current) return
+    chosenRef.current = true
+    onLevelChosen(next)
+  }, [onLevelChosen])
   const [coverOpen, setCoverOpen] = useState(false)
   const completedRef = useRef(false)
   const [dimensions, setDimensions] = useState(SCROLL_DIMENSIONS.desktop)
@@ -58,11 +73,12 @@ export function ScrollOpenAnimation({
   // Handle final completion
   const handleComplete = useCallback(() => {
     if (!completedRef.current) {
+      confirmLevel(choice)
       completedRef.current = true
       setPhase('complete')
       onAnimationComplete()
     }
-  }, [onAnimationComplete])
+  }, [onAnimationComplete, confirmLevel, choice])
 
   // Handle proceed from instructions to title
   const handleProceedToTitle = (e: React.MouseEvent) => {
@@ -80,12 +96,12 @@ export function ScrollOpenAnimation({
     }
   }
 
-  // Reduced motion - skip immediately
-  useEffect(() => {
-    if (reducedMotion) {
-      handleComplete()
-    }
-  }, [reducedMotion, handleComplete])
+  // Confirm the level, then show the navigation guide (or finish, with reduced motion)
+  const proceedFromLevel = useCallback(() => {
+    confirmLevel(choice)
+    if (reducedMotion) handleComplete()
+    else setPhase('instructions')
+  }, [choice, confirmLevel, reducedMotion, handleComplete])
 
   // Animation timeline: descend → opening → instructions (wait for click)
   useEffect(() => {
@@ -102,7 +118,7 @@ export function ScrollOpenAnimation({
     }, 600)
 
     const showInstructionsTimer = setTimeout(() => {
-      setPhase('instructions')
+      setPhase('level')
     }, 1500)
 
     return () => {
@@ -117,9 +133,14 @@ export function ScrollOpenAnimation({
       if (e.key === 'Escape') {
         e.preventDefault()
         handleComplete()
+      } else if (phase === 'level' && /^[1-9]$/.test(e.key) && LEARNING_LEVEL_ORDER[Number(e.key) - 1]) {
+        e.preventDefault()
+        setChoice(LEARNING_LEVEL_ORDER[Number(e.key) - 1])
       } else if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault()
-        if (phase === 'instructions') {
+        if (phase === 'level') {
+          proceedFromLevel()
+        } else if (phase === 'instructions') {
           setPhase('title')
         } else if (phase === 'title') {
           handleComplete()
@@ -128,9 +149,9 @@ export function ScrollOpenAnimation({
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [phase, handleComplete])
+  }, [phase, handleComplete, proceedFromLevel])
 
-  if (reducedMotion || phase === 'complete') {
+  if (phase === 'complete') {
     return null
   }
 
@@ -166,6 +187,7 @@ export function ScrollOpenAnimation({
         >
           {phase === 'descend' && 'The book descends...'}
           {phase === 'opening' && 'The revelation begins...'}
+          {phase === 'level' && 'Choose your edition...'}
           {phase === 'instructions' && 'Learn the sacred ways...'}
           {phase === 'title' && 'Your journey awaits...'}
         </motion.div>
@@ -215,6 +237,67 @@ export function ScrollOpenAnimation({
                 transition: 'background 0.8s ease',
               }}
             >
+              {/* READING LEVEL PAGE - same look as the navigation guide */}
+              <AnimatePresence>
+                {phase === 'level' && (
+                  <motion.div
+                    className="absolute inset-0 flex items-center justify-center overflow-y-auto p-5 sm:p-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <div className="w-full max-w-lg space-y-5 text-center sm:space-y-7">
+                      <div>
+                        <p className="mb-2 font-serif text-sm uppercase tracking-[0.3em] text-amber-500/80">Reading Level</p>
+                        <div className="mx-auto h-0.5 w-32 bg-gradient-to-r from-transparent via-amber-600/50 to-transparent" />
+                        <p className="mt-3 font-serif text-sm text-amber-100/60">Every chapter is written for each level. Choose the one that fits you.</p>
+                      </div>
+
+                      <div role="radiogroup" aria-label="Reading level" className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
+                        {LEARNING_LEVEL_ORDER.map((id, i) => {
+                          const meta = LEARNING_LEVELS[id]
+                          const on = id === choice
+                          return (
+                            <button
+                              key={id}
+                              type="button"
+                              role="radio"
+                              aria-checked={on}
+                              onClick={(e) => { e.stopPropagation(); setChoice(id) }}
+                              className={cn(
+                                'relative flex items-center gap-2 rounded-lg border px-3 py-2.5 text-left transition-all',
+                                on
+                                  ? 'border-amber-400/80 bg-amber-700/40 text-amber-50 shadow-[0_0_0_1px_rgba(251,191,36,0.35)]'
+                                  : 'border-amber-700/30 bg-amber-900/30 text-amber-100/80 hover:bg-amber-900/50'
+                              )}
+                            >
+                              <span className="text-lg leading-none" aria-hidden>{meta.icon}</span>
+                              <span className="min-w-0">
+                                <span className="block truncate font-serif text-sm">{meta.label}</span>
+                                <span className="block text-[11px] text-amber-100/50">{meta.ageRange}</span>
+                              </span>
+                              <kbd className="absolute right-1.5 top-1.5 hidden rounded border border-amber-700/30 px-1 font-mono text-[10px] text-amber-100/40 sm:block">{i + 1}</kbd>
+                            </button>
+                          )
+                        })}
+                      </div>
+
+                      <p className="hidden text-xs text-amber-100/40 sm:block">
+                        Press <kbd className="rounded border border-amber-700/30 px-1.5 font-mono">1</kbd>–<kbd className="rounded border border-amber-700/30 px-1.5 font-mono">6</kbd> to choose, <kbd className="rounded border border-amber-700/30 px-1.5 font-mono">Enter</kbd> to continue
+                      </p>
+
+                      <button
+                        onClick={(e) => { e.stopPropagation(); proceedFromLevel() }}
+                        className="rounded-lg border border-amber-600/40 bg-amber-700/30 px-8 py-3 font-serif text-amber-100 transition-all hover:bg-amber-700/50"
+                      >
+                        Continue as {LEARNING_LEVELS[choice].label}
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               {/* INSTRUCTIONS PAGE - Dark background with keyboard hints */}
               <AnimatePresence>
                 {phase === 'instructions' && (

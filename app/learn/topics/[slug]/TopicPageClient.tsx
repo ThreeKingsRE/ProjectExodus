@@ -2,14 +2,15 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/Button'
-import { ArrowLeft, GraduationCap } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { ScrollHardcover, BOOK_THEMES } from '@/components/learning/ScrollHardcover'
 import { DustMotes } from '@/components/learning/FloatingBook'
 import type { CoreTopic } from '@/types/modules'
 import Link from 'next/link'
 import type { TopicDefinition } from '@/types/modules'
-import { LearningLevel, LEARNING_LEVELS, LEARNING_LEVEL_ORDER } from '@/types/learning'
+import { LearningLevel, LEARNING_LEVELS } from '@/types/learning'
 import { TopicBookBrowser } from '@/components/learning/TopicBookBrowser'
+import { BookBlurb } from '@/components/learning/BookBlurb'
 import { AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/react'
@@ -21,6 +22,8 @@ import {
   moduleProgressKeys,
   type TopicVolume,
 } from '@/lib/learning/topicVolumes'
+
+const READING_LEVEL_KEY = 'exodus_reading_level'
 
 export interface ModuleProgressSummary {
   moduleKey: string
@@ -38,11 +41,22 @@ const DigitalScroll = dynamic(
 interface TopicPageClientProps {
   topic: TopicDefinition
   initialLevel: LearningLevel
+  /** True when the link named a level; otherwise the reader's last level is used */
+  hasLevelParam?: boolean
 }
 
-export default function TopicPageClient({ topic, initialLevel }: TopicPageClientProps) {
+export default function TopicPageClient({ topic, initialLevel, hasLevelParam = false }: TopicPageClientProps) {
   const slug = topic.id
   const [selectedLevel, setSelectedLevel] = useState<LearningLevel>(initialLevel)
+  // The reading level is chosen when the book opens; remember it for next time
+  const rememberLevel = (level: LearningLevel) => { try { localStorage.setItem(READING_LEVEL_KEY, level) } catch { /* storage unavailable */ } }
+  useEffect(() => {
+    if (hasLevelParam) return
+    try {
+      const saved = localStorage.getItem(READING_LEVEL_KEY) as LearningLevel | null
+      if (saved && LEARNING_LEVELS[saved]) { setSelectedLevel(saved); setContentLevel(saved) }
+    } catch { /* storage unavailable */ }
+  }, [hasLevelParam])
 
   // Digital Scroll state
   const [isScrollOpen, setIsScrollOpen] = useState(false)
@@ -211,7 +225,7 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
               setInitialChapter(undefined)
               setVolumeIndex(v)
             }}
-            onLevelChange={setContentLevel}
+            onLevelChange={(level) => { setContentLevel(level); setSelectedLevel(level); rememberLevel(level) }}
             isLoadingContent={isLoadingVolume}
             onClose={handleCloseDigitalScroll}
           />
@@ -236,37 +250,6 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-6xl mx-auto">
-          {/* Reading level: a segmented control */}
-          <div className="mb-10 flex flex-col items-center gap-3">
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--muted-foreground)]">
-              <GraduationCap className="h-4 w-4" /> Reading level
-            </p>
-            <div className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div role="radiogroup" aria-label="Reading level" className="mx-auto flex w-max gap-1 rounded-full border border-[var(--border)] bg-[var(--card)] p-1 shadow-sm">
-                {LEARNING_LEVEL_ORDER.map((level) => {
-                  const meta = LEARNING_LEVELS[level]
-                  const isSelected = level === selectedLevel
-                  return (
-                    <button
-                      key={level}
-                      role="radio"
-                      aria-checked={isSelected}
-                      onClick={() => setSelectedLevel(level)}
-                      className={`flex items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-semibold transition-colors ${
-                        isSelected
-                          ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow'
-                          : 'text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]'
-                      }`}
-                    >
-                      <span aria-hidden>{meta.icon}</span>
-                      {meta.shortLabel}
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
-
           {/* Elementary content is open to read; accounts and networking for young
               learners will live on a separate kids' site */}
           {selectedLevel === 'ELEMENTARY' && (
@@ -279,7 +262,9 @@ export default function TopicPageClient({ topic, initialLevel }: TopicPageClient
             </div>
           )}
 
-          {/* Book Browser - Shows lessons as book covers, opens Digital Scroll on click */}
+          {/* Inside-cover pitch, then the table of contents */}
+          <BookBlurb topic={topic} level={selectedLevel} />
+
           <TopicBookBrowser
             topicSlug={slug}
             topic={topic}
