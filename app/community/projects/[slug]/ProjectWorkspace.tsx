@@ -704,20 +704,20 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       {/* Header */}
       <section className="py-4 sm:py-8 bg-gradient-to-br from-[color-mix(in_srgb,var(--secondary)_15%,var(--background))] via-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[color-mix(in_srgb,var(--accent)_15%,var(--background))]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-3 sm:mb-4">
-            <BackButton label="Back to Projects" fallbackUrl="/community/projects" />
+          <div className="mb-2 sm:mb-4">
+            <BackButton label="Back to Projects" fallbackUrl="/community/projects" className="!h-8 !px-3 !text-xs sm:!h-10 sm:!px-4 sm:!text-sm" />
           </div>
           <div className="max-w-6xl mx-auto">
             {/* Cover image first: it's what people recognize the initiative by */}
             {project.coverImage && (
-              <figure className="mb-5 sm:mb-6 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--muted)]">
-                <img src={project.coverImage} alt={`${project.name} initiative cover`} className="aspect-[16/10] sm:aspect-[21/9] max-h-[460px] w-full object-cover" />
+              <figure className="mb-3 sm:mb-6 overflow-hidden rounded-xl sm:rounded-2xl border border-[var(--border)] bg-[var(--muted)]">
+                <img src={project.coverImage} alt={`${project.name} initiative cover`} className="aspect-[21/9] max-h-[460px] w-full object-cover" />
               </figure>
             )}
-            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_18rem] gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_18rem] gap-3 sm:gap-6">
               {/* Project Info */}
               <div className="min-w-0">
-                <div className="flex items-center gap-2 sm:gap-3 mb-3 flex-wrap">
+                <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-3 flex-wrap">
                   {isEditing ? (
                     <select
                       value={editedStatus}
@@ -729,7 +729,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                       <option value="COMPLETED">COMPLETED</option>
                     </select>
                   ) : (
-                    <div className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full ${colors.bg} ${colors.text} font-black text-xs sm:text-sm uppercase`}>
+                    <div className={`px-2.5 py-1 sm:px-4 sm:py-2 rounded-full ${colors.bg} ${colors.text} font-black text-[10px] sm:text-sm uppercase`}>
                       {project.status}
                     </div>
                   )}
@@ -761,7 +761,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     </div>
                   )}
                   {isCreator && !isEditing && (
-                    <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] text-[var(--primary-foreground)] font-black text-xs uppercase flex items-center gap-1">
+                    <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] text-[var(--primary-foreground)] font-black text-[10px] sm:text-xs uppercase flex items-center gap-1">
                       <Crown className="w-3 h-3" />
                       YOUR PROJECT
                     </div>
@@ -792,7 +792,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 </div>
 
                 {isCreator && !isEditing && (
-                  <div className="mb-4 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap" role="toolbar" aria-label="Owner tools">
+                  <div className="mb-3 sm:mb-4 flex flex-wrap gap-1.5 sm:gap-2 [&>button]:!h-7 [&>button]:!px-2.5 [&>button]:!text-[11px] sm:[&>button]:!h-9 sm:[&>button]:!px-3 sm:[&>button]:!text-sm" role="toolbar" aria-label="Owner tools">
                     <Button variant="outline" size="sm" onClick={startEditing} className="font-bold min-w-0 px-2 sm:px-3">
                       <Pencil className="w-4 h-4 mr-1 shrink-0" />EDIT
                     </Button>
@@ -817,7 +817,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     placeholder="Project Name"
                   />
                 ) : (
-                  <h1 className="text-[1.75rem] leading-tight sm:text-4xl font-black mb-3 text-[var(--foreground)] break-words">
+                  <h1 className="text-2xl leading-tight sm:text-4xl font-black mb-2 sm:mb-3 text-[var(--foreground)] break-words">
                     {project.name}
                   </h1>
                 )}
@@ -831,7 +831,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     rows={2}
                   />
                 ) : (
-                  <p className="text-base sm:text-lg font-semibold text-theme-muted mb-4 break-words">
+                  <p className="text-sm sm:text-lg font-semibold text-theme-muted mb-3 sm:mb-4 break-words">
                     <LinkedText text={project.description || ''} linkClassName="text-theme-primary underline underline-offset-4 break-all" />
                   </p>
                 )}
@@ -855,29 +855,29 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     <p className="text-xs text-theme-muted">A line like {'{{table:…}}'} is a live table. Delete the line to remove it from the overview.</p>
                   </div>
                 )}
-                {!isEditing && project.visibility === 'PUBLIC' && project.layoutConfig?.hideFromPublic !== true && <p className="mb-4 text-sm font-semibold text-theme-primary">Public web overview enabled · this initiative can be shared without sign-in.</p>}
+                {!isEditing && project.visibility === 'PUBLIC' && project.layoutConfig?.hideFromPublic !== true && <p className="mb-3 sm:mb-4 text-xs sm:text-sm font-semibold text-theme-primary">Public web overview enabled · this initiative can be shared without sign-in.</p>}
                 {!isEditing && project.layoutConfig?.surveyUrl && (
-                  <a href={project.layoutConfig.surveyUrl} target="_blank" rel="noreferrer" className="mb-3 flex w-full sm:w-auto sm:inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-2.5 text-sm font-bold text-[var(--primary-foreground)]">
+                  <a href={project.layoutConfig.surveyUrl} target="_blank" rel="noreferrer" className="mb-3 inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--primary)] px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-bold text-[var(--primary-foreground)]">
                     <ClipboardList className="h-4 w-4" /> TAKE THE SURVEY
                   </a>
                 )}
                 {!isEditing && !isCreator && <div className="mb-5"><InitiativeParticipation projectId={project.id} role={userMembership?.role || (isCreator ? 'OWNER' : null)} /></div>}
 
                 {project.layoutConfig?.tagline && (
-                  <p className="mb-3 text-base font-bold text-theme-primary">
+                  <p className="mb-3 text-sm sm:text-base font-bold text-theme-primary">
                     {project.layoutConfig.tagline}
                   </p>
                 )}
                 {project.layoutConfig?.mission && (
-                  <Card className="mb-5 border border-theme-primary/30 bg-[var(--card)]/70">
-                    <CardContent className="p-4 sm:p-5">
-                      <p className="mb-2 text-xs font-black uppercase tracking-widest text-theme-primary">Initiative &amp; invitation</p>
-                      <p className="whitespace-pre-line text-sm leading-relaxed text-theme-muted">{project.layoutConfig.mission}</p>
+                  <Card className="mb-3 sm:mb-5 border border-theme-primary/30 bg-[var(--card)]/70">
+                    <CardContent className="p-3 sm:p-5">
+                      <p className="mb-1 sm:mb-2 text-[10px] sm:text-xs font-black uppercase tracking-widest text-theme-primary">Initiative &amp; invitation</p>
+                      <p className="whitespace-pre-line text-xs sm:text-sm leading-relaxed text-theme-muted">{project.layoutConfig.mission}</p>
                     </CardContent>
                   </Card>
                 )}
 
-                <div className="grid grid-cols-2 gap-x-4 gap-y-2 sm:flex sm:flex-wrap sm:gap-4 text-sm font-bold text-theme-muted">
+                <div className="flex flex-wrap gap-x-3 gap-y-1 sm:gap-4 text-[11px] sm:text-sm font-bold text-theme-muted [&_svg]:!w-3.5 [&_svg]:!h-3.5 sm:[&_svg]:!w-4 sm:[&_svg]:!h-4">
                   <div className="flex items-center gap-2">
                     <Users className="w-4 h-4" />
                     <span>{project._count?.members || 0} members</span>
@@ -905,8 +905,8 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
               {/* Quick Actions Card */}
               <Card className="min-w-0 border-2 border-theme-primary h-fit">
-                <CardContent className="p-4">
-                  <div className="space-y-3">
+                <CardContent className="p-2 sm:p-4">
+                  <div className="grid grid-cols-2 gap-2 lg:grid-cols-1 sm:gap-3 [&_button]:!h-8 [&_button]:!px-2 [&_button]:!py-0 [&_button]:!text-xs sm:[&_button]:!h-10 sm:[&_button]:!px-4 sm:[&_button]:!text-sm [&>*:only-child]:col-span-2">
                     {project.visibility === 'PUBLIC' && project.layoutConfig?.hideFromPublic !== true && <InitiativeShare slug={project.slug} name={project.name} block />}
                     {isTeam && !isCreator && (
                       <Button
@@ -928,7 +928,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                       </Button>
                     )}
                     {isTeam && totalModules > 0 && (
-                      <div className="p-3 bg-[var(--muted)] rounded-lg">
+                      <div className="col-span-2 lg:col-span-1 p-3 bg-[var(--muted)] rounded-lg">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm font-bold">Learning Progress</span>
                           <span className="text-sm font-black text-theme-primary">
@@ -1046,7 +1046,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
                 {/* Main Content Area - Newspaper Style */}
                 <div className="flex-1 min-w-0 space-y-6">
-                  {project.layoutConfig?.publicStory && <Card className="border-2 border-theme-primary"><CardContent className="p-4 sm:p-6"><h2 className="mb-5 text-xl font-black">INITIATIVE STORY</h2><InitiativeStory text={project.layoutConfig.publicStory} projectId={project.id} canRefresh={isMember} /></CardContent></Card>}
+                  {project.layoutConfig?.publicStory && <Card className="border-2 border-theme-primary"><CardContent className="p-3 sm:p-6"><h2 className="mb-3 sm:mb-5 text-base sm:text-xl font-black">INITIATIVE STORY</h2><InitiativeStory text={project.layoutConfig.publicStory} projectId={project.id} canRefresh={isMember} /></CardContent></Card>}
                   {/* Goal Section - Editable */}
                   {(project.goal || isCreator) && (
                     <Card className="border-2 border-theme-accent">
@@ -1115,7 +1115,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                   )}
 
                   {/* Live Stats Bar with Real-time Indicator */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-4 gap-2 sm:gap-4 [&_.p-4]:!p-2 sm:[&_.p-4]:!p-4 [&_svg]:!w-5 [&_svg]:!h-5 [&_svg]:!mb-1 sm:[&_svg]:!w-8 sm:[&_svg]:!h-8 sm:[&_svg]:!mb-2 [&_.text-3xl]:!text-lg sm:[&_.text-3xl]:!text-3xl [&_.text-sm]:!text-[10px] sm:[&_.text-sm]:!text-sm">
                     <Card className="border-2 relative overflow-hidden">
                       <div className="absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full m-2 animate-pulse"></div>
                       <CardContent className="p-4 text-center">

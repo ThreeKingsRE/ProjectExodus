@@ -61,7 +61,7 @@ export function LiveTable({ id, projectId, initial, canRefresh = false }: {
       {view.title && <figcaption className="text-base font-bold">{view.title}</figcaption>}
       {data && data.header.length > 0 ? (
         <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
-          <table className="w-full min-w-[420px] border-collapse text-left text-sm leading-6">
+          <table className="w-full sm:min-w-[420px] border-collapse text-left text-xs leading-5 sm:text-sm sm:leading-6 [&_th]:!px-2 [&_td]:!px-2 [&_th]:!py-2 [&_td]:!py-2 sm:[&_th]:!px-4 sm:[&_td]:!px-4 sm:[&_th]:!py-3 sm:[&_td]:!py-3">
             <thead className="bg-[var(--muted)]">
               <tr>{data.header.map((h, i) => <th key={i} scope="col" className="px-4 py-3 font-bold">{h}</th>)}</tr>
             </thead>
