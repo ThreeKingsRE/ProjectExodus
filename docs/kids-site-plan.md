@@ -1,32 +1,38 @@
-# Kids' site plan: kids.projxodus.com
+# Plan: a separate kids' site for Elementary and Middle School
 
-Status: planned, nothing moved yet (owner decision, 2026-11-19).
+**Status:** planned. Nothing has been removed or moved yet; Elementary and Middle School editions stay on projxodus.com until the kids' site exists.
 
-Learners at **Elementary** and **Middle School** reading levels will eventually get
-their own site at **kids.projxodus.com**. Until then everything stays where it is.
+## What moves
 
-## Why a subdomain
+The Elementary (ages 6–10) and Middle School (ages 11–13) editions of every Digital Scroll textbook, and anything built for those ages:
 
-- The owner already holds projxodus.com, so a subdomain costs nothing extra.
-- "projxodus.kids.com" isn't possible: kids.com belongs to someone else.
-- Sign-in, accounts and progress can be shared across both sites (same database,
-  auth cookie scoped to `.projxodus.com`).
+- The two reading levels in the book-opening "Reading Level" step (`components/learning/DigitalScroll/ScrollOpenAnimation.tsx`)
+- Elementary and Middle School lesson text in the topic content (the `ELEMENTARY` and `MIDDLE_SCHOOL` keys in each module's `description`, `content` and `duration`)
+- The "A kids' site is coming soon" notice on topic pages (`app/learn/topics/[slug]/TopicPageClient.tsx`)
+- Kid-specific scroll pages and copy in `components/learning/DigitalScroll/DigitalScroll.tsx` (the playful elementary page texts)
 
-## What will move (later)
+High School, Undergraduate, Graduate and PhD stay on projxodus.com.
 
-- Digital Scroll books at the Elementary and Middle School levels, their quizzes and games.
-- A simpler, kid-safe shell: no community forums, direct messages, marketplace or
-  public profiles; adult-reviewed content only.
-- The reading-level picker on the main site will send younger levels to the kids' site.
+## Why separate
 
-## What stays on projxodus.com
+Young learners need a safer space: no public profiles, messaging, networking or open community features, with parent and teacher controls instead. A separate site keeps those rules simple and keeps the main site's community open.
 
-- High School, Undergraduate, Graduate and PhD levels, and all community features.
+## Steps when the domain is ready
 
-## Before launch (checklist)
+1. Set up the kids' site (its own Vercel project or a separate app in this repo) and point the domain at it.
+2. Copy the Elementary and Middle School content and the Digital Scroll reader to it, without accounts, messaging or community features.
+3. On projxodus.com, replace the two levels in the Reading Level step with a link to the kids' site, and redirect old links that ask for those levels (`?level=elementary`, `?level=middle_school`).
+4. Remove the kids' levels from the main site's content and progress data only after the kids' site is live and checked.
 
-- [ ] Add the `kids.projxodus.com` domain in Vercel and DNS.
-- [ ] Decide on parental consent / age gating (COPPA for under-13s in the US).
-- [ ] Scope the auth cookie to `.projxodus.com` so one sign-in works on both.
-- [ ] Route `kids.projxodus.com` to a kids layout (Next.js proxy host check).
-- [ ] Redirect younger reading levels from the main site.
+## Domain (decided 2026-11-19)
+
+**kids.projxodus.com**, a subdomain of the domain already owned, so there's nothing new to buy. ("projxodus.kids.com" isn't possible: kids.com belongs to someone else.) A subdomain also lets one sign-in work on both sites if the auth cookie is scoped to `.projxodus.com`.
+
+## Before launch
+
+- Add `kids.projxodus.com` in Vercel and DNS.
+- Decide on parental consent and age checks (COPPA applies to under-13s in the US).
+
+## Reading level today
+
+On projxodus.com the reading level is asked the first time each book is opened and remembered for that book; the **Reading level** button in the book's top bar switches it any time. When the kids' site launches, choosing Elementary or Middle School there will link to kids.projxodus.com instead.
