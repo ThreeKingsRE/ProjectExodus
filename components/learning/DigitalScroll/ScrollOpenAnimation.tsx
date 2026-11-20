@@ -26,6 +26,9 @@ interface ScrollOpenAnimationProps {
   level: LearningLevel
   /** Called once the reader confirms a level (also when they skip: the preselected one) */
   onLevelChosen: (level: LearningLevel) => void
+  /** Ask for the level (first time this book is opened). Later opens skip the step;
+   *  the level can be changed any time from the book's top bar. */
+  askLevel?: boolean
 }
 
 type AnimationPhase = 'descend' | 'opening' | 'level' | 'instructions' | 'title' | 'complete'
@@ -43,9 +46,10 @@ export function ScrollOpenAnimation({
   className,
   level,
   onLevelChosen,
+  askLevel = true,
 }: ScrollOpenAnimationProps) {
   // With reduced motion there's no animation, but the reader still picks a level
-  const [phase, setPhase] = useState<AnimationPhase>(reducedMotion ? 'level' : 'descend')
+  const [phase, setPhase] = useState<AnimationPhase>(reducedMotion ? (askLevel ? 'level' : 'instructions') : 'descend')
   const [choice, setChoice] = useState<LearningLevel>(level)
   const chosenRef = useRef(false)
   const confirmLevel = useCallback((next: LearningLevel) => {
@@ -118,14 +122,14 @@ export function ScrollOpenAnimation({
     }, 600)
 
     const showInstructionsTimer = setTimeout(() => {
-      setPhase('level')
+      setPhase(askLevel ? 'level' : 'instructions')
     }, 1500)
 
     return () => {
       clearTimeout(openCoverTimer)
       clearTimeout(showInstructionsTimer)
     }
-  }, [reducedMotion])
+  }, [reducedMotion, askLevel])
 
   // Keyboard controls - skip entire animation
   useEffect(() => {

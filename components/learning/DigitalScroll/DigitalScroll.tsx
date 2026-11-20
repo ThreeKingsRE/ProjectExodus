@@ -22,6 +22,7 @@ import type { RibbonStyle } from '@/lib/learning/ribbon'
 import { ScrollPage, PageContent, VerseHeader, ChapterDivider } from './ScrollPage'
 import { PageFlip, RapidPageFlip, usePageTurnSound } from './PageFlip'
 import { ScrollOpenAnimation } from './ScrollOpenAnimation'
+import { LevelSwitcher } from './LevelSwitcher'
 import { useScrollState } from './useScrollState'
 import { ScrollGameSelector, GradedQuiz } from './ScrollGames'
 
@@ -68,6 +69,8 @@ interface DigitalScrollProps {
   onVolumeChange?: (volumeIndex: number) => void
   /** Level change inside the book (lets the parent refetch content for that level) */
   onLevelChange?: (level: LearningLevel) => void
+  /** Show the reading-level step when the book opens (first time this book is opened) */
+  askLevel?: boolean
   /** True while the parent is fetching this volume's content */
   isLoadingContent?: boolean
   /** Progress key for each module in `modules` (same order) */
@@ -195,6 +198,7 @@ export function DigitalScroll({
   volumeCount = 1,
   onVolumeChange,
   onLevelChange,
+  askLevel = true,
   isLoadingContent = false,
   moduleKeys = [],
   moduleProgress = [],
@@ -1763,6 +1767,7 @@ export function DigitalScroll({
             onAnimationComplete={handleAnimationComplete}
             reducedMotion={scrollState.preferences.reducedMotion}
             level={selectedLevel}
+            askLevel={askLevel}
             onLevelChosen={(level) => {
               if (level === selectedLevel) return
               setSelectedLevel(level)
@@ -1901,6 +1906,11 @@ export function DigitalScroll({
           {/* Top Control Bar */}
           {/* On phones the ribbons span the full width, so sit below them */}
           <div className="absolute top-16 sm:top-6 right-3 sm:right-6 flex items-center gap-2 z-30">
+            {/* Reading level: always visible so the reader can switch any time */}
+            <LevelSwitcher
+              level={selectedLevel}
+              onChange={(level) => { setSelectedLevel(level); onLevelChange?.(level) }}
+            />
             {/* Print or download this textbook (opens a print-ready page) */}
             <a
               href={`/learn/topics/${topic.id}/print?level=${selectedLevel}&scope=v${volumeIndex + 1}`}

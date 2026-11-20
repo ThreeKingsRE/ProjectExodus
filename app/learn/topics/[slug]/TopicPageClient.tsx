@@ -51,15 +51,24 @@ interface TopicPageClientProps {
 export default function TopicPageClient({ topic, initialLevel, hasLevelParam = false }: TopicPageClientProps) {
   const slug = topic.id
   const [selectedLevel, setSelectedLevel] = useState<LearningLevel>(initialLevel)
-  // The reading level is chosen when the book opens; remember it for next time
-  const rememberLevel = (level: LearningLevel) => { try { localStorage.setItem(READING_LEVEL_KEY, level) } catch { /* storage unavailable */ } }
+  // The reading level is asked the first time a book is opened and remembered for that
+  // book; it can be changed any time from the book's top bar. The last level used
+  // anywhere is the default suggestion for a book not opened yet.
+  const bookLevelKey = `${READING_LEVEL_KEY}:${slug}`
+  const [askLevel, setAskLevel] = useState(!hasLevelParam)
+  const rememberLevel = (level: LearningLevel) => {
+    try { localStorage.setItem(bookLevelKey, level); localStorage.setItem(READING_LEVEL_KEY, level) } catch { /* storage unavailable */ }
+    setAskLevel(false)
+  }
   useEffect(() => {
     if (hasLevelParam) return
     try {
-      const saved = localStorage.getItem(READING_LEVEL_KEY) as LearningLevel | null
+      const forBook = localStorage.getItem(bookLevelKey) as LearningLevel | null
+      const saved = forBook ?? (localStorage.getItem(READING_LEVEL_KEY) as LearningLevel | null)
       if (saved && LEARNING_LEVELS[saved]) { setSelectedLevel(saved); setContentLevel(saved) }
+      setAskLevel(!(forBook && LEARNING_LEVELS[forBook]))
     } catch { /* storage unavailable */ }
-  }, [hasLevelParam])
+  }, [hasLevelParam, bookLevelKey])
 
   // Digital Scroll state
   const [isScrollOpen, setIsScrollOpen] = useState(false)
@@ -248,6 +257,7 @@ export default function TopicPageClient({ topic, initialLevel, hasLevelParam = f
               setVolumeIndex(v)
             }}
             onLevelChange={(level) => { setContentLevel(level); setSelectedLevel(level); rememberLevel(level) }}
+            askLevel={askLevel}
             isLoadingContent={isLoadingVolume}
             onClose={handleCloseDigitalScroll}
             resumePage={resumePage}
