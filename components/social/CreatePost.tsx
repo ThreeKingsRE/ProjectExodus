@@ -82,10 +82,10 @@ export function CreatePost({ onPostCreated }: CreatePostProps) {
               <img
                 src={session.user.image}
                 alt={session.user.name || 'User'}
-                className="w-12 h-12 rounded-full object-cover"
+                className="w-9 h-9 sm:w-12 sm:h-12 rounded-full object-cover"
               />
             ) : (
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] flex items-center justify-center">
+              <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] flex items-center justify-center">
                 <span className="text-xl font-black text-white">
                   {session.user.name?.[0]?.toUpperCase() || session.user.email?.[0].toUpperCase()}
                 </span>
@@ -144,7 +144,7 @@ export function CreatePost({ onPostCreated }: CreatePostProps) {
                 </div>
 
                 {/* Character Count */}
-                <span className="text-sm font-semibold text-theme-muted">
+                <span className="whitespace-nowrap text-xs sm:text-sm font-semibold text-theme-muted">
                   {content.length} / 5000
                 </span>
               </div>

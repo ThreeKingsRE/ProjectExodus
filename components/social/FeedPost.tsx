@@ -183,7 +183,7 @@ export function FeedPost({ post, onLike, onComment, menu, hideInitiative }: Feed
             {/* User Info */}
             <div>
               <Link href={`/profile/${post.user.id}`}>
-                <h3 className="font-black text-[var(--foreground)] hover:text-theme-primary transition-colors cursor-pointer">
+                <h3 style={{ fontSize: '0.95rem', lineHeight: 1.3 }} className="font-black text-[var(--foreground)] hover:text-theme-primary transition-colors cursor-pointer">
                   {post.user.name || 'Anonymous User'}
                 </h3>
               </Link>
