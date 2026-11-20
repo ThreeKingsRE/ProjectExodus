@@ -3,12 +3,24 @@ import { ArrowRight, ClipboardList, Globe2, Lock, Megaphone, MessageSquare, User
 import type { PublicProject } from '@/lib/projects/public-view'
 import { InitiativeShare } from './InitiativeShare'
 import { LinkedText } from './LinkedText'
+import { LiveTable } from './LiveTable'
+import type { LiveTableView } from '@/lib/projects/live-tables'
 
-export function InitiativeStory({ text }: { text: string }) {
+/**
+ * The overview story. A line {{table:ID}} shows a live table read from a workspace
+ * spreadsheet: `tables` supplies its rows (public page), or with `projectId` the
+ * workspace loads them for members, who can also refresh it.
+ */
+export function InitiativeStory({ text, tables, projectId, canRefresh = false }: { text: string; tables?: Record<string, LiveTableView>; projectId?: string; canRefresh?: boolean }) {
   const inline = (value: string) => <LinkedText text={value} />
   return <div className="space-y-5 text-base leading-8 text-[var(--foreground)]">
     {text.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => {
       const lines = paragraph.trim().split('\n')
+      const live = lines.length === 1 ? lines[0].trim().match(/^\{\{table:([a-z0-9]{8,40})\}\}$/) : null
+      if (live) {
+        if (tables && !tables[live[1]]) return null // removed table: show nothing to visitors
+        return <LiveTable key={index} id={live[1]} projectId={projectId} initial={tables ? tables[live[1]] : undefined} canRefresh={canRefresh} />
+      }
       const cells = (line: string) => line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(cell => cell.trim())
       if (lines.length >= 2 && lines[0].trim().startsWith('|') && /^\|?[\s:|-]+\|?$/.test(lines[1]) && lines[1].includes('---')) {
         const headers = cells(lines[0])
@@ -47,7 +59,7 @@ export function PublicInitiativeOverview({ project }: { project: PublicProject }
     <div className="mx-auto max-w-6xl space-y-6 sm:space-y-8 px-4 py-6 sm:px-8 sm:py-10">
       {project.mission && <section className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6"><h2 className="mb-4 text-xl font-black">Our mission</h2><p className="whitespace-pre-wrap leading-8">{project.mission}</p></section>}
       {project.goal && <section className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6"><h2 className="mb-4 text-xl font-black">Our goal</h2><p className="whitespace-pre-wrap leading-8">{project.goal}</p></section>}
-      {project.story && <section aria-label="Public initiative story" className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-8"><InitiativeStory text={project.story} /></section>}
+      {project.story && <section aria-label="Public initiative story" className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-8"><InitiativeStory text={project.story} tables={project.liveTables ?? {}} /></section>}
       {project.updates && project.updates.length > 0 && (
         <section aria-label="Latest updates" className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6">
           <h2 className="mb-4 flex items-center gap-2 text-xl font-black"><Megaphone size={20} /> Latest updates</h2>

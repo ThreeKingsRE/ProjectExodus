@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { auth } from '@/auth'
 
 export async function GET(
   request: NextRequest,
@@ -9,9 +10,8 @@ export async function GET(
     const { id } = await params
 
     const articles = await prisma.article.findMany({
-      where: {
-        authorId: id
-      },
+      // Drafts and articles in review are only listed for their author
+      where: (await auth())?.user?.id === id ? { authorId: id } : { authorId: id, status: 'PUBLISHED' },
       select: {
         id: true,
         title: true,

@@ -3,6 +3,9 @@ import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { canManageFiles, fileForViewer, parseFileInput, type StoredFile } from '@/lib/projects/files'
 import { fileCreatorSelect, filterMemberIds, getFileViewer } from '@/lib/projects/files-server'
+import { isSpreadsheetUrl } from '@/lib/projects/live-tables'
+import { refreshProjectTables } from '@/lib/projects/live-tables-server'
+import { withSignedLinks } from '@/lib/projects/hosted-files'
 
 type Params = { params: Promise<{ projectId: string; fileId: string }> }
 
@@ -37,7 +40,9 @@ export async function PATCH(request: NextRequest, { params }: Params) {
       data,
       include: { createdBy: fileCreatorSelect },
     })
-    return NextResponse.json({ success: true, data: fileForViewer(updated as StoredFile, viewer!) })
+    // A changed spreadsheet link (e.g. pointing at a newer version) updates its overview tables
+    if (isSpreadsheetUrl(updated.viewUrl)) await refreshProjectTables(projectId, updated.viewUrl).catch((e) => console.error('Live table refresh failed:', e))
+    return NextResponse.json({ success: true, data: withSignedLinks(fileForViewer(updated as StoredFile, viewer!)) })
   } catch (err) {
     console.error('Error updating project file:', err)
     return NextResponse.json({ success: false, error: 'Failed to update file.' }, { status: 500 })

@@ -93,7 +93,7 @@ export default async function MemberDirectoryPage() {
                         ) : (
                           <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] flex items-center justify-center mb-3">
                             <span className="text-3xl font-black text-white">
-                              {user.name?.[0]?.toUpperCase() || user.email[0].toUpperCase()}
+                              {user.name?.[0]?.toUpperCase() || '?'}
                             </span>
                           </div>
                         )}

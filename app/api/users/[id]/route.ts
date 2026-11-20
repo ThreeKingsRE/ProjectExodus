@@ -311,6 +311,9 @@ export async function GET(
       // Remove privacy flags from response
       showEmail: undefined,
       showPhone: undefined,
+      // Settings are only for the account owner
+      privacySettings: isOwnProfile ? user.privacySettings : undefined,
+      notificationPreferences: isOwnProfile ? user.notificationPreferences : undefined,
     }
 
     return NextResponse.json({

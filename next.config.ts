@@ -24,6 +24,14 @@ const nextConfig: NextConfig = {
   // Packages with native bindings or complex CJS that must stay out of the
   // serverless bundle and be resolved at runtime from node_modules
   serverExternalPackages: ['pdf-parse', 'mammoth'],
+  // Initiative files live in /private (not public). Bundle them only with the
+  // server routes that read them: the access-checked file route and live tables.
+  outputFileTracingIncludes: {
+    '/projects/[...path]': ['./private/projects/**/*'],
+    '/api/projects/[projectId]/live-tables': ['./private/projects/**/*'],
+    '/api/projects/[projectId]/files': ['./private/projects/**/*'],
+    '/api/projects/[projectId]/files/[fileId]': ['./private/projects/**/*'],
+  },
   experimental: {
     optimizePackageImports: [
       'lucide-react',

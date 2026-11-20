@@ -1216,6 +1216,7 @@ model Project {
   documents            Document[]
   documentTemplates    DocumentTemplate[]
   files                ProjectFile[]
+  liveTables           ProjectLiveTable[]
   surveys              ProjectSurvey[]
   timelineItems        ProjectTimelineItem[]
   invites              ProjectInvite[]
@@ -1268,6 +1269,34 @@ model ProjectFile {
 
   @@index([projectId])
   @@index([projectId, section])
+}
+
+// A table in the initiative overview that is read from a workspace spreadsheet.
+// It follows the file's newest version (riverknoll-feasibility-v12 -> v13 ...)
+// and refreshes when that file changes or someone presses Refresh. The overview
+// shows the cached rows, so visitors never get the raw file.
+model ProjectLiveTable {
+  id          String    @id @default(cuid())
+  projectId   String
+  project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  /// The file it was linked to; refreshes use the newest file in the same version series
+  fileId      String?
+  /// Version-free name of the file series, e.g. "riverknoll-feasibility"
+  seriesKey   String
+  title       String?
+  sheet       String?
+  range       String?
+  /// { header: string[], rows: string[][], sheets: string[] }
+  data        Json?
+  /// Title of the file version the data came from, e.g. "Riverknoll feasibility v12"
+  sourceTitle String?
+  refreshedAt DateTime?
+  error       String?   @db.Text
+  createdById String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([projectId])
 }
 
 // ============================================

@@ -2,6 +2,7 @@ import { cache } from 'react'
 import { prisma } from '@/lib/db'
 import { publicProjectFields } from './public-view'
 import { ventureTypeLabel } from './ventureType'
+import { liveTablesForText } from './live-tables-server'
 
 export const getPublicProject = cache(async (slug: string) => {
   const project = await prisma.project.findUnique({
@@ -27,8 +28,11 @@ export const getPublicProject = cache(async (slug: string) => {
       _count: { select: { likes: true, comments: true } },
     },
   })
+  // Live tables in the story: cached rows only, never the source file
+  const liveTables = await liveTablesForText(project!.id, fields.story).catch(() => ({}))
   return {
     ...fields,
+    liveTables,
     ventureType: ventureTypeLabel(project!.layoutConfig),
     updates: updates.map((u: any) => ({
       id: u.id,

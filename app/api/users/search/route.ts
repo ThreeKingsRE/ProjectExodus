@@ -31,11 +31,11 @@ export async function GET(request: NextRequest) {
       },
     }
 
-    // Search by name, email, or headline
+    // Search by name or headline; an email only matches when typed in full
     if (query) {
       where.OR = [
         { name: { contains: query, mode: 'insensitive' } },
-        { email: { contains: query, mode: 'insensitive' } },
+        { email: { equals: query, mode: 'insensitive' } }, // exact only: no scanning for addresses
         { headline: { contains: query, mode: 'insensitive' } },
       ]
     }
@@ -69,7 +69,6 @@ export async function GET(request: NextRequest) {
         select: {
           id: true,
           name: true,
-          email: true,
           image: true,
           headline: true,
           bio: true,

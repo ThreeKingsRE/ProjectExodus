@@ -57,6 +57,7 @@ import {
 import { getPusherClient } from '@/lib/pusher-client'
 import Link from 'next/link'
 import { InitiativeStory } from '@/components/projects/PublicInitiativeOverview'
+import { LiveTableInserter } from '@/components/projects/LiveTableInserter'
 import { InitiativeParticipation } from '@/components/projects/InitiativeParticipation'
 import { ResearchComposer } from '@/components/projects/ResearchComposer'
 import { MessageEditor } from '@/components/projects/MessageEditor'
@@ -180,6 +181,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   const [editedVentureType, setEditedVentureType] = useState('')
   const [editedVentureTypeOther, setEditedVentureTypeOther] = useState('')
   const [editedPublicStory, setEditedPublicStory] = useState('')
+  const storyRef = useRef<HTMLTextAreaElement>(null)
   const [editedSurveyUrl, setEditedSurveyUrl] = useState('')
   const [isSaving, setIsSaving] = useState(false)
 
@@ -841,7 +843,16 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                     <input id="edit-survey-url" type="url" inputMode="url" value={editedSurveyUrl} onChange={event => setEditedSurveyUrl(event.target.value)} maxLength={500} placeholder="https://forms.gle/…" className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm" />
                     <p className="-mt-2 text-xs text-theme-muted">Shows a “Take the survey” button next to Follow on the initiative and its public page.</p>
                     <label htmlFor="edit-public-story" className="block font-bold">Public story</label>
-                    <textarea id="edit-public-story" value={editedPublicStory} onChange={event => setEditedPublicStory(event.target.value)} maxLength={16000} rows={12} className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] p-3 leading-7" />
+                    <textarea ref={storyRef} id="edit-public-story" value={editedPublicStory} onChange={event => setEditedPublicStory(event.target.value)} maxLength={16000} rows={12} className="w-full rounded-lg border-2 border-[var(--border)] bg-[var(--background)] p-3 leading-7" />
+                    <LiveTableInserter projectId={project.id} onInsert={(token) => {
+                      // Put the table on its own line at the cursor (or at the end)
+                      const el = storyRef.current
+                      const at = el ? el.selectionStart : editedPublicStory.length
+                      const before = editedPublicStory.slice(0, at).replace(/\s*$/, '')
+                      const after = editedPublicStory.slice(at).replace(/^\s*/, '')
+                      setEditedPublicStory(`${before}${before ? '\n\n' : ''}${token}${after ? '\n\n' : ''}${after}`)
+                    }} />
+                    <p className="text-xs text-theme-muted">A line like {'{{table:…}}'} is a live table. Delete the line to remove it from the overview.</p>
                   </div>
                 )}
                 {!isEditing && project.visibility === 'PUBLIC' && project.layoutConfig?.hideFromPublic !== true && <p className="mb-4 text-sm font-semibold text-theme-primary">Public web overview enabled · this initiative can be shared without sign-in.</p>}
@@ -1035,7 +1046,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
                 {/* Main Content Area - Newspaper Style */}
                 <div className="flex-1 min-w-0 space-y-6">
-                  {project.layoutConfig?.publicStory && <Card className="border-2 border-theme-primary"><CardContent className="p-4 sm:p-6"><h2 className="mb-5 text-xl font-black">INITIATIVE STORY</h2><InitiativeStory text={project.layoutConfig.publicStory} /></CardContent></Card>}
+                  {project.layoutConfig?.publicStory && <Card className="border-2 border-theme-primary"><CardContent className="p-4 sm:p-6"><h2 className="mb-5 text-xl font-black">INITIATIVE STORY</h2><InitiativeStory text={project.layoutConfig.publicStory} projectId={project.id} canRefresh={isMember} /></CardContent></Card>}
                   {/* Goal Section - Editable */}
                   {(project.goal || isCreator) && (
                     <Card className="border-2 border-theme-accent">

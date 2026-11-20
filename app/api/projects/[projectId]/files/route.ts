@@ -3,6 +3,9 @@ import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { FILE_SECTIONS, canManageFiles, fileForViewer, parseFileInput, type FileSection, type StoredFile } from '@/lib/projects/files'
 import { fileCreatorSelect, filterMemberIds, getFileViewer } from '@/lib/projects/files-server'
+import { isSpreadsheetUrl } from '@/lib/projects/live-tables'
+import { refreshProjectTables } from '@/lib/projects/live-tables-server'
+import { withSignedLinks } from '@/lib/projects/hosted-files'
 
 // GET - Workspace files this member may see, each with the link they may open
 export async function GET(request: NextRequest, { params }: { params: Promise<{ projectId: string }> }) {
@@ -27,7 +30,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     })
 
     const visible = (files as StoredFile[])
-      .map(file => fileForViewer(file, viewer))
+      .map(file => withSignedLinks(fileForViewer(file, viewer)))
       .filter(Boolean)
 
     return NextResponse.json({ success: true, data: { files: visible, canManage: canManageFiles(viewer) } })
@@ -71,7 +74,10 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       include: { createdBy: fileCreatorSelect },
     })
 
-    return NextResponse.json({ success: true, data: fileForViewer(created as StoredFile, viewer) }, { status: 201 })
+    // A new version of a spreadsheet (…-v13.xlsx) updates the overview tables that follow it
+    if (isSpreadsheetUrl(created.viewUrl)) await refreshProjectTables(projectId, created.viewUrl).catch((e) => console.error('Live table refresh failed:', e))
+
+    return NextResponse.json({ success: true, data: withSignedLinks(fileForViewer(created as StoredFile, viewer)) }, { status: 201 })
   } catch (error) {
     console.error('Error creating project file:', error)
     return NextResponse.json({ success: false, error: 'Failed to add file.' }, { status: 500 })

@@ -239,7 +239,7 @@ export function ConstellationCard({
                 ) : (
                   <div className="w-full h-full rounded-[10px] bg-[var(--card)] flex items-center justify-center">
                     <span className={`text-xl font-black ${archetype.accentColor}`}>
-                      {(user.name?.[0] || user.email[0]).toUpperCase()}
+                      {(user.name?.[0] || user.email?.[0] || '?').toUpperCase()}
                     </span>
                   </div>
                 )}
