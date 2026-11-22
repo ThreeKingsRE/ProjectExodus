@@ -19,8 +19,8 @@ export const VOLUME_SIZE = 7
  * Page layout of each volume in the Digital Scroll (see bookPages in
  * components/learning/DigitalScroll/DigitalScroll.tsx): four opening pages
  * (cover, inside cover, contents, learning mission), then seven pages per
- * chapter (divider, intro, reading, review, notes, games, quiz). Page numbers
- * restart in each volume.
+ * chapter (divider, intro, reading, review, notes, games, quiz). Readers see one
+ * continuous page count through the whole book (volumePageOffset).
  */
 export const OPENING_PAGES = 4
 export const PAGES_PER_CHAPTER = 7
@@ -28,6 +28,22 @@ export const PAGES_PER_CHAPTER = 7
 /** The page a chapter starts on within its volume (1-based), as printed in the scroll. */
 export function chapterStartPage(chapterInVolume: number): number {
   return OPENING_PAGES + chapterInVolume * PAGES_PER_CHAPTER + 1
+}
+
+/** Pages before a volume starts, so page numbers run continuously through the whole book. */
+export function volumePageOffset(volume: number): number {
+  return volume * (OPENING_PAGES + VOLUME_SIZE * PAGES_PER_CHAPTER)
+}
+
+/** Total pages in the whole book (every volume). */
+export function bookPageCount(moduleCount: number): number {
+  const full = Math.floor(moduleCount / VOLUME_SIZE), rest = moduleCount % VOLUME_SIZE
+  return volumePageOffset(full) + (rest ? OPENING_PAGES + rest * PAGES_PER_CHAPTER : 0)
+}
+
+/** The page a chapter starts on, counted through the whole book (1-based). */
+export function bookChapterStartPage(chapterIndex: number): number {
+  return volumePageOffset(Math.floor(chapterIndex / VOLUME_SIZE)) + chapterStartPage(chapterIndex % VOLUME_SIZE)
 }
 
 export function getVolumeCount(moduleCount: number): number {

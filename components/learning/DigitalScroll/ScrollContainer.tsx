@@ -266,7 +266,7 @@ export function PageContainer({ children, side, className }: PageContainerProps)
         side === 'left' && isDesktop && 'pl-4 pr-3 py-3',  // Left page: outer=4 (16px), inner=3 (12px)
         side === 'right' && isDesktop && 'pl-3 pr-4 py-3', // Right page: inner=3 (12px), outer=4 (16px)
         // Phones/tablets: the left margin is the binding, where the ribbon lies
-        !isDesktop && 'py-3 pr-3 pl-7',
+        !isDesktop && 'py-3 pr-3 pl-10',
         // Page styling - book colors for proper theme sync
         'bg-[var(--book-paper,var(--card))]',
         'text-[var(--book-text,var(--foreground))]',

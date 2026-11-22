@@ -13,9 +13,9 @@ import { FloatingBook } from './FloatingBook'
 import type { RibbonStyle } from '@/lib/learning/ribbon'
 import { ReadingRibbon, RibbonArt } from './ribbon/ReadingRibbon'
 
-// A closed book's ribbon: it comes out of the head of the book beside the spine
-// (the cover's left edge) and drapes down over the top of the cover.
-const CLOSED_RIBBON_POS = { left: '9%', top: '-7%', width: '7%', height: '24%' } as const
+// A closed book's ribbon, like a real bound book: tucked inside, with only its
+// tail hanging out below the bottom edge of the pages near the spine.
+const CLOSED_RIBBON_POS = { left: '13%', top: '97%', width: '6%', height: '14%' } as const
 
 interface CoverTheme {
   cloth: string
@@ -109,7 +109,7 @@ export interface BookCoverProps {
   imprint?: string
   /** Give the book real thickness (spine, page edges, back board), in % of its width */
   depth?: number
-  /** The reader's ribbon, coming out of the top of the spine of the closed book */
+  /** The reader's ribbon, its tail hanging out below the closed book */
   ribbon?: RibbonStyle | null
 }
 
@@ -348,9 +348,9 @@ export function BookCover({ topicId, title, subtitle, chapterTitles, currentChap
         </div>
       </motion.div>
 
-      {/* The reader's ribbon, coming out of the top of the spine and draping over the head */}
+      {/* The reader's ribbon: its tail hangs out below the pages, behind the cover */}
       {ribbon && (
-        <div aria-hidden className="pointer-events-none absolute drop-shadow-md" style={{ ...CLOSED_RIBBON_POS, transform: depth ? `translateZ(calc(0.5 * ${depth}cqw + 1px))` : undefined }}>
+        <div aria-hidden className="pointer-events-none absolute drop-shadow-md" style={{ ...CLOSED_RIBBON_POS, transform: depth ? `translateZ(calc(-0.5 * ${depth}cqw))` : undefined }}>
           <RibbonArt style={ribbon} />
         </div>
       )}

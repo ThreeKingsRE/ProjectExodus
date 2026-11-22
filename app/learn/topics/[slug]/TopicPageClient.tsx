@@ -7,7 +7,7 @@ import { ScrollHardcover, BOOK_THEMES } from '@/components/learning/ScrollHardco
 import { DustMotes } from '@/components/learning/FloatingBook'
 import { useReadingRibbon, moveRibbon } from '@/components/learning/ribbon/useReadingRibbon'
 import { RibbonCustomizer } from '@/components/learning/ribbon/RibbonCustomizer'
-import { OPENING_PAGES, PAGES_PER_CHAPTER, VOLUME_SIZE } from '@/lib/learning/topicVolumes'
+import { OPENING_PAGES, PAGES_PER_CHAPTER, VOLUME_SIZE, volumePageOffset } from '@/lib/learning/topicVolumes'
 import type { CoreTopic } from '@/types/modules'
 import Link from 'next/link'
 import type { TopicDefinition } from '@/types/modules'
@@ -84,7 +84,7 @@ export default function TopicPageClient({ topic, initialLevel, hasLevelParam = f
   const ribbonChapter = ribbonSpot && ribbonSpot.page >= OPENING_PAGES
     ? ribbonSpot.volume * VOLUME_SIZE + Math.floor((ribbonSpot.page - OPENING_PAGES) / PAGES_PER_CHAPTER) + 1
     : null
-  const ribbonLabel = ribbonSpot && ribbonChapter ? `Chapter ${ribbonChapter} · p. ${ribbonSpot.page + 1}` : null
+  const ribbonLabel = ribbonSpot && ribbonChapter ? `Chapter ${ribbonChapter} · p. ${volumePageOffset(ribbonSpot.volume) + ribbonSpot.page + 1}` : null
   const [contentLevel, setContentLevel] = useState<LearningLevel>(initialLevel)
   const [volumeData, setVolumeData] = useState<TopicVolume | null>(null)
   const [isLoadingVolume, setIsLoadingVolume] = useState(false)

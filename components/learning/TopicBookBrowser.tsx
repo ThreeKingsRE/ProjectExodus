@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { BookOpen, CheckCircle2 } from 'lucide-react'
 import type { Module, CoreTopic, TopicDefinition } from '@/types/modules'
 import type { LearningLevel } from '@/types/learning'
-import { moduleProgressKeys, getVolumeCount, volumeLabel, chapterStartPage, VOLUME_SIZE } from '@/lib/learning/topicVolumes'
+import { moduleProgressKeys, bookChapterStartPage } from '@/lib/learning/topicVolumes'
 
 interface TopicBookProps {
   topicSlug: CoreTopic
@@ -121,7 +121,7 @@ export function groupLessonsIntoLearningModules(modules: Module[], topicSlug: st
   return result
 }
 
-// The topic's table of contents, in the book's own order: volumes, then each
+// The topic's table of contents: one list of chapters, each with its
 // chapter's number, title and the page it starts on, as printed in the scroll
 export function TopicBookBrowser({ topic, completedModules = [], onOpenDigitalScroll, topicSlug, selectedLevel }: TopicBookProps) {
   if (!topic) return null
@@ -131,8 +131,6 @@ export function TopicBookBrowser({ topic, completedModules = [], onOpenDigitalSc
   const totalChapters = topic.modules.length
   const read = topic.modules.filter((_, i) => completedSet.has(progressKeys[i])).length
   const percent = totalChapters > 0 ? Math.round((read / totalChapters) * 100) : 0
-  const volumeCount = getVolumeCount(totalChapters)
-  const volumes = Array.from({ length: volumeCount }, (_, v) => topic.modules.slice(v * VOLUME_SIZE, (v + 1) * VOLUME_SIZE))
 
   return (
     <section aria-labelledby="contents-heading" className="mx-auto max-w-3xl">
@@ -141,7 +139,7 @@ export function TopicBookBrowser({ topic, completedModules = [], onOpenDigitalSc
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--muted-foreground)]">Table of Contents</p>
           <h2 id="contents-heading" style={{ fontSize: 'clamp(1.6rem, 5vw, 2.1rem)', lineHeight: 1.15 }} className="mt-2 font-serif font-bold text-[var(--foreground)]">{topic.title}</h2>
           <p className="mt-2 text-sm text-[var(--muted-foreground)]">
-            {volumeCount > 1 ? `${volumeCount} volumes · ` : ''}{totalChapters} chapters
+            {totalChapters} chapters
           </p>
           <div className="mx-auto mt-5 w-full" style={{ maxWidth: '24rem' }}>
             <div className="flex items-center justify-between text-xs text-[var(--muted-foreground)]">
@@ -155,44 +153,32 @@ export function TopicBookBrowser({ topic, completedModules = [], onOpenDigitalSc
           </div>
         </header>
 
-        {volumes.map((chapters, v) => {
-          const first = v * VOLUME_SIZE + 1
-          return (
-            <section key={v} aria-label={volumeLabel(v)} className="border-t border-[var(--border)] first-of-type:border-t-0">
-              {volumeCount > 1 && (
-                <div className="flex items-baseline justify-between bg-[var(--muted)]/50 px-4 py-2.5 sm:px-6">
-                  <h3 style={{ fontSize: '0.8rem', lineHeight: 1.3 }} className="font-serif font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">{volumeLabel(v)}</h3>
-                  <span className="text-xs text-[var(--muted-foreground)]">Chapters {first}–{first + chapters.length - 1}</span>
-                </div>
-              )}
-              <ol className="px-2 py-1.5 sm:px-4">
-                {chapters.map((module, i) => {
-                  const index = v * VOLUME_SIZE + i
-                  const isRead = completedSet.has(progressKeys[index])
-                  const content = (
-                    <>
-                      <span className="w-7 shrink-0 text-right font-serif text-sm tabular-nums text-[var(--muted-foreground)]">{index + 1}</span>
-                      <span className={`min-w-0 font-serif text-[15px] leading-snug text-[var(--foreground)] group-hover:text-[var(--primary)] sm:text-base ${isRead ? 'opacity-70' : ''}`}>{module.title}</span>
-                      <span aria-hidden className="mb-1 min-w-[1rem] flex-1 self-end border-b border-dotted border-[var(--border)]" />
-                      {isRead && <CheckCircle2 className="h-3.5 w-3.5 shrink-0 self-center text-green-600 dark:text-green-400" aria-label="Read" />}
-                      <span className="shrink-0 font-serif text-sm tabular-nums text-[var(--muted-foreground)]">p. {chapterStartPage(i)}</span>
-                    </>
-                  )
-                  const rowClass = 'group flex w-full items-baseline gap-2.5 rounded-lg px-2 py-2.5 text-left transition-colors hover:bg-[var(--muted)]/70'
-                  return (
-                    <li key={`${index}-${module.id}`}>
-                      {onOpenDigitalScroll ? (
-                        <button type="button" onClick={() => onOpenDigitalScroll(index)} className={rowClass} aria-label={`Chapter ${index + 1}: ${module.title}, page ${chapterStartPage(i)}${volumeCount > 1 ? ` of ${volumeLabel(v)}` : ''}`}>{content}</button>
-                      ) : (
-                        <Link href={`/learn/modules/${module.slug}?level=${selectedLevel.toLowerCase()}&topic=${topicSlug}`} className={rowClass}>{content}</Link>
-                      )}
-                    </li>
-                  )
-                })}
-              </ol>
-            </section>
-          )
-        })}
+        {/* One list of chapters with page numbers that run through the whole book, as the scroll reads */}
+        <ol className="px-2 py-1.5 sm:px-4">
+          {topic.modules.map((module, index) => {
+            const isRead = completedSet.has(progressKeys[index])
+            const page = bookChapterStartPage(index)
+            const content = (
+              <>
+                <span className="w-7 shrink-0 text-right font-serif text-sm tabular-nums text-[var(--muted-foreground)]">{index + 1}</span>
+                <span className={`min-w-0 font-serif text-[15px] leading-snug text-[var(--foreground)] group-hover:text-[var(--primary)] sm:text-base ${isRead ? 'opacity-70' : ''}`}>{module.title}</span>
+                <span aria-hidden className="mb-1 min-w-[1rem] flex-1 self-end border-b border-dotted border-[var(--border)]" />
+                {isRead && <CheckCircle2 className="h-3.5 w-3.5 shrink-0 self-center text-green-600 dark:text-green-400" aria-label="Read" />}
+                <span className="shrink-0 font-serif text-sm tabular-nums text-[var(--muted-foreground)]">p. {page}</span>
+              </>
+            )
+            const rowClass = 'group flex w-full items-baseline gap-2.5 rounded-lg px-2 py-2.5 text-left transition-colors hover:bg-[var(--muted)]/70'
+            return (
+              <li key={`${index}-${module.id}`}>
+                {onOpenDigitalScroll ? (
+                  <button type="button" onClick={() => onOpenDigitalScroll(index)} className={rowClass} aria-label={`Chapter ${index + 1}: ${module.title}, page ${page}`}>{content}</button>
+                ) : (
+                  <Link href={`/learn/modules/${module.slug}?level=${selectedLevel.toLowerCase()}&topic=${topicSlug}`} className={rowClass}>{content}</Link>
+                )}
+              </li>
+            )
+          })}
+        </ol>
       </div>
       <p className="mt-3 text-center text-xs text-[var(--muted-foreground)]">Choose any chapter to open the book there.</p>
     </section>

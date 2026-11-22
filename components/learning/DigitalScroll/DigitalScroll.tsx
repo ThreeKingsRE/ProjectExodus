@@ -36,7 +36,7 @@ interface GameItem {
 
 // Import term extraction utilities
 import { extractTermsFromModule, isQuizWorthyTerm, KEY_TERMS_BY_TOPIC } from '@/lib/learning/termExtractor'
-import { volumeLabel } from '@/lib/learning/topicVolumes'
+import { volumeLabel, volumePageOffset, bookPageCount } from '@/lib/learning/topicVolumes'
 import { storageScopeFor } from '@/lib/learning/scrollStorage'
 import { useScrollNotes, type NoteVisibility, type AgeBand } from './useScrollNotes'
 import { NoteVisibilityToggle, AgeBandPrompt, PeersPanel } from './ScrollSharing'
@@ -518,6 +518,10 @@ export function DigitalScroll({
   // All other pages display as two-page spreads
   // ============================================
 
+  // Page numbers run continuously through the whole book, not per volume
+  const pageOffset = volumePageOffset(volumeIndex)
+  const bookTotalPages = Math.max(totalPages, bookPageCount(topic.modules?.length ?? 0))
+
   const isContentPage = useCallback((pageIndex: number): boolean => {
     return bookPages[pageIndex]?.type === 'content'
   }, [bookPages])
@@ -685,6 +689,13 @@ export function DigitalScroll({
 
   const handleAnimationComplete = useCallback(() => {
     setShowOpenAnimation(false)
+    // One-time tip on how to turn pages (replaces the old instructions screen)
+    try {
+      if (!localStorage.getItem('exodus_scroll_tip_seen')) {
+        localStorage.setItem('exodus_scroll_tip_seen', '1')
+        setNotice(window.innerWidth < 1024 ? 'Tip: tap the right or left edge of a page to turn it.' : 'Tip: use the ← → keys or the page arrows to turn pages.')
+      }
+    } catch { /* storage unavailable */ }
 
     // If initialChapter is explicitly provided:
     // - initialChapter > 0: navigate to that specific chapter
@@ -1727,8 +1738,8 @@ export function DigitalScroll({
 
     return (
       <ScrollPage
-        pageNumber={absolutePageIndex + 1}
-        totalPages={totalPages}
+        pageNumber={pageOffset + absolutePageIndex + 1}
+        totalPages={bookTotalPages}
         chapterIndex={page.chapterIndex ?? 0}
         chapterNumber={chapterOffset + (page.chapterIndex ?? 0) + 1}
         side={side}
@@ -1769,8 +1780,8 @@ export function DigitalScroll({
             level={selectedLevel}
             askLevel={askLevel}
             onLevelChosen={(level) => {
-              if (level === selectedLevel) return
-              setSelectedLevel(level)
+              // Always report it, so keeping the suggested level is remembered for this book too
+              if (level !== selectedLevel) setSelectedLevel(level)
               onLevelChange?.(level)
             }}
           />
@@ -1810,7 +1821,7 @@ export function DigitalScroll({
             {ribbon && (
               <BookRibbon
                 ribbon={ribbon}
-                pageNumber={currentPageIndex + 1}
+                pageNumber={pageOffset + currentPageIndex + 1}
                 chapterNumber={bookPages[currentPageIndex]?.chapterIndex !== undefined ? chapterOffset + (bookPages[currentPageIndex]!.chapterIndex as number) + 1 : null}
                 onEdit={onEditRibbon}
                 layout={isSinglePageMode || !isDesktop ? 'single' : 'spread'}
@@ -1823,7 +1834,7 @@ export function DigitalScroll({
               leftPage={
                 isSinglePageMode ? (
                   // Single page mode: full-width page with balanced padding
-                  <PageContainer side="left" className="!pl-6 !pr-6">
+                  <PageContainer side="left" className="!pl-10 !pr-6">
                     {wrapPageContent(leftPage, 'left', currentPageIndex)}
                   </PageContainer>
                 ) : (

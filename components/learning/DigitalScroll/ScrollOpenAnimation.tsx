@@ -49,7 +49,7 @@ export function ScrollOpenAnimation({
   askLevel = true,
 }: ScrollOpenAnimationProps) {
   // With reduced motion there's no animation, but the reader still picks a level
-  const [phase, setPhase] = useState<AnimationPhase>(reducedMotion ? (askLevel ? 'level' : 'instructions') : 'descend')
+  const [phase, setPhase] = useState<AnimationPhase>(reducedMotion && askLevel ? 'level' : 'descend')
   const [choice, setChoice] = useState<LearningLevel>(level)
   const chosenRef = useRef(false)
   const confirmLevel = useCallback((next: LearningLevel) => {
@@ -104,26 +104,29 @@ export function ScrollOpenAnimation({
   const proceedFromLevel = useCallback(() => {
     confirmLevel(choice)
     if (reducedMotion) handleComplete()
-    else setPhase('instructions')
+    else handleComplete()
   }, [choice, confirmLevel, reducedMotion, handleComplete])
 
-  // Animation timeline: descend → opening → instructions (wait for click)
+  // Animation timeline: fade in → cover opens → reading level (first time per book) → the book
+  // Read through a ref so choosing a level doesn't restart this timeline
+  const completeRef = useRef(handleComplete)
+  completeRef.current = handleComplete
   useEffect(() => {
-    if (reducedMotion || completedRef.current) return
+    if (completedRef.current) return
+    if (reducedMotion) { if (!askLevel) completeRef.current(); return }
 
-    // Timeline (shortened for snappier entry):
-    // 0ms: Book starts descending (800ms duration)
-    // 600ms: Cover starts opening
-    // 1500ms: Cover open, show instructions
+    // 0ms fade in (350ms) · 250ms cover swings open (600ms) · 900ms level step or the book
 
     const openCoverTimer = setTimeout(() => {
       setCoverOpen(true)
       setPhase('opening')
-    }, 600)
+    }, 250)
 
+    // Cover open: ask the level the first time this book is opened, otherwise go straight in
     const showInstructionsTimer = setTimeout(() => {
-      setPhase(askLevel ? 'level' : 'instructions')
-    }, 1500)
+      if (askLevel) setPhase('level')
+      else completeRef.current()
+    }, 900)
 
     return () => {
       clearTimeout(openCoverTimer)
@@ -211,7 +214,7 @@ export function ScrollOpenAnimation({
         <motion.div
           className="relative w-full h-full"
           style={{ transformStyle: 'preserve-3d' }}
-          initial={{ y: '-80%', rotateX: 15, scale: 0.85, opacity: 0 }}
+          initial={{ y: 16, rotateX: 0, scale: 0.96, opacity: 0 }}
           animate={{
             y: 0,
             rotateX: 0,
@@ -219,7 +222,7 @@ export function ScrollOpenAnimation({
             opacity: 1
           }}
           transition={{
-            duration: 0.8,
+            duration: 0.35,
             ease: [0.22, 1, 0.36, 1],
           }}
         >
@@ -446,13 +449,13 @@ export function ScrollOpenAnimation({
               initial={{ rotateY: 0 }}
               animate={{ rotateY: coverOpen ? -160 : 0 }}
               transition={{
-                duration: 0.9,
-                ease: [0.25, 0.1, 0.25, 1],
+                duration: 0.6,
+                ease: [0.33, 1, 0.68, 1],
               }}
             >
               {/* Cover front face */}
               <div
-                className="absolute inset-0 rounded-lg flex flex-col items-center justify-center p-8"
+                className="absolute inset-0 rounded-lg flex flex-col items-center justify-center p-6 sm:p-8"
                 style={{
                   background: 'linear-gradient(135deg, #1a1612 0%, #2a2420 30%, #1a1612 50%, #0f0d0a 100%)',
                   backfaceVisibility: 'hidden',
@@ -471,17 +474,17 @@ export function ScrollOpenAnimation({
                 <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2" style={{ borderColor: 'rgba(212, 175, 55, 0.3)' }} />
 
                 {/* Content */}
-                <span className="text-7xl mb-6">{topicIcon}</span>
+                <span className="text-5xl sm:text-7xl mb-4 sm:mb-6">{topicIcon}</span>
 
                 <div className="w-40 h-0.5 mb-6" style={{
                   background: 'linear-gradient(to right, transparent, rgba(212, 175, 55, 0.6), transparent)'
                 }} />
 
-                <div className="text-xl font-serif tracking-wide" style={{ color: '#d4af37' }}>
+                <div className="text-sm sm:text-xl font-serif tracking-wide" style={{ color: '#d4af37' }}>
                   THE SACRED BOOK OF
                 </div>
 
-                <h1 className="text-4xl font-serif font-black mt-2 text-center px-8" style={{ color: '#f4e5c2' }}>
+                <h1 className="font-serif font-black mt-2 text-center px-4 sm:px-8" style={{ color: '#f4e5c2', fontSize: 'clamp(1.4rem, 6vw, 2.25rem)', lineHeight: 1.15 }}>
                   {topicTitle.toUpperCase()}
                 </h1>
 

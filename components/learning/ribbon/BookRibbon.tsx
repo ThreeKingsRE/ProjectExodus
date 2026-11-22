@@ -13,7 +13,7 @@ import type { RibbonStyle } from '@/lib/learning/ribbon'
 import { ReadingRibbon } from './ReadingRibbon'
 
 /** Left margin a single page keeps clear for the ribbon (px). PageContainer pads to match. */
-export const RIBBON_MARGIN_PX = 24
+export const RIBBON_MARGIN_PX = 40
 
 export function BookRibbon({ ribbon, pageNumber, chapterNumber, onEdit, layout }: {
   ribbon: RibbonStyle
@@ -41,8 +41,8 @@ export function BookRibbon({ ribbon, pageNumber, chapterNumber, onEdit, layout }
   // Spread: centered on the spine, from just above the head to a tail below the foot.
   // Single: in the left margin, from just above the head to above the page footer.
   const position = spread
-    ? { left: '50%', marginLeft: -7, width: 14, top: -12, bottom: -48 }
-    : { left: 6, width: 12, top: -12, bottom: 64 }
+    ? { left: '50%', marginLeft: -9, width: 18, top: -12, bottom: -48 }
+    : { left: 6, width: 22, top: -12, bottom: 64 }
 
   return (
     <div ref={ref} className="pointer-events-none absolute z-40" style={position} data-ribbon-layout={layout}>

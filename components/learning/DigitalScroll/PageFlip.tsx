@@ -361,7 +361,7 @@ export function PageFlip({
 
       {/* Edge hints: faint arrows showing where to tap. They pass taps through to the page. */}
       {canFlipPrev && (
-        <div aria-hidden className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 flex h-24 w-6 items-center justify-center rounded-full bg-[var(--book-text,var(--foreground))]/5 text-[var(--book-text,var(--foreground))]/40">
+        <div aria-hidden className="pointer-events-none absolute left-9 top-1/2 -translate-y-1/2 flex h-24 w-6 items-center justify-center rounded-full bg-[var(--book-text,var(--foreground))]/5 text-[var(--book-text,var(--foreground))]/40">
           <span className="text-lg leading-none">‹</span>
         </div>
       )}
