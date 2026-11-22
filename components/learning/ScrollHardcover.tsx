@@ -15,7 +15,8 @@ import { ReadingRibbon, RibbonArt } from './ribbon/ReadingRibbon'
 
 // A closed book's ribbon, like a real bound book: tucked inside, with only its
 // tail hanging out below the bottom edge of the pages near the spine.
-const CLOSED_RIBBON_POS = { left: '13%', top: '97%', width: '6%', height: '14%' } as const
+// It starts exactly at the bottom edge of the pages, so it never covers any part of the book.
+const CLOSED_RIBBON_POS = { left: '13%', top: '100%', width: '6%', height: '12%' } as const
 
 interface CoverTheme {
   cloth: string

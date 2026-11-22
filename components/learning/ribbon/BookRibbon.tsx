@@ -41,8 +41,8 @@ export function BookRibbon({ ribbon, pageNumber, chapterNumber, onEdit, layout }
   // Spread: centered on the spine, from just above the head to a tail below the foot.
   // Single: in the left margin, from just above the head to above the page footer.
   const position = spread
-    ? { left: '50%', marginLeft: -9, width: 18, top: -12, bottom: -48 }
-    : { left: 6, width: 22, top: -12, bottom: 64 }
+    ? { left: '50%', marginLeft: -9, width: 18, top: 0, bottom: -48 }
+    : { left: 6, width: 22, top: 0, bottom: 64 }
 
   return (
     <div ref={ref} className="pointer-events-none absolute z-40" style={position} data-ribbon-layout={layout}>
