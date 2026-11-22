@@ -18,7 +18,7 @@ import { ReadingRibbon, RibbonArt } from './ribbon/ReadingRibbon'
 // It starts exactly at the bottom edge of the pages, so it never covers any part of the book.
 // It sits behind the cover and pages, starting a little above their bottom edge so
 // the top end is tucked out of sight: the tail looks like it comes out from inside.
-const CLOSED_RIBBON_POS = { left: '13%', top: '94%', width: '6%', height: '18%' } as const
+const CLOSED_RIBBON_POS = { left: '13%', top: '98.5%', width: '6%', height: '13.5%' } as const
 
 interface CoverTheme {
   cloth: string
