@@ -18,6 +18,8 @@ import { ReadingRibbon, RibbonArt } from './ribbon/ReadingRibbon'
 // It starts exactly at the bottom edge of the pages, so it never covers any part of the book.
 // It sits behind the cover and pages, starting a little above their bottom edge so
 // the top end is tucked out of sight: the tail looks like it comes out from inside.
+// The shelf on /learn keeps its original look: out of the head by the spine, draping over the top.
+const SHELF_RIBBON_POS = { left: '9%', top: '-7%', width: '7%', height: '24%' } as const
 const CLOSED_RIBBON_POS = { left: '13%', top: '98.5%', width: '6%', height: '13.5%' } as const
 
 interface CoverTheme {
@@ -93,6 +95,8 @@ function Deboss({ id, paths, width = 1.6 }: { id: string; paths: string[]; width
 }
 
 export interface BookCoverProps {
+  /** 'top' = the shelf look (drapes over the head by the spine); default 'bottom' = tail out below the pages */
+  ribbonPlacement?: 'top' | 'bottom'
   topicId: CoreTopic
   title: string
   subtitle: string
@@ -138,7 +142,7 @@ export interface ScrollHardcoverProps {
  * The book itself, drawn to fill its parent (3:4). Sizes inside are relative
  * to the book's width (cqw), so the same cover works as a hero or a card.
  */
-export function BookCover({ topicId, title, subtitle, chapterTitles, currentChapter, levelLabel, hours, progressPercent, open = false, animate = true, windowText, imprint, depth = 0, ribbon = null }: BookCoverProps) {
+export function BookCover({ topicId, title, subtitle, chapterTitles, currentChapter, levelLabel, hours, progressPercent, open = false, animate = true, windowText, imprint, depth = 0, ribbon = null, ribbonPlacement = 'bottom' }: BookCoverProps) {
   const theme = BOOK_THEMES[topicId]
   const reduceMotion = useReducedMotion()
   const moving = animate && !reduceMotion
@@ -353,7 +357,9 @@ export function BookCover({ topicId, title, subtitle, chapterTitles, currentChap
 
       {/* The reader's ribbon: its tail hangs out below the pages, behind the cover */}
       {ribbon && (
-        <div aria-hidden className="pointer-events-none absolute drop-shadow-md" style={{ ...CLOSED_RIBBON_POS, transform: depth ? `translateZ(calc(-0.5 * ${depth}cqw))` : undefined }}>
+        <div aria-hidden className="pointer-events-none absolute drop-shadow-md" style={ribbonPlacement === 'top'
+          ? { ...SHELF_RIBBON_POS, transform: depth ? `translateZ(calc(0.5 * ${depth}cqw + 1px))` : undefined }
+          : { ...CLOSED_RIBBON_POS, transform: depth ? `translateZ(calc(-0.5 * ${depth}cqw))` : undefined }}>
           <RibbonArt style={ribbon} />
         </div>
       )}

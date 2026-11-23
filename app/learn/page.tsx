@@ -518,6 +518,7 @@ export default function LearnPage() {
                   <div className="mx-auto px-[6%] pt-3">
                     <FloatingBook delay={idx * 0.9} lift={7} restY={inwardTurn(idx)} tiltRange={14} className="w-full">
                       <BookCover
+                        ribbonPlacement="top"
                         topicId={topic.slug as CoreTopic}
                         title={topic.title}
                         subtitle={topic.desc}
