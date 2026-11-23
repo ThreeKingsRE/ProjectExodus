@@ -629,10 +629,22 @@ export function Header() {
               )}
 
               <MenuGroup>
+                <MenuRow
+                  label="My Career"
+                  href={session ? '/my/career' : `/auth/signin?callbackUrl=${encodeURIComponent('/my/career')}`}
+                  icon={Hammer}
+                  active={pathname.startsWith('/my/career') || pathname.startsWith('/career')}
+                  locked={!session}
+                  onNavigate={() => setMobileMenuOpen(false)}
+                />
+              </MenuGroup>
+
+              <MenuGroup title="Community">
                 {[
-                  { label: 'Home', href: '/', icon: Home, active: pathname === '/' },
-                  { label: 'Products', href: '/products', icon: ShoppingBag, active: pathname.startsWith('/products') },
-                  { label: 'Articles', href: '/articles', icon: Newspaper, active: pathname.startsWith('/articles') },
+                  { label: 'Current Events', href: '/community', icon: CalendarDays, active: pathname === '/community' },
+                  { label: 'Discussions', href: '/community/discussions', icon: MessagesSquare, active: pathname.startsWith('/community/discussions') },
+                  { label: 'Initiatives', href: '/community/projects', icon: Rocket, active: pathname.startsWith('/community/projects') },
+                  { label: 'Fish Tank', href: '/fishbowl', icon: Fish, active: pathname.startsWith('/fishbowl') },
                 ].map(item => <MenuRow key={item.href} {...item} onNavigate={() => setMobileMenuOpen(false)} />)}
               </MenuGroup>
 
@@ -653,12 +665,11 @@ export function Header() {
                 ))}
               </MenuGroup>
 
-              <MenuGroup title="Community">
+              <MenuGroup>
                 {[
-                  { label: 'Current Events', href: '/community', icon: CalendarDays, active: pathname === '/community' },
-                  { label: 'Discussions', href: '/community/discussions', icon: MessagesSquare, active: pathname.startsWith('/community/discussions') },
-                  { label: 'Initiatives', href: '/community/projects', icon: Rocket, active: pathname.startsWith('/community/projects') },
-                  { label: 'Fish Tank', href: '/fishbowl', icon: Fish, active: pathname.startsWith('/fishbowl') },
+                  { label: 'Home', href: '/', icon: Home, active: pathname === '/' },
+                  { label: 'Products', href: '/products', icon: ShoppingBag, active: pathname.startsWith('/products') },
+                  { label: 'Articles', href: '/articles', icon: Newspaper, active: pathname.startsWith('/articles') },
                 ].map(item => <MenuRow key={item.href} {...item} onNavigate={() => setMobileMenuOpen(false)} />)}
               </MenuGroup>
 
