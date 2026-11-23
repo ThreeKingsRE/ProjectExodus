@@ -14,7 +14,7 @@ import type { TopicDefinition } from '@/types/modules'
 import { LearningLevel, LEARNING_LEVELS } from '@/types/learning'
 import { TopicBookBrowser } from '@/components/learning/TopicBookBrowser'
 import { BookBlurb } from '@/components/learning/BookBlurb'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/react'
 import { readScoped, writeScoped, storageScopeFor } from '@/lib/learning/scrollStorage'
@@ -141,6 +141,27 @@ export default function TopicPageClient({ topic, initialLevel, hasLevelParam = f
       setIsScrollUnlocked(localStorage.getItem('exodus_book_experience_unlocked') === 'true')
     } catch { /* storage unavailable */ }
   }, [])
+
+  // Get the book ready while the reader looks at the cover, so opening it is one
+  // smooth motion: load the reader's code, then the volume they'll most likely open.
+  useEffect(() => {
+    const t = setTimeout(() => { import('@/components/learning/DigitalScroll/DigitalScroll').catch(() => {}) }, 800)
+    return () => clearTimeout(t)
+  }, [])
+  useEffect(() => {
+    if (isScrollOpen || volumeData) return
+    const likelyVolume = ribbonSpot
+      ? Math.min(Math.max(ribbonSpot.volume, 0), volumeCount - 1)
+      : Math.min(Math.max(Number(readScoped(storageScope, lastVolumeKey) ?? 0) || 0, 0), volumeCount - 1)
+    const controller = new AbortController()
+    const t = setTimeout(() => {
+      fetch(`/api/learn/topics/${slug}/volume?v=${likelyVolume}&level=${contentLevel}`, { signal: controller.signal })
+        .then((res) => res.json())
+        .then((json) => { if (json.success) setVolumeData((prev) => prev ?? (json.data as TopicVolume)) })
+        .catch(() => {})
+    }, 1200)
+    return () => { clearTimeout(t); controller.abort() }
+  }, [isScrollOpen, volumeData, ribbonSpot, volumeCount, storageScope, lastVolumeKey, slug, contentLevel])
 
   // Fetch the open volume's content at the reader's level (same pattern as
   // architecture elements: summaries up front, full content on demand)
@@ -273,7 +294,12 @@ export default function TopicPageClient({ topic, initialLevel, hasLevelParam = f
 
       {/* First load of a volume, or a load error */}
       {isScrollOpen && (!volumeData || volumeError) && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, delay: volumeError ? 0 : 0.25 }}
+        >
           <div className="rounded-2xl bg-[var(--card)] px-8 py-6 text-center shadow-2xl">
             {volumeError ? (
               <>
@@ -284,7 +310,7 @@ export default function TopicPageClient({ topic, initialLevel, hasLevelParam = f
               <p className="font-serif text-[var(--foreground)]">Unrolling the scroll…</p>
             )}
           </div>
-        </div>
+        </motion.div>
       )}
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">

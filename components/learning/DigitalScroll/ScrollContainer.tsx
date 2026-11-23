@@ -127,24 +127,10 @@ export const ScrollContainer = forwardRef<HTMLDivElement, ScrollContainerProps>(
             style={{
               transformStyle: 'preserve-3d',
             }}
-            initial={{
-              y: -200,
-              rotateX: 15,
-              opacity: 0,
-              scale: 0.9
-            }}
-            animate={{
-              y: 0,
-              rotateX: 0,
-              opacity: 1,
-              scale: 1
-            }}
-            transition={{
-              type: 'spring',
-              stiffness: 200,
-              damping: 25,
-              mass: 1.2,
-            }}
+            // Grows smoothly out of the book the reader just opened
+            initial={{ y: 18, opacity: 0, scale: 0.94 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* The Book Structure */}
             <div
