@@ -198,6 +198,8 @@ model User {
   // Initiative drafts (pre-creation workspaces with Sage)
   initiativeDrafts    InitiativeDraft[]    @relation("InitiativeDrafts")
   projectItemComments ProjectItemComment[] @relation("ProjectItemCommentAuthor")
+  careerProfile       CareerProfile?
+  careerPosts         CareerPost[]
 
   @@index([email])
   @@index([role])
@@ -3866,4 +3868,87 @@ model ReadingBookmark {
 
   @@unique([userId, topicId])
   @@index([userId])
+}
+
+// ============================================
+// MY CAREER
+// A portfolio of work people are proud of, vouched for by the supervisors,
+// employers and clients who saw it. Public at /career/<handle>.
+// ============================================
+
+enum CareerVisibility {
+  PUBLIC
+  MEMBERS
+  PRIVATE
+}
+
+enum CareerVouchStatus {
+  REQUESTED // link sent, not signed yet
+  SIGNED // signed; waiting for the signer to confirm by email
+  VERIFIED // signer confirmed by email: the seal shows
+  DECLINED // signer said no, or "I didn't sign this"
+}
+
+model CareerProfile {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// Public address: /career/<handle> (later mycareer.projxodus.com/<handle>)
+  handle      String   @unique
+  headline    String?
+  trades      String[] @default([])
+  serviceArea String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CareerPost {
+  id          String           @id @default(cuid())
+  userId      String
+  user        User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String?
+  story       String?          @db.Text
+  trades      String[]         @default([])
+  role        String?
+  startedOn   DateTime?
+  endedOn     DateTime?
+  /// City or region only, never a street address
+  place       String?
+  materials   String?          @db.Text
+  /// [{ url, takenAt? }] — photos have location data removed before upload
+  photos      Json             @default("[]")
+  visibility  CareerVisibility @default(PUBLIC)
+  /// Fingerprint of the vouched-for details; a vouch only shows while it matches
+  contentHash String
+  vouches     CareerVouch[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([userId, createdAt])
+}
+
+model CareerVouch {
+  id               String            @id @default(cuid())
+  postId           String
+  post             CareerPost        @relation(fields: [postId], references: [id], onDelete: Cascade)
+  /// Who the worker asked; the seal can only be confirmed from this inbox
+  signerEmail      String
+  signerName       String
+  signerRole       String?
+  signerCompany    String?
+  /// Shown instead of the name when the signer prefers, e.g. "Homeowner, Rochester NY"
+  anonymousAs      String?
+  comment          String?           @db.Text
+  status           CareerVouchStatus @default(REQUESTED)
+  /// sha256 of the link token sent to the signer, and of the email confirmation token
+  requestTokenHash String            @unique
+  confirmTokenHash String?           @unique
+  /// The post's contentHash when signed; the seal drops if the post changes
+  signedHash       String?
+  signedAt         DateTime?
+  verifiedAt       DateTime?
+  expiresAt        DateTime
+  createdAt        DateTime          @default(now())
+
+  @@index([postId])
 }

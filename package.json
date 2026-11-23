@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "test:community": "node --import tsx --test scripts/community-access.test.mjs scripts/public-initiative.test.mjs scripts/project-files.test.mjs scripts/project-access.test.mjs scripts/project-updates.test.mjs scripts/project-surveys.test.mjs scripts/reading-ribbon.test.mjs scripts/project-timeline.test.mjs scripts/calendar-ics.test.mjs scripts/calendar-layout.test.mjs scripts/project-item-comments.test.mjs scripts/project-linked-text.test.mjs scripts/survey-import.test.mjs scripts/live-tables.test.mjs",
+    "test:community": "node --import tsx --test scripts/community-access.test.mjs scripts/public-initiative.test.mjs scripts/project-files.test.mjs scripts/project-access.test.mjs scripts/project-updates.test.mjs scripts/project-surveys.test.mjs scripts/reading-ribbon.test.mjs scripts/project-timeline.test.mjs scripts/calendar-ics.test.mjs scripts/calendar-layout.test.mjs scripts/project-item-comments.test.mjs scripts/project-linked-text.test.mjs scripts/survey-import.test.mjs scripts/live-tables.test.mjs scripts/career.test.mjs",
     "dev": "next dev",
     "build": "next build",
     "vercel-build": "prisma db push && prisma generate && next build",

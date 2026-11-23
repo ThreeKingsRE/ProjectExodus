@@ -6,7 +6,7 @@ import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 // Allowed image types (no SVG to prevent XSS)
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp']
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
-const ALLOWED_FOLDERS = ['articles', 'profiles', 'projects', 'events', 'products']
+const ALLOWED_FOLDERS = ['articles', 'profiles', 'projects', 'events', 'products', 'career']
 
 export async function POST(request: NextRequest) {
   try {

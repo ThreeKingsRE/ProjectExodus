@@ -29,6 +29,7 @@ import {
   Star,
   Folder,
   Trophy,
+  Hammer,
 } from 'lucide-react'
 import { prisma } from '@/lib/db'
 import { auth } from '@/auth'
@@ -105,6 +106,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ id: st
   if (!user) notFound()
 
   const { articles, projects } = await getRecentActivity(user.id as string)
+  const career = await prisma.careerProfile.findUnique({ where: { userId: user.id as string }, select: { handle: true } }).catch(() => null)
 
   // Local convenience accessors. The loader returns Record<string, unknown>
   // since privacy filtering may have stripped fields; downstream code
@@ -215,6 +217,14 @@ export default async function ProfilePage({ params }: { params: Promise<{ id: st
 
                     {/* Actions */}
                     <div className="flex items-center gap-2 shrink-0">
+                      {(isOwnProfile || career) && (
+                        <Link href={isOwnProfile ? '/my/career' : `/career/${career!.handle}`}>
+                          <Button size="sm" variant="outline" className="font-black">
+                            <Hammer className="w-4 h-4 mr-2" />
+                            {isOwnProfile ? 'My Career' : 'Their work'}
+                          </Button>
+                        </Link>
+                      )}
                       {isOwnProfile ? (
                         <Link href="/settings">
                           <Button size="sm" className="font-black">

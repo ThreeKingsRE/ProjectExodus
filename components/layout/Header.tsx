@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useState, useEffect, useRef, type ComponentType, type ReactNode } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
-import { Menu, X, Leaf, User, LogOut, Settings, Users, ChevronRight, MessageCircle, Bell, ChevronDown, Lock, Crown, GraduationCap, Fish, Search, Compass, Home, ShoppingBag, Newspaper, Sprout, Landmark, Ruler, CalendarDays, MessagesSquare, Rocket } from 'lucide-react'
+import { Menu, X, Leaf, User, LogOut, Settings, Users, ChevronRight, MessageCircle, Bell, ChevronDown, Lock, Crown, GraduationCap, Fish, Search, Compass, Home, ShoppingBag, Newspaper, Sprout, Landmark, Ruler, CalendarDays, MessagesSquare, Rocket, Hammer } from 'lucide-react'
 import NotificationBell from '@/components/notifications/NotificationBell'
 import { useDigitalScrollContext } from '@/components/learning/DigitalScroll/DigitalScrollContext'
 import { useSageContextSafe } from '@/components/ai/SageContext'
@@ -505,6 +505,14 @@ export function Header() {
                         >
                           <Compass className="w-4 h-4 text-theme-muted shrink-0" />
                           <span className="font-medium text-[var(--foreground)] whitespace-nowrap">My Volition</span>
+                        </Link>
+                        <Link
+                          href="/my/career"
+                          className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[var(--muted)] transition-colors"
+                          onClick={() => setUserMenuOpen(false)}
+                        >
+                          <Hammer className="w-4 h-4 text-theme-muted shrink-0" />
+                          <span className="font-medium text-[var(--foreground)] whitespace-nowrap">My Career</span>
                         </Link>
                         <Link
                           href="/settings"
