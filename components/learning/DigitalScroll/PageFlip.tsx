@@ -34,8 +34,8 @@ type FlipState = 'idle' | 'flipping-next' | 'flipping-prev'
 
 // Share of the page width on each side that turns the page when tapped (phones/tablets)
 const TAP_ZONE = 0.3
-// On a full-width text box, only this outer strip on each side turns the page
-const WIDE_FIELD_EDGE = 0.15
+// Over a wide control, only this outer strip on each side turns the page
+const WIDE_FIELD_EDGE = 0.22
 // Taps on these never turn the page
 const INTERACTIVE_SELECTOR = 'button, a, input, textarea, select, label, summary, [role="button"], [role="link"], [role="checkbox"], [role="radio"], [role="tab"], [contenteditable="true"], [data-no-flip]'
 
@@ -323,17 +323,22 @@ export function PageFlip({
   // inside a long page never turns it by accident.
   // ============================================
 
+  // Runs in the capture phase, before any button on the page, so an edge tap over a
+  // wide control turns the page instead of pressing the control
   const handleTapZone = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement
     const rect = e.currentTarget.getBoundingClientRect()
     const x = (e.clientX - rect.left) / rect.width
     const interactive = target.closest<HTMLElement>(INTERACTIVE_SELECTOR)
     if (interactive) {
-      // A full-width notes box would otherwise swallow every edge tap; its outer
-      // strip still turns the page (tapping further in edits the notes as usual).
-      const isWideField = /^(TEXTAREA|INPUT)$/.test(interactive.tagName) && interactive.getBoundingClientRect().width > rect.width * 0.7
-      if (!isWideField || (x > WIDE_FIELD_EDGE && x < 1 - WIDE_FIELD_EDGE)) return
-      interactive.blur()
+      // Wide controls (notes box, contents rows, quiz answers, game tiles) reach the page
+      // edges and would swallow every edge tap. Their outer strip still turns the page;
+      // tapping further in uses the control as usual.
+      const isWide = interactive.getBoundingClientRect().width > rect.width * 0.6
+      if (!isWide || (x > WIDE_FIELD_EDGE && x < 1 - WIDE_FIELD_EDGE)) return
+      e.preventDefault()
+      e.stopPropagation()
+      if (/^(TEXTAREA|INPUT)$/.test(interactive.tagName)) interactive.blur()
     }
     const selection = typeof window !== 'undefined' ? window.getSelection() : null
     if (selection && selection.toString().trim().length > 0) return
@@ -345,7 +350,7 @@ export function PageFlip({
     <div
       ref={containerRef}
       className={cn('relative w-full h-full', className)}
-      onClick={handleTapZone}
+      onClickCapture={handleTapZone}
       data-testid="mobile-page"
     >
       {/* Current page; a short slide shows which way the page turned */}
