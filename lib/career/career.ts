@@ -19,7 +19,19 @@ export interface PostInput {
   materials: string | null
   photos: CareerPhoto[]
   visibility: Visibility
+  pinned: boolean
+  /** User ids of tagged crewmates */
+  people: string[]
 }
+
+export const MAX_PINNED = 6
+export const MAX_PEOPLE = 20
+
+/** "#brickwork" -> "brickwork"; letters, numbers and dashes, lowercased */
+export const normalizeTag = (t: string) => t.replace(/^#/, '').toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 30)
+
+/** Hashtags written in a caption: "Fresh stripes #mowing #lawncare" */
+export const hashtagsIn = (text: string | null) => [...(text ?? '').matchAll(/(?:^|\s)#([A-Za-z0-9][A-Za-z0-9-]{1,29})/g)].map((m) => normalizeTag(m[1]))
 
 const clip = (v: unknown, n: number) => (typeof v === 'string' && v.trim() ? v.trim().slice(0, n) : null)
 
@@ -53,13 +65,17 @@ export function parsePostInput(body: unknown): { ok: true; data: PostInput } | {
     : []
   const place = clip(b.place, 80)
   if (place && looksLikeStreetAddress(place)) return { ok: false, error: 'Use a city or region (like "Rochester, NY"), not a street address.' }
-  const trades = Array.isArray(b.trades) ? [...new Set(b.trades.map((t) => clip(t, 40)?.toLowerCase()).filter(Boolean) as string[])].slice(0, 8) : []
+  const story = clip(b.story, 4000)
+  const given = Array.isArray(b.trades) ? b.trades.filter((t): t is string => typeof t === 'string') : []
+  const trades = [...new Set([...given.map(normalizeTag), ...hashtagsIn(story)].filter((t) => t.length >= 2))].slice(0, 12)
+  const people = Array.isArray(b.people) ? [...new Set(b.people.filter((x): x is string => typeof x === 'string' && /^[\w-]{5,40}$/.test(x)))].slice(0, MAX_PEOPLE) : []
   const visibility = VISIBILITIES.includes(b.visibility as Visibility) ? (b.visibility as Visibility) : 'PUBLIC'
   const data: PostInput = {
-    title: clip(b.title, 120), story: clip(b.story, 4000), trades, role: clip(b.role, 80),
+    title: clip(b.title, 120), story, trades, role: clip(b.role, 80),
     startedOn: isoDate(b.startedOn), endedOn: isoDate(b.endedOn), place, materials: clip(b.materials, 1000), photos, visibility,
+    pinned: b.pinned === true, people,
   }
-  if (!data.title && !data.photos.length) return { ok: false, error: 'Add at least one photo or a title.' }
+  if (!data.title && !data.story && !data.photos.length) return { ok: false, error: 'Add at least one photo or a caption.' }
   if (data.startedOn && data.endedOn && data.endedOn < data.startedOn) return { ok: false, error: 'The end date is before the start date.' }
   return { ok: true, data }
 }

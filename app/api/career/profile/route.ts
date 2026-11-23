@@ -12,7 +12,8 @@ export async function GET() {
   const session = await auth()
   if (!session?.user?.id) return NextResponse.json({ success: false, error: 'Sign in first.' }, { status: 401 })
   const profile = await getOrCreateProfile(session.user.id, session.user.name)
-  return NextResponse.json({ success: true, data: profile })
+  const user = await prisma.user.findUnique({ where: { id: session.user.id }, select: { name: true, image: true } })
+  return NextResponse.json({ success: true, data: { ...profile, person: { id: session.user.id, name: user?.name || 'Me', image: user?.image ?? null, handle: profile.handle } } })
 }
 
 // PUT /api/career/profile - change handle, headline, trades, service area

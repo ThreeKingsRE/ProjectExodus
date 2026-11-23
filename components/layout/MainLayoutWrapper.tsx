@@ -62,7 +62,10 @@ export function MainLayoutWrapper({
   // Project creation wizard - no footer, full viewport height, no scroll
   const isProjectWizard = pathname === '/community/projects/new'
 
-  if (isAdminRoute) {
+  // Printable pages (a My Career portfolio for an interview): just the page
+  const isPrintPage = /^\/career\/[^/]+\/print$/.test(pathname ?? '')
+
+  if (isAdminRoute || isPrintPage) {
     // Admin pages - completely clean, no theming decorations
     return <>{children}</>
   }

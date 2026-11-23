@@ -5,14 +5,14 @@ import { prisma } from '@/lib/db/prisma'
 import { HANDLE_RE, isSealed, sealView, type CareerPhoto, type PostInput } from './career'
 
 /**
- * Fingerprint of what a vouch vouches for. Changing photos, title, role, dates, place or
- * trades changes it and removes the seal; story, materials and visibility can change freely.
+ * Fingerprint of what a vouch vouches for. Changing photos, title, role, dates or place
+ * changes it and removes the seal; caption, tags, materials and visibility can change freely.
  */
-export function contentHash(p: Pick<PostInput, 'title' | 'role' | 'startedOn' | 'endedOn' | 'place' | 'trades' | 'photos'>): string {
+export function contentHash(p: Pick<PostInput, 'title' | 'role' | 'startedOn' | 'endedOn' | 'place' | 'photos'>): string {
   const canon = JSON.stringify([
     (p.title ?? '').trim().toLowerCase(), (p.role ?? '').trim().toLowerCase(),
     p.startedOn ?? '', p.endedOn ?? '', (p.place ?? '').trim().toLowerCase(),
-    [...p.trades].sort(), p.photos.map((ph) => ph.url),
+    p.photos.map((ph) => ph.url),
   ])
   return createHash('sha256').update(canon).digest('hex')
 }
@@ -52,9 +52,15 @@ const day = (d: Date | null) => (d ? d.toISOString().slice(0, 10) : null)
 interface PostRow {
   id: string; title: string | null; story: string | null; trades: string[]; role: string | null
   startedOn: Date | null; endedOn: Date | null; place: string | null; materials: string | null
-  photos: unknown; visibility: string; contentHash: string; createdAt: Date; updatedAt: Date
+  photos: unknown; visibility: string; contentHash: string; createdAt: Date; updatedAt: Date; pinned?: boolean
   vouches?: VouchRow[]
+  people?: { user: PersonRow }[]
+  user?: PersonRow
 }
+interface PersonRow { id: string; name: string | null; image: string | null; careerProfile: { handle: string } | null }
+const person = (u: PersonRow) => ({ id: u.id, name: u.name || 'Member', image: u.image, handle: u.careerProfile?.handle ?? null })
+
+const PERSON_SELECT = { id: true, name: true, image: true, careerProfile: { select: { handle: true } } }
 interface VouchRow {
   id: string; signerName: string; signerRole: string | null; signerCompany: string | null; anonymousAs: string | null
   comment: string | null; status: string; signedHash: string | null; verifiedAt: Date | null; expiresAt: Date; createdAt: Date
@@ -67,9 +73,13 @@ export function publicPost(p: PostRow) {
     id: p.id, title: p.title, story: p.story, trades: p.trades, role: p.role,
     startedOn: day(p.startedOn), endedOn: day(p.endedOn), place: p.place, materials: p.materials,
     photos: (Array.isArray(p.photos) ? p.photos : []) as CareerPhoto[], visibility: p.visibility,
-    createdAt: p.createdAt.toISOString(), seals,
+    createdAt: p.createdAt.toISOString(), seals, pinned: !!p.pinned,
+    people: (p.people ?? []).map((t) => person(t.user)),
+    author: p.user ? person(p.user) : null,
   }
 }
+
+export type PublicPost = ReturnType<typeof publicPost>
 
 /** Owner shape: everything, with each vouch's state spelled out. */
 export function ownerPost(p: PostRow) {
@@ -91,12 +101,42 @@ export const VOUCH_SELECT = {
   status: true, signedHash: true, verifiedAt: true, expiresAt: true, createdAt: true,
 }
 
+/** Everything a post card needs. Pass publicVouches for pages anyone can see. */
+export const postInclude = (publicVouches = false) => ({
+  vouches: { ...(publicVouches ? { where: { status: 'VERIFIED' } } : {}), select: VOUCH_SELECT, orderBy: { createdAt: 'desc' as const } },
+  people: { select: { user: { select: PERSON_SELECT } }, orderBy: { createdAt: 'asc' as const } },
+  user: { select: PERSON_SELECT },
+})
+
+/**
+ * Replace a post's tagged crewmates. Only real members, never the poster. Newly tagged
+ * people get a notification linking to the post's portfolio.
+ */
+export async function setPeople(postId: string, owner: { id: string; name: string | null }, ids: string[], link: string) {
+  const valid: { id: string }[] = ids.length
+    ? await prisma.user.findMany({ where: { id: { in: ids.filter((i) => i !== owner.id) } }, select: { id: true } })
+    : []
+  const keep = valid.map((u) => u.id)
+  const existing: { userId: string }[] = await prisma.careerPostTag.findMany({ where: { postId }, select: { userId: true } })
+  const had = new Set(existing.map((t) => t.userId))
+  await prisma.careerPostTag.deleteMany({ where: { postId, userId: { notIn: keep } } })
+  const added = keep.filter((id) => !had.has(id))
+  if (!added.length) return
+  await prisma.careerPostTag.createMany({ data: added.map((userId) => ({ postId, userId })), skipDuplicates: true })
+  // Loaded lazily: it pulls in Pusher, which only runs inside Next
+  const { createNotification } = await import('@/lib/notifications')
+  await Promise.all(added.map((userId) => createNotification({
+    userId, type: 'SYSTEM', title: 'You were tagged in a work post',
+    message: `${owner.name || 'A crewmate'} tagged you in their My Career portfolio.`, link,
+  }).catch(() => null)))
+}
+
 export function toDbPost(d: PostInput) {
   return {
     title: d.title, story: d.story, trades: d.trades, role: d.role,
     startedOn: d.startedOn ? new Date(d.startedOn) : null, endedOn: d.endedOn ? new Date(d.endedOn) : null,
     place: d.place, materials: d.materials, photos: d.photos as unknown as object, visibility: d.visibility,
-    contentHash: contentHash(d),
+    pinned: d.pinned, contentHash: contentHash(d),
   }
 }
 
@@ -150,4 +190,47 @@ export function careerQrSvg(handle: string) {
   qr.addData(careerShareUrl(handle), 'Byte')
   qr.make()
   return qr.createSvgTag({ cellSize: 8, margin: 32 })
+}
+
+type Viewer = string | null | undefined
+const visibleTo = (viewerId: Viewer) => ({ in: viewerId ? ['PUBLIC', 'MEMBERS'] : ['PUBLIC'] })
+
+/** A portfolio as one viewer may see it: the owner sees everything. */
+export async function loadPortfolio(handle: string, viewerId: Viewer) {
+  const profile = await prisma.careerProfile.findUnique({
+    where: { handle: handle.toLowerCase() },
+    select: { handle: true, headline: true, trades: true, serviceArea: true, userId: true, user: { select: PERSON_SELECT } },
+  })
+  if (!profile) return null
+  const isOwner = viewerId === profile.userId
+  const [posts, tagged] = await Promise.all([
+    prisma.careerPost.findMany({
+      where: { userId: profile.userId, ...(isOwner ? {} : { visibility: visibleTo(viewerId) }) },
+      orderBy: [{ pinned: 'desc' }, { createdAt: 'desc' }], take: 200, include: postInclude(true),
+    }),
+    prisma.careerPost.findMany({
+      where: { people: { some: { userId: profile.userId } }, visibility: visibleTo(viewerId) },
+      orderBy: { createdAt: 'desc' }, take: 200, include: postInclude(true),
+    }),
+  ])
+  const work: PublicPost[] = posts.map(publicPost)
+  const taggedPosts: PublicPost[] = tagged.map(publicPost)
+  return {
+    isOwner,
+    person: person(profile.user),
+    profile: { handle: profile.handle as string, headline: profile.headline as string | null, trades: profile.trades as string[], serviceArea: profile.serviceArea as string | null },
+    work,
+    tagged: taggedPosts,
+    counts: { posts: work.length, tagged: taggedPosts.length, vouched: work.filter((p) => p.seals.length > 0).length },
+  }
+}
+
+/** Everyone's visible work with one #tag, newest first. */
+export async function loadTag(tag: string, viewerId: Viewer) {
+  const rows = await prisma.careerPost.findMany({
+    where: { trades: { has: tag }, visibility: visibleTo(viewerId) },
+    orderBy: { createdAt: 'desc' }, take: 120, include: postInclude(true),
+  })
+  const out: PublicPost[] = rows.map(publicPost)
+  return out
 }

@@ -158,6 +158,34 @@ function interpolateColor(color1: string, color2: string, t: number): string {
   return hslToHex(h, s, l)
 }
 
+/** WCAG relative luminance of a #rrggbb color */
+function luminance(hex: string): number {
+  const n = parseInt(hex.replace('#', '').slice(0, 6), 16)
+  const ch = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => {
+    const c = v / 255
+    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
+  })
+  return 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2]
+}
+const contrast = (a: string, b: string) => {
+  const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p)
+  return (x + 0.05) / (y + 0.05)
+}
+
+/**
+ * Text that sits on a filled color (button labels). Blending dark text into white
+ * passes through grey, which is unreadable on a mid-tone fill, so when the two
+ * keyframes disagree, use whichever of them reads better on the current fill.
+ */
+function textOn(fill: string, fg1: string, fg2: string, t: number): string {
+  const pick = fg1.toLowerCase() === fg2.toLowerCase()
+    ? interpolateColor(fg1, fg2, t)
+    : contrast(fg1, fill) >= contrast(fg2, fill) ? fg1 : fg2
+  // Floor: never let a button label drop below 3:1 on its fill
+  if (contrast(pick, fill) >= 3) return pick
+  return contrast('#ffffff', fill) >= contrast('#1a1a1a', fill) ? '#ffffff' : '#1a1a1a'
+}
+
 /**
  * Interpolate between two ThemeColors objects
  */
@@ -166,15 +194,18 @@ function interpolateThemeColors(
   colors2: ThemeColors,
   t: number
 ): ThemeColors {
+  const primary = interpolateColor(colors1.primary, colors2.primary, t)
+  const secondary = interpolateColor(colors1.secondary, colors2.secondary, t)
+  const accent = interpolateColor(colors1.accent, colors2.accent, t)
   return {
     background: interpolateColor(colors1.background, colors2.background, t),
     foreground: interpolateColor(colors1.foreground, colors2.foreground, t),
-    primary: interpolateColor(colors1.primary, colors2.primary, t),
-    primaryForeground: interpolateColor(colors1.primaryForeground, colors2.primaryForeground, t),
-    secondary: interpolateColor(colors1.secondary, colors2.secondary, t),
-    secondaryForeground: interpolateColor(colors1.secondaryForeground, colors2.secondaryForeground, t),
-    accent: interpolateColor(colors1.accent, colors2.accent, t),
-    accentForeground: interpolateColor(colors1.accentForeground, colors2.accentForeground, t),
+    primary,
+    primaryForeground: textOn(primary, colors1.primaryForeground, colors2.primaryForeground, t),
+    secondary,
+    secondaryForeground: textOn(secondary, colors1.secondaryForeground, colors2.secondaryForeground, t),
+    accent,
+    accentForeground: textOn(accent, colors1.accentForeground, colors2.accentForeground, t),
     muted: interpolateColor(colors1.muted, colors2.muted, t),
     mutedForeground: interpolateColor(colors1.mutedForeground, colors2.mutedForeground, t),
     card: interpolateColor(colors1.card, colors2.card, t),

@@ -200,6 +200,7 @@ model User {
   projectItemComments ProjectItemComment[] @relation("ProjectItemCommentAuthor")
   careerProfile       CareerProfile?
   careerPosts         CareerPost[]
+  careerTags          CareerPostTag[]
 
   @@index([email])
   @@index([role])
@@ -3872,8 +3873,8 @@ model ReadingBookmark {
 
 // ============================================
 // MY CAREER
-// A portfolio of work people are proud of, vouched for by the supervisors,
-// employers and clients who saw it. Public at /career/<handle>.
+// A portfolio of real-world work people are proud of (photos, trade tags, tagged
+// crewmates). Vouches from a boss or client are optional. Public at /career/<handle>.
 // ============================================
 
 enum CareerVisibility {
@@ -3920,11 +3921,26 @@ model CareerPost {
   visibility  CareerVisibility @default(PUBLIC)
   /// Fingerprint of the vouched-for details; a vouch only shows while it matches
   contentHash String
+  pinned      Boolean          @default(false)
+  people      CareerPostTag[]
   vouches     CareerVouch[]
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
 
   @@index([userId, createdAt])
+}
+
+/// A crewmate tagged on a work post (shows on their portfolio's Tagged tab)
+model CareerPostTag {
+  id        String     @id @default(cuid())
+  postId    String
+  post      CareerPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+
+  @@unique([postId, userId])
+  @@index([userId])
 }
 
 model CareerVouch {

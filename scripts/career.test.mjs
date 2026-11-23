@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 const c = await import('../lib/career/career.ts')
-const { parsePostInput, looksLikeStreetAddress, isSealed, sealView, dateRange, isEmail, HANDLE_RE } = c.default || c
+const { parsePostInput, looksLikeStreetAddress, isSealed, sealView, dateRange, isEmail, HANDLE_RE, hashtagsIn, normalizeTag } = c.default || c
 const s = await import('../lib/career/server.ts')
 const { contentHash, handleFrom, hashToken, newToken, careerQrSvg, ownerPost } = s.default || s
 
@@ -16,6 +16,7 @@ test('places stay city/region level: street addresses are refused', () => {
 
 test('quick post: one photo or a title is enough; foreign image hosts are dropped', () => {
   assert.equal(parsePostInput({}).ok, false)
+  assert.ok(parsePostInput({ story: 'Fresh stripes' }).ok, 'a caption alone is a post')
   assert.equal(parsePostInput({ photos: [{ url: 'https://evil.example/x.jpg' }] }).ok, false)
   const r = parsePostInput({ photos: [{ url: IMG, label: 'before', takenAt: '2026-05-01T10:00:00Z' }, { url: 'http://res.cloudinary.com/demo/image/upload/x.jpg' }] })
   assert.ok(r.ok)
@@ -34,12 +35,12 @@ test('details are cleaned: trades deduped and lowercased, months accepted, bad r
   assert.equal(dateRange('2026-03-01', '2026-03-01'), 'Mar 2026')
 })
 
-test('seal lock: editing vouched details changes the hash; story and visibility do not', () => {
+test('seal lock: editing vouched details changes the hash; caption, tags and visibility do not', () => {
   const base = parsePostInput({ title: 'Patio', place: 'Rochester, NY', trades: ['masonry'], photos: [{ url: IMG }], story: 'a' }).data
   const h = contentHash(base)
   assert.equal(contentHash({ ...base, story: 'rewritten' }), h)
   assert.equal(contentHash({ ...base, visibility: 'PRIVATE' }), h)
-  assert.equal(contentHash({ ...base, trades: ['masonry'].reverse() }), h)
+  assert.equal(contentHash({ ...base, trades: ['masonry', 'patio'] }), h)
   assert.notEqual(contentHash({ ...base, title: 'Bigger patio' }), h)
   assert.notEqual(contentHash({ ...base, photos: [] }), h)
   assert.notEqual(contentHash({ ...base, place: 'Buffalo, NY' }), h)
@@ -70,4 +71,15 @@ test('tokens are stored only as hashes; handles and emails validate', () => {
   assert.ok(HANDLE_RE.test(handleFrom('A very very long name that keeps going on')))
   assert.ok(isEmail('a@b.co') && !isEmail('nope') && !isEmail('a@b'))
   assert.match(careerQrSvg('jose-o-brien'), /^<svg/)
+})
+
+test('instagram-style: hashtags from the caption become tags; pins and crew tags parse', () => {
+  assert.deepEqual(hashtagsIn('Clean lines today #Mowing #lawn-care and #a'), ['mowing', 'lawn-care'])
+  assert.equal(normalizeTag('#Brick Work!'), 'brick-work')
+  const r = parsePostInput({ story: 'Pointed the whole wall #brickwork', trades: ['#Masonry', 'brickwork'], pinned: true, people: ['cuid_abc123', 'cuid_abc123', 'bad id!'] })
+  assert.ok(r.ok)
+  assert.deepEqual(r.data.trades, ['masonry', 'brickwork'])
+  assert.equal(r.data.pinned, true)
+  assert.deepEqual(r.data.people, ['cuid_abc123'])
+  assert.equal(parsePostInput({ story: 'x', pinned: 'yes' }).data.pinned, false)
 })
