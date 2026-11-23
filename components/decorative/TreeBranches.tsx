@@ -75,13 +75,9 @@ export function TreeBranches() {
     // two more from the sides fill in the canopy
     growTree(53, -40, 520, -0.25, 160, 15),
     growTree(67, 1040, 480, -2.9, 155, 14),
-    // six more between them (one level less branching keeps the page light)
+    // two more rising from the bottom (one level less branching keeps the page light)
     growTree(71, 330, 1040, -1.35, 160, 15, 7),
     growTree(79, 690, 1040, -1.8, 155, 14, 7),
-    growTree(83, 300, -40, 1.25, 140, 12, 7),
-    growTree(89, 700, -40, 1.9, 140, 12, 7),
-    growTree(97, -40, 230, 0.35, 135, 11, 7),
-    growTree(101, 1040, 760, -2.75, 135, 11, 7),
   ], [])
 
   if (isHeroPage) return null
