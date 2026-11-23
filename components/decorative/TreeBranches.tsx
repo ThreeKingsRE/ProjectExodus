@@ -2,12 +2,12 @@
 
 import { useMemo } from 'react'
 import { usePathname } from 'next/navigation'
-import { useSkyTheme } from '@/components/theme/SkyThemeProvider'
 
 // A worm's-eye view up through a canopy: four trees rise from the corners toward
 // the sky in the middle. Each tree is grown recursively: every branch splits into
 // two or three smaller ones at natural angles and tapers smoothly toward the tips,
-// so it reads as a real tree silhouette rather than evenly thick lines.
+// so it reads as a real tree silhouette rather than evenly thick lines. It uses the
+// page's text colour, so it shows on light and dark sections, day and night.
 
 type Seg = { d: string; w: number }
 
@@ -63,8 +63,6 @@ function growTree(seed: number, x: number, y: number, angle: number, len: number
 export function TreeBranches() {
   const pathname = usePathname()
   const isHeroPage = pathname === '/'
-  const { currentPhase } = useSkyTheme()
-  const isNightTime = ['dusk', 'evening', 'night', 'midnight'].includes(currentPhase)
 
   // Four trees rising from the corners toward the open sky in the middle
   const trees = useMemo(() => [
@@ -85,15 +83,11 @@ export function TreeBranches() {
   return (
     <>
       <svg
-        className="fixed inset-0 w-full h-full pointer-events-none z-10 opacity-[0.13] dark:opacity-[0.10]"
+        className="fixed inset-0 w-full h-full pointer-events-none z-10 opacity-[0.13] dark:opacity-[0.12]"
         viewBox="0 0 1000 1000"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid slice"
         shapeRendering="geometricPrecision"
-        style={{
-          filter: isNightTime ? 'brightness(0.08)' : 'brightness(1)',
-          transition: 'filter 2s ease-in-out',
-        }}
         aria-hidden
       >
         <g fill="currentColor" fillOpacity={0.7} className="text-[var(--foreground)]">
