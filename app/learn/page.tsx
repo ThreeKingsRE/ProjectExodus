@@ -458,16 +458,16 @@ export default function LearnPage() {
             </p>
           </div>
 
-          {/* Resource counts - horizontal scroll on mobile */}
-          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-6 max-w-6xl mx-auto mb-6 sm:mb-8 lg:mb-12 overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory sm:snap-none">
+          {/* Resource counts - 2x2 on phones, one row on desktop, always on screen */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-6 max-w-6xl mx-auto mb-6 sm:mb-8 lg:mb-12">
             {resourceTypes.map((resource, i) => (
-              <Card key={i} className="border sm:border-2 border-[var(--border)] bg-[var(--card)] hover:shadow-xl transition-shadow cursor-pointer min-w-[140px] sm:min-w-0 snap-center">
-                <CardContent className="p-3 sm:p-4 lg:p-6 text-center">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 mx-auto mb-2 sm:mb-3 lg:mb-4 rounded-xl sm:rounded-2xl bg-[color-mix(in_srgb,var(--primary)_20%,var(--background))] flex items-center justify-center">
+              <Card key={i} className="min-w-0 border sm:border-2 border-[var(--border)] bg-[var(--card)] hover:shadow-xl transition-shadow cursor-pointer">
+                <CardContent className="p-2 sm:p-4 lg:p-6 text-center">
+                  <div className="w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 mx-auto mb-2 sm:mb-3 lg:mb-4 rounded-xl sm:rounded-2xl bg-[color-mix(in_srgb,var(--primary)_20%,var(--background))] flex items-center justify-center">
                     <resource.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-theme-primary" />
                   </div>
-                  <h3 style={{ fontSize: 'clamp(0.75rem, 2.4vw, 1.125rem)', lineHeight: 1.2 }} className="font-black mb-1 sm:mb-2 text-[var(--foreground)] break-words">{resource.type}</h3>
-                  <div className="text-lg sm:text-2xl lg:text-3xl font-black text-theme-primary">
+                  <h3 style={{ fontSize: 'clamp(0.68rem, 2.4vw, 1.125rem)', lineHeight: 1.2 }} className="font-black mb-1 sm:mb-2 text-[var(--foreground)] break-words">{resource.type}</h3>
+                  <div className="text-base sm:text-2xl lg:text-3xl font-black text-theme-primary">
                     {resource.count}+
                   </div>
                 </CardContent>
