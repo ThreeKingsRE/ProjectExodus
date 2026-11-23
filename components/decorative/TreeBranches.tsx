@@ -43,8 +43,8 @@ function growTree(seed: number, x: number, y: number, angle: number, len: number
     const tipW = Math.max(w * 0.74, 0.45)
     const b = taperedBranch(x, y, a, len, w, tipW, (rand() - 0.5) * len * 0.18)
     out.push({ d: b.d, w })
-    if (depth === 0 || len < 9) return
-    const children = depth > 4 ? 2 : rand() < 0.25 ? 3 : 2
+    if (depth === 0 || len < 7) return
+    const children = depth > 5 ? 2 : rand() < 0.3 ? 3 : 2
     for (let i = 0; i < children; i++) {
       const spread = 0.32 + rand() * 0.28 // ~18-35 degrees
       const side = children === 3 ? i - 1 : i === 0 ? -1 : 1
@@ -56,7 +56,7 @@ function growTree(seed: number, x: number, y: number, angle: number, len: number
       grow(b.ex, b.ey, childA, childLen, childW, depth - 1)
     }
   }
-  grow(x, y, angle, len, width, 7)
+  grow(x, y, angle, len, width, 8)
   return out
 }
 
@@ -68,10 +68,13 @@ export function TreeBranches() {
 
   // Four trees rising from the corners toward the open sky in the middle
   const trees = useMemo(() => [
-    growTree(11, -20, 1030, -0.95, 215, 40),
-    growTree(23, 1020, 1030, -2.19, 205, 38),
-    growTree(37, -30, -30, 0.78, 175, 30),
-    growTree(41, 1030, -30, 2.36, 170, 28),
+    growTree(11, -20, 1030, -0.95, 215, 24),
+    growTree(23, 1020, 1030, -2.19, 205, 22),
+    growTree(37, -30, -30, 0.78, 175, 18),
+    growTree(41, 1030, -30, 2.36, 170, 17),
+    // two more from the sides fill in the canopy
+    growTree(53, -40, 520, -0.25, 160, 15),
+    growTree(67, 1040, 480, -2.9, 155, 14),
   ], [])
 
   if (isHeroPage) return null
@@ -79,7 +82,7 @@ export function TreeBranches() {
   return (
     <>
       <svg
-        className="fixed inset-0 w-full h-full pointer-events-none z-10 opacity-[0.16] dark:opacity-[0.12]"
+        className="fixed inset-0 w-full h-full pointer-events-none z-10 opacity-[0.13] dark:opacity-[0.10]"
         viewBox="0 0 1000 1000"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid slice"
@@ -90,7 +93,7 @@ export function TreeBranches() {
         }}
         aria-hidden
       >
-        <g fill="currentColor" className="text-[var(--foreground)]">
+        <g fill="currentColor" fillOpacity={0.7} className="text-[var(--foreground)]">
           {trees.map((segs, t) => (
             <path key={t} d={segs.map((s) => s.d).join('')} />
           ))}

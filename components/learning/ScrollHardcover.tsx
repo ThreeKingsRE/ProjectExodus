@@ -13,12 +13,10 @@ import { FloatingBook } from './FloatingBook'
 import type { RibbonStyle } from '@/lib/learning/ribbon'
 import { ReadingRibbon, RibbonArt } from './ribbon/ReadingRibbon'
 
-// A closed book's ribbon, like a real bound book: tucked inside, with only its
-// tail hanging out below the bottom edge of the pages near the spine.
-// It starts exactly at the bottom edge of the pages, so it never covers any part of the book.
-// It sits behind the cover and pages, starting a little above their bottom edge so
-// the top end is tucked out of sight: the tail looks like it comes out from inside.
-const CLOSED_RIBBON_POS = { left: '13%', top: '98.5%', width: '6%', height: '13.5%' } as const
+// A closed book's ribbon, like a real bound book: only its tail hangs out below the
+// pages near the spine. It lives in the cover's own plane and starts exactly at the
+// cover's bottom edge, so it stays attached at any tilt and never covers the book.
+const CLOSED_RIBBON_POS = { left: '13%', top: '100%', width: '6%', height: '12%' } as const
 
 interface CoverTheme {
   cloth: string
@@ -353,7 +351,7 @@ export function BookCover({ topicId, title, subtitle, chapterTitles, currentChap
 
       {/* The reader's ribbon: its tail hangs out below the pages, behind the cover */}
       {ribbon && (
-        <div aria-hidden className="pointer-events-none absolute drop-shadow-md" style={{ ...CLOSED_RIBBON_POS, transform: depth ? `translateZ(calc(-0.5 * ${depth}cqw))` : undefined }}>
+        <div aria-hidden className="pointer-events-none absolute drop-shadow-md" style={CLOSED_RIBBON_POS}>
           <RibbonArt style={ribbon} />
         </div>
       )}
@@ -399,7 +397,7 @@ export function ScrollHardcover(props: ScrollHardcoverProps) {
           <ReadingRibbon
             ribbon={ribbon}
             className="drop-shadow-md"
-            style={{ position: 'absolute', ...CLOSED_RIBBON_POS, transform: 'translateZ(calc(-0.5 * 11cqw))' }}
+            style={{ position: 'absolute', ...CLOSED_RIBBON_POS }}
             label={ribbonSpot ? `Your ribbon: continue at ${ribbonSpot}` : 'Your ribbon: open the book'}
             onClick={open}
             editable={!!onEditRibbon}
