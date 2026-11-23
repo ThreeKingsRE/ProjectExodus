@@ -134,7 +134,7 @@ export default function LearnPage() {
   ]
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative overflow-x-clip">
       {/* Decorative Elements - lazy loaded */}
       <Suspense fallback={null}>
         <TreeBranches />
@@ -365,7 +365,7 @@ export default function LearnPage() {
                       </div>
                       <div className="min-w-0">
                         <span className="text-xs sm:text-sm font-black text-theme-primary">{path.level}</span>
-                        <h3 className="text-base sm:text-lg lg:text-xl font-black leading-tight text-[var(--foreground)] break-words">{path.title}</h3>
+                        <h3 style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', lineHeight: 1.2 }} className="font-black text-[var(--foreground)] break-words">{path.title}</h3>
                       </div>
                     </div>
 
@@ -466,7 +466,7 @@ export default function LearnPage() {
                   <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 mx-auto mb-2 sm:mb-3 lg:mb-4 rounded-xl sm:rounded-2xl bg-[color-mix(in_srgb,var(--primary)_20%,var(--background))] flex items-center justify-center">
                     <resource.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-theme-primary" />
                   </div>
-                  <h3 className="text-xs sm:text-sm lg:text-lg font-black mb-1 sm:mb-2 text-[var(--foreground)] leading-tight">{resource.type}</h3>
+                  <h3 style={{ fontSize: 'clamp(0.75rem, 2.4vw, 1.125rem)', lineHeight: 1.2 }} className="font-black mb-1 sm:mb-2 text-[var(--foreground)] break-words">{resource.type}</h3>
                   <div className="text-lg sm:text-2xl lg:text-3xl font-black text-theme-primary">
                     {resource.count}+
                   </div>
@@ -483,13 +483,13 @@ export default function LearnPage() {
               { icon: Play, title: 'VIDEO LIBRARY', desc: 'Curated educational videos from trusted sources on sustainability topics', cta: 'WATCH VIDEOS', href: '/videos' },
               { icon: Download, title: 'RESOURCE LIBRARY', desc: 'PDFs, worksheets, checklists, and templates for sustainable living', cta: 'BROWSE RESOURCES', href: '/resources' }
             ].map((tool, i) => (
-              <Link key={i} href={tool.href}>
-                <Card className="h-full border-2 sm:border-4 border-theme-primary bg-gradient-to-br from-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[var(--background)] transform hover:scale-[1.02] lg:hover:scale-105 transition-all cursor-pointer">
+              <Link key={i} href={tool.href} className="min-w-0">
+                <Card className="h-full min-w-0 border-2 sm:border-4 border-theme-primary bg-gradient-to-br from-[color-mix(in_srgb,var(--primary)_15%,var(--background))] to-[var(--background)] transform hover:scale-[1.02] lg:hover:scale-105 transition-all cursor-pointer">
                   <CardContent className="p-3 sm:p-5 lg:p-10 text-center">
                     <div className="w-12 h-12 sm:w-16 sm:h-16 lg:w-24 lg:h-24 mx-auto mb-3 sm:mb-4 lg:mb-6 rounded-full bg-[color-mix(in_srgb,var(--primary)_20%,var(--background))] flex items-center justify-center">
                       <tool.icon className="w-6 h-6 sm:w-8 sm:h-8 lg:w-12 lg:h-12 text-theme-primary" />
                     </div>
-                    <h3 className="text-xs sm:text-base lg:text-xl font-black mb-1 sm:mb-2 lg:mb-3 text-[var(--foreground)] leading-tight">{tool.title}</h3>
+                    <h3 style={{ fontSize: 'clamp(0.75rem, 2.6vw, 1.25rem)', lineHeight: 1.2 }} className="font-black mb-1 sm:mb-2 lg:mb-3 text-[var(--foreground)] break-words">{tool.title}</h3>
                     <p className="text-[10px] sm:text-xs lg:text-base font-medium mb-2 sm:mb-4 lg:mb-6 text-theme-muted line-clamp-2">{tool.desc}</p>
                     <Button variant="outline" className="font-bold border sm:border-2 text-[10px] sm:text-xs lg:text-sm px-2 sm:px-4 py-1 sm:py-2">
                       <span className="hidden sm:inline">{tool.cta}</span>
