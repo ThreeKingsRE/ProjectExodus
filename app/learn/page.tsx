@@ -262,7 +262,7 @@ export default function LearnPage() {
       </section>
 
       {/* Content wrapper - view-only for non-authenticated users */}
-      <div className={!isAuthenticated ? 'pointer-events-none select-none opacity-90' : ''}>
+      <div className={!isAuthenticated ? 'pointer-events-none select-none' : ''}>
 
       {/* Core Topics - Main Learning Hub with Level Selector */}
       <section id="core-topics" className="sm:min-h-screen flex items-center justify-center py-6 sm:py-14 lg:py-20 bg-[var(--background)] scroll-mt-20">
@@ -277,7 +277,7 @@ export default function LearnPage() {
 
           {/* Mobile: 2 columns compact | Tablet: 2 columns | Desktop: 3 columns */}
           {/* The shelf stays touchable for everyone: guests can tilt the books, members open them */}
-          <div className="pointer-events-auto grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-8 max-w-7xl mx-auto">
+          <div className="pointer-events-auto relative z-20 grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-8 max-w-7xl mx-auto">
             {topics.map((topic, idx) => {
               const ShelfItem = isAuthenticated ? Link : 'div'
 
