@@ -45,7 +45,7 @@ export function LevelSwitcher({ level, onChange }: { level: LearningLevel; onCha
         aria-expanded={open}
         aria-label={`Reading level: ${LEARNING_LEVELS[level].label}. Change level`}
         title="Change reading level"
-        className="flex h-9 items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--card)]/90 px-3 text-xs font-semibold text-[var(--book-text,var(--foreground))] transition-all hover:bg-[var(--muted)] sm:h-10 sm:text-sm"
+        className="flex h-8 items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--card)]/90 px-2.5 text-xs font-semibold text-[var(--book-text,var(--foreground))] transition-all hover:bg-[var(--muted)] sm:h-10 sm:text-sm"
       >
         <GraduationCap className="h-4 w-4" aria-hidden />
         <span className="max-w-[7.5rem] truncate">{LEARNING_LEVELS[level].label}</span>

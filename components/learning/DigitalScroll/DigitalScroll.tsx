@@ -1914,9 +1914,8 @@ export function DigitalScroll({
             <PageEdges pageCount={totalPages} />
           </ScrollWrapper>
 
-          {/* Top Control Bar */}
-          {/* On phones the ribbons span the full width, so sit below them */}
-          <div className="absolute top-16 sm:top-6 right-3 sm:right-6 flex items-center gap-2 z-30">
+          {/* Top control bar: pinned to the top edge on phones; the page reserves room below it */}
+          <div className="absolute top-2 sm:top-6 right-2 sm:right-6 flex items-center gap-1.5 sm:gap-2 z-30">
             {/* Reading level: always visible so the reader can switch any time */}
             <LevelSwitcher
               level={selectedLevel}
@@ -1927,7 +1926,7 @@ export function DigitalScroll({
               href={`/learn/topics/${topic.id}/print?level=${selectedLevel}&scope=v${volumeIndex + 1}`}
               target="_blank"
               rel="noopener"
-              className="p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
+              className="p-1.5 sm:p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
               aria-label="Print or download this textbook"
               title="Print or download"
             >
@@ -1951,7 +1950,7 @@ export function DigitalScroll({
                       : 'Notes stay on this device only. Copies on your account were removed (shared notes stay shared).'
                 )
               }}
-              className="p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
+              className="p-1.5 sm:p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
               aria-label={scrollNotes.settings?.syncScrollNotes ? 'Notes sync to your account. Click to keep them on this device only.' : 'Notes are on this device only. Click to sync them to your account.'}
               aria-pressed={Boolean(scrollNotes.settings?.syncScrollNotes)}
               title={scrollNotes.settings?.syncScrollNotes ? 'Syncing notes to your account' : 'Notes on this device only'}
@@ -1966,7 +1965,7 @@ export function DigitalScroll({
             {/* Sound Toggle */}
             <button
               onClick={() => scrollState.updatePreferences({ soundEnabled: !scrollState.preferences.soundEnabled })}
-              className="p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
+              className="p-1.5 sm:p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
               aria-label={scrollState.preferences.soundEnabled ? 'Mute sounds' : 'Enable sounds'}
             >
               {scrollState.preferences.soundEnabled ? (
@@ -1979,7 +1978,7 @@ export function DigitalScroll({
             {/* Expand/Minimize Button */}
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
+              className="p-1.5 sm:p-2 rounded-full bg-[var(--card)]/90 text-[var(--book-text,var(--foreground))] hover:bg-[var(--muted)] border border-[var(--border)] transition-all"
               aria-label={isExpanded ? 'Exit fullscreen' : 'Enter fullscreen'}
             >
               {isExpanded ? (
@@ -1992,7 +1991,7 @@ export function DigitalScroll({
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className="p-2 rounded-full bg-red-500/90 text-white hover:bg-red-600 transition-all"
+              className="p-1.5 sm:p-2 rounded-full bg-red-500/90 text-white hover:bg-red-600 transition-all"
               aria-label="Close scroll"
             >
               <X className="w-4 h-4 sm:w-5 sm:h-5" />
