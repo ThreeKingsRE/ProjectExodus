@@ -156,14 +156,14 @@ export default function LearnPage() {
               </p>
             </div>
             {/* Sacred divider */}
-            <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="flex items-center justify-center gap-4 mb-4 sm:mb-8">
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent" />
               <span className="text-2xl text-[var(--primary)]">☥</span>
               <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[var(--primary)] to-transparent" />
             </div>
 
             {/* Mission Title */}
-            <h2 className="text-3xl sm:text-4xl font-black text-center mb-8 text-[var(--foreground)]">
+            <h2 className="text-2xl sm:text-4xl font-black text-center mb-4 sm:mb-8 text-[var(--foreground)]">
               OUR PHILOSOPHY
             </h2>
 
@@ -175,7 +175,7 @@ export default function LearnPage() {
               <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[var(--primary)]/30" />
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[var(--primary)]/30" />
 
-              <div className="px-8 py-12 text-center space-y-6">
+              <div className="px-4 py-6 sm:px-8 sm:py-12 text-center space-y-4 sm:space-y-6">
                 {/* The Core Message */}
                 <p className="text-xl sm:text-2xl font-serif italic text-[var(--foreground)] leading-relaxed">
                   "Learning is a relationship. A teacher provides information and a student brings the will to learn."
@@ -238,7 +238,7 @@ export default function LearnPage() {
               <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[var(--primary)] to-transparent" />
             </div>
           </div>
-          <div className="mt-8 sm:mt-10">
+          <div className="mt-4 sm:mt-10">
           <div className="flex flex-wrap gap-4 justify-center">
             <Button
               size="lg"
@@ -265,7 +265,7 @@ export default function LearnPage() {
       <div className={!isAuthenticated ? 'pointer-events-none select-none opacity-90' : ''}>
 
       {/* Core Topics - Main Learning Hub with Level Selector */}
-      <section id="core-topics" className="min-h-screen flex items-center justify-center py-10 sm:py-14 lg:py-20 bg-[var(--background)] scroll-mt-20">
+      <section id="core-topics" className="sm:min-h-screen flex items-center justify-center py-6 sm:py-14 lg:py-20 bg-[var(--background)] scroll-mt-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-4 sm:mb-6 lg:mb-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-2 sm:mb-4 text-[var(--foreground)]">CORE TOPICS</h2>
@@ -341,7 +341,7 @@ export default function LearnPage() {
       </section>
 
       {/* Learning Paths */}
-      <section id="learning-paths" className="min-h-screen flex items-center justify-center py-12 sm:py-16 lg:py-20 bg-[var(--background)] scroll-mt-20">
+      <section id="learning-paths" className="sm:min-h-screen flex items-center justify-center py-6 sm:py-16 lg:py-20 bg-[var(--background)] scroll-mt-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-6 sm:mb-10 lg:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-2 sm:mb-4 text-[var(--foreground)]">LEARNING PATHS</h2>
@@ -419,7 +419,7 @@ export default function LearnPage() {
       </section>
 
       {/* The Planet in Numbers - Compact Stats */}
-      <section className="min-h-screen flex items-center justify-center bg-[var(--background)] py-8 sm:py-12">
+      <section className="sm:min-h-screen flex items-center justify-center bg-[var(--background)] py-6 sm:py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-6 sm:mb-8">
@@ -449,7 +449,7 @@ export default function LearnPage() {
       </section>
 
       {/* Interactive Tools */}
-      <section className="min-h-screen flex items-center justify-center py-10 sm:py-14 lg:py-20 bg-[var(--muted)]">
+      <section className="sm:min-h-screen flex items-center justify-center py-6 sm:py-14 lg:py-20 bg-[var(--muted)]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-6 sm:mb-8 lg:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-2 sm:mb-4 text-[var(--foreground)]">INTERACTIVE TOOLS</h2>
@@ -504,7 +504,7 @@ export default function LearnPage() {
       </section>
 
       {/* Quick Facts Marquee */}
-      <section className="py-12 bg-[var(--primary)] overflow-hidden">
+      <section className="py-5 sm:py-12 bg-[var(--primary)] overflow-hidden">
         <div className="flex gap-12 animate-scroll">
           {[...quickFacts, ...quickFacts].map((item, i) => (
             <div key={i} className="flex items-center gap-4 whitespace-nowrap">
@@ -518,7 +518,7 @@ export default function LearnPage() {
       </section>
 
       {/* Exodology Cross-link */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-amber-900/10 via-[var(--background)] to-purple-900/10">
+      <section className="py-6 sm:py-16 lg:py-20 bg-gradient-to-br from-amber-900/10 via-[var(--background)] to-purple-900/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <Card className="border-2 border-amber-500/30 bg-gradient-to-br from-amber-500/5 via-[var(--card)] to-purple-500/5 overflow-hidden">
@@ -554,7 +554,7 @@ export default function LearnPage() {
       </section>
 
       {/* CTA */}
-      <section className="min-h-screen flex items-center justify-center py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)] text-[var(--primary-foreground)]">
+      <section className="sm:min-h-screen flex items-center justify-center py-10 sm:py-16 lg:py-24 bg-gradient-to-br from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)] text-[var(--primary-foreground)]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6 lg:space-y-8">
             <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">🎓</div>
