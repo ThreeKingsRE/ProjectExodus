@@ -23,6 +23,10 @@
   "crons": [
     {
       "path": "/api/meetings/refresh",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/meetings/reminders",
       "schedule": "0 12 * * *"
     }
   ]

@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { ensureDirectory, ensureFederal, ensureKnownSources, refreshSource, sendReminders, staleSourceIds } from '@/lib/meetings/server'
+import { ensureDirectory, ensureFederal, ensureKnownSources, refreshSource, staleSourceIds } from '@/lib/meetings/server'
 
 export const maxDuration = 300
 
-// GET /api/meetings/refresh - the daily job (Vercel Cron sends `Authorization: Bearer $CRON_SECRET`).
-// Loads the directory if empty, refreshes every calendar that hasn't updated in 6 hours, and sends the
-// morning reminders members asked for.
+// Nightly calendar import. Vercel Cron sends `Authorization: Bearer $CRON_SECRET`.
+// Reminder delivery runs independently at /api/meetings/reminders.
 export async function GET(request: NextRequest) {
   const secret = process.env.CRON_SECRET
   if (!secret || request.headers.get('authorization') !== `Bearer ${secret}`) {
@@ -17,6 +16,5 @@ export async function GET(request: NextRequest) {
     const r = await refreshSource(id)
     if (r.error) failed++; else refreshed++
   }
-  const reminders = await sendReminders()
-  return NextResponse.json({ success: true, refreshed, failed, reminders })
+  return NextResponse.json({ success: true, refreshed, failed })
 }
