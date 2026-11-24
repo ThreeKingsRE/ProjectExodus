@@ -58,7 +58,7 @@ export function AddMeeting({ slug, tz, onAdded }: { slug: string; tz: string; on
       <input value={f.agendaUrl} onChange={set('agendaUrl')} placeholder="Agenda link" aria-label="Agenda link" inputMode="url" className={field} />
       <input value={f.minutesUrl} onChange={set('minutesUrl')} placeholder="Minutes link (after it happens)" aria-label="Minutes link" inputMode="url" className={field} />
       <input value={f.recordingUrl} onChange={set('recordingUrl')} placeholder="Recording link" aria-label="Recording link" inputMode="url" className={field} />
-      <p className="text-[11px] text-[var(--muted-foreground)]">Agenda, minutes and recording links can be any website. Join links: Zoom, Meet, Teams, Webex, live streams, or a government, school or .org site.</p>
+      <p className="text-[11px] text-[var(--muted-foreground)]">Links can be any website (https). Join links show only to signed-in members.</p>
       {error && <p role="alert" className="text-xs text-red-500">{error}</p>}
       <div className="flex gap-2">
         <button type="submit" disabled={busy} style={{ color: 'var(--primary-foreground)' }} className="no-min-size inline-flex h-10 items-center gap-2 rounded-full bg-[var(--primary)] px-5 text-sm font-bold disabled:opacity-60">{busy && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />} Add</button>
