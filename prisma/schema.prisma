@@ -4064,6 +4064,7 @@ model Jurisdiction {
   stateName  String?
   countyName String?
   countyKey  String?
+  guessedAt  DateTime? // last time we looked for this place's calendar by name
 
   meetings Meeting[]
   sources  MeetingSource[]

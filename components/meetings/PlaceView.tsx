@@ -11,6 +11,7 @@ import { Check, MapPin, Plus } from 'lucide-react'
 import type { MeetingView, PlaceBrief } from '@/lib/meetings/server'
 import { MeetingRow } from './MeetingRow'
 import { AddMeeting, ConnectSource } from './PlaceTools'
+import { FindForMe } from './FindForMe'
 
 interface Source { id: string; kind: string; host: string; lastFetchedAt: string | null; error: string | null }
 
@@ -63,6 +64,7 @@ export default function PlaceView({ place, upcoming, past, sources, signedIn, fo
           <div className="rounded-2xl border-2 border-[var(--primary)]/50 bg-[var(--primary)]/10 p-3 text-sm">
             <p className="font-bold">No calendar is connected for {place.label} yet. You can fix that.</p>
             <p className="mt-0.5 text-[var(--muted-foreground)]">{memberFed ? `${memberFed}, so its meetings come from members like you. ` : ''}Add the posted schedule (even once, like “2nd Wednesday at 6 PM”), or paste the town’s calendar link if it has one. It takes a minute and helps everyone here.</p>
+            {signedIn && <FindForMe slug={place.slug} onDone={refresh} />}
           </div>
         )}
 

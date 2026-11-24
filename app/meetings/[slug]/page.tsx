@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { after } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
-import { placeBrief, listMeetings, refreshSource, staleSourceIds, ensureDirectory, ensureKnownSources } from '@/lib/meetings/server'
+import { placeBrief, listMeetings, refreshSource, staleSourceIds, autoConnect, ensureDirectory, ensureKnownSources } from '@/lib/meetings/server'
 import { MEMBER_FED } from '@/lib/meetings/known'
 import { placeLabel, placeSubtitle, tzFor } from '@/lib/meetings/directory'
 import PlaceView from '@/components/meetings/PlaceView'
@@ -40,7 +40,9 @@ export default async function PlacePage({ params }: Props) {
         ? prisma.jurisdiction.findMany({ where: { kind: { in: ['PLACE', 'TOWNSHIP'] }, countyKey: j.countyKey }, orderBy: { fullName: 'asc' }, take: 400 })
         : [],
   ])
-  after(async () => { for (const id of await staleSourceIds([j.id], 2 * 3600000, 5)) await refreshSource(id) })
+  // A place with no calendar: look for its official one by name (once every two weeks), no link needed
+  const looking = sources.length === 0
+  after(async () => { if (looking) await autoConnect(j.id).catch(() => {}); for (const id of await staleSourceIds([j.id], 2 * 3600000, 5)) await refreshSource(id) })
 
   return (
     <PlaceView

@@ -7,6 +7,7 @@ import { CLIENT_RE, mapLegistarEvent, type MeetingInput } from './legistar'
 import { safeGetText, normalizeCalendarUrl } from './safe-fetch'
 import { legistarCalendarUrl, parseLegistarCalendarHtml } from './legistar-html'
 import { KNOWN_SOURCES } from './known'
+import { legistarGuesses, looksLikeThisPlace } from './guess'
 import { findCalendarLinks, looksLikeCalendar, looksLikeHtml } from './discover'
 import { expandEvents, parseIcs } from '@/lib/calendar/ics'
 
@@ -317,4 +318,47 @@ export async function sendReminders(now = new Date()): Promise<{ users: number; 
     }
   }
   return { users: byUser.size, sent }
+}
+
+// ── Find a place's calendar from its name ───────────────────────────────────
+
+export interface FoundSource { client: string; kind: 'LEGISTAR' | 'LEGISTAR_HTML'; verified: boolean }
+
+/** Try the usual Legistar names for a place. `verified` means the site's own meeting locations
+ *  and board names show it belongs to this place; otherwise it is only a suggestion. */
+export async function findLegistarFor(j: { kind: string; name: string; govType: string | null; state: string | null; stateName: string | null }): Promise<FoundSource | null> {
+  let suggestion: FoundSource | null = null
+  for (const g of legistarGuesses(j)) {
+    let rows: Record<string, unknown>[]
+    try { rows = (await legistarGet(g.client, 'events?$orderby=EventDate desc&$top=30')) as Record<string, unknown>[] } catch (e) {
+      if (e instanceof Error && /private key/.test(e.message)) {
+        // A real Legistar site that keeps its API private: read its public page instead
+        try { const kind = await detectLegistar(g.client); if (g.qualified) return { client: g.client, kind, verified: true }; suggestion ??= { client: g.client, kind, verified: false } } catch { /* no readable page */ }
+      }
+      continue
+    }
+    if (!Array.isArray(rows) || !rows.length) continue
+    const texts = rows.flatMap((r) => [r.EventLocation, r.EventBodyName, r.EventComment]).map((v) => (typeof v === 'string' ? v : null))
+    if (g.qualified || looksLikeThisPlace(j, texts)) return { client: g.client, kind: 'LEGISTAR', verified: true }
+    suggestion ??= { client: g.client, kind: 'LEGISTAR', verified: false }
+  }
+  return suggestion
+}
+
+/** Look for a calendar for a place with none, and connect it if it checks out. Remembers the try. */
+export async function autoConnect(jurisdictionId: string, opts: { force?: boolean } = {}): Promise<{ connected: boolean; suggestion: FoundSource | null; count: number }> {
+  const j = await prisma.jurisdiction.findUnique({ where: { id: jurisdictionId } })
+  if (!j || j.kind === 'STATE' || j.kind === 'FEDERAL') return { connected: false, suggestion: null, count: 0 }
+  if (!opts.force && j.guessedAt && Date.now() - +j.guessedAt < 14 * DAY) return { connected: false, suggestion: null, count: 0 }
+  await prisma.jurisdiction.update({ where: { id: j.id }, data: { guessedAt: new Date() } })
+  if (await prisma.meetingSource.count({ where: { jurisdictionId: j.id } })) return { connected: false, suggestion: null, count: 0 }
+  const found = await findLegistarFor(j)
+  if (!found) return { connected: false, suggestion: null, count: 0 }
+  if (!found.verified) return { connected: false, suggestion: found, count: 0 }
+  const src = await prisma.meetingSource.upsert({
+    where: { jurisdictionId_kind_ref: { jurisdictionId: j.id, kind: found.kind, ref: found.client } },
+    create: { jurisdictionId: j.id, kind: found.kind, ref: found.client, label: 'Found automatically' }, update: { enabled: true },
+  })
+  const r = await refreshSource(src.id)
+  return { connected: !r.error, suggestion: null, count: r.count }
 }

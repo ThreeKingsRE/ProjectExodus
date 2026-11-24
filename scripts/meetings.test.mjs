@@ -128,3 +128,24 @@ test('calendar pages: find the hidden iCal / Subscribe links', () => {
   assert.equal(findCalendarLinks('<p>nothing</p>', 'https://x.org/').length, 0)
   assert.ok(findCalendarLinks(html, 'https://www.town.example.org/calendar', 2).length <= 2)
 })
+
+test('finding a calendar by name: guesses, and the check that it is the right place', async () => {
+  const g = await import('../lib/meetings/guess.ts'), { legistarGuesses, looksLikeThisPlace } = g.default || g
+  const sea = { kind: 'PLACE', name: 'Seattle', govType: 'city', state: 'WA', stateName: 'Washington' }
+  const names = legistarGuesses(sea).map((x) => x.client)
+  assert.ok(names.includes('seattle') && names.includes('cityofseattle') && names.includes('seattlewa'))
+  assert.ok(legistarGuesses(sea).find((x) => x.client === 'seattlewa').qualified)
+  assert.ok(!legistarGuesses(sea).find((x) => x.client === 'seattle').qualified)
+  // A city never gets county names, and a county never gets city ones
+  assert.ok(!names.some((n) => n.includes('county')))
+  const king = { kind: 'COUNTY', name: 'King', govType: 'county', state: 'WA', stateName: 'Washington' }
+  assert.ok(legistarGuesses(king).some((x) => x.client === 'kingcounty'))
+  assert.ok(legistarGuesses({ kind: 'PLACE', name: 'St. Paul', govType: 'city', state: 'MN', stateName: 'Minnesota' }).some((x) => x.client === 'saintpaul'))
+  assert.deepEqual(legistarGuesses({ kind: 'PLACE', name: 'Ab', govType: null, state: 'NY', stateName: 'New York' }), [])
+  // Verification: the right state and name, from the site's own meeting locations
+  assert.ok(looksLikeThisPlace(sea, ['Council Chamber, City Hall\r\n600 4th Avenue\r\nSeattle, WA 98104', 'City Council']))
+  assert.ok(!looksLikeThisPlace({ ...sea, name: 'Denver', state: 'IA', stateName: 'Iowa' }, ['City & County Building, Room 391\r\n1437 Bannock Street\r\nDenver, CO 80202']))
+  assert.ok(!looksLikeThisPlace(sea, ['Council Chambers', 'City Council']))
+  assert.ok(!looksLikeThisPlace({ kind: 'PLACE', name: 'Albany', govType: 'city', state: 'NY', stateName: 'New York' }, ['Harold L. Joyce Albany County Office Building, Albany, GA']))
+  assert.ok(!looksLikeThisPlace(king, ['City Hall, King City, WA']))
+})

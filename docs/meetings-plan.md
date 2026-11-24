@@ -52,3 +52,6 @@ the hub. Its own top-level menu item.
 ## Environment
 - `CRON_SECRET` (any long random string) in Vercel enables the daily refresh job
   (`/api/meetings/refresh`, 09:00 UTC). Without it, calendars still refresh when someone views them.
+
+## Finding a calendar by name
+A place with no calendar is looked up automatically (once per 14 days) by trying the usual Legistar names (`lib/meetings/guess.ts`). A match whose own meeting locations show the right town and state is connected; a likely match is shown to members as "Is this right?". The "Find it for me" button runs it on demand.
