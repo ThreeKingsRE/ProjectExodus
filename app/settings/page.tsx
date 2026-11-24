@@ -17,8 +17,10 @@ import {
   AlertCircle,
   Eye,
   CreditCard,
+  Menu as MenuIcon,
 } from 'lucide-react'
 import Link from 'next/link'
+import { MenuLayoutEditor } from '@/components/settings/MenuLayoutEditor'
 import { ProfileBusinessCard } from '@/components/profile/ProfileBusinessCard'
 
 export default function SettingsPage() {
@@ -181,6 +183,7 @@ export default function SettingsPage() {
     { id: 'security', label: 'Security', icon: Lock },
     { id: 'notifications', label: 'Notifications', icon: Bell },
     { id: 'privacy', label: 'Privacy Settings', icon: Shield },
+    { id: 'menu', label: 'Menu Layout', icon: MenuIcon },
   ]
 
   return (
@@ -255,6 +258,9 @@ export default function SettingsPage() {
                   isFullView={true}
                 />
               )}
+
+              {/* MENU LAYOUT TAB */}
+              {activeTab === 'menu' && session?.user?.id && <MenuLayoutEditor userId={session.user.id} />}
 
               {/* SECURITY TAB */}
               {activeTab === 'security' && (

@@ -2,6 +2,9 @@
 
 import Link from 'next/link'
 import { TradeIconStrip } from '@/components/career/TradeIcons'
+import { MENU_ICONS } from '@/components/layout/menuIcons'
+import { isItemActive, resolveMenu } from '@/lib/menu/layout'
+import { useMenuLayout } from '@/lib/menu/useMenuLayout'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect, useRef, type ComponentType, type ReactNode } from 'react'
@@ -32,6 +35,7 @@ export function Header() {
   const learnHoverTimeout = useRef<NodeJS.Timeout | null>(null)
   const pathname = usePathname()
   const { data: session } = useSession()
+  const { layout: menuLayout } = useMenuLayout(session?.user?.id)
   const { isScrollOpen } = useDigitalScrollContext()
   const sageContext = useSageContextSafe()
 
@@ -631,70 +635,30 @@ export function Header() {
                 </div>
               )}
 
-              <MenuGroup>
-                {[
-                  { label: 'Home', href: '/', icon: Home, active: pathname === '/' },
-                  { label: 'Products', href: '/products', icon: ShoppingBag, active: pathname.startsWith('/products') },
-                  { label: 'Articles', href: '/articles', icon: Newspaper, active: pathname.startsWith('/articles') },
-                ].map(item => <MenuRow key={item.href} {...item} onNavigate={() => setMobileMenuOpen(false)} />)}
-              </MenuGroup>
+              {/* The sections and items are the member's own arrangement (Settings → Menu Layout) */}
+              {resolveMenu(menuLayout, !!session).map((sec) => (
+                <MenuGroup key={sec.id} title={sec.title}>
+                  {sec.items.map((it) => {
+                    const Icon = MENU_ICONS[it.icon]
+                    const locked = it.access === 'locked' && !session
+                    return (
+                      <MenuRow
+                        key={it.id}
+                        label={it.label}
+                        href={locked ? `/auth/signin?callbackUrl=${encodeURIComponent(it.href)}` : it.href}
+                        icon={Icon}
+                        active={isItemActive(it, pathname)}
+                        locked={locked}
+                        onNavigate={() => setMobileMenuOpen(false)}
+                        extra={it.extra === 'trades' ? <TradeIconStrip size={16} gap={12} className="text-[var(--primary)] opacity-70" /> : undefined}
+                      />
+                    )
+                  })}
+                </MenuGroup>
+              ))}
 
-              <MenuGroup>
-                <MenuRow
-                  label="My Career"
-                  href={session ? '/my/career' : `/auth/signin?callbackUrl=${encodeURIComponent('/my/career')}`}
-                  icon={Hammer}
-                  active={pathname.startsWith('/my/career') || pathname.startsWith('/career')}
-                  locked={!session}
-                  onNavigate={() => setMobileMenuOpen(false)}
-                  extra={<TradeIconStrip size={16} gap={12} className="text-[var(--primary)] opacity-70" />}
-                />
-              </MenuGroup>
-
-              <MenuGroup>
-                <MenuRow label="Meetings" href="/meetings" icon={CalendarDays} active={pathname.startsWith('/meetings')} onNavigate={() => setMobileMenuOpen(false)} />
-              </MenuGroup>
-
-              <MenuGroup title="Community">
-                {[
-                  { label: 'Current Events', href: '/community', icon: CalendarDays, active: pathname === '/community' },
-                  { label: 'Discussions', href: '/community/discussions', icon: MessagesSquare, active: pathname.startsWith('/community/discussions') },
-                  { label: 'Initiatives', href: '/community/projects', icon: Rocket, active: pathname.startsWith('/community/projects') },
-                  { label: 'Fish Tank', href: '/fishbowl', icon: Fish, active: pathname.startsWith('/fishbowl') },
-                ].map(item => <MenuRow key={item.href} {...item} onNavigate={() => setMobileMenuOpen(false)} />)}
-              </MenuGroup>
-
-              <MenuGroup title="Learn">
-                {[
-                  { label: 'Sustainability', href: '/learn', icon: Sprout, active: pathname.startsWith('/learn'), requiresAuth: false },
-                  { label: 'Exodology', href: '/exodology', icon: GraduationCap, active: pathname.startsWith('/exodology'), requiresAuth: true },
-                  { label: 'Architecture', href: '/architecture', icon: Landmark, active: pathname.startsWith('/architecture') && !pathname.startsWith('/architecture/structural'), requiresAuth: true },
-                  { label: 'Structural Engineering', href: '/architecture/structural', icon: Ruler, active: pathname.startsWith('/architecture/structural'), requiresAuth: true },
-                ].map(({ requiresAuth, ...item }) => (
-                  <MenuRow
-                    key={item.href}
-                    {...item}
-                    href={requiresAuth && !session ? `/auth/signin?callbackUrl=${encodeURIComponent(item.href)}` : item.href}
-                    locked={requiresAuth && !session}
-                    onNavigate={() => setMobileMenuOpen(false)}
-                  />
-                ))}
-              </MenuGroup>
-
-              {/* Render from `session` directly to avoid the SSR/CSR mismatch caused by
-                  useSession briefly returning status='loading' on hydration. */}
               {session && (
                 <>
-                  <MenuGroup title="Account">
-                    {[
-                      { label: 'Messages', href: '/messages', icon: MessageCircle, active: pathname.startsWith('/messages') },
-                      { label: 'Notifications', href: '/notifications', icon: Bell, active: pathname.startsWith('/notifications') },
-                      { label: 'My Volition', href: '/my/volition', icon: Compass, active: pathname.startsWith('/my/volition') },
-                      { label: 'Search & Explore', href: '/explore', icon: Search, active: pathname.startsWith('/explore') },
-                      { label: 'Settings', href: '/settings', icon: Settings, active: pathname.startsWith('/settings') },
-                    ].map(item => <MenuRow key={item.href} {...item} onNavigate={() => setMobileMenuOpen(false)} />)}
-                  </MenuGroup>
-
                   <MenuGroup>
                     <button
                       type="button"

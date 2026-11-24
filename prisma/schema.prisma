@@ -214,6 +214,7 @@ model User {
   meetingRemindWeek         Boolean                 @default(false) // Reminder a week before
   meetingEmail              Boolean                 @default(false) // Also email the reminders
   meetingReminders          MeetingReminder[]
+  menuLayout                Json? // Their arrangement of the phone menu (see lib/menu/layout.ts)
 
   @@index([email])
   @@index([role])
