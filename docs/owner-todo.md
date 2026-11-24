@@ -7,7 +7,7 @@ date; never mark one done without the owner's confirmation.
 
 ## Open
 
-1. **Reset the Neon database password** (urgent). The old `neondb_owner` password is in the public repo's history. Neon → project → Roles → `neondb_owner` → Reset password; put the new connection string in Vercel → Settings → Environment Variables → `DATABASE_URL` (and any other variable using it), then Redeploy. Consider making the repo private (GitHub → Settings → Danger Zone → Change visibility).
+1. **Reset the Neon database password** (urgent). The old `neondb_owner` password is in the public repo's history. Neon → project → Roles → `neondb_owner` → Reset password; put the new connection string in Vercel → Settings → Environment Variables → `DATABASE_URL` (and any other variable using it, including the `LEGACY_PRISMA_*` ones marked "Needs Attention"), then Redeploy. Consider making the repo private (GitHub → Settings → Danger Zone → Change visibility).
 2. **Close PR #5** on GitHub ("Build Riverknoll Renewal initiative", the old custom-page version). Close, don't merge.
 5. **Disconnect John's Vercel copy** of the project (it fails its builds).
 6. **Set up live co-editing** (a free Cloudflare Worker; the code is ready and tested). You make a free Cloudflare account and an API token; Claude deploys it and gives you two values for Vercel. See docs/SETUP_GUIDE.md Part 5.
@@ -15,6 +15,8 @@ date; never mark one done without the owner's confirmation.
 8. **Add a `CRON_SECRET` environment variable in Vercel** (Settings → Environment Variables; any long random string, then Redeploy). It turns on the daily 7–8 AM Eastern job that sends the meeting reminders members asked for and refreshes the meeting calendars. Without it, calendars still update when someone views a town, but reminders won't send.
 
 ## Done
+
+- 2026-11-24: The temporary "partykit" GitHub token was deleted (owner confirmed).
 
 - 2026-11-19: "2-minute survey" wording in Riverknoll's first update checked; accurate since the open-ended questions are optional (owner confirmed).
 
