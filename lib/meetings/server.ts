@@ -154,7 +154,7 @@ export async function refreshSource(sourceId: string): Promise<{ count: number; 
       : src.kind === 'LEGISTAR_HTML' ? parseLegistarCalendarHtml(await safeGetText(legistarCalendarUrl(src.ref), { accept: 'text/html' }), src.ref, tz)
         : await icsMeetings(src.ref, tz, from, to)
     if (rochester && !found.length) throw new Error('Rochester’s official listing returned no recognizable meetings.')
-    const existing = rochester ? await prisma.meeting.findMany({
+    const existing: { externalId: string | null; title: string; startsAt: Date; sourceUrl: string | null }[] = rochester ? await prisma.meeting.findMany({
       where: { sourceId: src.id, startsAt: { in: found.map(m => m.startsAt) } },
       select: { externalId: true, title: true, startsAt: true, sourceUrl: true },
     }) : []
