@@ -69,7 +69,7 @@ export function GuitarHeroNote({ item, laneCategory, animationDuration, onSplash
 
   return (
     <div
-      className="gh-note absolute left-0 right-0 mx-1 sm:mx-2"
+      className="gh-note absolute left-0 right-0 mx-2"
       data-note-key={dataKey}
       style={{
         animation: `gh-note-fall ${animationDuration}s linear forwards`,
@@ -80,7 +80,7 @@ export function GuitarHeroNote({ item, laneCategory, animationDuration, onSplash
     >
       <div
         onClick={handleClick}
-        className="relative rounded-lg border px-1.5 py-1.5 backdrop-blur-sm sm:rounded-xl sm:px-3 sm:py-2.5 transition-all hover:scale-105 cursor-pointer hover:brightness-125 active:scale-95"
+        className="relative rounded-xl border px-3 py-2.5 backdrop-blur-sm transition-all hover:scale-105 cursor-pointer hover:brightness-125 active:scale-95"
         style={{
           borderColor: `${config.color}60`,
           background: config.bg,

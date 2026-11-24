@@ -42,7 +42,7 @@ export function PortfolioGrid<T extends WorkPost>({ posts, renderFooter, showAut
                   ? <img src={cover.url} alt="" loading="lazy" className="h-full w-full object-cover transition-transform group-hover:scale-105" />
                   : <span className="line-clamp-5 p-2 text-left text-[11px] leading-snug sm:p-3 sm:text-sm">{p.title || p.story}</span>}
                 <span className="absolute right-1 top-1 flex gap-1 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                  {p.pinned && <Pin className="h-3.5 w-3.5" aria-label="Pinned" />}
+                  {p.pinned && !showAuthor && <Pin className="h-3.5 w-3.5" aria-label="Pinned" />}
                   {p.seals.length > 0 && <BadgeCheck className="h-3.5 w-3.5" aria-label="Vouched" />}
                   {p.photos.length > 1 && <Multi className="h-3.5 w-3.5" aria-label="Several photos" />}
                 </span>

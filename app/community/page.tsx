@@ -1,6 +1,7 @@
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { CommunityNewspaper } from '@/components/community/CommunityNewspaper'
+import { loadRecentCareer } from '@/lib/career/server'
 
 async function getDashboardData(userId: string) {
   try {
@@ -168,10 +169,11 @@ export default async function CommunityPage() {
   // NON-LOGGED IN VIEW - the same newspaper, as a look-only preview
   // ============================================
   if (!session?.user?.id) {
-    const guest = await getGuestData()
+    const [guest, careerPosts] = await Promise.all([getGuestData(), loadRecentCareer(null).catch(() => [])])
     return (
       <CommunityNewspaper
         guest
+        careerPosts={careerPosts}
         user={null}
         suggestedUsers={[]}
         activeProjects={[]}
@@ -185,7 +187,10 @@ export default async function CommunityPage() {
   // ============================================
   // LOGGED IN VIEW - Newspaper Layout
   // ============================================
-  const dashboardData = await getDashboardData(session.user.id)
+  const [dashboardData, careerPosts] = await Promise.all([
+    getDashboardData(session.user.id),
+    loadRecentCareer(session.user.id).catch(() => []),
+  ])
 
   if (!dashboardData) {
     return (
@@ -199,6 +204,7 @@ export default async function CommunityPage() {
 
   return (
     <CommunityNewspaper
+      careerPosts={careerPosts}
       user={user}
       suggestedUsers={suggestedUsers}
       activeProjects={activeProjects}

@@ -234,3 +234,13 @@ export async function loadTag(tag: string, viewerId: Viewer) {
   const out: PublicPost[] = rows.map(publicPost)
   return out
 }
+
+/** Newest work from everyone, for the Current Events page. */
+export async function loadRecentCareer(viewerId: Viewer, take = 12) {
+  const rows = await prisma.careerPost.findMany({
+    where: { visibility: visibleTo(viewerId) },
+    orderBy: { createdAt: 'desc' }, take, include: postInclude(true),
+  })
+  const out: PublicPost[] = rows.map(publicPost)
+  return out
+}

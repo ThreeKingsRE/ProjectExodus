@@ -198,7 +198,7 @@ export function SustainableTechBillboard() {
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--border)]/50 to-transparent" />
         <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-theme-muted flex items-center gap-2">
           <Leaf className="w-3 h-3" />
-          Sustainable Innovation Spotlight
+          Current Events Highlights
           <Leaf className="w-3 h-3" />
         </span>
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--border)]/50 to-transparent" />

@@ -77,7 +77,7 @@ export function WorkCard({ post, footer, showAuthor = false }: { post: WorkPost;
         </div>
       )}
       <div className="space-y-2 p-3 sm:p-4">
-        {post.pinned && <p className="inline-flex items-center gap-1 text-[11px] font-semibold text-[var(--muted-foreground)]"><Pin className="h-3 w-3" aria-hidden /> Pinned</p>}
+        {post.pinned && !showAuthor && <p className="inline-flex items-center gap-1 text-[11px] font-semibold text-[var(--muted-foreground)]"><Pin className="h-3 w-3" aria-hidden /> Pinned</p>}
         {post.title && <h3 style={{ fontSize: 'clamp(1rem, 3.2vw, 1.15rem)', lineHeight: 1.3 }} className="font-bold">{post.title}</h3>}
         {post.story && <Caption text={post.story} />}
         {extraTags.length > 0 && (

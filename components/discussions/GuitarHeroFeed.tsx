@@ -39,6 +39,9 @@ interface SplashEffect {
 
 // ── Constants ──────────────────────────────────────────────────────────────
 
+/** Natural width of the board on phones before zooming out to fit: 8 lanes x 96px */
+const PHONE_BOARD_WIDTH = 768
+
 const LANE_NAMES = ['Posts', 'Articles', 'Projects', 'Events', 'Members', 'Discussions', 'Stats', 'Network']
 const LANE_KEYS = ['posts', 'articles', 'projects', 'events', 'members', 'discussions', 'stats', 'network']
 const NOTE_FALL_DURATION = 12
@@ -104,6 +107,16 @@ export function GuitarHeroFeed() {
   const gameStartTimeRef = useRef<number>(0)
   const gameTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const totalNotesForGameRef = useRef(0)
+
+  // ── Phone zoom ─────────────────────────────────────────────────────────
+
+  const [phoneZoom, setPhoneZoom] = useState(1)
+  useEffect(() => {
+    const fit = () => setPhoneZoom(window.innerWidth < 640 ? window.innerWidth / PHONE_BOARD_WIDTH : 1)
+    fit()
+    window.addEventListener('resize', fit)
+    return () => window.removeEventListener('resize', fit)
+  }, [])
 
   // ── Data fetching ──────────────────────────────────────────────────────
 
@@ -531,7 +544,12 @@ export function GuitarHeroFeed() {
   // ── Render ─────────────────────────────────────────────────────────────
 
   return (
-    <div className={`sm:min-h-screen bg-black overflow-hidden relative select-none ${selectedItem ? 'gh-frozen' : ''}`}>
+    <div
+      className={`sm:min-h-screen bg-black overflow-hidden relative select-none ${selectedItem ? 'gh-frozen' : ''}`}
+      // Phones: lay the board out at its natural width (8 lanes x 96px) and zoom the
+      // whole thing out so every lane shows at once, like a thumbnail of the desktop feed
+      style={phoneZoom < 1 ? { width: PHONE_BOARD_WIDTH, maxWidth: 'none', zoom: phoneZoom } : undefined}
+    >
       {/* Background grid */}
       <div className="absolute inset-0 gh-grid-bg opacity-20" />
 
@@ -615,13 +633,13 @@ export function GuitarHeroFeed() {
       )}
 
       {/* ═══ LANE HEADERS ═══ */}
-      <div className="relative z-10 hidden border-b border-white/5 overflow-x-auto scrollbar-hide sm:flex" style={{ scrollbarWidth: 'none' }}>
+      <div className="relative z-10 flex border-b border-white/5 overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
         {LANE_KEYS.map((key, i) => {
           const config = LANE_CONFIG[key]
           return (
             <div
               key={key}
-              className="min-w-[120px] flex-1 text-center py-2 border-r border-white/5 last:border-r-0 flex-shrink-0"
+              className="min-w-[96px] flex-1 text-center py-2 border-r border-white/5 last:border-r-0 flex-shrink-0 sm:min-w-[120px]"
             >
               <span
                 className="text-[10px] font-black uppercase tracking-[0.2em]"
@@ -637,9 +655,9 @@ export function GuitarHeroFeed() {
       {/* ═══ THE FRETBOARD ═══ */}
       <div
         ref={fretboardRef}
-        // Phones: two rows of four short lanes, so all eight fit the screen.
-        // Larger screens: one row of full-height lanes.
-        className="relative grid grid-cols-4 sm:flex sm:h-[calc(100vh-130px)] sm:overflow-x-auto scrollbar-hide"
+        // Phones: a shorter board (the whole feed is zoomed out to fit, see phoneZoom).
+        // Larger screens: full-height lanes.
+        className="relative flex h-[560px] overflow-x-auto scrollbar-hide sm:h-[calc(100vh-130px)]"
         style={{ scrollbarWidth: 'none' }}
       >
         {LANE_KEYS.map((key, laneIndex) => {
@@ -652,12 +670,8 @@ export function GuitarHeroFeed() {
           return (
             <div
               key={key}
-              className="relative h-[210px] min-w-0 overflow-hidden border-b border-r border-white/[0.05] sm:h-auto sm:min-w-[120px] sm:flex-1 sm:flex-shrink-0 sm:border-b-0 sm:border-white/[0.03] sm:last:border-r-0"
+              className="min-w-[96px] flex-1 relative border-r border-white/[0.03] last:border-r-0 overflow-hidden flex-shrink-0 sm:min-w-[120px]"
             >
-              {/* Lane name inside the lane on phones (the header row is hidden there) */}
-              <span className="pointer-events-none absolute inset-x-0 top-1.5 z-10 text-center text-[8px] font-black uppercase tracking-[0.15em] sm:hidden" style={{ color: `${config.color}b0` }}>
-                {LANE_NAMES[laneIndex]}
-              </span>
               {/* Lane center line */}
               <div
                 className="absolute top-0 bottom-0 left-1/2 w-px -translate-x-1/2 opacity-[0.04]"

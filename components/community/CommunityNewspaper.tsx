@@ -12,6 +12,8 @@ import {
 import { Button } from '@/components/ui/Button'
 import { GuitarHeroFeed } from '@/components/discussions/GuitarHeroFeed'
 import { SustainableTechBillboard } from '@/components/community/SustainableTechBillboard'
+import { CareerFeed } from '@/components/community/CareerFeed'
+import type { WorkPost } from '@/components/career/WorkCard'
 import { useEffect, useState } from 'react'
 
 import { COMMANDMENT_LIST, resolveCommandment } from '@/lib/commandments'
@@ -19,6 +21,8 @@ import { COMMANDMENT_LIST, resolveCommandment } from '@/lib/commandments'
 interface CommunityNewspaperProps {
   /** Signed-out preview: everything shows, nothing can be clicked */
   guest?: boolean
+  /** Newest My Career posts, shown under the highlights */
+  careerPosts?: WorkPost[]
   user: any
   suggestedUsers: any[]
   activeProjects: any[]
@@ -47,6 +51,7 @@ function getTimeAgo(dateString: Date | string): string {
 
 export function CommunityNewspaper({
   guest = false,
+  careerPosts = [],
   user,
   suggestedUsers,
   activeProjects,
@@ -344,6 +349,7 @@ export function CommunityNewspaper({
         {/* ============================================ */}
         <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <SustainableTechBillboard />
+          <CareerFeed posts={careerPosts} />
         </div>
 
         {/* ============================================ */}
