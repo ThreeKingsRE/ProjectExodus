@@ -7,6 +7,7 @@ import { CLIENT_RE, mapLegistarEvent, type MeetingInput } from './legistar'
 import { safeGetText, normalizeCalendarUrl } from './safe-fetch'
 import { legistarCalendarUrl, parseLegistarCalendarHtml } from './legistar-html'
 import { KNOWN_SOURCES } from './known'
+import { parseRochesterMeetings, ROCHESTER_KEY, ROCHESTER_LIST, ROCHESTER_REF } from './rochester'
 import { legistarGuesses, looksLikeThisPlace } from './guess'
 import { findCalendarLinks, looksLikeCalendar, looksLikeHtml } from './discover'
 import { expandEvents, parseIcs } from '@/lib/calendar/ics'
@@ -130,16 +131,47 @@ async function icsMeetings(url: string, tz: string, from: Date, to: Date): Promi
   })
 }
 
+async function rochesterMeetings(now: Date, to: Date): Promise<MeetingInput[]> {
+  const events = new Map<string, MeetingInput>()
+  // The official upcoming list uses a zero-based numeric pager.
+  for (let page = 0; page < 4; page++) {
+    const url = new URL(ROCHESTER_LIST)
+    if (page) url.searchParams.set('page', String(page))
+    const html = await safeGetText(url.href, { accept: 'text/html' })
+    for (const meeting of parseRochesterMeetings(html, now)) {
+      if (meeting.startsAt < to) events.set(meeting.externalId, meeting)
+    }
+    if (!/<a\b[^>]*\brel="next"/i.test(html)) break
+  }
+  return [...events.values()]
+}
+
 /** Pull a source’s meetings (a year back, 150 days ahead) and keep the database in step with it. */
 export async function refreshSource(sourceId: string): Promise<{ count: number; error: string | null }> {
-  const src = await prisma.meetingSource.findUnique({ where: { id: sourceId }, include: { jurisdiction: { select: { id: true, state: true } } } })
+  const src = await prisma.meetingSource.findUnique({ where: { id: sourceId }, include: { jurisdiction: { select: { id: true, state: true, key: true } } } })
   if (!src || !src.enabled) return { count: 0, error: null }
   const tz = src.timezone || tzFor(src.jurisdiction.state)
   const from = new Date(Date.now() - 365 * DAY), to = new Date(Date.now() + 150 * DAY)
   try {
-    const found = src.kind === 'LEGISTAR' ? await legistarMeetings(src.ref, tz, from, to)
+    // Keep Rochester's existing source ID so re-connecting the city URL cannot register a second feed.
+    const rochester = src.jurisdiction.key === ROCHESTER_KEY && src.kind === 'LEGISTAR' && src.ref === ROCHESTER_REF
+    const now = new Date()
+    const found = rochester
+      ? await rochesterMeetings(now, to)
+      : src.kind === 'LEGISTAR' ? await legistarMeetings(src.ref, tz, from, to)
       : src.kind === 'LEGISTAR_HTML' ? parseLegistarCalendarHtml(await safeGetText(legistarCalendarUrl(src.ref), { accept: 'text/html' }), src.ref, tz)
         : await icsMeetings(src.ref, tz, from, to)
+    if (rochester && !found.length) throw new Error('Rochester’s official listing returned no recognizable meetings.')
+    const existing = rochester ? await prisma.meeting.findMany({
+      where: { sourceId: src.id, startsAt: { in: found.map(m => m.startsAt) } },
+      select: { externalId: true, title: true, startsAt: true, sourceUrl: true },
+    }) : []
+    const sameTitle = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+    for (const meeting of found) {
+      const matching = existing.filter(row => +row.startsAt === +meeting.startsAt &&
+        (row.sourceUrl === meeting.sourceUrl || sameTitle(row.title) === sameTitle(meeting.title)))
+      if (matching.length === 1 && matching[0].externalId) meeting.externalId = matching[0].externalId
+    }
     for (let i = 0; i < found.length; i += 25) {
       await prisma.$transaction(found.slice(i, i + 25).map((m) => {
         // The source owns the schedule; links it doesn't have yet (added by members) are kept
@@ -153,10 +185,10 @@ export async function refreshSource(sourceId: string): Promise<{ count: number; 
       }))
     }
     // Upcoming meetings that vanished from the official calendar were removed there
-    if (found.length && src.kind !== 'LEGISTAR_HTML') {
+    if (found.length && !rochester && src.kind !== 'LEGISTAR_HTML') {
       await prisma.meeting.deleteMany({ where: { sourceId: src.id, startsAt: { gte: new Date(), lt: to }, externalId: { notIn: found.map((m) => m.externalId) } } })
     }
-    await prisma.meetingSource.update({ where: { id: src.id }, data: { lastFetchedAt: new Date(), lastError: null } })
+    await prisma.meetingSource.update({ where: { id: src.id }, data: { lastFetchedAt: new Date(), lastError: null, ...(rochester ? { label: 'City of Rochester official meetings' } : {}) } })
     return { count: found.length, error: null }
   } catch (e) {
     const error = e instanceof Error ? e.message.slice(0, 300) : 'Refresh failed'
