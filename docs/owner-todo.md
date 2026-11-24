@@ -11,10 +11,11 @@ date; never mark one done without the owner's confirmation.
 2. **Close PR #5** on GitHub ("Build Riverknoll Renewal initiative", the old custom-page version). Close, don't merge.
 5. **Disconnect John's Vercel copy** of the project (it fails its builds).
 6. **Set up live co-editing** (a free Cloudflare Worker; the code is ready and tested). You make a free Cloudflare account and an API token; Claude deploys it and gives you two values for Vercel. See docs/SETUP_GUIDE.md Part 5.
-7. **Check that sign-up emails are set up in Vercel** so My Career vouches can be confirmed: `RESEND_API_KEY`, `EMAIL_FROM` (a sender on your verified domain) and `NEXT_PUBLIC_SITE_URL=https://www.projxodus.com`. Without them a signer sees "we couldn't send the confirmation email" and no seal appears. See `docs/SETUP_GUIDE.md` Part 4.
 8. **Add a `CRON_SECRET` environment variable in Vercel** (Settings → Environment Variables; any long random string, then Redeploy). It turns on the daily 7–8 AM Eastern job that sends the meeting reminders members asked for and refreshes the meeting calendars. Without it, calendars still update when someone views a town, but reminders won't send.
 
 ## Done
+
+- 2026-11-24: Email sending works. Resend shows the password-reset email Sent and Delivered from accounts@projxodus.com, and the Vercel settings (RESEND_API_KEY, EMAIL_FROM, NEXTAUTH_URL) are correct (owner confirmed).
 
 - 2026-11-24: The temporary "partykit" GitHub token was deleted (owner confirmed).
 
