@@ -3,28 +3,34 @@
 
 import { looksLikeStreetAddress } from '@/lib/career/career'
 
-/** Platforms people really use to hold public meetings. Subdomains are included. */
-const MEETING_HOSTS = ['zoom.us', 'zoomgov.com', 'meet.google.com', 'teams.microsoft.com', 'teams.live.com', 'webex.com', 'youtube.com', 'youtu.be', 'facebook.com', 'fb.watch', 'swagit.com']
-/** Where towns publish agendas, minutes and calendars (plus every .gov site). */
-const AGENDA_HOSTS = ['calendar.google.com', 'outlook.live.com', 'outlook.office.com', 'granicus.com', 'legistar.com', 'boarddocs.com', 'civicclerk.com', 'municode.com', 'ecode360.com', 'primegov.com', 'novusagenda.com', 'civicplus.com']
+/** Meeting platforms people really use. Subdomains are included. */
+const MEETING_HOSTS = ['zoom.us', 'zoomgov.com', 'meet.google.com', 'teams.microsoft.com', 'teams.live.com', 'webex.com', 'youtube.com', 'youtu.be', 'facebook.com', 'fb.watch', 'swagit.com', 'vimeo.com', 'gotomeeting.com', 'goto.com', 'bluejeans.com', 'whereby.com', 'jitsi.org', 'meet.jit.si', 'twitch.tv', 'granicus.com', 'civicclerk.com', 'primegov.com']
+/** Sites whose owners are governments, schools and nonprofits: town sites live on these, so join links there are fine. */
+const PUBLIC_TLDS = ['gov', 'us', 'org', 'edu', 'mil']
+/** Shorteners hide where a link really goes, so they are never accepted. */
+const SHORTENERS = ['bit.ly', 'tinyurl.com', 't.co', 'goo.gl', 'ow.ly', 'is.gd', 'buff.ly', 'rebrand.ly', 'cutt.ly', 'shorturl.at', 'tiny.cc', 'lnkd.in', 'rb.gy', 'v.gd']
 
 const hostMatches = (host: string, domain: string) => host === domain || host.endsWith(`.${domain}`)
-const isGov = (host: string) => host === 'gov' || host.endsWith('.gov')
+const hasPublicTld = (host: string) => PUBLIC_TLDS.some((t) => host === t || host.endsWith(`.${t}`)) || /\.k12\.[a-z]{2}\.us$/.test(host)
 
 export type LinkKind = 'join' | 'agenda'
 
-/** A link is allowed only if it is https, has no login in it, and is on a known meeting platform or a .gov site. */
+/**
+ * Agenda, minutes, recording and calendar links may point to any public website (towns use
+ * .gov, .us, .org, .com, .net and everything else). Join links, the ones people click to enter a
+ * live meeting, must be a known meeting platform or a government / school / nonprofit site.
+ * Always https, no logins in the link, no raw IP addresses, no link shorteners.
+ */
 export function checkMeetingLink(raw: string, kind: LinkKind): { ok: true; url: string } | { ok: false; error: string } {
   let u: URL
   try { u = new URL(raw.trim()) } catch { return { ok: false, error: 'That doesn’t look like a link.' } }
   if (u.protocol !== 'https:') return { ok: false, error: 'Links must start with https://' }
   if (u.username || u.password) return { ok: false, error: 'Links with a login in them aren’t allowed.' }
   const host = u.hostname.toLowerCase()
-  const ok = isGov(host) || MEETING_HOSTS.some((d) => hostMatches(host, d)) || (kind === 'agenda' && AGENDA_HOSTS.some((d) => hostMatches(host, d)))
-  if (!ok) {
-    return { ok: false, error: kind === 'join'
-      ? 'For safety, join links must be Zoom, Google Meet, Teams, Webex, a YouTube/Facebook live stream, or a .gov page.'
-      : 'For safety, agenda and calendar links must be a .gov page, Google/Outlook calendar, or a known town-meeting site (Granicus, Legistar, BoardDocs...).' }
+  if (!host.includes('.') || /^[\d.]+$/.test(host) || host.includes(':')) return { ok: false, error: 'Use the website’s address, not a number.' }
+  if (SHORTENERS.some((d) => hostMatches(host, d))) return { ok: false, error: 'Shortened links hide where they go. Paste the full link.' }
+  if (kind === 'join' && !MEETING_HOSTS.some((d) => hostMatches(host, d)) && !hasPublicTld(host)) {
+    return { ok: false, error: 'For safety, join links must be Zoom, Google Meet, Teams, Webex or another meeting service, a live stream, or a government, school or .org site.' }
   }
   return { ok: true, url: u.toString().slice(0, 1000) }
 }

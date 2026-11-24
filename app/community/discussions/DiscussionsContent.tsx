@@ -300,7 +300,7 @@ function Compose({ prefs, onRulesAccepted, onClose, onPosted }: { prefs: Prefs; 
                 <input value={joinUrl} onChange={(e) => setJoinUrl(e.target.value)} placeholder="Join link (Zoom, Google Meet, Teams…)" aria-label="Join link" inputMode="url" className={field} />
                 <input value={agendaUrl} onChange={(e) => setAgendaUrl(e.target.value)} placeholder="Agenda link (optional)" aria-label="Agenda link" inputMode="url" className={field} />
                 <input value={calendarUrl} onChange={(e) => setCalendarUrl(e.target.value)} placeholder="Town calendar link (optional)" aria-label="Calendar link" inputMode="url" className={field} />
-                <p className="text-[11px] text-[var(--muted-foreground)]">For safety: Zoom, Meet, Teams, Webex, live streams and .gov pages only. Join links show to signed-in members.</p>
+                <p className="text-[11px] text-[var(--muted-foreground)]">Agenda and calendar links can be any website. Join links: Zoom, Meet, Teams, Webex, live streams, or a government, school or .org site. Join links show to signed-in members.</p>
               </div>
             )}
             <div className="mt-3 flex items-center gap-2 text-xs">

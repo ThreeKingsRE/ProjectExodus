@@ -7,6 +7,7 @@ import { CLIENT_RE, mapLegistarEvent, type MeetingInput } from './legistar'
 import { safeGetText, normalizeCalendarUrl } from './safe-fetch'
 import { legistarCalendarUrl, parseLegistarCalendarHtml } from './legistar-html'
 import { KNOWN_SOURCES } from './known'
+import { findCalendarLinks, looksLikeCalendar, looksLikeHtml } from './discover'
 import { expandEvents, parseIcs } from '@/lib/calendar/ics'
 
 const DAY = 86400000
@@ -93,6 +94,20 @@ async function legistarMeetings(client: string, tz: string, from: Date, to: Date
   const filter = encodeURIComponent(`EventDate ge datetime'${d(from)}' and EventDate lt datetime'${d(to)}'`)
   const data = await legistarGet(client, `events?$filter=${filter}&$orderby=EventDate asc&$top=1000`)
   return (Array.isArray(data) ? data : []).flatMap((e) => { const m = mapLegistarEvent(e as Record<string, unknown>, tz); return m ? [m] : [] })
+}
+
+/** Turn whatever a member pasted into the real calendar-feed address: the link itself if it is a
+ *  calendar, or (for a calendar PAGE) the iCal / Subscribe link found inside it. */
+export async function resolveCalendarUrl(raw: string): Promise<string> {
+  const first = normalizeCalendarUrl(raw)
+  const text = await safeGetText(first)
+  if (looksLikeCalendar(text)) return first
+  if (looksLikeHtml(text)) {
+    for (const candidate of findCalendarLinks(text, first)) {
+      try { if (looksLikeCalendar(await safeGetText(candidate))) return candidate } catch { /* try the next one */ }
+    }
+  }
+  throw new Error('We couldn’t find a calendar feed at that link. On the town’s calendar page, look for a “Subscribe”, “iCal” or “Export” button, copy its address, and paste it here.')
 }
 
 /** Any public calendar link (.ics or webcal://) on any website; see safe-fetch for the protections. */

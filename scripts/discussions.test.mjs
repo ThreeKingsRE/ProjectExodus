@@ -3,19 +3,20 @@ import assert from 'node:assert/strict'
 const m = await import('../lib/discussions/meetings.ts')
 const { checkMeetingLink, parseDiscussionExtras, meetingState, shapeMeeting, formatMeetingTime } = m.default || m
 
-test('join links: known meeting platforms and .gov only; https; no lookalikes', () => {
-  for (const ok of ['https://us02web.zoom.us/j/123456789?pwd=abc', 'https://meet.google.com/abc-defg-hij', 'https://teams.microsoft.com/l/meetup-join/xyz', 'https://townofexample.webex.com/meet/clerk', 'https://www.youtube.com/live/abc', 'https://www.brightonny.gov/meetings']) {
+test('join links: meeting platforms and government/school/nonprofit sites; nothing hidden or internal', () => {
+  for (const ok of ['https://us02web.zoom.us/j/123456789?pwd=abc', 'https://meet.google.com/abc-defg-hij', 'https://teams.microsoft.com/l/meetup-join/xyz', 'https://townofexample.webex.com/meet/clerk', 'https://www.youtube.com/live/abc', 'https://www.brightonny.gov/meetings', 'https://www.cheltenhamtownship.org/join', 'https://co.example.us/meeting', 'https://district.k12.pa.us/board', 'https://vimeo.com/event/1']) {
     assert.ok(checkMeetingLink(ok, 'join').ok, ok)
   }
-  for (const bad of ['http://zoom.us/j/1', 'https://zoom.us.evil.com/j/1', 'https://evilzoom.us/j/1', 'https://example.com/meet', 'https://user:pw@zoom.us/j/1', 'javascript:alert(1)', 'not a url', 'https://bit.ly/abc']) {
+  for (const bad of ['http://zoom.us/j/1', 'https://zoom.us.evil.com/j/1', 'https://evilzoom.us.example.com/j/1', 'https://example.com/meet', 'https://user:pw@zoom.us/j/1', 'javascript:alert(1)', 'not a url', 'https://bit.ly/abc', 'https://tinyurl.com/x', 'https://127.0.0.1/j', 'https://10.0.0.5/join']) {
     assert.ok(!checkMeetingLink(bad, 'join').ok, bad)
   }
 })
 
-test('agenda links also allow calendars and town-meeting sites', () => {
-  assert.ok(checkMeetingLink('https://calendar.google.com/calendar/u/0?cid=abc', 'agenda').ok)
-  assert.ok(checkMeetingLink('https://townofexample.granicus.com/agenda', 'agenda').ok)
-  assert.ok(!checkMeetingLink('https://calendar.google.com/x', 'join').ok, 'a calendar is not a join link')
+test('agenda, minutes, recording and calendar links: any public website', () => {
+  for (const ok of ['https://calendar.google.com/calendar/u/0?cid=abc', 'https://townofexample.granicus.com/agenda', 'https://www.townofhenrietta.org/minutes.pdf', 'https://co.example.us/a', 'https://example.com/agenda.pdf', 'https://smalltown.net/board']) {
+    assert.ok(checkMeetingLink(ok, 'agenda').ok, ok)
+  }
+  for (const bad of ['http://example.com/a', 'https://bit.ly/abc', 'https://1.2.3.4/a', 'https://user:pw@example.com/a', 'ftp://example.com/a', 'javascript:alert(1)']) assert.ok(!checkMeetingLink(bad, 'agenda').ok, bad)
 })
 
 test('meeting extras: dates, timezone, links need a date, no street addresses', () => {

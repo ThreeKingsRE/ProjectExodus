@@ -58,7 +58,7 @@ export function AddMeeting({ slug, tz, onAdded }: { slug: string; tz: string; on
       <input value={f.agendaUrl} onChange={set('agendaUrl')} placeholder="Agenda link" aria-label="Agenda link" inputMode="url" className={field} />
       <input value={f.minutesUrl} onChange={set('minutesUrl')} placeholder="Minutes link (after it happens)" aria-label="Minutes link" inputMode="url" className={field} />
       <input value={f.recordingUrl} onChange={set('recordingUrl')} placeholder="Recording link" aria-label="Recording link" inputMode="url" className={field} />
-      <p className="text-[11px] text-[var(--muted-foreground)]">For safety: Zoom, Meet, Teams, Webex, live streams, .gov pages and town-meeting sites only.</p>
+      <p className="text-[11px] text-[var(--muted-foreground)]">Agenda, minutes and recording links can be any website. Join links: Zoom, Meet, Teams, Webex, live streams, or a government, school or .org site.</p>
       {error && <p role="alert" className="text-xs text-red-500">{error}</p>}
       <div className="flex gap-2">
         <button type="submit" disabled={busy} style={{ color: 'var(--primary-foreground)' }} className="no-min-size inline-flex h-10 items-center gap-2 rounded-full bg-[var(--primary)] px-5 text-sm font-bold disabled:opacity-60">{busy && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />} Add</button>
@@ -88,7 +88,7 @@ export function ConnectSource({ slug, onConnected }: { slug: string; onConnected
   return (
     <form onSubmit={submit} className="space-y-2 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-3">
       <p className="text-sm font-bold">Connect the official calendar</p>
-      <p className="text-xs text-[var(--muted-foreground)]">Paste <strong>any calendar link</strong>: a town’s “Subscribe” / “iCal” / “Export” link (.ics or webcal://), a Google Calendar’s public address, or a Legistar name (the part before .legistar.com). Once connected, it updates by itself for everyone.</p>
+      <p className="text-xs text-[var(--muted-foreground)]">Paste <strong>any calendar link or calendar page</strong> from any website (.gov, .us, .org, .com…): a “Subscribe” / “iCal” link (.ics or webcal://), a Google Calendar’s public address, the town’s calendar page itself (we’ll look for the feed), or a Legistar name. Once connected, it updates by itself for everyone.</p>
       <div className="flex gap-1.5">
         {(['LEGISTAR', 'ICS'] as const).map((k) => <button key={k} type="button" onClick={() => setKind(k)} aria-pressed={kind === k} className={`no-min-size h-9 rounded-full px-3 text-xs font-bold ${kind === k ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--muted)]'}`}>{k === 'LEGISTAR' ? 'Legistar name' : 'Any calendar link'}</button>)}
       </div>

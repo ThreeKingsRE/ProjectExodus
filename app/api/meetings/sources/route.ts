@@ -3,8 +3,8 @@ import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 import { CLIENT_RE } from '@/lib/meetings/legistar'
-import { checkPublicUrl, normalizeCalendarUrl } from '@/lib/meetings/safe-fetch'
-import { detectLegistar, refreshSource } from '@/lib/meetings/server'
+import { checkPublicUrl } from '@/lib/meetings/safe-fetch'
+import { detectLegistar, refreshSource, resolveCalendarUrl } from '@/lib/meetings/server'
 
 export const maxDuration = 60
 
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     } else {
       const ok = checkPublicUrl(ref)
       if (!ok.ok) throw new Error(ok.error)
-      ref = normalizeCalendarUrl(ref)
+      ref = await resolveCalendarUrl(ref)
     }
   } catch (e) {
     return NextResponse.json({ success: false, error: e instanceof Error ? e.message : 'That source didn’t check out.' }, { status: 400 })

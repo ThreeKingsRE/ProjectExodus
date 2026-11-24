@@ -45,7 +45,8 @@ the hub. Its own top-level menu item.
 
 ## Limits to know
 - No national feed exists. A town appears automatically only once its calendar is connected.
-- Calendar (.ics) links are limited to known government / town-meeting hosts (SSRF safety).
+- Calendar links can be on ANY public website (.gov .us .org .com ...). The fetch refuses internal addresses; pasting a calendar PAGE makes the site look for its iCal / Subscribe link.
+- Agenda, minutes, recording links: any public https site (no shorteners, no IP addresses). Join links: meeting platforms plus .gov/.us/.org/.edu/.mil sites.
 - Time zones default to the state's main zone; a few states are split (TN, KY, ...).
 
 ## Environment

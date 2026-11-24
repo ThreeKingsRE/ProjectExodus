@@ -110,3 +110,21 @@ test('repeating meetings keep their local time through daylight saving', () => {
   assert.equal(expandRepeat(first, tz, 'BIWEEKLY', 3)[2].toISOString(), '2027-01-06T23:00:00.000Z')
   assert.equal(expandRepeat(first, tz, 'WEEKLY', 999).length, 24)
 })
+
+const dc = await import('../lib/meetings/discover.ts')
+const { findCalendarLinks } = dc.default || dc
+
+test('calendar pages: find the hidden iCal / Subscribe links', () => {
+  const html = `<html><head><link rel="alternate" type="text/calendar" href="/events/feed.ics"></head><body>
+    <a href="/common/modules/iCalendar/iCalendar.aspx?catID=14&amp;feed=calendar">iCal</a>
+    <a href="webcal://town.example.org/cal/export.ics">Subscribe</a>
+    <a href="/calendar/ical">Drupal</a><a href="/events/?ical=1">Events</a><a href="/about">About</a><a href="/news.pdf">News</a>
+    <a href="http://insecure.example.org/a.ics">insecure</a></body></html>`
+  const links = findCalendarLinks(html, 'https://www.town.example.org/calendar')
+  assert.equal(links[0], 'https://www.town.example.org/events/feed.ics', 'the declared calendar link comes first')
+  assert.ok(links.includes('https://town.example.org/cal/export.ics'))
+  assert.ok(links.some((l) => l.includes('/iCalendar.aspx?catID=14&feed=calendar')))
+  assert.ok(!links.some((l) => l.includes('/about') || l.endsWith('.pdf') || l.startsWith('http://')))
+  assert.equal(findCalendarLinks('<p>nothing</p>', 'https://x.org/').length, 0)
+  assert.ok(findCalendarLinks(html, 'https://www.town.example.org/calendar', 2).length <= 2)
+})
