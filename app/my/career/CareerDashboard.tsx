@@ -145,7 +145,7 @@ export default function CareerDashboard() {
 
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <TradeIconStrip size={22} gap={18} speed={48} className="border-b border-[var(--border)] py-2.5 text-[var(--primary)] opacity-60 sm:py-3" />
+      <TradeIconStrip size={22} gap={18} speed={34} className="border-b border-[var(--border)] py-2.5 text-[var(--primary)] opacity-60 sm:py-3" />
       <div className="mx-auto max-w-3xl space-y-4 px-3 py-4 sm:px-6 sm:py-8">
         {profile
           ? <ProfileHeader person={profile.person} profile={profile} counts={counts}

@@ -65,10 +65,12 @@ export const TRADE_ICONS: { icon: Icon; trade: string }[] = [
  * `size` is the icon size in px; `speed` is how fast it drifts, in px per second,
  * so every strip moves at the same pace whatever its icon size.
  */
-export function TradeIconStrip({ size = 16, gap = 10, speed = 42, className = '' }: { size?: number; gap?: number; speed?: number; className?: string }) {
+export function TradeIconStrip({ size = 16, gap = 10, speed = 32, className = '' }: { size?: number; gap?: number; speed?: number; className?: string }) {
   // One copy of the set is exactly (size + gap) per icon wide; the loop moves by that much
   const loop = TRADE_ICONS.length * (size + gap)
   const seconds = loop / speed
+  // Enough copies to fill the widest screen (4K) plus one spare, so a wide desktop never shows a gap
+  const copies = Math.ceil(3840 / loop) + 1
   const set = (copy: number) => (
     <div key={copy} className="flex shrink-0" style={{ gap, paddingRight: gap, width: loop, maxWidth: 'none', boxSizing: 'border-box' }}>
       {TRADE_ICONS.map(({ icon: I, trade }) => <span key={trade} className="inline-flex shrink-0"><I className="shrink-0" strokeWidth={1.75} {...{ style: { width: size, height: size } }} /></span>)}
@@ -80,8 +82,8 @@ export function TradeIconStrip({ size = 16, gap = 10, speed = 42, className = ''
       className={`trade-strip pointer-events-none min-w-0 overflow-hidden ${className}`}
       style={{ maskImage: 'linear-gradient(to right, transparent, #000 14%, #000 86%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, #000 14%, #000 86%, transparent)' }}
     >
-      <div className="trade-strip-track flex" style={{ width: loop * 2, maxWidth: 'none', animationDuration: `${seconds}s`, ['--trade-loop' as string]: `-${loop}px` }}>
-        {set(0)}{set(1)}
+      <div className="trade-strip-track flex" style={{ width: loop * copies, maxWidth: 'none', animationDuration: `${seconds}s`, ['--trade-loop' as string]: `-${loop}px` }}>
+        {Array.from({ length: copies }, (_, i) => set(i))}
       </div>
       <style>{`
         .trade-strip-track { animation: trade-strip-drift linear infinite; will-change: transform; backface-visibility: hidden; transform: translate3d(0,0,0) }
