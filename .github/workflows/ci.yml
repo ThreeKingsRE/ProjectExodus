@@ -55,6 +55,9 @@ jobs:
       - name: Initiative ownership and contribution permissions
         run: node scripts/test-project-message-editing.mjs
 
+      - name: Meeting cron authorization and schedules
+        run: node scripts/test-meeting-crons.mjs
+
       - name: Type check drawing scripts
         run: npx tsc -p scripts/architecture/tsconfig.json
 

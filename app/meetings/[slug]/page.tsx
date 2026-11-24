@@ -51,7 +51,7 @@ export default async function PlacePage({ params }: Props) {
         lastFetchedAt: s.lastFetchedAt?.toISOString() ?? null, error: s.lastError,
       }))}
       signedIn={!!me} following={!!follow} memberFed={MEMBER_FED[j.key] ?? null}
-      children={children.map((c: Parameters<typeof placeBrief>[0]) => placeBrief(c))}
+      childPlaces={children.map((c: Parameters<typeof placeBrief>[0]) => placeBrief(c))}
     />
   )
 }
