@@ -20,8 +20,8 @@ function ago(iso: string | null) {
   return m < 2 ? 'just now' : m < 60 ? `${Math.floor(m)} min ago` : m < 1440 ? `${Math.floor(m / 60)} h ago` : `${Math.floor(m / 1440)} d ago`
 }
 
-export default function PlaceView({ place, upcoming, past, sources, signedIn, following: initialFollowing, memberFed, children }: {
-  place: PlaceBrief & { tz: string }; upcoming: MeetingView[]; past: MeetingView[]; sources: Source[]; signedIn: boolean; following: boolean; memberFed: string | null; children: PlaceBrief[]
+export default function PlaceView({ place, upcoming, past, sources, signedIn, following: initialFollowing, memberFed, childPlaces }: {
+  place: PlaceBrief & { tz: string }; upcoming: MeetingView[]; past: MeetingView[]; sources: Source[]; signedIn: boolean; following: boolean; memberFed: string | null; childPlaces: PlaceBrief[]
 }) {
   const router = useRouter()
   const [tab, setTab] = useState<'upcoming' | 'past'>(upcoming.length || !past.length ? 'upcoming' : 'past')
@@ -88,11 +88,11 @@ export default function PlaceView({ place, upcoming, past, sources, signedIn, fo
           </section>
         )}
 
-        {children.length > 0 && (
+        {childPlaces.length > 0 && (
           <section aria-label="Places inside" className="space-y-2">
             <h2 style={{ fontSize: '1rem', lineHeight: 1.2 }} className="font-black">{place.kind === 'STATE' ? `Counties in ${place.label}` : 'Cities, towns and townships in this county'}</h2>
             <ul className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
-              {children.map((c) => <li key={c.id}><Link href={`/meetings/${c.slug}`} className="no-min-size block truncate rounded-xl border border-[var(--border)] bg-[var(--card)] px-3 py-2 text-[13px] font-semibold hover:border-[var(--primary)]">{c.label}</Link></li>)}
+              {childPlaces.map((c) => <li key={c.id}><Link href={`/meetings/${c.slug}`} className="no-min-size block truncate rounded-xl border border-[var(--border)] bg-[var(--card)] px-3 py-2 text-[13px] font-semibold hover:border-[var(--primary)]">{c.label}</Link></li>)}
             </ul>
           </section>
         )}
