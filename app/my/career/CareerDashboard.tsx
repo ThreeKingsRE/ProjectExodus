@@ -8,6 +8,7 @@ import { PostComposer } from '@/components/career/PostComposer'
 import { PortfolioGrid } from '@/components/career/PortfolioGrid'
 import { ProfileHeader, Tabs, type CareerProfileView } from '@/components/career/ProfileHeader'
 import type { Person, WorkPost } from '@/components/career/WorkCard'
+import { TradeIconStrip } from '@/components/career/TradeIcons'
 
 interface Vouch { id: string; signerName: string; signerRole: string | null; state: 'requested' | 'awaiting-email' | 'sealed' | 'edited' | 'declined' | 'expired' }
 type OwnerPost = WorkPost & { vouches: Vouch[] }
@@ -144,6 +145,7 @@ export default function CareerDashboard() {
 
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <TradeIconStrip size={22} gap={18} seconds={80} className="border-b border-[var(--border)] py-2.5 text-[var(--primary)] opacity-60 sm:py-3" />
       <div className="mx-auto max-w-3xl space-y-4 px-3 py-4 sm:px-6 sm:py-8">
         {profile
           ? <ProfileHeader person={profile.person} profile={profile} counts={counts}

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { TradeIconStrip } from '@/components/career/TradeIcons'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect, useRef, type ComponentType, type ReactNode } from 'react'
@@ -513,6 +514,7 @@ export function Header() {
                         >
                           <Hammer className="w-4 h-4 text-theme-muted shrink-0" />
                           <span className="font-medium text-[var(--foreground)] whitespace-nowrap">My Career</span>
+                          <TradeIconStrip size={14} gap={9} className="min-w-0 flex-1 text-[var(--primary)] opacity-60" />
                         </Link>
                         <Link
                           href="/settings"
@@ -636,6 +638,7 @@ export function Header() {
                   active={pathname.startsWith('/my/career') || pathname.startsWith('/career')}
                   locked={!session}
                   onNavigate={() => setMobileMenuOpen(false)}
+                  extra={<TradeIconStrip size={16} gap={12} className="text-[var(--primary)] opacity-70" />}
                 />
               </MenuGroup>
 
@@ -720,8 +723,10 @@ function MenuGroup({ title, children }: { title?: string; children: ReactNode })
   )
 }
 
-function MenuRow({ label, href, icon: Icon, active, locked, onNavigate }: {
+function MenuRow({ label, href, icon: Icon, active, locked, onNavigate, extra }: {
   label: string; href: string; icon: ComponentType<{ className?: string }>; active?: boolean; locked?: boolean; onNavigate: () => void
+  /** Decoration shown between the label and the arrow */
+  extra?: React.ReactNode
 }) {
   return (
     <Link
@@ -733,7 +738,8 @@ function MenuRow({ label, href, icon: Icon, active, locked, onNavigate }: {
       <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${active ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[color-mix(in_srgb,var(--primary)_10%,transparent)] text-[var(--primary)]'}`}>
         <Icon className="h-[18px] w-[18px]" />
       </span>
-      <span className={`min-w-0 flex-1 truncate text-[15px] ${active ? 'font-semibold text-[var(--primary)]' : 'font-medium text-[var(--foreground)]'}`}>{label}</span>
+      <span className={`min-w-0 truncate text-[15px] ${extra ? 'shrink-0' : 'flex-1'} ${active ? 'font-semibold text-[var(--primary)]' : 'font-medium text-[var(--foreground)]'}`}>{label}</span>
+      {extra && <span className="min-w-0 flex-1">{extra}</span>}
       {locked
         ? <span className="flex items-center gap-1 text-xs text-[var(--muted-foreground)]"><Lock className="h-3.5 w-3.5" />Sign in</span>
         : <ChevronRight className="h-4 w-4 shrink-0 text-[var(--muted-foreground)] opacity-70" />}
