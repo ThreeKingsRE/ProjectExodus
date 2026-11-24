@@ -18,25 +18,64 @@ const toIso = (local: string, tz: string) => {
 export function AddMeeting({ slug, tz, onAdded }: { slug: string; tz: string; onAdded: () => void }) {
   const [open, setOpen] = useState(false)
   const [f, setF] = useState({ title: '', body: '', startsAt: '', endsAt: '', location: '', joinUrl: '', agendaUrl: '', minutesUrl: '', recordingUrl: '' })
+  const [reading, setReading] = useState(false)
+  const [draftReady, setDraftReady] = useState(false)
   const [repeat, setRepeat] = useState<'' | 'WEEKLY' | 'BIWEEKLY' | 'MONTHLY_NTH'>('')
   const [count, setCount] = useState(12)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement>) => setF((p) => ({ ...p, [k]: e.target.value }))
 
+  const readScreenshot = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const image = e.target.files?.[0]
+    e.target.value = ''
+    if (!image) return
+    setError(null)
+    setDraftReady(false)
+    if (image.size > 3 * 1024 * 1024) { setError('Choose an image under 3 MB.'); return }
+    setReading(true)
+    try {
+      const form = new FormData()
+      form.set('image', image)
+      const res = await fetch('/api/meetings/screenshot', { method: 'POST', body: form })
+      const result = await res.json().catch(() => ({}))
+      if (!res.ok || !result.data) { setError(result.error || 'Couldn’t read that screenshot.'); return }
+      const draft = result.data
+      setF(prev => ({
+        ...prev, title: draft.title || prev.title, location: draft.location || prev.location,
+        startsAt: draft.startsAt || prev.startsAt, endsAt: draft.endsAt || prev.endsAt,
+      }))
+      setRepeat('')
+      setDraftReady(true)
+    } catch {
+      setError('Couldn’t read that screenshot. Try again or enter the details by hand.')
+    } finally {
+      setReading(false)
+    }
+  }
+
   const submit = async (e: React.FormEvent) => {
-    e.preventDefault(); setBusy(true); setError(null)
+    e.preventDefault()
+    if (reading || busy) return
+    setBusy(true); setError(null)
     const res = await fetch('/api/meetings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug, ...f, title: f.title || f.body, startsAt: toIso(f.startsAt, tz), endsAt: f.endsAt ? toIso(f.endsAt, tz) : null, timezone: tz, repeat: repeat ? { kind: repeat, count } : undefined }) })
     const j = await res.json().catch(() => ({}))
     setBusy(false)
     if (!res.ok) { setError(j.error || 'Couldn’t add that.'); return }
-    setOpen(false); setRepeat(''); setF({ title: '', body: '', startsAt: '', endsAt: '', location: '', joinUrl: '', agendaUrl: '', minutesUrl: '', recordingUrl: '' }); onAdded()
+    setOpen(false); setDraftReady(false); setRepeat(''); setF({ title: '', body: '', startsAt: '', endsAt: '', location: '', joinUrl: '', agendaUrl: '', minutesUrl: '', recordingUrl: '' }); onAdded()
   }
 
   if (!open) return <button type="button" onClick={() => setOpen(true)} className="no-min-size inline-flex h-10 items-center rounded-full border border-[var(--border)] bg-[var(--card)] px-4 text-sm font-bold">+ Add a meeting</button>
   return (
     <form onSubmit={submit} className="space-y-2 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-3">
       <p className="text-sm font-bold">Add a meeting</p>
+      <label className="block text-xs font-semibold">
+        Fill a draft from a screenshot
+        <input type="file" accept="image/png,image/jpeg,image/webp" disabled={reading || busy} onChange={readScreenshot} className="mt-1 block max-w-full text-xs" />
+      </label>
+      <p className="text-xs text-[var(--muted-foreground)]">Upload a public notice for one meeting (PNG, JPG or WebP, up to 3 MB). The image is sent to Google Gemini to read the details. Review the draft before adding it.</p>
+      {reading && <p role="status" className="text-xs">Reading screenshot…</p>}
+      {draftReady && <p role="status" className="text-xs">Draft filled. Check the title, date, time and location before publishing.</p>}
       <input required value={f.title} onChange={set('title')} placeholder="Board or committee (Town Board, Planning Board…)" aria-label="Title" maxLength={160} className={field} />
       <div className="grid grid-cols-2 gap-2">
         <label className="text-[11px] font-semibold">Starts<input required type="datetime-local" value={f.startsAt} onChange={set('startsAt')} className={`${field} mt-1`} /></label>
@@ -61,8 +100,8 @@ export function AddMeeting({ slug, tz, onAdded }: { slug: string; tz: string; on
       <p className="text-[11px] text-[var(--muted-foreground)]">Links can be any website (https). Join links show only to signed-in members.</p>
       {error && <p role="alert" className="text-xs text-red-500">{error}</p>}
       <div className="flex gap-2">
-        <button type="submit" disabled={busy} style={{ color: 'var(--primary-foreground)' }} className="no-min-size inline-flex h-10 items-center gap-2 rounded-full bg-[var(--primary)] px-5 text-sm font-bold disabled:opacity-60">{busy && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />} Add</button>
-        <button type="button" onClick={() => setOpen(false)} className="no-min-size h-10 px-3 text-sm font-semibold">Cancel</button>
+        <button type="submit" disabled={busy || reading} style={{ color: 'var(--primary-foreground)' }} className="no-min-size inline-flex h-10 items-center gap-2 rounded-full bg-[var(--primary)] px-5 text-sm font-bold disabled:opacity-60">{busy && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />} Add</button>
+        <button type="button" disabled={reading || busy} onClick={() => setOpen(false)} className="no-min-size h-10 px-3 text-sm font-semibold">Cancel</button>
       </div>
     </form>
   )
