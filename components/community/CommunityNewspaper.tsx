@@ -50,9 +50,9 @@ function newsAgo(iso: string) {
 
 const TRENDING = ['direct-air-capture', 'hempcrete', 'regenerative-agriculture', 'circular-economy', 'ocean-cleanup']
 
-function Section({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
+function Section({ title, action, children, locked = false }: { title: string; action?: React.ReactNode; children: React.ReactNode; /** Look-only (guest preview) */ locked?: boolean }) {
   return (
-    <section className="space-y-2.5">
+    <section className="space-y-2.5" inert={locked || undefined}>
       <div className="flex items-end justify-between gap-2">
         <h2 style={{ fontSize: 'clamp(1rem, 3.6vw, 1.2rem)', lineHeight: 1.2 }} className="font-black text-[var(--foreground)]">{title}</h2>
         {action}
@@ -87,9 +87,10 @@ export function CommunityNewspaper({ guest = false, careerPosts = [], news = [],
         </div>
       )}
 
-      {/* Look-only for guests: inert blocks taps, focus and links */}
-      <div className="mx-auto space-y-6 px-3 py-4 sm:space-y-8 sm:px-6 sm:py-8" style={{ maxWidth: '48rem' }} inert={guest || undefined}>
-        <header>
+      {/* Guests: community parts are look-only (inert blocks taps, focus and links);
+          outside news (Highlights, In the news) stays clickable for everyone */}
+      <div className="mx-auto space-y-6 px-3 py-4 sm:space-y-8 sm:px-6 sm:py-8" style={{ maxWidth: '48rem' }}>
+        <header inert={guest || undefined}>
           <p className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--primary)] sm:text-xs">
             <Newspaper className="h-3.5 w-3.5" aria-hidden /> {today}
           </p>
@@ -104,7 +105,7 @@ export function CommunityNewspaper({ guest = false, careerPosts = [], news = [],
           </ul>
         </header>
 
-        <Section title="Live now" action={more('/community/discussions', 'Discussions')}>
+        <Section locked={guest} title="Live now" action={more('/community/discussions', 'Discussions')}>
           <LiveStrip />
         </Section>
 
@@ -112,7 +113,7 @@ export function CommunityNewspaper({ guest = false, careerPosts = [], news = [],
           <SustainableTechBillboard bare />
         </Section>
 
-        <Section title="From My Career" action={more('/my/career', 'Post your work')}>
+        <Section locked={guest} title="From My Career" action={more('/my/career', 'Post your work')}>
           <CareerFeed posts={careerPosts} bare />
         </Section>
 
@@ -141,7 +142,7 @@ export function CommunityNewspaper({ guest = false, careerPosts = [], news = [],
                 ))}
             </ol>
           </Section>
-          <Section title="Trending topics">
+          <Section locked={guest} title="Trending topics">
             <div className="flex flex-wrap gap-1.5 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-3">
               {TRENDING.map((t) => (
                 <Link key={t} href={`/community/discussions`} className="no-min-size inline-flex items-center gap-0.5 rounded-full border border-[var(--border)] px-2.5 py-1 text-xs font-semibold hover:border-[var(--primary)]">
