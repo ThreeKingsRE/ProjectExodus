@@ -62,12 +62,16 @@ export const TRADE_ICONS: { icon: Icon; trade: string }[] = [
 
 /**
  * A strip of every trade icon drifting slowly sideways, faded at both ends.
- * `size` is the icon size in px; `seconds` is one full loop.
+ * `size` is the icon size in px; `speed` is how fast it drifts, in px per second,
+ * so every strip moves at the same pace whatever its icon size.
  */
-export function TradeIconStrip({ size = 16, gap = 10, seconds = 60, className = '' }: { size?: number; gap?: number; seconds?: number; className?: string }) {
+export function TradeIconStrip({ size = 16, gap = 10, speed = 42, className = '' }: { size?: number; gap?: number; speed?: number; className?: string }) {
+  // One copy of the set is exactly (size + gap) per icon wide; the loop moves by that much
+  const loop = TRADE_ICONS.length * (size + gap)
+  const seconds = loop / speed
   const set = (copy: number) => (
-    <div key={copy} className="flex shrink-0" style={{ gap, paddingRight: gap }}>
-      {TRADE_ICONS.map(({ icon: I, trade }) => <span key={trade} className="inline-flex"><I className="shrink-0" strokeWidth={1.75} {...{ style: { width: size, height: size } }} /></span>)}
+    <div key={copy} className="flex shrink-0" style={{ gap, paddingRight: gap, width: loop, maxWidth: 'none', boxSizing: 'border-box' }}>
+      {TRADE_ICONS.map(({ icon: I, trade }) => <span key={trade} className="inline-flex shrink-0"><I className="shrink-0" strokeWidth={1.75} {...{ style: { width: size, height: size } }} /></span>)}
     </div>
   )
   return (
@@ -76,12 +80,12 @@ export function TradeIconStrip({ size = 16, gap = 10, seconds = 60, className = 
       className={`trade-strip pointer-events-none min-w-0 overflow-hidden ${className}`}
       style={{ maskImage: 'linear-gradient(to right, transparent, #000 14%, #000 86%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, #000 14%, #000 86%, transparent)' }}
     >
-      <div className="trade-strip-track flex w-max" style={{ animationDuration: `${seconds}s` }}>
+      <div className="trade-strip-track flex" style={{ width: loop * 2, maxWidth: 'none', animationDuration: `${seconds}s`, ['--trade-loop' as string]: `-${loop}px` }}>
         {set(0)}{set(1)}
       </div>
       <style>{`
-        .trade-strip-track { animation: trade-strip-drift linear infinite }
-        @keyframes trade-strip-drift { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+        .trade-strip-track { animation: trade-strip-drift linear infinite; will-change: transform; backface-visibility: hidden; transform: translate3d(0,0,0) }
+        @keyframes trade-strip-drift { from { transform: translate3d(0,0,0) } to { transform: translate3d(var(--trade-loop),0,0) } }
         @media (prefers-reduced-motion: reduce) { .trade-strip-track { animation: none } }
       `}</style>
     </div>
