@@ -632,6 +632,14 @@ export function Header() {
               )}
 
               <MenuGroup>
+                {[
+                  { label: 'Home', href: '/', icon: Home, active: pathname === '/' },
+                  { label: 'Products', href: '/products', icon: ShoppingBag, active: pathname.startsWith('/products') },
+                  { label: 'Articles', href: '/articles', icon: Newspaper, active: pathname.startsWith('/articles') },
+                ].map(item => <MenuRow key={item.href} {...item} onNavigate={() => setMobileMenuOpen(false)} />)}
+              </MenuGroup>
+
+              <MenuGroup>
                 <MenuRow
                   label="My Career"
                   href={session ? '/my/career' : `/auth/signin?callbackUrl=${encodeURIComponent('/my/career')}`}
@@ -671,14 +679,6 @@ export function Header() {
                     onNavigate={() => setMobileMenuOpen(false)}
                   />
                 ))}
-              </MenuGroup>
-
-              <MenuGroup>
-                {[
-                  { label: 'Home', href: '/', icon: Home, active: pathname === '/' },
-                  { label: 'Products', href: '/products', icon: ShoppingBag, active: pathname.startsWith('/products') },
-                  { label: 'Articles', href: '/articles', icon: Newspaper, active: pathname.startsWith('/articles') },
-                ].map(item => <MenuRow key={item.href} {...item} onNavigate={() => setMobileMenuOpen(false)} />)}
               </MenuGroup>
 
               {/* Render from `session` directly to avoid the SSR/CSR mismatch caused by
