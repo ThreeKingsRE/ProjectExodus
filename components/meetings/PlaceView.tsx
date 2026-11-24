@@ -20,8 +20,8 @@ function ago(iso: string | null) {
   return m < 2 ? 'just now' : m < 60 ? `${Math.floor(m)} min ago` : m < 1440 ? `${Math.floor(m / 60)} h ago` : `${Math.floor(m / 1440)} d ago`
 }
 
-export default function PlaceView({ place, upcoming, past, sources, signedIn, following: initialFollowing, children }: {
-  place: PlaceBrief & { tz: string }; upcoming: MeetingView[]; past: MeetingView[]; sources: Source[]; signedIn: boolean; following: boolean; children: PlaceBrief[]
+export default function PlaceView({ place, upcoming, past, sources, signedIn, following: initialFollowing, memberFed, children }: {
+  place: PlaceBrief & { tz: string }; upcoming: MeetingView[]; past: MeetingView[]; sources: Source[]; signedIn: boolean; following: boolean; memberFed: string | null; children: PlaceBrief[]
 }) {
   const router = useRouter()
   const [tab, setTab] = useState<'upcoming' | 'past'>(upcoming.length || !past.length ? 'upcoming' : 'past')
@@ -58,6 +58,13 @@ export default function PlaceView({ place, upcoming, past, sources, signedIn, fo
               className={`no-min-size h-9 flex-1 rounded-full text-[13px] font-bold ${tab === id ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'text-[var(--muted-foreground)]'}`}>{label}</button>
           ))}
         </div>
+
+        {sources.length === 0 && place.kind !== 'STATE' && place.kind !== 'FEDERAL' && (
+          <div className="rounded-2xl border-2 border-[var(--primary)]/50 bg-[var(--primary)]/10 p-3 text-sm">
+            <p className="font-bold">No calendar is connected for {place.label} yet. You can fix that.</p>
+            <p className="mt-0.5 text-[var(--muted-foreground)]">{memberFed ? `${memberFed}, so its meetings come from members like you. ` : ''}Add the posted schedule (even once, like “2nd Wednesday at 6 PM”), or paste the town’s calendar link if it has one. It takes a minute and helps everyone here.</p>
+          </div>
+        )}
 
         {list.length > 0
           ? <ul className="space-y-2">{list.map((m) => <MeetingRow key={m.id} m={m} signedIn={signedIn} />)}</ul>

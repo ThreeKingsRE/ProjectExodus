@@ -4,7 +4,9 @@
 import { prisma } from '@/lib/db'
 import { CENSUS_BASE, CENSUS_FILES, buildDirectory, federalRow, parseSearch, placeLabel, placeSubtitle, tzFor, type JurisdictionRow } from './directory'
 import { CLIENT_RE, mapLegistarEvent, type MeetingInput } from './legistar'
-import { checkMeetingLink } from '@/lib/discussions/meetings'
+import { safeGetText, normalizeCalendarUrl } from './safe-fetch'
+import { legistarCalendarUrl, parseLegistarCalendarHtml } from './legistar-html'
+import { KNOWN_SOURCES } from './known'
 import { expandEvents, parseIcs } from '@/lib/calendar/ics'
 
 const DAY = 86400000
@@ -74,9 +76,16 @@ async function legistarGet(client: string, path: string): Promise<unknown> {
   return res.json()
 }
 
-/** Confirm a Legistar name really exists before saving it. */
-export async function verifyLegistar(client: string): Promise<void> {
-  await legistarGet(client, 'bodies?$top=1')
+/** Confirm a Legistar name really exists, and say how to read it: the open API, or (when that needs
+ *  a private key) the public calendar page. */
+export async function detectLegistar(client: string): Promise<'LEGISTAR' | 'LEGISTAR_HTML'> {
+  try { await legistarGet(client, 'bodies?$top=1'); return 'LEGISTAR' } catch (e) {
+    if (!(e instanceof Error) || !/private key/.test(e.message)) throw e
+  }
+  let html: string
+  try { html = await safeGetText(legistarCalendarUrl(client), { accept: 'text/html' }) } catch { throw new Error('That Legistar site couldn’t be read automatically.') }
+  if (!parseLegistarCalendarHtml(html, client, 'UTC').length) throw new Error('That Legistar calendar page has no meetings listed to read right now.')
+  return 'LEGISTAR_HTML'
 }
 
 async function legistarMeetings(client: string, tz: string, from: Date, to: Date): Promise<MeetingInput[]> {
@@ -86,26 +95,11 @@ async function legistarMeetings(client: string, tz: string, from: Date, to: Date
   return (Array.isArray(data) ? data : []).flatMap((e) => { const m = mapLegistarEvent(e as Record<string, unknown>, tz); return m ? [m] : [] })
 }
 
-/** Calendar feeds: https only, on known government/meeting hosts, every redirect re-checked. */
+/** Any public calendar link (.ics or webcal://) on any website; see safe-fetch for the protections. */
 async function fetchIcsText(raw: string): Promise<string> {
-  let url = raw
-  for (let hop = 0; hop < 4; hop++) {
-    const ok = checkMeetingLink(url, 'agenda')
-    if (!ok.ok) throw new Error(ok.error)
-    const res = await fetch(ok.url, { redirect: 'manual', signal: AbortSignal.timeout(10000), cache: 'no-store', headers: { Accept: 'text/calendar, */*;q=0.1', 'User-Agent': 'ProjectExodus-Meetings/1.0' } })
-    if (res.status >= 300 && res.status < 400) {
-      const next = res.headers.get('location')
-      if (!next) throw new Error('The calendar link redirected without a destination.')
-      url = new URL(next, ok.url).toString()
-      continue
-    }
-    if (!res.ok) throw new Error(`The calendar answered with an error (${res.status}).`)
-    const text = await res.text()
-    if (text.length > 5 * 1024 * 1024) throw new Error('That calendar is too large (5 MB max).')
-    if (!text.includes('BEGIN:VCALENDAR')) throw new Error('That link didn’t return a calendar (.ics).')
-    return text
-  }
-  throw new Error('The calendar link redirected too many times.')
+  const text = await safeGetText(normalizeCalendarUrl(raw))
+  if (!text.includes('BEGIN:VCALENDAR')) throw new Error('That link didn’t return a calendar (.ics). Look for “Subscribe”, “iCal” or “Export” on the calendar page.')
+  return text
 }
 
 async function icsMeetings(url: string, tz: string, from: Date, to: Date): Promise<MeetingInput[]> {
@@ -127,7 +121,9 @@ export async function refreshSource(sourceId: string): Promise<{ count: number; 
   const tz = src.timezone || tzFor(src.jurisdiction.state)
   const from = new Date(Date.now() - 365 * DAY), to = new Date(Date.now() + 150 * DAY)
   try {
-    const found = src.kind === 'LEGISTAR' ? await legistarMeetings(src.ref, tz, from, to) : await icsMeetings(src.ref, tz, from, to)
+    const found = src.kind === 'LEGISTAR' ? await legistarMeetings(src.ref, tz, from, to)
+      : src.kind === 'LEGISTAR_HTML' ? parseLegistarCalendarHtml(await safeGetText(legistarCalendarUrl(src.ref), { accept: 'text/html' }), src.ref, tz)
+        : await icsMeetings(src.ref, tz, from, to)
     for (let i = 0; i < found.length; i += 25) {
       await prisma.$transaction(found.slice(i, i + 25).map((m) => {
         // The source owns the schedule; links it doesn't have yet (added by members) are kept
@@ -141,7 +137,7 @@ export async function refreshSource(sourceId: string): Promise<{ count: number; 
       }))
     }
     // Upcoming meetings that vanished from the official calendar were removed there
-    if (found.length) {
+    if (found.length && src.kind !== 'LEGISTAR_HTML') {
       await prisma.meeting.deleteMany({ where: { sourceId: src.id, startsAt: { gte: new Date(), lt: to }, externalId: { notIn: found.map((m) => m.externalId) } } })
     }
     await prisma.meetingSource.update({ where: { id: src.id }, data: { lastFetchedAt: new Date(), lastError: null } })
@@ -194,4 +190,116 @@ export async function listMeetings(jurisdictionIds: string[], from: Date, to: Da
     select: MEETING_SELECT, orderBy: { startsAt: opts.order ?? 'asc' }, take: opts.take ?? 1500,
   })
   return rows.map((m) => shapeMeeting(m, signedIn))
+}
+
+
+// ── Built-in sources ────────────────────────────────────────────────────────
+
+let knownDone = false
+/** Connect the calendars in known.ts (Rochester, Philadelphia...) once the directory exists. */
+export async function ensureKnownSources(): Promise<number> {
+  if (knownDone) return 0
+  let created = 0
+  for (const k of KNOWN_SOURCES) {
+    const j = await prisma.jurisdiction.findUnique({ where: { key: k.key }, select: { id: true } })
+    if (!j) continue
+    const exists = await prisma.meetingSource.findUnique({ where: { jurisdictionId_kind_ref: { jurisdictionId: j.id, kind: k.kind, ref: k.ref } }, select: { id: true } })
+    if (!exists) { await prisma.meetingSource.create({ data: { jurisdictionId: j.id, kind: k.kind, ref: k.ref, label: k.label } }); created++ }
+  }
+  knownDone = true
+  return created
+}
+
+/** How much of the country is covered. */
+export async function coverageStats() {
+  const [places, upcoming, connected] = await Promise.all([
+    prisma.jurisdiction.count(),
+    prisma.meeting.count({ where: { startsAt: { gte: new Date() } } }),
+    prisma.meetingSource.groupBy({ by: ['jurisdictionId'], where: { enabled: true } }),
+  ])
+  return { places, connected: connected.length, upcoming }
+}
+
+// ── Phone calendar feed ─────────────────────────────────────────────────────
+
+const esc = (t: string) => t.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n')
+const fold = (line: string) => { const out: string[] = []; let l = line; while (l.length > 74) { out.push(l.slice(0, 74)); l = ' ' + l.slice(74) } out.push(l); return out.join('\r\n') }
+const stamp = (d: Date) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')
+
+export interface FeedPrefs { week: boolean; day: boolean; today: boolean }
+
+/** The member's subscribed calendar. Alarms ride inside it, so their phone's own calendar app does the reminding. */
+export function buildMeetingFeed(name: string, meetings: MeetingView[], prefs: FeedPrefs, siteUrl: string): string {
+  const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Project Exodus//Meetings//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', `X-WR-CALNAME:${esc(name)}`, 'REFRESH-INTERVAL;VALUE=DURATION:PT6H', 'X-PUBLISHED-TTL:PT6H']
+  const alarms: [string, string][] = [...(prefs.week ? [['-P7D', 'in 1 week']] : []), ...(prefs.day ? [['-P1D', 'tomorrow']] : []), ...(prefs.today ? [['-PT1H', 'in 1 hour']] : [])] as [string, string][]
+  for (const m of meetings) {
+    const start = new Date(m.startsAt), end = m.endsAt ? new Date(m.endsAt) : new Date(+start + 2 * 3600000)
+    const desc = [m.body && m.body !== m.title ? m.body : null, m.joinUrl && `Join: ${m.joinUrl}`, m.agendaUrl && `Agenda: ${m.agendaUrl}`, m.minutesUrl && `Minutes: ${m.minutesUrl}`, m.recordingUrl && `Recording: ${m.recordingUrl}`, `Details: ${siteUrl}/meetings/${m.place.slug}`].filter(Boolean).join('\n')
+    L.push('BEGIN:VEVENT', `UID:meeting-${m.id}@projxodus.com`, `DTSTAMP:${stamp(new Date())}`)
+    if (m.timeKnown) L.push(`DTSTART:${stamp(start)}`, `DTEND:${stamp(end)}`)
+    else { const d = new Date(m.startsAt).toLocaleDateString('en-CA', { timeZone: m.timezone || 'UTC' }).replace(/-/g, ''); L.push(`DTSTART;VALUE=DATE:${d}`) }
+    L.push(`SUMMARY:${esc(`${m.title} (${m.place.label})`)}`, `DESCRIPTION:${esc(desc)}`)
+    if (m.location) L.push(`LOCATION:${esc(m.location)}`)
+    if (m.status === 'CANCELED') L.push('STATUS:CANCELLED')
+    if (m.timeKnown && m.status !== 'CANCELED') for (const [trigger, when] of alarms) L.push('BEGIN:VALARM', 'ACTION:DISPLAY', `DESCRIPTION:${esc(`${m.title} ${when}`)}`, `TRIGGER:${trigger}`, 'END:VALARM')
+    L.push('END:VEVENT')
+  }
+  L.push('END:VCALENDAR')
+  return L.map(fold).join('\r\n') + '\r\n'
+}
+
+// ── Reminders ───────────────────────────────────────────────────────────────
+
+const WINDOWS: { lead: 'TODAY' | 'DAY' | 'WEEK'; from: number; to: number; label: string }[] = [
+  { lead: 'TODAY', from: 0, to: 24 * 3600000, label: 'Today' },
+  { lead: 'DAY', from: 24 * 3600000, to: 48 * 3600000, label: 'Tomorrow' },
+  { lead: 'WEEK', from: 7 * 86400000, to: 8 * 86400000, label: 'Next week' },
+]
+
+/** Daily sweep: tell each member about meetings coming up in the places they asked to be reminded about. */
+export async function sendReminders(now = new Date()): Promise<{ users: number; sent: number }> {
+  const follows: { userId: string; jurisdictionId: string; user: { id: string; email: string; meetingRemindToday: boolean; meetingRemindDay: boolean; meetingRemindWeek: boolean; meetingEmail: boolean } }[] = await prisma.meetingCalendarFollow.findMany({
+    where: { remind: true },
+    select: { userId: true, jurisdictionId: true, user: { select: { id: true, email: true, meetingRemindToday: true, meetingRemindDay: true, meetingRemindWeek: true, meetingEmail: true } } },
+    take: 5000,
+  })
+  if (!follows.length) return { users: 0, sent: 0 }
+  const places = [...new Set(follows.map((f) => f.jurisdictionId))]
+  const meetings: { id: string; title: string; startsAt: Date; timeKnown: boolean; timezone: string | null; status: string; jurisdictionId: string; jurisdiction: { slug: string; name: string; govType: string | null; kind: string; fullName: string } }[] = await prisma.meeting.findMany({
+    where: { jurisdictionId: { in: places }, status: 'SCHEDULED', startsAt: { gte: now, lt: new Date(+now + 8 * 86400000) } },
+    select: { id: true, title: true, startsAt: true, timeKnown: true, timezone: true, status: true, jurisdictionId: true, jurisdiction: { select: { slug: true, name: true, govType: true, kind: true, fullName: true } } },
+  })
+  const byUser = new Map<string, typeof follows>()
+  for (const f of follows) byUser.set(f.userId, [...(byUser.get(f.userId) ?? []), f])
+  const { createNotification } = await import('@/lib/notifications')
+  const { sendEmail, siteUrl } = await import('@/lib/email/send')
+  const { placeLabel } = await import('./directory')
+  let sent = 0
+  for (const [userId, fs] of byUser) {
+    const u = fs[0].user
+    const mine = new Set(fs.map((f) => f.jurisdictionId))
+    for (const w of WINDOWS) {
+      if (!(w.lead === 'TODAY' ? u.meetingRemindToday : w.lead === 'DAY' ? u.meetingRemindDay : u.meetingRemindWeek)) continue
+      const due = meetings.filter((m) => mine.has(m.jurisdictionId) && +m.startsAt >= +now + w.from && +m.startsAt < +now + w.to)
+      if (!due.length) continue
+      const done = new Set((await prisma.meetingReminder.findMany({ where: { userId, lead: w.lead, meetingId: { in: due.map((m) => m.id) } }, select: { meetingId: true } })).map((r: { meetingId: string }) => r.meetingId))
+      const fresh = due.filter((m) => !done.has(m.id))
+      if (!fresh.length) continue
+      const line = (m: (typeof fresh)[number]) => {
+        const t = m.timeKnown ? new Date(m.startsAt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: m.timezone || undefined, timeZoneName: 'short' }) : 'time not posted'
+        const d = new Date(m.startsAt).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: m.timezone || undefined })
+        return `${m.title} (${placeLabel(m.jurisdiction)}), ${d} ${t}`
+      }
+      const message = fresh.slice(0, 4).map(line).join('\n') + (fresh.length > 4 ? `\n+${fresh.length - 4} more` : '')
+      const title = `${w.label}: ${fresh.length} ${fresh.length === 1 ? 'meeting' : 'meetings'} on your calendar`
+      await createNotification({ userId, type: 'SYSTEM', title, message, link: '/meetings' }).catch(() => null)
+      if (u.meetingEmail && u.email) {
+        const link = `${siteUrl()}/meetings`
+        await sendEmail({ to: u.email, subject: title, text: `${message}\n\nSee your calendar: ${link}\n\nChange these reminders on the Meetings page.`, html: `<div style="font-family:Arial,sans-serif;line-height:1.5"><h3>${title}</h3><p style="white-space:pre-line">${message.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]!)}</p><p><a href="${link}">Open your calendar</a></p></div>` }).catch(() => null)
+      }
+      await prisma.meetingReminder.createMany({ data: fresh.map((m) => ({ userId, meetingId: m.id, lead: w.lead })), skipDuplicates: true })
+      sent++
+    }
+  }
+  return { users: byUser.size, sent }
 }

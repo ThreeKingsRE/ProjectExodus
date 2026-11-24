@@ -5,14 +5,16 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ChevronLeft, ChevronRight, Loader2, X } from 'lucide-react'
+import { Bell, BellRing, ChevronLeft, ChevronRight, Loader2, X } from 'lucide-react'
 import { holidaysBetween } from '@/lib/meetings/holidays'
 import type { MeetingView } from '@/lib/meetings/server'
 import { PlaceSearch, type Place } from './PlaceSearch'
 import { MeetingRow } from './MeetingRow'
+import { ContributeCard } from './Contribute'
+import { RemindersPanel, type Reminders } from './Reminders'
 import { dayKey } from './format'
 
-interface Me { signedIn: boolean; places: Place[]; showHolidays: boolean }
+interface Me { signedIn: boolean; places: (Place & { remind?: boolean })[]; showHolidays: boolean; reminders?: Reminders }
 const pad = (n: number) => String(n).padStart(2, '0')
 const ymd = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
 const DOW = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
@@ -50,6 +52,12 @@ export default function MeetingsHome() {
     const j = await res.json(); setNote(j.success ? `${p.label} added.` : j.error); setTick((t) => t + 1)
   }
   const removePlace = async (p: Place) => { await fetch('/api/meetings/follow', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: p.slug, follow: false }) }); setTick((t) => t + 1) }
+  const toggleRemind = async (p: Place & { remind?: boolean }) => {
+    const next = !p.remind
+    setMe((m) => (m ? { ...m, places: m.places.map((x) => (x.id === p.id ? { ...x, remind: next } : x)) } : m))
+    const res = await fetch('/api/meetings/follow', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: p.slug, remind: next }) })
+    const j = await res.json(); setNote(j.success ? (next ? `You’ll get reminders for ${p.label}.` : `Reminders off for ${p.label}.`) : j.error)
+  }
   const setHolidays = async (v: boolean) => { setMe((m) => (m ? { ...m, showHolidays: v } : m)); if (me?.signedIn) await fetch('/api/meetings/me', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ showHolidays: v }) }) }
 
   const today = ymd(new Date())
@@ -74,17 +82,22 @@ export default function MeetingsHome() {
         <p className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-3 text-xs text-[var(--muted-foreground)]"><strong className="text-[var(--foreground)]">Showing the federal default.</strong> <Link href="/auth/signin?callbackUrl=/meetings" className="font-semibold text-[var(--primary)] underline">Sign in</Link> to choose your own towns. Your calendar is saved to your account.</p>
       )}
 
+      <ContributeCard signedIn={!!me?.signedIn} />
+
       {me?.signedIn && (
         <div className="flex flex-wrap items-center gap-1.5">
           {me.places.length === 0 && <span className="text-xs text-[var(--muted-foreground)]">Your calendar is blank. Search above to add the places you care about.</span>}
           {me.places.map((p) => (
             <span key={p.id} className="inline-flex items-center gap-1 rounded-full bg-[var(--primary)]/15 py-1 pl-3 pr-1.5 text-xs font-semibold">
               <Link href={`/meetings/${p.slug}`} className="no-min-size text-[var(--primary)]">{p.label}</Link>
+              <button type="button" onClick={() => toggleRemind(p)} aria-pressed={!!p.remind} aria-label={p.remind ? `Reminders on for ${p.label}. Tap to turn off` : `Remind me about ${p.label}`} className={`no-min-size grid h-6 w-6 place-items-center rounded-full ${p.remind ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'hover:bg-[var(--primary)]/20'}`}>{p.remind ? <BellRing className="h-3.5 w-3.5" /> : <Bell className="h-3.5 w-3.5" />}</button>
               <button type="button" onClick={() => removePlace(p)} aria-label={`Remove ${p.label}`} className="no-min-size grid h-5 w-5 place-items-center rounded-full hover:bg-[var(--primary)]/20"><X className="h-3 w-3" /></button>
             </span>
           ))}
         </div>
       )}
+
+      {me?.signedIn && <RemindersPanel reminders={me.reminders ?? { today: true, day: true, week: false, email: false }} onChange={(r) => setMe((m) => (m ? { ...m, reminders: r } : m))} hasPlaces={me.places.length > 0} />}
 
       <section aria-label="Calendar" className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-3 sm:p-4">
         <div className="mb-2 flex items-center justify-between">

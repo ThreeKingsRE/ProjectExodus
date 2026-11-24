@@ -70,3 +70,43 @@ test('Legistar mapping: real Seattle event, time zones, cancellation, links', ()
   assert.equal(mapLegistarEvent({ EventId: 1 }, 'UTC'), null)
   assert.ok(CLIENT_RE.test('seattle') && !CLIENT_RE.test('../x') && !CLIENT_RE.test('a b'))
 })
+
+const hl = await import('../lib/meetings/legistar-html.ts'), sf = await import('../lib/meetings/safe-fetch.ts'), rc = await import('../lib/meetings/recurrence.ts')
+const { parseLegistarCalendarHtml } = hl.default || hl
+const { isPublicIp, checkPublicUrl, normalizeCalendarUrl, safeGetText } = sf.default || sf
+const { expandRepeat, localParts } = rc.default || rc
+import { readFileSync } from 'node:fs'
+
+test('Legistar calendar page: real Philadelphia rows become meetings', () => {
+  const rows = readFileSync(new URL('./fixtures/legistar-calendar-rows.html', import.meta.url), 'utf8')
+  const html = '<th class="rgHeader">Name</th><th class="rgHeader">Meeting Date</th><th class="rgHeader"></th><th class="rgHeader">Meeting Time</th><th class="rgHeader">Meeting Location</th><th class="rgHeader">Meeting Details</th><th class="rgHeader">Transcripts</th><th class="rgHeader">Agenda</th><th class="rgHeader">Accessible Agenda</th><th class="rgHeader">Agenda Packet</th><th class="rgHeader">Minutes</th><th class="rgHeader">Accessible Minutes</th><th class="rgHeader">Exhibits</th>' + rows
+  const ms = parseLegistarCalendarHtml(html, 'phila', 'America/New_York')
+  assert.equal(ms.length, 2)
+  const a = ms.find((m) => m.title === 'Committee on Transportation and Public Utilities')
+  assert.equal(a.externalId, '1467942'); assert.equal(a.startsAt.toISOString(), '2026-11-30T15:00:00.000Z', '10:00 AM Eastern in November')
+  assert.equal(a.location, 'Room 400, City Hall'); assert.match(a.agendaUrl, /^https:\/\/phila\.legistar\.com\/View\.ashx\?M=A&ID=1467942/)
+  assert.equal(a.minutesUrl, null); assert.match(a.sourceUrl, /MeetingDetail\.aspx\?ID=1467942/)
+  const b = ms.find((m) => m.externalId === '1467949'); assert.equal(b.agendaUrl, null)
+  assert.deepEqual(parseLegistarCalendarHtml('<html>no table</html>', 'phila', 'UTC'), [])
+})
+
+test('any-website calendars: public https only, nothing internal', async () => {
+  for (const ip of ['8.8.8.8', '151.101.1.1', '2606:4700::1111']) assert.ok(isPublicIp(ip), ip)
+  for (const ip of ['127.0.0.1', '10.1.2.3', '192.168.0.9', '172.16.5.5', '169.254.169.254', '100.64.0.1', '0.0.0.0', '224.0.0.1', '::1', 'fd00::1', 'fe80::1', '::ffff:10.0.0.1']) assert.ok(!isPublicIp(ip), ip)
+  assert.equal(normalizeCalendarUrl('webcal://town.example.org/cal.ics'), 'https://town.example.org/cal.ics')
+  for (const bad of ['http://x.org/a.ics', 'https://127.0.0.1/a.ics', 'https://[::1]/a', 'https://user:pw@x.org/a', 'https://x.org:8443/a', 'https://localhost/a', 'https://intranet/a', 'ftp://x.org/a', 'nope']) assert.equal(checkPublicUrl(bad).ok, false, bad)
+  assert.ok(checkPublicUrl('webcal://www.townofexample.org/calendar.ics').ok)
+  await assert.rejects(safeGetText('https://localhost/x.ics'), /isn’t a public|address|allowed/i)
+})
+
+test('repeating meetings keep their local time through daylight saving', () => {
+  const tz = 'America/New_York'
+  const first = new Date('2026-12-09T23:00:00Z') // Wed Dec 9, 6:00 PM EST
+  const weekly = expandRepeat(first, tz, 'WEEKLY', 4)
+  assert.deepEqual(weekly.map((d) => d.toISOString()), ['2026-12-09T23:00:00.000Z', '2026-12-16T23:00:00.000Z', '2026-12-23T23:00:00.000Z', '2026-12-30T23:00:00.000Z'])
+  const monthly = expandRepeat(first, tz, 'MONTHLY_NTH', 6) // 2nd Wednesday
+  assert.deepEqual(monthly.map((d) => localParts(d, tz)).map((p) => `${p.y}-${p.m0 + 1}-${p.d} ${p.h}:${String(p.mi).padStart(2, '0')}`), ['2026-12-9 18:00', '2027-1-13 18:00', '2027-2-10 18:00', '2027-3-10 18:00', '2027-4-14 18:00', '2027-5-12 18:00'])
+  assert.equal(monthly[4].toISOString(), '2027-04-14T22:00:00.000Z', 'April is daylight time: 6 PM = 22:00Z')
+  assert.equal(expandRepeat(first, tz, 'BIWEEKLY', 3)[2].toISOString(), '2027-01-06T23:00:00.000Z')
+  assert.equal(expandRepeat(first, tz, 'WEEKLY', 999).length, 24)
+})

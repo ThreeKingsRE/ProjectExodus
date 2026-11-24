@@ -18,17 +18,19 @@ const toIso = (local: string, tz: string) => {
 export function AddMeeting({ slug, tz, onAdded }: { slug: string; tz: string; onAdded: () => void }) {
   const [open, setOpen] = useState(false)
   const [f, setF] = useState({ title: '', body: '', startsAt: '', endsAt: '', location: '', joinUrl: '', agendaUrl: '', minutesUrl: '', recordingUrl: '' })
+  const [repeat, setRepeat] = useState<'' | 'WEEKLY' | 'BIWEEKLY' | 'MONTHLY_NTH'>('')
+  const [count, setCount] = useState(12)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement>) => setF((p) => ({ ...p, [k]: e.target.value }))
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault(); setBusy(true); setError(null)
-    const res = await fetch('/api/meetings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug, ...f, title: f.title || f.body, startsAt: toIso(f.startsAt, tz), endsAt: f.endsAt ? toIso(f.endsAt, tz) : null, timezone: tz }) })
+    const res = await fetch('/api/meetings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug, ...f, title: f.title || f.body, startsAt: toIso(f.startsAt, tz), endsAt: f.endsAt ? toIso(f.endsAt, tz) : null, timezone: tz, repeat: repeat ? { kind: repeat, count } : undefined }) })
     const j = await res.json().catch(() => ({}))
     setBusy(false)
     if (!res.ok) { setError(j.error || 'Couldn’t add that.'); return }
-    setOpen(false); setF({ title: '', body: '', startsAt: '', endsAt: '', location: '', joinUrl: '', agendaUrl: '', minutesUrl: '', recordingUrl: '' }); onAdded()
+    setOpen(false); setRepeat(''); setF({ title: '', body: '', startsAt: '', endsAt: '', location: '', joinUrl: '', agendaUrl: '', minutesUrl: '', recordingUrl: '' }); onAdded()
   }
 
   if (!open) return <button type="button" onClick={() => setOpen(true)} className="no-min-size inline-flex h-10 items-center rounded-full border border-[var(--border)] bg-[var(--card)] px-4 text-sm font-bold">+ Add a meeting</button>
@@ -41,6 +43,16 @@ export function AddMeeting({ slug, tz, onAdded }: { slug: string; tz: string; on
         <label className="text-[11px] font-semibold">Ends (optional)<input type="datetime-local" value={f.endsAt} onChange={set('endsAt')} className={`${field} mt-1`} /></label>
       </div>
       <p className="text-[11px] text-[var(--muted-foreground)]">Times are in this place’s time zone ({tz.replace('_', ' ')}).</p>
+      <label className="block text-[11px] font-semibold">Repeats
+        <select value={repeat} onChange={(e) => setRepeat(e.target.value as typeof repeat)} className={`${field} mt-1`}>
+          <option value="">Just this once</option>
+          <option value="WEEKLY">Every week</option>
+          <option value="BIWEEKLY">Every 2 weeks</option>
+          <option value="MONTHLY_NTH">Monthly, same weekday (like the 2nd Wednesday)</option>
+        </select>
+      </label>
+      {repeat && <label className="block text-[11px] font-semibold">How many meetings to add (up to 24)<input type="number" min={2} max={24} value={count} onChange={(e) => setCount(+e.target.value)} className={`${field} mt-1`} /></label>}
+      {repeat && <p className="text-[11px] text-[var(--muted-foreground)]">Use the schedule the town publishes. Holidays can move a meeting, so check the official page when it matters.</p>}
       <input value={f.location} onChange={set('location')} placeholder="Where (Town Hall, 1 Main St…)" aria-label="Location" maxLength={300} className={field} />
       <input value={f.joinUrl} onChange={set('joinUrl')} placeholder="Join link (Zoom, Meet, Teams…)" aria-label="Join link" inputMode="url" className={field} />
       <input value={f.agendaUrl} onChange={set('agendaUrl')} placeholder="Agenda link" aria-label="Agenda link" inputMode="url" className={field} />
@@ -72,15 +84,15 @@ export function ConnectSource({ slug, onConnected }: { slug: string; onConnected
     setMsg(`Connected. ${j.data.count} meetings imported, and it keeps itself up to date.`); setRef(''); onConnected()
   }
 
-  if (!open) return <button type="button" onClick={() => setOpen(true)} className="no-min-size inline-flex h-10 items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 text-sm font-bold"><Plug className="h-4 w-4" aria-hidden />Connect the official calendar</button>
+  if (!open) return <button type="button" onClick={() => setOpen(true)} className="no-min-size inline-flex h-10 items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 text-sm font-bold"><Plug className="h-4 w-4" aria-hidden />Connect a calendar (any calendar link)</button>
   return (
     <form onSubmit={submit} className="space-y-2 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-3">
       <p className="text-sm font-bold">Connect the official calendar</p>
-      <p className="text-xs text-[var(--muted-foreground)]">Many cities run on Legistar (their site looks like <strong>name.legistar.com</strong>). Others publish a calendar (.ics) link. Once connected, meetings, agendas, minutes and videos update by themselves.</p>
+      <p className="text-xs text-[var(--muted-foreground)]">Paste <strong>any calendar link</strong>: a town’s “Subscribe” / “iCal” / “Export” link (.ics or webcal://), a Google Calendar’s public address, or a Legistar name (the part before .legistar.com). Once connected, it updates by itself for everyone.</p>
       <div className="flex gap-1.5">
-        {(['LEGISTAR', 'ICS'] as const).map((k) => <button key={k} type="button" onClick={() => setKind(k)} aria-pressed={kind === k} className={`no-min-size h-9 rounded-full px-3 text-xs font-bold ${kind === k ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--muted)]'}`}>{k === 'LEGISTAR' ? 'Legistar' : 'Calendar link (.ics)'}</button>)}
+        {(['LEGISTAR', 'ICS'] as const).map((k) => <button key={k} type="button" onClick={() => setKind(k)} aria-pressed={kind === k} className={`no-min-size h-9 rounded-full px-3 text-xs font-bold ${kind === k ? 'bg-[var(--primary)] text-[var(--primary-foreground)]' : 'bg-[var(--muted)]'}`}>{k === 'LEGISTAR' ? 'Legistar name' : 'Any calendar link'}</button>)}
       </div>
-      <input required value={ref} onChange={(e) => setRef(e.target.value)} placeholder={kind === 'LEGISTAR' ? 'The part before .legistar.com (like seattle)' : 'https://…/calendar.ics (a .gov or town-meeting site)'} aria-label="Calendar" className={field} />
+      <input required value={ref} onChange={(e) => setRef(e.target.value)} placeholder={kind === 'LEGISTAR' ? 'The part before .legistar.com (like seattle)' : 'https://… or webcal://…  (.ics calendar link)'} aria-label="Calendar" className={field} />
       {msg && <p role={msg.startsWith('Connected') ? 'status' : 'alert'} className={`text-xs ${msg.startsWith('Connected') ? 'text-emerald-600' : 'text-red-500'}`}>{msg}</p>}
       <div className="flex gap-2">
         <button type="submit" disabled={busy} style={{ color: 'var(--primary-foreground)' }} className="no-min-size inline-flex h-10 items-center gap-2 rounded-full bg-[var(--primary)] px-5 text-sm font-bold disabled:opacity-60">{busy && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />} Check and connect</button>

@@ -23,7 +23,7 @@
   "crons": [
     {
       "path": "/api/meetings/refresh",
-      "schedule": "0 9 * * *"
+      "schedule": "0 12 * * *"
     }
   ]
 }

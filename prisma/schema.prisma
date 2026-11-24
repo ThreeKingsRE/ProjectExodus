@@ -208,6 +208,12 @@ model User {
   meetingFollows            MeetingCalendarFollow[]
   meetingNotes              MeetingNote[]
   meetingsShowHolidays      Boolean                 @default(true) // Show federal holidays on the Meetings calendar
+  meetingFeed               MeetingFeed?
+  meetingRemindToday        Boolean                 @default(true) // Reminder the morning of a meeting
+  meetingRemindDay          Boolean                 @default(true) // Reminder the day before
+  meetingRemindWeek         Boolean                 @default(false) // Reminder a week before
+  meetingEmail              Boolean                 @default(false) // Also email the reminders
+  meetingReminders          MeetingReminder[]
 
   @@index([email])
   @@index([role])
@@ -4041,8 +4047,9 @@ enum MeetingStatus {
 }
 
 enum MeetingSourceKind {
-  LEGISTAR
-  ICS
+  LEGISTAR // Legistar open Web API
+  LEGISTAR_HTML // Legistar calendar page, for cities whose API needs a private key
+  ICS // Any public calendar (.ics / webcal) link
 }
 
 model Jurisdiction {
@@ -4136,8 +4143,31 @@ model MeetingCalendarFollow {
   user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   jurisdictionId String
   jurisdiction   Jurisdiction @relation(fields: [jurisdictionId], references: [id], onDelete: Cascade)
+  remind         Boolean      @default(false) // Send me reminders for this place's meetings
   createdAt      DateTime     @default(now())
 
   @@unique([userId, jurisdictionId])
   @@index([userId])
+}
+
+/// A reminder already sent, so nobody gets the same one twice
+model MeetingReminder {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  meetingId String
+  lead      String // WEEK | DAY | TODAY
+  createdAt DateTime @default(now())
+
+  @@unique([userId, meetingId, lead])
+  @@index([createdAt])
+}
+
+/// The secret link a member subscribes to from their phone calendar
+model MeetingFeed {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  createdAt DateTime @default(now())
 }

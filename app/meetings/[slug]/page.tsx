@@ -3,12 +3,14 @@ import { notFound } from 'next/navigation'
 import { after } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
-import { placeBrief, listMeetings, refreshSource, staleSourceIds } from '@/lib/meetings/server'
+import { placeBrief, listMeetings, refreshSource, staleSourceIds, ensureDirectory, ensureKnownSources } from '@/lib/meetings/server'
+import { MEMBER_FED } from '@/lib/meetings/known'
 import { placeLabel, placeSubtitle, tzFor } from '@/lib/meetings/directory'
 import PlaceView from '@/components/meetings/PlaceView'
 
 type Props = { params: Promise<{ slug: string }> }
 export const dynamic = 'force-dynamic'
+export const maxDuration = 60
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const j = await prisma.jurisdiction.findUnique({ where: { slug: (await params).slug } })
@@ -18,8 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PlacePage({ params }: Props) {
   const { slug } = await params
+  await ensureDirectory(); await ensureKnownSources()
   const j = await prisma.jurisdiction.findUnique({ where: { slug } })
   if (!j) notFound()
+  // A calendar connected for the first time is read now, so the first visitor sees real meetings
+  for (const id of await staleSourceIds([j.id], 4e11, 3)) await refreshSource(id)
   const session = await auth()
   const me = session?.user?.id ?? null
   const now = Date.now()
@@ -45,7 +50,7 @@ export default async function PlacePage({ params }: Props) {
         id: s.id, kind: s.kind, host: s.kind === 'ICS' ? (() => { try { return new URL(s.ref).hostname } catch { return s.ref } })() : `${s.ref}.legistar.com`,
         lastFetchedAt: s.lastFetchedAt?.toISOString() ?? null, error: s.lastError,
       }))}
-      signedIn={!!me} following={!!follow}
+      signedIn={!!me} following={!!follow} memberFed={MEMBER_FED[j.key] ?? null}
       children={children.map((c: Parameters<typeof placeBrief>[0]) => placeBrief(c))}
     />
   )

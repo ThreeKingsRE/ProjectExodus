@@ -2,7 +2,7 @@ import { NextRequest, NextResponse, after } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
-import { ensureDirectory, ensureFederal, listMeetings, placeBrief, refreshSource, staleSourceIds } from '@/lib/meetings/server'
+import { ensureDirectory, ensureFederal, ensureKnownSources, listMeetings, placeBrief, refreshSource, staleSourceIds } from '@/lib/meetings/server'
 
 export const maxDuration = 60
 
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   }
   const session = await auth()
   const me = session?.user?.id ?? null
-  await ensureDirectory(); await ensureFederal()
+  await ensureDirectory(); await ensureFederal(); await ensureKnownSources()
 
   const slugs = (sp.get('places') ?? '').split(',').map((s) => s.trim()).filter(Boolean).slice(0, 60)
   let places: { id: string; slug: string; kind: string; name: string; govType: string | null; fullName: string; countyName: string | null; stateName: string | null; state: string | null }[]

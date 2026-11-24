@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
-import { ensureDirectory, ensureFederal, searchPlaces } from '@/lib/meetings/server'
+import { ensureDirectory, ensureFederal, ensureKnownSources, searchPlaces } from '@/lib/meetings/server'
 
 export const maxDuration = 60
 
@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   const q = (request.nextUrl.searchParams.get('q') ?? '').slice(0, 80)
   try {
     await ensureDirectory()
-    await ensureFederal()
+    await ensureFederal(); await ensureKnownSources()
     return NextResponse.json({ success: true, data: q.trim().length >= 2 ? await searchPlaces(q) : [] })
   } catch (e) {
     console.error('Place search failed:', e)

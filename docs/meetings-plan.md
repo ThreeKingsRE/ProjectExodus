@@ -24,10 +24,22 @@ the hub. Its own top-level menu item.
   on view when stale (2 h) and daily by cron.
 - Join links and calendar files for members only.
 
+## Added (Phase 2)
+- Built-in calendars (lib/meetings/known.ts): City of Rochester (Legistar API) and Philadelphia City
+  Council (Legistar calendar page, because its API needs a private key). Connected on first use.
+- Any public calendar link (.ics / webcal://) on any website, read through a guarded fetch
+  (https only, no internal addresses, checked at connection time).
+- Places whose sites block bots (Henrietta NY, Cheltenham Twp PA are behind Cloudflare) rely on
+  members: repeating schedules ("2nd Wednesday at 6 PM") and the contribute card.
+- Reminders: per-place bell + the day of / day before / week before + optional email; daily
+  7-8 AM Eastern sweep (needs `CRON_SECRET`), deduped.
+- Phone calendar: secret subscribe link (Apple/Google) whose events carry alarms.
+- Prominent "Help build this" card with coverage count.
+
 ## Next
 - More connectors (Granicus, BoardDocs, CivicPlus, state legislatures via OpenStates, Federal
   Register meeting notices for the federal default).
-- Notifications / reminders for followed places; subscribe to a personal .ics feed.
+- Real push notifications (needs a service worker, VAPID keys, and an installed home-screen app on iPhone); hour-before reminders from the server (needs an hourly cron, i.e. Vercel Pro).
 - Report wrong info; verified-organizer badges; "claim this town".
 - Better coverage tools: show which towns have no source and ask members to connect them.
 
