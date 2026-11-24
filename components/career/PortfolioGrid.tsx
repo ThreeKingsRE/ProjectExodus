@@ -40,7 +40,12 @@ export function PortfolioGrid<T extends WorkPost>({ posts, renderFooter, showAut
                 {cover
                   // eslint-disable-next-line @next/next/no-img-element
                   ? <img src={cover.url} alt="" loading="lazy" className="h-full w-full object-cover transition-transform group-hover:scale-105" />
-                  : <span className="line-clamp-5 p-2 text-left text-[11px] leading-snug sm:p-3 sm:text-sm">{p.title || p.story}</span>}
+                  : <span className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--primary)]/15 to-[var(--primary)]/5 p-2 text-center sm:p-3">
+                      <span className="line-clamp-4 text-[11px] font-semibold leading-snug text-[var(--foreground)] sm:text-sm">{p.title || p.story}</span>
+                    </span>}
+                {showAuthor && p.author && (
+                  <span className="absolute inset-x-0 bottom-0 truncate bg-gradient-to-t from-black/70 to-transparent px-1.5 pb-1 pt-4 text-left text-[10px] font-semibold text-white sm:px-2 sm:text-xs">{p.author.name}</span>
+                )}
                 <span className="absolute right-1 top-1 flex gap-1 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                   {p.pinned && !showAuthor && <Pin className="h-3.5 w-3.5" aria-label="Pinned" />}
                   {p.seals.length > 0 && <BadgeCheck className="h-3.5 w-3.5" aria-label="Vouched" />}

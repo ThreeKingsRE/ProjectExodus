@@ -8,17 +8,17 @@ import { PortfolioGrid } from '@/components/career/PortfolioGrid'
 import { TradeIconStrip } from '@/components/career/TradeIcons'
 import type { WorkPost } from '@/components/career/WorkCard'
 
-export function CareerFeed({ posts }: { posts: WorkPost[] }) {
+export function CareerFeed({ posts, bare = false }: { posts: WorkPost[]; /** No section title (the page supplies one) */ bare?: boolean }) {
   return (
-    <section className="my-5 sm:my-12" aria-labelledby="career-feed-title">
-      <div className="mb-3 flex items-center justify-center gap-3 sm:mb-6">
+    <section className={bare ? '' : 'my-5 sm:my-12'} aria-labelledby={bare ? undefined : 'career-feed-title'}>
+      <div className={bare ? 'hidden' : 'mb-3 flex items-center justify-center gap-3 sm:mb-6'}>
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--border)]/50 to-transparent" />
         <h2 id="career-feed-title" style={{ fontSize: '0.65rem', lineHeight: 1.3 }} className="flex items-center gap-2 font-bold uppercase tracking-[0.25em] text-theme-muted">
           <Hammer className="h-3 w-3" aria-hidden /> From My Career <Hammer className="h-3 w-3" aria-hidden />
         </h2>
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--border)]/50 to-transparent" />
       </div>
-      <div className="overflow-hidden rounded-2xl border-2 border-[var(--border)]/40 bg-[var(--card)]">
+      <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)]">
         <TradeIconStrip size={18} gap={16} className="border-b border-[var(--border)] py-2 text-[var(--primary)] opacity-60" />
         <div className="p-1 sm:p-3">
           <PortfolioGrid

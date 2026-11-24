@@ -131,7 +131,7 @@ const ROTATION_INTERVAL = 6000 // 6 seconds per slide
 // Component
 // ---------------------------------------------------------------------------
 
-export function SustainableTechBillboard() {
+export function SustainableTechBillboard({ bare = false }: { /** No section heading or outer margin (the page supplies them) */ bare?: boolean } = {}) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
@@ -192,9 +192,9 @@ export function SustainableTechBillboard() {
   }
 
   return (
-    <div className="relative w-full my-5 sm:my-12">
+    <div className={`relative w-full ${bare ? '' : 'my-5 sm:my-12'}`}>
       {/* Section header */}
-      <div className="flex items-center justify-center gap-3 mb-3 sm:mb-6">
+      <div className={bare ? 'hidden' : 'flex items-center justify-center gap-3 mb-3 sm:mb-6'}>
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--border)]/50 to-transparent" />
         <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-theme-muted flex items-center gap-2">
           <Leaf className="w-3 h-3" />
@@ -206,7 +206,7 @@ export function SustainableTechBillboard() {
 
       {/* Billboard card */}
       <div
-        className="relative overflow-hidden rounded-2xl border-2 border-[var(--border)]/40 bg-[var(--card)]"
+        className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)]"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={handleTouchStart}
