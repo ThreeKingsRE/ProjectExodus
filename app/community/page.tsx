@@ -2,6 +2,7 @@ import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { CommunityNewspaper } from '@/components/community/CommunityNewspaper'
 import { loadRecentCareer } from '@/lib/career/server'
+import { getLatestNews } from '@/lib/news/feeds'
 
 async function getDashboardData(userId: string) {
   try {
@@ -169,10 +170,11 @@ export default async function CommunityPage() {
   // NON-LOGGED IN VIEW - the same newspaper, as a look-only preview
   // ============================================
   if (!session?.user?.id) {
-    const [guest, careerPosts] = await Promise.all([getGuestData(), loadRecentCareer(null).catch(() => [])])
+    const [guest, careerPosts, news] = await Promise.all([getGuestData(), loadRecentCareer(null).catch(() => []), getLatestNews().catch(() => [])])
     return (
       <CommunityNewspaper
         guest
+        news={news}
         careerPosts={careerPosts}
         user={null}
         suggestedUsers={[]}
@@ -187,9 +189,10 @@ export default async function CommunityPage() {
   // ============================================
   // LOGGED IN VIEW - Newspaper Layout
   // ============================================
-  const [dashboardData, careerPosts] = await Promise.all([
+  const [dashboardData, careerPosts, news] = await Promise.all([
     getDashboardData(session.user.id),
     loadRecentCareer(session.user.id).catch(() => []),
+    getLatestNews().catch(() => []),
   ])
 
   if (!dashboardData) {
@@ -204,6 +207,7 @@ export default async function CommunityPage() {
 
   return (
     <CommunityNewspaper
+      news={news}
       careerPosts={careerPosts}
       user={user}
       suggestedUsers={suggestedUsers}

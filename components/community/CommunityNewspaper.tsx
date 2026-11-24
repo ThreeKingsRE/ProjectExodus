@@ -5,17 +5,20 @@
 // same page as a look-only preview.
 
 import Link from 'next/link'
-import { ArrowRight, BookOpen, Hash, Newspaper, Rocket, Users } from 'lucide-react'
+import { ArrowRight, BookOpen, ExternalLink, Hash, Newspaper, Rocket, Users } from 'lucide-react'
 import { SustainableTechBillboard } from '@/components/community/SustainableTechBillboard'
 import { CareerFeed } from '@/components/community/CareerFeed'
 import { LiveStrip } from '@/components/community/LiveStrip'
 import type { WorkPost } from '@/components/career/WorkCard'
+import type { NewsItem } from '@/lib/news/feeds'
 
 interface CommunityNewspaperProps {
   /** Signed-out preview: everything shows, nothing can be clicked */
   guest?: boolean
   /** Newest My Career posts */
   careerPosts?: WorkPost[]
+  /** Latest headlines from climate newsrooms (refreshed hourly); empty = use the built-in list */
+  news?: NewsItem[]
   user?: unknown
   suggestedUsers?: unknown[]
   activeProjects?: unknown[]
@@ -37,6 +40,14 @@ const IN_THE_NEWS = [
   { year: '2023', title: '$1.4T into climate tech', detail: 'Record global investment' },
   { year: '2023', title: 'Seabin passes 860 units', detail: '3,250+ tons of marine litter removed' },
 ]
+function newsAgo(iso: string) {
+  const h = (Date.now() - new Date(iso).getTime()) / 3600000
+  if (h < 1) return 'just now'
+  if (h < 24) return `${Math.floor(h)}h ago`
+  if (h < 24 * 7) return `${Math.floor(h / 24)}d ago`
+  return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+}
+
 const TRENDING = ['direct-air-capture', 'hempcrete', 'regenerative-agriculture', 'circular-economy', 'ocean-cleanup']
 
 function Section({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
@@ -51,7 +62,7 @@ function Section({ title, action, children }: { title: string; action?: React.Re
   )
 }
 
-export function CommunityNewspaper({ guest = false, careerPosts = [], communityStats }: CommunityNewspaperProps) {
+export function CommunityNewspaper({ guest = false, careerPosts = [], news = [], communityStats }: CommunityNewspaperProps) {
   const today = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })
   const stats = [
     { icon: Users, n: communityStats.totalMembers, label: 'members' },
@@ -108,15 +119,26 @@ export function CommunityNewspaper({ guest = false, careerPosts = [], communityS
         <div className="grid gap-3 sm:grid-cols-2">
           <Section title="In the news">
             <ol className="divide-y divide-[var(--border)] overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)]">
-              {IN_THE_NEWS.map((n) => (
-                <li key={n.title} className="flex items-center gap-3 px-3 py-2.5">
-                  <span className="shrink-0 rounded-md bg-[var(--muted)] px-1.5 py-0.5 text-[10px] font-bold tabular-nums">{n.year}</span>
-                  <span className="min-w-0">
-                    <span className="block truncate text-sm font-semibold">{n.title}</span>
-                    <span className="block truncate text-[11px] text-[var(--muted-foreground)]">{n.detail}</span>
-                  </span>
-                </li>
-              ))}
+              {news.length > 0
+                ? news.map((n) => (
+                  <li key={n.url}>
+                    <a href={n.url} target="_blank" rel="noopener noreferrer" className="no-min-size block px-3 py-2.5 hover:bg-[var(--muted)]">
+                      <span className="line-clamp-2 text-sm font-semibold leading-snug">{n.title}</span>
+                      <span className="mt-0.5 flex items-center gap-1 text-[11px] text-[var(--muted-foreground)]">
+                        {n.source}{n.publishedAt && <> · {newsAgo(n.publishedAt)}</>} <ExternalLink className="h-3 w-3" aria-hidden />
+                      </span>
+                    </a>
+                  </li>
+                ))
+                : IN_THE_NEWS.map((n) => (
+                  <li key={n.title} className="flex items-center gap-3 px-3 py-2.5">
+                    <span className="shrink-0 rounded-md bg-[var(--muted)] px-1.5 py-0.5 text-[10px] font-bold tabular-nums">{n.year}</span>
+                    <span className="min-w-0">
+                      <span className="block truncate text-sm font-semibold">{n.title}</span>
+                      <span className="block truncate text-[11px] text-[var(--muted-foreground)]">{n.detail}</span>
+                    </span>
+                  </li>
+                ))}
             </ol>
           </Section>
           <Section title="Trending topics">
