@@ -12,6 +12,7 @@ type NotificationType =
   | 'BADGE_EARNED'
   | 'PROJECT_INVITE'
   | 'NEW_MESSAGE'
+  | 'DISCUSSION_REPLY'
   | 'SYSTEM'
 
 interface CreateNotificationParams {
@@ -173,6 +174,8 @@ export function getNotificationIcon(type: NotificationType): string {
       return '📋'
     case 'NEW_MESSAGE':
       return '✉️'
+    case 'DISCUSSION_REPLY':
+      return '💬'
     case 'SYSTEM':
     default:
       return '🔔'

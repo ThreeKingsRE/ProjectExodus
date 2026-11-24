@@ -15,6 +15,7 @@ export function CreatePost({ onPostCreated }: CreatePostProps) {
   const [content, setContent] = useState('')
   const [visibility, setVisibility] = useState<'PUBLIC' | 'FOLLOWERS_ONLY' | 'PRIVATE'>('PUBLIC')
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [showVisibilityMenu, setShowVisibilityMenu] = useState(false)
 
   const visibilityOptions = [
@@ -29,6 +30,7 @@ export function CreatePost({ onPostCreated }: CreatePostProps) {
     if (!content.trim() || !session?.user) return
 
     setLoading(true)
+    setError(null)
     try {
       // Extract hashtags and mentions
       const hashtags = (content.match(/#[\w]+/g) || []).map(tag => tag.substring(1))
@@ -45,6 +47,10 @@ export function CreatePost({ onPostCreated }: CreatePostProps) {
         })
       })
 
+      if (!res.ok) {
+        const j = await res.json().catch(() => null)
+        setError(j?.code === 'RULES' ? 'Before your first post, agree to the posting rules: open Discussions and tap New.' : (j?.error || 'Couldn’t post. Try again.'))
+      }
       if (res.ok) {
         setContent('')
         setVisibility('PUBLIC')
@@ -149,6 +155,7 @@ export function CreatePost({ onPostCreated }: CreatePostProps) {
                 </span>
               </div>
 
+              {error && <p role="alert" className="w-full text-xs font-semibold text-red-500">{error}</p>}
               {/* Post Button */}
               <Button
                 onClick={handleSubmit}

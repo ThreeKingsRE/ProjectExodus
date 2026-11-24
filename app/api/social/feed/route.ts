@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { PUBLIC_POSTS_WHERE } from '@/lib/social/postAccess'
 import { auth } from '@/auth'
+import { shapeMeeting } from '@/lib/discussions/meetings'
 import { prisma } from '@/lib/db'
 
 export async function GET(request: Request) {
@@ -10,6 +11,11 @@ export async function GET(request: Request) {
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '20')
     const skip = (page - 1) * limit
+    // Discussions tabs and filters
+    const tab = searchParams.get('tab') // following | saved | meetings | past
+    const town = (searchParams.get('town') || '').trim().slice(0, 80)
+    const category = (searchParams.get('category') || '').trim().slice(0, 40)
+    const q = (searchParams.get('q') || '').trim().slice(0, 100)
 
     // Get posts from followed users + public posts
     // Public posts, and public updates from public initiatives
@@ -51,6 +57,19 @@ export async function GET(request: Request) {
       }
     }
 
+    // Narrow to what this tab / filter asks for (still inside what the viewer may see)
+    const extra: any[] = []
+    const me = session?.user?.id
+    if (tab === 'following' && me) extra.push({ follows: { some: { userId: me } } })
+    if (tab === 'saved' && me) extra.push({ saves: { some: { userId: me } } })
+    if (tab === 'meetings') extra.push({ meetingAt: { gte: new Date(Date.now() - 2 * 3600000) } })
+    if (tab === 'past') extra.push({ meetingAt: { lt: new Date(Date.now() - 2 * 3600000) } })
+    if (town) extra.push({ place: { equals: town, mode: 'insensitive' } })
+    if (category) extra.push({ category })
+    if (q) extra.push({ OR: [{ content: { contains: q, mode: 'insensitive' } }, { title: { contains: q, mode: 'insensitive' } }, { user: { name: { contains: q, mode: 'insensitive' } } }] })
+    if (extra.length) whereClause = { AND: [whereClause, ...extra] }
+    const upcomingFirst = tab === 'meetings'
+
     const posts = await prisma.socialPost.findMany({
       where: whereClause,
       include: {
@@ -83,14 +102,17 @@ export async function GET(request: Request) {
         likes: session?.user?.id ? {
           where: { userId: session.user.id }
         } : false,
+        follows: me ? { where: { userId: me }, select: { id: true } } : false,
+        saves: me ? { where: { userId: me }, select: { id: true } } : false,
         _count: {
           select: {
             likes: true,
-            comments: true
+            comments: true,
+            follows: true
           }
         }
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy: upcomingFirst ? { meetingAt: 'asc' } : tab === 'past' ? { meetingAt: 'desc' } : { createdAt: 'desc' },
       skip,
       take: limit
     })
@@ -101,7 +123,13 @@ export async function GET(request: Request) {
     return NextResponse.json({
       success: true,
       data: {
-        posts,
+        posts: posts.map((p: any) => ({
+          ...shapeMeeting(p, !!me),
+          isFollowing: !!p.follows?.length,
+          isSaved: !!p.saves?.length,
+          follows: undefined,
+          saves: undefined,
+        })),
         pagination: {
           page,
           limit,

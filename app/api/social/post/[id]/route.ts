@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { findVisiblePost } from '@/lib/social/postAccess-server'
 import { auth } from '@/auth'
+import { shapeMeeting } from '@/lib/discussions/meetings'
 import { prisma } from '@/lib/db'
 
 export async function GET(
@@ -84,11 +85,20 @@ export async function GET(
       )
     }
 
+    const me = session?.user?.id
+    const [follow, save] = me
+      ? await Promise.all([
+          prisma.discussionFollow.findUnique({ where: { postId_userId: { postId: id, userId: me } }, select: { id: true } }),
+          prisma.discussionSave.findUnique({ where: { postId_userId: { postId: id, userId: me } }, select: { id: true } }),
+        ])
+      : [null, null]
     return NextResponse.json({
       success: true,
       data: {
-        ...post,
-        isLiked: session?.user?.id ? post.likes && post.likes.length > 0 : false
+        ...shapeMeeting(post, !!me),
+        isLiked: me ? post.likes && post.likes.length > 0 : false,
+        isFollowing: !!follow,
+        isSaved: !!save,
       }
     })
   } catch (error) {

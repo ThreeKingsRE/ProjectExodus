@@ -196,11 +196,15 @@ model User {
   commentReactions         CommentReaction[]      @relation("CommentReactions")
 
   // Initiative drafts (pre-creation workspaces with Sage)
-  initiativeDrafts    InitiativeDraft[]    @relation("InitiativeDrafts")
-  projectItemComments ProjectItemComment[] @relation("ProjectItemCommentAuthor")
-  careerProfile       CareerProfile?
-  careerPosts         CareerPost[]
-  careerTags          CareerPostTag[]
+  initiativeDrafts          InitiativeDraft[]    @relation("InitiativeDrafts")
+  projectItemComments       ProjectItemComment[] @relation("ProjectItemCommentAuthor")
+  careerProfile             CareerProfile?
+  careerPosts               CareerPost[]
+  careerTags                CareerPostTag[]
+  discussionFollows         DiscussionFollow[]
+  discussionSaves           DiscussionSave[]
+  discussionRulesAcceptedAt DateTime? // Accepted the posting rules before their first discussion
+  discussionTown            String? // 'My town' filter in Discussions (city or region)
 
   @@index([email])
   @@index([role])
@@ -1114,6 +1118,19 @@ model SocialPost {
   title     String? // Optional headline, newsletter style
   isPinned  Boolean  @default(false) // Pinned to the top of the initiative's updates
 
+  // Discussions: local and civic. A post can carry a meeting (town hall, board
+  // meeting...) with join and agenda links, and name a town and category.
+  meetingAt       DateTime?
+  meetingEndsAt   DateTime?
+  meetingTimezone String? // IANA name, e.g. America/New_York
+  meetingJoinUrl  String? // Zoom / Meet / Teams / Webex / live stream
+  agendaUrl       String?
+  calendarUrl     String?
+  place           String? // City or region, never a street address
+  category        String? // town-hall, school-board, zoning, elections...
+  follows         DiscussionFollow[]
+  saves           DiscussionSave[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -1123,6 +1140,35 @@ model SocialPost {
   @@index([visibility])
   @@index([visibility, createdAt]) // Composite: Public posts sorted by date
   @@index([userId, createdAt]) // Composite: User's posts sorted by date
+  @@index([meetingAt])
+  @@index([place])
+  @@index([category])
+}
+
+/// Following a discussion: notified of new replies; shows in the Following tab
+model DiscussionFollow {
+  id        String     @id @default(cuid())
+  postId    String
+  post      SocialPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+
+  @@unique([postId, userId])
+  @@index([userId, createdAt])
+}
+
+/// Starring a discussion: a private bookmark for later
+model DiscussionSave {
+  id        String     @id @default(cuid())
+  postId    String
+  post      SocialPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+
+  @@unique([postId, userId])
+  @@index([userId, createdAt])
 }
 
 enum PostVisibility {
@@ -2691,6 +2737,7 @@ enum NotificationType {
   BADGE_EARNED
   PROJECT_INVITE
   NEW_MESSAGE
+  DISCUSSION_REPLY
   SYSTEM
 }
 

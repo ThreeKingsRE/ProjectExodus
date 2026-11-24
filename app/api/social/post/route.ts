@@ -4,6 +4,7 @@ import { prisma } from '@/lib/db'
 import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 import { z } from 'zod'
 import { incrementStockScore, STOCK_POINTS } from '@/lib/stockScore'
+import { parseDiscussionExtras } from '@/lib/discussions/meetings'
 
 // Schema for social post creation with proper validation
 const mediaSchema = z.object({
@@ -21,7 +22,16 @@ const createPostSchema = z.object({
   visibility: z.enum(['PUBLIC', 'FOLLOWERS_ONLY', 'PRIVATE']).optional(),
   media: z.array(mediaSchema).max(10, 'Maximum 10 media items allowed').optional(),
   hashtags: z.array(z.string().max(50, 'Hashtag is too long')).max(30, 'Maximum 30 hashtags allowed').optional(),
-  mentions: z.array(z.string().cuid('Invalid user ID')).max(50, 'Maximum 50 mentions allowed').optional()
+  mentions: z.array(z.string().cuid('Invalid user ID')).max(50, 'Maximum 50 mentions allowed').optional(),
+  // Discussions: a meeting card, a town and a category (checked by parseDiscussionExtras)
+  place: z.string().max(80).nullish(),
+  category: z.string().max(40).nullish(),
+  meetingAt: z.string().max(40).nullish(),
+  meetingEndsAt: z.string().max(40).nullish(),
+  meetingTimezone: z.string().max(60).nullish(),
+  meetingJoinUrl: z.string().max(1000).nullish(),
+  agendaUrl: z.string().max(1000).nullish(),
+  calendarUrl: z.string().max(1000).nullish(),
 })
 
 export async function POST(request: NextRequest) {
@@ -51,9 +61,23 @@ export async function POST(request: NextRequest) {
     // Validate and sanitize input
     const validatedData = createPostSchema.parse(body)
 
+    // Members agree to the posting rules once, before their first post
+    const me = await prisma.user.findUnique({ where: { id: session.user.id }, select: { discussionRulesAcceptedAt: true } })
+    if (!me?.discussionRulesAcceptedAt) {
+      return NextResponse.json({ success: false, code: 'RULES', error: 'Please accept the posting rules first (open Discussions and tap New).' }, { status: 403 })
+    }
+
+    const extras = parseDiscussionExtras(validatedData as Record<string, unknown>)
+    if (!extras.ok) {
+      return NextResponse.json({ success: false, error: extras.error }, { status: 400 })
+    }
+
     // Create the post
     const post = await prisma.socialPost.create({
       data: {
+        ...extras.data,
+        // Whoever starts a discussion follows it, so they hear about replies
+        follows: { create: { userId: session.user.id } },
         content: validatedData.content,
         visibility: validatedData.visibility || 'PUBLIC',
         userId: session.user.id,

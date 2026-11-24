@@ -16,6 +16,7 @@ export type NotificationType =
   | 'NEW_FOLLOWER'
   | 'BADGE_EARNED'
   | 'PROJECT_INVITE'
+  | 'DISCUSSION_REPLY'
   | 'SYSTEM'
 
 export interface SustainabilityData {

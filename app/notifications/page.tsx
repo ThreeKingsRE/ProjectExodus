@@ -17,6 +17,7 @@ type NotificationType =
   | 'NEW_FOLLOWER'
   | 'BADGE_EARNED'
   | 'PROJECT_INVITE'
+  | 'DISCUSSION_REPLY'
   | 'SYSTEM'
 
 interface Notification {
@@ -53,6 +54,7 @@ const getNotificationIcon = (type: NotificationType): string => {
     NEW_FOLLOWER: '👥',
     BADGE_EARNED: '🏆',
     PROJECT_INVITE: '📨',
+    DISCUSSION_REPLY: '💬',
     SYSTEM: '🔔',
   }
   return iconMap[type] || '🔔'

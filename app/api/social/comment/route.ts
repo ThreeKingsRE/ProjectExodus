@@ -54,6 +54,28 @@ export async function POST(request: Request) {
       }
     })
 
+    // Replying follows the discussion; everyone following it hears about the reply
+    try {
+      await prisma.discussionFollow.upsert({
+        where: { postId_userId: { postId, userId: session.user.id } },
+        create: { postId, userId: session.user.id }, update: {},
+      })
+      const [followers, post] = await Promise.all([
+        prisma.discussionFollow.findMany({ where: { postId, userId: { not: session.user.id } }, select: { userId: true }, take: 100 }),
+        prisma.socialPost.findUnique({ where: { id: postId }, select: { content: true, title: true } }),
+      ])
+      if (followers.length) {
+        const { createNotification } = await import('@/lib/notifications')
+        const topic = (post?.title || post?.content || 'a discussion').replace(/\s+/g, ' ').slice(0, 60)
+        await Promise.allSettled(followers.map((f: { userId: string }) => createNotification({
+          userId: f.userId, type: 'DISCUSSION_REPLY', title: `${comment.user.name || 'Someone'} replied`,
+          message: `New reply in “${topic}”`, link: `/community/discussions?post=${postId}`,
+        })))
+      }
+    } catch (e) {
+      console.error('Discussion follow/notify failed:', e)
+    }
+
     return NextResponse.json({
       success: true,
       data: comment
