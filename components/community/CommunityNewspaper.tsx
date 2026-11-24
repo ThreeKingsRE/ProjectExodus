@@ -5,7 +5,7 @@
 // same page as a look-only preview.
 
 import Link from 'next/link'
-import { ArrowRight, BookOpen, ExternalLink, Hash, Newspaper, Rocket, Users } from 'lucide-react'
+import { ArrowRight, BookOpen, CalendarDays, ExternalLink, Hash, Newspaper, Rocket, Users } from 'lucide-react'
 import { SustainableTechBillboard } from '@/components/community/SustainableTechBillboard'
 import { CareerFeed } from '@/components/community/CareerFeed'
 import { LiveStrip } from '@/components/community/LiveStrip'
@@ -111,6 +111,17 @@ export function CommunityNewspaper({ guest = false, careerPosts = [], news = [],
 
         <Section title="Highlights">
           <SustainableTechBillboard bare />
+        </Section>
+
+        <Section title="Meetings" action={more('/meetings', 'Open calendar')}>
+          <Link href="/meetings" className="no-min-size flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4 hover:border-[var(--primary)]">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[var(--primary)]/15 text-[var(--primary)]"><CalendarDays className="h-6 w-6" aria-hidden /></span>
+            <span className="min-w-0">
+              <span className="block text-[15px] font-bold">Town halls, boards and councils</span>
+              <span className="block text-xs text-[var(--muted-foreground)]">Search any state, county or town. See when meetings are, how to join, and the minutes and recordings after.</span>
+            </span>
+            <ArrowRight className="h-4 w-4 shrink-0 text-[var(--muted-foreground)]" aria-hidden />
+          </Link>
         </Section>
 
         <Section locked={guest} title="From My Career" action={more('/my/career', 'Post your work')}>

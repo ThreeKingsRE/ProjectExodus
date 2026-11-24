@@ -12,6 +12,7 @@ date; never mark one done without the owner's confirmation.
 5. **Disconnect John's Vercel copy** of the project (it fails its builds).
 6. **Set up PartyKit** if live co-editing in documents is wanted (documents otherwise work one person at a time with autosave).
 7. **Check that sign-up emails are set up in Vercel** so My Career vouches can be confirmed: `RESEND_API_KEY`, `EMAIL_FROM` (a sender on your verified domain) and `NEXT_PUBLIC_SITE_URL=https://www.projxodus.com`. Without them a signer sees "we couldn't send the confirmation email" and no seal appears. See `docs/SETUP_GUIDE.md` Part 4.
+8. **Add a `CRON_SECRET` environment variable in Vercel** (Settings → Environment Variables; any long random string, then Redeploy). It turns on the daily refresh of government meeting calendars. Without it, calendars still update when someone views a town, just not overnight.
 
 ## Done
 

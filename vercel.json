@@ -19,5 +19,11 @@
         }
       ]
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/meetings/refresh",
+      "schedule": "0 9 * * *"
+    }
   ]
 }

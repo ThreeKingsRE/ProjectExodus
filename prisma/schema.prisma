@@ -196,8 +196,8 @@ model User {
   commentReactions         CommentReaction[]      @relation("CommentReactions")
 
   // Initiative drafts (pre-creation workspaces with Sage)
-  initiativeDrafts          InitiativeDraft[]    @relation("InitiativeDrafts")
-  projectItemComments       ProjectItemComment[] @relation("ProjectItemCommentAuthor")
+  initiativeDrafts          InitiativeDraft[]       @relation("InitiativeDrafts")
+  projectItemComments       ProjectItemComment[]    @relation("ProjectItemCommentAuthor")
   careerProfile             CareerProfile?
   careerPosts               CareerPost[]
   careerTags                CareerPostTag[]
@@ -205,6 +205,9 @@ model User {
   discussionSaves           DiscussionSave[]
   discussionRulesAcceptedAt DateTime? // Accepted the posting rules before their first discussion
   discussionTown            String? // 'My town' filter in Discussions (city or region)
+  meetingFollows            MeetingCalendarFollow[]
+  meetingNotes              MeetingNote[]
+  meetingsShowHolidays      Boolean                 @default(true) // Show federal holidays on the Meetings calendar
 
   @@index([email])
   @@index([role])
@@ -4014,4 +4017,127 @@ model CareerVouch {
   createdAt        DateTime          @default(now())
 
   @@index([postId])
+}
+
+// ============================================
+// MEETINGS
+// A central hub for government meetings: every state, county, city, town and
+// township (from the Census), with meeting schedules that update from official
+// feeds (Legistar, iCal) or are added by members, and the minutes, agendas and
+// recordings after the fact. Each member builds their own calendar by following places.
+// ============================================
+
+enum JurisdictionKind {
+  FEDERAL
+  STATE
+  COUNTY
+  PLACE // incorporated city, village, borough, town
+  TOWNSHIP // county subdivision: New York town, Pennsylvania township...
+}
+
+enum MeetingStatus {
+  SCHEDULED
+  CANCELED
+}
+
+enum MeetingSourceKind {
+  LEGISTAR
+  ICS
+}
+
+model Jurisdiction {
+  id         String           @id @default(cuid())
+  key        String           @unique // us | st:36 | co:36055 | pl:3663000 | cs:3605508246
+  kind       JurisdictionKind
+  name       String // Brighton
+  govType    String? // town, township, city, village, borough...
+  fullName   String // Brighton town (as the Census names it)
+  slug       String           @unique
+  state      String? // USPS code, e.g. NY
+  stateName  String?
+  countyName String?
+  countyKey  String?
+
+  meetings Meeting[]
+  sources  MeetingSource[]
+  follows  MeetingCalendarFollow[]
+
+  @@index([state, kind])
+  @@index([name])
+  @@index([countyKey])
+}
+
+model MeetingSource {
+  id             String            @id @default(cuid())
+  jurisdictionId String
+  jurisdiction   Jurisdiction      @relation(fields: [jurisdictionId], references: [id], onDelete: Cascade)
+  kind           MeetingSourceKind
+  ref            String // Legistar client name (seattle) or an iCal https URL
+  label          String?
+  timezone       String? // IANA; defaults to the state's main zone
+  addedById      String?
+  enabled        Boolean           @default(true)
+  lastFetchedAt  DateTime?
+  lastError      String?
+  createdAt      DateTime          @default(now())
+  meetings       Meeting[]
+
+  @@unique([jurisdictionId, kind, ref])
+}
+
+model Meeting {
+  id             String         @id @default(cuid())
+  jurisdictionId String
+  jurisdiction   Jurisdiction   @relation(fields: [jurisdictionId], references: [id], onDelete: Cascade)
+  title          String
+  body           String? // The board or committee: Town Board, Planning Commission
+  startsAt       DateTime
+  endsAt         DateTime?
+  timezone       String?
+  timeKnown      Boolean        @default(true)
+  location       String?
+  joinUrl        String?
+  agendaUrl      String?
+  minutesUrl     String?
+  recordingUrl   String?
+  sourceUrl      String? // The official page for this meeting
+  status         MeetingStatus  @default(SCHEDULED)
+  statusNote     String?
+  sourceId       String?
+  source         MeetingSource? @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  externalId     String?
+  addedById      String?
+  notes          MeetingNote[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@unique([sourceId, externalId])
+  @@index([jurisdictionId, startsAt])
+  @@index([startsAt])
+}
+
+/// A member's summary or key decisions from a meeting
+model MeetingNote {
+  id        String   @id @default(cuid())
+  meetingId String
+  meeting   Meeting  @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([meetingId, createdAt])
+}
+
+/// A place on a member's personal Meetings calendar
+model MeetingCalendarFollow {
+  id             String       @id @default(cuid())
+  userId         String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jurisdictionId String
+  jurisdiction   Jurisdiction @relation(fields: [jurisdictionId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@unique([userId, jurisdictionId])
+  @@index([userId])
 }

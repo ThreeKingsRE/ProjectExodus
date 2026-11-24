@@ -152,6 +152,7 @@ export function Header() {
     { name: 'Learn', href: '/learn' },
     { name: 'Articles', href: '/articles' },
     { name: 'Community', href: '/community' },
+    { name: 'Meetings', href: '/meetings' },
   ]
 
   const learnMenuItems = [
@@ -640,6 +641,10 @@ export function Header() {
                   onNavigate={() => setMobileMenuOpen(false)}
                   extra={<TradeIconStrip size={16} gap={12} className="text-[var(--primary)] opacity-70" />}
                 />
+              </MenuGroup>
+
+              <MenuGroup>
+                <MenuRow label="Meetings" href="/meetings" icon={CalendarDays} active={pathname.startsWith('/meetings')} onNavigate={() => setMobileMenuOpen(false)} />
               </MenuGroup>
 
               <MenuGroup title="Community">
