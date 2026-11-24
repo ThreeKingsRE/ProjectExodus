@@ -132,18 +132,10 @@ async function icsMeetings(url: string, tz: string, from: Date, to: Date): Promi
 }
 
 async function rochesterMeetings(now: Date, to: Date): Promise<MeetingInput[]> {
-  const events = new Map<string, MeetingInput>()
-  // The official upcoming list uses a zero-based numeric pager.
-  for (let page = 0; page < 4; page++) {
-    const url = new URL(ROCHESTER_LIST)
-    if (page) url.searchParams.set('page', String(page))
-    const html = await safeGetText(url.href, { accept: 'text/html' })
-    for (const meeting of parseRochesterMeetings(html, now)) {
-      if (meeting.startsAt < to) events.set(meeting.externalId, meeting)
-    }
-    if (!/<a\b[^>]*\brel="next"/i.test(html)) break
-  }
-  return [...events.values()]
+  // The city permits the primary listing but can reject paginated requests.
+  // Import verified first-page events without discarding prior records.
+  const html = await safeGetText(ROCHESTER_LIST, { accept: 'text/html' })
+  return parseRochesterMeetings(html, now).filter(meeting => meeting.startsAt < to)
 }
 
 /** Pull a source’s meetings (a year back, 150 days ahead) and keep the database in step with it. */
