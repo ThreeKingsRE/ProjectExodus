@@ -131,17 +131,16 @@ export function CollaborativeEditor({
       try {
         setConnectionStatus('connecting')
 
-        // Dynamically import Y.js and PartyKit provider
+        // Dynamically import Y.js and the collaboration provider
         const { Doc } = await import('yjs')
 
-        // Try to import y-partykit - may not be installed
-        let YPartyKitProvider: any
+        // The provider talks to our Cloudflare collaboration server (see cloudflare/worker.ts)
+        let YProvider: any
         try {
-          const partykit = await import('y-partykit/provider')
-          // YPartyKitProvider is the default export
-          YPartyKitProvider = partykit.default
+          const mod = await import('y-partyserver/provider')
+          YProvider = mod.default
         } catch (e) {
-          fallBack('y-partykit not installed')
+          fallBack('collaboration provider not installed')
           return
         }
 
@@ -152,14 +151,15 @@ export function CollaborativeEditor({
         // Get room name
         const roomName = getDocumentName(collaborationType, documentId!)
 
-        // Create PartyKit provider. The server requires a short-lived signed
+        // Create the provider. The server requires a short-lived signed
         // token; `params` is re-evaluated on every (re)connect so a fresh token
         // is fetched each time.
-        provider = new YPartyKitProvider(
+        provider = new YProvider(
           collaborationConfig.host!,
           roomName,
           ydoc,
           {
+            party: 'document',
             connect: true,
             params: async () => {
               const res = await fetch(`/api/documents/${documentId}/collab-token`, {

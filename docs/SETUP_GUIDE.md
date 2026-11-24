@@ -171,15 +171,17 @@ click the domain → add the records there.
 
 ---
 
-## Part 5: Live document collaboration (PartyKit): let's do this one together
+## Part 5: Live document collaboration (Cloudflare): let's do this one together
 
-This part needs a terminal command, so it's easiest done with Claude:
+Live co-editing runs on a small free Cloudflare Worker. This part is easiest done with Claude:
 
-1. Start a session and say **"let's set up PartyKit"**.
-2. Claude will start a login and give you a short code and a link.
-3. Open the link on your phone or computer, sign in with GitHub, and enter the code.
-4. Claude deploys the collaboration server, creates the shared secret, and tells you
-   the exact two values to paste into Vercel:
+1. Make a free account at **dash.cloudflare.com** (no card needed).
+2. In **Workers & Pages**, open it once so Cloudflare asks you to pick a free `workers.dev`
+   name (this becomes part of the address).
+3. Create an **API token** (My Profile → API Tokens → Create Token → the **Edit Cloudflare
+   Workers** template). Copy your **Account ID** from the Workers & Pages page.
+4. Tell Claude "I have the Cloudflare token". Claude opens a private form for the token, deploys
+   the server, creates the shared secret, and tells you the exact two values to paste into Vercel:
    `PARTYKIT_SECRET` and `NEXT_PUBLIC_PARTYKIT_HOST`.
 
 Until then, documents still work and save normally. Only the live
@@ -258,6 +260,6 @@ Do these on **YOUR-SITE**:
 - [ ] Part 2: `ANTHROPIC_API_KEY` (and optionally `SAGE_MODEL`)
 - [ ] Part 3: `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`
 - [ ] Part 4: Resend domain verified; `RESEND_API_KEY`, `EMAIL_FROM`
-- [ ] Part 5: PartyKit, done together with Claude
+- [ ] Part 5: Cloudflare Worker, done together with Claude
 - [ ] Part 7: pull request merged, deployment **Ready**
 - [ ] Part 8: sign-up email, password reset, Sage and drawings all tested

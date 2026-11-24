@@ -1,19 +1,19 @@
 /**
  * Collaboration Configuration
  *
- * This file configures the real-time collaboration infrastructure using Y.js and PartyKit.
+ * This file configures the real-time collaboration infrastructure using Y.js on a Cloudflare Worker (cloudflare/worker.ts).
  *
- * PartyKit runs on Cloudflare's edge network (Durable Objects) for:
+ * The Worker runs on Cloudflare's edge network (Durable Objects) for:
  * - Global low-latency connections
  * - Automatic scaling (each document = isolated "party")
  * - Built-in persistence
  *
  * DEPLOYMENT:
- * 1. Run `npm run party:deploy` to deploy to PartyKit
- * 2. Set NEXT_PUBLIC_PARTYKIT_HOST in .env to your deployed URL
+ * 1. Run `npm run party:deploy` to deploy the Worker
+ * 2. Set NEXT_PUBLIC_PARTYKIT_HOST in .env to your Worker address (no https://)
  *
  * DEVELOPMENT:
- * Run `npm run party:dev` to start local PartyKit server
+ * Run `npm run party:dev` to start the local server (127.0.0.1:8787)
  */
 
 // PartyKit project name (must match partykit.json)
@@ -21,11 +21,11 @@ const PARTYKIT_PROJECT = "exodus-collab";
 
 export const collaborationConfig = {
   // PartyKit host URL
-  // Development: 127.0.0.1:1999
-  // Production: exodus-collab.your-username.partykit.dev
+  // Development: 127.0.0.1:8787
+  // Production: exodus-collab.your-subdomain.workers.dev
   host:
     process.env.NEXT_PUBLIC_PARTYKIT_HOST ||
-    (process.env.NODE_ENV === "development" ? "127.0.0.1:1999" : null),
+    (process.env.NODE_ENV === "development" ? "127.0.0.1:8787" : null),
 
   // Project name for PartyKit
   project: PARTYKIT_PROJECT,
@@ -37,6 +37,7 @@ export const collaborationConfig = {
   },
 
   // Full WebSocket URL builder
+  // (rooms live at /parties/document/<room> on the Cloudflare server)
   getConnectionUrl(roomId: string, token?: string) {
     const host = this.host;
     if (!host) {
@@ -45,7 +46,7 @@ export const collaborationConfig = {
     }
 
     const protocol = this.protocol;
-    let url = `${protocol}://${host}/party/${roomId}`;
+    let url = `${protocol}://${host}/parties/document/${roomId}`;
 
     if (token) {
       url += `?token=${encodeURIComponent(token)}`;
@@ -141,22 +142,22 @@ export async function createPartyKitProvider(
     onSynced?: () => void;
   }
 ) {
-  // Dynamically import y-partykit to avoid SSR issues
-  let YPartyKitProvider: any;
+  // Dynamically import the provider to avoid SSR issues
+  let YProvider: any;
   try {
-    const partykit = await import("y-partykit/provider");
-    // YPartyKitProvider is the default export
-    YPartyKitProvider = partykit.default;
+    const mod = await import("y-partyserver/provider");
+    YProvider = mod.default;
   } catch (e) {
-    throw new Error("y-partykit not installed. Run: npm install y-partykit");
+    throw new Error("y-partyserver not installed. Run: npm install y-partyserver");
   }
 
   const host = collaborationConfig.host;
   if (!host) {
-    throw new Error("PartyKit host not configured");
+    throw new Error("Collaboration host not configured");
   }
 
-  const provider = new YPartyKitProvider(host, roomId, ydoc, {
+  const provider = new YProvider(host, roomId, ydoc, {
+    party: "document",
     connect: true,
     params: options?.token ? { token: options.token } : undefined,
   });

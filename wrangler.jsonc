@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "exodus-collab",
+  "main": "cloudflare/worker.ts",
+  "compatibility_date": "2025-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "durable_objects": { "bindings": [{ "name": "Document", "class_name": "Document" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Document"] }]
+}
