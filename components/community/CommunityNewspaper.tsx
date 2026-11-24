@@ -17,6 +17,8 @@ import { useEffect, useState } from 'react'
 import { COMMANDMENT_LIST, resolveCommandment } from '@/lib/commandments'
 
 interface CommunityNewspaperProps {
+  /** Signed-out preview: everything shows, nothing can be clicked */
+  guest?: boolean
   user: any
   suggestedUsers: any[]
   activeProjects: any[]
@@ -44,6 +46,7 @@ function getTimeAgo(dateString: Date | string): string {
 }
 
 export function CommunityNewspaper({
+  guest = false,
   user,
   suggestedUsers,
   activeProjects,
@@ -70,8 +73,19 @@ export function CommunityNewspaper({
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      {/* EXODOLOGY HUB - Bio-Digital Interface */}
-      <div className="flex flex-col">
+      {guest && (
+        <div className="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--card)]/95 backdrop-blur">
+          <div className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-2 sm:px-4">
+            <p className="min-w-0 flex-1 text-[11px] leading-snug text-[var(--muted-foreground)] sm:text-sm">
+              <span className="font-bold text-[var(--foreground)]">You’re viewing a preview.</span> Sign in to read, post and join in.
+            </p>
+            <Link href="/auth/signin?callbackUrl=/community" className="no-min-size inline-flex h-8 shrink-0 items-center rounded-full border border-[var(--border)] px-3 text-xs font-semibold">Sign in</Link>
+            <Link href="/auth/signup" style={{ color: 'var(--primary-foreground)' }} className="no-min-size inline-flex h-8 shrink-0 items-center rounded-full bg-[var(--primary)] px-3 text-xs font-bold">Join</Link>
+          </div>
+        </div>
+      )}
+      {/* EXODOLOGY HUB - Bio-Digital Interface. Look-only for guests: inert blocks taps, focus and links */}
+      <div className="flex flex-col" inert={guest || undefined} aria-label={guest ? 'Community preview' : undefined}>
 
         {/* ============================================ */}
         {/* MASTHEAD - Vintage Newspaper Header */}
@@ -91,8 +105,8 @@ export function CommunityNewspaper({
 
           {/* Top Border - Ornamental */}
           <div className="relative border-b-2 border-[var(--foreground)] bg-[var(--card)]">
-            <div className="max-w-7xl mx-auto px-4 py-2">
-              <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest">
+            <div className="max-w-7xl mx-auto px-3 py-1.5 sm:px-4 sm:py-2">
+              <div className="flex items-center justify-between gap-2 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider sm:tracking-widest">
                 <div className="flex items-center gap-4">
                   <span className="text-[var(--foreground)]">Est. 2026</span>
                   <span className="text-theme-muted">•</span>
@@ -117,10 +131,10 @@ export function CommunityNewspaper({
           </div>
 
           {/* Main Masthead */}
-          <div className="relative px-4 py-8 border-b-2 border-[var(--foreground)]">
+          <div className="relative px-4 py-4 sm:py-8 border-b-2 border-[var(--foreground)]">
             <div className="max-w-7xl mx-auto">
               {/* Decorative Top Border */}
-              <div className="flex items-center justify-center gap-2 mb-6">
+              <div className="flex items-center justify-center gap-2 mb-3 sm:mb-6">
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--foreground)] to-transparent" />
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
@@ -131,7 +145,7 @@ export function CommunityNewspaper({
               </div>
 
               {/* Newspaper Title - Classic Serif Style */}
-              <div className="text-center space-y-3">
+              <div className="text-center space-y-2 sm:space-y-3">
                 {/* Pre-title ornament */}
                 <div className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.3em] font-bold text-theme-muted">
                   <span>⚜</span>
@@ -140,7 +154,8 @@ export function CommunityNewspaper({
                 </div>
 
                 {/* Main Title - Gothic Newspaper Style */}
-                <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[var(--foreground)] tracking-tight leading-none" style={{
+                <h1 className="font-serif font-black text-[var(--foreground)] tracking-tight leading-none" style={{
+                  fontSize: 'clamp(2.1rem, 11vw, 6rem)',
                   textShadow: '2px 2px 0px var(--muted)',
                   letterSpacing: '0.02em'
                 }}>
@@ -155,19 +170,19 @@ export function CommunityNewspaper({
                 {/* Subtitle */}
                 <div className="flex items-center justify-center gap-3">
                   <div className="hidden sm:block h-px w-12 bg-[var(--foreground)]" />
-                  <p className="font-serif text-lg sm:text-xl md:text-2xl font-bold italic text-[var(--foreground)]">
+                  <p className="pt-1 font-serif text-base sm:text-xl md:text-2xl font-bold italic text-[var(--foreground)]">
                     Chronicle
                   </p>
                   <div className="hidden sm:block h-px w-12 bg-[var(--foreground)]" />
                 </div>
 
                 {/* Tagline - Old Newspaper Style */}
-                <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-theme-muted border-t border-b border-[var(--border)] py-2 max-w-2xl mx-auto">
+                <p className="text-[9px] sm:text-sm font-bold uppercase tracking-[0.12em] text-theme-muted border-t border-b border-[var(--border)] py-1.5 sm:py-2 max-w-2xl mx-auto">
                   "All The News That's Fit For A Sustainable Future"
                 </p>
 
                 {/* Location & Circulation Info */}
-                <div className="flex items-center justify-center gap-6 text-[10px] font-bold uppercase tracking-wider text-theme-muted pt-2">
+                <div className="flex items-center justify-center gap-6 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-theme-muted pt-1 sm:pt-2">
                   <div className="flex items-center gap-2">
                     <MapPin className="w-3 h-3" />
                     <span>Global Edition</span>
@@ -186,7 +201,7 @@ export function CommunityNewspaper({
               </div>
 
               {/* Decorative Bottom Border */}
-              <div className="flex items-center justify-center gap-2 mt-6">
+              <div className="flex items-center justify-center gap-2 mt-3 sm:mt-6">
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--foreground)] to-transparent" />
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
@@ -200,14 +215,14 @@ export function CommunityNewspaper({
 
           {/* Section Headers - Classic Newspaper Departments */}
           <div className="relative border-b border-[var(--border)] bg-[var(--card)]">
-            <div className="max-w-7xl mx-auto px-4 py-3">
+            <div className="max-w-7xl mx-auto px-3 py-2 sm:px-4 sm:py-3">
               <div className="flex items-center justify-between overflow-x-auto scrollbar-hide">
                 <div className="flex items-center gap-1 flex-shrink-0">
                   <Link href="/community/discussions">
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="h-8 px-4 text-xs font-bold uppercase tracking-wide border border-transparent hover:border-[var(--foreground)] transition-all"
+                      className="no-min-size h-8 px-2.5 sm:px-4 text-[11px] sm:text-xs font-bold uppercase tracking-wide border border-transparent hover:border-[var(--foreground)] transition-all"
                     >
                       <MessageSquare className="w-3.5 h-3.5 mr-2" />
                       Op-Ed
@@ -218,7 +233,7 @@ export function CommunityNewspaper({
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="h-8 px-4 text-xs font-bold uppercase tracking-wide border border-transparent hover:border-[var(--foreground)] transition-all"
+                      className="no-min-size h-8 px-2.5 sm:px-4 text-[11px] sm:text-xs font-bold uppercase tracking-wide border border-transparent hover:border-[var(--foreground)] transition-all"
                     >
                       <Rocket className="w-3.5 h-3.5 mr-2" />
                       Business
@@ -229,7 +244,7 @@ export function CommunityNewspaper({
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="h-8 px-4 text-xs font-bold uppercase tracking-wide border border-transparent hover:border-[var(--foreground)] transition-all"
+                      className="no-min-size h-8 px-2.5 sm:px-4 text-[11px] sm:text-xs font-bold uppercase tracking-wide border border-transparent hover:border-[var(--foreground)] transition-all"
                     >
                       <Users className="w-3.5 h-3.5 mr-2" />
                       Society
@@ -240,7 +255,7 @@ export function CommunityNewspaper({
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="h-8 px-4 text-xs font-bold uppercase tracking-wide border border-transparent hover:border-[var(--foreground)] transition-all"
+                      className="no-min-size h-8 px-2.5 sm:px-4 text-[11px] sm:text-xs font-bold uppercase tracking-wide border border-transparent hover:border-[var(--foreground)] transition-all"
                     >
                       <BookOpen className="w-3.5 h-3.5 mr-2" />
                       Features
@@ -249,7 +264,7 @@ export function CommunityNewspaper({
                 </div>
 
                 {/* Weather/Status Widget */}
-                <div className="flex items-center gap-3 px-3 py-1.5 border border-[var(--border)] text-[10px] font-bold uppercase tracking-wide flex-shrink-0 ml-4">
+                <div className="flex items-center gap-3 px-2 py-1 sm:px-3 sm:py-1.5 border border-[var(--border)] text-[10px] font-bold uppercase tracking-wide flex-shrink-0 ml-2 sm:ml-4">
                   <div className="flex items-center gap-1.5">
                     <Activity className="w-3 h-3 text-emerald-600" />
                     <span className="text-emerald-600 hidden sm:inline">Community: Thriving</span>
@@ -273,9 +288,9 @@ export function CommunityNewspaper({
           </div>
 
           <div className="relative max-w-7xl mx-auto overflow-hidden">
-            <div className="flex items-center gap-3 px-4 py-2.5">
+            <div className="flex items-center gap-2 px-3 py-1.5 sm:gap-3 sm:px-4 sm:py-2.5">
               {/* Pulse Indicator */}
-              <div className="flex items-center gap-2 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase flex-shrink-0 backdrop-blur-sm">
+              <div className="flex items-center gap-1.5 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 px-2 py-1 sm:gap-2 sm:px-3 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase flex-shrink-0 backdrop-blur-sm">
                 <div className="relative">
                   <Zap className="w-3.5 h-3.5" />
                   <div className="absolute inset-0 bg-emerald-500 blur-sm rounded-full animate-pulse" />
@@ -285,7 +300,7 @@ export function CommunityNewspaper({
 
               {/* Activity Stream */}
               <div className="flex-1 overflow-hidden">
-                <div className="animate-marquee whitespace-nowrap text-sm font-medium text-[var(--foreground)]">
+                <div className="animate-marquee whitespace-nowrap text-xs sm:text-sm font-medium text-[var(--foreground)]">
                   {latestActivity.map((activity: any, i: number) => (
                     <span key={i} className="inline-flex items-center mr-12">
                       <Hexagon className="w-3 h-3 text-theme-primary mr-2 inline-block" style={{ fill: 'var(--primary)', fillOpacity: 0.2 }} />
@@ -327,7 +342,7 @@ export function CommunityNewspaper({
         {/* ============================================ */}
         {/* SUSTAINABLE TECH BILLBOARD */}
         {/* ============================================ */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <SustainableTechBillboard />
         </div>
 
@@ -338,31 +353,31 @@ export function CommunityNewspaper({
           {/* Ambient background */}
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)] via-[var(--background)] to-[var(--muted)]/10" />
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+          <div className="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-12">
 
             {/* ============================================ */}
             {/* BOTTOM GRID - Living Archives */}
             {/* ============================================ */}
-            <div className="mt-12 pt-10 border-t-2 border-[var(--border)]/40">
-              <div className="flex items-center justify-center gap-3 mb-8">
+            <div className="mt-2 pt-5 sm:mt-12 sm:pt-10 border-t-2 border-[var(--border)]/40">
+              <div className="flex items-center justify-center gap-3 mb-4 sm:mb-8">
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--border)]/50 to-transparent" />
                 <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-theme-muted">Living Archives</span>
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--border)]/50 to-transparent" />
               </div>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-8">
 
                 {/* Trending Streams - Guardian of Nature */}
                 <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-[var(--card)] to-[var(--card)]/50 border border-[var(--border)]/50">
                   <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-emerald-500/5 to-transparent" />
 
-                  <div className="relative bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 px-4 py-3 flex items-center justify-center gap-2">
+                  <div className="relative bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 px-3 py-2 sm:px-4 sm:py-3 flex items-center justify-center gap-2">
                     <TrendingUp className="w-5 h-5 text-white" />
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-white">
+                    <h3 style={{ fontSize: '0.75rem', lineHeight: 1.3 }} className="font-bold uppercase tracking-widest text-white">
                       Trending Streams
                     </h3>
                   </div>
 
-                  <div className="p-4 space-y-2.5">
+                  <div className="p-2.5 space-y-1.5 sm:p-4 sm:space-y-2.5">
                     {[
                       { topic: 'Direct Air Capture', tag: 'Carbon removal tech scaling globally' },
                       { topic: 'Hempcrete Building', tag: 'Carbon-negative construction materials' },
@@ -370,10 +385,10 @@ export function CommunityNewspaper({
                       { topic: 'Circular Economy', tag: 'Zero-waste product lifecycles' },
                       { topic: 'Ocean Cleanup Tech', tag: 'Microplastics & debris interception' },
                     ].map((item, i) => (
-                      <div key={i} className="group relative p-3 rounded-lg bg-gradient-to-br from-emerald-500/5 to-teal-500/5 border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
+                      <div key={i} className="group relative px-2.5 py-2 sm:p-3 rounded-lg bg-gradient-to-br from-emerald-500/5 to-teal-500/5 border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
                         <div className="flex items-center gap-3">
                           <div className="relative flex-shrink-0">
-                            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-sm">
+                            <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-sm">
                               {i + 1}
                             </div>
                             <div className="absolute inset-0 bg-emerald-500/20 blur-md rounded-lg" />
@@ -397,14 +412,14 @@ export function CommunityNewspaper({
                 <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-[var(--card)] to-[var(--card)]/50 border border-[var(--border)]/50">
                   <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-amber-500/5 to-transparent" />
 
-                  <div className="relative bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 px-4 py-3 flex items-center justify-center gap-2">
+                  <div className="relative bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 px-3 py-2 sm:px-4 sm:py-3 flex items-center justify-center gap-2">
                     <Award className="w-5 h-5 text-white" />
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-white">
+                    <h3 style={{ fontSize: '0.75rem', lineHeight: 1.3 }} className="font-bold uppercase tracking-widest text-white">
                       Recent Milestones
                     </h3>
                   </div>
 
-                  <div className="p-4 space-y-2.5">
+                  <div className="p-2.5 space-y-1.5 sm:p-4 sm:space-y-2.5">
                     {[
                       { badge: 'Community Members', user: 'total registered', count: communityStats.totalMembers, icon: Users },
                       { badge: 'Published Articles', user: 'knowledge pieces', count: communityStats.totalArticles, icon: Eye },
@@ -414,11 +429,11 @@ export function CommunityNewspaper({
                     ].map((achievement, i) => {
                       const Icon = achievement.icon
                       return (
-                        <div key={i} className="group relative p-3 rounded-lg bg-gradient-to-br from-amber-500/5 to-orange-500/5 border border-amber-500/20 hover:border-amber-500/40 transition-all">
+                        <div key={i} className="group relative px-2.5 py-2 sm:p-3 rounded-lg bg-gradient-to-br from-amber-500/5 to-orange-500/5 border border-amber-500/20 hover:border-amber-500/40 transition-all">
                           <div className="flex items-center gap-3">
                             <div className="relative flex-shrink-0">
-                              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400 via-yellow-500 to-orange-500 flex items-center justify-center">
-                                <Icon className="w-5 h-5 text-white" />
+                              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-amber-400 via-yellow-500 to-orange-500 flex items-center justify-center">
+                                <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                               </div>
                               <div className="absolute inset-0 bg-amber-500/20 blur-md rounded-lg" />
                             </div>
@@ -442,14 +457,14 @@ export function CommunityNewspaper({
                 <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-[var(--card)] to-[var(--card)]/50 border border-[var(--border)]/50">
                   <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-indigo-500/5 to-transparent" />
 
-                  <div className="relative bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 px-4 py-3 flex items-center justify-center gap-2">
+                  <div className="relative bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 px-3 py-2 sm:px-4 sm:py-3 flex items-center justify-center gap-2">
                     <Calendar className="w-5 h-5 text-white" />
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-white">
+                    <h3 style={{ fontSize: '0.75rem', lineHeight: 1.3 }} className="font-bold uppercase tracking-widest text-white">
                       This Cycle
                     </h3>
                   </div>
 
-                  <div className="p-4 space-y-2.5">
+                  <div className="p-2.5 space-y-1.5 sm:p-4 sm:space-y-2.5">
                     {[
                       { day: '2025', event: 'Climeworks Mammoth Goes Live', detail: 'Iceland — 36K tons CO₂/yr', icon: Wind },
                       { day: '2024', event: 'Solar Foods Factory 01 Opens', detail: 'Vantaa, Finland — Solein production', icon: Sun },
@@ -459,11 +474,11 @@ export function CommunityNewspaper({
                     ].map((item, i) => {
                       const Icon = item.icon
                       return (
-                        <div key={i} className="group relative p-3 rounded-lg bg-gradient-to-br from-indigo-500/5 to-blue-500/5 border border-indigo-500/20 hover:border-indigo-500/40 transition-all">
+                        <div key={i} className="group relative px-2.5 py-2 sm:p-3 rounded-lg bg-gradient-to-br from-indigo-500/5 to-blue-500/5 border border-indigo-500/20 hover:border-indigo-500/40 transition-all">
                           <div className="flex items-start gap-3">
                             <div className="relative flex-shrink-0">
-                              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-400 via-blue-500 to-cyan-500 flex items-center justify-center text-white">
-                                <span className="text-[9px] font-bold uppercase">{item.day}</span>
+                              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-indigo-400 via-blue-500 to-cyan-500 flex items-center justify-center text-white">
+                                <span className="text-[8px] sm:text-[9px] font-bold uppercase">{item.day}</span>
                               </div>
                               <div className="absolute inset-0 bg-indigo-500/20 blur-md rounded-lg" />
                             </div>
@@ -486,19 +501,19 @@ export function CommunityNewspaper({
               </div>
 
               {/* Wisdom Transmission - Exodology Quote */}
-              <div className="mt-12 relative rounded-2xl overflow-hidden border border-[var(--border)]/20">
+              <div className="mt-5 sm:mt-12 relative rounded-2xl overflow-hidden border border-[var(--border)]/20">
                 <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/5 via-[var(--accent)]/5 to-[var(--secondary)]/5" />
                 <div className="absolute top-0 left-1/4 w-32 h-32 bg-[var(--primary)]/10 rounded-full blur-3xl" />
                 <div className="absolute top-0 right-1/4 w-32 h-32 bg-[var(--accent)]/10 rounded-full blur-3xl" />
 
-                <div className="relative max-w-3xl mx-auto text-center px-8 py-10">
+                <div className="relative max-w-3xl mx-auto text-center px-4 py-5 sm:px-8 sm:py-10">
                   <div className="flex items-center justify-center gap-3 mb-4">
                     <Sparkles className="w-5 h-5 text-theme-primary opacity-50" />
                     <div className="h-px w-16 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent" />
                     <Sparkles className="w-5 h-5 text-theme-accent opacity-50" />
                   </div>
 
-                  <blockquote className="text-lg font-medium text-[var(--foreground)] leading-relaxed mb-4">
+                  <blockquote className="text-sm sm:text-lg font-medium text-[var(--foreground)] leading-relaxed mb-3 sm:mb-4">
                     "The future is not something we enter. The future is something we <span className="text-theme-primary font-bold">create</span> — through <span className="text-theme-accent font-bold">conscious action</span>, <span className="text-theme-secondary font-bold">collective wisdom</span>, and unwavering commitment to <span className="bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent font-bold">regeneration</span>."
                   </blockquote>
 
@@ -516,7 +531,7 @@ export function CommunityNewspaper({
         {/* ============================================ */}
         {/* FOOTER - Bio-Digital Signature */}
         {/* ============================================ */}
-        <div className="relative border-t-2 border-[var(--border)]/30 bg-gradient-to-br from-[var(--card)] via-[var(--background)] to-[var(--card)] mt-16">
+        <div className="relative border-t-2 border-[var(--border)]/30 bg-gradient-to-br from-[var(--card)] via-[var(--background)] to-[var(--card)] mt-6 sm:mt-16">
           {/* Subtle grid overlay */}
           <div className="absolute inset-0 opacity-[0.02]" style={{
             backgroundImage: `
@@ -526,7 +541,7 @@ export function CommunityNewspaper({
             backgroundSize: '30px 30px'
           }} />
 
-          <div className="relative max-w-7xl mx-auto px-4 py-6">
+          <div className="relative max-w-7xl mx-auto px-4 py-4 sm:py-6">
             {/* Guardian Constellation Divider */}
             <div className="flex items-center justify-center gap-2 mb-5">
               <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--border)]/50 to-[var(--border)]/50" />
@@ -566,7 +581,7 @@ export function CommunityNewspaper({
 
             {/* Meta Info */}
             <div className="text-center mt-4 pt-4 border-t border-[var(--border)]/20">
-              <div className="flex items-center justify-center gap-3 text-[9px] text-theme-muted font-mono">
+              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[9px] text-theme-muted font-mono">
                 <div className="flex items-center gap-1.5">
                   <Sun className="w-3 h-3" />
                   <span>Solar Sync Active</span>

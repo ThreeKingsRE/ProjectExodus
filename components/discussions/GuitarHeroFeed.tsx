@@ -509,7 +509,7 @@ export function GuitarHeroFeed() {
 
   if (isLoading || !hubData) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="flex h-[420px] items-center justify-center bg-black sm:h-auto sm:min-h-screen">
         <div className="text-center space-y-4">
           <div className="relative w-16 h-16 mx-auto">
             <div className="absolute inset-0 rounded-full border-2 border-cyan-500 animate-ping opacity-30" />
@@ -531,7 +531,7 @@ export function GuitarHeroFeed() {
   // ── Render ─────────────────────────────────────────────────────────────
 
   return (
-    <div className={`min-h-screen bg-black overflow-hidden relative select-none ${selectedItem ? 'gh-frozen' : ''}`}>
+    <div className={`sm:min-h-screen bg-black overflow-hidden relative select-none ${selectedItem ? 'gh-frozen' : ''}`}>
       {/* Background grid */}
       <div className="absolute inset-0 gh-grid-bg opacity-20" />
 
@@ -615,7 +615,7 @@ export function GuitarHeroFeed() {
       )}
 
       {/* ═══ LANE HEADERS ═══ */}
-      <div className="relative z-10 flex border-b border-white/5 overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
+      <div className="relative z-10 hidden border-b border-white/5 overflow-x-auto scrollbar-hide sm:flex" style={{ scrollbarWidth: 'none' }}>
         {LANE_KEYS.map((key, i) => {
           const config = LANE_CONFIG[key]
           return (
@@ -637,8 +637,10 @@ export function GuitarHeroFeed() {
       {/* ═══ THE FRETBOARD ═══ */}
       <div
         ref={fretboardRef}
-        className="relative flex overflow-x-auto scrollbar-hide"
-        style={{ height: 'calc(100vh - 130px)', scrollbarWidth: 'none' }}
+        // Phones: two rows of four short lanes, so all eight fit the screen.
+        // Larger screens: one row of full-height lanes.
+        className="relative grid grid-cols-4 sm:flex sm:h-[calc(100vh-130px)] sm:overflow-x-auto scrollbar-hide"
+        style={{ scrollbarWidth: 'none' }}
       >
         {LANE_KEYS.map((key, laneIndex) => {
           const config = LANE_CONFIG[key]
@@ -650,8 +652,12 @@ export function GuitarHeroFeed() {
           return (
             <div
               key={key}
-              className="min-w-[120px] flex-1 relative border-r border-white/[0.03] last:border-r-0 overflow-hidden flex-shrink-0"
+              className="relative h-[210px] min-w-0 overflow-hidden border-b border-r border-white/[0.05] sm:h-auto sm:min-w-[120px] sm:flex-1 sm:flex-shrink-0 sm:border-b-0 sm:border-white/[0.03] sm:last:border-r-0"
             >
+              {/* Lane name inside the lane on phones (the header row is hidden there) */}
+              <span className="pointer-events-none absolute inset-x-0 top-1.5 z-10 text-center text-[8px] font-black uppercase tracking-[0.15em] sm:hidden" style={{ color: `${config.color}b0` }}>
+                {LANE_NAMES[laneIndex]}
+              </span>
               {/* Lane center line */}
               <div
                 className="absolute top-0 bottom-0 left-1/2 w-px -translate-x-1/2 opacity-[0.04]"

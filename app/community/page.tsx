@@ -1,7 +1,6 @@
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db'
 import { CommunityNewspaper } from '@/components/community/CommunityNewspaper'
-import { CommunityHeartPage } from '@/components/community/CommunityHeartPage'
 
 async function getDashboardData(userId: string) {
   try {
@@ -133,33 +132,32 @@ async function getDashboardData(userId: string) {
   }
 }
 
-// Top contributors shown on the non-logged-in BizID card carousel.
-// We only require a name — guardianArchetype is optional (commandment
-// resolver falls back to a default), and stockScore=0 is fine for newer
-// users so the carousel always has enough faces to cycle through.
-async function getFeaturedContributors() {
+// Guest preview of the newspaper: public counts and public activity only
+// (no member names, since visitors aren't signed in).
+async function getGuestData() {
   try {
-    return await prisma.user.findMany({
-      where: {
-        name: { not: null },
-      },
-      select: {
-        id: true,
-        name: true,
-        declaration: true,
-        guardianArchetype: true,
-        fishCustomization: true,
-        stockScore: true,
-      },
-      orderBy: [
-        { stockScore: 'desc' },
-        { createdAt: 'desc' },
-      ],
-      take: 10,
-    })
+    const [totalMembers, activeProjects, knowledgeArticles, totalArticles, totalProjects] = await prisma.$transaction([
+      prisma.user.count(),
+      prisma.project.count({ where: { status: { in: ['ACTIVE', 'PLANNING'] } } }),
+      prisma.article.count({ where: { status: 'PUBLISHED' } }),
+      prisma.article.count(),
+      prisma.project.count(),
+    ])
+    const recentActivity = await prisma.$queryRaw<Array<{ type: string; message: string; created_at: Date }>>`
+      SELECT 'new_project' as type, CONCAT('New project launched: ', name) as message, "createdAt" as created_at
+      FROM "Project"
+      WHERE "createdAt" >= NOW() - INTERVAL '24 hours' AND visibility = 'PUBLIC'
+      UNION ALL
+      SELECT 'new_article' as type, CONCAT('New article published: ', title) as message, "createdAt" as created_at
+      FROM "Article"
+      WHERE "createdAt" >= NOW() - INTERVAL '24 hours' AND status = 'PUBLISHED'
+      ORDER BY created_at DESC
+      LIMIT 10
+    `
+    return { recentActivity, communityStats: { totalMembers, activeProjects, knowledgeArticles, totalArticles, totalProjects } }
   } catch (error) {
-    console.error('Error fetching featured contributors:', error)
-    return []
+    console.error('Error fetching guest community data:', error)
+    return { recentActivity: [], communityStats: { totalMembers: 0, activeProjects: 0, knowledgeArticles: 0, totalArticles: 0, totalProjects: 0 } }
   }
 }
 
@@ -167,11 +165,21 @@ export default async function CommunityPage() {
   const session = await auth()
 
   // ============================================
-  // NON-LOGGED IN VIEW - Community Heart Page with Flip Widgets
+  // NON-LOGGED IN VIEW - the same newspaper, as a look-only preview
   // ============================================
   if (!session?.user?.id) {
-    const featuredContributors = await getFeaturedContributors()
-    return <CommunityHeartPage isAuthenticated={false} featuredContributors={featuredContributors} />
+    const guest = await getGuestData()
+    return (
+      <CommunityNewspaper
+        guest
+        user={null}
+        suggestedUsers={[]}
+        activeProjects={[]}
+        recentDiscussions={[]}
+        recentActivity={guest.recentActivity}
+        communityStats={guest.communityStats}
+      />
+    )
   }
 
   // ============================================

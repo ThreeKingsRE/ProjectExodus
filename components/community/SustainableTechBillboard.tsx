@@ -192,9 +192,9 @@ export function SustainableTechBillboard() {
   }
 
   return (
-    <div className="relative w-full my-8 sm:my-12">
+    <div className="relative w-full my-5 sm:my-12">
       {/* Section header */}
-      <div className="flex items-center justify-center gap-3 mb-6">
+      <div className="flex items-center justify-center gap-3 mb-3 sm:mb-6">
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--border)]/50 to-transparent" />
         <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-theme-muted flex items-center gap-2">
           <Leaf className="w-3 h-3" />
@@ -218,8 +218,8 @@ export function SustainableTechBillboard() {
             isTransitioning ? 'opacity-0' : 'opacity-100'
           }`}
         >
-          {/* Left: Visual */}
-          <div className={`relative md:w-2/5 h-48 sm:h-56 md:h-auto md:min-h-[340px] bg-gradient-to-br ${slide.gradient} overflow-hidden`}>
+          {/* Left: Visual. Icon, category and stat stack in the flow so they never overlap */}
+          <div className={`relative md:w-2/5 md:min-h-[340px] bg-gradient-to-br ${slide.gradient} overflow-hidden`}>
             {/* Background image with overlay */}
             <div
               className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
@@ -228,48 +228,45 @@ export function SustainableTechBillboard() {
             {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
-            {/* Icon + category */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-4">
-                <slide.icon className="w-8 h-8 sm:w-10 sm:h-10" />
+            <div className="relative flex h-full flex-row items-center justify-center gap-4 px-4 py-4 text-white sm:gap-5 sm:py-6 md:flex-col md:gap-3 md:py-8">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/20 bg-white/15 backdrop-blur-sm sm:h-16 sm:w-16 md:h-20 md:w-20 md:rounded-2xl">
+                <slide.icon className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10" />
               </div>
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em] text-white/70">
-                {slide.category}
-              </span>
-            </div>
-
-            {/* Big stat */}
-            <div className="absolute bottom-4 left-4 right-4 text-center">
-              <p className="text-3xl sm:text-4xl md:text-5xl font-black text-white/90 leading-none drop-shadow-lg">
-                {slide.stat}
-              </p>
-              <p className="text-[10px] sm:text-xs font-medium text-white/60 mt-1 uppercase tracking-wider">
-                {slide.statLabel}
-              </p>
+              <div className="min-w-0 text-left md:text-center">
+                <span className="block text-[9px] font-bold uppercase tracking-[0.25em] text-white/75 sm:text-xs">
+                  {slide.category}
+                </span>
+                <p className="mt-1 text-2xl font-black leading-none text-white/95 drop-shadow-lg sm:text-4xl md:text-5xl">
+                  {slide.stat}
+                </p>
+                <p className="mt-1 text-[9px] font-medium uppercase tracking-wider text-white/65 sm:text-xs">
+                  {slide.statLabel}
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Right: Text content */}
-          <div className="flex-1 p-5 sm:p-6 md:p-8 flex flex-col justify-between">
+          <div className="flex-1 p-3.5 sm:p-6 md:p-8 flex flex-col justify-between">
             <div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-[var(--foreground)] leading-tight mb-1">
+              <h3 style={{ fontSize: 'clamp(1.05rem, 4.2vw, 1.85rem)', lineHeight: 1.2 }} className="font-black text-[var(--foreground)] mb-1">
                 {slide.title}
               </h3>
-              <p className="text-sm sm:text-base font-semibold text-[var(--primary)] mb-4">
+              <p className="text-xs sm:text-base font-semibold text-[var(--primary)] mb-2 sm:mb-4">
                 {slide.subtitle}
               </p>
-              <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
+              <p className="line-clamp-5 text-[12.5px] leading-relaxed text-[var(--muted-foreground)] sm:line-clamp-none sm:text-sm">
                 {slide.description}
               </p>
             </div>
 
             {/* Source + CTA */}
-            <div className="mt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="mt-3 flex flex-row flex-wrap items-center justify-between gap-2 sm:mt-5 sm:gap-3">
               <a
                 href={slide.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[10px] sm:text-xs text-[var(--muted-foreground)] font-mono hover:text-[var(--primary)] transition-colors underline decoration-dotted underline-offset-2"
+                className="no-min-size min-w-0 flex-1 truncate text-[10px] sm:text-xs text-[var(--muted-foreground)] font-mono hover:text-[var(--primary)] transition-colors underline decoration-dotted underline-offset-2"
                 onClick={haptic}
               >
                 Source: {slide.source}
@@ -278,7 +275,7 @@ export function SustainableTechBillboard() {
                 href={slide.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r ${slide.gradient} text-white text-xs sm:text-sm font-bold hover:opacity-90 transition-opacity shadow-lg`}
+                className={`no-min-size inline-flex items-center gap-1.5 px-3 py-1.5 sm:gap-2 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r ${slide.gradient} text-white text-xs sm:text-sm font-bold hover:opacity-90 transition-opacity shadow-lg`}
                 onClick={haptic}
               >
                 Learn More
@@ -305,12 +302,12 @@ export function SustainableTechBillboard() {
         </button>
 
         {/* Progress dots */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10 md:bottom-4">
+        <div className="relative z-10 flex items-center justify-center gap-2 pb-3 md:pb-4">
           {SLIDES.map((s, i) => (
             <button
               key={s.id}
               onClick={() => { haptic(); goToSlide(i) }}
-              className={`relative before:absolute before:-inset-x-2 before:-inset-y-3 before:content-[''] h-2 rounded-full transition-all duration-300 ${
+              className={`no-min-size relative before:absolute before:-inset-x-2 before:-inset-y-3 before:content-[''] h-2 rounded-full transition-all duration-300 ${
                 i === activeIndex
                   ? 'w-6 bg-[var(--primary)]'
                   : 'w-2 bg-[var(--muted-foreground)]/40 hover:bg-[var(--muted-foreground)]/70'
