@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { isLinkLive } from '@/lib/features'
+import { SHOP_PAGES_LIVE, isLinkLive } from '@/lib/features'
 import { useState } from 'react'
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Send, Leaf } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
@@ -128,7 +128,9 @@ export function Footer() {
                 </h3>
               </div>
               <p className="text-theme-muted text-lg mb-6 font-medium">
-                Get the latest sustainable products, tips, and community updates delivered to your inbox.
+                {SHOP_PAGES_LIVE
+                  ? 'Get the latest sustainable products, tips, and community updates delivered to your inbox.'
+                  : 'Get new lessons, initiative updates, and community news delivered to your inbox.'}
               </p>
               <form onSubmit={handleSubscribe} className="flex flex-col gap-3 max-w-lg">
                 <div className="flex gap-3">
