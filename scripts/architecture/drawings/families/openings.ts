@@ -7,6 +7,7 @@
  * the subject highlighted.
  */
 import { type Pt, type SheetSpec, f, path, el, vDim, hDim, text } from '../sheet'
+import { DOOR_CONTEXT_SHEETS } from './doors'
 import { newLayers, finish, hatched, masked, circle, line, rect, ring, callouts, arrow, courses, Bounds, ORIGINAL, type Layers } from '../kit'
 
 const ACCENT = 'style="stroke: var(--_accent)"'
@@ -779,13 +780,16 @@ function knocker(): SheetSpec {
     'Elevation of a metal ring hung from a decorative plate on a door, swinging on a pivot so it can be struck against a small plate below.', 31, 'ring quarters'), L, B)
 }
 
+/** Superseded by doors.ts; kept for reference. */
+export const RETIRED_DOORS = [knocker]
+
 export const OPENING_SHEETS: Array<() => SheetSpec> = [
   sash, casement, shutters, palladian, lunette, roseWindow, tracery,
   () => crossWindow('mullion'), () => crossWindow('transom'),
   () => stainedGlass('stained-glass'), () => stainedGlass('stained-glass-nouveau'),
   ribbon, clerestory, dormer, oriel, deepRecess,
-  () => doorElevation('paneled-door'), () => doorElevation('dutch-door'), () => doorElevation('architrave'),
-  () => doorElevation('pediment-door'), () => doorElevation('door-transom'), () => doorElevation('lintel'),
+  () => doorElevation('paneled-door'),
+  ...DOOR_CONTEXT_SHEETS, // dutch door, architrave, pediment door, transom, lintel, knocker: close-ups in context
   () => portal('portal'), () => portal('door-tympanum'),
-  pocketDoor, revolvingDoor, knocker,
+  pocketDoor, revolvingDoor,
 ]
