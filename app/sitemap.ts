@@ -88,7 +88,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
 
     // Dynamic vendor pages
-    const vendors = await prisma.vendor.findMany({
+    const vendors = !isLinkLive('/vendors') ? [] : await prisma.vendor.findMany({
       select: { slug: true, updatedAt: true },
     })
 

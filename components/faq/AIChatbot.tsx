@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { MessageCircle, Send, X, Loader2, Bot, User } from 'lucide-react'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -16,7 +17,7 @@ export function AIChatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: 'Hello! I\'m Sage, your sustainability guide. I can help answer questions about sustainable living, our products, community, and anything else related to Project Exodus. How can I help you today?',
+      content: `Hello! I'm Sage, your sustainability guide. I can help answer questions about sustainable living, ${SHOP_PAGES_LIVE ? 'our products, ' : ''}community, and anything else related to Project Exodus. How can I help you today?`,
       timestamp: new Date()
     }
   ])

@@ -7,6 +7,7 @@ import { MessageCircle, X, Send, Leaf, Sparkles, Moon } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { useSageContextSafe } from './SageContext'
 import { SageNapAnimation } from './SageNapAnimation'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 
 /** Trigger haptic feedback on supported devices (iPad, iPhone, Android) */
 function triggerHaptic(duration: number = 10) {
@@ -123,7 +124,7 @@ export function ProjectExodusAI() {
       const timer = setTimeout(() => {
         const greeting: Message = {
           role: 'assistant',
-          content: "🌍 Welcome to Project Exodus! I'm Sage, your sustainability guide. I can help you discover eco-friendly products, calculate your carbon footprint, explore breakthrough innovations like carbon capture and green hydrogen, and learn about renewable energy, regenerative agriculture, zero waste living, green building, and more. What would you like to explore today?",
+          content: `🌍 Welcome to Project Exodus! I'm Sage, your sustainability guide. I can help you ${SHOP_PAGES_LIVE ? 'discover eco-friendly products, ' : ''}calculate your carbon footprint, explore breakthrough innovations like carbon capture and green hydrogen, and learn about renewable energy, regenerative agriculture, zero waste living, green building, and more. What would you like to explore today?`,
           timestamp: new Date()
         }
         setMessages([greeting])
@@ -206,7 +207,9 @@ export function ProjectExodusAI() {
       }
     } catch (error) {
       console.error('Sage error:', error)
-      appendToReply("Sorry, I couldn't reach my knowledge base just now. Please try again, or browse the [Learn hub](/learn) and [product directory](/products).")
+      appendToReply(SHOP_PAGES_LIVE
+        ? "Sorry, I couldn't reach my knowledge base just now. Please try again, or browse the [Learn hub](/learn) and [product directory](/products)."
+        : "Sorry, I couldn't reach my knowledge base just now. Please try again, or browse the [Learn hub](/learn).")
     } finally {
       setIsStreaming(false)
       setStatus(null)

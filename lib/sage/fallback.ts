@@ -1,7 +1,14 @@
 /**
  * Keyword-based replies used when no ANTHROPIC_API_KEY is configured or the
  * model call fails before any text was streamed.
+ *
+ * While the shop pages are switched off (lib/features.ts), replies mention no
+ * products, vendors, shipping or returns.
  */
+import { SHOP_PAGES_LIVE } from '../features'
+
+const SHOP = SHOP_PAGES_LIVE
+
 export function generateFallbackResponse(userMessage: string): string {
   const lowerMessage = userMessage.toLowerCase()
 
@@ -12,7 +19,7 @@ export function generateFallbackResponse(userMessage: string): string {
 
   // Greeting responses
   if (lowerMessage.match(/^(hi|hello|hey|greetings)/)) {
-    return "Hello! I'm here to help you learn about sustainable living and Project Exodus. I can answer questions about our platform, products, community, educational resources, and sustainability practices. What would you like to know?"
+    return `Hello! I'm here to help you learn about sustainable living and Project Exodus. I can answer questions about our platform, ${SHOP ? 'products, ' : ''}community, educational resources, and sustainability practices. What would you like to know?`
   }
 
   // LEED related
@@ -31,7 +38,10 @@ export function generateFallbackResponse(userMessage: string): string {
   }
 
   // Products/shopping related
-  if (lowerMessage.includes('product') || lowerMessage.includes('shop') || lowerMessage.includes('buy') || lowerMessage.includes('purchase')) {
+  if (lowerMessage.includes('product') || lowerMessage.includes('shop') || lowerMessage.includes('buy') || lowerMessage.includes('purchase') || /\bship(s|ped|ping)?\b/.test(lowerMessage) || lowerMessage.includes('return') || lowerMessage.includes('vendor') || lowerMessage.includes('marketplace')) {
+    if (!SHOP) {
+      return "Project Exodus doesn't sell products yet, so there's no shop, shipping or returns for now. In the meantime, our Learn section and Community are open to everyone, free."
+    }
     return "You can browse our curated marketplace of sustainable products from verified vendors. When you find something you like, you'll be directed to the vendor's secure checkout to complete your purchase. We carefully vet every vendor for authentic sustainability practices. Most vendors offer free shipping on orders over $50-75, and standard shipping typically takes 5-7 business days in the US."
   }
 
@@ -47,19 +57,22 @@ export function generateFallbackResponse(userMessage: string): string {
 
   // Account/signup related
   if (lowerMessage.includes('account') || lowerMessage.includes('sign up') || lowerMessage.includes('register') || lowerMessage.includes('join')) {
-    return "Creating an account is completely free! Just click 'Sign Up' in the navigation and you can create an account with your email or sign in using Google or Facebook. Once registered, you'll have access to our community forums, can create projects, save favorite products, and participate in sustainability discussions. Your personal information is secure and we never sell your data to third parties."
+    return `Creating an account is completely free! Just click 'Sign Up' in the navigation and you can create an account with your email or sign in using Google or Facebook. Once registered, you'll have access to our community forums, can create projects, ${SHOP ? 'save favorite products, ' : ''}and participate in sustainability discussions. Your personal information is secure and we never sell your data to third parties.`
   }
 
   // General Project Exodus questions
   if (lowerMessage.includes('what is') || lowerMessage.includes('about') || lowerMessage.includes('project exodus')) {
-    return "Project Exodus is a sustainable living marketplace and community platform. We're developing sustainable innovations to implement as new environmental infrastructure, focusing on Food, Water, and Energy. We connect conscious consumers with verified eco-friendly products, provide comprehensive educational resources, and host a community where members can collaborate on sustainability projects. Our mission is to ensure that everyone who joins our family loves sustainability as much as we do!"
+    return `Project Exodus is ${SHOP ? 'a sustainable living marketplace and community platform' : 'a sustainability learning and community platform'}. We're developing sustainable innovations to implement as new environmental infrastructure, focusing on Food, Water, and Energy. We ${SHOP ? 'connect conscious consumers with verified eco-friendly products, provide' : 'provide'} comprehensive educational resources, and host a community where members can collaborate on sustainability projects. Our mission is to ensure that everyone who joins our family loves sustainability as much as we do!`
   }
 
   // Pricing/cost questions
   if (lowerMessage.includes('cost') || lowerMessage.includes('price') || lowerMessage.includes('fee') || lowerMessage.includes('free')) {
+    if (!SHOP) {
+      return "Using Project Exodus is completely free! Creating an account, reading educational content, and joining the community doesn't cost anything."
+    }
     return "Using Project Exodus is completely free! Creating an account, browsing products, reading educational content, and joining the community doesn't cost anything. We earn a small commission when you purchase products through our verified vendor partners. Product prices vary by vendor, but many offer free shipping on orders over $50-75."
   }
 
   // Default response
-  return "That's a great question! While I can help with general information about Project Exodus, sustainable living practices, our educational resources (LEED, Passive House, Acorn Land Labs, etc.), community features, and shopping, I might need to direct you to more specific resources. You can browse our comprehensive FAQ page, explore our Learn section, or contact our support team at support@projectexodus.com for detailed assistance. What specific topic would you like to explore?"
+  return `That's a great question! While I can help with general information about Project Exodus, sustainable living practices, our educational resources (LEED, Passive House, Acorn Land Labs, etc.), ${SHOP ? 'community features, and shopping' : 'and community features'}, I might need to direct you to more specific resources. You can browse our comprehensive FAQ page, explore our Learn section, or contact our support team at support@projectexodus.com for detailed assistance. What specific topic would you like to explore?`
 }
