@@ -9,11 +9,10 @@
 import {
   type Pt, type SheetSpec, f, path, el, arc, vDim, hDim, breakLine, leftLabels, text, AREA,
 } from '../sheet'
+import { capitalProfile, capitalOrnament, type CapitalKind } from './orders-detail'
 
 const VIGNOLA =
   'Proportions after Giacomo Barozzi da Vignola, Regola delli cinque ordini d’architettura (Rome, 1562). Simplified; drawn by Project Exodus.'
-
-type CapitalKind = 'tuscan' | 'doric' | 'ionic' | 'corinthian' | 'composite'
 
 interface OrderSpec {
   id: string
@@ -57,7 +56,7 @@ export const ORDERS: OrderSpec[] = [
   },
 ]
 
-const E_HALF = 3 // entablature half-width shown, in M
+const E_HALF = 2.2 // entablature half-width shown on the whole-order strip, in M
 
 /** 16.333 -> '16 1/3' (drafting-style fractions; the font has no glyphs for ⅓ etc.) */
 function mods(n: number): string {
@@ -74,8 +73,8 @@ export function buildOrder(o: OrderSpec): SheetSpec {
   const colH = o.diameters * 2 // in M
   const entH = o.ent.architrave + o.ent.frieze + o.ent.cornice
   const total = colH + entH
-  const M = Math.min(28, 548 / total)
-  const AX = 300 // column centreline
+  const M = Math.min(17, 548 / total)
+  const AX = 480 // column centreline (whole order sits at the right; the capital and base are enlarged on the left)
   const GY = 600 // ground line
   const X = (m: number) => AX + m * M
   const Y = (m: number) => GY - m * M
@@ -115,61 +114,9 @@ export function buildOrder(o: OrderSpec): SheetSpec {
   prof.push([ru + 0.06, shaftTop + 0.03])
   prof.push(...arc(ru + 0.06, capBottom - 0.075, 0.09, 0.09, -Math.PI / 2, Math.PI / 2, 8))
   const C = capBottom
-  const capLabels: { text: string; h: number; r: number }[] = []
-  /** Convex quarter-round (ovolo/echinus) from (x0, h0) out and up to (x1, h1). */
-  const ovolo = (x0: number, h0: number, x1: number, h1: number, steps = 10): Pt[] =>
-    Array.from({ length: steps + 1 }, (_, i) => {
-      const t = (i / steps) * (Math.PI / 2)
-      return [x0 + (x1 - x0) * Math.sin(t), h1 - (h1 - h0) * Math.cos(t)] as Pt
-    })
-  switch (o.capital) {
-    case 'tuscan':
-      prof.push([ru, C + 0.05], [ru, C + 0.33], [ru + 0.06, C + 0.33], [ru + 0.06, C + 0.4])
-      prof.push(...ovolo(ru + 0.06, C + 0.4, 1.2, C + 0.67))
-      prof.push([1.25, C + 0.67], [1.25, C + 1])
-      capLabels.push({ text: 'ABACUS', h: C + 0.83, r: 1.25 }, { text: 'ECHINUS', h: C + 0.55, r: 1.05 }, { text: 'NECKING', h: C + 0.2, r: ru })
-      break
-    case 'doric':
-      prof.push([ru, C + 0.05], [ru, C + 0.3])
-      for (let k = 0; k < 3; k++) prof.push([ru + 0.04 + k * 0.03, C + 0.3 + k * 0.035], [ru + 0.04 + k * 0.03, C + 0.33 + k * 0.035])
-      prof.push(...ovolo(ru + 0.1, C + 0.41, 1.2, C + 0.67))
-      prof.push([1.25, C + 0.67], [1.25, C + 0.9], [1.32, C + 0.9], [1.32, C + 1])
-      capLabels.push({ text: 'ABACUS', h: C + 0.8, r: 1.25 }, { text: 'ECHINUS', h: C + 0.55, r: 1.1 }, { text: 'ANNULETS', h: C + 0.36, r: ru + 0.07 }, { text: 'NECKING', h: C + 0.17, r: ru })
-      break
-    case 'ionic':
-      prof.push([ru, C + 0.02], ...ovolo(ru, C + 0.02, 1.1, C + 0.33))
-      prof.push([1.1, C + 0.33], [1.18, C + 0.5], [1.25, C + 0.5], [1.25, C + 2 / 3])
-      capLabels.push({ text: 'ABACUS', h: C + 0.58, r: 1.25 }, { text: 'ECHINUS', h: C + 0.2, r: 1.0 }, { text: 'VOLUTE', h: C - 0.1, r: 1.6 })
-      break
-    case 'corinthian':
-    case 'composite': {
-      // bell with leaf tips projecting; abacus with concave sides
-      const bell = (u: number) => ru + (1.0 - ru) * Math.pow(u, 1.6)
-      const leafTip = (hc: number, reach: number) => [
-        [bell((hc - 0.25) / 2), C + hc - 0.25] as Pt,
-        [reach, C + hc - 0.05] as Pt,
-        [reach - 0.08, C + hc + 0.05] as Pt,
-        [bell((hc + 0.05) / 2), C + hc + 0.05] as Pt,
-      ]
-      prof.push([ru, C + 0.05])
-      prof.push(...leafTip(0.75, 1.12))
-      prof.push(...leafTip(1.5, 1.22))
-      if (o.capital === 'composite') {
-        prof.push([1.0, C + 1.6], ...ovolo(1.0, C + 1.6, 1.15, C + 1.85))
-        prof.push([1.05, C + 1.85], [1.05, C + 2.0])
-      } else {
-        prof.push([1.05, C + 1.6], [1.0, C + 2.0])
-      }
-      prof.push([1.12, C + 2.0], [1.12, C + 2.12], [1.42, C + 2.12], [1.42, C + 7 / 3])
-      capLabels.push(
-        { text: 'ABACUS', h: C + 2.22, r: 1.42 },
-        { text: o.capital === 'composite' ? 'ECHINUS' : 'CAULICOLI', h: C + 1.8, r: 1.05 },
-        { text: 'UPPER LEAVES', h: C + 1.3, r: 1.15 },
-        { text: 'LOWER LEAVES', h: C + 0.55, r: 1.05 },
-      )
-      break
-    }
-  }
+  const cp = capitalProfile(o.capital, ru)
+  prof.push(...cp.pts.map(([r, h]): Pt => [r, C + h]))
+  const capLabels = cp.labels.map((l) => ({ ...l, h: C + l.h }))
   prof.push([0, colH])
 
   const toPx = (pts: Pt[], mirror = false): Pt[] => pts.map(([r, h]) => [X(mirror ? -r : r), Y(h)])
@@ -178,7 +125,7 @@ export function buildOrder(o: OrderSpec): SheetSpec {
   const outlineD = path([...right, ...left], true)
 
   const layers: SheetSpec['layers'] = { hatch: [], shading: [], fine: [], profile: [], cut: [], center: [], dims: [], labels: [], notes: [] }
-  const defs = `<clipPath id="cl-${o.id}"><rect x="0" y="0" width="${AX}" height="800"/></clipPath>
+  let defs = `<clipPath id="cl-${o.id}"><rect x="0" y="0" width="${AX}" height="800"/></clipPath>
     <clipPath id="cr-${o.id}"><rect x="${AX}" y="0" width="400" height="800"/></clipPath>
     <clipPath id="cc-${o.id}"><path d="${outlineD}"/></clipPath>`
 
@@ -223,99 +170,7 @@ export function buildOrder(o: OrderSpec): SheetSpec {
     layers.fine!.push(el(`M${f(AX)} ${f(Y(h1))}H${f(X(rAt(h1)))}`, 'stroke-dasharray="2 3"'))
   }
 
-  // Capital ornament on the elevation half
-  if (o.capital === 'ionic' || o.capital === 'composite') {
-    const vy = o.capital === 'ionic' ? C + 0.1 : C + 1.75
-    const vx = o.capital === 'ionic' ? 1.32 : 1.3
-    const R = o.capital === 'ionic' ? 0.48 : 0.42
-    const spiral = (scale: number) => {
-      const pts: Pt[] = []
-      const turns = 3
-      for (let i = 0; i <= 180; i++) {
-        const th = (i / 180) * turns * 2 * Math.PI
-        const r = R * scale * Math.pow(0.11 / R, i / 180)
-        pts.push([X(vx + r * Math.sin(th)), Y(vy + r * Math.cos(th))])
-      }
-      return pts
-    }
-    layers.profile!.push(el(path(spiral(1))))
-    layers.fine!.push(el(path(spiral(0.82))))
-    layers.fine!.push(`<circle cx="${f(X(vx))}" cy="${f(Y(vy))}" r="${f(0.08 * M)}"/>`)
-    // canal joining the volute to the axis
-    layers.profile!.push(el(`M${f(AX)} ${f(Y(vy + R))}H${f(X(vx))}`))
-    // egg-and-dart on the echinus
-    const ey = o.capital === 'ionic' ? C + 0.2 : C + 1.72
-    for (let k = 0; k < 3; k++) {
-      const cx = X(0.15 + k * 0.32)
-      layers.fine!.push(`<ellipse cx="${f(cx)}" cy="${f(Y(ey))}" rx="${f(0.11 * M)}" ry="${f(0.13 * M)}"/>`)
-      layers.fine!.push(el(`M${f(cx + 0.16 * M)} ${f(Y(ey + 0.12))}L${f(cx + 0.16 * M)} ${f(Y(ey - 0.12))}`))
-    }
-  }
-  if (o.capital === 'corinthian' || o.capital === 'composite') {
-    // Bell (kalathos) behind the leaves
-    const bellPts: Pt[] = []
-    for (let i = 0; i <= 16; i++) {
-      const u = i / 16
-      bellPts.push([X(ru + (1.0 - ru) * Math.pow(u, 1.6)), Y(C + 2.0 * u)])
-    }
-    layers.fine!.push(el(path(bellPts)))
-
-    // Acanthus leaf: rounded lobes up each side, tip turned over toward the
-    // viewer, midrib. Filled with paper so it hides the bell behind it.
-    const leaf = (cx: number, h0: number, h1: number, w: number) => {
-      const lobes = 3
-      const side = (dir: 1 | -1) => {
-        let d = ''
-        for (let i = 0; i < lobes; i++) {
-          const u0 = i / lobes
-          const u1 = (i + 1) / lobes
-          const wAt = (u: number) => w * (0.55 + 0.45 * Math.sin(Math.PI * (0.2 + 0.6 * u)))
-          const ha = h0 + (h1 - h0) * 0.8 * u0
-          const hb = h0 + (h1 - h0) * 0.8 * u1
-          const notch = (u: number) => X(cx + dir * wAt(u) * 0.78)
-          const bulge = X(cx + dir * wAt((u0 + u1) / 2) * 1.12)
-          d += `Q${f(bulge)} ${f(Y((ha + hb) / 2))} ${f(notch(u1))} ${f(Y(hb))}`
-        }
-        return d
-      }
-      const top = h0 + (h1 - h0) * 0.8
-      const outline =
-        `M${f(X(cx))} ${f(Y(h0))}` +
-        `L${f(X(cx + w * 0.45))} ${f(Y(h0))}` +
-        side(1).replace(/^Q/, 'Q') +
-        `Q${f(X(cx + w * 0.7))} ${f(Y(h1))} ${f(X(cx))} ${f(Y(h1))}` +
-        `Q${f(X(cx - w * 0.7))} ${f(Y(h1))} ${f(X(cx - w * 0.78 * 0.55 - w * 0.2))} ${f(Y(top))}` +
-        `L${f(X(cx - w * 0.45))} ${f(Y(h0))}Z`
-      // turned-over tip: a small drooping lobe below the crown
-      const tip = `M${f(X(cx - w * 0.35))} ${f(Y(top + 0.04))}Q${f(X(cx))} ${f(Y(top - 0.22))} ${f(X(cx + w * 0.35))} ${f(Y(top + 0.04))}`
-      return [
-        `<path d="${outline}" style="fill: var(--_paper)" clip-path="url(#cr-${o.id})"/>`,
-        `<path d="${tip}" clip-path="url(#cr-${o.id})"/><path d="M${f(X(cx))} ${f(Y(h0))}V${f(Y(top - 0.1))}" clip-path="url(#cr-${o.id})"/>`,
-      ]
-    }
-    // back row (upper leaves) first so the front row overlaps it
-    const rows: Array<[number, number, number, number]> = [
-      // [centre, bottom, top, half width] in M
-      [0.45, C + 0.6, C + 1.55, 0.32], [1.0, C + 0.6, C + 1.5, 0.2],
-      [0, C + 0.05, C + 0.85, 0.34], [0.78, C + 0.05, C + 0.8, 0.28],
-    ]
-    for (const [cx, b, t, w] of rows) {
-      const [outline, detail] = leaf(cx, b, t, w)
-      layers.profile!.push(outline, detail)
-    }
-    if (o.capital === 'corinthian') {
-      // caulicoli and helices rising to the abacus corners
-      layers.fine!.push(el(path([[X(0.55), Y(C + 1.55)], [X(0.9), Y(C + 1.8)], [X(1.22), Y(C + 1.95)]])))
-      layers.profile!.push(`<circle cx="${f(X(1.25))}" cy="${f(Y(C + 1.9))}" r="${f(0.12 * M)}"/>`)
-      layers.fine!.push(el(path([[X(0.35), Y(C + 1.55)], [X(0.25), Y(C + 1.85)], [X(0.12), Y(C + 1.95)]])))
-      layers.fine!.push(`<circle cx="${f(X(0.12))}" cy="${f(Y(C + 2.0))}" r="${f(0.06 * M)}"/>`)
-    }
-    // fleuron at the centre of the abacus
-    layers.fine!.push(`<circle cx="${f(AX)}" cy="${f(Y(C + 2.22))}" r="${f(0.09 * M)}"/>`)
-  }
-  if (o.capital === 'doric' || o.capital === 'tuscan') {
-    layers.fine!.push(el(`M${f(AX)} ${f(Y(C + 0.67))}H${f(X(1.25))}`))
-  }
+  capitalOrnament(o.capital, layers, { X, Y: (h) => Y(C + h), M }, ru, `cr-${o.id}`, true)
 
   // ---- Entablature ----
   const e0 = colH
@@ -391,51 +246,184 @@ export function buildOrder(o: OrderSpec): SheetSpec {
   layers.center!.push(el(`M${AX} ${f(Y(-0.6))}V${f(Y(eC + 0.6))}`))
   layers.notes!.push(text(AX + 4, Y(eC + 0.45), '℄', 'class="t-accent"'))
 
-  const dx1 = X(E_HALF) + 30
-  const dx2 = dx1 + 72
-  layers.dims!.push(
-    vDim(dx1, Y(0), Y(1), '1 M'),
-    vDim(dx1, Y(1), Y(C), `${mods(C - 1)} M`),
-    vDim(dx1, Y(C), Y(colH), `${mods(o.capH)} M`),
-    vDim(dx1, Y(e0), Y(eC), `${mods(entH)} M`),
-    vDim(dx2, Y(0), Y(colH), `${colH} M = ${o.diameters} D`),
-    hDim(Y(0) + 16, X(-1), X(1), 'D = 2 M'),
-  )
-
-  const labelItems = [
-    { text: 'CORNICE', at: [xl, Y(eF + cornice / 2)] as Pt },
-    { text: 'FRIEZE', at: [xl, Y(eA + o.ent.frieze / 2)] as Pt },
-    { text: 'ARCHITRAVE', at: [xl, Y(e0 + o.ent.architrave / 2)] as Pt },
-    ...capLabels.map((c) => ({ text: c.text, at: [X(-c.r), Y(c.h)] as Pt })),
-    { text: 'SHAFT', at: [X(-rAt((shaftBottom + shaftTop) / 2)), Y((shaftBottom + shaftTop) / 2)] as Pt },
-    ...(o.base === 'tuscan'
-      ? [{ text: 'TORUS', at: [X(-1.375), Y(0.7)] as Pt }, { text: 'PLINTH', at: [X(-1.375), Y(0.25)] as Pt }]
-      : [
-          { text: 'UPPER TORUS', at: [X(-1.13), Y(0.925)] as Pt },
-          { text: 'SCOTIA', at: [X(-1.05), Y(0.72)] as Pt },
-          { text: 'LOWER TORUS', at: [X(-1.375), Y(0.458)] as Pt },
-          { text: 'PLINTH', at: [X(-1.375), Y(0.17)] as Pt },
-        ]),
-  ]
-  layers.labels!.push(...leftLabels(labelItems, AREA.x0 + 10, xl - 14))
-
+  layers.dims!.push(hDim(Y(0) + 16, X(-1), X(1), 'D = 2 M'))
   layers.notes!.push(
-    text(AX - 10, Y(0) + 44, 'HALF SECTION', 'text-anchor="end" class="t-sub"'),
-    text(AX + 10, Y(0) + 44, 'HALF ELEVATION', 'class="t-sub"'),
+    text(AX, Y(0) + 40, `H = ${colH} M = ${o.diameters} D`, 'text-anchor="middle" class="t-sub"'),
+    text(AX, Y(0) + 52, 'WHOLE ORDER', 'text-anchor="middle" class="t-small"'),
   )
+  // entablature callouts on the right of the strip
+  for (const [name, h] of [['CORNICE', eF + cornice / 2], ['FRIEZE', eA + o.ent.frieze / 2], ['ARCHITRAVE', e0 + o.ent.architrave / 2]] as const) {
+    layers.labels!.push(
+      `${el(`M${f(xr + 2)} ${f(Y(h))}H${f(xr + 8)}`)}<text x="${f(xr + 10)}" y="${f(Y(h) + 3)}" class="t-small">${name}</text>`,
+    )
+  }
 
-  const volR = o.capital === 'ionic' || o.capital === 'composite' ? 1.85 : 1.45
+  const detail = detailViews(o, layers)
+  defs += detail.defs
+
   return {
     id: o.id,
     title: o.name,
     subtitle: `Column and entablature · ${o.diameters} diameters`,
-    view: 'HALF SECTION · HALF ELEVATION',
+    view: 'HALF SECTION · HALF ELEVATION · CAPITAL AND BASE DETAILS',
     sheetNo: o.sheetNo,
     source: VIGNOLA,
     scale: { unitPx: M, unitName: 'modules', count: 4 },
     defs,
     layers,
-    bounds: [X(-Math.max(E_HALF, volR)) - 6, Y(eC) - 4, X(Math.max(E_HALF, volR)) + 6, Y(0) + 4],
+    bounds: [detail.bounds[0], Math.min(Y(eC), detail.bounds[1]) - 4, X(E_HALF) + 6, Math.max(Y(0) + 4, detail.bounds[3])],
     description: o.description,
   }
+}
+
+
+// ---------------------------------------------------------------------------
+// Enlarged views of the capital and the base, drawn on the left of the sheet
+// ---------------------------------------------------------------------------
+
+function basePts(kind: 'tuscan' | 'attic'): Pt[] {
+  const p: Pt[] = [[0, 0]]
+  if (kind === 'tuscan') {
+    p.push([1.375, 0], [1.375, 0.5])
+    p.push(...arc(1.175, 0.7, 0.2, 0.2, -Math.PI / 2, Math.PI / 2))
+    p.push([1.1, 0.9], [1.1, 1.0])
+    p.push(...arc(1.1, 1.15, 0.1, 0.15, -Math.PI / 2, -Math.PI, 6))
+  } else {
+    p.push([1.375, 0], [1.375, 1 / 3])
+    p.push(...arc(1.25, 0.458, 0.125, 0.125, -Math.PI / 2, Math.PI / 2))
+    p.push([1.15, 0.583], [1.15, 0.62])
+    p.push(...arc(1.15, 0.72, 0.13, 0.1, -Math.PI / 2, -1.5 * Math.PI, 10))
+    p.push([1.13, 0.82], [1.13, 0.85])
+    p.push(...arc(1.06, 0.925, 0.075, 0.075, -Math.PI / 2, Math.PI / 2, 8))
+    p.push([1.1, 1.0])
+    p.push(...arc(1.1, 1.1, 0.1, 0.1, -Math.PI / 2, -Math.PI, 6))
+  }
+  return p
+}
+
+function detailViews(o: OrderSpec, layers: NonNullable<SheetSpec['layers']>): { defs: string; bounds: [number, number, number, number] } {
+  const ru = o.topR
+  const kind = o.capital
+  const maxR = kind === 'ionic' || kind === 'composite' ? 1.85 : 1.45
+  const AXd = 235
+  const Md = Math.min(86, 110 / maxR)
+  const below = 1.4 // shaft shown under the capital
+  const above = 0.7 // architrave shown above it
+  const Hb = (below + o.capH + above) * Md
+  const top = 52
+  const Yd = (h: number) => top + Hb - (h + below) * Md // h = height above the underside of the capital
+  const Xd = (r: number) => AXd + r * Md
+  const id = o.id
+  const clipL = `dl-${id}`
+  const clipR = `dr-${id}`
+
+  // ---------------- capital ----------------
+  const cp = capitalProfile(kind, ru)
+  const prof: Pt[] = [[0, -below], [ru, -below], [ru, -0.2 + 0.03]]
+  prof.push([ru + 0.06, -0.17], ...arc(ru + 0.06, -0.075, 0.09, 0.09, -Math.PI / 2, Math.PI / 2, 8))
+  prof.push(...cp.pts, [0, o.capH])
+  const toPx = (pts: Pt[], mirror = false): Pt[] => pts.map(([r, h]) => [Xd(mirror ? -r : r), Yd(h)])
+  const outline = path([...toPx(prof), ...toPx([...prof].reverse(), true)], true)
+  const defs = `<clipPath id="${clipL}"><rect x="0" y="0" width="${AXd}" height="800"/></clipPath>
+    <clipPath id="${clipR}"><rect x="${AXd}" y="0" width="400" height="800"/></clipPath>`
+  layers.hatch!.push(`<g clip-path="url(#${clipL})"><path d="${outline}" fill="url(#h-stone)" stroke="none"/></g>`)
+  layers.cut!.push(`<path d="${outline}" clip-path="url(#${clipL})"/>`)
+  layers.profile!.push(`<path d="${outline}" clip-path="url(#${clipR})"/>`)
+  // joints at the astragal and the underside of the capital
+  layers.fine!.push(el(`M${f(AXd)} ${f(Yd(-0.17))}H${f(Xd(ru + 0.06))}M${f(AXd)} ${f(Yd(0))}H${f(Xd(ru + 0.06))}`))
+
+  // fluting (or plain shading) on the shaft, with the rounded flute ends
+  const h0 = -below + 0.15
+  const h1 = -0.42
+  if (o.flutes === 0) {
+    for (let k = 5; k <= 9; k++) layers.shading!.push(el(`M${f(Xd(ru * Math.sin((k / 10) * (Math.PI / 2))))} ${f(Yd(h0))}V${f(Yd(h1 + 0.3))}`))
+  } else {
+    const n = o.flutes
+    const step = (2 * Math.PI) / n
+    const arris: number[] = []
+    for (let a = step / 2; a < Math.PI / 2; a += step) {
+      const edges = n === 24 ? [a - step * 0.12, a + step * 0.12] : [a]
+      for (const e of edges) if (e > 0 && e < Math.PI / 2) arris.push(e)
+    }
+    for (const e of arris) layers.fine!.push(el(`M${f(Xd(ru * Math.sin(e)))} ${f(Yd(h0))}V${f(Yd(h1))}`))
+    // flute ends: a semicircle between each pair of arrises
+    for (let i = 0; i + 1 < arris.length; i += n === 24 ? 2 : 1) {
+      const xa = Xd(ru * Math.sin(arris[i]))
+      const xb = Xd(ru * Math.sin(arris[i + 1]))
+      const cx = (xa + xb) / 2
+      const rx = Math.abs(xb - xa) / 2
+      if (rx < 1.2) continue
+      layers.fine!.push(el(path(arc(cx, Yd(h1), rx, rx * 1.1, Math.PI, 2 * Math.PI, 10))))
+    }
+  }
+
+  capitalOrnament(kind, layers, { X: Xd, Y: Yd, M: Md }, ru, clipR)
+
+  // architrave fragment above the abacus
+  const eh = Yd(o.capH)
+  const eTop = Yd(o.capH + above)
+  const ew = 1.65
+  const archD = path([[Xd(-ew), eh], [Xd(ew), eh], [Xd(ew), eTop], [Xd(-ew), eTop]], true)
+  layers.hatch!.push(`<g clip-path="url(#${clipL})"><path d="${archD}" fill="url(#h-stone)" stroke="none"/></g>`)
+  layers.cut!.push(`<path d="M${f(Xd(-ew))} ${f(eh)}V${f(eTop)}H${f(AXd)}V${f(eh)}Z"/>`)
+  layers.profile!.push(`<path d="M${f(AXd)} ${f(eh)}H${f(Xd(ew))}V${f(eTop)}H${f(AXd)}" />`)
+  for (const frac of o.capital === 'doric' || o.capital === 'tuscan' ? [0.7] : [0.3, 0.62]) {
+    layers.fine!.push(el(`M${f(AXd)} ${f(eh + (eTop - eh) * frac)}H${f(Xd(ew))}`))
+  }
+  layers.profile!.push(breakLine(Xd(ew), eh, eTop), breakLine(Xd(-ew), eh, eTop))
+  layers.center!.push(el(`M${f(AXd)} ${f(eTop - 10)}V${f(Yd(-below) + 8)}`))
+
+  // callouts (left), dimensions (right)
+  const items: { text: string; at: Pt }[] = [
+    { text: 'ARCHITRAVE', at: [Xd(-ew), (eh + eTop) / 2] },
+    ...cp.labels.map((c) => ({ text: c.text, at: [Xd(-c.r), Yd(c.h)] as Pt })),
+    { text: 'ASTRAGAL', at: [Xd(-(ru + 0.12)), Yd(-0.1)] },
+    { text: o.flutes ? 'FLUTED SHAFT' : 'SHAFT', at: [Xd(-ru), Yd(-0.9)] },
+  ]
+  layers.labels!.push(...leftLabels(items, AREA.x0 + 10, Xd(-maxR) - 8))
+  const dimX = Xd(maxR) + 14
+  layers.dims!.push(vDim(dimX, Yd(0), Yd(o.capH), `${mods(o.capH)} M`, Xd(1.45)))
+  layers.notes!.push(
+    text(AXd, Yd(-below) + 24, 'CAPITAL · HALF SECTION · HALF ELEVATION', 'text-anchor="middle" class="t-small"'),
+  )
+
+  // ---------------- base ----------------
+  const Mb = 52
+  const bTopH = 1.5
+  const bBottom = 592
+  const Yb = (h: number) => bBottom - h * Mb
+  const Xb = (r: number) => AXd + r * Mb
+  const bp = basePts(o.base)
+  const shaftTopR = 1
+  const bprof: Pt[] = [...bp, [shaftTopR, 1.2], [shaftTopR, bTopH]]
+  bprof.push([0, bTopH])
+  const bPx = (pts: Pt[], mirror = false): Pt[] => pts.map(([r, h]) => [Xb(mirror ? -r : r), Yb(h)])
+  const bOutline = path([...bPx(bprof), ...bPx([...bprof].reverse(), true)], true)
+  const bl = `bl-${id}`
+  const br = `br-${id}`
+  const bdefs = `<clipPath id="${bl}"><rect x="0" y="0" width="${AXd}" height="800"/></clipPath>
+    <clipPath id="${br}"><rect x="${AXd}" y="0" width="400" height="800"/></clipPath>`
+  layers.hatch!.push(`<g clip-path="url(#${bl})"><path d="${bOutline}" fill="url(#h-stone)" stroke="none"/></g>`)
+  layers.cut!.push(`<path d="${bOutline}" clip-path="url(#${bl})"/>`)
+  layers.profile!.push(`<path d="${bOutline}" clip-path="url(#${br})"/>`)
+  const joints = o.base === 'tuscan' ? [0.5, 0.9, 1.0] : [1 / 3, 0.583, 0.62, 0.82, 0.85, 1.0]
+  for (const h of joints) {
+    const r = bp.reduce((best, [pr, ph]) => (Math.abs(ph - h) < Math.abs(best[1] - h) ? [pr, ph] : best), [0, -9])[0] as number
+    layers.fine!.push(el(`M${f(AXd)} ${f(Yb(h))}H${f(Xb(Math.max(r, 1)))}`))
+  }
+  layers.profile!.push(breakLine(Xb(1), Yb(bTopH), Yb(1.2), 3))
+  const bItems: { text: string; at: Pt }[] = o.base === 'tuscan'
+    ? [{ text: 'FILLET', at: [Xb(-1.1), Yb(0.95)] }, { text: 'TORUS', at: [Xb(-1.3), Yb(0.7)] }, { text: 'PLINTH', at: [Xb(-1.375), Yb(0.25)] }]
+    : [
+        { text: 'APOPHYGE', at: [Xb(-1.1), Yb(1.08)] },
+        { text: 'UPPER TORUS', at: [Xb(-1.13), Yb(0.925)] },
+        { text: 'SCOTIA', at: [Xb(-1.1), Yb(0.72)] },
+        { text: 'LOWER TORUS', at: [Xb(-1.375), Yb(0.458)] },
+        { text: 'PLINTH', at: [Xb(-1.375), Yb(0.17)] },
+      ]
+  layers.labels!.push(...leftLabels(bItems, AREA.x0 + 10, Xb(-1.375) - 8, 13))
+  layers.notes!.push(text(AXd, bBottom + 16, 'BASE · HALF SECTION · HALF ELEVATION', 'text-anchor="middle" class="t-small"'))
+  layers.center!.push(el(`M${f(AXd)} ${f(Yb(bTopH) - 6)}V${f(bBottom + 6)}`))
+
+  return { defs: defs + bdefs, bounds: [Xd(-maxR) - 6, top - 4, Xd(maxR) + 6, bBottom + 4] }
 }

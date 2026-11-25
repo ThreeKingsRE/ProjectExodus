@@ -1,33 +1,33 @@
 {
  "tuscan-column": {
-  "view": "HALF SECTION · HALF ELEVATION",
+  "view": "HALF SECTION · HALF ELEVATION · CAPITAL AND BASE DETAILS",
   "sheetNo": "COL-01",
   "source": "Proportions after Giacomo Barozzi da Vignola, Regola delli cinque ordini d’architettura (Rome, 1562). Simplified; drawn by Project Exodus.",
-  "aspect": 0.361
+  "aspect": 0.722
  },
  "doric-column": {
-  "view": "HALF SECTION · HALF ELEVATION",
+  "view": "HALF SECTION · HALF ELEVATION · CAPITAL AND BASE DETAILS",
   "sheetNo": "COL-02",
   "source": "Proportions after Giacomo Barozzi da Vignola, Regola delli cinque ordini d’architettura (Rome, 1562). Simplified; drawn by Project Exodus.",
-  "aspect": 0.317
+  "aspect": 0.722
  },
  "ionic-column": {
-  "view": "HALF SECTION · HALF ELEVATION",
+  "view": "HALF SECTION · HALF ELEVATION · CAPITAL AND BASE DETAILS",
   "sheetNo": "COL-03",
   "source": "Proportions after Giacomo Barozzi da Vignola, Regola delli cinque ordini d’architettura (Rome, 1562). Simplified; drawn by Project Exodus.",
-  "aspect": 0.284
+  "aspect": 0.722
  },
  "corinthian-column": {
-  "view": "HALF SECTION · HALF ELEVATION",
+  "view": "HALF SECTION · HALF ELEVATION · CAPITAL AND BASE DETAILS",
   "sheetNo": "COL-04",
   "source": "Proportions after Giacomo Barozzi da Vignola, Regola delli cinque ordini d’architettura (Rome, 1562). Simplified; drawn by Project Exodus.",
-  "aspect": 0.258
+  "aspect": 0.722
  },
  "composite-column": {
-  "view": "HALF SECTION · HALF ELEVATION",
+  "view": "HALF SECTION · HALF ELEVATION · CAPITAL AND BASE DETAILS",
   "sheetNo": "COL-05",
   "source": "Proportions after Giacomo Barozzi da Vignola, Regola delli cinque ordini d’architettura (Rome, 1562). Simplified; drawn by Project Exodus.",
-  "aspect": 0.258
+  "aspect": 0.722
  },
  "round-arch": {
   "view": "ELEVATION",
