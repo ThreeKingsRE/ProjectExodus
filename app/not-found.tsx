@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/Button'
 import { Leaf, Home, Search, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 
 export default function NotFoundPage() {
   return (
@@ -56,12 +57,14 @@ export default function NotFoundPage() {
                 GO HOME
               </Button>
             </Link>
-            <Link href="/products">
-              <Button size="lg" variant="outline" className="text-xl px-12 py-8 rounded-2xl font-black border-4 shadow-xl">
-                <Search className="w-6 h-6 mr-3" />
-                BROWSE PRODUCTS
-              </Button>
-            </Link>
+            {SHOP_PAGES_LIVE && (
+              <Link href="/products">
+                <Button size="lg" variant="outline" className="text-xl px-12 py-8 rounded-2xl font-black border-4 shadow-xl">
+                  <Search className="w-6 h-6 mr-3" />
+                  BROWSE PRODUCTS
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Helpful Links */}
@@ -75,7 +78,7 @@ export default function NotFoundPage() {
                 { name: 'Learn', href: '/learn' },
                 { name: 'Community', href: '/community' },
                 { name: 'About', href: '/about' },
-              ].map((link) => (
+              ].filter((link) => SHOP_PAGES_LIVE || link.href !== '/products').map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}

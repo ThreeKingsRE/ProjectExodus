@@ -4,6 +4,7 @@ import { Citation } from '@/components/learn/Citation'
 import { BackButton } from '@/components/navigation/BackButton'
 import { Sprout, Leaf, Droplet, Bug, TrendingUp, Heart, Shield, Eye, Scale, Users, CheckCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 
 export default function RegenerativeAgriculturePage() {
   const commandments = [
@@ -635,11 +636,13 @@ export default function RegenerativeAgriculturePage() {
               Agriculture can heal the planet. Join the regenerative revolution.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/products?category=agriculture">
-                <Button size="lg" className="text-xl px-12 py-8 bg-[var(--primary-foreground)] text-[var(--primary)] hover:opacity-90 font-black shadow-2xl">
-                  REGENERATIVE FARMING TOOLS
-                </Button>
-              </Link>
+              {SHOP_PAGES_LIVE && (
+                <Link href="/products?category=agriculture">
+                  <Button size="lg" className="text-xl px-12 py-8 bg-[var(--primary-foreground)] text-[var(--primary)] hover:opacity-90 font-black shadow-2xl">
+                    REGENERATIVE FARMING TOOLS
+                  </Button>
+                </Link>
+              )}
               <Link href="/learn">
                 <Button size="lg" variant="outline" className="text-xl px-12 py-8 border-4 border-[var(--primary-foreground)] text-[var(--primary-foreground)] hover:bg-[var(--primary-foreground)] hover:text-[var(--primary)] font-black">
                   MORE LEARNING RESOURCES

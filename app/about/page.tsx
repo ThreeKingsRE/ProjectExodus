@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader } from '@/components/ui/Card'
 import { Leaf, Droplet, Zap, Users, Heart, Shield, Sprout, BookOpen, Scale, Eye, Handshake, Award, Building2 } from 'lucide-react'
@@ -332,11 +333,13 @@ export default function AboutPage() {
                   GET STARTED
                 </Button>
               </Link>
-              <Link href="/products">
-                <Button size="lg" variant="outline" className="text-xl px-12 py-8 border-4 border-white text-white hover:bg-white hover:text-earth-900 font-black rounded-2xl">
-                  EXPLORE PRODUCTS
-                </Button>
-              </Link>
+              {SHOP_PAGES_LIVE && (
+                <Link href="/products">
+                  <Button size="lg" variant="outline" className="text-xl px-12 py-8 border-4 border-white text-white hover:bg-white hover:text-earth-900 font-black rounded-2xl">
+                    EXPLORE PRODUCTS
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

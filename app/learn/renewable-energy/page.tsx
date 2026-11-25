@@ -5,6 +5,7 @@ import { Citation } from '@/components/learn/Citation'
 import { BackButton } from '@/components/navigation/BackButton'
 import { Zap, Sun, Wind, Battery, TrendingUp, DollarSign, Leaf, Home, Factory, CheckCircle, GraduationCap, BookOpen, Award, Clock, Target, FileText, Users, Shield } from 'lucide-react'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 
 export default function RenewableEnergyPage() {
   return (
@@ -961,11 +962,13 @@ export default function RenewableEnergyPage() {
               The renewable revolution is here. Join the transition to sustainable power.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/products?category=renewable-energy">
-                <Button size="lg" className="text-xl px-12 py-8 bg-[var(--primary-foreground)] text-[var(--primary)] hover:opacity-90 font-black shadow-2xl">
-                  EXPLORE SOLAR PRODUCTS
-                </Button>
-              </Link>
+              {SHOP_PAGES_LIVE && (
+                <Link href="/products?category=renewable-energy">
+                  <Button size="lg" className="text-xl px-12 py-8 bg-[var(--primary-foreground)] text-[var(--primary)] hover:opacity-90 font-black shadow-2xl">
+                    EXPLORE SOLAR PRODUCTS
+                  </Button>
+                </Link>
+              )}
               <Link href="/learn">
                 <Button size="lg" variant="outline" className="text-xl px-12 py-8 border-4 border-[var(--primary-foreground)] text-[var(--primary-foreground)] hover:bg-[var(--primary-foreground)] hover:text-[var(--primary)] font-black">
                   MORE LEARNING RESOURCES

@@ -3,6 +3,7 @@
 import { useSession } from 'next-auth/react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { isLinkLive } from '@/lib/features'
 import {
   GraduationCap, ShoppingBag, Users, Fish,
   Share2, Brain, Trophy, FileText, ArrowRight,
@@ -28,7 +29,7 @@ interface Feature {
   stats?: string[]
 }
 
-const features: Feature[] = [
+const allFeatures: Feature[] = [
   {
     id: 'learn',
     title: 'Learning Academy',
@@ -114,6 +115,9 @@ const features: Feature[] = [
     accentRgb: '53,119,119',
   },
 ]
+
+// Cards for pages that are switched off (lib/features.ts) are left out
+const features = allFeatures.filter((f) => isLinkLive(f.href))
 
 // ============================================
 // ANIMATED SCENES

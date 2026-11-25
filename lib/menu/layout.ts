@@ -2,6 +2,8 @@
 // come first, which items sit in which section, and which items are hidden.
 // Pure (no React, no database) so the Header, the editor and the tests share it.
 
+import { SHOP_PAGES_LIVE, SHOP_MENU_ITEM_IDS } from '../features'
+
 export interface MenuItemDef {
   id: string; label: string; href: string
   /** Name of the icon (the Header maps names to icons) */
@@ -95,6 +97,9 @@ export function normalizeLayout(raw: unknown): MenuLayout {
   return { sections, items, hidden }
 }
 
+/** Items for pages that are switched off site-wide (lib/features.ts) are left out of every menu */
+export const isMenuItemLive = (id: string) => SHOP_PAGES_LIVE || !SHOP_MENU_ITEM_IDS.has(id)
+
 export interface ResolvedSection { id: string; name: string; title?: string; items: MenuItemDef[] }
 
 /** The sections to draw, in the member's order. Visitors never see members-only items; empty sections are dropped
@@ -103,7 +108,7 @@ export function resolveMenu(layout: MenuLayout, signedIn: boolean, all = false):
   const defs = new Map(MENU_SECTIONS.map((s) => [s.id, s]))
   return layout.sections.map((id) => {
     const d = defs.get(id)!
-    const items = (layout.items[id] ?? []).map((i) => itemById.get(i)!).filter((i) => all || signedIn || i.access !== 'members')
+    const items = (layout.items[id] ?? []).map((i) => itemById.get(i)!).filter((i) => isMenuItemLive(i.id)).filter((i) => all || signedIn || i.access !== 'members')
     return { id, name: d.name, title: d.title, items }
   }).filter((s) => all || s.items.length > 0)
 }

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 import { prisma } from '@/lib/db/prisma'
 import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 
@@ -43,7 +44,8 @@ export async function GET(request: NextRequest) {
     const searchFilter = { contains: query, mode: 'insensitive' as const }
 
     // Build all search promises based on requested type
-    const shouldSearch = (t: SearchType) => type === 'all' || type === t
+    // Products stay out of results while the product pages are switched off (lib/features.ts)
+    const shouldSearch = (t: SearchType) => (type === 'all' || type === t) && (t !== 'products' || SHOP_PAGES_LIVE)
 
     // Articles (published only)
     const articlesPromise = shouldSearch('articles')

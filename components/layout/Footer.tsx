@@ -1,12 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE, isLinkLive } from '@/lib/features'
 import { useState } from 'react'
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Send, Leaf } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
 // Static data extracted to module scope — avoids re-creating on every render
-const footerSections = {
+const allFooterSections = {
   company: [
     { name: 'About Us', href: '/about' },
     { name: 'Our Mission', href: '/about#mission' },
@@ -36,6 +37,11 @@ const footerSections = {
     { name: 'FAQ', href: '/faq' },
   ],
 }
+
+// Links into pages that are switched off (lib/features.ts) are left out
+const footerSections = Object.fromEntries(
+  Object.entries(allFooterSections).map(([k, links]) => [k, links.filter((l) => isLinkLive(l.href))])
+) as typeof allFooterSections
 
 const socialLinks = [
   { name: 'Facebook', href: 'https://facebook.com/projectexodus' },
@@ -227,7 +233,7 @@ export function Footer() {
           {/* Products */}
           <div>
             <h4 className="text-lg font-black mb-6 text-theme-primary tracking-wide">
-              PRODUCTS
+              {SHOP_PAGES_LIVE ? 'PRODUCTS' : 'VENDORS'}
             </h4>
             <ul className="space-y-3">
               {footerSections.products.map((link) => (

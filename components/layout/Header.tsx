@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { TradeIconStrip } from '@/components/career/TradeIcons'
 import { MENU_ICONS } from '@/components/layout/menuIcons'
 import { isItemActive, resolveMenu } from '@/lib/menu/layout'
+import { isLinkLive } from '@/lib/features'
 import { useMenuLayout } from '@/lib/menu/useMenuLayout'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -157,7 +158,7 @@ export function Header() {
     { name: 'Articles', href: '/articles' },
     { name: 'Community', href: '/community' },
     { name: 'Meetings', href: '/meetings' },
-  ]
+  ].filter((item) => isLinkLive(item.href))
 
   const learnMenuItems = [
     { label: 'Sustainability', href: '/learn', requiresAuth: false },

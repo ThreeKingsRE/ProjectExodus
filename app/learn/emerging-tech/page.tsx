@@ -18,6 +18,7 @@ import {
   Award
 } from 'lucide-react'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 
 export default function EmergingTechPage() {
   return (
@@ -635,11 +636,13 @@ export default function EmergingTechPage() {
               These technologies are scaling NOW. Be part of the exponential transformation.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/products">
-                <button className="text-xl px-12 py-8 bg-[var(--primary-foreground)] text-[var(--primary)] hover:opacity-90 font-black shadow-2xl rounded-xl">
-                  EXPLORE SUSTAINABLE PRODUCTS
-                </button>
-              </Link>
+              {SHOP_PAGES_LIVE && (
+                <Link href="/products">
+                  <button className="text-xl px-12 py-8 bg-[var(--primary-foreground)] text-[var(--primary)] hover:opacity-90 font-black shadow-2xl rounded-xl">
+                    EXPLORE SUSTAINABLE PRODUCTS
+                  </button>
+                </Link>
+              )}
               <Link href="/tools/carbon-calculator">
                 <button className="text-xl px-12 py-8 border-4 border-[var(--primary-foreground)] text-[var(--primary-foreground)] hover:bg-[var(--primary-foreground)] hover:text-[var(--primary)] font-black rounded-xl">
                   CALCULATE YOUR IMPACT

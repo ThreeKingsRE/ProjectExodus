@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Store, ExternalLink, MapPin, Package, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 
 async function getVendors() {
   try {
@@ -249,11 +250,13 @@ export default async function VendorsPage() {
               <Button size="lg" className="text-xl px-12 py-8 bg-[var(--primary-foreground)] text-[var(--primary)] hover:opacity-90 font-black shadow-2xl rounded-2xl">
                 BECOME A VENDOR
               </Button>
-              <Link href="/products">
-                <Button size="lg" variant="outline" className="text-xl px-12 py-8 border-4 border-[var(--primary-foreground)] text-[var(--primary-foreground)] hover:bg-[var(--primary-foreground)] hover:text-[var(--primary)] font-black rounded-2xl">
-                  BROWSE PRODUCTS
-                </Button>
-              </Link>
+              {SHOP_PAGES_LIVE && (
+                <Link href="/products">
+                  <Button size="lg" variant="outline" className="text-xl px-12 py-8 border-4 border-[var(--primary-foreground)] text-[var(--primary-foreground)] hover:bg-[var(--primary-foreground)] hover:text-[var(--primary)] font-black rounded-2xl">
+                    BROWSE PRODUCTS
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

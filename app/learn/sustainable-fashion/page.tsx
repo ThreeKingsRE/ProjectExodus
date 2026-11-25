@@ -4,6 +4,7 @@ import { Citation } from '@/components/learn/Citation'
 import { BackButton } from '@/components/navigation/BackButton'
 import { Shirt, Recycle, TrendingUp, Users, Leaf, Droplet, Factory, CheckCircle, AlertTriangle } from 'lucide-react'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 
 export default function SustainableFashionPage() {
   return (
@@ -603,11 +604,13 @@ export default function SustainableFashionPage() {
               Every purchase is a vote for the kind of world you want to live in.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/products?category=sustainable-fashion">
-                <Button size="lg" className="text-xl px-12 py-8 bg-[var(--primary-foreground)] text-[var(--primary)] hover:opacity-90 font-black shadow-2xl">
-                  SHOP ETHICAL BRANDS
-                </Button>
-              </Link>
+              {SHOP_PAGES_LIVE && (
+                <Link href="/products?category=sustainable-fashion">
+                  <Button size="lg" className="text-xl px-12 py-8 bg-[var(--primary-foreground)] text-[var(--primary)] hover:opacity-90 font-black shadow-2xl">
+                    SHOP ETHICAL BRANDS
+                  </Button>
+                </Link>
+              )}
               <Link href="/learn">
                 <Button size="lg" variant="outline" className="text-xl px-12 py-8 border-4 border-[var(--primary-foreground)] text-[var(--primary-foreground)] hover:bg-[var(--primary-foreground)] hover:text-[var(--primary)] font-black">
                   MORE LEARNING RESOURCES

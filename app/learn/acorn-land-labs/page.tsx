@@ -1,5 +1,6 @@
 import { BackButton } from '@/components/navigation/BackButton'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import {
@@ -603,19 +604,21 @@ export default function AcornLandLabsPage() {
                   </CardContent>
                 </Card>
               </Link>
-              <Link href="/products">
-                <Card className="border-4 border-theme-secondary hover:border-theme-accent transition-all hover-lift cursor-pointer">
-                  <CardContent className="p-6 text-center">
-                    <Leaf className="w-12 h-12 text-theme-secondary mx-auto mb-4" />
-                    <h3 className="text-xl font-black mb-2 text-theme-secondary">
-                      OUR PRODUCTS
-                    </h3>
-                    <p className="text-sm font-semibold text-theme-muted">
-                      Sustainable solutions catalog
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
+              {SHOP_PAGES_LIVE && (
+                <Link href="/products">
+                  <Card className="border-4 border-theme-secondary hover:border-theme-accent transition-all hover-lift cursor-pointer">
+                    <CardContent className="p-6 text-center">
+                      <Leaf className="w-12 h-12 text-theme-secondary mx-auto mb-4" />
+                      <h3 className="text-xl font-black mb-2 text-theme-secondary">
+                        OUR PRODUCTS
+                      </h3>
+                      <p className="text-sm font-semibold text-theme-muted">
+                        Sustainable solutions catalog
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              )}
             </div>
           </div>
         </div>

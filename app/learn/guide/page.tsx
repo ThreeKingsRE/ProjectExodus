@@ -20,6 +20,7 @@ import {
   CheckCircle2
 } from 'lucide-react'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 
 export default function SustainabilityGuidePage() {
   const guideTopics = [
@@ -441,11 +442,13 @@ export default function SustainabilityGuidePage() {
               Small steps lead to big changes. Begin with one action today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link href="/products">
-                <Button size="lg" className="text-lg px-10 py-6 font-black shadow-xl">
-                  SHOP SUSTAINABLE PRODUCTS
-                </Button>
-              </Link>
+              {SHOP_PAGES_LIVE && (
+                <Link href="/products">
+                  <Button size="lg" className="text-lg px-10 py-6 font-black shadow-xl">
+                    SHOP SUSTAINABLE PRODUCTS
+                  </Button>
+                </Link>
+              )}
               <Link href="/community">
                 <Button size="lg" variant="outline" className="text-lg px-10 py-6 font-black border-2">
                   CONNECT WITH OTHERS
