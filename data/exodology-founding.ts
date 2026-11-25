@@ -7,27 +7,29 @@
 
 export const exodologyCharter = {
   title: 'The Charter of Exodology',
-  subtitle: 'Founding Principles for the Science of System Transitions',
+  subtitle: 'Founding Principles for the Study and Practice of Ethical Exit',
   preamble: `Recognizing that humanity faces unprecedented challenges requiring fundamental transformations of social, technical, and ecological systems;
 
 Acknowledging that existing disciplines, while valuable, often study systems in isolation or assume stability rather than change;
 
 Understanding that intentional, ethical transitions are possible but require systematic study, rigorous methods, and principled practice;
 
-We hereby establish Exodology as a distinct discipline dedicated to the scholarly study and ethical practice of guiding systems through transformative change.`,
+We hereby establish Exodology as a distinct discipline dedicated to the scholarly study and ethical practice of exit: leaving, and helping others leave, systems that no longer serve people or the planet.`,
 
   articles: [
     {
       number: 1,
       title: 'Definition and Scope',
-      content: `Exodology is the systematic study of how complex systems—social, technical, ecological, and their hybrids—undergo fundamental transformation from one stable state to another.
+      content: `Exodology is the study and practice of designing ethical exits from systems that no longer serve people or the planet.
+
+Where reform asks how a system can be improved from within, and collapse studies ask how systems fail, Exodology asks when leaving is the right response, how to leave well, and what must be built so that leaving is possible. It draws on transition studies and on Albert Hirschman's analysis of exit and voice, but its object is narrower: the deliberate departure of people and communities from a system, and the alternatives that make that departure safe.
 
 The scope of Exodology encompasses:
-• The conditions that precipitate system transitions
-• The dynamics that unfold during transitional periods
-• The interventions that can guide transitions toward beneficial outcomes
-• The ethical considerations inherent in intentional system change
-• The practical skills required for transition stewardship`
+• The conditions under which exit, rather than reform, is the appropriate response
+• The dependencies and lock-in that make exit difficult
+• The design of alternatives that make exit possible
+• The ethical duties owed to those who leave and to those who stay
+• The practical skills required to plan, guide and steward exit at every scale`
     },
     {
       number: 2,
@@ -56,7 +58,7 @@ The scope of Exodology encompasses:
 • Innovation studies and technological change
 • Ethics and political philosophy
 
-While drawing from these traditions, Exodology synthesizes them into a coherent framework oriented specifically toward understanding and guiding transitions.`
+While drawing from these traditions, Exodology synthesizes them into a coherent framework oriented specifically toward ethical exit: when to leave a system, how to leave it well, and what to build in its place.`
     },
     {
       number: 4,

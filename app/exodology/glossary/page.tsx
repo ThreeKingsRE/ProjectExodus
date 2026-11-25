@@ -98,7 +98,7 @@ export default function GlossaryPage() {
               <div>
                 <h1 className="text-4xl sm:text-5xl font-black">Glossary</h1>
                 <p className="text-xl text-white/80">
-                  Essential terminology for the science of transitions
+                  Essential terminology for the study of ethical exit
                 </p>
               </div>
             </div>

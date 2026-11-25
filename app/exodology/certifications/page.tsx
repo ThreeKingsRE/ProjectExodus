@@ -10,6 +10,9 @@ import {
   Loader2, Compass, Map, Target, Crown, Star, Download
 } from 'lucide-react'
 import Link from 'next/link'
+import { exodologyCourses, CREDIT_NOTE } from '@/data/exodology-courses'
+
+const exo401 = exodologyCourses.find((c) => c.code === 'EXO 401')
 
 // ============================================================================
 // CONFETTI COMPONENT
@@ -183,8 +186,7 @@ const certifications = [
       'Earn Exodological Literacy certification',
       'Earn Exodological Application certification',
       'Earn Exodological Stewardship certification',
-      'Complete and defend a capstone project (original case study or research contribution)',
-      'Receive approval from peer review committee'
+      'Once it opens: complete EXO 401, Exodology Research and Capstone, and defend the capstone before reviewers'
     ]
   }
 ]
@@ -558,10 +560,34 @@ export default function CertificationsPage() {
                 Exodology certifications are credentials that demonstrate your knowledge and capability in designing ethical exits from systems. Each certification requires completing a structured learning path and passing assessments.
               </p>
               <p className="text-[var(--muted-foreground)] text-sm">
-                The <strong>Master Exodologist</strong> credential is the highest achievement, awarded only to those who have demonstrated mastery of all three pillars: Literacy, Application, and Stewardship.
+                The <strong>Master Exodologist</strong> credential is the highest achievement, awarded to those who have earned all three path certificates: Literacy, Application, and Stewardship. Once EXO 401 opens, it will also require the research capstone below.
               </p>
+              <p className="text-[var(--muted-foreground)] text-sm mt-4">{CREDIT_NOTE}</p>
             </CardContent>
           </Card>
+
+          {/* EXO 401 outline */}
+          {exo401 && (
+            <Card className="mt-8 border-2 border-amber-500/30">
+              <CardContent className="p-6">
+                <p className="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">Planned course · {exo401.level}</p>
+                <h3 className="text-lg font-black text-[var(--foreground)] mb-2">{exo401.code}: {exo401.title}</h3>
+                <p className="text-[var(--muted-foreground)] text-sm mb-4">
+                  Prerequisite: {exo401.prerequisite}. Planned study time: about {exo401.plannedHours} hours. This course is an outline and is not open yet.
+                </p>
+                <h4 className="font-bold text-[var(--foreground)] mb-2">Learning outcomes</h4>
+                <ul className="list-disc pl-5 space-y-1 text-sm text-[var(--muted-foreground)] mb-4">
+                  {exo401.outcomes.map((o) => <li key={o}>{o}</li>)}
+                </ul>
+                <h4 className="font-bold text-[var(--foreground)] mb-2">Planned modules</h4>
+                <ol className="list-decimal pl-5 space-y-1 text-sm text-[var(--muted-foreground)]">
+                  {exo401.plannedModules?.map((m) => (
+                    <li key={m.title}><strong className="text-[var(--foreground)]">{m.title}:</strong> {m.summary}</li>
+                  ))}
+                </ol>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </main>
     </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import { getCourseByPath } from '@/data/exodology-courses'
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { Card, CardContent } from '@/components/ui/Card'
@@ -61,7 +62,7 @@ const exodologyPaths = [
     title: 'STRATEGIC EXODOLOGY',
     subtitle: 'Exodological Stewardship',
     description: 'Guiding large-scale, ethical transitions and policy-aware exits without causing instability or harm.',
-    level: 'Expert',
+    level: 'Advanced',
     duration: '10 weeks',
     modules: 10,
     icon: Target,
@@ -112,7 +113,7 @@ export default function ExodologyPage() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--muted)] border border-[var(--border)] mb-6"
             >
               <GitBranch className="w-4 h-4 text-amber-500" />
-              <span className="text-sm font-bold text-[var(--foreground)]">Advanced Discipline</span>
+              <span className="text-sm font-bold text-[var(--foreground)]">Emerging Discipline</span>
             </motion.div>
 
             {/* Title */}
@@ -504,6 +505,7 @@ export default function ExodologyPage() {
 
                         {/* Stats */}
                         <div className="flex items-center gap-4 mb-4 text-xs text-[var(--muted-foreground)]">
+                          <span className="font-bold text-[var(--foreground)]">{getCourseByPath(path.id)?.code}</span>
                           <span className="flex items-center gap-1">
                             <BookOpen className="w-4 h-4" />
                             {path.modules} modules

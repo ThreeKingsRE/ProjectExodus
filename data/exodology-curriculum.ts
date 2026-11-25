@@ -2185,7 +2185,7 @@ These movements create spaces where different social rules apply.`
       introduction: 'Master all key terms from the Foundations path.',
       gameType: 'flashcards',
       cards: [
-        { front: 'Exodology', back: 'The study and practice of designing ethical exits from systems that no longer serve people or planet.' },
+        { front: 'Exodology', back: 'The study and practice of designing ethical exits from systems that no longer serve people or the planet.' },
         { front: 'Exit Capability', back: 'The structural capacity to leave a system when needed.' },
         { front: 'Push Factors', back: 'Conditions within a system that drive people to seek exit.' },
         { front: 'Pull Factors', back: 'Attractions of alternatives that draw people away.' },
