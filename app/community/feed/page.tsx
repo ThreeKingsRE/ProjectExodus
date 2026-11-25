@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/Card'
 import { Loader2, TrendingUp, Users, Sparkles } from 'lucide-react'
 import { BackButton } from '@/components/navigation/BackButton'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 import { useSession } from 'next-auth/react'
 
 interface TrendingHashtag {
@@ -166,11 +167,13 @@ export default function SocialFeedPage() {
                         Community Projects
                       </button>
                     </Link>
-                    <Link href="/products">
-                      <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-[var(--muted)] transition-colors font-bold text-[var(--foreground)]">
-                        Sustainable Products
-                      </button>
-                    </Link>
+                    {SHOP_PAGES_LIVE && (
+                      <Link href="/products">
+                        <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-[var(--muted)] transition-colors font-bold text-[var(--foreground)]">
+                          Sustainable Products
+                        </button>
+                      </Link>
+                    )}
                     <Link href="/learn">
                       <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-[var(--muted)] transition-colors font-bold text-[var(--foreground)]">
                         Learn & Resources

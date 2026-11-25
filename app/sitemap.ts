@@ -1,11 +1,12 @@
 import { MetadataRoute } from 'next'
 import { prisma } from '@/lib/db'
+import { isLinkLive } from '@/lib/features'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://projectexodus.com'
 
   // Static pages
-  const staticPages = [
+  const allStaticPages = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -56,9 +57,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
+  // Pages that are switched off (lib/features.ts) stay out of the sitemap
+  const staticPages = allStaticPages.filter((p) => isLinkLive(p.url.slice(baseUrl.length) || '/'))
+
   try {
     // Dynamic product pages
-    const products = await prisma.product.findMany({
+    const products = !isLinkLive('/products') ? [] : await prisma.product.findMany({
       where: { status: 'PUBLISHED' },
       select: { slug: true, updatedAt: true },
     })
@@ -84,7 +88,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
 
     // Dynamic vendor pages
-    const vendors = await prisma.vendor.findMany({
+    const vendors = !isLinkLive('/vendors') ? [] : await prisma.vendor.findMany({
       select: { slug: true, updatedAt: true },
     })
 

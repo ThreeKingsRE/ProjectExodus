@@ -1,10 +1,12 @@
 import { Card, CardContent } from '@/components/ui/Card'
 import { FileText, Scale, Users, ShoppingCart, MessageSquare, AlertCircle, Shield, Mail } from 'lucide-react'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 import { Button } from '@/components/ui/Button'
 
 export default function TermsPage() {
-  const lastUpdated = 'November 20, 2025'
+  const SHOP = SHOP_PAGES_LIVE
+  const lastUpdated = SHOP ? 'November 20, 2025' : 'November 25, 2026'
 
   const sections = [
     {
@@ -42,33 +44,37 @@ export default function TermsPage() {
         }
       ]
     },
-    {
-      id: 'marketplace',
-      icon: ShoppingCart,
-      title: 'Marketplace and Transactions',
-      content: [
-        {
-          subtitle: 'Platform Role',
-          text: 'Project Exodus is a marketplace platform connecting buyers with independent third-party vendors. We facilitate these connections but are not a party to the transactions between you and vendors.'
-        },
-        {
-          subtitle: 'Vendor Responsibility',
-          text: 'Each vendor is responsible for their product listings, pricing, inventory, order fulfillment, customer service, and compliance with applicable laws. Product information and availability are subject to change without notice.'
-        },
-        {
-          subtitle: 'Purchases',
-          text: 'When you make a purchase through our Platform, you are entering into a contract directly with the vendor. Payment processing, shipping, returns, and refunds are handled according to the vendor\'s policies, which may vary. We are not responsible for vendor performance or disputes.'
-        },
-        {
-          subtitle: 'Pricing and Payment',
-          text: 'All prices are displayed in the vendor\'s chosen currency. Vendors are responsible for pricing accuracy. You agree to pay all charges incurred under your account, including applicable taxes and shipping fees.'
-        },
-        {
-          subtitle: 'Our Commission',
-          text: 'We earn a commission on sales made through the Platform. This commission is paid by vendors and does not affect the price you pay.'
-        }
-      ]
-    },
+    ...(SHOP
+      ? [
+          {
+            id: 'marketplace',
+            icon: ShoppingCart,
+            title: 'Marketplace and Transactions',
+            content: [
+              {
+                subtitle: 'Platform Role',
+                text: 'Project Exodus is a marketplace platform connecting buyers with independent third-party vendors. We facilitate these connections but are not a party to the transactions between you and vendors.'
+              },
+              {
+                subtitle: 'Vendor Responsibility',
+                text: 'Each vendor is responsible for their product listings, pricing, inventory, order fulfillment, customer service, and compliance with applicable laws. Product information and availability are subject to change without notice.'
+              },
+              {
+                subtitle: 'Purchases',
+                text: 'When you make a purchase through our Platform, you are entering into a contract directly with the vendor. Payment processing, shipping, returns, and refunds are handled according to the vendor\'s policies, which may vary. We are not responsible for vendor performance or disputes.'
+              },
+              {
+                subtitle: 'Pricing and Payment',
+                text: 'All prices are displayed in the vendor\'s chosen currency. Vendors are responsible for pricing accuracy. You agree to pay all charges incurred under your account, including applicable taxes and shipping fees.'
+              },
+              {
+                subtitle: 'Our Commission',
+                text: 'We earn a commission on sales made through the Platform. This commission is paid by vendors and does not affect the price you pay.'
+              }
+            ]
+          }
+        ]
+      : []),
     {
       id: 'user-content',
       icon: MessageSquare,
@@ -109,7 +115,9 @@ export default function TermsPage() {
       content: [
         {
           subtitle: 'Our IP',
-          text: 'The Platform, including its design, features, functionality, and content (excluding User Content and vendor content), is owned by Project Exodus and protected by copyright, trademark, and other intellectual property laws.'
+          text: SHOP
+            ? 'The Platform, including its design, features, functionality, and content (excluding User Content and vendor content), is owned by Project Exodus and protected by copyright, trademark, and other intellectual property laws.'
+            : 'The Platform, including its design, features, functionality, and content (excluding User Content), is owned by Project Exodus and protected by copyright, trademark, and other intellectual property laws.'
         },
         {
           subtitle: 'Limited License',
@@ -134,10 +142,14 @@ export default function TermsPage() {
           subtitle: 'No Guarantees',
           text: 'We do not guarantee that the Platform will be uninterrupted, error-free, secure, or free of viruses or other harmful components. We do not guarantee the accuracy, completeness, or reliability of content on the Platform.'
         },
-        {
-          subtitle: 'Vendor Responsibility',
-          text: 'We do not endorse or guarantee any vendor, product, or service on the Platform. We are not responsible for vendor conduct, product quality, delivery, or disputes between you and vendors.'
-        }
+        ...(SHOP
+          ? [
+              {
+                subtitle: 'Vendor Responsibility',
+                text: 'We do not endorse or guarantee any vendor, product, or service on the Platform. We are not responsible for vendor conduct, product quality, delivery, or disputes between you and vendors.'
+              }
+            ]
+          : [])
       ]
     },
     {
@@ -247,8 +259,9 @@ export default function TermsPage() {
             <Card className="border-4 border-theme-primary shadow-xl">
               <CardContent className="p-10">
                 <p className="text-base font-medium text-theme-muted leading-relaxed mb-4">
-                  Welcome to Project Exodus! These Terms of Service ("Terms") govern your use of our sustainable living
-                  marketplace and community platform. By using our services, you agree to these Terms.
+                  Welcome to Project Exodus! These Terms of Service ("Terms") govern your use of our sustainable living{' '}
+                  {SHOP ? 'marketplace and community platform' : 'learning and community platform'}. By using our services, you agree to these
+                  Terms.
                 </p>
                 <p className="text-base font-medium text-theme-muted leading-relaxed">
                   We've written these Terms in plain language to make them as clear as possible. If you have questions,

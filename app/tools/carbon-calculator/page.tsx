@@ -7,6 +7,7 @@ import { Citation } from '@/components/learn/Citation'
 import { Calculator, TrendingDown, Zap, Car, Home, Utensils, ShoppingBag, Plane, CheckCircle, AlertCircle, Leaf } from 'lucide-react'
 import { BackButton } from '@/components/navigation/BackButton'
 import Link from 'next/link'
+import { isLinkLive } from '@/lib/features'
 
 interface CarbonData {
   housing: number
@@ -777,11 +778,13 @@ export default function CarbonCalculatorPage() {
                                 <TrendingDown className="w-5 h-5 text-theme-secondary" />
                                 <span className="font-black text-theme-secondary">{rec.savings}</span>
                               </div>
-                              <Link href={rec.action}>
-                                <Button className="w-full font-bold">
-                                  LEARN MORE →
-                                </Button>
-                              </Link>
+                              {isLinkLive(rec.action) && (
+                                <Link href={rec.action}>
+                                  <Button className="w-full font-bold">
+                                    LEARN MORE →
+                                  </Button>
+                                </Link>
+                              )}
                             </div>
                           </div>
                         </CardContent>

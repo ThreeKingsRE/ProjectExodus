@@ -7,7 +7,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowUp, Eye, EyeOff, RotateCcw } from 'lucide-react'
 import { MENU_ICONS } from '@/components/layout/menuIcons'
-import { MENU_SECTIONS, defaultLayout, hideItem, itemById, moveItem, moveItemToSection, moveSection, normalizeLayout, resolveMenu, showItem, type MenuLayout } from '@/lib/menu/layout'
+import { MENU_SECTIONS, defaultLayout, hideItem, isMenuItemLive, itemById, moveItem, moveItemToSection, moveSection, normalizeLayout, resolveMenu, showItem, type MenuLayout } from '@/lib/menu/layout'
 import { useMenuLayout } from '@/lib/menu/useMenuLayout'
 
 const btn = 'no-min-size inline-flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--card)] disabled:opacity-30'
@@ -22,7 +22,7 @@ export function MenuLayoutEditor({ userId }: { userId: string }) {
 
   const edit = (f: (l: MenuLayout) => MenuLayout) => { setDraft((d) => f(d)); setDirty(true); setMsg('') }
   const sections = resolveMenu(draft, true, true)
-  const hidden = draft.hidden.map((id) => itemById.get(id)!).filter(Boolean)
+  const hidden = draft.hidden.filter(isMenuItemLive).map((id) => itemById.get(id)!).filter(Boolean)
 
   async function commit(next: MenuLayout | null) {
     setBusy(true)

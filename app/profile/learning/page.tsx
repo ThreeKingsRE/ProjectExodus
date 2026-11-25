@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button'
 import { BookOpen, Video, Calculator, Download, Zap, Leaf, Home, Award, CheckCircle, Sprout, TrendingUp, Target, Flame, ArrowRight, Clock } from 'lucide-react'
 import { BackButton } from '@/components/navigation/BackButton'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 import { prisma } from '@/lib/db'
 import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
@@ -362,12 +363,14 @@ export default async function MyLearningPage() {
                           JOIN COMMUNITY
                         </Button>
                       </Link>
-                      <Link href="/products">
-                        <Button variant="outline" className="w-full font-black" size="lg">
-                          <Leaf className="w-5 h-5 mr-2" />
-                          SHOP SUSTAINABLE
-                        </Button>
-                      </Link>
+                      {SHOP_PAGES_LIVE && (
+                        <Link href="/products">
+                          <Button variant="outline" className="w-full font-black" size="lg">
+                            <Leaf className="w-5 h-5 mr-2" />
+                            SHOP SUSTAINABLE
+                          </Button>
+                        </Link>
+                      )}
                     </div>
                   </CardContent>
                 </Card>

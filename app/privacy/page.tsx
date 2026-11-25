@@ -1,10 +1,12 @@
 import { Card, CardContent } from '@/components/ui/Card'
 import { ShieldCheck, Eye, Lock, Database, UserCheck, Bell, FileText, Mail } from 'lucide-react'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 import { Button } from '@/components/ui/Button'
 
 export default function PrivacyPage() {
-  const lastUpdated = 'November 20, 2025'
+  const SHOP = SHOP_PAGES_LIVE
+  const lastUpdated = SHOP ? 'November 20, 2025' : 'November 25, 2026'
 
   const sections = [
     {
@@ -14,7 +16,9 @@ export default function PrivacyPage() {
       content: [
         {
           subtitle: 'Information You Provide',
-          text: 'When you create an account, make a purchase, or interact with our platform, you may provide us with information such as your name, email address, shipping address, phone number, and payment information (processed securely by our payment partners). You may also provide profile information, preferences, and content you post in our community forums.'
+          text: SHOP
+            ? 'When you create an account, make a purchase, or interact with our platform, you may provide us with information such as your name, email address, shipping address, phone number, and payment information (processed securely by our payment partners). You may also provide profile information, preferences, and content you post in our community forums.'
+            : 'When you create an account or interact with our platform, you may provide us with information such as your name, email address, and (if you choose) a phone number or location on your profile. You may also provide profile information, preferences, learning progress, and content you post in our community forums.'
         },
         {
           subtitle: 'Automatically Collected Information',
@@ -22,7 +26,9 @@ export default function PrivacyPage() {
         },
         {
           subtitle: 'Information from Third Parties',
-          text: 'If you sign in using a social media account (Google, Facebook, etc.), we receive basic profile information from those services. We may also receive information from our vendor partners about your purchases to facilitate order fulfillment and customer service.'
+          text: SHOP
+            ? 'If you sign in using a social media account (Google, Facebook, etc.), we receive basic profile information from those services. We may also receive information from our vendor partners about your purchases to facilitate order fulfillment and customer service.'
+            : 'If you sign in using a social media account (Google, Facebook, etc.), we receive basic profile information from those services.'
         }
       ]
     },
@@ -33,11 +39,15 @@ export default function PrivacyPage() {
       content: [
         {
           subtitle: 'Providing and Improving Services',
-          text: 'We use your information to operate and maintain the Project Exodus platform, process transactions, provide customer support, personalize your experience, improve our products and services, and develop new features.'
+          text: SHOP
+            ? 'We use your information to operate and maintain the Project Exodus platform, process transactions, provide customer support, personalize your experience, improve our products and services, and develop new features.'
+            : 'We use your information to operate and maintain the Project Exodus platform, provide support, personalize your experience, improve our lessons and services, and develop new features.'
         },
         {
           subtitle: 'Communication',
-          text: 'We use your contact information to send order confirmations, shipping updates, respond to inquiries, send administrative messages, and (with your consent) send promotional emails about new products, features, and sustainability content. You can opt out of marketing emails at any time.'
+          text: SHOP
+            ? 'We use your contact information to send order confirmations, shipping updates, respond to inquiries, send administrative messages, and (with your consent) send promotional emails about new products, features, and sustainability content. You can opt out of marketing emails at any time.'
+            : 'We use your contact information to respond to inquiries, send administrative messages, and (with your consent) send emails about new lessons, initiative updates, and community news. You can opt out of these emails at any time.'
         },
         {
           subtitle: 'Community Features',
@@ -54,13 +64,19 @@ export default function PrivacyPage() {
       icon: UserCheck,
       title: 'How We Share Your Information',
       content: [
-        {
-          subtitle: 'With Vendors',
-          text: 'When you purchase from a vendor through our marketplace, we share necessary information (name, shipping address, order details) with that vendor to fulfill your order. Each vendor has their own privacy practices.'
-        },
+        ...(SHOP
+          ? [
+              {
+                subtitle: 'With Vendors',
+                text: 'When you purchase from a vendor through our marketplace, we share necessary information (name, shipping address, order details) with that vendor to fulfill your order. Each vendor has their own privacy practices.'
+              }
+            ]
+          : []),
         {
           subtitle: 'With Service Providers',
-          text: 'We work with trusted third-party service providers who help us operate our platform (hosting, email services, analytics, payment processing). These providers are contractually obligated to protect your information and use it only for specified purposes.'
+          text: SHOP
+            ? 'We work with trusted third-party service providers who help us operate our platform (hosting, email services, analytics, payment processing). These providers are contractually obligated to protect your information and use it only for specified purposes.'
+            : 'We work with trusted third-party service providers who help us operate our platform (hosting, email services, analytics). These providers are contractually obligated to protect your information and use it only for specified purposes.'
         },
         {
           subtitle: 'For Legal Reasons',
@@ -83,7 +99,9 @@ export default function PrivacyPage() {
       content: [
         {
           subtitle: 'Our Security Measures',
-          text: 'We implement industry-standard security measures including encryption (SSL/TLS), secure servers, access controls, regular security audits, and employee training on data protection. Payment information is handled by PCI-compliant payment processors - we never store your full credit card details.'
+          text: SHOP
+            ? 'We implement industry-standard security measures including encryption (SSL/TLS), secure servers, access controls, regular security audits, and employee training on data protection. Payment information is handled by PCI-compliant payment processors - we never store your full credit card details.'
+            : 'We implement industry-standard security measures including encryption (SSL/TLS), secure servers, access controls, regular security audits, and employee training on data protection. We do not take payments on the platform today, so we hold no credit card details.'
         },
         {
           subtitle: 'Your Responsibility',

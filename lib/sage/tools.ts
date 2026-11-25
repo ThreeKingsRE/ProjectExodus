@@ -3,6 +3,7 @@ import type Anthropic from '@anthropic-ai/sdk'
 import { z } from 'zod'
 import { prisma } from '@/lib/db'
 import { getCatalog } from '@/lib/products/catalog'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 import { getAllModules } from '@/data/modules'
 import { glossaryTerms } from '@/data/exodology-glossary'
 
@@ -23,7 +24,7 @@ const ProductSearchInput = SearchInput.extend({
 
 type ToolName = 'search_products' | 'search_articles' | 'search_learning'
 
-export const SAGE_TOOLS: Anthropic.Beta.BetaTool[] = [
+const ALL_SAGE_TOOLS: Anthropic.Beta.BetaTool[] = [
   {
     name: 'search_products',
     description:
@@ -72,6 +73,9 @@ export const SAGE_TOOLS: Anthropic.Beta.BetaTool[] = [
     eager_input_streaming: true,
   },
 ]
+
+// Product search is off while the product pages are switched off (lib/features.ts)
+export const SAGE_TOOLS = ALL_SAGE_TOOLS.filter((t) => SHOP_PAGES_LIVE || t.name !== 'search_products')
 
 const terms = (q: string) => q.toLowerCase().split(/\s+/).filter((t) => t.length > 1)
 
@@ -195,6 +199,7 @@ export async function runSageTool(
     let result: unknown
     switch (name as ToolName) {
       case 'search_products':
+        if (!SHOP_PAGES_LIVE) return { content: `Unknown tool: ${name}`, isError: true }
         result = await searchProducts(ProductSearchInput.parse(input))
         break
       case 'search_articles':

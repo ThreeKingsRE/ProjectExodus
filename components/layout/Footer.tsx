@@ -1,12 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE, isLinkLive } from '@/lib/features'
 import { useState } from 'react'
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Send, Leaf } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
 // Static data extracted to module scope — avoids re-creating on every render
-const footerSections = {
+const allFooterSections = {
   company: [
     { name: 'About Us', href: '/about' },
     { name: 'Our Mission', href: '/about#mission' },
@@ -36,6 +37,11 @@ const footerSections = {
     { name: 'FAQ', href: '/faq' },
   ],
 }
+
+// Links into pages that are switched off (lib/features.ts) are left out
+const footerSections = Object.fromEntries(
+  Object.entries(allFooterSections).map(([k, links]) => [k, links.filter((l) => isLinkLive(l.href))])
+) as typeof allFooterSections
 
 const socialLinks = [
   { name: 'Facebook', href: 'https://facebook.com/projectexodus' },
@@ -122,7 +128,9 @@ export function Footer() {
                 </h3>
               </div>
               <p className="text-theme-muted text-lg mb-6 font-medium">
-                Get the latest sustainable products, tips, and community updates delivered to your inbox.
+                {SHOP_PAGES_LIVE
+                  ? 'Get the latest sustainable products, tips, and community updates delivered to your inbox.'
+                  : 'Get new lessons, initiative updates, and community news delivered to your inbox.'}
               </p>
               <form onSubmit={handleSubscribe} className="flex flex-col gap-3 max-w-lg">
                 <div className="flex gap-3">
@@ -181,9 +189,9 @@ export function Footer() {
         </div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16">
+        <div className={footerSections.products.length > 0 ? 'grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16' : 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 mb-16'}>
           {/* Brand Column */}
-          <div className="col-span-2 md:col-span-4 lg:col-span-1">
+          <div className={footerSections.products.length > 0 ? 'col-span-2 md:col-span-4 lg:col-span-1' : 'col-span-2 md:col-span-3 lg:col-span-1'}>
             <Link href="/" className="flex items-center gap-3 mb-6 group">
               <div className="w-12 h-12 rounded-full flex items-center justify-center pulse-alive shadow-lg" style={{
                 background: 'linear-gradient(135deg, var(--primary), var(--accent))'
@@ -224,7 +232,8 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Products */}
+          {/* Products (left out while the shop pages are switched off) */}
+          {footerSections.products.length > 0 && (
           <div>
             <h4 className="text-lg font-black mb-6 text-theme-primary tracking-wide">
               PRODUCTS
@@ -242,6 +251,7 @@ export function Footer() {
               ))}
             </ul>
           </div>
+          )}
 
           {/* Resources */}
           <div>

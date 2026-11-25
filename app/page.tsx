@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { Card, CardContent, CardHeader } from '@/components/ui/Card'
@@ -448,13 +449,15 @@ export default function Home() {
               >
                 GET STARTED →
               </Link>
-              <Link
-                href="/products"
-                className="inline-flex items-center justify-center text-base md:text-xl px-8 py-4 md:px-12 md:py-8 rounded-2xl border-2 md:border-4 border-[var(--primary-foreground)] text-[var(--primary-foreground)] hover:bg-[var(--primary-foreground)] hover:text-[var(--primary)] transition-all duration-300 font-black"
+              {SHOP_PAGES_LIVE && (
+                <Link
+                  href="/products"
+                  className="inline-flex items-center justify-center text-base md:text-xl px-8 py-4 md:px-12 md:py-8 rounded-2xl border-2 md:border-4 border-[var(--primary-foreground)] text-[var(--primary-foreground)] hover:bg-[var(--primary-foreground)] hover:text-[var(--primary)] transition-all duration-300 font-black"
                 
-              >
-                VIEW DEMO
-              </Link>
+                >
+                  VIEW DEMO
+                </Link>
+              )}
             </div>
           </div>
         </div>
