@@ -36,6 +36,14 @@ function hasWebGL() {
   }
 }
 const noopSubscribe = () => () => {}
+/** True on phone-width screens (the 3D globe is the same; only how it is touched differs) */
+function usePhone(): boolean {
+  return useSyncExternalStore(
+    (onChange) => { const mq = window.matchMedia('(max-width: 767px)'); mq.addEventListener('change', onChange); return () => mq.removeEventListener('change', onChange) },
+    () => window.matchMedia('(max-width: 767px)').matches,
+    () => false
+  )
+}
 function useFlatMap(): boolean | null {
   return useSyncExternalStore(noopSubscribe, () => !hasWebGL(), () => null)
 }
@@ -113,6 +121,7 @@ export default function GlobeLanding() {
   const [timelineYear, setTimelineYear] = useState(PRESENT_YEAR)
   const [isLoading, setIsLoading] = useState(true)
   const flatMap = useFlatMap()
+  const phone = usePhone()
   const [showHints, setShowHints] = useState(true)
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodDefinition | null>(null)
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null)
@@ -230,6 +239,7 @@ export default function GlobeLanding() {
               selectedPeriod={selectedPeriod}
               onPointClick={handlePointClick}
               showArcs={showArcs}
+              sphereOnly={phone}
             />
           )}
         </div>

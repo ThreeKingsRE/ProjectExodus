@@ -29,6 +29,8 @@ interface ArchitectureGlobeProps {
   selectedPeriod?: PeriodDefinition | null
   onPointClick?: (point: { region: string; name: string; lat: number; lng: number }) => void
   showArcs?: boolean
+  /** Phones: only the sphere itself rotates; everything around it scrolls the page */
+  sphereOnly?: boolean
 }
 
 interface GeoJSONFeature {
@@ -50,6 +52,8 @@ const SEED_LNG = 35.2
 
 // Camera altitude — standard viewing distance
 const IDLE_ALTITUDE = 2.4
+/** Closer camera on phones so the sphere fills its round touch area */
+const PHONE_IDLE_ALTITUDE = 1.72
 
 // ---------------------------------------------------------------------------
 // Component
@@ -62,11 +66,14 @@ export default function ArchitectureGlobe({
   selectedPeriod,
   onPointClick,
   showArcs = true,
+  sphereOnly = false,
 }: ArchitectureGlobeProps) {
   const globeRef = useRef<any>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+  // Phones: the round touch area is a square as big as the space allows
+  const side = Math.floor(Math.min(dimensions.width, dimensions.height))
   const [countries, setCountries] = useState<GeoJSONFeature[]>([])
 
   const globeInitializedRef = useRef(false)
@@ -137,7 +144,7 @@ export default function ArchitectureGlobe({
 
       // Phones have very dense screens; cap the resolution so the globe stays smooth
       try { globe.renderer?.()?.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)) } catch { /* keep default */ }
-      globe.pointOfView({ lat: SEED_LAT, lng: SEED_LNG, altitude: IDLE_ALTITUDE })
+      globe.pointOfView({ lat: SEED_LAT, lng: SEED_LNG, altitude: sphereOnly ? PHONE_IDLE_ALTITUDE : IDLE_ALTITUDE })
 
       const controls = globe.controls()
       if (controls) {
@@ -145,7 +152,8 @@ export default function ArchitectureGlobe({
         controls.dampingFactor = 0.1
         controls.autoRotate = false
         controls.enableRotate = true
-        controls.enableZoom = true
+        // Phones: no zoom, so a stray gesture can never zoom the globe while someone is scrolling
+        controls.enableZoom = !sphereOnly
 
         // Touch gestures on iPad/mobile:
         //   1 finger vertical drag  -> page scroll (handled by touch-action: pan-y)
@@ -162,7 +170,9 @@ export default function ArchitectureGlobe({
         // which blocks vertical page scroll on iPad/mobile. Override so the
         // page can scroll vertically while horizontal drag still rotates the
         // globe and 2-finger drag rotates fully.
-        if (controls.domElement) {
+        // (On phones the round touch area keeps 'none' so a drag on the sphere only ever rotates it,
+        // and everything outside the circle scrolls the page.)
+        if (controls.domElement && !sphereOnly) {
           controls.domElement.style.touchAction = 'pan-y'
         }
       }
@@ -181,6 +191,21 @@ export default function ArchitectureGlobe({
     raf = requestAnimationFrame(poll)
     return () => cancelAnimationFrame(raf)
   }, [])
+
+  // Phones: stop drawing the globe once page content covers it, so scrolling stays smooth
+  useEffect(() => {
+    if (!sphereOnly) return
+    let paused = false
+    const onScroll = () => {
+      const globe = globeRef.current
+      if (!globe) return
+      const covered = window.scrollY > window.innerHeight * 0.85
+      if (covered && !paused) { globe.pauseAnimation?.(); paused = true }
+      else if (!covered && paused) { globe.resumeAnimation?.(); paused = false }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => { window.removeEventListener('scroll', onScroll); globeRef.current?.resumeAnimation?.() }
+  }, [sphereOnly])
 
   // -------------------------------------------------------------------------
   // Camera animation when selectedPeriod changes
@@ -292,12 +317,18 @@ export default function ArchitectureGlobe({
   // -------------------------------------------------------------------------
 
   return (
-    <div ref={containerRef} className="w-full h-full" style={{ touchAction: 'pan-y' }}>
+    <div ref={containerRef} className="w-full h-full flex items-center justify-center" style={{ touchAction: 'pan-y' }}>
       {dimensions.width > 0 && dimensions.height > 0 && (
+        <div
+          // Phones: a round touch area the size of the sphere. Touches outside the circle fall through to page scroll.
+          style={sphereOnly
+            ? { width: side, height: side, borderRadius: '50%', overflow: 'hidden', touchAction: 'none', flex: 'none' }
+            : { width: '100%', height: '100%' }}
+        >
         <GlobeGL
           ref={globeRef}
-          width={dimensions.width}
-          height={dimensions.height}
+          width={sphereOnly ? side : dimensions.width}
+          height={sphereOnly ? side : dimensions.height}
           {...(globeMaterial
             ? { globeMaterial, globeImageUrl: '' }
             : { globeImageUrl: isDayTheme
@@ -347,6 +378,7 @@ export default function ArchitectureGlobe({
           polygonStrokeColor={() => polygonBorderColor}
           polygonAltitude={0.001}
         />
+        </div>
       )}
     </div>
   )
