@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/db/prisma'
+import { getCertificationRequirementIds, type CertPathId } from '@/lib/exodology/requirements'
 
 // Type definitions for progress/certification records
 type ProgressRecord = {
@@ -13,32 +14,28 @@ type CertRecord = {
   certificationId: string
 }
 
-// Certification requirements (lesson counts per path)
+// Certification requirements. Each path requires every openable lesson and a
+// passed assessment for every module (lib/exodology/requirements.ts).
 const CERTIFICATION_REQUIREMENTS = {
-  foundations: {
-    id: 'exodology-literacy',
-    name: 'Exodological Literacy',
-    requiredLessons: 44, // All foundations lessons
-    pathId: 'foundations'
-  },
-  applied: {
-    id: 'exodology-application',
-    name: 'Exodological Application',
-    requiredLessons: 36, // All applied lessons
-    pathId: 'applied'
-  },
-  strategic: {
-    id: 'exodology-stewardship',
-    name: 'Exodological Stewardship',
-    requiredLessons: 40, // All strategic lessons
-    pathId: 'strategic'
-  },
+  foundations: { id: 'exodology-literacy', name: 'Exodological Literacy', pathId: 'foundations' as CertPathId },
+  applied: { id: 'exodology-application', name: 'Exodological Application', pathId: 'applied' as CertPathId },
+  strategic: { id: 'exodology-stewardship', name: 'Exodological Stewardship', pathId: 'strategic' as CertPathId },
   master: {
     id: 'exodology-master',
     name: 'Master Exodologist',
     requiredCerts: ['exodology-literacy', 'exodology-application', 'exodology-stewardship'],
     pathId: null
   }
+}
+
+/** How many of a path's required items the learner has completed, and how many there are. */
+function pathCompletion(progress: ProgressRecord[], pathId: CertPathId) {
+  const required = getCertificationRequirementIds(pathId)
+  const done = new Set(
+    progress.filter((p) => p.pathId === pathId && p.status === 'COMPLETED').map((p) => p.lessonId)
+  )
+  const completed = required.filter((id) => done.has(id)).length
+  return { completed, required: required.length, met: completed === required.length }
 }
 
 // GET - Fetch user's certifications
@@ -60,20 +57,25 @@ export async function GET(request: NextRequest) {
     })
 
     // Calculate progress toward each certification
+    const completion = {
+      foundations: pathCompletion(progress, 'foundations'),
+      applied: pathCompletion(progress, 'applied'),
+      strategic: pathCompletion(progress, 'strategic')
+    }
     const certProgress = {
       foundations: {
-        completed: progress.filter((p: ProgressRecord) => p.pathId === 'foundations' && p.status === 'COMPLETED').length,
-        required: CERTIFICATION_REQUIREMENTS.foundations.requiredLessons,
+        completed: completion.foundations.completed,
+        required: completion.foundations.required,
         earned: certifications.some((c: CertRecord) => c.certificationId === 'exodology-literacy')
       },
       applied: {
-        completed: progress.filter((p: ProgressRecord) => p.pathId === 'applied' && p.status === 'COMPLETED').length,
-        required: CERTIFICATION_REQUIREMENTS.applied.requiredLessons,
+        completed: completion.applied.completed,
+        required: completion.applied.required,
         earned: certifications.some((c: CertRecord) => c.certificationId === 'exodology-application')
       },
       strategic: {
-        completed: progress.filter((p: ProgressRecord) => p.pathId === 'strategic' && p.status === 'COMPLETED').length,
-        required: CERTIFICATION_REQUIREMENTS.strategic.requiredLessons,
+        completed: completion.strategic.completed,
+        required: completion.strategic.required,
         earned: certifications.some((c: CertRecord) => c.certificationId === 'exodology-stewardship')
       },
       master: {
@@ -139,15 +141,15 @@ export async function POST(request: NextRequest) {
 
     switch (certificationId) {
       case 'exodology-literacy':
-        isEligible = progress.filter((p: ProgressRecord) => p.pathId === 'foundations').length >= CERTIFICATION_REQUIREMENTS.foundations.requiredLessons
+        isEligible = pathCompletion(progress, 'foundations').met
         pathId = 'foundations'
         break
       case 'exodology-application':
-        isEligible = progress.filter((p: ProgressRecord) => p.pathId === 'applied').length >= CERTIFICATION_REQUIREMENTS.applied.requiredLessons
+        isEligible = pathCompletion(progress, 'applied').met
         pathId = 'applied'
         break
       case 'exodology-stewardship':
-        isEligible = progress.filter((p: ProgressRecord) => p.pathId === 'strategic').length >= CERTIFICATION_REQUIREMENTS.strategic.requiredLessons
+        isEligible = pathCompletion(progress, 'strategic').met
         pathId = 'strategic'
         break
       case 'exodology-master':

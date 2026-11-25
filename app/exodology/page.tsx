@@ -20,8 +20,8 @@ const exodologyPaths = [
     subtitle: 'Exodological Literacy',
     description: 'Understanding exit as a social, ethical, and systems-level phenomenon, especially where sustainability efforts reach structural limits.',
     level: 'Beginner',
-    duration: '4 weeks',
-    modules: 8,
+    duration: '6 weeks',
+    modules: 11,
     icon: Compass,
     color: 'from-amber-500 to-orange-600',
     bgColor: 'bg-amber-500/10',
@@ -41,8 +41,8 @@ const exodologyPaths = [
     subtitle: 'Exodological Application',
     description: 'Designing and evaluating exit-capable systems, with emphasis on decentralized food, water, and energy solutions.',
     level: 'Intermediate',
-    duration: '6 weeks',
-    modules: 12,
+    duration: '8 weeks',
+    modules: 9,
     icon: Map,
     color: 'from-teal-500 to-cyan-600',
     bgColor: 'bg-teal-500/10',
@@ -62,8 +62,8 @@ const exodologyPaths = [
     subtitle: 'Exodological Stewardship',
     description: 'Guiding large-scale, ethical transitions and policy-aware exits without causing instability or harm.',
     level: 'Expert',
-    duration: '8 weeks',
-    modules: 16,
+    duration: '10 weeks',
+    modules: 10,
     icon: Target,
     color: 'from-purple-500 to-indigo-600',
     bgColor: 'bg-purple-500/10',
@@ -350,7 +350,7 @@ export default function ExodologyPage() {
               transition={{ delay: 0.1 }}
               className="text-lg text-[var(--muted-foreground)] max-w-2xl mx-auto"
             >
-              Master all three pillars to earn your Certified Exodologist credential
+              Master all three pillars to earn your Master Exodologist credential
             </motion.p>
           </div>
 

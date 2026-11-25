@@ -3,7 +3,7 @@ import { generateMetadata as pageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = pageMetadata({
   title: 'Exodology',
-  description: 'Guided learning paths and lessons for living more independently and sustainably.',
+  description: 'Exodology is the study and practice of designing ethical exits from systems that no longer serve people or the planet. Free learning paths, lessons and certifications on Projxodus.',
 })
 
 export default function Layout({ children }: { children: React.ReactNode }) {

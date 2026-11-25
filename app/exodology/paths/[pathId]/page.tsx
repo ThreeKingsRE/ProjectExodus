@@ -725,7 +725,7 @@ const foundationsPath: ExodologyPath = {
     description: 'Demonstrates foundational understanding of Exodology principles and frameworks.',
     requirements: [
       'Complete all 11 modules',
-      'Pass all module assessments with 80% or higher',
+      'Pass every module assessment (70% or higher)',
       'Complete all reflection exercises',
       'Finish comprehensive final assessment'
     ]
@@ -2433,7 +2433,7 @@ export default function ExodologyPathPage() {
                     </div>
                   </div>
                   <p className="text-xs text-[var(--muted-foreground)] mt-4 text-center">
-                    Complete all three to become a Certified Exodologist
+                    Complete all three to earn the Master Exodologist credential
                   </p>
                 </CardContent>
               </Card>

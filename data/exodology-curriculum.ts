@@ -3490,7 +3490,7 @@ export const moduleAssessments = {
         explanation: 'Albert Hirschman\'s "Exit, Voice, and Loyalty" (1970) is the foundational text analyzing exit as a response to organizational decline.'
       }
     ],
-    passingScore: 80
+    passingScore: 70
   },
 
   'f-m2-assessment': {

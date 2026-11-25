@@ -136,7 +136,7 @@ const certifications = [
     badge: '/badges/exodology-literacy.svg',
     requirements: [
       'Complete all 11 Foundations modules',
-      'Pass all module assessments with 80%+',
+      'Pass every module assessment (70% or higher)',
       'Complete final synthesis project'
     ]
   },
@@ -151,7 +151,7 @@ const certifications = [
     badge: '/badges/exodology-application.svg',
     requirements: [
       'Complete all 9 Applied modules',
-      'Pass all module assessments with 80%+',
+      'Pass every module assessment (70% or higher)',
       'Submit a complete exit plan'
     ]
   },
@@ -166,7 +166,7 @@ const certifications = [
     badge: '/badges/exodology-stewardship.svg',
     requirements: [
       'Complete all 10 Strategic modules',
-      'Pass all module assessments with 80%+',
+      'Pass every module assessment (70% or higher)',
       'Complete capstone project'
     ]
   },
@@ -462,7 +462,7 @@ export default function CertificationsPage() {
                                 <div className="flex justify-between text-sm mb-1">
                                   <span className="text-[var(--muted-foreground)]">Progress</span>
                                   <span className="font-bold text-[var(--foreground)]">
-                                    {pathProgress.completed} / {pathProgress.required} lessons
+                                    {pathProgress.completed} / {pathProgress.required} lessons and assessments
                                   </span>
                                 </div>
                                 <div className="h-2 bg-[var(--muted)] rounded-full overflow-hidden">
