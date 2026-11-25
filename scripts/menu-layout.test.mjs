@@ -16,7 +16,7 @@ test('the default menu has every item exactly once, in the order members know', 
 test('saved layouts are cleaned: unknown and repeated ids dropped, new items return home', () => {
   const n = normalizeLayout({ sections: ['learn', 'nope', 'learn'], items: { learn: ['exodology', 'ghost', 'home', 'exodology'] }, hidden: ['products', 'zzz'] })
   assert.equal(n.sections[0], 'learn')
-  assert.equal(n.sections.length, 6)
+  assert.equal(n.sections.length, 8)
   assert.deepEqual(n.items.learn.slice(0, 2), ['exodology', 'home'])
   assert.ok(n.hidden.includes('products') && !n.hidden.includes('zzz'))
   assert.deepEqual(placedIds(n), MENU_ITEMS.map((i) => i.id).sort())
@@ -57,7 +57,14 @@ test('what visitors and members see', () => {
   assert.ok(guest.includes('career') && guest.includes('exodology')) // shown locked
   assert.ok(!resolveMenu(d, false).some((s) => s.id === 'account')) // nothing left, so no empty section
   assert.ok(resolveMenu(d, true).some((s) => s.id === 'account'))
-  assert.equal(resolveMenu(d, false, true).length, 6) // the editor shows all
+  assert.equal(resolveMenu(d, false, true).length, 8) // the editor shows all
+})
+
+test('About and policy pages are in the menu for everyone, at the bottom', () => {
+  const d = defaultLayout()
+  assert.deepEqual(d.sections.slice(-2), ['about', 'policies'])
+  const guest = resolveMenu(d, false).flatMap((s) => s.items.map((i) => i.id))
+  for (const id of ['about-us', 'contact', 'faq', 'privacy', 'terms', 'accessibility']) assert.ok(guest.includes(id), id)
 })
 
 test('highlighting the current page', () => {

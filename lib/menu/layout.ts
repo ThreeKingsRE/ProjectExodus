@@ -25,6 +25,8 @@ export const MENU_SECTIONS: MenuSectionDef[] = [
   { id: 'community', name: 'Community', title: 'Community' },
   { id: 'learn', name: 'Learn', title: 'Learn' },
   { id: 'account', name: 'Account', title: 'Account' },
+  { id: 'about', name: 'About', title: 'About' },
+  { id: 'policies', name: 'Policies', title: 'Policies' },
 ]
 
 export const MENU_ITEMS: MenuItemDef[] = [
@@ -46,6 +48,18 @@ export const MENU_ITEMS: MenuItemDef[] = [
   { id: 'volition', label: 'My Volition', href: '/my/volition', icon: 'Compass', prefixes: ['/my/volition'], access: 'members', home: 'account' },
   { id: 'explore', label: 'Search & Explore', href: '/explore', icon: 'Search', prefixes: ['/explore'], access: 'members', home: 'account' },
   { id: 'settings', label: 'Settings', href: '/settings', icon: 'Settings', prefixes: ['/settings'], access: 'members', home: 'account' },
+  { id: 'about-us', label: 'About Us', href: '/about', icon: 'Info', prefixes: ['/about'], access: 'open', home: 'about' },
+  { id: 'careers', label: 'Careers', href: '/careers', icon: 'Briefcase', prefixes: ['/careers'], access: 'open', home: 'about' },
+  { id: 'press', label: 'Press', href: '/press', icon: 'Megaphone', prefixes: ['/press'], access: 'open', home: 'about' },
+  { id: 'contact', label: 'Contact Us', href: '/contact', icon: 'Mail', prefixes: ['/contact'], access: 'open', home: 'about' },
+  { id: 'support', label: 'Help Center', href: '/support', icon: 'LifeBuoy', prefixes: ['/support'], access: 'open', home: 'about' },
+  { id: 'faq', label: 'FAQ', href: '/faq', icon: 'CircleHelp', prefixes: ['/faq'], access: 'open', home: 'about' },
+  { id: 'shipping', label: 'Shipping Info', href: '/shipping', icon: 'Truck', prefixes: ['/shipping'], access: 'open', home: 'policies' },
+  { id: 'returns', label: 'Returns', href: '/returns', icon: 'Undo2', prefixes: ['/returns'], access: 'open', home: 'policies' },
+  { id: 'privacy', label: 'Privacy Policy', href: '/privacy', icon: 'ShieldCheck', prefixes: ['/privacy'], access: 'open', home: 'policies' },
+  { id: 'terms', label: 'Terms of Service', href: '/terms', icon: 'FileText', prefixes: ['/terms'], access: 'open', home: 'policies' },
+  { id: 'cookies', label: 'Cookie Policy', href: '/cookies', icon: 'Cookie', prefixes: ['/cookies'], access: 'open', home: 'policies' },
+  { id: 'accessibility', label: 'Accessibility', href: '/accessibility', icon: 'Accessibility', prefixes: ['/accessibility'], access: 'open', home: 'policies' },
 ]
 
 export const itemById = new Map(MENU_ITEMS.map((i) => [i.id, i]))
