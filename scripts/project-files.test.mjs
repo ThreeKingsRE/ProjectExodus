@@ -64,7 +64,7 @@ test('previews are built for known providers only', () => {
   assert.equal(describeFileLink(base.viewUrl).kind, 'sheet')
   assert.equal(describeFileLink('https://docs.google.com/presentation/d/xyz/edit#slide=1').kind, 'slides')
   assert.equal(describeFileLink('https://drive.google.com/file/d/F1/view?usp=sharing').previewUrl, 'https://drive.google.com/file/d/F1/preview')
-  const hosted = describeFileLink('https://www.projxodus.com/projects/riverknoll-renewal/riverknoll-pitch-v18.pptx')
+  const hosted = describeFileLink('https://www.projxodus.com/projects/riverknoll-renewal/riverknoll-pitch-v19.pptx')
   assert.equal(hosted.kind, 'slides')
   assert.match(hosted.previewUrl, /^https:\/\/view\.officeapps\.live\.com\/op\/embed\.aspx\?src=/)
   assert.equal(describeFileLink('https://contoso.sharepoint.com/:x:/g/personal/a/Eabc').previewUrl, null)
