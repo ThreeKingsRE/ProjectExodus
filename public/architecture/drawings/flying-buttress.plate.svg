@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="142 52 462 492" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="109.2 4.96 352.8 667.04" role="img" aria-labelledby="t d">
   <title id="t">Architectural drawing</title>
-  <desc id="d">Half cross-section of a Gothic church: the outward push of the high nave vault is carried by arched stone struts leaping over the side aisle to tall outer piers topped with pinnacles. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <desc id="d">Section through one bay of a Gothic church: the high nave wall and vault, the low aisle under its sloping roof, a buttress pier outside the aisle topped by a pinnacle, and a flying arch leaping from the pier to the nave wall at the springing of the vault, with the line of thrust dashed and a round close-up of the arch meeting the wall. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
   <style>
     svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
     .paper { fill: var(--_paper); }
@@ -35,41 +35,50 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="zc-flying-buttress"><circle cx="300" cy="484" r="144"/></clipPath>
   </defs>
-  <rect class="paper" x="142" y="52" width="462" height="492"/>
+  <rect class="paper" x="109.2" y="4.96" width="352.8" height="667.04"/>
   <g class="layer-hatch ink l-hair">
-    <path d="M170 100 L176.8 100.18 L183.59 100.71 L190.34 101.6 L197.03 102.84 L203.65 104.43 L210.17 106.36 L216.59 108.63 L222.88 111.24 L229.02 114.17 L235 117.42 L240.8 120.97 L246.41 124.83 L251.81 128.97 L256.99 133.39 L261.92 138.08 L266.61 143.01 L271.03 148.19 L275.17 153.59 L279.03 159.2 L282.58 165 L285.83 170.98 L288.76 177.12 L291.37 183.41 L293.64 189.83 L295.57 196.35 L297.16 202.97 L298.4 209.66 L299.29 216.41 L299.82 223.2 L300 230 L312 230 L311.81 222.57 L311.22 215.16 L310.25 207.79 L308.9 200.48 L307.16 193.25 L305.05 186.12 L302.57 179.11 L299.72 172.24 L296.52 165.53 L292.98 159 L289.09 152.66 L284.88 146.53 L280.35 140.64 L275.53 134.98 L270.41 129.59 L265.02 124.47 L259.36 119.65 L253.47 115.12 L247.34 110.91 L241 107.02 L234.47 103.48 L227.76 100.28 L220.89 97.43 L213.88 94.95 L206.75 92.84 L199.52 91.1 L192.21 89.75 L184.84 88.78 L177.43 88.19 L170 88 Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M300 110 L326 110 L326 500 L300 500 Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M470 150 L526 150 L526 500 L470 500 Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M326 166L470 186L470 214Q398 234 326 186Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M326 236L470 261L470 289Q398 309 326 256Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M131.2 327.92 L394.64 327.92 L394.64 322 L131.2 322 Z" fill="url(#h-earth)" stroke="none"/>
+    <path d="M220 322 L236.28 322 L236.28 48.2 L220 48.2 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M323.6 322 L338.4 322 L338.4 194.72 L323.6 194.72 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M338.4 322 L365.04 322 L365.04 111.84 L359.12 111.84 L359.12 97.04 L338.4 97.04 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M338.4 120.72 L329.24 120.37 L320.37 119.75 L311.78 118.86 L303.48 117.7 L295.47 116.26 L287.75 114.56 L280.31 112.58 L273.16 110.33 L266.3 107.81 L259.72 105.01 L253.43 101.95 L247.43 98.61 L241.71 95 L236.28 91.12 L236.28 80.76 L243.67 83.61 L251.05 86.23 L258.41 88.62 L265.76 90.79 L273.09 92.73 L280.41 94.44 L287.71 95.93 L295 97.19 L302.27 98.23 L309.52 99.03 L316.77 99.61 L323.99 99.97 L331.2 100.1 L338.4 100 Z" fill="url(#h-stone)" stroke="none"/>
+    <g clip-path="url(#zc-flying-buttress)"><path d="M-60 1144.71 L693.88 1144.71 L693.88 1127.76 L-60 1127.76 Z" fill="url(#h-earth)" stroke="none"/><path d="M194.12 1127.76 L240.71 1127.76 L240.71 344.24 L194.12 344.24 Z" fill="url(#h-stone)" stroke="none"/><path d="M490.59 1127.76 L532.94 1127.76 L532.94 763.53 L490.59 763.53 Z" fill="url(#h-stone)" stroke="none"/><path d="M532.94 1127.76 L609.18 1127.76 L609.18 526.35 L592.24 526.35 L592.24 484 L532.94 484 Z" fill="url(#h-stone)" stroke="none"/><path d="M532.94 551.76 L506.73 550.77 L481.34 549 L456.77 546.45 L433.02 543.12 L410.1 539.02 L387.99 534.13 L366.71 528.47 L346.24 522.03 L326.6 514.81 L307.78 506.82 L289.78 498.05 L272.6 488.49 L256.24 478.17 L240.71 467.06 L240.71 437.41 L261.86 445.56 L282.97 453.06 L304.04 459.91 L325.07 466.11 L346.05 471.66 L366.99 476.57 L387.88 480.82 L408.73 484.43 L429.54 487.39 L450.31 489.7 L471.03 491.37 L491.71 492.38 L512.35 492.75 L532.94 492.47 Z" fill="url(#h-stone)" stroke="none"/></g>
   </g>
   <g class="layer-fine ink l-fine">
-    <path d="M304 130 L322 130 L322 200 L304 200 Z"/>
-    <path d="M480 150L498 96"/>
-    <path d="M516 150L498 96"/>
+    <path d="M214.54 109.56 L208.81 104.5 L202.82 99.62 L196.56 94.91 L190.03 90.38 L183.24 86.03 L176.18 81.86 L168.85 77.86 L161.26 74.04 L153.4 70.4"/>
+    <path d="M348.76 70.4 L348.76 31.92"/>
+    <circle cx="306.5" cy="108.37" r="2.52"/>
+    <circle cx="284.01" cy="104.26" r="2.52"/>
+    <circle cx="262.74" cy="97.9" r="2.52"/>
+    <g clip-path="url(#zc-flying-buttress)"><path d="M178.49 519.83 L162.1 505.35 L144.95 491.37 L127.03 477.9 L108.35 464.94 L88.91 452.49 L68.71 440.55 L47.75 429.11 L26.02 418.18 L3.53 407.76"/><path d="M562.59 407.76 L562.59 297.65"/><circle cx="441.67" cy="516.41" r="7.2"/><circle cx="377.29" cy="504.65" r="7.2"/><circle cx="316.42" cy="486.46" r="7.2"/></g>
+    <path d="M307.01 91.48L443.12 468.1" stroke-dasharray="2 3"/>
+    <path d="M206.99 102.6L156.88 499.9" stroke-dasharray="2 3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <path d="M470 150 L498 70 L526 150"/>
-    <path d="M326 380 L326.39 372.47 L327.57 365.03 L329.52 357.75 L332.22 350.71 L335.65 344 L339.75 337.68 L344.49 331.82 L349.82 326.49 L355.68 321.75 L362 317.65 L368.71 314.22 L375.75 311.52 L383.03 309.57 L390.47 308.39 L398 308 L405.53 308.39 L412.97 309.57 L420.25 311.52 L427.29 314.22 L434 317.65 L440.32 321.75 L446.18 326.49 L451.51 331.82 L456.25 337.68 L460.35 344 L463.78 350.71 L466.48 357.75 L468.43 365.03 L469.61 372.47 L470 380"/>
-    <path d="M326 300L470 330"/>
-    <path d="M160 500L586 500"/>
+    <path d="M131.2 322 L394.64 322"/>
+    <path d="M236.28 162.16 L338.4 193.24"/>
+    <path d="M236.28 166.3 L338.4 197.38"/>
+    <path d="M338.4 97.04 L359.12 97.04 L359.12 70.4 L338.4 70.4 Z"/>
+    <path d="M335.44 70.4 L362.08 70.4 L348.76 31.92 Z"/>
+    <g clip-path="url(#zc-flying-buttress)"><path d="M-60 1127.76 L693.88 1127.76"/><path d="M240.71 670.35 L532.94 759.29"/><path d="M240.71 682.21 L532.94 771.15"/><path d="M532.94 484 L592.24 484 L592.24 407.76 L532.94 407.76 Z"/><path d="M524.47 407.76 L600.71 407.76 L562.59 297.65 Z"/></g>
+    <circle cx="257" cy="97.04" r="50.32" style="stroke-dasharray: 4 3; stroke-width: 1"/>
+    <circle cx="300" cy="484" r="144"/>
   </g>
   <g class="layer-cut ink l-cut">
-    <path d="M170 100 L176.8 100.18 L183.59 100.71 L190.34 101.6 L197.03 102.84 L203.65 104.43 L210.17 106.36 L216.59 108.63 L222.88 111.24 L229.02 114.17 L235 117.42 L240.8 120.97 L246.41 124.83 L251.81 128.97 L256.99 133.39 L261.92 138.08 L266.61 143.01 L271.03 148.19 L275.17 153.59 L279.03 159.2 L282.58 165 L285.83 170.98 L288.76 177.12 L291.37 183.41 L293.64 189.83 L295.57 196.35 L297.16 202.97 L298.4 209.66 L299.29 216.41 L299.82 223.2 L300 230 L312 230 L311.81 222.57 L311.22 215.16 L310.25 207.79 L308.9 200.48 L307.16 193.25 L305.05 186.12 L302.57 179.11 L299.72 172.24 L296.52 165.53 L292.98 159 L289.09 152.66 L284.88 146.53 L280.35 140.64 L275.53 134.98 L270.41 129.59 L265.02 124.47 L259.36 119.65 L253.47 115.12 L247.34 110.91 L241 107.02 L234.47 103.48 L227.76 100.28 L220.89 97.43 L213.88 94.95 L206.75 92.84 L199.52 91.1 L192.21 89.75 L184.84 88.78 L177.43 88.19 L170 88 Z"/>
-    <path d="M300 110 L326 110 L326 500 L300 500 Z"/>
-    <path d="M470 150 L526 150 L526 500 L470 500 Z"/>
-    <path d="M326 166L470 186"/>
-    <path d="M326 186Q398 234 470 214"/>
-    <path d="M326 236L470 261"/>
-    <path d="M326 256Q398 309 470 289"/>
+    <path d="M220 322 L236.28 322 L236.28 48.2 L220 48.2 Z"/>
+    <path d="M220 100 L219.66 94.65 L218.64 89.61 L216.94 84.87 L214.56 80.43 L211.51 76.29 L207.77 72.45 L203.35 68.92 L198.25 65.69 L192.48 62.76 L186.02 60.13 L178.88 57.8 L171.07 55.78 L162.57 54.06 L153.4 52.64"/>
+    <path d="M323.6 322 L338.4 322 L338.4 194.72 L323.6 194.72 Z"/>
+    <path d="M338.4 322 L365.04 322 L365.04 111.84 L359.12 111.84 L359.12 97.04 L338.4 97.04 Z"/>
+    <path d="M338.4 120.72 L329.24 120.37 L320.37 119.75 L311.78 118.86 L303.48 117.7 L295.47 116.26 L287.75 114.56 L280.31 112.58 L273.16 110.33 L266.3 107.81 L259.72 105.01 L253.43 101.95 L247.43 98.61 L241.71 95 L236.28 91.12 L236.28 80.76 L243.67 83.61 L251.05 86.23 L258.41 88.62 L265.76 90.79 L273.09 92.73 L280.41 94.44 L287.71 95.93 L295 97.19 L302.27 98.23 L309.52 99.03 L316.77 99.61 L323.99 99.97 L331.2 100.1 L338.4 100 Z"/>
+    <g clip-path="url(#zc-flying-buttress)"><path d="M194.12 1127.76 L240.71 1127.76 L240.71 344.24 L194.12 344.24 Z"/><path d="M194.12 492.47 L193.15 477.17 L190.23 462.74 L185.37 449.17 L178.56 436.46 L169.81 424.62 L159.11 413.64 L146.47 403.53 L131.88 394.28 L115.35 385.9 L96.88 378.38 L76.46 371.72 L54.09 365.93 L29.78 361 L3.53 356.94"/><path d="M490.59 1127.76 L532.94 1127.76 L532.94 763.53 L490.59 763.53 Z"/><path d="M532.94 1127.76 L609.18 1127.76 L609.18 526.35 L592.24 526.35 L592.24 484 L532.94 484 Z"/><path d="M532.94 551.76 L506.73 550.77 L481.34 549 L456.77 546.45 L433.02 543.12 L410.1 539.02 L387.99 534.13 L366.71 528.47 L346.24 522.03 L326.6 514.81 L307.78 506.82 L289.78 498.05 L272.6 488.49 L256.24 478.17 L240.71 467.06 L240.71 437.41 L261.86 445.56 L282.97 453.06 L304.04 459.91 L325.07 466.11 L346.05 471.66 L366.99 476.57 L387.88 480.82 L408.73 484.43 L429.54 487.39 L450.31 489.7 L471.03 491.37 L491.71 492.38 L512.35 492.75 L532.94 492.47 Z"/></g>
   </g>
   <g class="layer-center ink l-center">
-    <path d="M260 240L386 262M379.18 263.58L386 262L380.12 258.21" stroke-dasharray="none"/>
-    <path d="M386 262Q460 300 498 500" stroke-dasharray="6 3"/>
-    <path d="M170 90L170 510"/>
+    <path d="M153.4 327.92 L153.4 37.84"/>
+    <path d="M220 100 L236.28 89.64 L273.28 104.44 L316.2 111.84 L348.76 120.72 L350.24 203.6 L350.98 322" stroke-dasharray="10 5"/>
+    <g clip-path="url(#zc-flying-buttress)"><path d="M3.53 1144.71 L3.53 314.59"/><path d="M194.12 492.47 L240.71 462.82 L346.59 505.18 L469.41 526.35 L562.59 551.76 L566.82 788.94 L568.94 1127.76" stroke-dasharray="10 5"/></g>
   </g>
-  <text class="t-credit" x="148" y="533">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this form;</text>
-  <text class="t-credit" x="148" y="542">no external drawing reproduced.</text>
+  <text class="t-credit" x="115.2" y="661">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+  <text class="t-credit" x="115.2" y="670">construction of this form; no external drawing reproduced.</text>
 </svg>

@@ -282,10 +282,10 @@
   "aspect": 1.877
  },
  "thatch-roof": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "ROF-04",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1.034
+  "aspect": 0.547
  },
  "cupola": {
   "view": "ELEVATION · CLOSE-UP IN CONTEXT",
@@ -306,10 +306,10 @@
   "aspect": 1.075
  },
  "flying-buttress": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "ROF-08",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 0.991
+  "aspect": 0.53
  },
  "stepped-crown": {
   "view": "ELEVATION",
@@ -768,10 +768,10 @@
   "aspect": 0.848
  },
  "triple-stepped-platform": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "STC-21",
-  "source": "Stepped podium in the Aksumite and Ethiopian church tradition. Generic original drawing by Project Exodus; not a survey.",
-  "aspect": 1.891
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.623
  },
  "stone-and-chain-hoops": {
   "view": "SECTION",
@@ -936,10 +936,10 @@
   "aspect": 0.955
  },
  "metro-entrance": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "URB-13",
-  "source": "In the manner of Hector Guimard’s Art Nouveau Paris Métro entrances (c. 1900). Generic; not a copy of a specific entrance. Original drawing by Project Exodus.",
-  "aspect": 1
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.599
  },
  "excavation-trench": {
   "view": "SECTION",
@@ -1074,10 +1074,10 @@
   "aspect": 0.917
  },
  "nave": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "REL-12",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 0.969
+  "aspect": 0.511
  },
  "monolithic-church": {
   "view": "SECTION",
@@ -1320,10 +1320,10 @@
   "aspect": 0.937
  },
  "rock-cut-facade": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "FAC-14",
-  "source": "After Al-Khazneh (the Treasury), Petra, Jordan (1st c. CE). Simplified; not a survey. Original drawing by Project Exodus.",
-  "aspect": 0.721
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.48
  },
  "loggia": {
   "view": "OBLIQUE",

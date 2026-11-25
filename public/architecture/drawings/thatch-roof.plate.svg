@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="102 84.83 416 429.17" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="114.8 -7.6 370.4 679.6" role="img" aria-labelledby="t d">
   <title id="t">Architectural drawing</title>
-  <desc id="d">Section through the eaves of a steep roof covered with a thick layer of reed laid on battens and rafters, finished with a rolled ridge, its deep overhang throwing rain clear of the wall. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <desc id="d">Section through a cottage with a thatched roof pitched at about 50 degrees: bundles of reed about 380 mm thick laid in courses over battens and rafters, a rolled reed ridge and overhanging eaves, with a round close-up of the eaves. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
   <style>
     svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
     .paper { fill: var(--_paper); }
@@ -35,36 +35,121 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    <pattern id="h-thatch" width="7" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-40)"><path d="M1 0V12M4 2V12" class="ink l-hair"/></pattern>
+    <clipPath id="zc-thatch-roof"><circle cx="300" cy="484" r="144"/></clipPath>
   </defs>
-  <rect class="paper" x="102" y="84.83" width="416" height="429.17"/>
+  <rect class="paper" x="114.8" y="-7.6" width="370.4" height="679.6"/>
   <g class="layer-hatch ink l-hair">
-    <path d="M200 330 L234 330 L234 470 L200 470 Z" fill="url(#h-earth)" stroke="none"/>
-    <path d="M170 356 L337.12 156.83 L344.79 163.26 L177.66 362.43 Z" fill="url(#h-timber)" stroke="none"/>
-    <path d="M170 356 L337.12 156.83 L311.08 134.97 L139.36 330.29 Z" fill="url(#h-thatch)" stroke="none"/>
+    <path d="M181 268 L196.3 268 L196.3 186.4 L181 186.4 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M419 268 L403.7 268 L403.7 186.4 L419 186.4 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M160.6 205.27 L300 39.14 L300 19.04 L150.7 196.97 Z" fill="url(#h-timber)" stroke="none"/>
+    <path d="M439.4 205.27 L300 39.14 L300 19.04 L449.3 196.97 Z" fill="url(#h-timber)" stroke="none"/>
+    <g clip-path="url(#zc-thatch-roof)"><path d="M338.4 704.8 L381.6 704.8 L381.6 474.4 L338.4 474.4 Z" fill="url(#h-stone)" stroke="none"/><path d="M1010.4 704.8 L967.2 704.8 L967.2 474.4 L1010.4 474.4 Z" fill="url(#h-stone)" stroke="none"/><path d="M280.8 527.69 L674.4 58.61 L674.4 1.86 L252.85 504.24 Z" fill="url(#h-timber)" stroke="none"/><path d="M1068 527.69 L674.4 58.61 L674.4 1.86 L1095.95 504.24 Z" fill="url(#h-timber)" stroke="none"/></g>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <path d="M170.56 193.41 L161.37 184.26"/>
+    <path d="M180.51 181.54 L172.03 171.55"/>
+    <path d="M190.47 169.67 L182.69 158.84"/>
+    <path d="M200.43 157.81 L193.36 146.13"/>
+    <path d="M210.39 145.94 L204.02 133.42"/>
+    <path d="M220.34 134.07 L214.69 120.71"/>
+    <path d="M230.3 122.21 L225.35 108"/>
+    <path d="M240.26 110.34 L236.02 95.3"/>
+    <path d="M250.21 98.47 L246.68 82.59"/>
+    <path d="M260.17 86.61 L257.34 69.88"/>
+    <path d="M270.13 74.74 L268.01 57.17"/>
+    <path d="M280.09 62.87 L278.67 44.46"/>
+    <path d="M290.04 51.01 L289.34 31.75"/>
+    <path d="M429.44 193.41 L438.63 184.26"/>
+    <path d="M419.49 181.54 L427.97 171.55"/>
+    <path d="M409.53 169.67 L417.31 158.84"/>
+    <path d="M399.57 157.81 L406.64 146.13"/>
+    <path d="M389.61 145.94 L395.98 133.42"/>
+    <path d="M379.66 134.07 L385.31 120.71"/>
+    <path d="M369.7 122.21 L374.65 108"/>
+    <path d="M359.74 110.34 L363.98 95.3"/>
+    <path d="M349.79 98.47 L353.32 82.59"/>
+    <path d="M339.83 86.61 L342.66 69.88"/>
+    <path d="M329.87 74.74 L331.99 57.17"/>
+    <path d="M319.91 62.87 L321.33 44.46"/>
+    <path d="M309.96 51.01 L310.66 31.75"/>
+    <g clip-path="url(#zc-thatch-roof)"><path d="M308.91 494.18 L282.97 468.35"/><path d="M337.03 460.67 L313.08 432.47"/><path d="M365.14 427.17 L343.19 396.58"/><path d="M393.26 393.66 L373.3 360.7"/><path d="M421.37 360.16 L403.41 324.82"/><path d="M449.49 326.65 L433.52 288.93"/><path d="M477.6 293.15 L463.63 253.05"/><path d="M505.71 259.64 L493.74 217.16"/><path d="M533.83 226.14 L523.85 181.28"/><path d="M561.94 192.63 L553.96 145.39"/><path d="M590.06 159.13 L584.07 109.51"/><path d="M618.17 125.62 L614.18 73.63"/><path d="M646.29 92.12 L644.29 37.74"/><path d="M1039.89 494.18 L1065.83 468.35"/><path d="M1011.77 460.67 L1035.72 432.47"/><path d="M983.66 427.17 L1005.61 396.58"/><path d="M955.54 393.66 L975.5 360.7"/><path d="M927.43 360.16 L945.39 324.82"/><path d="M899.31 326.65 L915.28 288.93"/><path d="M871.2 293.15 L885.17 253.05"/><path d="M843.09 259.64 L855.06 217.16"/><path d="M814.97 226.14 L824.95 181.28"/><path d="M786.86 192.63 L794.84 145.39"/><path d="M758.74 159.13 L764.73 109.51"/><path d="M730.63 125.62 L734.62 73.63"/><path d="M702.51 92.12 L704.51 37.74"/></g>
   </g>
   <g class="layer-fine ink l-fine">
-    <circle cx="187.04" cy="332.58" r="2.4"/>
-    <circle cx="205.61" cy="310.45" r="2.4"/>
-    <circle cx="224.18" cy="288.32" r="2.4"/>
-    <circle cx="242.75" cy="266.19" r="2.4"/>
-    <circle cx="261.32" cy="244.06" r="2.4"/>
-    <circle cx="279.88" cy="221.93" r="2.4"/>
-    <circle cx="298.45" cy="199.8" r="2.4"/>
-    <circle cx="317.02" cy="177.67" r="2.4"/>
+    <path d="M159.12 204.03 L300 36.13"/>
+    <path d="M157.93 203.03 L300 33.71"/>
+    <path d="M156.74 202.03 L300 31.3"/>
+    <path d="M155.55 201.04 L300 28.89"/>
+    <path d="M154.36 200.04 L300 26.48"/>
+    <path d="M153.18 199.04 L300 24.07"/>
+    <path d="M151.99 198.05 L300 21.65"/>
+    <path d="M165.58 199.34 L164.9 198.77"/>
+    <path d="M175.54 187.47 L174.86 186.9"/>
+    <path d="M185.49 175.61 L184.82 175.04"/>
+    <path d="M195.45 163.74 L194.77 163.17"/>
+    <path d="M205.41 151.87 L204.73 151.3"/>
+    <path d="M215.36 140.01 L214.69 139.44"/>
+    <path d="M225.32 128.14 L224.64 127.57"/>
+    <path d="M235.28 116.27 L234.6 115.71"/>
+    <path d="M245.24 104.41 L244.56 103.84"/>
+    <path d="M255.19 92.54 L254.52 91.97"/>
+    <path d="M265.15 80.67 L264.47 80.11"/>
+    <path d="M275.11 68.81 L274.43 68.24"/>
+    <path d="M285.06 56.94 L284.39 56.37"/>
+    <path d="M295.02 45.07 L294.34 44.51"/>
+    <path d="M160.6 205.27 L150.7 196.97"/>
+    <path d="M440.88 204.03 L300 36.13"/>
+    <path d="M442.07 203.03 L300 33.71"/>
+    <path d="M443.26 202.03 L300 31.3"/>
+    <path d="M444.45 201.04 L300 28.89"/>
+    <path d="M445.64 200.04 L300 26.48"/>
+    <path d="M446.82 199.04 L300 24.07"/>
+    <path d="M448.01 198.05 L300 21.65"/>
+    <path d="M434.42 199.34 L435.1 198.77"/>
+    <path d="M424.46 187.47 L425.14 186.9"/>
+    <path d="M414.51 175.61 L415.18 175.04"/>
+    <path d="M404.55 163.74 L405.23 163.17"/>
+    <path d="M394.59 151.87 L395.27 151.3"/>
+    <path d="M384.64 140.01 L385.31 139.44"/>
+    <path d="M374.68 128.14 L375.36 127.57"/>
+    <path d="M364.72 116.27 L365.4 115.71"/>
+    <path d="M354.76 104.41 L355.44 103.84"/>
+    <path d="M344.81 92.54 L345.48 91.97"/>
+    <path d="M334.85 80.67 L335.53 80.11"/>
+    <path d="M324.89 68.81 L325.57 68.24"/>
+    <path d="M314.94 56.94 L315.61 56.37"/>
+    <path d="M304.98 45.07 L305.66 44.51"/>
+    <path d="M439.4 205.27 L449.3 196.97"/>
+    <g clip-path="url(#zc-thatch-roof)"><path d="M276.61 524.17 L674.4 50.1"/><path d="M273.25 521.35 L674.4 43.29"/><path d="M269.9 518.54 L674.4 36.48"/><path d="M266.55 515.73 L674.4 29.67"/><path d="M263.19 512.91 L674.4 22.86"/><path d="M259.84 510.1 L674.4 16.05"/><path d="M256.49 507.28 L674.4 9.24"/><path d="M294.86 510.93 L292.95 509.33"/><path d="M322.97 477.43 L321.06 475.82"/><path d="M351.09 443.92 L349.17 442.32"/><path d="M379.2 410.42 L377.29 408.81"/><path d="M407.31 376.91 L405.4 375.31"/><path d="M435.43 343.41 L433.52 341.8"/><path d="M463.54 309.9 L461.63 308.3"/><path d="M491.66 276.4 L489.75 274.79"/><path d="M519.77 242.89 L517.86 241.29"/><path d="M547.89 209.38 L545.97 207.78"/><path d="M576 175.88 L574.09 174.27"/><path d="M604.11 142.37 L602.2 140.77"/><path d="M632.23 108.87 L630.32 107.26"/><path d="M660.34 75.36 L658.43 73.76"/><path d="M280.8 527.69 L252.85 504.24"/><path d="M1072.19 524.17 L674.4 50.1"/><path d="M1075.55 521.35 L674.4 43.29"/><path d="M1078.9 518.54 L674.4 36.48"/><path d="M1082.25 515.73 L674.4 29.67"/><path d="M1085.61 512.91 L674.4 22.86"/><path d="M1088.96 510.1 L674.4 16.05"/><path d="M1092.31 507.28 L674.4 9.24"/><path d="M1053.94 510.93 L1055.85 509.33"/><path d="M1025.83 477.43 L1027.74 475.82"/><path d="M997.71 443.92 L999.63 442.32"/><path d="M969.6 410.42 L971.51 408.81"/><path d="M941.49 376.91 L943.4 375.31"/><path d="M913.37 343.41 L915.28 341.8"/><path d="M885.26 309.9 L887.17 308.3"/><path d="M857.14 276.4 L859.05 274.79"/><path d="M829.03 242.89 L830.94 241.29"/><path d="M800.91 209.38 L802.83 207.78"/><path d="M772.8 175.88 L774.71 174.27"/><path d="M744.69 142.37 L746.6 140.77"/><path d="M716.57 108.87 L718.48 107.26"/><path d="M688.46 75.36 L690.37 73.76"/><path d="M1068 527.69 L1095.95 504.24"/></g>
+    <path d="M213.9 168.84L431.28 424.83" stroke-dasharray="2 3"/>
+    <path d="M120.9 210.76L168.72 543.17" stroke-dasharray="2 3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <circle cx="321.04" cy="143.33" r="21"/>
-    <path d="M120 470L500 470"/>
+    <path d="M136.8 268 L463.2 268"/>
+    <path d="M179.3 186.4 L198 186.4 L198 180.96 L179.3 180.96 Z"/>
+    <path d="M420.7 186.4 L402 186.4 L402 180.96 L420.7 180.96 Z"/>
+    <path d="M160.6 205.27 L300 39.14 L300 19.04 L150.7 196.97 Z"/>
+    <path d="M187.8 180.96 L300 39.14"/>
+    <path d="M160.6 205.27 L187.8 180.96"/>
+    <path d="M439.4 205.27 L300 39.14 L300 19.04 L449.3 196.97 Z"/>
+    <path d="M412.2 180.96 L300 39.14"/>
+    <path d="M439.4 205.27 L412.2 180.96"/>
+    <path d="M285.84 31.56 L285.4 28.64 L285.55 25.68 L286.3 22.83 L287.6 20.17 L289.41 17.84 L291.66 15.92 L294.24 14.48 L297.06 13.6 L300 13.3 L302.94 13.6 L305.76 14.48 L308.34 15.92 L310.59 17.84 L312.4 20.17 L313.7 22.83 L314.45 25.68 L314.6 28.64 L314.16 31.56"/>
+    <path d="M287.08 32.34 L312.92 32.34"/>
+    <path d="M235.4 103.97 L364.6 103.97"/>
+    <path d="M187.8 180.96 L412.2 180.96"/>
+    <g clip-path="url(#zc-thatch-roof)"><path d="M213.6 704.8 L1135.2 704.8"/><path d="M333.6 474.4 L386.4 474.4 L386.4 459.04 L333.6 459.04 Z"/><path d="M1015.2 474.4 L962.4 474.4 L962.4 459.04 L1015.2 459.04 Z"/><path d="M280.8 527.69 L674.4 58.61 L674.4 1.86 L252.85 504.24 Z"/><path d="M357.6 459.04 L674.4 58.61"/><path d="M280.8 527.69 L357.6 459.04"/><path d="M1068 527.69 L674.4 58.61 L674.4 1.86 L1095.95 504.24 Z"/><path d="M991.2 459.04 L674.4 58.61"/><path d="M1068 527.69 L991.2 459.04"/><path d="M634.42 37.2 L633.17 28.95 L633.61 20.62 L635.71 12.54 L639.39 5.06 L644.51 -1.54 L650.84 -6.97 L658.14 -11.01 L666.1 -13.51 L674.4 -14.35 L682.7 -13.51 L690.66 -11.01 L697.96 -6.97 L704.29 -1.54 L709.41 5.06 L713.09 12.54 L715.19 20.62 L715.63 28.95 L714.38 37.2"/><path d="M637.92 39.41 L710.88 39.41"/><path d="M492 241.66 L856.8 241.66"/><path d="M357.6 459.04 L991.2 459.04"/></g>
+    <circle cx="167.4" cy="189.8" r="51" style="stroke-dasharray: 4 3; stroke-width: 1"/>
+    <circle cx="300" cy="484" r="144"/>
   </g>
   <g class="layer-cut ink l-cut">
-    <path d="M200 330 L234 330 L234 470 L200 470 Z"/>
-    <path d="M170 356 L337.12 156.83 L344.79 163.26 L177.66 362.43 Z"/>
-    <path d="M170 356 L337.12 156.83 L311.08 134.97 L139.36 330.29 Z"/>
+    <path d="M181 268 L196.3 268 L196.3 186.4 L181 186.4 Z"/>
+    <path d="M419 268 L403.7 268 L403.7 186.4 L419 186.4 Z"/>
+    <g clip-path="url(#zc-thatch-roof)"><path d="M338.4 704.8 L381.6 704.8 L381.6 474.4 L338.4 474.4 Z"/><path d="M1010.4 704.8 L967.2 704.8 L967.2 474.4 L1010.4 474.4 Z"/></g>
   </g>
   <g class="layer-center ink l-center">
-    <path d="M156.29 307.72L164 430M160.87 423.74L164 430L166.32 423.39" stroke-dasharray="none"/>
+    <path d="M300 278.2 L300 8.54"/>
+    <g clip-path="url(#zc-thatch-roof)"><path d="M674.4 733.6 L674.4 -27.79"/></g>
   </g>
-  <text class="t-credit" x="108" y="503">SOURCE: Original drawing by Project Exodus from the standard geometric construction of</text>
-  <text class="t-credit" x="108" y="512">this form; no external drawing reproduced.</text>
+  <text class="t-credit" x="120.8" y="661">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+  <text class="t-credit" x="120.8" y="670">construction of this form; no external drawing reproduced.</text>
 </svg>

@@ -31,13 +31,14 @@ import { PAIR_A_SHEETS } from './families/pairs-a'
 import { PAIR_B_SHEETS } from './families/pairs-b'
 import { CRUDE_A_SHEETS } from './families/crude-a'
 import { CRUDE_B_SHEETS } from './families/crude-b'
+import { CRUDE_C_SHEETS } from './families/crude-c'
 import { ELEMENT_SUMMARIES } from '../../../data/architecture/summary'
 
 const OUT_DIR = 'public/architecture/drawings'
 const MANIFEST = 'data/architecture/drawings-manifest.json'
 const MAX_GZIP = 14 * 1024 // per file budget
 
-const allSpecs: SheetSpec[] = [...ORDERS.map(buildOrder), ...ARCHES.map(buildArch), ...VAULT_SHEETS.map((build) => build()), ...FLOOR_SHEETS.map((build) => build()), ...STAIR_SHEETS.map((build) => build()), ...ROOF_SHEETS.map((build) => build()), ...INTERIOR_SHEETS.map((build) => build()), ...OPENING_SHEETS.map((build) => build()), ...STRUCTURE_SHEETS.map((build) => build()), ...LANDSCAPE_SHEETS.map((build) => build()), ...ROOM_SHEETS.map((build) => build()), ...RELIGIOUS_SHEETS.map((build) => build()), ...DECORATIVE_SHEETS.map((build) => build()), ...FACADE_SHEETS.map((build) => build()), ...SOLID_SHEETS.map((build) => build()), ...ADDITION_SHEETS.map((build) => build()), ...PAIR_A_SHEETS.map((build) => build()), ...PAIR_B_SHEETS.map((build) => build()), ...CRUDE_A_SHEETS.map((build) => build()), ...CRUDE_B_SHEETS.map((build) => build())]
+const allSpecs: SheetSpec[] = [...ORDERS.map(buildOrder), ...ARCHES.map(buildArch), ...VAULT_SHEETS.map((build) => build()), ...FLOOR_SHEETS.map((build) => build()), ...STAIR_SHEETS.map((build) => build()), ...ROOF_SHEETS.map((build) => build()), ...INTERIOR_SHEETS.map((build) => build()), ...OPENING_SHEETS.map((build) => build()), ...STRUCTURE_SHEETS.map((build) => build()), ...LANDSCAPE_SHEETS.map((build) => build()), ...ROOM_SHEETS.map((build) => build()), ...RELIGIOUS_SHEETS.map((build) => build()), ...DECORATIVE_SHEETS.map((build) => build()), ...FACADE_SHEETS.map((build) => build()), ...SOLID_SHEETS.map((build) => build()), ...ADDITION_SHEETS.map((build) => build()), ...PAIR_A_SHEETS.map((build) => build()), ...PAIR_B_SHEETS.map((build) => build()), ...CRUDE_A_SHEETS.map((build) => build()), ...CRUDE_B_SHEETS.map((build) => build()), ...CRUDE_C_SHEETS.map((build) => build())]
 
 // A later family replaces an earlier drawing of the same element (the close-up-in-context sheets replace the older shared drawings)
 const byId = new Map<string, SheetSpec>()
