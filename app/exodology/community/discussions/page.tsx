@@ -20,8 +20,8 @@ const forumCategories = [
     description: 'Open discussions about Exodology concepts and applications',
     icon: MessageSquare,
     color: 'from-blue-500 to-indigo-600',
-    topics: 24,
-    posts: 156
+    topics: 0,
+    posts: 0
   },
   {
     id: 'case-studies',
@@ -29,8 +29,8 @@ const forumCategories = [
     description: 'Analyze and discuss transition case studies',
     icon: TrendingUp,
     color: 'from-amber-500 to-orange-600',
-    topics: 18,
-    posts: 89
+    topics: 0,
+    posts: 0
   },
   {
     id: 'methodology',
@@ -38,8 +38,8 @@ const forumCategories = [
     description: 'Discuss research methods and theoretical frameworks',
     icon: Bookmark,
     color: 'from-purple-500 to-violet-600',
-    topics: 12,
-    posts: 67
+    topics: 0,
+    posts: 0
   },
   {
     id: 'practice',
@@ -47,86 +47,26 @@ const forumCategories = [
     description: 'Share experiences from real-world transition work',
     icon: Users,
     color: 'from-teal-500 to-cyan-600',
-    topics: 15,
-    posts: 93
+    topics: 0,
+    posts: 0
   }
 ]
 
-// Sample discussions (in production, these would come from a database)
-const sampleDiscussions = [
-  {
-    id: 'd1',
-    title: 'Applying MLP to Digital Platform Transitions',
-    category: 'general',
-    author: 'Dr. Sarah Lindqvist',
-    authorLevel: 'master',
-    excerpt: 'Has anyone applied the multi-level perspective to analyze transitions in digital platform ecosystems? I\'m finding that niche-regime dynamics behave differently...',
-    replies: 12,
-    likes: 24,
-    lastActivity: '2 hours ago',
-    pinned: true
-  },
-  {
-    id: 'd2',
-    title: 'Comparing German Energiewende with UK Energy Policy',
-    category: 'case-studies',
-    author: 'Priya Sharma',
-    authorLevel: 'stewardship',
-    excerpt: 'I\'m preparing a comparative analysis of energy transitions and would love input from those familiar with both cases...',
-    replies: 8,
-    likes: 15,
-    lastActivity: '5 hours ago',
-    pinned: false
-  },
-  {
-    id: 'd3',
-    title: 'Justice Framework Application: Challenges in Practice',
-    category: 'methodology',
-    author: 'Marcus Okonkwo',
-    authorLevel: 'master',
-    excerpt: 'The theoretical frameworks for just transitions are well-developed, but I\'m encountering practical challenges when applying them in contexts with weak civil society...',
-    replies: 21,
-    likes: 38,
-    lastActivity: '1 day ago',
-    pinned: true
-  },
-  {
-    id: 'd4',
-    title: 'Community Resistance in Agricultural Transitions',
-    category: 'practice',
-    author: 'Ana Reis',
-    authorLevel: 'stewardship',
-    excerpt: 'Working with farming communities in Southern Brazil, we\'re facing significant resistance to sustainable practices. Seeking advice from those with similar experiences...',
-    replies: 14,
-    likes: 29,
-    lastActivity: '1 day ago',
-    pinned: false
-  },
-  {
-    id: 'd5',
-    title: 'Quantitative Methods in Transition Analysis',
-    category: 'methodology',
-    author: 'Hiroshi Tanaka',
-    authorLevel: 'application',
-    excerpt: 'Most transition studies use qualitative methods. I\'m exploring how quantitative approaches might complement our toolkit. Anyone working on similar questions?',
-    replies: 6,
-    likes: 12,
-    lastActivity: '2 days ago',
-    pinned: false
-  },
-  {
-    id: 'd6',
-    title: 'The Role of Financial Institutions in Transitions',
-    category: 'general',
-    author: 'Michael Green',
-    authorLevel: 'literacy',
-    excerpt: 'As a graduate researcher, I\'m curious about how financial institutions can accelerate or hinder transitions. What readings would you recommend?',
-    replies: 9,
-    likes: 18,
-    lastActivity: '3 days ago',
-    pinned: false
-  }
-]
+// Discussions will come from the database. The placeholder threads that
+// were here have been removed.
+type Discussion = {
+  id: string
+  title: string
+  category: string
+  author: string
+  authorLevel: string
+  excerpt: string
+  replies: number
+  likes: number
+  lastActivity: string
+  pinned: boolean
+}
+const sampleDiscussions: Discussion[] = []
 
 const levelColors = {
   'literacy': 'bg-green-500',
@@ -392,7 +332,7 @@ export default function DiscussionsPage() {
   )
 }
 
-function DiscussionCard({ discussion }: { discussion: typeof sampleDiscussions[0] }) {
+function DiscussionCard({ discussion }: { discussion: Discussion }) {
   const category = forumCategories.find(c => c.id === discussion.category)
 
   return (
