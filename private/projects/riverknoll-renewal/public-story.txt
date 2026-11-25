@@ -96,7 +96,7 @@ We keep every model, deck and study, so you can follow how the plan moved and ch
 
 Pitch decks: v19 (513-bed concept), v20 (long run and neighbors), v21 (744 beds), v22 (rows of 10, cost per building), v23 (value engineering, RIT decommissioning), v24 (funding and all options, current). The written Feasibility and Viability Study v16 covers the v16 and v17 work.
 
-Every file is in this initiative's Workspace for signed-in team members: each model and deck version, the study, the version history, the research library and the options comparison. Ask to join the team to download them.
+Anyone can preview every model and deck version, the study, the version history, the research library and the options comparison on this page, with or without an account. Previews can't be downloaded. Signed-in team members download the original files from this initiative's Workspace, so ask to join the team if you need them.
 
 ## Still to confirm
 
