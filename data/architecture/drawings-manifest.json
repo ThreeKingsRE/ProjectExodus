@@ -828,10 +828,10 @@
   "aspect": 1.244
  },
  "folly": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "GDN-09",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1.172
+  "aspect": 0.481
  },
  "belvedere": {
   "view": "ELEVATION",
@@ -840,10 +840,10 @@
   "aspect": 1.14
  },
  "grotto": {
-  "view": "SECTION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "GDN-12",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 2.047
+  "aspect": 0.578
  },
  "nymphaeum": {
   "view": "PLAN",
@@ -1164,10 +1164,10 @@
   "aspect": 0.672
  },
  "gargoyle": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "DEC-10",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 0.973
+  "aspect": 0.519
  },
  "volute": {
   "view": "CONSTRUCTION",
@@ -1206,10 +1206,10 @@
   "aspect": 0.525
  },
  "wild-men-savage-men": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "DEC-18",
-  "source": "After the wild-men supporters on the façade of the Colegio de San Gregorio, Valladolid (c. 1496). Simplified; not a copy. Original drawing by Project Exodus.",
-  "aspect": 0.623
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.551
  },
  "astwerk-branches-work": {
   "view": "ELEVATION",
@@ -1266,10 +1266,10 @@
   "aspect": 0.85
  },
  "caryatid": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "FAC-05",
-  "source": "After the caryatids of the Erechtheion south porch, Athens (c. 421–406 BCE), as recorded in Stuart & Revett, The Antiquities of Athens, vol. 2 (1787; public domain). Simplified; not a tracing.",
-  "aspect": 0.52
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.543
  },
  "tympanum": {
   "view": "ELEVATION",
@@ -1308,10 +1308,10 @@
   "aspect": 0.434
  },
  "heraldic-altarpiece-facade": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "FAC-12",
-  "source": "After Spanish retable-façades such as San Pablo and San Gregorio, Valladolid (late 15th c.). Generic; not a survey. Original drawing by Project Exodus.",
-  "aspect": 0.795
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.501
  },
  "isabelline-facade": {
   "view": "ELEVATION",
@@ -1434,10 +1434,10 @@
   "aspect": 0.781
  },
  "tower": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "FRT-01",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 0.89
+  "aspect": 0.501
  },
  "ambulatory": {
   "view": "PLAN",
