@@ -7,6 +7,7 @@
  * PLAN with a section, and the Ionic volute as a CONSTRUCTION drawing.
  */
 import { type Pt, type SheetSpec, type LayerName, f, path, el, vDim, hDim, text } from '../sheet'
+import { acanthus as acanthusLeaf } from './orders-detail'
 import { newLayers, finish, hatched, circle, line, rect, callouts, arrow, Bounds, ORIGINAL, type Layers } from '../kit'
 
 const PAPER = 'style="fill: var(--_paper)"'
@@ -259,53 +260,27 @@ function acanthus(): SheetSpec {
   const L = newLayers()
   const B = new Bounds()
   const cx = 380
-  const base = 570
-  const tip = 170
-  const H = base - tip
-  const wOf = (t: number) => 135 * Math.pow(Math.sin(Math.PI * Math.min(1, t * 1.05)), 0.75)
-  const yOf = (t: number) => base - t * H
-  // one side of the outline: 5 lobes, each with 3 serrated fingers
-  const side: Pt[] = [[cx + 18, base]]
-  const lobes = 5
-  for (let k = 0; k < lobes; k++) {
-    const t0 = 0.06 + (k / lobes) * 0.86
-    const t1 = 0.06 + ((k + 1) / lobes) * 0.86
-    side.push([cx + wOf(t0) * 0.42, yOf(t0)])
-    for (let j = 0; j < 3; j++) {
-      const t = t0 + ((j + 0.75) / 3) * (t1 - t0)
-      side.push([cx + wOf(t) * 0.82, yOf(t) + 4], [cx + wOf(t), yOf(t) - 6])
-    }
-  }
-  side.push([cx + 16, tip + 16])
-  const toD = (pts: Pt[], s: number) => pts.map(([x, y], i) => `${i ? 'L' : 'M'}${f(cx + s * (x - cx))} ${f(y)}`).join('')
-  L.profile.push(el(toD(side, 1)), el(toD(side, -1)))
-  // tip curling forward
-  L.profile.push(el(`M${cx + 16} ${tip + 16}C${cx + 14} ${tip - 6} ${cx - 30} ${tip - 10} ${cx - 34} ${tip + 12}C${cx - 36} ${tip + 30} ${cx - 10} ${tip + 32} ${cx - 8} ${tip + 16}C${cx - 6} ${tip + 6} ${cx - 22} ${tip + 4} ${cx - 22} ${tip + 14}`), el(`M${cx - 16} ${tip + 16}L${cx - 22} ${tip + 26}`))
-  // midrib and veins to each finger
-  L.profile.push(el(`M${cx - 6} ${base}Q${cx - 4} ${(base + tip) / 2} ${cx - 2} ${tip + 26}M${cx + 6} ${base}Q${cx + 4} ${(base + tip) / 2} ${cx + 2} ${tip + 26}`))
-  for (let k = 0; k < lobes; k++) {
-    const t0 = 0.06 + (k / lobes) * 0.86
-    const t1 = 0.06 + ((k + 1) / lobes) * 0.86
-    for (let j = 0; j < 3; j++) {
-      const t = t0 + ((j + 0.75) / 3) * (t1 - t0)
-      for (const s of [-1, 1]) L.fine.push(el(`M${f(cx + s * 6)} ${f(yOf(t0) + 10)}Q${f(cx + s * wOf(t) * 0.5)} ${f(yOf(t) + 10)} ${f(cx + s * wOf(t) * 0.92)} ${f(yOf(t) - 3)}`))
-    }
-    // eyes between lobes
-    for (const s of [-1, 1]) L.fine.push(el(`M${f(cx + s * wOf(t0) * 0.42)} ${f(yOf(t0))}q${s * 8} -10 ${s * 2} -16q${s * -6} 6 ${s * -2} 16Z`))
-  }
+  const base = 580
+  const M = 125 // px per unit; the leaf is 3.3 units tall and 1.9 wide
+  const g = { X: (r: number) => cx + r * M, Y: (h: number) => base - h * M, M }
+  const clip = 'ac-all'
+  const leaf = acanthusLeaf(g, 0, 0, 3.3, 0.95, clip, false, 7)
+  L.profile.push(leaf.outline, leaf.detail)
+  // the ground line and the stalk the leaf grows from
   L.profile.push(line([cx - 150, base], [cx + 150, base]))
-  B.add([cx - 150, tip - 10], [cx + 150, base])
-  L.dims.push(vDim(cx + 170, base, tip, 'LEAF', cx + 30))
+  L.fine.push(el(`M${cx - 20} ${base}V${base + 0}`))
+  B.add([cx - 150, base - 3.3 * M - 30], [cx + 150, base])
+  L.dims.push(vDim(cx + 170, base, base - 3.3 * M, 'LEAF', cx + 125))
   callouts(L, [
-    { text: 'TIP CURLING FORWARD', at: [cx - 34, tip + 12] },
-    { text: 'LOBE', at: [cx - wOf(0.62) * 0.9, yOf(0.62)] },
-    { text: 'SERRATED FINGERS', at: [cx - wOf(0.44), yOf(0.44) - 6] },
-    { text: 'EYE (SHADOW HOLE)', at: [cx - wOf(0.234) * 0.42 - 4, yOf(0.234) - 8] },
-    { text: 'VEIN', at: [cx - 60, yOf(0.3)] },
-    { text: 'MIDRIB', at: [cx - 6, 470] },
+    { text: 'TIP CURLING FORWARD', at: [cx - 0.38 * 0.95 * M, base - 2.8 * M] },
+    { text: 'LOBE', at: [cx - 0.78 * M, base - 1.9 * M] },
+    { text: 'SERRATED FINGERS', at: [cx - 0.95 * M, base - 1.2 * M] },
+    { text: 'RIB (VEIN)', at: [cx - 0.35 * M, base - 1.0 * M] },
+    { text: 'MIDRIB', at: [cx, base - 0.4 * M] },
   ], cx - 150)
-  return finish(meta('acanthus', 'Acanthus', 'Stylised leaf of the Corinthian order', 'ELEVATION', 'DEC-06',
-    'Elevation of a single stylised acanthus leaf as carved on a Corinthian capital: a central midrib, deeply cut lobes each ending in serrated fingers, shadow-holes between the lobes, and a tip curling forward.', 40, 'units (indicative)'), L, B)
+  const spec = finish(meta('acanthus', 'Acanthus', 'Stylised leaf of the Corinthian order', 'ELEVATION', 'DEC-06',
+    'Elevation of a single stylised acanthus leaf as carved on a Corinthian capital: a central midrib, deeply cut lobes each ending in a pointed finger with a rib running to its tip, and the tip rolled forward.', 40, 'units (indicative)'), L, B)
+  return { ...spec, defs: `<clipPath id="${clip}"><rect x="0" y="0" width="760" height="760"/></clipPath>` }
 }
 
 function rosette(): SheetSpec {

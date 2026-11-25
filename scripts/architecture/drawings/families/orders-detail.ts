@@ -56,8 +56,8 @@ export function capitalProfile(kind: CapitalKind, ru: number): { pts: Pt[]; labe
         return reach * (1 - (h - tip) / 0.12)
       }
       pts.push([ru, C + 0.05])
-      for (let i = 1; i <= 44; i++) {
-        const h = C + 0.05 + (i / 44) * (2.0 - 0.05)
+      for (let i = 1; i <= 34; i++) {
+        const h = C + 0.05 + (i / 34) * (2.0 - 0.05)
         const r = bell(h) + bump(h, 0.9, 0.2) + bump(h, 1.62, 0.2)
         pts.push([Math.min(r, 1.24), h])
       }
@@ -83,7 +83,7 @@ export function capitalProfile(kind: CapitalKind, ru: number): { pts: Pt[]; labe
 // ---------------------------------------------------------------------------
 
 /** Logarithmic spiral (volute / helix) about (vx, vy), R at the outer end, finishing in an eye. */
-function spiral(g: Frame, vx: number, vy: number, R: number, scale: number, turns = 2.75, dir: 1 | -1 = 1, n = 72): Pt[] {
+function spiral(g: Frame, vx: number, vy: number, R: number, scale: number, turns = 2.75, dir: 1 | -1 = 1, n = 52): Pt[] {
   const pts: Pt[] = []
   for (let i = 0; i <= n; i++) {
     const th = (i / n) * turns * 2 * Math.PI
@@ -99,11 +99,10 @@ function spiral(g: Frame, vx: number, vy: number, R: number, scale: number, turn
  * with paper to hide whatever is behind it) and the detail lines.
  *  cx = centre radius, h0..h1 = base and tip height, w = half-width (all in M).
  */
-function acanthus(g: Frame, cx: number, h0: number, h1: number, w: number, clip: string, lite = false) {
+export function acanthus(g: Frame, cx: number, h0: number, h1: number, w: number, clip: string, lite = false, teeth = 5) {
   const H = h1 - h0
   // half-width of the leaf at height fraction v: swells to full width, then closes toward the tip
   const env = (v: number) => (v < 0.5 ? w * (0.4 + 0.6 * Math.sin((v / 0.5) * (Math.PI / 2))) : w * (1 - 0.62 * Math.pow((v - 0.5) / 0.5, 1.4)))
-  const teeth = 5
   const side: Pt[] = [] // right side, bottom to top, [offset, height]
   const tips: Pt[] = []
   side.push([env(0) * 0.9, h0])
@@ -127,7 +126,7 @@ function acanthus(g: Frame, cx: number, h0: number, h1: number, w: number, clip:
       const cur = side[i]
       const isTip = i % 2 === 0
       // fingers: a slight outward bulge into each tip, a straight-ish return to the next notch
-      const c: Pt = isTip ? [cur[0] + 0.1 * w, prev[1] + (cur[1] - prev[1]) * 0.3] : [cur[0] + 0.02 * w, prev[1] + (cur[1] - prev[1]) * 0.15]
+      const c: Pt = isTip ? [(prev[0] + cur[0]) / 2 + 0.03 * w, (prev[1] + cur[1]) / 2 + 0.02 * H] : [prev[0] + 0.02 * w, prev[1] - (prev[1] - cur[1]) * 0.45 + 0.0]
       const [qx, qy] = P(c[0], c[1], mirror)
       const [x, y] = P(cur[0], cur[1], mirror)
       d += `Q${f(qx)} ${f(qy)} ${f(x)} ${f(y)}`
@@ -139,22 +138,21 @@ function acanthus(g: Frame, cx: number, h0: number, h1: number, w: number, clip:
     d += `L${f(sx)} ${f(sy)}Q${f(cx2)} ${f(cy2)} ${f(tx)} ${f(ty)}`
     return d
   }
-  // right side up, left side down
   const rightD = half(1)
-  const leftPts: string[] = []
-  {
-    // build left side as an independent path and reverse it by walking the points in reverse
-    const pts: Pt[] = [side[0], ...side.slice(1), shoulder, crown]
-    for (let i = pts.length - 1; i >= 0; i--) {
-      const [x, y] = P(pts[i][0], pts[i][1], -1)
-      leftPts.push(`L${f(x)} ${f(y)}`)
-    }
-  }
+  const leftD = half(-1)
   const [bx, by] = P(side[0][0], side[0][1], 1)
-  const outline = `M${f(bx)} ${f(by)}${rightD}${leftPts.join('')}Z`
+  const [lbx, lby] = P(side[0][0], side[0][1], -1)
+  const poly: string[] = []
+  for (const m of [1, -1] as const) {
+    const pts: Pt[] = [side[0], ...side.slice(1), shoulder, crown]
+    const ordered = m === 1 ? pts : [...pts].reverse()
+    for (const [o, h] of ordered) { const [x, y] = P(o, h, m); poly.push(`${poly.length ? 'L' : 'M'}${f(x)} ${f(y)}`) }
+  }
+  const fill = `<path d="${poly.join('')}Z" style="fill: var(--_paper); stroke: none" clip-path="url(#${clip})"/>`
+  const outline = `M${f(bx)} ${f(by)}${rightD}M${f(lbx)} ${f(lby)}${leftD}`
 
   const detail: string[] = []
-  if (lite) return { outline: `<path d="${outline}" style="fill: var(--_paper)" clip-path="url(#${clip})"/>`, detail: `<path d="M${f(g.X(cx))} ${f(g.Y(h0))}L${f(g.X(cx))} ${f(g.Y(h1 - H * 0.12))}" clip-path="url(#${clip})"/>` }
+  if (lite) return { outline: `<path d="${poly.join('')}Z" style="fill: var(--_paper)" clip-path="url(#${clip})"/>`, detail: `<path d="M${f(g.X(cx))} ${f(g.Y(h0))}L${f(g.X(cx))} ${f(g.Y(h1 - H * 0.12))}" clip-path="url(#${clip})"/>` }
   // midrib
   detail.push(`M${f(g.X(cx))} ${f(g.Y(h0))}L${f(g.X(cx))} ${f(g.Y(h1 - H * 0.12))}`)
   // ribs from the midrib out to each tooth, both sides
@@ -170,7 +168,7 @@ function acanthus(g: Frame, cx: number, h0: number, h1: number, w: number, clip:
   const t0 = h0 + H * 0.84
   detail.push(`M${f(g.X(cx - w * 0.38))} ${f(g.Y(t0 + H * 0.04))}Q${f(g.X(cx))} ${f(g.Y(t0 - H * 0.2))} ${f(g.X(cx + w * 0.38))} ${f(g.Y(t0 + H * 0.04))}`)
   detail.push(`M${f(g.X(cx))} ${f(g.Y(t0 - H * 0.12))}L${f(g.X(cx))} ${f(g.Y(t0 + H * 0.06))}`)
-  return { outline: `<path d="${outline}" style="fill: var(--_paper)" clip-path="url(#${clip})"/>`, detail: `<path d="${detail.join('')}" clip-path="url(#${clip})"/>` }
+  return { outline: `${fill}<path d="${outline}" clip-path="url(#${clip})"/>`, detail: `<path d="${detail.join('')}" clip-path="url(#${clip})"/>` }
 }
 
 interface Layers { fine?: string[]; profile?: string[]; shading?: string[] }
