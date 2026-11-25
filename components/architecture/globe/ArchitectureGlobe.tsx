@@ -135,6 +135,8 @@ export default function ArchitectureGlobe({
       const globe = globeRef.current
       if (!globe || globeInitializedRef.current) return
 
+      // Phones have very dense screens; cap the resolution so the globe stays smooth
+      try { globe.renderer?.()?.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)) } catch { /* keep default */ }
       globe.pointOfView({ lat: SEED_LAT, lng: SEED_LNG, altitude: IDLE_ALTITUDE })
 
       const controls = globe.controls()

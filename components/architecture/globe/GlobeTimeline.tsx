@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   formatYear,
   ALL_ARCS,
@@ -74,9 +74,10 @@ interface PeriodLabel {
   color: string
 }
 
-const MIN_ROW_GAP_PCT = 4.0
+/** Room one label needs on its row, in pixels (names are about 40px wide) */
+const MIN_LABEL_GAP_PX = 44
 
-function buildLabels(): PeriodLabel[] {
+function buildLabels(minGapPct: number): PeriodLabel[] {
   const sorted = [...ARCHITECTURAL_PERIODS].sort((a, b) => a.startYear - b.startYear)
   const labels: PeriodLabel[] = []
   let lastAbovePct = -Infinity
@@ -84,8 +85,8 @@ function buildLabels(): PeriodLabel[] {
 
   for (const p of sorted) {
     const pct = yearToPercent(p.startYear)
-    const aboveOk = pct - lastAbovePct >= MIN_ROW_GAP_PCT
-    const belowOk = pct - lastBelowPct >= MIN_ROW_GAP_PCT
+    const aboveOk = pct - lastAbovePct >= minGapPct
+    const belowOk = pct - lastBelowPct >= minGapPct
 
     if (!aboveOk && !belowOk) continue
 
@@ -145,7 +146,17 @@ export default function GlobeTimeline({
   const thumbPercent = useMemo(() => yearToPercent(currentYear), [currentYear])
   const formattedYear = useMemo(() => formatYear(currentYear), [currentYear])
   const chapters = useMemo(() => buildChapters(), [])
-  const labels = useMemo(() => buildLabels(), [])
+  // Labels need a fixed amount of room, so a narrow phone shows fewer of them than a wide desktop
+  const [trackWidth, setTrackWidth] = useState(0)
+  useEffect(() => {
+    const el = trackRef.current
+    if (!el) return
+    const ro = new ResizeObserver(() => setTrackWidth(el.getBoundingClientRect().width))
+    ro.observe(el)
+    setTrackWidth(el.getBoundingClientRect().width)
+    return () => ro.disconnect()
+  }, [])
+  const labels = useMemo(() => buildLabels(trackWidth > 0 ? Math.max(4, (MIN_LABEL_GAP_PX / trackWidth) * 100) : 4), [trackWidth])
   const eraSegments = useMemo(() => buildEraSegments(), [])
 
   // Live stats for the current year

@@ -24,10 +24,9 @@ const ArchitectureGlobe = dynamic(() => import('./ArchitectureGlobe'), {
 })
 
 /**
- * Phones (and devices without WebGL) get the flat map instead of the 3D globe,
- * so they never download the ~2 MB of 3D libraries. null until mounted.
+ * Everyone gets the same 3D globe, phones included. The flat map is only a safety net for
+ * devices that cannot do WebGL at all. null until mounted.
  */
-const FLAT_QUERY = '(max-width: 767px)'
 function hasWebGL() {
   try {
     const c = document.createElement('canvas')
@@ -36,16 +35,9 @@ function hasWebGL() {
     return false
   }
 }
+const noopSubscribe = () => () => {}
 function useFlatMap(): boolean | null {
-  return useSyncExternalStore(
-    (onChange) => {
-      const mq = window.matchMedia(FLAT_QUERY)
-      mq.addEventListener('change', onChange)
-      return () => mq.removeEventListener('change', onChange)
-    },
-    () => window.matchMedia(FLAT_QUERY).matches || !hasWebGL(),
-    () => null
-  )
+  return useSyncExternalStore(noopSubscribe, () => !hasWebGL(), () => null)
 }
 
 // =============================================================================
@@ -221,8 +213,7 @@ export default function GlobeLanding() {
 
         {/* Globe */}
         <div
-          className="absolute inset-0"
-          style={{ padding: '2vh 2vw 12vh 2vw' }}
+          className="absolute inset-0 px-[2vw] pt-[2vh] pb-[27vh] md:pb-[12vh]"
           onPointerDown={() => setShowHints(false)}
         >
           {flatMap === null ? null : flatMap ? (
@@ -272,7 +263,7 @@ export default function GlobeLanding() {
 
         {/* ── Top left: Title + period (or detail panel when selected) ── */}
         <div
-          className="absolute top-4 left-4 md:top-6 md:left-6 z-10"
+          className="absolute top-4 left-4 md:top-6 md:left-6 z-10 max-w-[52vw]! md:max-w-none!"
           style={fadeIn(0.1)}
         >
           {selectedPeriod ? (
