@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
-  <title id="t">Tray Ceiling: section</title>
-  <desc id="d">Section through a room whose ceiling steps up in the middle like an upturned tray, with a moulding and hidden lighting at the step. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <title id="t">Tray Ceiling: one-point perspective · close-up in context</title>
+  <desc id="d">One-point perspective down a room with a tray ceiling: a lower band around the edge and a raised central panel, with a close-up of the step between them. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
   <style>
     svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
     .paper { fill: var(--_paper); }
@@ -34,47 +34,65 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="zc-tray-ceiling"><circle cx="300" cy="512" r="124"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
-  <g transform="translate(0.12 0.54) scale(0.99)">
-  <g class="layer-hatch ink l-hair">
-    <path d="M155 140 L175 140 L175 470 L155 470 Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M490 140 L510 140 L510 470 L490 470 Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M155 470 L510 470 L510 486 L155 486 Z" fill="url(#h-concrete)" stroke="none"/>
-    <path d="M155 122 L510 122 L510 140 L155 140 Z" fill="url(#h-concrete)" stroke="none"/>
+  <g class="layer-shading ink l-shading">
+    <path d="M118.64 343.55 L481.36 343.55"/>
+    <path d="M140.4 328 L459.6 328"/>
+    <path d="M157.5 315.79 L442.5 315.79"/>
+    <path d="M171.29 305.94 L428.71 305.94"/>
+    <path d="M182.65 297.82 L417.35 297.82"/>
+    <path d="M192.16 291.03 L407.84 291.03"/>
+    <path d="M200.25 285.25 L399.75 285.25"/>
+    <path d="M207.21 280.28 L392.79 280.28"/>
+    <path d="M213.26 275.96 L386.74 275.96"/>
+    <path d="M218.57 272.16 L381.43 272.16"/>
+    <g clip-path="url(#zc-tray-ceiling)"><path d="M-11.04 947.03 L853.93 947.03"/><path d="M40.86 909.96 L802.03 909.96"/><path d="M81.64 880.83 L761.25 880.83"/><path d="M114.52 857.34 L728.37 857.34"/><path d="M141.6 838 L701.28 838"/><path d="M164.29 821.79 L678.6 821.79"/><path d="M183.58 808.02 L659.31 808.02"/><path d="M200.17 796.16 L642.71 796.16"/><path d="M214.6 785.86 L628.28 785.86"/><path d="M227.27 776.81 L615.62 776.81"/></g>
   </g>
   <g class="layer-fine ink l-fine">
-    <circle cx="265" cy="239" r="4"/>
-    <circle cx="400" cy="239" r="4"/>
+    <path d="M142.5 364 L242.45 268.81"/>
+    <path d="M195 364 L261.63 268.81"/>
+    <path d="M247.5 364 L280.82 268.81"/>
+    <path d="M300 364 L300 268.81"/>
+    <path d="M352.5 364 L319.18 268.81"/>
+    <path d="M405 364 L338.37 268.81"/>
+    <path d="M457.5 364 L357.55 268.81"/>
+    <path d="M223.27 264.42 L376.73 264.42"/>
+    <path d="M90 352 L223.27 264.42"/>
+    <path d="M510 352 L376.73 264.42"/>
+    <path d="M320.46 268.81 L320.46 194.27 L352.62 194.27 L352.62 268.81"/>
+    <circle cx="350.42" cy="232.27" r="1.6"/>
+    <path d="M181.78 112.67 L181.78 87.33"/>
+    <path d="M418.22 112.67 L418.22 87.33"/>
+    <path d="M194.72 90.62 L405.28 90.62 L350.77 154.5 L249.23 154.5 Z"/>
+    <g clip-path="url(#zc-tray-ceiling)"><path d="M45.87 995.81 L284.21 768.81"/><path d="M171.06 995.81 L329.96 768.81"/><path d="M296.25 995.81 L375.7 768.81"/><path d="M421.44 995.81 L421.44 768.81"/><path d="M546.64 995.81 L467.19 768.81"/><path d="M671.83 995.81 L512.93 768.81"/><path d="M797.02 995.81 L558.67 768.81"/><path d="M238.47 758.35 L604.42 758.35"/><path d="M-79.33 967.19 L238.47 758.35"/><path d="M922.21 967.19 L604.42 758.35"/><path d="M470.24 768.81 L470.24 591.06 L546.91 591.06 L546.91 768.81"/><circle cx="541.68" cy="681.68" r="1.6"/><path d="M139.53 396.47 L139.53 336.06"/><path d="M703.36 396.47 L703.36 336.06"/><path d="M170.39 343.91 L672.5 343.91 L542.52 496.23 L300.37 496.23 Z"/></g>
+    <path d="M300.53 153.64L422.71 494.19" stroke-dasharray="2 3"/>
+    <path d="M197.61 168.58L177.29 529.81" stroke-dasharray="2 3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <path d="M255 217q8 0 8 -12"/>
-    <path d="M410 217q-8 0 -8 -12"/>
-  </g>
-  <g class="layer-cut ink l-cut">
-    <path d="M155 140 L175 140 L175 470 L155 470 Z"/>
-    <path d="M490 140 L510 140 L510 470 L490 470 Z"/>
-    <path d="M155 470 L510 470 L510 486 L155 486 Z"/>
-    <path d="M155 122 L510 122 L510 140 L155 140 Z"/>
-    <path d="M175 250 L255 250 L255 205 L410 205 L410 250 L490 250"/>
-    <path d="M175 242 L255 242 L255 197 L410 197 L410 242 L490 242"/>
-  </g>
-  <g class="layer-dims ink l-dims">
-    <path d="M528 250L528 205M524 254L532 246M524 209L532 201M518 250L534 250M518 205L534 205"/><text x="536" y="230.5">STEP</text>
-    <path d="M528 470L528 250M524 474L532 466M524 254L532 246M518 470L534 470M518 250L534 250"/><text x="536" y="363">LOW CLG</text>
+    <path d="M90 364 L223.27 268.81"/>
+    <path d="M90 94 L223.27 170.15"/>
+    <path d="M510 364 L376.73 268.81"/>
+    <path d="M510 94 L376.73 170.15"/>
+    <path d="M223.27 268.81 L376.73 268.81 L376.73 170.15 L223.27 170.15 Z"/>
+    <path d="M318.27 268.81 L318.27 192.08 L354.81 192.08 L354.81 268.81"/>
+    <path d="M181.78 112.67 L418.22 112.67 L354.85 166.99 L245.15 166.99 Z"/>
+    <path d="M181.78 87.33 L245.15 155.24 L354.85 155.24 L418.22 87.33"/>
+    <path d="M245.15 166.99 L245.15 155.24"/>
+    <path d="M354.85 166.99 L354.85 155.24"/>
+    <g clip-path="url(#zc-tray-ceiling)"><path d="M-79.33 995.81 L238.47 768.81"/><path d="M-79.33 351.96 L238.47 533.56"/><path d="M922.21 995.81 L604.42 768.81"/><path d="M922.21 351.96 L604.42 533.56"/><path d="M238.47 768.81 L604.42 768.81 L604.42 533.56 L238.47 533.56 Z"/><path d="M465.01 768.81 L465.01 585.84 L552.14 585.84 L552.14 768.81"/><path d="M139.53 396.47 L703.36 396.47 L552.23 526.01 L290.66 526.01 Z"/><path d="M139.53 336.06 L290.66 497.99 L552.23 497.99 L703.36 336.06"/><path d="M290.66 526.01 L290.66 497.99"/><path d="M552.23 526.01 L552.23 497.99"/></g>
+    <circle cx="249.07" cy="161.11" r="52" style="stroke-dasharray: 4 3; stroke-width: 1"/>
+    <circle cx="300" cy="512" r="124"/>
   </g>
   <g class="layer-labels ink l-labels">
-    <path d="M131.5 129.6L131 129.6L152.5 131"/><circle cx="152.5" cy="131" r="1.5" class="solid"/><text x="34" y="132.6">STRUCTURAL SLAB</text>
-    <path d="M162 203.6L131 203.6L292.5 205"/><circle cx="292.5" cy="205" r="1.5" class="solid"/><text x="34" y="206.6">RAISED CENTRE (TRAY)</text>
-    <path d="M125.4 218.6L131 218.6L252.5 213"/><circle cx="252.5" cy="213" r="1.5" class="solid"/><text x="34" y="221.6">CROWN MOULDING</text>
-    <path d="M125.4 248.6L131 248.6L192.5 250"/><circle cx="192.5" cy="250" r="1.5" class="solid"/><text x="34" y="251.6">PERIMETER BAND</text>
-    <path d="M64.4 358.6L131 358.6L152.5 360"/><circle cx="152.5" cy="360" r="1.5" class="solid"/><text x="34" y="361.6">WALL</text>
+    <path d="M101 512L288.16 512"/><circle cx="288.16" cy="512" r="1.5" class="solid"/><text x="34" y="515">STEP (300)</text>
+    <path d="M101 529.92L261.16 529.92"/><circle cx="261.16" cy="529.92" r="1.5" class="solid"/><text x="34" y="532.92">LOWER BAND</text>
   </g>
   <g class="layer-notes ">
-    <text x="360" y="350" text-anchor="middle" class="t-sub">ROOM</text>
-  </g>
+    <text x="90" y="382" class="t-small">VIEW DOWN THE ROOM · ONE-POINT PERSPECTIVE</text>
+    <text x="300" y="652" text-anchor="middle" class="t-small">CLOSE-UP · ×2 · LOWER BAND 700 WIDE · STEP 300</text>
   </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
@@ -83,11 +101,11 @@
     <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
     <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
     <text class="t-sub" x="416" y="684">SHEET  CLG-01</text>
-    <text class="t-small" x="416" y="699">SECTION</text>
-    <text class="t-small" x="416" y="724">SCALE IN TENTHS OF ROOM WIDTH</text>
-    <rect x="416" y="730" width="31.34" height="5" class="solid"/><rect x="447.34" y="730" width="31.34" height="5" class="ink l-fine"/><rect x="478.68" y="730" width="31.34" height="5" class="solid"/><rect x="510.02" y="730" width="31.34" height="5" class="ink l-fine"/>
+    <text class="t-small" x="416" y="699">ONE-POINT PERSPECTIVE</text><text class="t-small" x="416" y="709">CLOSE-UP IN CONTEXT</text>
+    <text class="t-small" x="416" y="724">SCALE IN METRES (AT THE NEAR WALL)</text>
+    <rect x="416" y="730" width="100" height="5" class="solid"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="539.36" y="749">4</text>
+    <text class="t-small" x="514" y="749">1</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

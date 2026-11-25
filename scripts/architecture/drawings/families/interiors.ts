@@ -8,6 +8,7 @@
  * ELEVATION; alcoves in PLAN.
  */
 import { type Pt, type SheetSpec, f, path, el, vDim, hDim, text } from '../sheet'
+import { CEILING_SHEETS } from './ceilings'
 import { newLayers, finish, hatched, masked, circle, line, rect, ring, callouts, arrow, courses, Bounds, ORIGINAL, type Layers } from '../kit'
 
 const ACCENT = 'style="stroke: var(--_accent)"'
@@ -677,9 +678,12 @@ function alcove(): SheetSpec {
   }, L, B)
 }
 
+/** Superseded by ceilings.ts (perspective); kept for reference. */
+export const RETIRED_CEILINGS = [tray, coved, dropped, exposedBeams, tented, coffered, ceilingRose]
+
 export const INTERIOR_SHEETS: Array<() => SheetSpec> = [
-  tray, coved, dropped, exposedBeams, tented,
-  rcpConvention, coffered, ceilingRose, muqarnasCeiling,
+  ...CEILING_SHEETS, // tray, coved, dropped, beams, tented, coffered, rose: one-point perspective with close-ups
+  rcpConvention, muqarnasCeiling,
   () => wallSection('adobe'), () => wallSection('rammed-earth'), () => wallSection('plinth'), () => wallSection('coping'),
   () => wallSection('parapet'), () => wallSection('curtain-wall'),
   () => wallElevation('dado'), () => wallElevation('chair-rail'), () => wallElevation('baseboard'),

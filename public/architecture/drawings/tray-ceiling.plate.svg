@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="127 92 411 438" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="68 70 464 610" role="img" aria-labelledby="t d">
   <title id="t">Architectural drawing</title>
-  <desc id="d">Section through a room whose ceiling steps up in the middle like an upturned tray, with a moulding and hidden lighting at the step. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <desc id="d">One-point perspective down a room with a tray ceiling: a lower band around the edge and a raised central panel, with a close-up of the step between them. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
   <style>
     svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
     .paper { fill: var(--_paper); }
@@ -35,31 +35,57 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="zc-tray-ceiling"><circle cx="300" cy="512" r="124"/></clipPath>
   </defs>
-  <rect class="paper" x="127" y="92" width="411" height="438"/>
-  <g class="layer-hatch ink l-hair">
-    <path d="M155 140 L175 140 L175 470 L155 470 Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M490 140 L510 140 L510 470 L490 470 Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M155 470 L510 470 L510 486 L155 486 Z" fill="url(#h-concrete)" stroke="none"/>
-    <path d="M155 122 L510 122 L510 140 L155 140 Z" fill="url(#h-concrete)" stroke="none"/>
+  <rect class="paper" x="68" y="70" width="464" height="610"/>
+  <g class="layer-shading ink l-shading">
+    <path d="M118.64 343.55 L481.36 343.55"/>
+    <path d="M140.4 328 L459.6 328"/>
+    <path d="M157.5 315.79 L442.5 315.79"/>
+    <path d="M171.29 305.94 L428.71 305.94"/>
+    <path d="M182.65 297.82 L417.35 297.82"/>
+    <path d="M192.16 291.03 L407.84 291.03"/>
+    <path d="M200.25 285.25 L399.75 285.25"/>
+    <path d="M207.21 280.28 L392.79 280.28"/>
+    <path d="M213.26 275.96 L386.74 275.96"/>
+    <path d="M218.57 272.16 L381.43 272.16"/>
+    <g clip-path="url(#zc-tray-ceiling)"><path d="M-11.04 947.03 L853.93 947.03"/><path d="M40.86 909.96 L802.03 909.96"/><path d="M81.64 880.83 L761.25 880.83"/><path d="M114.52 857.34 L728.37 857.34"/><path d="M141.6 838 L701.28 838"/><path d="M164.29 821.79 L678.6 821.79"/><path d="M183.58 808.02 L659.31 808.02"/><path d="M200.17 796.16 L642.71 796.16"/><path d="M214.6 785.86 L628.28 785.86"/><path d="M227.27 776.81 L615.62 776.81"/></g>
   </g>
   <g class="layer-fine ink l-fine">
-    <circle cx="265" cy="239" r="4"/>
-    <circle cx="400" cy="239" r="4"/>
+    <path d="M142.5 364 L242.45 268.81"/>
+    <path d="M195 364 L261.63 268.81"/>
+    <path d="M247.5 364 L280.82 268.81"/>
+    <path d="M300 364 L300 268.81"/>
+    <path d="M352.5 364 L319.18 268.81"/>
+    <path d="M405 364 L338.37 268.81"/>
+    <path d="M457.5 364 L357.55 268.81"/>
+    <path d="M223.27 264.42 L376.73 264.42"/>
+    <path d="M90 352 L223.27 264.42"/>
+    <path d="M510 352 L376.73 264.42"/>
+    <path d="M320.46 268.81 L320.46 194.27 L352.62 194.27 L352.62 268.81"/>
+    <circle cx="350.42" cy="232.27" r="1.6"/>
+    <path d="M181.78 112.67 L181.78 87.33"/>
+    <path d="M418.22 112.67 L418.22 87.33"/>
+    <path d="M194.72 90.62 L405.28 90.62 L350.77 154.5 L249.23 154.5 Z"/>
+    <g clip-path="url(#zc-tray-ceiling)"><path d="M45.87 995.81 L284.21 768.81"/><path d="M171.06 995.81 L329.96 768.81"/><path d="M296.25 995.81 L375.7 768.81"/><path d="M421.44 995.81 L421.44 768.81"/><path d="M546.64 995.81 L467.19 768.81"/><path d="M671.83 995.81 L512.93 768.81"/><path d="M797.02 995.81 L558.67 768.81"/><path d="M238.47 758.35 L604.42 758.35"/><path d="M-79.33 967.19 L238.47 758.35"/><path d="M922.21 967.19 L604.42 758.35"/><path d="M470.24 768.81 L470.24 591.06 L546.91 591.06 L546.91 768.81"/><circle cx="541.68" cy="681.68" r="1.6"/><path d="M139.53 396.47 L139.53 336.06"/><path d="M703.36 396.47 L703.36 336.06"/><path d="M170.39 343.91 L672.5 343.91 L542.52 496.23 L300.37 496.23 Z"/></g>
+    <path d="M300.53 153.64L422.71 494.19" stroke-dasharray="2 3"/>
+    <path d="M197.61 168.58L177.29 529.81" stroke-dasharray="2 3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <path d="M255 217q8 0 8 -12"/>
-    <path d="M410 217q-8 0 -8 -12"/>
+    <path d="M90 364 L223.27 268.81"/>
+    <path d="M90 94 L223.27 170.15"/>
+    <path d="M510 364 L376.73 268.81"/>
+    <path d="M510 94 L376.73 170.15"/>
+    <path d="M223.27 268.81 L376.73 268.81 L376.73 170.15 L223.27 170.15 Z"/>
+    <path d="M318.27 268.81 L318.27 192.08 L354.81 192.08 L354.81 268.81"/>
+    <path d="M181.78 112.67 L418.22 112.67 L354.85 166.99 L245.15 166.99 Z"/>
+    <path d="M181.78 87.33 L245.15 155.24 L354.85 155.24 L418.22 87.33"/>
+    <path d="M245.15 166.99 L245.15 155.24"/>
+    <path d="M354.85 166.99 L354.85 155.24"/>
+    <g clip-path="url(#zc-tray-ceiling)"><path d="M-79.33 995.81 L238.47 768.81"/><path d="M-79.33 351.96 L238.47 533.56"/><path d="M922.21 995.81 L604.42 768.81"/><path d="M922.21 351.96 L604.42 533.56"/><path d="M238.47 768.81 L604.42 768.81 L604.42 533.56 L238.47 533.56 Z"/><path d="M465.01 768.81 L465.01 585.84 L552.14 585.84 L552.14 768.81"/><path d="M139.53 396.47 L703.36 396.47 L552.23 526.01 L290.66 526.01 Z"/><path d="M139.53 336.06 L290.66 497.99 L552.23 497.99 L703.36 336.06"/><path d="M290.66 526.01 L290.66 497.99"/><path d="M552.23 526.01 L552.23 497.99"/></g>
+    <circle cx="249.07" cy="161.11" r="52" style="stroke-dasharray: 4 3; stroke-width: 1"/>
+    <circle cx="300" cy="512" r="124"/>
   </g>
-  <g class="layer-cut ink l-cut">
-    <path d="M155 140 L175 140 L175 470 L155 470 Z"/>
-    <path d="M490 140 L510 140 L510 470 L490 470 Z"/>
-    <path d="M155 470 L510 470 L510 486 L155 486 Z"/>
-    <path d="M155 122 L510 122 L510 140 L155 140 Z"/>
-    <path d="M175 250 L255 250 L255 205 L410 205 L410 250 L490 250"/>
-    <path d="M175 242 L255 242 L255 197 L410 197 L410 242 L490 242"/>
-  </g>
-  <text class="t-credit" x="133" y="519">SOURCE: Original drawing by Project Exodus from the standard geometric construction of</text>
-  <text class="t-credit" x="133" y="528">this form; no external drawing reproduced.</text>
+  <text class="t-credit" x="74" y="669">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this form;</text>
+  <text class="t-credit" x="74" y="678">no external drawing reproduced.</text>
 </svg>
