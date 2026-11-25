@@ -1,6 +1,6 @@
-# Draft: Riverknoll Renewal initiative page update
+# Riverknoll Renewal initiative page text
 
-Draft text for the initiative story in the builder. Nothing here is live. Headline numbers change from the hosted v12/v19 set to model v21.1 only when the organizer approves.
+The initiative story as published in the builder on Nov 25, 2026, from model v21.1 and deck v24 (organizer approved).
 
 ---
 
@@ -27,6 +27,10 @@ Grants and gifts we found add about $10.7M in the base case and up to $38.6M at 
 ### Every option, side by side
 
 We costed 32 titled options across design, phasing, cost cases and funding, each with its cost per bed, RIT's share, risks and sources. Read them in the options comparison and the research library, and tell us which approach you would choose.
+
+### Every version, not just the latest
+
+We keep every model, deck and study we have made, from the first 513-bed concept (v11, about $159M) through the 744-bed rows of townhomes (v21.1, about $168M). The version history lists each one with its date, what changed and its headline numbers, so you can follow how the plan moved and check our work. The current files are model v21.1 and deck v24.
 
 ### Still to confirm
 
