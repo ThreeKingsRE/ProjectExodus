@@ -48,6 +48,8 @@ export interface Pair {
   /** Show a different view in the window (a section) instead of redrawing the whole larger */
   detail?: (T: Layers, win: { cx: number; cy: number; r: number }) => void
   /** Labels and dimensions positioned by the caller for a custom detail (page coordinates) */
+  /** Extra <defs> content (clip paths and so on) */
+  defs?: string
   customItems?: (win: { cx: number; cy: number; r: number }) => { items: Array<{ text: string; at: Pt }>; dims: string[] }
 }
 
@@ -304,7 +306,7 @@ export function build(c: Pair): SheetSpec {
   const { items, dims } = c.customItems ? c.customItems(win) : c.items(at, z.zoom)
   callouts(L, items.filter((it) => Math.hypot(it.at[0] - win.cx, it.at[1] - win.cy) < win.r - 4), win.cx - win.r - 6)
   L.dims.push(...dims)
-  return finish({ id: c.id, title: c.title, subtitle: c.subtitle, view: c.view, sheetNo: c.sheetNo, source: ORIGINAL, scale: { unitPx: c.scaleUnit.mm * sW, unitName: c.scaleUnit.name, count: c.scaleUnit.count }, description: c.description }, L, B, z.defs)
+  return finish({ id: c.id, title: c.title, subtitle: c.subtitle, view: c.view, sheetNo: c.sheetNo, source: ORIGINAL, scale: { unitPx: c.scaleUnit.mm * sW, unitName: c.scaleUnit.name, count: c.scaleUnit.count }, description: c.description }, L, B, z.defs + (c.defs ?? ''))
 }
 
 export const PAIR_A_SHEETS: Array<() => SheetSpec> = [...archPairs, ...cupolaPair, ...bayPairs].map((c) => () => build(c))
