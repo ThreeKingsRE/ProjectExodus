@@ -13,10 +13,12 @@ import {
   ChevronDown
 } from 'lucide-react'
 import Link from 'next/link'
+import { SHOP_PAGES_LIVE } from '@/lib/features'
 import { AIChatbot } from '@/components/faq/AIChatbot'
 
 export default function FAQPage() {
-  const faqCategories = [
+  const SHOP = SHOP_PAGES_LIVE
+  const allFaqCategories = [
     {
       id: 'general',
       name: 'General',
@@ -24,17 +26,24 @@ export default function FAQPage() {
       questions: [
         {
           q: 'What is Project Exodus?',
-          a: 'Project Exodus is a sustainable living marketplace and community platform. We connect conscious consumers with eco-friendly products, educational resources, and like-minded changemakers committed to building a better, more sustainable future.'
+          a: SHOP
+            ? 'Project Exodus is a sustainable living marketplace and community platform. We connect conscious consumers with eco-friendly products, educational resources, and like-minded changemakers committed to building a better, more sustainable future.'
+            : 'Project Exodus is a sustainable living learning and community platform. We bring together educational resources, community initiatives, and like-minded changemakers committed to building a better, more sustainable future.'
         },
         {
           q: 'How does Project Exodus work?',
-          a: 'We curate products from verified sustainable vendors, provide educational content about sustainable living, and host a community where members can share knowledge, collaborate on projects, and support each other\'s sustainability journeys. You can browse products, read articles, join discussions, and make purchases all in one place.'
+          a: SHOP
+            ? 'We curate products from verified sustainable vendors, provide educational content about sustainable living, and host a community where members can share knowledge, collaborate on projects, and support each other\'s sustainability journeys. You can browse products, read articles, join discussions, and make purchases all in one place.'
+            : 'We provide educational content about sustainable living and host a community where members can share knowledge, collaborate on initiatives, and support each other\'s sustainability journeys. You can take lessons, read articles, and join discussions all in one place.'
         },
         {
           q: 'Is Project Exodus free to use?',
-          a: 'Yes! Creating an account, browsing products, reading articles, and joining the community is completely free. We only earn a small commission when you purchase products through our verified vendor partners.'
+          a: SHOP
+            ? 'Yes! Creating an account, browsing products, reading articles, and joining the community is completely free. We only earn a small commission when you purchase products through our verified vendor partners.'
+            : 'Yes! Creating an account, taking lessons, reading articles, and joining the community is completely free.'
         },
         {
+          shopOnly: true,
           q: 'How do you verify vendors?',
           a: 'We carefully vet every vendor for authentic sustainability practices, ethical manufacturing processes, transparent supply chains, and genuine commitment to environmental responsibility. Only vendors meeting our strict criteria receive the "Verified" badge.'
         }
@@ -146,14 +155,17 @@ export default function FAQPage() {
       icon: Leaf,
       questions: [
         {
+          shopOnly: true,
           q: 'How do you define sustainable products?',
           a: 'We look for products that minimize environmental impact through eco-friendly materials, ethical manufacturing, reduced waste, energy efficiency, durability, and transparent supply chains. Each product includes details about its sustainability features.'
         },
         {
+          shopOnly: true,
           q: 'What is your sustainability scoring system?',
           a: 'We rate products across multiple criteria: materials (renewable, recycled, biodegradable), manufacturing (fair labor, low emissions), packaging (minimal, recyclable), and lifecycle (durability, end-of-life options). Higher scores indicate better sustainability.'
         },
         {
+          shopOnly: true,
           q: 'Do you offset carbon emissions?',
           a: 'Yes! We work with vendors who participate in carbon offset programs. Many also use carbon-neutral shipping and invest in renewable energy for their operations.'
         },
@@ -214,6 +226,12 @@ export default function FAQPage() {
       ]
     }
   ]
+
+  // While the shop is switched off, hide shop categories and shop-only questions.
+  const SHOP_FAQ_IDS = new Set(['shopping', 'shipping', 'returns', 'vendors'])
+  const faqCategories = allFaqCategories
+    .filter((c) => SHOP || !SHOP_FAQ_IDS.has(c.id))
+    .map((c) => ({ ...c, questions: c.questions.filter((q) => SHOP || !('shopOnly' in q)) }))
 
   return (
     <div className="min-h-screen">
