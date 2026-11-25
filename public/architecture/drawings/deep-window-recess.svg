@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
-  <title id="t">Deep Window Recess: plan</title>
-  <desc id="d">Plan through a very thick wall where a small window near the outer face opens into a wide recess whose sides flare inward to spread the light, with a seat built into it. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <title id="t">Deep Window Recess: plan · close-up in context</title>
+  <desc id="d">Plan through a thick masonry wall with a window set in its outer face and the opening splayed wider toward the room, with a built-in seat, so that daylight fans out into the room, with a round close-up of the splayed reveal. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
   <style>
     svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
     .paper { fill: var(--_paper); }
@@ -34,44 +34,59 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="zc-deep-window-recess"><circle cx="300" cy="484" r="144"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
-  <g transform="translate(0.18 1.3) scale(0.99)">
   <g class="layer-hatch ink l-hair">
-    <path d="M160 230 L325 230 L275 370 L160 370 Z" fill="url(#h-stone)" stroke="none"/>
-    <path d="M395 230 L560 230 L560 370 L445 370 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M163.5 150 L257.75 150 L286.35 120.75 L286.35 114.25 L163.5 114.25 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M436.5 150 L342.25 150 L313.65 120.75 L313.65 114.25 L436.5 114.25 Z" fill="url(#h-stone)" stroke="none"/>
+    <g clip-path="url(#zc-deep-window-recess)"><path d="M-71.08 539.38 L250.15 539.38 L347.63 439.69 L347.63 417.54 L-71.08 417.54 Z" fill="url(#h-stone)" stroke="none"/><path d="M859.38 539.38 L538.15 539.38 L440.68 439.69 L440.68 417.54 L859.38 417.54 Z" fill="url(#h-stone)" stroke="none"/></g>
   </g>
   <g class="layer-fine ink l-fine">
-    <path d="M325 244L395 244"/>
+    <path d="M286.35 120.43 L313.65 120.43"/>
+    <path d="M300 121.4 L300 119.45"/>
+    <path d="M163.5 114.25 L436.5 114.25" stroke-dasharray="3 3"/>
+    <path d="M286.35 150 L286.35 120.75" stroke-dasharray="4 4"/>
+    <path d="M313.65 150 L313.65 120.75" stroke-dasharray="4 4"/>
+    <g clip-path="url(#zc-deep-window-recess)"><path d="M347.63 438.58 L440.68 438.58"/><path d="M394.15 441.91 L394.15 435.26"/><path d="M-71.08 417.54 L859.38 417.54" stroke-dasharray="3 3"/><path d="M347.63 539.38 L347.63 439.69" stroke-dasharray="4 4"/><path d="M440.68 539.38 L440.68 439.69" stroke-dasharray="4 4"/></g>
+    <path d="M314.49 130.43L443.55 472.68" stroke-dasharray="2 3"/>
+    <path d="M230.26 137.07L156.45 495.32" stroke-dasharray="2 3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <path d="M325 240 L395 240 L395 248 L325 248 Z"/>
-    <path d="M295 370 L305 290 L415 290 L425 370"/>
+    <path d="M286.35 121.4 L313.65 121.4 L313.65 119.45 L286.35 119.45 Z"/>
+    <path d="M259.38 148.7 L340.63 148.7 L340.63 136.35 L259.38 136.35" stroke-dasharray="6 4"/>
+    <path d="M163.5 208.5 L436.5 208.5"/>
+    <path d="M163.5 208.5 L163.5 150"/>
+    <path d="M436.5 208.5 L436.5 150"/>
+    <g clip-path="url(#zc-deep-window-recess)"><path d="M347.63 441.91 L440.68 441.91 L440.68 435.26 L347.63 435.26 Z"/><path d="M255.69 534.95 L532.62 534.95 L532.62 492.86 L255.69 492.86" stroke-dasharray="6 4"/><path d="M-71.08 738.77 L859.38 738.77"/><path d="M-71.08 738.77 L-71.08 539.38"/><path d="M859.38 738.77 L859.38 539.38"/></g>
+    <circle cx="272.38" cy="133.75" r="42.25" style="stroke-dasharray: 4 3; stroke-width: 1"/>
+    <circle cx="300" cy="484" r="144"/>
   </g>
   <g class="layer-cut ink l-cut">
-    <path d="M160 230 L325 230 L275 370 L160 370 Z"/>
-    <path d="M395 230 L560 230 L560 370 L445 370 Z"/>
+    <path d="M163.5 150 L257.75 150 L286.35 120.75 L286.35 114.25 L163.5 114.25 Z"/>
+    <path d="M436.5 150 L342.25 150 L313.65 120.75 L313.65 114.25 L436.5 114.25 Z"/>
+    <g clip-path="url(#zc-deep-window-recess)"><path d="M-71.08 539.38 L250.15 539.38 L347.63 439.69 L347.63 417.54 L-71.08 417.54 Z"/><path d="M859.38 539.38 L538.15 539.38 L440.68 439.69 L440.68 417.54 L859.38 417.54 Z"/></g>
   </g>
   <g class="layer-center ink l-center">
-    <path d="M360 180L300 400M299.07 393.06L300 400L304.33 394.5" stroke-dasharray="none"/>
-    <path d="M360 180L420 400M415.67 394.5L420 400L420.93 393.06" stroke-dasharray="none"/>
-  </g>
-  <g class="layer-dims ink l-dims">
-    <path d="M566 230L566 370M562 234L570 226M562 374L570 366M556 230L572 230M556 370L572 370"/><text x="574" y="303">T</text>
-    <path d="M275 450L445 450M271 454L279 446M441 454L449 446M275 444L275 456M445 444L445 456"/><text x="360" y="464" text-anchor="middle">SPLAYED</text>
+    <path d="M291.23 116.85 L259.05 195.5" stroke-dasharray="10 5"/>
+    <path d="M295.13 116.85 L277.25 195.5" stroke-dasharray="10 5"/>
+    <path d="M298.54 116.85 L293.18 195.5" stroke-dasharray="10 5"/>
+    <path d="M301.46 116.85 L306.83 195.5" stroke-dasharray="10 5"/>
+    <path d="M304.88 116.85 L322.75 195.5" stroke-dasharray="10 5"/>
+    <path d="M308.77 116.85 L340.95 195.5" stroke-dasharray="10 5"/>
+    <g clip-path="url(#zc-deep-window-recess)"><path d="M364.25 426.4 L254.58 694.46" stroke-dasharray="10 5"/><path d="M377.54 426.4 L316.62 694.46" stroke-dasharray="10 5"/><path d="M389.17 426.4 L370.89 694.46" stroke-dasharray="10 5"/><path d="M399.14 426.4 L417.42 694.46" stroke-dasharray="10 5"/><path d="M410.77 426.4 L471.69 694.46" stroke-dasharray="10 5"/><path d="M424.06 426.4 L533.72 694.46" stroke-dasharray="10 5"/></g>
   </g>
   <g class="layer-labels ink l-labels">
-    <path d="M76.6 239L146 239L322.5 244"/><circle cx="322.5" cy="244" r="1.5" class="solid"/><text x="34" y="242">WINDOW</text>
-    <path d="M125.4 295L146 295L297.5 300"/><circle cx="297.5" cy="300" r="1.5" class="solid"/><text x="34" y="298">SPLAYED REVEAL</text>
-    <path d="M137.6 310L146 310L157.5 300"/><circle cx="157.5" cy="300" r="1.5" class="solid"/><text x="34" y="313">THICK WALL (CUT)</text>
+    <path d="M155.9 435.57L136 435.57L358.42 438.58"/><circle cx="358.42" cy="438.58" r="1.5" class="solid"/><text x="34" y="438.57">WINDOW (OUTER FACE)</text>
+    <path d="M137.6 458.83L136 458.83L181.19 461.85"/><circle cx="181.19" cy="461.85" r="1.5" class="solid"/><text x="34" y="461.83">THICK WALL (CUT)</text>
+    <path d="M125.4 486.52L136 486.52L294.18 489.54"/><circle cx="294.18" cy="489.54" r="1.5" class="solid"/><text x="34" y="489.52">SPLAYED REVEAL</text>
+    <path d="M192.5 501.52L136 501.52L345.13 495.08"/><circle cx="345.13" cy="495.08" r="1.5" class="solid"/><text x="34" y="504.52">STRAIGHT OPENING (DASHED)</text>
+    <path d="M107.1 516.52L136 516.52L280.88 513.91"/><circle cx="280.88" cy="513.91" r="1.5" class="solid"/><text x="34" y="519.52">WINDOW SEAT</text>
   </g>
   <g class="layer-notes ">
-    <text x="360" y="330" text-anchor="middle" class="t-small">WINDOW SEAT</text>
-    <text x="360" y="210" text-anchor="middle" class="t-sub">OUTSIDE</text>
-    <text x="360" y="420" text-anchor="middle" class="t-sub">INSIDE</text>
-  </g>
+    <text x="163.5" y="228.5" class="t-small">ROOM AND WALL · PLAN</text>
+    <text x="300" y="644" text-anchor="middle" class="t-small">CLOSE-UP · ×3 · WALL 1.1 m THICK · OPENING 840 WIDE OUTSIDE, 2.6 m WIDE INSIDE</text>
   </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
@@ -80,11 +95,11 @@
     <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
     <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
     <text class="t-sub" x="416" y="684">SHEET  WIN-16</text>
-    <text class="t-small" x="416" y="699">PLAN</text>
-    <text class="t-small" x="416" y="724">SCALE IN FEET (INDICATIVE)</text>
-    <rect x="416" y="730" width="34.74" height="5" class="solid"/><rect x="450.74" y="730" width="34.74" height="5" class="ink l-fine"/><rect x="485.48" y="730" width="34.74" height="5" class="solid"/><rect x="520.22" y="730" width="34.74" height="5" class="ink l-fine"/>
+    <text class="t-small" x="416" y="699">PLAN</text><text class="t-small" x="416" y="709">CLOSE-UP IN CONTEXT</text>
+    <text class="t-small" x="416" y="724">SCALE IN 1 M</text>
+    <rect x="416" y="730" width="32.5" height="5" class="solid"/><rect x="448.5" y="730" width="32.5" height="5" class="ink l-fine"/><rect x="481" y="730" width="32.5" height="5" class="solid"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="552.96" y="749">4</text>
+    <text class="t-small" x="511.5" y="749">3</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

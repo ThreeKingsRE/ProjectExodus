@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="162 336.64 421.36 320.39" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="138 89.4 430.75 582.6" role="img" aria-labelledby="t d">
   <title id="t">Architectural drawing</title>
-  <desc id="d">Oblique view of a porte-cochère: a roof on columns projects from the main entrance over the driveway, so that a vehicle can draw up alongside the door and its passengers alight under cover. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <desc id="d">Section through a covered carriage entrance: a deep canopy slab projecting 7.2 m from the building wall over the drive, carried on a column at its outer end, with a car driving under it and a person for scale, and a round close-up of the canopy edge, fascia and column head. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
   <style>
     svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
     .paper { fill: var(--_paper); }
@@ -35,72 +35,71 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern><pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
+    <clipPath id="zc-porte-cochere"><circle cx="300" cy="484" r="144"/></clipPath>
   </defs>
-  <rect class="paper" x="162" y="336.64" width="421.36" height="320.39"/>
+  <rect class="paper" x="138" y="89.4" width="430.75" height="582.6"/>
+  <g class="layer-hatch ink l-hair">
+    <path d="M238.9 292 L300 292 L300 113.4 L238.9 113.4 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M300 195.65 L469.2 195.65 L469.2 180.38 L464.5 180.38 L464.5 175.68 L300 175.68 Z" fill="url(#h-concrete)" stroke="none"/>
+    <g clip-path="url(#zc-porte-cochere)"><path d="M-420 825.05 L-222.95 825.05 L-222.95 249.05 L-420 249.05 Z" fill="url(#h-stone)" stroke="none"/><path d="M-222.95 514.32 L322.74 514.32 L322.74 465.05 L307.58 465.05 L307.58 449.89 L-222.95 449.89 Z" fill="url(#h-concrete)" stroke="none"/></g>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <path d="M450.17 284.95 L450.17 203.64"/>
+    <path d="M452.75 284.95 L452.75 203.64"/>
+    <path d="M455.34 284.95 L455.34 203.64"/>
+    <path d="M276.5 292 L273.68 295.29"/>
+    <path d="M297.65 292 L294.83 295.29"/>
+    <path d="M318.8 292 L315.98 295.29"/>
+    <path d="M339.95 292 L337.13 295.29"/>
+    <path d="M361.1 292 L358.28 295.29"/>
+    <path d="M382.25 292 L379.43 295.29"/>
+    <path d="M403.4 292 L400.58 295.29"/>
+    <path d="M424.55 292 L421.73 295.29"/>
+    <path d="M445.7 292 L442.88 295.29"/>
+    <path d="M466.85 292 L464.03 295.29"/>
+    <path d="M488 292 L485.18 295.29"/>
+    <path d="M509.15 292 L506.33 295.29"/>
+    <path d="M530.3 292 L527.48 295.29"/>
+    <g clip-path="url(#zc-porte-cochere)"><path d="M261.35 802.32 L261.35 540.08"/><path d="M269.68 802.32 L269.68 540.08"/><path d="M278.02 802.32 L278.02 540.08"/><path d="M-298.74 825.05 L-307.83 835.66"/><path d="M-230.53 825.05 L-239.62 835.66"/><path d="M-162.32 825.05 L-171.41 835.66"/><path d="M-94.11 825.05 L-103.2 835.66"/><path d="M-25.89 825.05 L-34.99 835.66"/><path d="M42.32 825.05 L33.22 835.66"/><path d="M110.53 825.05 L101.43 835.66"/><path d="M178.74 825.05 L169.64 835.66"/><path d="M246.95 825.05 L237.85 835.66"/><path d="M315.16 825.05 L306.06 835.66"/><path d="M383.37 825.05 L374.27 835.66"/><path d="M451.58 825.05 L442.48 835.66"/><path d="M519.79 825.05 L510.69 835.66"/></g>
+  </g>
   <g class="layer-fine ink l-fine">
-    <path d="M196.97 613.03 L436.97 613.03"/>
-    <path d="M242.93 567.07 L482.93 567.07"/>
-    <circle cx="358.79" cy="532.49" r="7.28"/>
-    <path d="M358.79 539.77V556.01M352.07 581.21L358.79 556.01L365.51 581.21M349.83 550.41L358.79 539.21L367.75 550.41"/>
-    <path d="M180 560L560 560"/>
+    <path d="M300 180.38 L462.15 180.38"/>
+    <path d="M464.5 175.68 L464.5 170.98 L471.55 170.98 L471.55 180.38"/>
+    <path d="M363.45 255.34 L368.15 268.5 L382.25 268.5 L382.25 255.34"/>
+    <path d="M385.78 255.34 L385.78 268.5 L397.53 268.5 L408.1 255.81"/>
+    <g clip-path="url(#zc-porte-cochere)"><path d="M-222.95 465.05 L300 465.05"/><path d="M307.58 449.89 L307.58 434.74 L330.32 434.74 L330.32 465.05"/><path d="M-18.32 706.82 L-3.16 749.26 L42.32 749.26 L42.32 706.82"/><path d="M53.68 706.82 L53.68 749.26 L91.58 749.26 L125.68 708.34"/></g>
+    <path d="M501.36 207.6L426.46 552.87" stroke-dasharray="2 3"/>
+    <path d="M422.94 164.9L173.54 415.13" stroke-dasharray="2 3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <path d="M530 560 L565.36 524.64 L565.36 354.64 L530 390 Z" style="fill: var(--_paper)"/>
-    <path d="M530 560 L565.36 524.64 L565.36 354.64 L530 390 Z" fill="url(#h-tone-d)" stroke="none"/>
-    <path d="M530 560 L565.36 524.64 L565.36 354.64 L530 390 Z"/>
-    <path d="M210 390 L530 390 L565.36 354.64 L245.36 354.64 Z" style="fill: var(--_paper)"/>
-    <path d="M210 390 L530 390 L565.36 354.64 L245.36 354.64 Z"/>
-    <path d="M210 560 L530 560 L530 390 L210 390 Z" style="fill: var(--_paper)"/>
-    <path d="M210 560 L530 560 L530 390 L210 390 Z" fill="url(#h-tone)" stroke="none"/>
-    <path d="M210 560 L530 560 L530 390 L210 390 Z"/>
-    <path d="M240 530 L280 530 L280 480 L240 480 Z" style="fill: var(--_paper)"/>
-    <path d="M240 530 L280 530 L280 480 L240 480 Z"/>
-    <path d="M460 530 L500 530 L500 480 L460 480 Z" style="fill: var(--_paper)"/>
-    <path d="M460 530 L500 530 L500 480 L460 480 Z"/>
-    <path d="M350 560 L390 560 L390 490 L350 490 Z" style="fill: var(--_paper)"/>
-    <path d="M350 560 L390 560 L390 490 L350 490 Z" fill="url(#h-tone-d)" stroke="none"/>
-    <path d="M350 560 L390 560 L390 490 L350 490 Z"/>
-    <path d="M401.06 587.94 L417.32 571.68 L417.32 545.68 L401.06 561.94 Z" style="fill: var(--_paper)"/>
-    <path d="M401.06 587.94 L417.32 571.68 L417.32 545.68 L401.06 561.94 Z" fill="url(#h-tone-d)" stroke="none"/>
-    <path d="M401.06 587.94 L417.32 571.68 L417.32 545.68 L401.06 561.94 Z"/>
-    <path d="M291.06 587.94 L401.06 587.94 L401.06 561.94 L291.06 561.94 Z" style="fill: var(--_paper)"/>
-    <path d="M291.06 587.94 L401.06 587.94 L401.06 561.94 L291.06 561.94 Z" fill="url(#h-tone)" stroke="none"/>
-    <path d="M291.06 587.94 L401.06 587.94 L401.06 561.94 L291.06 561.94 Z"/>
-    <path d="M291.06 561.94 L401.06 561.94 L417.32 545.68 L307.32 545.68 Z" style="fill: var(--_paper)"/>
-    <path d="M291.06 561.94 L401.06 561.94 L417.32 545.68 L307.32 545.68 Z"/>
-    <path d="M379.18 559.82 L391.91 547.09 L391.91 529.09 L379.18 541.82 Z" style="fill: var(--_paper)"/>
-    <path d="M379.18 559.82 L391.91 547.09 L391.91 529.09 L379.18 541.82 Z" fill="url(#h-tone)" stroke="none"/>
-    <path d="M379.18 559.82 L391.91 547.09 L391.91 529.09 L379.18 541.82 Z"/>
-    <path d="M323.18 559.82 L379.18 559.82 L379.18 541.82 L323.18 541.82 Z" style="fill: var(--_paper)"/>
-    <path d="M323.18 559.82 L379.18 559.82 L379.18 541.82 L323.18 541.82 Z"/>
-    <path d="M323.18 541.82 L379.18 541.82 L391.91 529.09 L335.91 529.09 Z" style="fill: var(--_paper)"/>
-    <path d="M323.18 541.82 L379.18 541.82 L391.91 529.09 L335.91 529.09 Z"/>
-    <circle cx="311.06" cy="585.94" r="9"/>
-    <circle cx="381.06" cy="585.94" r="9"/>
-    <path d="M264.04 605.96 L267.57 602.43 L267.57 498.43 L264.04 501.96 Z" style="fill: var(--_paper)"/>
-    <path d="M264.04 605.96 L267.57 602.43 L267.57 498.43 L264.04 501.96 Z" fill="url(#h-tone)" stroke="none"/>
-    <path d="M264.04 605.96 L267.57 602.43 L267.57 498.43 L264.04 501.96 Z"/>
-    <path d="M254.04 605.96 L264.04 605.96 L264.04 501.96 L254.04 501.96 Z" style="fill: var(--_paper)"/>
-    <path d="M254.04 605.96 L264.04 605.96 L264.04 501.96 L254.04 501.96 Z"/>
-    <path d="M254.04 501.96 L264.04 501.96 L267.57 498.43 L257.57 498.43 Z" style="fill: var(--_paper)"/>
-    <path d="M254.04 501.96 L264.04 501.96 L267.57 498.43 L257.57 498.43 Z"/>
-    <path d="M404.04 605.96 L407.57 602.43 L407.57 498.43 L404.04 501.96 Z" style="fill: var(--_paper)"/>
-    <path d="M404.04 605.96 L407.57 602.43 L407.57 498.43 L404.04 501.96 Z" fill="url(#h-tone)" stroke="none"/>
-    <path d="M404.04 605.96 L407.57 602.43 L407.57 498.43 L404.04 501.96 Z"/>
-    <path d="M394.04 605.96 L404.04 605.96 L404.04 501.96 L394.04 501.96 Z" style="fill: var(--_paper)"/>
-    <path d="M394.04 605.96 L404.04 605.96 L404.04 501.96 L394.04 501.96 Z"/>
-    <path d="M394.04 501.96 L404.04 501.96 L407.57 498.43 L397.57 498.43 Z" style="fill: var(--_paper)"/>
-    <path d="M394.04 501.96 L404.04 501.96 L407.57 498.43 L397.57 498.43 Z"/>
-    <path d="M411.92 504.08 L460 456 L460 444 L411.92 492.08 Z" style="fill: var(--_paper)"/>
-    <path d="M411.92 504.08 L460 456 L460 444 L411.92 492.08 Z" fill="url(#h-tone-d)" stroke="none"/>
-    <path d="M411.92 504.08 L460 456 L460 444 L411.92 492.08 Z"/>
-    <path d="M241.92 504.08 L411.92 504.08 L411.92 492.08 L241.92 492.08 Z" style="fill: var(--_paper)"/>
-    <path d="M241.92 504.08 L411.92 504.08 L411.92 492.08 L241.92 492.08 Z" fill="url(#h-tone)" stroke="none"/>
-    <path d="M241.92 504.08 L411.92 504.08 L411.92 492.08 L241.92 492.08 Z"/>
-    <path d="M241.92 492.08 L411.92 492.08 L460 444 L290 444 Z" style="fill: var(--_paper)"/>
-    <path d="M241.92 492.08 L411.92 492.08 L460 444 L290 444 Z"/>
+    <path d="M229.5 292 L546.75 292"/>
+    <path d="M300 252.05 L300 292"/>
+    <path d="M469.2 195.65 L469.2 180.38"/>
+    <path d="M447.58 292 L447.58 195.65 L457.92 195.65 L457.92 292 Z"/>
+    <path d="M444.76 292 L444.76 286.83 L460.74 286.83 L460.74 292 Z"/>
+    <path d="M444.76 202.7 L444.76 195.65 L460.74 195.65 L460.74 202.7 Z"/>
+    <path d="M316.45 282.13 L316.45 274.14 L325.85 268.97 L344.65 267.09 L358.75 254.87 L396.35 254.4 L411.63 267.33 L433.95 269.44 L441 275.08 L441 282.13 Z"/>
+    <circle cx="342.3" cy="283.07" r="8.93"/>
+    <circle cx="342.3" cy="283.07" r="4.93"/>
+    <circle cx="415.15" cy="283.07" r="8.93"/>
+    <circle cx="415.15" cy="283.07" r="4.93"/>
+    <circle cx="504.45" cy="252.05" r="2.59"/>
+    <path d="M504.45 254.64 L504.45 270.85 L501.4 281.43 L501.4 292"/>
+    <path d="M504.45 270.85 L507.51 281.43 L507.51 292"/>
+    <path d="M501.4 259.1 L504.45 256.75 L507.51 259.1"/>
+    <g clip-path="url(#zc-porte-cochere)"><path d="M-450.32 825.05 L572.84 825.05"/><path d="M-222.95 696.21 L-222.95 825.05"/><path d="M322.74 514.32 L322.74 465.05"/><path d="M253.01 825.05 L253.01 514.32 L286.36 514.32 L286.36 825.05 Z"/><path d="M243.92 825.05 L243.92 808.38 L295.45 808.38 L295.45 825.05 Z"/><path d="M243.92 537.05 L243.92 514.32 L295.45 514.32 L295.45 537.05 Z"/><path d="M-169.89 793.22 L-169.89 767.45 L-139.58 750.78 L-78.95 744.72 L-33.47 705.31 L87.79 703.79 L137.05 745.47 L209.05 752.29 L231.79 770.48 L231.79 793.22 Z"/><circle cx="-86.53" cy="796.25" r="28.8"/><circle cx="-86.53" cy="796.25" r="15.92"/><circle cx="148.42" cy="796.25" r="28.8"/><circle cx="148.42" cy="796.25" r="15.92"/><circle cx="436.42" cy="696.21" r="8.34"/><path d="M436.42 704.55 L436.42 756.84 L426.57 790.95 L426.57 825.05"/><path d="M436.42 756.84 L446.27 790.95 L446.27 825.05"/><path d="M426.57 718.95 L436.42 711.37 L446.27 718.95"/></g>
+    <circle cx="462.15" cy="186.25" r="44.65" style="stroke-dasharray: 4 3; stroke-width: 1"/>
+    <circle cx="300" cy="484" r="144"/>
   </g>
-  <text class="t-credit" x="168" y="646.03">SOURCE: Original drawing by Project Exodus from the standard geometric construction of</text>
-  <text class="t-credit" x="168" y="655.03">this form; no external drawing reproduced.</text>
+  <g class="layer-cut ink l-cut">
+    <path d="M238.9 292 L300 292 L300 113.4 L238.9 113.4 Z"/>
+    <path d="M300 195.65 L469.2 195.65 L469.2 180.38 L464.5 180.38 L464.5 175.68 L300 175.68 Z"/>
+    <g clip-path="url(#zc-porte-cochere)"><path d="M-420 825.05 L-222.95 825.05 L-222.95 249.05 L-420 249.05 Z"/><path d="M-222.95 514.32 L322.74 514.32 L322.74 465.05 L307.58 465.05 L307.58 449.89 L-222.95 449.89 Z"/></g>
+  </g>
+  <g class="layer-center ink l-center">
+    <path d="M382.25 195.65 L382.25 175.68" stroke-dasharray="4 3"/>
+    <g clip-path="url(#zc-porte-cochere)"><path d="M42.32 514.32 L42.32 449.89" stroke-dasharray="4 3"/></g>
+  </g>
+  <text class="t-credit" x="144" y="661">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this</text>
+  <text class="t-credit" x="144" y="670">form; no external drawing reproduced.</text>
 </svg>

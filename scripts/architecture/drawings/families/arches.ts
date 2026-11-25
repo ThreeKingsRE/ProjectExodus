@@ -246,7 +246,8 @@ export function buildArch(a: ArchSpec): SheetSpec {
     return path([P(i0), P(up(o0)), P(up(o1)), P(i1)], true)
   }
   // Keystone always drawn slightly proud of the ring
-  layers.profile!.push(el(stone(mid, 0.12)))
+  // (an ogee arch is pointed at the crown, so it has a meeting joint there, not a keystone)
+  if (a.kind !== 'ogee') layers.profile!.push(el(stone(mid, 0.12)))
   if (a.highlight === 'keystone') layers.hatch!.push(`<path d="${stone(mid, 0.12)}" fill="url(#h-stone)" stroke="none"/>`)
   if (a.highlight === 'voussoir') {
     layers.hatch!.push(`<path d="${stone(3)}" fill="url(#h-stone)" stroke="none"/>`)

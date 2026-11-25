@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
-  <title id="t">Accessibility Ramp: section</title>
-  <desc id="d">Section through a gently sloping ramp at no more than 1 in 12, rising at most 760 mm before a level landing, with handrails at a constant height above the surface. Source: Ramp limits from the 2010 ADA Standards for Accessible Design, §405 (max slope 1:12, max rise 760 mm per run, landings ≥ 1525 mm, handrails 865–965 mm). Original drawing by Project Exodus.</desc>
+  <title id="t">Accessibility Ramp: section · close-up in context</title>
+  <desc id="d">Section through a wheelchair ramp rising 760 mm at a slope of 1 in 12 to a landing at a doorway, with handrails extended 305 mm past each end, and a round close-up of the top landing and handrail end. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
   <style>
     svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
     .paper { fill: var(--_paper); }
@@ -34,60 +34,67 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="zc-accessibility-ramp"><circle cx="300" cy="484" r="144"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
-  <g transform="translate(0.53 5.7) scale(0.98)">
   <g class="layer-hatch ink l-hair">
-    <path d="M139.2 330 L562.33 330 L562.33 340 L139.2 340 Z" fill="url(#h-earth)" stroke="none"/>
-    <path d="M180 330 L490.08 304.16 L541.93 304.16 L541.93 330 Z" fill="url(#h-concrete)" stroke="none"/>
+    <path d="M125 270 L412.28 246.06 L460.32 246.06 L460.32 270 Z" fill="url(#h-concrete)" stroke="none"/>
+    <path d="M460.32 270 L469.77 270 L469.77 181.8 L460.32 181.8 Z" fill="url(#h-stone)" stroke="none"/>
+    <g clip-path="url(#zc-accessibility-ramp)"><path d="M-787.75 618.03 L222.46 533.85 L391.38 533.85 L391.38 618.03 Z" fill="url(#h-concrete)" stroke="none"/><path d="M391.38 618.03 L424.62 618.03 L424.62 307.88 L391.38 307.88 Z" fill="url(#h-stone)" stroke="none"/></g>
   </g>
   <g class="layer-fine ink l-fine">
-    <path d="M180 330L180 299.4"/>
-    <path d="M335.04 317.08L335.04 286.48"/>
-    <path d="M490.08 304.16L490.08 273.56"/>
-    <path d="M541.93 304.16L541.93 273.56"/>
-    <path d="M128.15 327 L180 327 L180 330 L128.15 330 Z" stroke-dasharray="4 3"/>
+    <path d="M115.39 243.86 L125 243.86 L412.28 219.92 L469.93 219.92"/>
+    <g clip-path="url(#zc-accessibility-ramp)"><path d="M-821.54 526.09 L-787.75 526.09 L222.46 441.91 L425.17 441.91"/></g>
+    <path d="M470.47 251.14L427.09 551.71" stroke-dasharray="2 3"/>
+    <path d="M398.19 212.63L172.91 416.29" stroke-dasharray="2 3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <path d="M139.2 330 L562.33 330 L562.33 340 L139.2 340 Z"/>
-    <path d="M169.8 299.4 L180 299.4 L490.08 273.56 L541.93 273.56" stroke-width="2.2"/>
+    <path d="M68.3 270 L531.35 270"/>
+    <path d="M115.39 241.02 L125 241.02 L412.28 217.08 L469.93 217.08"/>
+    <path d="M125 270 L125 241.02"/>
+    <path d="M172.25 266.06 L172.25 237.08"/>
+    <path d="M219.5 262.13 L219.5 233.15"/>
+    <path d="M266.75 258.19 L266.75 229.21"/>
+    <path d="M314 254.25 L314 225.27"/>
+    <path d="M361.25 250.31 L361.25 221.33"/>
+    <path d="M408.5 246.38 L408.5 217.4"/>
+    <path d="M466.62 246.06 L466.62 217.08"/>
+    <circle cx="238.4" cy="218.53" r="3.31"/>
+    <path d="M238.4 221.68 L238.4 236.48 L247.85 240.26"/>
+    <circle cx="239.98" cy="250.03" r="10.4"/>
+    <g clip-path="url(#zc-accessibility-ramp)"><path d="M-987.14 618.03 L641.17 618.03"/><path d="M-821.54 516.12 L-787.75 516.12 L222.46 431.94 L425.17 431.94"/><path d="M-787.75 618.03 L-787.75 516.12"/><path d="M-621.6 604.18 L-621.6 502.28"/><path d="M-455.45 590.34 L-455.45 488.43"/><path d="M-289.29 576.49 L-289.29 474.58"/><path d="M-123.14 562.65 L-123.14 460.74"/><path d="M43.02 548.8 L43.02 446.89"/><path d="M209.17 534.95 L209.17 433.05"/><path d="M413.54 533.85 L413.54 431.94"/><circle cx="-388.98" cy="437.03" r="11.63"/><path d="M-388.98 448.11 L-388.98 500.17 L-355.75 513.46"/><circle cx="-383.45" cy="547.8" r="36.55"/></g>
+    <circle cx="434.33" cy="231.89" r="40.95" style="stroke-dasharray: 4 3; stroke-width: 1"/>
+    <circle cx="300" cy="484" r="144"/>
   </g>
   <g class="layer-cut ink l-cut">
-    <path d="M180 330 L490.08 304.16 L541.93 304.16 L541.93 330 Z"/>
-  </g>
-  <g class="layer-dims ink l-dims">
-    <path d="M180 362L490.08 362M176 366L184 358M486.08 366L494.08 358M180 356L180 368M490.08 356L490.08 368"/><text x="335.04" y="376" text-anchor="middle">RUN 9120</text>
-    <path d="M490.08 362L541.93 362M486.08 366L494.08 358M537.93 366L545.93 358M490.08 356L490.08 368M541.93 356L541.93 368"/><text x="516.01" y="376" text-anchor="middle">LANDING 1525</text>
-    <path d="M128.15 362L180 362M124.15 366L132.15 358M176 366L184 358M128.15 356L128.15 368M180 356L180 368"/><text x="154.07" y="376" text-anchor="middle">1525</text>
-    <path d="M555.93 330L555.93 304.16M551.93 334L559.93 326M551.93 308.16L559.93 300.16M545.93 330L561.93 330M545.93 304.16L561.93 304.16"/><text x="563.93" y="320.08">≤760</text>
-    <path d="M153.8 330L153.8 299.4M149.8 334L157.8 326M149.8 303.4L157.8 295.4M143.8 330L159.8 330M143.8 299.4L159.8 299.4"/><text x="161.8" y="317.7">865–965</text>
+    <path d="M125 270 L412.28 246.06 L460.32 246.06 L460.32 270 Z"/>
+    <path d="M460.32 270 L469.77 270 L469.77 181.8 L460.32 181.8 Z"/>
+    <g clip-path="url(#zc-accessibility-ramp)"><path d="M-787.75 618.03 L222.46 533.85 L391.38 533.85 L391.38 618.03 Z"/><path d="M391.38 618.03 L424.62 618.03 L424.62 307.88 L391.38 307.88 Z"/></g>
   </g>
   <g class="layer-labels ink l-labels">
-    <path d="M88.8 292.71L125.2 292.71L239.52 294.23"/><circle cx="239.52" cy="294.23" r="1.5" class="solid"/><text x="34" y="295.71">HANDRAIL</text>
-    <path d="M107.1 308.64L125.2 308.64L494.38 310.16"/><circle cx="494.38" cy="310.16" r="1.5" class="solid"/><text x="34" y="311.64">TOP LANDING</text>
-    <path d="M88.8 323.64L125.2 323.64L270.52 324.25"/><circle cx="270.52" cy="324.25" r="1.5" class="solid"/><text x="34" y="326.64">RAMP RUN</text>
-    <path d="M76.6 338.64L125.2 338.64L136.7 335"/><circle cx="136.7" cy="335" r="1.5" class="solid"/><text x="34" y="341.64">GROUND</text>
+    <path d="M131.5 426.38L136 426.38L253.19 431.94"/><circle cx="253.19" cy="431.94" r="1.5" class="solid"/><text x="34" y="429.38">HANDRAIL AT 920</text>
+    <path d="M186.4 441.38L136 441.38L405.5 431.94"/><circle cx="405.5" cy="431.94" r="1.5" class="solid"/><text x="34" y="444.38">HANDRAIL EXTENSION (305)</text>
+    <path d="M94.9 468.47L136 468.47L405.5 474.03"/><circle cx="405.5" cy="474.03" r="1.5" class="solid"/><text x="34" y="471.47">DOOR WALL</text>
+    <path d="M180.3 532.72L136 532.72L304.15 538.28"/><circle cx="304.15" cy="538.28" r="1.5" class="solid"/><text x="34" y="535.72">TOP LANDING (1525 LONG)</text>
+    <path d="M137.6 547.72L136 547.72L219.96 540.49"/><circle cx="219.96" cy="540.49" r="1.5" class="solid"/><text x="34" y="550.72">END OF THE SLOPE</text>
   </g>
   <g class="layer-notes ">
-    <text x="319.54" y="308.37" class="t-sub t-accent">SLOPE 1:12 MAX</text>
-    <text x="562.33" y="392" text-anchor="end" class="t-small">DIMENSIONS IN MM</text>
-  </g>
+    <text x="68.3" y="290" class="t-small">WHOLE RAMP · SECTION</text>
+    <text x="300" y="644" text-anchor="middle" class="t-small">CLOSE-UP · ×4 · SLOPE 1:12 · RISE 760 mm · LANDING 1525 mm · HANDRAIL 865–965 mm</text>
   </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
     <text class="t-title" x="26" y="692">ACCESSIBILITY RAMP</text>
     <text class="t-sub" x="26" y="710">WHEELCHAIR-ACCESSIBLE RAMP TO CODE LIMITS</text>
-    <text class="t-small" x="26" y="726">SOURCE: Ramp limits from the 2010 ADA Standards for Accessible Design,</text>
-    <text class="t-small" x="26" y="736">§405 (max slope 1:12, max rise 760 mm per run, landings ≥ 1525 mm,</text>
-    <text class="t-small" x="26" y="746">handrails 865–965 mm). Original drawing by Project Exodus.</text>
+    <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
+    <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
     <text class="t-sub" x="416" y="684">SHEET  STR-12</text>
-    <text class="t-small" x="416" y="699">SECTION</text>
-    <text class="t-small" x="416" y="724">SCALE IN METRES</text>
-    <rect x="416" y="730" width="33.25" height="5" class="solid"/><rect x="449.25" y="730" width="33.25" height="5" class="ink l-fine"/><rect x="482.5" y="730" width="33.25" height="5" class="solid"/><rect x="515.76" y="730" width="33.25" height="5" class="ink l-fine"/><rect x="549.01" y="730" width="33.25" height="5" class="solid"/>
+    <text class="t-small" x="416" y="699">SECTION</text><text class="t-small" x="416" y="709">CLOSE-UP IN CONTEXT</text>
+    <text class="t-small" x="416" y="724">SCALE IN 2 M</text>
+    <rect x="416" y="730" width="63" height="5" class="solid"/><rect x="479" y="730" width="63" height="5" class="ink l-fine"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="580.26" y="749">5</text>
+    <text class="t-small" x="540" y="749">2</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>
