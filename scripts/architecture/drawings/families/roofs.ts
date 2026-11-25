@@ -7,6 +7,7 @@
  * the wall; entasis as an exaggerated ELEVATION diagram.
  */
 import { type Pt, type SheetSpec, f, path, el, vDim, hDim, text } from '../sheet'
+import { BATTLEMENT_SHEETS } from './battlements'
 import { newLayers, finish, hatched, masked, circle, line, rect, ring, callouts, arrow, courses, Bounds, ORIGINAL, type Layers } from '../kit'
 
 const ACCENT = 'style="stroke: var(--_accent)"'
@@ -633,11 +634,14 @@ function entasis(): SheetSpec {
   }, L, B)
 }
 
+/** Superseded by battlements.ts; kept for reference. */
+export const RETIRED_BATTLEMENTS = [battlements]
+
 export const ROOF_SHEETS: Array<() => SheetSpec> = [
   gable, hipRoof, mansard, thatch,
   () => cupolaOrLantern('cupola'), () => cupolaOrLantern('lantern'),
   buttress, flyingButtress, steppedCrown,
-  () => battlements('battlement'), () => battlements('merlon'), () => battlements('crenel'),
+  ...BATTLEMENT_SHEETS, // battlement, merlon, crenel: close-ups in context
   machicolation, portcullis,
   pilaster, entasis,
 ]

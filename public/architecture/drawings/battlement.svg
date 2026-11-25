@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
-  <title id="t">Battlement: elevation</title>
-  <desc id="d">Elevation of the top of a defensive wall: a parapet of alternating raised blocks with arrow slits and open gaps between them, with the wall walk behind. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <title id="t">Battlement: elevation · close-up in context</title>
+  <desc id="d">Elevation of a curtain wall with its battlemented parapet marked, and a round close-up of the parapet showing the alternating merlons and crenels with an arrow loop in each merlon. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
   <style>
     svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
     .paper { fill: var(--_paper); }
@@ -34,61 +34,111 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    <clipPath id="bt-face"><path d="M170 500 L170 260 L560 260 L560 500 Z"/></clipPath>
+    <clipPath id="zc-battlement"><circle cx="300" cy="478" r="148"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
-  <g transform="translate(0.77 5.79) scale(0.97)">
+  <g class="layer-hatch ink l-hair">
+    <path d="M222.3 140.5 L244.5 140.5 L244.5 118.3 L222.3 118.3 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M255.6 140.5 L277.8 140.5 L277.8 118.3 L255.6 118.3 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M288.9 140.5 L311.1 140.5 L311.1 118.3 L288.9 118.3 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M322.2 140.5 L344.4 140.5 L344.4 118.3 L322.2 118.3 Z" fill="url(#h-stone)" stroke="none"/>
+    <path d="M355.5 140.5 L377.7 140.5 L377.7 118.3 L355.5 118.3 Z" fill="url(#h-stone)" stroke="none"/>
+    <g clip-path="url(#zc-battlement)"><path d="M33.6 507.6 L104.64 507.6 L104.64 436.56 L33.6 436.56 Z" fill="url(#h-stone)" stroke="none"/><path d="M140.16 507.6 L211.2 507.6 L211.2 436.56 L140.16 436.56 Z" fill="url(#h-stone)" stroke="none"/><path d="M246.72 507.6 L317.76 507.6 L317.76 436.56 L246.72 436.56 Z" fill="url(#h-stone)" stroke="none"/><path d="M353.28 507.6 L424.32 507.6 L424.32 436.56 L353.28 436.56 Z" fill="url(#h-stone)" stroke="none"/><path d="M459.84 507.6 L530.88 507.6 L530.88 436.56 L459.84 436.56 Z" fill="url(#h-stone)" stroke="none"/></g>
+  </g>
   <g class="layer-shading ink l-shading">
-    <g clip-path="url(#bt-face)"><path d="M-92.93 -77.93L822.93 -77.93M-92.93 -61.93L822.93 -61.93M-92.93 -45.93L822.93 -45.93M-92.93 -29.93L822.93 -29.93M-92.93 -13.93L822.93 -13.93M-92.93 2.07L822.93 2.07M-92.93 18.07L822.93 18.07M-92.93 34.07L822.93 34.07M-92.93 50.07L822.93 50.07M-92.93 66.07L822.93 66.07M-92.93 82.07L822.93 82.07M-92.93 98.07L822.93 98.07M-92.93 114.07L822.93 114.07M-92.93 130.07L822.93 130.07M-92.93 146.07L822.93 146.07M-92.93 162.07L822.93 162.07M-92.93 178.07L822.93 178.07M-92.93 194.07L822.93 194.07M-92.93 210.07L822.93 210.07M-92.93 226.07L822.93 226.07M-92.93 242.07L822.93 242.07M-92.93 258.07L822.93 258.07M-92.93 274.07L822.93 274.07M-92.93 290.07L822.93 290.07M-92.93 306.07L822.93 306.07M-92.93 322.07L822.93 322.07M-92.93 338.07L822.93 338.07M-92.93 354.07L822.93 354.07M-92.93 370.07L822.93 370.07M-92.93 386.07L822.93 386.07M-92.93 402.07L822.93 402.07M-92.93 418.07L822.93 418.07M-92.93 434.07L822.93 434.07M-92.93 450.07L822.93 450.07M-92.93 466.07L822.93 466.07M-92.93 482.07L822.93 482.07M-92.93 498.07L822.93 498.07M-92.93 514.07L822.93 514.07M-92.93 530.07L822.93 530.07M-92.93 546.07L822.93 546.07M-92.93 562.07L822.93 562.07M-92.93 578.07L822.93 578.07M-92.93 594.07L822.93 594.07M-92.93 610.07L822.93 610.07M-92.93 626.07L822.93 626.07M-92.93 642.07L822.93 642.07M-92.93 658.07L822.93 658.07M-92.93 674.07L822.93 674.07M-92.93 690.07L822.93 690.07M-92.93 706.07L822.93 706.07M-92.93 722.07L822.93 722.07M-92.93 738.07L822.93 738.07M-92.93 754.07L822.93 754.07M-92.93 770.07L822.93 770.07M-92.93 786.07L822.93 786.07M-92.93 802.07L822.93 802.07M-92.93 818.07L822.93 818.07M-92.93 834.07L822.93 834.07"/></g>
+    <path d="M216.75 261.68 L383.25 261.68"/>
+    <path d="M216.75 253.35 L383.25 253.35"/>
+    <path d="M216.75 245.03 L383.25 245.03"/>
+    <path d="M216.75 236.7 L383.25 236.7"/>
+    <path d="M216.75 228.38 L383.25 228.38"/>
+    <path d="M216.75 220.05 L383.25 220.05"/>
+    <path d="M216.75 211.73 L383.25 211.73"/>
+    <path d="M216.75 203.4 L383.25 203.4"/>
+    <path d="M216.75 195.08 L383.25 195.08"/>
+    <path d="M216.75 186.75 L383.25 186.75"/>
+    <path d="M216.75 178.43 L383.25 178.43"/>
+    <path d="M216.75 170.1 L383.25 170.1"/>
+    <path d="M216.75 161.78 L383.25 161.78"/>
+    <path d="M216.75 153.45 L383.25 153.45"/>
+    <path d="M216.75 145.13 L383.25 145.13"/>
+    <path d="M222.3 140.5 L244.5 140.5"/>
+    <path d="M222.3 134.95 L244.5 134.95"/>
+    <path d="M222.3 129.4 L244.5 129.4"/>
+    <path d="M222.3 123.85 L244.5 123.85"/>
+    <path d="M222.3 118.3 L244.5 118.3"/>
+    <path d="M255.6 140.5 L277.8 140.5"/>
+    <path d="M255.6 134.95 L277.8 134.95"/>
+    <path d="M255.6 129.4 L277.8 129.4"/>
+    <path d="M255.6 123.85 L277.8 123.85"/>
+    <path d="M255.6 118.3 L277.8 118.3"/>
+    <path d="M288.9 140.5 L311.1 140.5"/>
+    <path d="M288.9 134.95 L311.1 134.95"/>
+    <path d="M288.9 129.4 L311.1 129.4"/>
+    <path d="M288.9 123.85 L311.1 123.85"/>
+    <path d="M288.9 118.3 L311.1 118.3"/>
+    <path d="M322.2 140.5 L344.4 140.5"/>
+    <path d="M322.2 134.95 L344.4 134.95"/>
+    <path d="M322.2 129.4 L344.4 129.4"/>
+    <path d="M322.2 123.85 L344.4 123.85"/>
+    <path d="M322.2 118.3 L344.4 118.3"/>
+    <path d="M355.5 140.5 L377.7 140.5"/>
+    <path d="M355.5 134.95 L377.7 134.95"/>
+    <path d="M355.5 129.4 L377.7 129.4"/>
+    <path d="M355.5 123.85 L377.7 123.85"/>
+    <path d="M355.5 118.3 L377.7 118.3"/>
+    <g clip-path="url(#zc-battlement)"><path d="M15.84 895.36 L548.64 895.36"/><path d="M15.84 868.72 L548.64 868.72"/><path d="M15.84 842.08 L548.64 842.08"/><path d="M15.84 815.44 L548.64 815.44"/><path d="M15.84 788.8 L548.64 788.8"/><path d="M15.84 762.16 L548.64 762.16"/><path d="M15.84 735.52 L548.64 735.52"/><path d="M15.84 708.88 L548.64 708.88"/><path d="M15.84 682.24 L548.64 682.24"/><path d="M15.84 655.6 L548.64 655.6"/><path d="M15.84 628.96 L548.64 628.96"/><path d="M15.84 602.32 L548.64 602.32"/><path d="M15.84 575.68 L548.64 575.68"/><path d="M15.84 549.04 L548.64 549.04"/><path d="M15.84 522.4 L548.64 522.4"/><path d="M33.6 507.6 L104.64 507.6"/><path d="M33.6 489.84 L104.64 489.84"/><path d="M33.6 472.08 L104.64 472.08"/><path d="M33.6 454.32 L104.64 454.32"/><path d="M33.6 436.56 L104.64 436.56"/><path d="M140.16 507.6 L211.2 507.6"/><path d="M140.16 489.84 L211.2 489.84"/><path d="M140.16 472.08 L211.2 472.08"/><path d="M140.16 454.32 L211.2 454.32"/><path d="M140.16 436.56 L211.2 436.56"/><path d="M246.72 507.6 L317.76 507.6"/><path d="M246.72 489.84 L317.76 489.84"/><path d="M246.72 472.08 L317.76 472.08"/><path d="M246.72 454.32 L317.76 454.32"/><path d="M246.72 436.56 L317.76 436.56"/><path d="M353.28 507.6 L424.32 507.6"/><path d="M353.28 489.84 L424.32 489.84"/><path d="M353.28 472.08 L424.32 472.08"/><path d="M353.28 454.32 L424.32 454.32"/><path d="M353.28 436.56 L424.32 436.56"/><path d="M459.84 507.6 L530.88 507.6"/><path d="M459.84 489.84 L530.88 489.84"/><path d="M459.84 472.08 L530.88 472.08"/><path d="M459.84 454.32 L530.88 454.32"/><path d="M459.84 436.56 L530.88 436.56"/></g>
   </g>
   <g class="layer-fine ink l-fine">
-    <path d="M194 212L194 250"/>
-    <path d="M189 230L199 230"/>
-    <path d="M272 212L272 250"/>
-    <path d="M267 230L277 230"/>
-    <path d="M350 212L350 250"/>
-    <path d="M345 230L355 230"/>
-    <path d="M428 212L428 250"/>
-    <path d="M423 230L433 230"/>
-    <path d="M506 212L506 250"/>
-    <path d="M501 230L511 230"/>
-    <path d="M170 274L560 274" stroke-dasharray="6 4"/>
+    <path d="M216.75 253.35 L383.25 253.35"/>
+    <path d="M232.66 135.88 L234.14 135.88 L234.14 122.93 L232.66 122.93 Z"/>
+    <path d="M265.96 135.88 L267.44 135.88 L267.44 122.93 L265.96 122.93 Z"/>
+    <path d="M299.26 135.88 L300.74 135.88 L300.74 122.93 L299.26 122.93 Z"/>
+    <path d="M332.56 135.88 L334.04 135.88 L334.04 122.93 L332.56 122.93 Z"/>
+    <path d="M365.86 135.88 L367.34 135.88 L367.34 122.93 L365.86 122.93 Z"/>
+    <g clip-path="url(#zc-battlement)"><path d="M15.84 868.72 L548.64 868.72"/><path d="M66.75 492.8 L71.49 492.8 L71.49 451.36 L66.75 451.36 Z"/><path d="M173.31 492.8 L178.05 492.8 L178.05 451.36 L173.31 451.36 Z"/><path d="M279.87 492.8 L284.61 492.8 L284.61 451.36 L279.87 451.36 Z"/><path d="M386.43 492.8 L391.17 492.8 L391.17 451.36 L386.43 451.36 Z"/><path d="M492.99 492.8 L497.73 492.8 L497.73 451.36 L492.99 451.36 Z"/></g>
+    <path d="M351.79 131.99L447.98 480.37" stroke-dasharray="2 3"/>
+    <path d="M259.31 130.51L152.02 475.63" stroke-dasharray="2 3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <path d="M170 500 L170 260 L560 260 L560 500"/>
-    <path d="M170 200 L218 200 L218 260 L170 260 Z" style="fill: var(--_paper)"/>
-    <path d="M170 200 L218 200 L218 260 L170 260 Z"/>
-    <path d="M168 200 L220 200"/>
-    <path d="M248 200 L296 200 L296 260 L248 260 Z" style="fill: var(--_paper)"/>
-    <path d="M248 200 L296 200 L296 260 L248 260 Z"/>
-    <path d="M246 200 L298 200"/>
-    <path d="M326 200 L374 200 L374 260 L326 260 Z" style="fill: var(--_paper)"/>
-    <path d="M326 200 L374 200 L374 260 L326 260 Z"/>
-    <path d="M324 200 L376 200"/>
-    <path d="M404 200 L452 200 L452 260 L404 260 Z" style="fill: var(--_paper)"/>
-    <path d="M404 200 L452 200 L452 260 L404 260 Z"/>
-    <path d="M402 200 L454 200"/>
-    <path d="M482 200 L530 200 L530 260 L482 260 Z" style="fill: var(--_paper)"/>
-    <path d="M482 200 L530 200 L530 260 L482 260 Z"/>
-    <path d="M480 200 L532 200"/>
-    <path d="M150 500L570 500"/>
+    <path d="M216.75 270 L383.25 270"/>
+    <path d="M216.75 270 L216.75 140.5"/>
+    <path d="M383.25 270 L383.25 140.5"/>
+    <path d="M216.75 140.5 L383.25 140.5"/>
+    <path d="M222.3 140.5 L244.5 140.5 L244.5 118.3 L222.3 118.3 Z"/>
+    <path d="M255.6 140.5 L277.8 140.5 L277.8 118.3 L255.6 118.3 Z"/>
+    <path d="M288.9 140.5 L311.1 140.5 L311.1 118.3 L288.9 118.3 Z"/>
+    <path d="M322.2 140.5 L344.4 140.5 L344.4 118.3 L322.2 118.3 Z"/>
+    <path d="M355.5 140.5 L377.7 140.5 L377.7 118.3 L355.5 118.3 Z"/>
+    <path d="M244.5 140.5 L255.6 140.5"/>
+    <path d="M277.8 140.5 L288.9 140.5"/>
+    <path d="M311.1 140.5 L322.2 140.5"/>
+    <path d="M344.4 140.5 L355.5 140.5"/>
+    <g clip-path="url(#zc-battlement)"><path d="M15.84 922 L548.64 922"/><path d="M15.84 922 L15.84 507.6"/><path d="M548.64 922 L548.64 507.6"/><path d="M15.84 507.6 L548.64 507.6"/><path d="M33.6 507.6 L104.64 507.6 L104.64 436.56 L33.6 436.56 Z"/><path d="M140.16 507.6 L211.2 507.6 L211.2 436.56 L140.16 436.56 Z"/><path d="M246.72 507.6 L317.76 507.6 L317.76 436.56 L246.72 436.56 Z"/><path d="M353.28 507.6 L424.32 507.6 L424.32 436.56 L353.28 436.56 Z"/><path d="M459.84 507.6 L530.88 507.6 L530.88 436.56 L459.84 436.56 Z"/><path d="M104.64 507.6 L140.16 507.6"/><path d="M211.2 507.6 L246.72 507.6"/><path d="M317.76 507.6 L353.28 507.6"/><path d="M424.32 507.6 L459.84 507.6"/></g>
+    <circle cx="305.55" cy="131.25" r="46.25" style="stroke-dasharray: 4 3; stroke-width: 1"/>
+    <circle cx="300" cy="478" r="148"/>
+  </g>
+  <g class="layer-cut ink l-cut">
+    <path d="M222.3 140.5 L244.5 140.5 L244.5 118.3 L222.3 118.3 Z" style="stroke: var(--_accent)"/>
+    <path d="M255.6 140.5 L277.8 140.5 L277.8 118.3 L255.6 118.3 Z" style="stroke: var(--_accent)"/>
+    <path d="M288.9 140.5 L311.1 140.5 L311.1 118.3 L288.9 118.3 Z" style="stroke: var(--_accent)"/>
+    <path d="M322.2 140.5 L344.4 140.5 L344.4 118.3 L322.2 118.3 Z" style="stroke: var(--_accent)"/>
+    <path d="M355.5 140.5 L377.7 140.5 L377.7 118.3 L355.5 118.3 Z" style="stroke: var(--_accent)"/>
+    <g clip-path="url(#zc-battlement)"><path d="M33.6 507.6 L104.64 507.6 L104.64 436.56 L33.6 436.56 Z" style="stroke: var(--_accent)"/><path d="M140.16 507.6 L211.2 507.6 L211.2 436.56 L140.16 436.56 Z" style="stroke: var(--_accent)"/><path d="M246.72 507.6 L317.76 507.6 L317.76 436.56 L246.72 436.56 Z" style="stroke: var(--_accent)"/><path d="M353.28 507.6 L424.32 507.6 L424.32 436.56 L353.28 436.56 Z" style="stroke: var(--_accent)"/><path d="M459.84 507.6 L530.88 507.6 L530.88 436.56 L459.84 436.56 Z" style="stroke: var(--_accent)"/></g>
   </g>
   <g class="layer-dims ink l-dims">
-    <path d="M248 176L296 176M244 180L252 172M292 180L300 172M248 170L248 182M296 170L296 182"/><text x="272" y="190" text-anchor="middle">MERLON</text>
-    <path d="M296 176L326 176M292 180L300 172M322 180L330 172M296 170L296 182M326 170L326 182"/><text x="311" y="190" text-anchor="middle">CRENEL</text>
-    <path d="M574 260L574 200M570 264L578 256M570 204L578 196M564 260L580 260M564 200L580 200"/><text x="582" y="233">HT</text>
+    <path d="M246.72 543.12L317.76 543.12M242.72 547.12L250.72 539.12M313.76 547.12L321.76 539.12M246.72 537.12L246.72 549.12M317.76 537.12L317.76 549.12"/><text x="282.24" y="557.12" text-anchor="middle">1200</text>
+    <path d="M317.76 543.12L353.28 543.12M313.76 547.12L321.76 539.12M349.28 547.12L357.28 539.12M317.76 537.12L317.76 549.12M353.28 537.12L353.28 549.12"/><text x="335.52" y="557.12" text-anchor="middle">600</text>
   </g>
   <g class="layer-labels ink l-labels">
-    <path d="M76.6 219L136 219L167.5 220"/><circle cx="167.5" cy="220" r="1.5" class="solid"/><text x="34" y="222">MERLON</text>
-    <path d="M101 234L136 234L186.5 230"/><circle cx="186.5" cy="230" r="1.5" class="solid"/><text x="34" y="237">ARROW LOOP</text>
-    <path d="M149.8 249L136 249L230.5 250"/><circle cx="230.5" cy="250" r="1.5" class="solid"/><text x="34" y="252">CRENEL (EMBRASURE)</text>
-    <path d="M82.7 265L136 265L167.5 266"/><circle cx="167.5" cy="266" r="1.5" class="solid"/><text x="34" y="268">PARAPET</text>
-    <path d="M113.2 419L136 419L167.5 420"/><circle cx="167.5" cy="420" r="1.5" class="solid"/><text x="34" y="422">CURTAIN WALL</text>
+    <path d="M76.6 452.05L132 452.05L279.74 454.32"/><circle cx="279.74" cy="454.32" r="1.5" class="solid"/><text x="34" y="455.05">MERLON</text>
+    <path d="M101 469.81L132 469.81L279.74 472.08"/><circle cx="279.74" cy="472.08" r="1.5" class="solid"/><text x="34" y="472.81">ARROW LOOP</text>
+    <path d="M113.2 484.81L132 484.81L333.02 478"/><circle cx="333.02" cy="478" r="1.5" class="solid"/><text x="34" y="487.81">CRENEL (GAP)</text>
+    <path d="M131.5 505.33L132 505.33L226.46 507.6"/><circle cx="226.46" cy="507.6" r="1.5" class="solid"/><text x="34" y="508.33">WALL WALK LEVEL</text>
   </g>
   <g class="layer-notes ">
-    <text x="556" y="286" text-anchor="end" class="t-small">WALL WALK BEHIND</text>
-  </g>
+    <text x="216.75" y="290" class="t-small">CURTAIN WALL · ELEVATION</text>
+    <text x="300" y="642" text-anchor="middle" class="t-small">CLOSE-UP · ×3 · MERLON 1200 · CRENEL 600 · PARAPET 1200 HIGH</text>
   </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
@@ -97,11 +147,11 @@
     <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
     <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
     <text class="t-sub" x="416" y="684">SHEET  FRT-01</text>
-    <text class="t-small" x="416" y="699">ELEVATION</text>
-    <text class="t-small" x="416" y="724">SCALE IN HALF BAYS</text>
-    <rect x="416" y="730" width="37.75" height="5" class="solid"/><rect x="453.75" y="730" width="37.75" height="5" class="ink l-fine"/><rect x="491.51" y="730" width="37.75" height="5" class="solid"/><rect x="529.26" y="730" width="37.75" height="5" class="ink l-fine"/>
+    <text class="t-small" x="416" y="699">ELEVATION</text><text class="t-small" x="416" y="709">CLOSE-UP IN CONTEXT</text>
+    <text class="t-small" x="416" y="724">SCALE IN 5 M (WHOLE WALL)</text>
+    <rect x="416" y="730" width="92.5" height="5" class="solid"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="565.01" y="749">4</text>
+    <text class="t-small" x="506.5" y="749">1</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>
