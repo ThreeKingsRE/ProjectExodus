@@ -2,9 +2,9 @@
 
 import { Card, CardContent } from '@/components/ui/Card'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Globe, Calendar, ChevronRight } from 'lucide-react'
+import { ArrowLeft, Globe, Calendar, ChevronRight, Quote } from 'lucide-react'
 import Link from 'next/link'
-import { exodologyTimeline } from '@/data/exodology-founding'
+import { exodologyTimeline, exodologyFoundingStory } from '@/data/exodology-founding'
 
 const eraColors = [
   'from-slate-500 to-slate-600',
@@ -42,8 +42,8 @@ export default function TimelinePage() {
             </div>
 
             <p className="mt-6 text-lg text-white/80 max-w-2xl">
-              Exodology emerges from decades of scholarship across multiple disciplines.
-              This timeline traces the intellectual lineage and key milestones in the development of the field.
+              Exodology is a new discipline, founded on Projxodus. It draws on decades of work in older fields,
+              from systems thinking to transition studies. This page tells why it was founded, then traces those roots.
             </p>
           </div>
         </div>
@@ -51,6 +51,32 @@ export default function TimelinePage() {
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-6xl mx-auto">
+          {/* Founding Story */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-16"
+          >
+            <Card className="border-2 border-cyan-500/30 bg-gradient-to-br from-cyan-500/5 to-blue-500/5">
+              <CardContent className="p-6 sm:p-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+                    <Quote className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-black text-[var(--foreground)]">{exodologyFoundingStory.title}</h2>
+                    <p className="text-sm text-[var(--muted-foreground)]">{exodologyFoundingStory.attribution}</p>
+                  </div>
+                </div>
+                <div className="space-y-4 max-w-3xl text-[var(--foreground)] leading-relaxed">
+                  {exodologyFoundingStory.paragraphs.map((p, i) => (
+                    <p key={i} className={i === exodologyFoundingStory.paragraphs.length - 1 ? 'font-bold text-lg' : ''}>{p}</p>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.section>
+
           {/* Timeline */}
           <div className="relative">
             {/* Vertical line */}

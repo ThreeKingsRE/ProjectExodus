@@ -133,8 +133,26 @@ The discipline evolves through the collective wisdom of its practitioners while 
 
   closing: `In establishing Exodology, we recognize both the urgency of our moment and the long tradition of human inquiry into change and transformation. We commit to building a discipline worthy of the challenges before us—rigorous in its methods, wise in its practice, and humble before the complexity of the systems we seek to understand.`,
 
-  adoptedDate: '2024-01-01',
   version: '1.0'
+}
+
+// ============================================================================
+// FOUNDING STORY (the founder's own words, lightly edited for grammar)
+// ============================================================================
+
+export const exodologyFoundingStory = {
+  title: 'Why Exodology Exists',
+  attribution: "In the founder's words",
+  paragraphs: [
+    `Exodology began with frustration. Not with one person or one institution, but with a system we all blame and all keep building, through our blind acceptance that things are the way they are "supposed" to be.`,
+    `Who put anyone in charge of my life, my gift from God, to decide how I get to live, learn and die?`,
+    `Architects give up their souls to become professionals who design for clients, never for the people. Working people labor to build the world, yet they cannot advocate for themselves or keep learning without working even more. Instead of saying "I wish we could," "if only," or "in the next life," we should say: no, this is the life. We can do the things we dream of if we support each other and lift each other up.`,
+    `Why does a professor not respect a student, when that same student is expected to earn the respect of adult coworkers? We have lost the details that make our world beautiful. It is always money, money, money, never people, people, people. We design for ego instead of for people, and that is wrong.`,
+    `So Exodology blends every form of design with entrepreneurial spirit, systems and politics. It is meant to be the degree for those who want to pioneer goodness and move humanity forward by doing, not saying.`,
+    `So many intelligent people will never be known because their situation keeps them in a rice field, a cornfield or a factory. Exodology lets the working dreamer pursue their dreams on their own timeline and help shepherd the world toward the goodness in it.`,
+    `I paved the road so others could follow my footsteps and then mark their own. I challenged the systems and the powers that be so that those who follow are supported and given a platform.`,
+    `Exodology is creating your own precedent, to show the world that change is not only possible. It is real.`
+  ]
 }
 
 // ============================================================================
@@ -143,7 +161,7 @@ The discipline evolves through the collective wisdom of its practitioners while 
 
 export const exodologyTimeline = {
   title: 'The Evolution of Exodology',
-  subtitle: 'From Intellectual Roots to Emerging Discipline',
+  subtitle: 'The Older Fields It Draws On, and Where It Begins',
 
   eras: [
     {
@@ -152,8 +170,8 @@ export const exodologyTimeline = {
       description: 'Development of the theoretical building blocks that would inform Exodology.',
       events: [
         { year: 1948, title: 'Cybernetics Emerges', description: 'Norbert Wiener publishes "Cybernetics," establishing feedback as central to understanding system behavior.' },
-        { year: 1956, title: 'General Systems Theory', description: 'Ludwig von Bertalanffy formally proposes General Systems Theory, arguing for studying wholes rather than parts.' },
         { year: 1962, title: 'Structure of Scientific Revolutions', description: 'Thomas Kuhn introduces paradigm shifts, showing how systems of thought undergo fundamental transformation.' },
+        { year: 1968, title: 'General System Theory', description: 'Ludwig von Bertalanffy publishes "General System Theory," collecting decades of his work on studying wholes rather than parts.' },
         { year: 1968, title: 'Tragedy of the Commons', description: 'Garrett Hardin\'s influential (and later contested) article stimulates thinking about collective action and system governance.' },
         { year: 1972, title: 'Limits to Growth', description: 'Club of Rome report uses systems modeling to project resource constraints, catalyzing sustainability discourse.' },
         { year: 1973, title: 'Resilience Concept Introduced', description: 'C.S. Holling publishes on ecological resilience, distinguishing it from stability.' }
@@ -177,7 +195,7 @@ export const exodologyTimeline = {
       description: 'Synthesis of multiple streams into coherent frameworks for understanding transitions.',
       events: [
         { year: 2000, title: 'Carbon Lock-in Concept', description: 'Gregory Unruh explains why energy systems resist change through techno-institutional lock-in.' },
-        { year: 2001, title: 'Panarchy Framework', description: 'Gunderson and Holling publish on panarchy, integrating adaptive cycles across scales.' },
+        { year: 2002, title: 'Panarchy Framework', description: 'Gunderson and Holling publish on panarchy, integrating adaptive cycles across scales.' },
         { year: 2002, title: 'Multi-Level Perspective', description: 'Frank Geels introduces MLP, providing core framework for analyzing sociotechnical transitions.' },
         { year: 2007, title: 'Transition Pathways Typology', description: 'Geels and Schot identify four distinct transition pathway patterns.' },
         { year: 2010, title: 'Transition Management', description: 'Derk Loorbach systematizes transition management as governance approach.' },
@@ -185,26 +203,11 @@ export const exodologyTimeline = {
       ]
     },
     {
-      name: 'Disciplinary Emergence',
-      period: '2020s',
-      description: 'Crystallization of Exodology as a distinct discipline.',
+      name: 'Founding',
+      period: 'Today',
+      description: 'Exodology is founded as a new discipline, with its first learning platform on Projxodus.',
       events: [
-        { year: 2020, title: 'Transition Studies Maturation', description: 'Sustainability transitions research reaches critical mass, with dedicated journals and conferences.' },
-        { year: 2022, title: 'Exodology Conception', description: 'Recognition that transition knowledge requires integration into a coherent discipline.' },
-        { year: 2023, title: 'Curriculum Development', description: 'First comprehensive Exodology curriculum created, synthesizing multiple knowledge streams.' },
-        { year: 2024, title: 'Charter Adoption', description: 'Charter of Exodology formally establishes founding principles of the discipline.' },
-        { year: 2024, title: 'Certification Framework', description: 'Certification pathway established (Literacy, Application, Stewardship, Master).' }
-      ]
-    },
-    {
-      name: 'Future Horizons',
-      period: '2025+',
-      description: 'Projected development of the discipline.',
-      events: [
-        { year: 2025, title: 'Peer Review System', description: 'Establishment of formal peer review for Exodological research and case studies.' },
-        { year: 2026, title: 'Practitioner Networks', description: 'Formation of regional and thematic practitioner networks.' },
-        { year: 2027, title: 'First Annual Symposium', description: 'Convening of first international Exodology symposium.' },
-        { year: 2030, title: 'Institutional Recognition', description: 'Integration of Exodology into academic institutions and professional training.' }
+        { year: 'Now', title: 'First Learning Platform Opens', description: 'Projxodus opens free Exodology learning paths (EXO 101, 201 and 301), a charter of founding principles and certificates of completion.' }
       ]
     }
   ]
