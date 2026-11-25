@@ -66,16 +66,16 @@
   "aspect": 1.086
  },
  "keystone": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "ARC-07",
-  "source": "Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.",
-  "aspect": 1.118
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.562
  },
  "voussoir": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "ARC-08",
-  "source": "Original geometric construction drawn by Project Exodus from the standard compass method for this arch form; no external drawing reproduced.",
-  "aspect": 1.118
+  "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
+  "aspect": 0.562
  },
  "barrel-vault": {
   "view": "SECTION",
@@ -96,16 +96,16 @@
   "aspect": 1.305
  },
  "pendentive": {
-  "view": "REFLECTED CEILING PLAN",
+  "view": "SECTION ALONG THE DIAGONAL · CLOSE-UP IN CONTEXT",
   "sheetNo": "VLT-05",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1
+  "aspect": 0.615
  },
  "squinch": {
-  "view": "REFLECTED CEILING PLAN",
+  "view": "SECTION ALONG THE DIAGONAL · CLOSE-UP IN CONTEXT",
   "sheetNo": "VLT-06",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1
+  "aspect": 0.615
  },
  "oculus": {
   "view": "SECTION",
@@ -288,16 +288,16 @@
   "aspect": 1.034
  },
  "cupola": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "ROF-05",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1.219
+  "aspect": 0.543
  },
  "lantern": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "ROF-06",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1.219
+  "aspect": 0.566
  },
  "buttress": {
   "view": "SECTION",
