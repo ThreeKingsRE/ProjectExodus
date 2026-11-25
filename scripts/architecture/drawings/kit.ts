@@ -298,6 +298,8 @@ export function zoomInContext(
     /** Radius of the region shown in the window, in drawing units. */
     regionR: number
     window: { cx: number; cy: number; r: number }
+    /** Show a different view in the window (e.g. a section through the part) instead of redrawing the whole larger. */
+    detail?: (target: Layers, window: { cx: number; cy: number; r: number }) => void
   },
 ): { defs: string; zoom: { scale: number; ox: number; oy: number; X: (u: number) => number; Y: (u: number) => number }; ring: { cx: number; cy: number; r: number } } {
   const { whole, focus, window: W } = o
@@ -311,7 +313,8 @@ export function zoomInContext(
   const zox = W.cx - focus[0] * zs
   const zoy = W.cy + focus[1] * zs
   const Lz = newLayers()
-  o.draw(Lz, zs, zox, zoy)
+  if (o.detail) o.detail(Lz, W)
+  else o.draw(Lz, zs, zox, zoy)
   const clip = `zc-${o.id}`
   for (const name of ['hatch', 'shading', 'fine', 'profile', 'cut', 'center'] as const) {
     if (Lz[name].length) L[name].push(`<g clip-path="url(#${clip})">${Lz[name].join('')}</g>`)

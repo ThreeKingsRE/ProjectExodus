@@ -450,34 +450,34 @@
   "aspect": 0.804
  },
  "dado": {
-  "view": "INTERIOR ELEVATION",
+  "view": "ELEVATION · SECTION CLOSE-UP IN CONTEXT",
   "sheetNo": "INT-01",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 0.798
+  "aspect": 0.533
  },
  "chair-rail": {
-  "view": "INTERIOR ELEVATION",
+  "view": "ELEVATION · SECTION CLOSE-UP IN CONTEXT",
   "sheetNo": "INT-02",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 0.798
+  "aspect": 0.533
  },
  "baseboard": {
-  "view": "INTERIOR ELEVATION",
+  "view": "ELEVATION · SECTION CLOSE-UP IN CONTEXT",
   "sheetNo": "INT-03",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 0.798
+  "aspect": 0.533
  },
  "crown-molding": {
-  "view": "INTERIOR ELEVATION",
+  "view": "ELEVATION · SECTION CLOSE-UP IN CONTEXT",
   "sheetNo": "INT-04",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 0.798
+  "aspect": 0.533
  },
  "wainscot": {
-  "view": "INTERIOR ELEVATION",
+  "view": "ELEVATION · SECTION CLOSE-UP IN CONTEXT",
   "sheetNo": "WAL-07",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 0.798
+  "aspect": 0.533
  },
  "log-cabin": {
   "view": "ELEVATION",

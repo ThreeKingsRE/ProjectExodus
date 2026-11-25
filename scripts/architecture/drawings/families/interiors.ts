@@ -9,6 +9,7 @@
  */
 import { type Pt, type SheetSpec, f, path, el, vDim, hDim, text } from '../sheet'
 import { CEILING_SHEETS } from './ceilings'
+import { TRIM_SHEETS } from './trim'
 import { newLayers, finish, hatched, masked, circle, line, rect, ring, callouts, arrow, courses, Bounds, ORIGINAL, type Layers } from '../kit'
 
 const ACCENT = 'style="stroke: var(--_accent)"'
@@ -679,14 +680,13 @@ function alcove(): SheetSpec {
 }
 
 /** Superseded by ceilings.ts (perspective); kept for reference. */
-export const RETIRED_CEILINGS = [tray, coved, dropped, exposedBeams, tented, coffered, ceilingRose]
+export const RETIRED_CEILINGS = [wallElevation, tray, coved, dropped, exposedBeams, tented, coffered, ceilingRose]
 
 export const INTERIOR_SHEETS: Array<() => SheetSpec> = [
   ...CEILING_SHEETS, // tray, coved, dropped, beams, tented, coffered, rose: one-point perspective with close-ups
   rcpConvention, muqarnasCeiling,
   () => wallSection('adobe'), () => wallSection('rammed-earth'), () => wallSection('plinth'), () => wallSection('coping'),
   () => wallSection('parapet'), () => wallSection('curtain-wall'),
-  () => wallElevation('dado'), () => wallElevation('chair-rail'), () => wallElevation('baseboard'),
-  () => wallElevation('crown-molding'), () => wallElevation('wainscot'),
+  ...TRIM_SHEETS, // dado, chair rail, baseboard, crown moulding, wainscot: section close-ups in context
   logCabin, niche, alcove,
 ]
