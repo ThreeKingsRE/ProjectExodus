@@ -137,21 +137,17 @@ The discipline evolves through the collective wisdom of its practitioners while 
 }
 
 // ============================================================================
-// FOUNDING STORY (the founder's own words, lightly edited for grammar)
+// FOUNDING STORY (approved by the founder; a paraphrase, not a quotation)
 // ============================================================================
 
 export const exodologyFoundingStory = {
   title: 'Why Exodology Exists',
-  attribution: "In the founder's words",
+  attribution: 'How Exodology began',
   paragraphs: [
-    `Exodology began with frustration. Not with one person or one institution, but with a system we all blame and all keep building, through our blind acceptance that things are the way they are "supposed" to be.`,
-    `Who put anyone in charge of my life, my gift from God, to decide how I get to live, learn and die?`,
-    `Architects give up their souls to become professionals who design for clients, never for the people. Working people labor to build the world, yet they cannot advocate for themselves or keep learning without working even more. Instead of saying "I wish we could," "if only," or "in the next life," we should say: no, this is the life. We can do the things we dream of if we support each other and lift each other up.`,
-    `Why does a professor not respect a student, when that same student is expected to earn the respect of adult coworkers? We have lost the details that make our world beautiful. It is always money, money, money, never people, people, people. We design for ego instead of for people, and that is wrong.`,
-    `So Exodology blends every form of design with entrepreneurial spirit, systems and politics. It is meant to be the degree for those who want to pioneer goodness and move humanity forward by doing, not saying.`,
-    `So many intelligent people will never be known because their situation keeps them in a rice field, a cornfield or a factory. Exodology lets the working dreamer pursue their dreams on their own timeline and help shepherd the world toward the goodness in it.`,
-    `I paved the road so others could follow my footsteps and then mark their own. I challenged the systems and the powers that be so that those who follow are supported and given a platform.`,
-    `Exodology is creating your own precedent, to show the world that change is not only possible. It is real.`
+    `Exodology began with a simple question: why do we accept that things are the way they're "supposed" to be?`,
+    `Too often, the systems that shape how we live, learn and build are designed around money instead of people, and the details that make the world beautiful get lost along the way. Meanwhile, many of the most capable people will never get the chance to show it, because their circumstances leave little time or support to learn, create or lead.`,
+    `Exodology exists to change that. It brings design, entrepreneurship, systems thinking and civic life together into one discipline for people who want to move humanity forward by doing, not just saying. It lets working dreamers learn on their own timeline, in a community that lifts each other up.`,
+    `The road is paved so others can follow it, then mark their own. Exodology is about setting your own precedent and showing the world that change isn't only possible. It's real.`
   ]
 }
 
