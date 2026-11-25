@@ -117,7 +117,10 @@ const allFeatures: Feature[] = [
 ]
 
 // Cards for pages that are switched off (lib/features.ts) are left out
-const features = allFeatures.filter((f) => isLinkLive(f.href))
+const features = allFeatures
+  .filter((f) => isLinkLive(f.href))
+  // Community widens to fill the Marketplace card's place beside Learning Academy
+  .map((f) => (f.id === 'community' && !isLinkLive('/products') ? { ...f, gridClass: 'lg:col-span-2' } : f))
 
 // ============================================
 // ANIMATED SCENES
