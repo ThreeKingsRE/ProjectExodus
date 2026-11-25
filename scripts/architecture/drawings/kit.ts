@@ -273,3 +273,59 @@ export function surfaceItems(P: (p: P3) => Pt, f: (u: number, v: number) => P3, 
 export function paint(L: Layers, items: Item[], layer: LayerName = 'profile') {
   for (const it of [...items].sort((a, b) => b.key - a.key)) L[layer].push(...it.svg)
 }
+
+
+// ---------------------------------------------------------------------------
+// Close-ups that keep their place in the whole
+// ---------------------------------------------------------------------------
+
+/**
+ * A small part drawn large, but still shown on the whole it belongs to: the whole subject
+ * is drawn small, a ring marks where the part is, and an enlarged round window beside it
+ * redraws that region at `k` times the scale (so detail, dimensions and labels fit).
+ * `draw` must only add geometry (never labels or dimensions) so it can be drawn twice.
+ * Returns the clipPath definitions to add to the sheet's defs.
+ */
+export function zoomInContext(
+  L: Layers,
+  o: {
+    id: string
+    /** Draw the subject at `scale` px per drawing unit with its origin at page point (ox, oy). */
+    draw: (target: Layers, scale: number, ox: number, oy: number) => void
+    whole: { scale: number; ox: number; oy: number }
+    /** The part's position in drawing units (same units the subject is drawn in), measured from the origin, y up. */
+    focus: Pt
+    /** Radius of the region shown in the window, in drawing units. */
+    regionR: number
+    window: { cx: number; cy: number; r: number }
+  },
+): { defs: string; zoom: { scale: number; ox: number; oy: number; X: (u: number) => number; Y: (u: number) => number }; ring: { cx: number; cy: number; r: number } } {
+  const { whole, focus, window: W } = o
+  // the whole, small
+  o.draw(L, whole.scale, whole.ox, whole.oy)
+  const fx = whole.ox + focus[0] * whole.scale
+  const fy = whole.oy - focus[1] * whole.scale
+  const ringR = o.regionR * whole.scale
+  // the window: the same subject redrawn large, centred on the part, clipped to the circle
+  const zs = W.r / o.regionR
+  const zox = W.cx - focus[0] * zs
+  const zoy = W.cy + focus[1] * zs
+  const Lz = newLayers()
+  o.draw(Lz, zs, zox, zoy)
+  const clip = `zc-${o.id}`
+  for (const name of ['hatch', 'shading', 'fine', 'profile', 'cut', 'center'] as const) {
+    if (Lz[name].length) L[name].push(`<g clip-path="url(#${clip})">${Lz[name].join('')}</g>`)
+  }
+  // ring on the whole, the window's rim, and two leader lines joining them
+  L.profile.push(circle([fx, fy], ringR, 'style="stroke-dasharray: 4 3; stroke-width: 1"'), circle([W.cx, W.cy], W.r))
+  const ang = Math.atan2(W.cy - fy, W.cx - fx)
+  for (const sgn of [-1, 1]) {
+    const a = ang + (sgn * Math.PI) / 2
+    L.fine.push(line([fx + ringR * Math.cos(a), fy + ringR * Math.sin(a)], [W.cx + W.r * Math.cos(a), W.cy + W.r * Math.sin(a)], 'stroke-dasharray="2 3"'))
+  }
+  return {
+    defs: `<clipPath id="${clip}"><circle cx="${f(W.cx)}" cy="${f(W.cy)}" r="${f(W.r)}"/></clipPath>`,
+    zoom: { scale: zs, ox: zox, oy: zoy, X: (u: number) => zox + u * zs, Y: (u: number) => zoy - u * zs },
+    ring: { cx: fx, cy: fy, r: ringR },
+  }
+}

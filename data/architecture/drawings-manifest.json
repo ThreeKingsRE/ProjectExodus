@@ -180,46 +180,46 @@
   "aspect": 1
  },
  "tread": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "STR-01",
   "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
-  "aspect": 1.364
+  "aspect": 0.809
  },
  "riser": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "STR-02",
   "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
-  "aspect": 1.364
+  "aspect": 0.809
  },
  "stringer": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "STR-03",
   "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
-  "aspect": 1.364
+  "aspect": 0.809
  },
  "landing": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "STR-04",
   "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
-  "aspect": 1.364
+  "aspect": 0.809
  },
  "newel-post": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "STR-05",
   "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
-  "aspect": 1.364
+  "aspect": 0.809
  },
  "baluster": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "STR-06",
   "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
-  "aspect": 1.364
+  "aspect": 0.809
  },
  "handrail": {
-  "view": "SECTION",
+  "view": "SECTION · CLOSE-UP IN CONTEXT",
   "sheetNo": "STR-07",
   "source": "Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.",
-  "aspect": 1.364
+  "aspect": 0.809
  },
  "spiral-stair": {
   "view": "PLAN",

@@ -7,7 +7,7 @@
  * stairs and accessible ramps; ELEVATION for a perron.
  */
 import { type Pt, type SheetSpec, f, path, el, vDim, hDim, text } from '../sheet'
-import { newLayers, finish, hatched, circle, line, rect, ring, callouts, arrow, Bounds, ORIGINAL, type Layers } from '../kit'
+import { newLayers, finish, hatched, circle, line, rect, ring, callouts, arrow, zoomInContext, Bounds, ORIGINAL, type Layers } from '../kit'
 
 const BLONDEL =
   'Riser and going set by Blondel’s rule (2 risers + 1 going ≈ 630 mm), after François Blondel, Cours d’architecture (1675–83). Original drawing by Project Exodus.'
@@ -46,23 +46,15 @@ const PARTS: PartSpec[] = [
     description: 'Section through a straight stair with the sloping rail for the hand highlighted, set at a constant height above the line of the step edges.' },
 ]
 
-function flight(part: PartSpec): SheetSpec {
-  const L = newLayers()
-  const B = new Bounds()
-  const s = 0.112 // px per mm
-  const R = 175
-  const G = 280
-  const N = 8
-  const nose = 25
-  const treadT = 32
-  const riserT = 20
-  const x0 = 175
-  const y0 = 470 // lower floor level
+const FL = { R: 175, G: 280, N: 8, nose: 25, treadT: 32, riserT: 20, landingL: 1000, rail: 900 }
+
+/** The straight flight with `part` highlighted: geometry only (no labels), at `s` px per mm, lower floor level at page (x0, y0). */
+function drawFlight(L: Layers, part: PartSpec, s: number, x0: number, y0: number) {
+  const { R, G, N, nose, treadT, riserT, landingL, rail } = FL
   const X = (mm: number) => x0 + mm * s
   const Y = (mm: number) => y0 - mm * s
   const H = N * R
   const runEnd = (N - 1) * G
-  const landingL = 1000
   const hi = (p: Part) => part.id === p
 
   const put = (p: Part, poly: Pt[], pattern: string) => {
@@ -104,7 +96,6 @@ function flight(part: PartSpec): SheetSpec {
   // pitch line through the nosings, handrail parallel 900 above
   const pitch = (x: number) => (x / G) * R + R
   L.center.push(line([X(-nose - 200), Y(pitch(-nose - 200))], [X(runEnd + 200), Y(pitch(runEnd + 200))]))
-  const rail = 900
   const railPts: Pt[] = [[X(-nose), Y(pitch(-nose) + rail)], [X(runEnd - nose), Y(pitch(runEnd - nose) + rail)], [X(runEnd + landingL), Y(H + rail + R)]]
   L[hi('handrail') ? 'cut' : 'profile'].push(`<path d="${path(railPts)}"${hi('handrail') ? ' ' + ACCENT : ''} stroke-width="${hi('handrail') ? 3.2 : 2.2}"/>`)
 
@@ -132,32 +123,91 @@ function flight(part: PartSpec): SheetSpec {
   }
   newel(-nose - 40, 0, R + rail + 200)
   newel(runEnd - nose + 40, H, H + rail + R + 160)
+}
 
-  B.add([X(-600), Y(H + rail + R + 260)], [X(runEnd + landingL + 400), Y(0) + 150 * s])
-  L.dims.push(
-    vDim(X(runEnd + landingL + 400) + 12, Y(H - R), Y(H), `R ${R}`),
-    hDim(Y(0) + 150 * s + 20, X(2 * G - riserT), X(3 * G - riserT), `G ${G}`),
-    vDim(X(runEnd + landingL + 400) + 12, Y(0), Y(H - R), `${N - 1}×${R}`),
-  )
-  L.notes.push(text(X(G * 3), Y(pitch(G * 3)) + 16, 'PITCH LINE', 'class="t-small t-accent"'))
-  L.notes.push(text(X(runEnd + landingL + 400), Y(0) + 150 * s + 48, 'DIMENSIONS IN MM', 'class="t-small" text-anchor="end"'))
+/** Where each part is on the flight (mm from the foot of the stair, y up) and how much of the stair its close-up covers. */
+const FOCUS: Record<Part, { at: Pt; r: number }> = {
+  tread: { at: [3 * FL.G + 40, 4 * FL.R - 60], r: 340 },
+  riser: { at: [3 * FL.G - FL.riserT, 3.45 * FL.R], r: 430 },
+  stringer: { at: [3.3 * FL.G, 3.3 * FL.G * (FL.R / FL.G) - 120], r: 560 },
+  landing: { at: [(FL.N - 1) * FL.G + 450, FL.N * FL.R], r: 720 },
+  'newel-post': { at: [-FL.nose - 40, 760], r: 720 },
+  baluster: { at: [1.9 * FL.G, 1.9 * FL.R + FL.R + 480], r: 520 },
+  handrail: { at: [2.2 * FL.G, 2.2 * FL.R + FL.R + FL.rail], r: 520 },
+}
 
-  const items: { text: string; at: Pt }[] = [
-    { text: 'HANDRAIL', at: [X(G * 1.5), Y(pitch(G * 1.5 - nose) + rail)] },
-    { text: 'NEWEL POST', at: [X(-nose - 40 - 45), Y(R + rail)] },
-    { text: 'BALUSTER', at: [X(1.25 * G - riserT), Y(pitch(1.25 * G) + rail * 0.5)] },
-    { text: 'TREAD', at: [X(G * 0.5), Y(2 * R - treadT / 2)] },
-    { text: 'RISER', at: [X(-riserT), Y(R * 0.5)] },
-    { text: 'STRINGER', at: [X(G * 1.6), strBot(G * 1.6)] },
-    { text: 'FLOOR', at: [X(-600), Y(0) + 75 * s] },
-  ]
-  callouts(L, items, X(-600))
-  L.notes.push(text(X(runEnd + 80), Y(H + 330), 'LANDING', 'class="t-sub"'))
+function flight(part: PartSpec): SheetSpec {
+  const L = newLayers()
+  const B = new Bounds()
+  const { R, G, N, nose, treadT, riserT, landingL, rail } = FL
+  const H = N * R
+  const runEnd = (N - 1) * G
+  const sW = 0.058
+  const wx0 = 40 + 600 * sW
+  const wy0 = 236
+  const fo = FOCUS[part.id]
+  const win = { cx: 300, cy: 440, r: 168 }
+  const z = zoomInContext(L, {
+    id: part.id,
+    draw: (target, scale, ox, oy) => drawFlight(target, part, scale, ox, oy),
+    whole: { scale: sW, ox: wx0, oy: wy0 },
+    focus: fo.at,
+    regionR: fo.r,
+    window: win,
+  })
+  const { X, Y } = z.zoom
+  B.add([40, wy0 - (H + rail + R + 260) * sW], [win.cx + win.r, win.cy + win.r])
+  L.notes.push(text(40, wy0 + 150 * sW + 24, 'WHOLE FLIGHT · SECTION', 'class="t-small"'), text(win.cx, win.cy + win.r + 18, `CLOSE-UP · ×${Math.round(z.zoom.scale / sW)}`, 'text-anchor="middle" class="t-small"'))
+
+  // labels and dimensions in the close-up (drawing units are mm, y up from the lower floor)
+  const pitch = (x: number) => (x / G) * R + R
+  const dim = (kind: 'v' | 'h', a: number, b: number, at: number, label: string) =>
+    L.dims.push(kind === 'v' ? vDim(X(at), Y(a), Y(b), label, X(at) - 14) : hDim(Y(at), X(a), X(b), label))
+  const items: { text: string; at: Pt }[] = []
+  const i = 3 // the tread and riser in the middle of the window
+  const topI = (i + 1) * R
+  switch (part.id) {
+    case 'tread':
+      items.push({ text: 'TREAD', at: [X(i * G + 120), Y(topI - treadT / 2)] }, { text: 'NOSING', at: [X(i * G - riserT - nose + 4), Y(topI - treadT / 2)] }, { text: 'RISER BELOW', at: [X(i * G - riserT / 2), Y(topI - treadT - 60)] })
+      dim('v', topI - treadT, topI, i * G + G - riserT + 30, `${treadT}`)
+      dim('h', i * G - riserT - nose, i * G - riserT, topI + 60, `${nose}`)
+      dim('h', i * G - riserT, (i + 1) * G - riserT, topI - treadT - 90, `G ${G}`)
+      break
+    case 'riser':
+      items.push({ text: 'RISER', at: [X(i * G - riserT / 2), Y(topI - R / 2)] }, { text: 'TREAD ABOVE', at: [X(i * G + 150), Y(topI + R - treadT / 2)] }, { text: 'TREAD BELOW', at: [X(i * G + 150), Y(topI - treadT / 2)] })
+      dim('v', topI - R + treadT, topI - treadT, i * G + G * 0.7, `R ${R}`)
+      dim('h', i * G - riserT, i * G, topI - R - 70, `${riserT}`)
+      break
+    case 'stringer':
+      items.push({ text: 'STRINGER', at: [X(3 * G), Y((3 * G / G) * R - 120)] }, { text: 'TREAD (END)', at: [X(3 * G + 60), Y(4 * R - treadT / 2)] }, { text: 'RISER', at: [X(3 * G - riserT / 2), Y(3.5 * R)] })
+      dim('v', (3 * G / G) * R - 230, (3 * G / G) * R + 60, 3 * G + 330, '290')
+      break
+    case 'landing':
+      items.push({ text: 'LANDING DECK', at: [X(runEnd + 300), Y(H - treadT / 2)] }, { text: 'JOIST', at: [X(runEnd + 300), Y(H - treadT - 70)] }, { text: 'UPPER FLOOR', at: [X(runEnd + landingL + 150), Y(H - 100)] }, { text: 'NEWEL POST', at: [X(runEnd - nose + 40), Y(H + 400)] })
+      dim('h', runEnd, runEnd + landingL, H - 330, `${landingL}`)
+      break
+    case 'newel-post':
+      items.push({ text: 'NEWEL POST', at: [X(-nose - 40 - 45), Y(520)] }, { text: 'CAP', at: [X(-nose - 40 - 45), Y(R + rail + 200 - 10)] }, { text: 'HANDRAIL JOINT', at: [X(-nose + 20), Y(pitch(-nose) + rail)] }, { text: 'FIRST TREAD', at: [X(G * 0.5), Y(R - treadT / 2)] })
+      dim('h', -nose - 85, -nose + 5, 140, '90')
+      dim('v', 0, R + rail + 200, -nose + 360, `${R + rail + 200}`)
+      break
+    case 'baluster': {
+      const xm = (k: number, t: number) => t * G + k * G - riserT
+      items.push({ text: 'BALUSTER', at: [X(xm(0.25, 2)), Y(pitch(xm(0.25, 2)) + rail * 0.4)] }, { text: 'HANDRAIL', at: [X(xm(0.75, 1) + 20), Y(pitch(xm(0.75, 1)) + rail)] }, { text: 'TREAD', at: [X(xm(0.25, 2) - 30), Y(3 * R - treadT / 2)] })
+      dim('h', xm(0.25, 2), xm(0.75, 2), pitch(xm(0.25, 2)) + rail * 0.55, `${Math.round(G / 2)}`)
+      break
+    }
+    case 'handrail':
+      items.push({ text: 'HANDRAIL', at: [X(2 * G), Y(pitch(2 * G - nose) + rail)] }, { text: 'PITCH LINE', at: [X(1.4 * G), Y(pitch(1.4 * G))] }, { text: 'BALUSTER', at: [X(2.15 * G), Y(pitch(2.15 * G) + rail * 0.5)] })
+      dim('v', pitch(2.7 * G - nose), pitch(2.7 * G - nose) + rail, 2.7 * G, `${rail}`)
+      break
+  }
+  callouts(L, items, win.cx - win.r - 6)
 
   return finish({
-    id: part.id, title: part.title, subtitle: part.subtitle, view: 'SECTION', sheetNo: part.sheetNo,
-    source: BLONDEL, scale: { unitPx: 500 * s, unitName: '500 mm', count: 3 }, description: part.description,
-  }, L, B)
+    id: part.id, title: part.title, subtitle: part.subtitle, view: 'SECTION · CLOSE-UP IN CONTEXT', sheetNo: part.sheetNo,
+    source: BLONDEL, scale: { unitPx: 500 * sW, unitName: '500 mm (whole flight)', count: 3 }, description: part.description,
+  }, L, B, z.defs)
 }
 
 // ---------------------------------------------------------------------------

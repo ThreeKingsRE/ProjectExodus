@@ -120,3 +120,6 @@ Each element gains structured drawing metadata (`views`, `parts[]` with callout 
 2. **Depth per element:** a single elevation sheet each, or full sets (plan + elevation + section + detail) for the important elements?
 3. **Sourcing:** OK to redraw from public-domain survey drawings (HABS/HAER, Banister Fletcher) where accuracy matters?
 4. **Order of work:** do Phase 1 (the ~800 KB payload fix) first, or go straight to redrawing?
+
+## Close-ups keep their place in the whole (owner decision)
+A small part (a tread, a door knocker, a light fixture) is drawn large in a round window, but the whole it belongs to (the stair, the door, the ceiling and room) stays on the sheet, small, with a dashed ring showing where the part sits. Helper: `zoomInContext` in `kit.ts`. Done: the seven stair parts (STR-01..07). Next: door parts, interior trim, battlement parts, ceilings and fixtures (also in perspective), and the other near-copies.
