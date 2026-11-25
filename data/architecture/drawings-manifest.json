@@ -540,16 +540,16 @@
   "aspect": 0.854
  },
  "mullion": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · SECTION CLOSE-UP IN CONTEXT",
   "sheetNo": "WIN-08",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1.049
+  "aspect": 0.565
  },
  "transom": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · SECTION CLOSE-UP IN CONTEXT",
   "sheetNo": "WIN-09",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1.049
+  "aspect": 0.565
  },
  "stained-glass": {
   "view": "ELEVATION",
@@ -636,16 +636,16 @@
   "aspect": 0.721
  },
  "portal": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · PLAN CLOSE-UP IN CONTEXT",
   "sheetNo": "DOR-07",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1.074
+  "aspect": 0.566
  },
  "door-tympanum": {
-  "view": "ELEVATION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "DOR-08",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 1.074
+  "aspect": 0.566
  },
  "pocket-door": {
   "view": "PLAN",
@@ -1398,10 +1398,10 @@
   "aspect": 1.189
  },
  "curtain-wall-modern": {
-  "view": "SECTION",
+  "view": "ELEVATION · CLOSE-UP IN CONTEXT",
   "sheetNo": "FAC-27",
   "source": "Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.",
-  "aspect": 0.511
+  "aspect": 0.584
  },
  "groin-vault": {
   "view": "ISOMETRIC · WORM'S-EYE",

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="t d">
-  <title id="t">Curtain Wall: section</title>
-  <desc id="d">Section through a curtain wall at a floor edge: aluminium mullions and transoms hold double-glazed vision panels and an insulated opaque spandrel; the frame hangs from anchor brackets on the slab, with a fire stop sealing the gap between slab and wall. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
+  <title id="t">Curtain Wall (Modern): elevation · close-up in context</title>
+  <desc id="d">Elevation of a three-storey glass building skin with its grid of vertical and horizontal bars, and a round close-up of one junction where a mullion meets the spandrel panel and the glass above it. Source: Original drawing by Project Exodus from the standard geometric construction of this form; no external drawing reproduced.</desc>
   <style>
     svg { --_ink: var(--ink, #1f2a37); --_paper: var(--paper, #f4efe3); --_accent: var(--accent, #9a3412); }
     .paper { fill: var(--_paper); }
@@ -34,66 +34,99 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="zc-curtain-wall-modern"><circle cx="300" cy="484" r="144"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
   <g class="layer-hatch ink l-hair">
-    <path d="M200 400 L390 400 L390 430 L200 430 Z" fill="url(#h-concrete)" stroke="none"/>
-    <path d="M390 400 L430 400 L430 430 L390 430 Z" fill="url(#h-earth)" stroke="none"/>
-    <path d="M432 384 L444 384 L444 456 L432 456 Z" fill="url(#h-earth)" stroke="none"/>
+    <path d="M267.38 291.65 L332.63 291.65 L332.63 278.6 L267.38 278.6 Z" fill="url(#h-concrete)" stroke="none"/>
+    <path d="M267.38 239.45 L332.63 239.45 L332.63 226.4 L267.38 226.4 Z" fill="url(#h-concrete)" stroke="none"/>
+    <path d="M267.38 187.25 L332.63 187.25 L332.63 174.2 L267.38 174.2 Z" fill="url(#h-concrete)" stroke="none"/>
+    <g clip-path="url(#zc-curtain-wall-modern)"><path d="M103.64 970.98 L692.73 970.98 L692.73 853.16 L103.64 853.16 Z" fill="url(#h-concrete)" stroke="none"/><path d="M103.64 499.71 L692.73 499.71 L692.73 381.89 L103.64 381.89 Z" fill="url(#h-concrete)" stroke="none"/><path d="M103.64 28.44 L692.73 28.44 L692.73 -89.38 L103.64 -89.38 Z" fill="url(#h-concrete)" stroke="none"/></g>
+  </g>
+  <g class="layer-shading ink l-shading">
+    <path d="M271.73 271.35 L277.52 262.65"/>
+    <path d="M274.63 272.8 L281.88 260.48"/>
+    <path d="M293.48 271.35 L299.27 262.65"/>
+    <path d="M296.38 272.8 L303.63 260.48"/>
+    <path d="M315.23 271.35 L321.02 262.65"/>
+    <path d="M318.13 272.8 L325.38 260.48"/>
+    <path d="M271.73 219.15 L277.52 210.45"/>
+    <path d="M274.63 220.6 L281.88 208.27"/>
+    <path d="M293.48 219.15 L299.27 210.45"/>
+    <path d="M296.38 220.6 L303.63 208.27"/>
+    <path d="M315.23 219.15 L321.02 210.45"/>
+    <path d="M318.13 220.6 L325.38 208.27"/>
+    <path d="M271.73 166.95 L277.52 158.25"/>
+    <path d="M274.63 168.4 L281.88 156.07"/>
+    <path d="M293.48 166.95 L299.27 158.25"/>
+    <path d="M296.38 168.4 L303.63 156.07"/>
+    <path d="M315.23 166.95 L321.02 158.25"/>
+    <path d="M318.13 168.4 L325.38 156.07"/>
+    <g clip-path="url(#zc-curtain-wall-modern)"><path d="M142.91 787.71 L195.27 709.16"/><path d="M169.09 800.8 L234.55 689.53"/><path d="M339.27 787.71 L391.64 709.16"/><path d="M365.45 800.8 L430.91 689.53"/><path d="M535.64 787.71 L588 709.16"/><path d="M561.82 800.8 L627.27 689.53"/><path d="M142.91 316.44 L195.27 237.89"/><path d="M169.09 329.53 L234.55 218.25"/><path d="M339.27 316.44 L391.64 237.89"/><path d="M365.45 329.53 L430.91 218.25"/><path d="M535.64 316.44 L588 237.89"/><path d="M561.82 329.53 L627.27 218.25"/><path d="M142.91 -154.84 L195.27 -233.38"/><path d="M169.09 -141.75 L234.55 -253.02"/><path d="M339.27 -154.84 L391.64 -233.38"/><path d="M365.45 -141.75 L430.91 -253.02"/><path d="M535.64 -154.84 L588 -233.38"/><path d="M561.82 -141.75 L627.27 -253.02"/></g>
   </g>
   <g class="layer-fine ink l-fine">
-    <circle cx="360" cy="395" r="2.5"/>
-    <path d="M400 120 L426 120 L426 640 L400 640 Z"/>
-    <path d="M413 120L413 640" stroke-dasharray="4 3"/>
-    <path d="M200 470L400 470" stroke-dasharray="4 3"/>
+    <path d="M267.38 278.17 L332.63 278.17"/>
+    <path d="M267.38 243.37 L332.63 243.37"/>
+    <path d="M267.38 225.97 L332.63 225.97"/>
+    <path d="M267.38 191.17 L332.63 191.17"/>
+    <path d="M267.38 173.77 L332.63 173.77"/>
+    <path d="M267.38 138.97 L332.63 138.97"/>
+    <path d="M267.17 291.65 L267.17 139.4"/>
+    <path d="M267.58 291.65 L267.58 139.4"/>
+    <path d="M288.92 291.65 L288.92 139.4"/>
+    <path d="M289.33 291.65 L289.33 139.4"/>
+    <path d="M310.67 291.65 L310.67 139.4"/>
+    <path d="M311.08 291.65 L311.08 139.4"/>
+    <path d="M332.42 291.65 L332.42 139.4"/>
+    <path d="M332.83 291.65 L332.83 139.4"/>
+    <g clip-path="url(#zc-curtain-wall-modern)"><path d="M103.64 849.24 L692.73 849.24"/><path d="M103.64 535.05 L692.73 535.05"/><path d="M103.64 377.96 L692.73 377.96"/><path d="M103.64 63.78 L692.73 63.78"/><path d="M103.64 -93.31 L692.73 -93.31"/><path d="M103.64 -407.49 L692.73 -407.49"/><path d="M101.8 970.98 L101.8 -403.56"/><path d="M105.47 970.98 L105.47 -403.56"/><path d="M298.17 970.98 L298.17 -403.56"/><path d="M301.83 970.98 L301.83 -403.56"/><path d="M494.53 970.98 L494.53 -403.56"/><path d="M498.2 970.98 L498.2 -403.56"/><path d="M690.89 970.98 L690.89 -403.56"/><path d="M694.56 970.98 L694.56 -403.56"/></g>
+    <path d="M305.06 237.01L443.86 477.65" stroke-dasharray="2 3"/>
+    <path d="M273.19 238.41L156.14 490.35" stroke-dasharray="2 3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <path d="M350 400 L350 390 L406 390" style="stroke-width: 3"/>
-    <path d="M428 384 L432 384 L432 456 L428 456 Z"/>
-    <path d="M400 376 L432 376 L432 384 L400 384 Z"/>
-    <path d="M444 372 L452 372 L452 388 L444 388 Z"/>
-    <path d="M452 370 L458 370 L458 390 L452 390 Z"/>
-    <path d="M400 456 L432 456 L432 464 L400 464 Z"/>
-    <path d="M444 452 L452 452 L452 468 L444 468 Z"/>
-    <path d="M452 450 L458 450 L458 470 L452 470 Z"/>
-  </g>
-  <g class="layer-cut ink l-cut">
-    <path d="M200 400 L390 400 L390 430 L200 430 Z"/>
-    <path d="M390 400 L430 400 L430 430 L390 430 Z"/>
-    <path d="M432 120L432 376" class="l-fine"/>
-    <path d="M444 120L444 376" class="l-fine"/>
-    <path d="M432 464L432 640" class="l-fine"/>
-    <path d="M444 464L444 640" class="l-fine"/>
-    <path d="M432 384 L444 384 L444 456 L432 456 Z"/>
+    <path d="M265.2 296 L334.8 296"/>
+    <path d="M267.38 296 L267.38 135.05 L332.63 135.05 L332.63 296"/>
+    <path d="M265.2 139.4 L334.8 139.4 L334.8 135.05 L265.2 135.05 Z"/>
+    <path d="M267.38 291.65 L332.63 291.65"/>
+    <path d="M267.38 278.6 L332.63 278.6"/>
+    <path d="M267.38 239.45 L332.63 239.45"/>
+    <path d="M267.38 226.4 L332.63 226.4"/>
+    <path d="M267.38 187.25 L332.63 187.25"/>
+    <path d="M267.38 174.2 L332.63 174.2"/>
+    <path d="M266.94 291.65 L267.81 291.65 L267.81 139.4 L266.94 139.4 Z"/>
+    <path d="M288.69 291.65 L289.56 291.65 L289.56 139.4 L288.69 139.4 Z"/>
+    <path d="M310.44 291.65 L311.31 291.65 L311.31 139.4 L310.44 139.4 Z"/>
+    <path d="M332.19 291.65 L333.06 291.65 L333.06 139.4 L332.19 139.4 Z"/>
+    <g clip-path="url(#zc-curtain-wall-modern)"><path d="M84 1010.25 L712.36 1010.25"/><path d="M103.64 1010.25 L103.64 -442.84 L692.73 -442.84 L692.73 1010.25"/><path d="M84 -403.56 L712.36 -403.56 L712.36 -442.84 L84 -442.84 Z"/><path d="M103.64 970.98 L692.73 970.98"/><path d="M103.64 853.16 L692.73 853.16"/><path d="M103.64 499.71 L692.73 499.71"/><path d="M103.64 381.89 L692.73 381.89"/><path d="M103.64 28.44 L692.73 28.44"/><path d="M103.64 -89.38 L692.73 -89.38"/><path d="M99.71 970.98 L107.56 970.98 L107.56 -403.56 L99.71 -403.56 Z"/><path d="M296.07 970.98 L303.93 970.98 L303.93 -403.56 L296.07 -403.56 Z"/><path d="M492.44 970.98 L500.29 970.98 L500.29 -403.56 L492.44 -403.56 Z"/><path d="M688.8 970.98 L696.65 970.98 L696.65 -403.56 L688.8 -403.56 Z"/></g>
+    <circle cx="289.13" cy="237.71" r="15.95" style="stroke-dasharray: 4 3; stroke-width: 1"/>
+    <circle cx="300" cy="484" r="144"/>
   </g>
   <g class="layer-dims ink l-dims">
-    <path d="M482 456L482 384M478 460L486 452M478 388L486 380M458 456L488 456M458 384L488 384"/><text x="490" y="423">SPANDREL</text>
+    <path d="M358.91 499.71L358.91 381.89M354.91 503.71L362.91 495.71M354.91 385.89L362.91 377.89M339.27 499.71L364.91 499.71M339.27 381.89L364.91 381.89"/><text x="366.91" y="443.8">900</text>
   </g>
   <g class="layer-labels ink l-labels">
-    <path d="M168.1 245.11L174 245.11L429.5 250"/><circle cx="429.5" cy="250" r="1.5" class="solid"/><text x="34" y="248.11">VISION GLASS (DOUBLE)</text>
-    <path d="M137.6 295.11L174 295.11L397.5 300"/><circle cx="397.5" cy="300" r="1.5" class="solid"/><text x="34" y="298.11">MULLION (BEYOND)</text>
-    <path d="M82.7 375.11L174 375.11L397.5 380"/><circle cx="397.5" cy="380" r="1.5" class="solid"/><text x="34" y="378.11">TRANSOM</text>
-    <path d="M125.4 390.11L347.5 390"/><circle cx="347.5" cy="390" r="1.5" class="solid"/><text x="34" y="393.11">ANCHOR BRACKET</text>
-    <path d="M94.9 410.11L174 410.11L391.5 415"/><circle cx="391.5" cy="415" r="1.5" class="solid"/><text x="34" y="413.11">FIRE STOP</text>
-    <path d="M101 425.11L174 425.11L217.5 415"/><circle cx="217.5" cy="415" r="1.5" class="solid"/><text x="34" y="428.11">FLOOR SLAB</text>
-    <path d="M143.7 440.11L174 440.11L429.5 430"/><circle cx="429.5" cy="430" r="1.5" class="solid"/><text x="34" y="443.11">SPANDREL (OPAQUE)</text>
-    <path d="M162 455.11L174 455.11L449.5 456"/><circle cx="449.5" cy="456" r="1.5" class="solid"/><text x="34" y="458.11">PRESSURE PLATE + CAP</text>
-    <path d="M82.7 470.11L217.5 470"/><circle cx="217.5" cy="470" r="1.5" class="solid"/><text x="34" y="473.11">CEILING</text>
+    <path d="M149.8 404.32L136 404.32L300.12 408.07"/><circle cx="300.12" cy="408.07" r="1.5" class="solid"/><text x="34" y="407.32">PRESSURE-PLATE CAP</text>
+    <path d="M174.2 443.6L136 443.6L297.5 447.35"/><circle cx="297.5" cy="447.35" r="1.5" class="solid"/><text x="34" y="446.6">MULLION (VERTICAL BAR)</text>
+    <path d="M180.3 458.6L136 458.6L199.32 447.35"/><circle cx="199.32" cy="447.35" r="1.5" class="solid"/><text x="34" y="461.6">SPANDREL PANEL (OPAQUE)</text>
+    <path d="M137.6 480.25L136 480.25L199.32 484"/><circle cx="199.32" cy="484" r="1.5" class="solid"/><text x="34" y="483.25">SLAB EDGE BEHIND</text>
+  </g>
+  <g class="layer-notes ">
+    <text x="265.2" y="316" class="t-small">WHOLE FAÇADE · ELEVATION</text>
+    <text x="300" y="644" text-anchor="middle" class="t-small">CLOSE-UP · ×9 · BAYS 1500 WIDE · SPANDREL 900 HIGH · BARS 60 WIDE</text>
   </g>
   <g class="title-block">
     <path class="ink l-fine" d="M12 664H588M400 664V768"/>
-    <text class="t-title" x="26" y="692">CURTAIN WALL</text>
+    <text class="t-title" x="26" y="692">CURTAIN WALL (MODERN)</text>
     <text class="t-sub" x="26" y="710">NON-LOADBEARING GLASS SKIN HUNG FROM THE FLOORS</text>
     <text class="t-small" x="26" y="726">SOURCE: Original drawing by Project Exodus from the standard geometric</text>
     <text class="t-small" x="26" y="736">construction of this form; no external drawing reproduced.</text>
     <text class="t-sub" x="416" y="684">SHEET  FAC-27</text>
-    <text class="t-small" x="416" y="699">SECTION</text>
-    <text class="t-small" x="416" y="724">SCALE IN UNITS (INDICATIVE)</text>
-    <rect x="416" y="730" width="30" height="5" class="solid"/><rect x="446" y="730" width="30" height="5" class="ink l-fine"/><rect x="476" y="730" width="30" height="5" class="solid"/><rect x="506" y="730" width="30" height="5" class="ink l-fine"/>
+    <text class="t-small" x="416" y="699">ELEVATION</text><text class="t-small" x="416" y="709">CLOSE-UP IN CONTEXT</text>
+    <text class="t-small" x="416" y="724">SCALE IN 2 M (WHOLE FAÇADE)</text>
+    <rect x="416" y="730" width="29" height="5" class="solid"/><rect x="445" y="730" width="29" height="5" class="ink l-fine"/><rect x="474" y="730" width="29" height="5" class="solid"/>
     <text class="t-small" x="414" y="749">0</text>
-    <text class="t-small" x="534" y="749">4</text>
+    <text class="t-small" x="501" y="749">3</text>
     <text class="t-small" x="416" y="762">PROJECT EXODUS · ARCHITECTURE</text>
   </g>
 </svg>

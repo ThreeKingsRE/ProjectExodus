@@ -7,10 +7,10 @@ import { type Pt, type SheetSpec, f, path, el, vDim, hDim, text } from '../sheet
 import { newLayers, finish, callouts, zoomInContext, Bounds, ORIGINAL, type Layers } from '../kit'
 
 const ACC = 'style="stroke: var(--_accent)"'
-type XY = [number, number]
+export type XY = [number, number]
 
 /** Common drawing helpers bound to one placement. */
-function pen(T: Layers, s: number, ox: number, oy: number) {
+export function pen(T: Layers, s: number, ox: number, oy: number) {
   const P = (u: number, v: number): Pt => [ox + u * s, oy - v * s]
   const pts = (a: XY[]) => a.map(([u, v]) => P(u, v))
   return {
@@ -24,14 +24,14 @@ function pen(T: Layers, s: number, ox: number, oy: number) {
     circ: (u: number, v: number, r: number, attrs = '') => `<circle cx="${f(ox + u * s)}" cy="${f(oy - v * s)}" r="${f(r * s)}"${attrs ? ' ' + attrs : ''}/>`,
   }
 }
-const arcXY = (cx: number, cy: number, r: number, a0: number, a1: number, n = 6): XY[] =>
+export const arcXY = (cx: number, cy: number, r: number, a0: number, a1: number, n = 6): XY[] =>
   Array.from({ length: n + 1 }, (_, i) => {
     const a = a0 + ((a1 - a0) * i) / n
     return [cx + r * Math.cos(a), cy + r * Math.sin(a)] as XY
   })
 const deg = Math.PI / 180
 
-interface Pair {
+export interface Pair {
   id: string
   title: string
   subtitle: string
@@ -45,6 +45,10 @@ interface Pair {
   note: string
   items: (at: (u: number, v: number) => Pt, z: { X: (u: number) => number; Y: (v: number) => number }) => { items: Array<{ text: string; at: Pt }>; dims: string[] }
   scaleUnit: { mm: number; name: string; count: number }
+  /** Show a different view in the window (a section) instead of redrawing the whole larger */
+  detail?: (T: Layers, win: { cx: number; cy: number; r: number }) => void
+  /** Labels and dimensions positioned by the caller for a custom detail (page coordinates) */
+  customItems?: (win: { cx: number; cy: number; r: number }) => { items: Array<{ text: string; at: Pt }>; dims: string[] }
 }
 
 // ---------------------------------------------------------------------------
@@ -288,16 +292,16 @@ const bayPairs: Pair[] = [
   },
 ]
 
-function build(c: Pair): SheetSpec {
+export function build(c: Pair): SheetSpec {
   const L = newLayers()
   const B = new Bounds()
   const { scale: sW, ox, oy } = c.whole
   const win = { cx: 300, cy: 484, r: 144 }
-  const z = zoomInContext(L, { id: c.id, draw: c.draw, whole: { scale: sW, ox, oy }, focus: c.at, regionR: c.r, window: win })
+  const z = zoomInContext(L, { id: c.id, draw: c.draw, whole: { scale: sW, ox, oy }, focus: c.at, regionR: c.r, window: win, detail: c.detail })
   const at = (u: number, v: number): Pt => [z.zoom.X(u), z.zoom.Y(v)]
   B.add([ox + c.whole.w[0] * sW - 4, oy - c.whole.h[1] * sW - 6], [ox + c.whole.w[1] * sW + 4, oy - c.whole.h[0] * sW + 8], [win.cx - win.r, win.cy - win.r], [win.cx + win.r, win.cy + win.r])
   L.notes.push(text(ox + c.whole.w[0] * sW, oy - c.whole.h[0] * sW + 20, c.whole.caption, 'class="t-small"'), text(win.cx, win.cy + win.r + 16, `CLOSE-UP · ×${Math.round(z.zoom.scale / sW)} · ${c.note}`, 'text-anchor="middle" class="t-small"'))
-  const { items, dims } = c.items(at, z.zoom)
+  const { items, dims } = c.customItems ? c.customItems(win) : c.items(at, z.zoom)
   callouts(L, items.filter((it) => Math.hypot(it.at[0] - win.cx, it.at[1] - win.cy) < win.r - 4), win.cx - win.r - 6)
   L.dims.push(...dims)
   return finish({ id: c.id, title: c.title, subtitle: c.subtitle, view: c.view, sheetNo: c.sheetNo, source: ORIGINAL, scale: { unitPx: c.scaleUnit.mm * sW, unitName: c.scaleUnit.name, count: c.scaleUnit.count }, description: c.description }, L, B, z.defs)
