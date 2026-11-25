@@ -1,5 +1,6 @@
 'use client'
 
+import { getCourseByPath } from '@/data/exodology-courses'
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { Card, CardContent } from '@/components/ui/Card'
@@ -20,8 +21,8 @@ const exodologyPaths = [
     subtitle: 'Exodological Literacy',
     description: 'Understanding exit as a social, ethical, and systems-level phenomenon, especially where sustainability efforts reach structural limits.',
     level: 'Beginner',
-    duration: '4 weeks',
-    modules: 8,
+    duration: '6 weeks',
+    modules: 11,
     icon: Compass,
     color: 'from-amber-500 to-orange-600',
     bgColor: 'bg-amber-500/10',
@@ -41,8 +42,8 @@ const exodologyPaths = [
     subtitle: 'Exodological Application',
     description: 'Designing and evaluating exit-capable systems, with emphasis on decentralized food, water, and energy solutions.',
     level: 'Intermediate',
-    duration: '6 weeks',
-    modules: 12,
+    duration: '8 weeks',
+    modules: 9,
     icon: Map,
     color: 'from-teal-500 to-cyan-600',
     bgColor: 'bg-teal-500/10',
@@ -61,9 +62,9 @@ const exodologyPaths = [
     title: 'STRATEGIC EXODOLOGY',
     subtitle: 'Exodological Stewardship',
     description: 'Guiding large-scale, ethical transitions and policy-aware exits without causing instability or harm.',
-    level: 'Expert',
-    duration: '8 weeks',
-    modules: 16,
+    level: 'Advanced',
+    duration: '10 weeks',
+    modules: 10,
     icon: Target,
     color: 'from-purple-500 to-indigo-600',
     bgColor: 'bg-purple-500/10',
@@ -112,7 +113,7 @@ export default function ExodologyPage() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--muted)] border border-[var(--border)] mb-6"
             >
               <GitBranch className="w-4 h-4 text-amber-500" />
-              <span className="text-sm font-bold text-[var(--foreground)]">Advanced Discipline</span>
+              <span className="text-sm font-bold text-[var(--foreground)]">Emerging Discipline</span>
             </motion.div>
 
             {/* Title */}
@@ -350,7 +351,7 @@ export default function ExodologyPage() {
               transition={{ delay: 0.1 }}
               className="text-lg text-[var(--muted-foreground)] max-w-2xl mx-auto"
             >
-              Master all three pillars to earn your Certified Exodologist credential
+              Master all three pillars to earn your Master Exodologist credential
             </motion.p>
           </div>
 
@@ -504,6 +505,7 @@ export default function ExodologyPage() {
 
                         {/* Stats */}
                         <div className="flex items-center gap-4 mb-4 text-xs text-[var(--muted-foreground)]">
+                          <span className="font-bold text-[var(--foreground)]">{getCourseByPath(path.id)?.code}</span>
                           <span className="flex items-center gap-1">
                             <BookOpen className="w-4 h-4" />
                             {path.modules} modules

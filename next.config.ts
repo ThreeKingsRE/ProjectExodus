@@ -31,6 +31,10 @@ const nextConfig: NextConfig = {
     '/api/projects/[projectId]/live-tables': ['./private/projects/**/*'],
     '/api/projects/[projectId]/files': ['./private/projects/**/*'],
     '/api/projects/[projectId]/files/[fileId]': ['./private/projects/**/*'],
+    // Public read-only previews (page images, sheet values, text), never the originals
+    '/community/projects/[slug]': ['./private/projects/*/previews/manifest.json'],
+    '/community/projects/[slug]/preview/[id]': ['./private/projects/*/previews/**/*.{json,md}'],
+    '/community/projects/[slug]/preview/[id]/[page]': ['./private/projects/*/previews/**/*'],
   },
   experimental: {
     optimizePackageImports: [

@@ -13,6 +13,9 @@ import {
   Building, Sprout, Home, Network, BarChart3, Puzzle, GraduationCap
 } from 'lucide-react'
 import { getMergedModuleLessons } from '@/lib/exodology/lessons'
+import { getPathStudyHoursLabel } from '@/lib/exodology/courses'
+import type { CertPathId } from '@/lib/exodology/requirements'
+import { getCourseByPath, CREDIT_NOTE } from '@/data/exodology-courses'
 import Link from 'next/link'
 import { notFound, useParams } from 'next/navigation'
 
@@ -725,7 +728,7 @@ const foundationsPath: ExodologyPath = {
     description: 'Demonstrates foundational understanding of Exodology principles and frameworks.',
     requirements: [
       'Complete all 11 modules',
-      'Pass all module assessments with 80% or higher',
+      'Pass every module assessment (70% or higher)',
       'Complete all reflection exercises',
       'Finish comprehensive final assessment'
     ]
@@ -1262,7 +1265,7 @@ const strategicPath: ExodologyPath = {
   title: 'STRATEGIC EXODOLOGY',
   subtitle: 'Exodological Stewardship',
   description: 'Guiding large-scale, ethical transitions and policy-aware exits without causing instability or harm.',
-  level: 'Expert',
+  level: 'Advanced',
   duration: '10 weeks',
   heroEmoji: '🎯',
   color: 'purple',
@@ -1871,6 +1874,8 @@ export default function ExodologyPathPage() {
       }
     }),
   }
+  const course = getCourseByPath(pathId)
+  const studyHours = basePath ? getPathStudyHoursLabel(pathId as CertPathId) : ''
   const { data: session } = useSession()
   const [expandedModules, setExpandedModules] = useState<Set<string>>(new Set())
   const [userProgress, setUserProgress] = useState<LessonProgressData[]>([])
@@ -2045,7 +2050,7 @@ export default function ExodologyPathPage() {
               <div className="text-8xl">{path.heroEmoji}</div>
               <div>
                 <span className="inline-block px-3 py-1 rounded-full text-sm font-bold bg-white/20 mb-2">
-                  {path.level.toUpperCase()}
+                  {course ? `${course.code} · ` : ''}{path.level.toUpperCase()}
                 </span>
                 <h1 className="text-4xl sm:text-5xl font-black mb-2">{path.title}</h1>
                 <p className="text-xl font-medium opacity-90">{path.subtitle}</p>
@@ -2058,6 +2063,10 @@ export default function ExodologyPathPage() {
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
                 <Clock className="w-5 h-5" />
                 <span className="font-bold">{path.duration}</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                <Clock className="w-5 h-5" />
+                <span className="font-bold">{studyHours}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
                 <BookOpen className="w-5 h-5" />
@@ -2094,11 +2103,35 @@ export default function ExodologyPathPage() {
                 </div>
               </section>
 
-              {/* What You'll Learn */}
+              {/* Course facts */}
+              {course && (
+                <section>
+                  <h2 className="text-3xl font-black mb-6 text-[var(--foreground)]">Course Facts</h2>
+                  <dl className="grid sm:grid-cols-2 gap-4">
+                    {[
+                      ['Course', `${course.code}: ${course.title}`],
+                      ['Level', `${course.level} (${course.pillar})`],
+                      ['Prerequisite', course.prerequisite],
+                      ['Study time', `${studyHours} over ${path.duration}`],
+                      ['Assessment', 'A knowledge check for every module (pass at 70%)'],
+                      ['Certificate', course.credential],
+                    ].map(([label, value]) => (
+                      <div key={label} className="p-4 rounded-xl bg-[var(--card)] border-2 border-[var(--border)]">
+                        <dt className="text-xs font-bold uppercase tracking-wide text-[var(--muted-foreground)]">{label}</dt>
+                        <dd className="font-bold text-[var(--foreground)]">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <p className="mt-4 text-sm text-[var(--muted-foreground)]">{CREDIT_NOTE}</p>
+                </section>
+              )}
+
+              {/* Learning outcomes */}
               <section>
-                <h2 className="text-3xl font-black mb-6 text-[var(--foreground)]">What You'll Learn</h2>
+                <h2 className="text-3xl font-black mb-2 text-[var(--foreground)]">Learning Outcomes</h2>
+                <p className="mb-6 text-[var(--muted-foreground)]">By the end of {course ? course.code : 'this path'}, you will be able to:</p>
                 <div className="grid sm:grid-cols-2 gap-4">
-                  {path.whatYoullLearn.map((item, i) => (
+                  {(course?.outcomes ?? path.whatYoullLearn).map((item, i) => (
                     <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-[var(--card)] border-2 border-[var(--border)]">
                       <CheckCircle2 className={`w-6 h-6 text-${path.color}-500 flex-shrink-0`} />
                       <span className="font-medium text-[var(--muted-foreground)]">{item}</span>
@@ -2433,7 +2466,7 @@ export default function ExodologyPathPage() {
                     </div>
                   </div>
                   <p className="text-xs text-[var(--muted-foreground)] mt-4 text-center">
-                    Complete all three to become a Certified Exodologist
+                    Complete all three to earn the Master Exodologist credential
                   </p>
                 </CardContent>
               </Card>

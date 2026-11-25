@@ -182,6 +182,11 @@ export default function PractitionerDirectoryPage() {
                 </motion.div>
               ))}
             </div>
+            {filteredPractitioners.length === 0 && (
+              <p className="text-[var(--muted-foreground)]">
+                No practitioners are listed yet. People will appear here once they have agreed to be named.
+              </p>
+            )}
           </section>
 
           {/* Join CTA */}

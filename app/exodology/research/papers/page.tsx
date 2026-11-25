@@ -279,6 +279,11 @@ export default function ResearchPapersPage() {
                 )
               })}
             </div>
+            {filteredPapers.length === 0 && (
+              <p className="text-[var(--muted-foreground)]">
+                No working papers are published yet.
+              </p>
+            )}
           </section>
 
           {/* Submission CTA */}

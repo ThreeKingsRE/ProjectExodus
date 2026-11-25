@@ -15,8 +15,8 @@ const guideSteps = [
   {
     id: 'welcome',
     title: 'Welcome to Exodology',
-    subtitle: 'The Science of Ethical Transitions',
-    content: 'Exodology is the systematic study of how complex systems transform. While sustainability focuses on improving existing systems, Exodology focuses on guiding ethical exits when systems can no longer serve people or the planet.',
+    subtitle: 'The Study of Ethical Exit',
+    content: 'Exodology is the study and practice of designing ethical exits from systems that no longer serve people or the planet. While sustainability focuses on improving existing systems, Exodology asks when leaving is the right response, how to leave well, and what to build so that leaving is possible.',
     visual: 'intro',
     icon: Compass
   },

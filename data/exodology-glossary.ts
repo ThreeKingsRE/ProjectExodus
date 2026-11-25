@@ -17,7 +17,7 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     id: 'exodology',
     term: 'Exodology',
-    definition: 'The systematic study of how complex systems—social, technical, ecological, and their hybrids—undergo fundamental transformation from one stable state to another. Exodology focuses on understanding and guiding ethical transitions.',
+    definition: 'The study and practice of designing ethical exits from systems that no longer serve people or the planet. Exodology asks when leaving is the right response, how to leave well, and what must be built so that leaving is possible.',
     category: 'core',
     relatedTerms: ['transition', 'system', 'stewardship'],
     level: 'foundational'
