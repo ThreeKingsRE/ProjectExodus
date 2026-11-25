@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
 import { getPublicProject } from '@/lib/projects/get-public-project'
+import { getPreviewItems } from '@/lib/projects/public-previews'
 import { PublicInitiativeOverview } from '@/components/projects/PublicInitiativeOverview'
 import ProjectWorkspace from './ProjectWorkspace'
 
@@ -28,5 +29,6 @@ export default async function ProjectPage({ params }: Props) {
   if (session?.user?.id) return <ProjectWorkspace params={Promise.resolve({ slug })} />
   const project = await getPublicProject(slug)
   if (!project) redirect(`/auth/signin?callbackUrl=${encodeURIComponent(`/community/projects/${slug}`)}`)
-  return <PublicInitiativeOverview project={project} />
+  const previews = await getPreviewItems(slug)
+  return <PublicInitiativeOverview project={project} previews={previews} />
 }

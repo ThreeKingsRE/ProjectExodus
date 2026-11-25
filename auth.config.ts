@@ -81,6 +81,8 @@ export const authConfig = {
       if (publicCommunityPages.includes(pathname)) return true
       if (/^\/community\/projects\/[^/]+$/.test(pathname) && pathname !== '/community/projects/new') return true
       if (/^\/community\/projects\/[^/]+\/opengraph-image$/.test(pathname)) return true
+      // Read-only file previews; the page checks the initiative is public.
+      if (/^\/community\/projects\/[^/]+\/preview\/[^/]+(\/[^/]+)?$/.test(pathname)) return true
       // Survey pages check the survey's own audience (members, signed in, or anyone).
       if (/^\/community\/projects\/[^/]+\/surveys\/[^/]+$/.test(pathname)) return true
 

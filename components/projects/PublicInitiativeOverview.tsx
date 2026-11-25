@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import { ArrowRight, ClipboardList, Globe2, Lock, Megaphone, MessageSquare, Users } from 'lucide-react'
+import { ArrowRight, ClipboardList, Eye, Globe2, Lock, Megaphone, MessageSquare, Users } from 'lucide-react'
 import type { PublicProject } from '@/lib/projects/public-view'
 import { InitiativeShare } from './InitiativeShare'
 import { LinkedText } from './LinkedText'
 import { LiveTable } from './LiveTable'
 import type { LiveTableView } from '@/lib/projects/live-tables'
+import type { PreviewItem } from '@/lib/projects/public-previews'
 
 /**
  * The overview story. A line {{table:ID}} shows a live table read from a workspace
@@ -34,7 +35,7 @@ export function InitiativeStory({ text, tables, projectId, canRefresh = false }:
 }
 
 /** The same saved overview works for any initiative whose creator enables public view. */
-export function PublicInitiativeOverview({ project }: { project: PublicProject }) {
+export function PublicInitiativeOverview({ project, previews = [] }: { project: PublicProject; previews?: PreviewItem[] }) {
   const path = `/community/projects/${encodeURIComponent(project.slug)}`
   const signIn = `/auth/signin?callbackUrl=${encodeURIComponent(path)}`
   const contact = `/auth/signin?callbackUrl=${encodeURIComponent(`/messages/${project.organizer.id}`)}`
@@ -60,6 +61,7 @@ export function PublicInitiativeOverview({ project }: { project: PublicProject }
       {project.mission && <section className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4 sm:p-6"><h2 className="mb-2 sm:mb-4 text-base sm:text-xl font-black">Our mission</h2><p className="whitespace-pre-wrap leading-7 sm:leading-8">{project.mission}</p></section>}
       {project.goal && <section className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4 sm:p-6"><h2 className="mb-2 sm:mb-4 text-base sm:text-xl font-black">Our goal</h2><p className="whitespace-pre-wrap leading-7 sm:leading-8">{project.goal}</p></section>}
       {project.story && <section aria-label="Public initiative story" className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4 sm:p-8"><InitiativeStory text={project.story} tables={project.liveTables ?? {}} /></section>}
+      {previews.length > 0 && <FilePreviews slug={project.slug} items={previews} />}
       {project.updates && project.updates.length > 0 && (
         <section aria-label="Latest updates" className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6">
           <h2 className="mb-4 flex items-center gap-2 text-xl font-black"><Megaphone size={20} /> Latest updates</h2>
@@ -88,3 +90,26 @@ export function PublicInitiativeOverview({ project }: { project: PublicProject }
   </main>
 }
 
+
+/** Read-only previews of the team's files, grouped as the organizer listed them. */
+function FilePreviews({ slug, items }: { slug: string; items: PreviewItem[] }) {
+  const groups = items.reduce<Record<string, PreviewItem[]>>((all, item) => ((all[item.group] ??= []).push(item), all), {})
+  return <section id="files" aria-label="Files you can preview" className="scroll-mt-24 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4 sm:p-8">
+    <h2 className="flex items-center gap-2 text-lg sm:text-2xl font-black"><Eye size={22} /> Files you can preview</h2>
+    <p className="mt-2 text-sm leading-6 sm:text-base sm:leading-7 text-[var(--muted-foreground)]">Read every version here, no account needed. Downloads are for signed-in team members.</p>
+    <div className="mt-4 sm:mt-6 space-y-5 sm:space-y-7">
+      {Object.entries(groups).map(([group, list]) => <div key={group}>
+        <h3 className="mb-2 sm:mb-3 text-base sm:text-lg font-bold">{group}</h3>
+        <ul className="grid gap-2 sm:gap-3 sm:grid-cols-2">
+          {list.map((item) => <li key={item.id}>
+            <Link href={`/community/projects/${encodeURIComponent(slug)}/preview/${encodeURIComponent(item.id)}`} className="flex h-full flex-col gap-1 rounded-xl border border-[var(--border)] p-3 sm:p-4 transition hover:border-[var(--primary)]">
+              <span className="font-bold">{item.title}</span>
+              {item.summary && <span className="text-xs sm:text-sm leading-5 text-[var(--muted-foreground)]">{item.summary}</span>}
+              <span className="mt-auto inline-flex items-center gap-1 pt-1 text-xs font-bold">Preview <ArrowRight size={14} /></span>
+            </Link>
+          </li>)}
+        </ul>
+      </div>)}
+    </div>
+  </section>
+}

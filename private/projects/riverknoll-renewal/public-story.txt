@@ -1,0 +1,127 @@
+## Start here: take the housing survey
+
+Live at Riverknoll, or want to? Tell us what matters most to you in upperclass housing: rent, privacy, shared space, and what should stay. Your answers shape the next revision.
+
+[Take the Riverknoll housing survey](https://forms.gle/ZZmocqQbpuf9BHMW8)
+
+Riverknoll Renewal is a student-led proposal for affordable upperclass housing at RIT. RIT plans to close Riverknoll after the 2026–27 year. This page asks what it would take to rebuild it as affordable, all-electric townhomes, and shows all of our work, every version and every option, so anyone can check it and choose for themselves.
+
+The initiative is independent. RIT has not approved or funded it. Figures are concept research and allowances, not bids. Updated November 25, 2026 (model v21.1, deck v24).
+
+## What we propose now
+
+| Item | Current plan |
+| --- | --- |
+| New beds | 744, sized from RIT's own enrollment and housing data (sourced range 444 to 871) |
+| Homes | 18 identical rows of 10 townhomes, private bedrooms, one repeated design |
+| Accessible beds | 72 single-level ground-floor beds, against about 38 required |
+| Phasing | Design and permits first, a 72-bed pilot in fall 2029, then 4 rows a year, last homes 2033 |
+| Total cost | About $168M, or $225k a bed |
+| Old buildings | Assumed cleared by RIT's own decommissioning; our estimate of that is about $22.6M, shown separately and not in the total |
+
+The bed count comes first and the design meets it. 744 beds would house about 53% of RIT undergraduates on campus, against a peer median of about 60%.
+
+## Who could pay for it
+
+Today's Riverknoll rent can repay about a quarter of the cost, whoever borrows. A nonprofit owner or private developer on an RIT ground lease changes who signs the loan, not the size of the gap.
+
+| Scenario | RIT's share |
+| --- | --- |
+| RIT borrows (base), Riverknoll-level rent | About $117M |
+| Other owners and loan terms, same rent | About $106M to $127M |
+| Smaller peer-sized homes and factory panels | About $76M |
+| Plus rent near off-campus levels (about 1.5 times today) | About $41M |
+| Plus every gift and grant at its high end | About $13M |
+
+Grants and gifts we found add about $10.7M in the base case and up to $38.6M at best. Low-income housing tax credits and HUD college loans do not apply to student housing. The trade-off is clear: the less RIT pays, the more students pay or the smaller the homes.
+
+## All 32 options, side by side
+
+Every option keeps 744 beds so they compare like with like. RIT's share is what is left after rent-backed debt and $10.7M of outside money.
+
+| ID | Option | Total | RIT share | Status |
+| --- | --- | --- | --- | --- |
+| D1 | Rows of 10, two- and three-story | $167.6M | $117.1M | Adopted |
+| D2 | Rows of 20 | $165.2M | $114.7M | Option |
+| D3 | L-shaped rows of 20 | $165.5M | $115.0M | Option |
+| D4 | All rows three-story | $163.5M | $113.0M | Option |
+| D5 | Peer-sized homes | $140.8M | $90.3M | Option |
+| D6 | Factory wall and floor panels | $151.0M | $100.6M | Option |
+| D7 | Peer-sized homes with panels | $126.9M | $76.4M | Option |
+| D8 | Earlier detached-home mix (v18) | $253.1M | $202.7M | Replaced |
+| P1 | Pilot of 2 rows, then 4 a year | $167.6M | $117.1M | Adopted |
+| P2 | Three even phases of 6 rows | $157.7M | $107.3M | Option |
+| P3 | Pilot, then two phases of 8 | $160.1M | $109.6M | Option |
+| P4 | Pilot, then 3 a year | $173.3M | $122.9M | Option |
+| P5 | 2 rows a year | $184.1M | $133.6M | Option |
+| P6 | All 18 rows at once | $153.0M | $102.5M | Option |
+| C1 | New slabs, reuse roads and tested mains | $167.6M | $117.1M | Adopted |
+| C2 | Reuse old slabs where they fit | $165.9M | $115.5M | Upside |
+| C3 | Reuse all utility mains | $166.2M | $115.8M | Best case |
+| C4 | Replace all utility mains | $169.8M | $119.3M | Worst case |
+| C5 | Salvage fittings | $167.5M | $117.0M | Option |
+| C6 | We pay demolition and asbestos | $190.2M | $139.7M | Reference |
+| C7 | Same, whole site cleared in year 1 | $187.5M | $137.0M | Reference |
+| C8 | Contractor price near $250 a sq ft | $140.0M | $89.6M | Price check |
+| F1 | RIT bonds through DASNY, 30 years | $167.6M | $117.1M | Base |
+| F2 | RIT bonds, 40 years | $167.6M | $111.7M | Option |
+| F3 | Nonprofit owner on a ground lease | $167.6M | $123.4M | Option |
+| F4 | Nonprofit owner, weaker terms | $167.6M | $126.6M | Stress |
+| F5 | Private developer on a ground lease | $167.6M | $105.8M | Option |
+| F6 | Stack B: peer-sized homes and panels | $126.9M | $76.4M | Option |
+| F7 | Stack C: off-campus-level rent | $167.6M | $81.4M | Option |
+| F8 | Stack D: B and C together | $126.9M | $40.8M | Option |
+| F9 | Stack E: D with high gifts and grants | $126.9M | $12.9M | Best case |
+| F10 | Stack F: D through a nonprofit owner | $126.9M | $52.8M | Option |
+
+Each option's description, risks and sources are in the options comparison and in model v21.1 (Options_Compared tab). Which would you choose?
+
+## Every version, not just the latest
+
+We keep every model, deck and study, so you can follow how the plan moved and check our work.
+
+| Model | What changed | Headline |
+| --- | --- | --- |
+| v11 | First concept cost plan | 513 beds, $158.9M, $310k a bed |
+| v12 | RIT 2026–27 rents added | 513 beds, $158.9M |
+| v13–v15 | Lifecycle, relocation, vendor pricing; 504 sq ft per resident | 513 beds, $221.7M, $432k a bed |
+| v16 | Full audit: sourced costs, all-electric code, accessible homes, 2027 closure | 513 beds, $168.6M; 444 beds $146.0M |
+| v17 | Long-run payback, wider value, effect on Henrietta rents | Pays back about 2089; about $1.5M a year of wider value |
+| v18 | Bed count set by demand | 744 beds, $253.1M |
+| v19 | Rows of 10 townhomes, cost per building | 744 beds, $236.9M |
+| v20 | Value engineering, pilot phase, yearly spending | 744 beds, $188.4M |
+| v20.1 | RIT's decommissioning clears the old buildings | 744 beds, $167.6M, $225k a bed |
+| v21 | Funding structures and stacks | RIT's share $13M to $127M by scenario |
+| v21.1 | 32 options compared | Same base as v20.1 |
+
+Pitch decks: v19 (513-bed concept), v20 (long run and neighbors), v21 (744 beds), v22 (rows of 10, cost per building), v23 (value engineering, RIT decommissioning), v24 (funding and all options, current). The written Feasibility and Viability Study v16 covers the v16 and v17 work.
+
+Every file is in this initiative's Workspace for signed-in team members: each model and deck version, the study, the version history, the research library and the options comparison. Ask to join the team to download them.
+
+## Still to confirm
+
+RIT's decommissioning plan and asbestos survey, the current bed count, utility condition and capacity, zoning, and real contractor bids. We will update this page and add a new version, never overwrite an old one, as each answer comes in.
+
+## Help shape the next revision
+
+Students can share their housing priorities through the voluntary survey: https://forms.gle/ZZmocqQbpuf9BHMW8
+
+Residents, designers, engineers, builders, estimators, researchers, and alumni are invited to examine the plans and assumptions. Sign in to follow or collaborate. Joining expresses interest and does not imply institutional endorsement. For interviews or collaboration inquiries, message the organizer, Mr. Nobody, through Project Exodus.
+
+Riverknoll Renewal applies Exodology by considering housing, food, water, energy, and community decisions together.
+
+## Public context and sources
+
+[RIT Housing: Riverknoll](https://www.rit.edu/housing/riverknoll)
+
+[Reporter: November 9, 2026 closure reporting](https://reporter.rit.edu/8904/showcase/riverknoll-to-be-permanently-closed-after-2027-academic-year/)
+
+[RIT 2022 Campus Plan](https://www.rit.edu/sites/rit.edu/files/docs/campus-plan/2022%20RIT%20Campus%20Plan%20Final.pdf)
+
+[13WHAM: RIT students speak out after the closure](https://13wham.com/news/local/rit-students-speak-out-after-university-announces-riverknoll-closure)
+
+[HUD Rochester housing market analysis (2023)](https://www.huduser.gov/portal/publications/pdf/RochesterNY-CHMA-23.pdf)
+
+[System 3E manufacturer information](https://system3e.us/technology.html)
+
+The full source list, with every figure's origin, is in the research library and in each model's Sources tab.
