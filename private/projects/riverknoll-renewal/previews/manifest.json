@@ -1,215 +1,233 @@
 {
- "items": [
-  {
-   "id": "pitch-v24",
-   "title": "Pitch deck v24 (current)",
-   "group": "Pitch decks",
-   "kind": "pages",
-   "pages": 32,
-   "summary": "Who could fund it, funding stacks and all 32 options compared.",
-   "current": true
-  },
-  {
-   "id": "pitch-v23",
-   "title": "Pitch deck v23",
-   "group": "Pitch decks",
-   "kind": "pages",
-   "pages": 29,
-   "summary": "Value engineering, year-by-year spending, RIT clears the old buildings ($167.6M).",
-   "current": false
-  },
-  {
-   "id": "pitch-v22",
-   "title": "Pitch deck v22",
-   "group": "Pitch decks",
-   "kind": "pages",
-   "pages": 27,
-   "summary": "Rows of 10 townhomes, existing conditions, what one building costs, phasing and levers.",
-   "current": false
-  },
-  {
-   "id": "pitch-v21",
-   "title": "Pitch deck v21",
-   "group": "Pitch decks",
-   "kind": "pages",
-   "pages": 24,
-   "summary": "How many beds (744, set by demand) and the building mix.",
-   "current": false
-  },
-  {
-   "id": "pitch-v20",
-   "title": "Pitch deck v20",
-   "group": "Pitch decks",
-   "kind": "pages",
-   "pages": 22,
-   "summary": "v16 and v17 numbers, long-run payback, wider value and neighbors.",
-   "current": false
-  },
-  {
-   "id": "pitch-v19",
-   "title": "Pitch deck v19",
-   "group": "Pitch decks",
-   "kind": "pages",
-   "pages": 19,
-   "summary": "The earlier 513-bed concept.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v21.1",
-   "title": "Feasibility model v21.1 (current)",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v21.1.json",
-   "summary": "32 titled options compared side by side; same base as v20.1.",
-   "current": true
-  },
-  {
-   "id": "feasibility-v21",
-   "title": "Feasibility model v21",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v21.json",
-   "summary": "Funding structures and stacks: RIT's share $13M to $127M by scenario.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v20.1",
-   "title": "Feasibility model v20.1",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v20.1.json",
-   "summary": "RIT's decommissioning clears the old buildings: 744 beds, $167.6M, $225k a bed.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v20",
-   "title": "Feasibility model v20",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v20.json",
-   "summary": "Value engineering and a pilot phase: 744 beds, $188.4M.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v19",
-   "title": "Feasibility model v19",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v19.json",
-   "summary": "18 identical rows of 10 townhomes: 744 beds, $236.9M.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v18",
-   "title": "Feasibility model v18",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v18.json",
-   "summary": "Bed count set by demand: 744 beds, $253.1M.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v17",
-   "title": "Feasibility model v17",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v17.json",
-   "summary": "Long-run payback, wider value and the effect on Henrietta rents.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v16",
-   "title": "Feasibility model v16",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v16.json",
-   "summary": "Full audit with sourced costs: 513 beds, $168.6M.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v15",
-   "title": "Feasibility model v15",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v15.json",
-   "summary": "Working revision: 513 beds, $221.7M.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v14",
-   "title": "Feasibility model v14",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v14.json",
-   "summary": "Working revision: 513 beds, $221.7M.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v13",
-   "title": "Feasibility model v13",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v13.json",
-   "summary": "Lifecycle, relocation, phased rebuild and vendor pricing: 513 beds, $221.7M.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v12",
-   "title": "Feasibility model v12",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v12.json",
-   "summary": "Adds RIT's 2026–27 rents: 513 beds, $158.9M.",
-   "current": false
-  },
-  {
-   "id": "feasibility-v11",
-   "title": "Feasibility model v11",
-   "group": "Feasibility models",
-   "kind": "sheets",
-   "source": "models/feasibility-v11.json",
-   "summary": "First concept cost plan: 513 beds, $158.9M.",
-   "current": false
-  },
-  {
-   "id": "feasibility-study-v16",
-   "title": "Feasibility and Viability Study v16",
-   "group": "Study and notes",
-   "kind": "pages",
-   "pages": 8,
-   "summary": "The written v16 audit, extended with long-run payback, wider value and neighbors (v17)."
-  },
-  {
-   "id": "options-compared",
-   "title": "All 32 options compared",
-   "group": "Study and notes",
-   "kind": "text",
-   "source": "text/options-compared.md",
-   "summary": "Every option with what it is, its cost, RIT's share and its main trade-off."
-  },
-  {
-   "id": "version-history",
-   "title": "Version history",
-   "group": "Study and notes",
-   "kind": "text",
-   "source": "text/version-history.md",
-   "summary": "Every model, deck and study, oldest to newest, with what changed."
-  },
-  {
-   "id": "research-library",
-   "title": "Research library",
-   "group": "Study and notes",
-   "kind": "text",
-   "source": "text/research-library.md",
-   "summary": "Every source and finding behind the numbers."
-  },
-  {
-   "id": "architecture-v10",
-   "title": "Architecture pin-up v10",
-   "group": "Earlier design",
-   "kind": "pages",
-   "pages": 12,
-   "summary": "The earlier design set, before the rows of 10."
-  }
- ]
+  "items": [
+    {
+      "id": "pitch-v25",
+      "title": "Pitch deck v25 (current)",
+      "group": "Pitch decks",
+      "kind": "pages",
+      "pages": 32,
+      "summary": "Latest: System 3E prebuilt panels in the base, $159.3M, $214k a bed, RIT's share about $109M.",
+      "current": true
+    },
+    {
+      "id": "pitch-v24",
+      "title": "Pitch deck v24",
+      "group": "Pitch decks",
+      "kind": "pages",
+      "pages": 32,
+      "summary": "Who could fund it, funding stacks and all 32 options compared.",
+      "current": false
+    },
+    {
+      "id": "pitch-v23",
+      "title": "Pitch deck v23",
+      "group": "Pitch decks",
+      "kind": "pages",
+      "pages": 29,
+      "summary": "Value engineering, year-by-year spending, RIT clears the old buildings ($167.6M).",
+      "current": false
+    },
+    {
+      "id": "pitch-v22",
+      "title": "Pitch deck v22",
+      "group": "Pitch decks",
+      "kind": "pages",
+      "pages": 27,
+      "summary": "Rows of 10 townhomes, existing conditions, what one building costs, phasing and levers.",
+      "current": false
+    },
+    {
+      "id": "pitch-v21",
+      "title": "Pitch deck v21",
+      "group": "Pitch decks",
+      "kind": "pages",
+      "pages": 24,
+      "summary": "How many beds (744, set by demand) and the building mix.",
+      "current": false
+    },
+    {
+      "id": "pitch-v20",
+      "title": "Pitch deck v20",
+      "group": "Pitch decks",
+      "kind": "pages",
+      "pages": 22,
+      "summary": "v16 and v17 numbers, long-run payback, wider value and neighbors.",
+      "current": false
+    },
+    {
+      "id": "pitch-v19",
+      "title": "Pitch deck v19",
+      "group": "Pitch decks",
+      "kind": "pages",
+      "pages": 19,
+      "summary": "The earlier 513-bed concept.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v22",
+      "title": "Feasibility model v22 (current)",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v22.json",
+      "summary": "Latest: System 3E prebuilt facade and floor panels in the base (5% saving from general panel research, not a quote): $159.3M, $214k a bed.",
+      "current": true
+    },
+    {
+      "id": "feasibility-v21.1",
+      "title": "Feasibility model v21.1",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v21.1.json",
+      "summary": "32 titled options compared side by side; same base as v20.1.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v21",
+      "title": "Feasibility model v21",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v21.json",
+      "summary": "Funding structures and stacks: RIT's share $13M to $127M by scenario.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v20.1",
+      "title": "Feasibility model v20.1",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v20.1.json",
+      "summary": "RIT's decommissioning clears the old buildings: 744 beds, $167.6M, $225k a bed.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v20",
+      "title": "Feasibility model v20",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v20.json",
+      "summary": "Value engineering and a pilot phase: 744 beds, $188.4M.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v19",
+      "title": "Feasibility model v19",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v19.json",
+      "summary": "18 identical rows of 10 townhomes: 744 beds, $236.9M.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v18",
+      "title": "Feasibility model v18",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v18.json",
+      "summary": "Bed count set by demand: 744 beds, $253.1M.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v17",
+      "title": "Feasibility model v17",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v17.json",
+      "summary": "Long-run payback, wider value and the effect on Henrietta rents.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v16",
+      "title": "Feasibility model v16",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v16.json",
+      "summary": "Full audit with sourced costs: 513 beds, $168.6M.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v15",
+      "title": "Feasibility model v15",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v15.json",
+      "summary": "Working revision: 513 beds, $221.7M.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v14",
+      "title": "Feasibility model v14",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v14.json",
+      "summary": "Working revision: 513 beds, $221.7M.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v13",
+      "title": "Feasibility model v13",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v13.json",
+      "summary": "Lifecycle, relocation, phased rebuild and vendor pricing: 513 beds, $221.7M.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v12",
+      "title": "Feasibility model v12",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v12.json",
+      "summary": "Adds RIT's 2026–27 rents: 513 beds, $158.9M.",
+      "current": false
+    },
+    {
+      "id": "feasibility-v11",
+      "title": "Feasibility model v11",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v11.json",
+      "summary": "First concept cost plan: 513 beds, $158.9M.",
+      "current": false
+    },
+    {
+      "id": "feasibility-study-v16",
+      "title": "Feasibility and Viability Study v16",
+      "group": "Study and notes",
+      "kind": "pages",
+      "pages": 8,
+      "summary": "The written v16 audit, extended with long-run payback, wider value and neighbors (v17)."
+    },
+    {
+      "id": "options-compared",
+      "title": "All 32 options compared",
+      "group": "Study and notes",
+      "kind": "text",
+      "source": "text/options-compared.md",
+      "summary": "Every option with what it is, its cost, RIT's share and its main trade-off."
+    },
+    {
+      "id": "version-history",
+      "title": "Version history",
+      "group": "Study and notes",
+      "kind": "text",
+      "source": "text/version-history.md",
+      "summary": "Every model, deck and study, oldest to newest, with what changed."
+    },
+    {
+      "id": "research-library",
+      "title": "Research library",
+      "group": "Study and notes",
+      "kind": "text",
+      "source": "text/research-library.md",
+      "summary": "Every source and finding behind the numbers."
+    },
+    {
+      "id": "architecture-v10",
+      "title": "Architecture pin-up v10",
+      "group": "Earlier design",
+      "kind": "pages",
+      "pages": 12,
+      "summary": "The earlier design set, before the rows of 10."
+    }
+  ]
 }
