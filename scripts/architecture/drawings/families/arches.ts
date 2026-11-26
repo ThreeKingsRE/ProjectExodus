@@ -84,28 +84,16 @@ function geometry(kind: ArchKind): ArchGeometry {
       // crown lobe above, giving cusps where they meet
       const circles: Centre[] = [
         { at: [-0.25, 0], r: 0.25 },
-        { at: [0, 0.3], r: 0.25 },
+        { at: [0, 0.25], r: 0.25 },
         { at: [0.25, 0], r: 0.25 },
       ]
-      const origin: Pt = [0, 0.12]
-      const pts: Pt[] = []
-      for (let i = 0; i <= 160; i++) {
-        const a = Math.PI - (Math.PI * i) / 160
-        const dir: Pt = [Math.cos(a), Math.sin(a)]
-        let best = 0
-        for (const c of circles) {
-          // furthest intersection of the ray with this circle
-          const ox = origin[0] - c.at[0]
-          const oy = origin[1] - c.at[1]
-          const b = ox * dir[0] + oy * dir[1]
-          const disc = b * b - (ox * ox + oy * oy - c.r * c.r)
-          if (disc >= 0) best = Math.max(best, -b + Math.sqrt(disc))
-        }
-        pts.push([origin[0] + dir[0] * best, Math.max(0, origin[1] + dir[1] * best)])
-      }
-      pts[0] = [-0.5, 0]
-      pts[pts.length - 1] = [0.5, 0]
-      return { intrados: pts, centres: [circles[0], circles[1]], rise: 0.55 }
+      // three lobes of equal radius: a quarter-circle on each side and a semicircle on top, meeting in sharp cusps at (±0.25, 0.25)
+      const pts: Pt[] = [
+        ...arcPts(circles[0].at, 0.25, Math.PI, Math.PI / 2, 24),
+        ...arcPts(circles[1].at, 0.25, Math.PI, 0, 48).slice(1),
+        ...arcPts(circles[2].at, 0.25, Math.PI / 2, 0, 24).slice(1),
+      ]
+      return { intrados: pts, centres: [circles[0], circles[1]], rise: 0.5 }
     }
   }
 }
@@ -303,7 +291,7 @@ export function buildArch(a: ArchSpec): SheetSpec {
     { text: 'IMPOST', at: P([-0.5 - pierW - 0.03, -imp / 2]) },
     { text: 'PIER', at: P([-0.5 - pierW, -pierH / 2]) },
   ]
-  if (a.kind === 'trefoil') items.push({ text: 'CUSP', at: P(g.intrados[Math.round(g.intrados.length * 0.3)]) })
+  if (a.kind === 'trefoil') items.push({ text: 'CUSP (POINT BETWEEN LOBES)', at: P([-0.25, 0.25]) }, { text: 'LOBE', at: P([-0.38, 0.1]) })
   if (a.kind !== 'trefoil' && crown[1] > 0) items.push({ text: 'CROWN', at: P([crown[0] - 0.01, crown[1]]) })
   layers.labels!.push(...leftLabels(items, AREA.x0 + 10, X(-0.5 - pierW - 0.28)))
   layers.notes!.push(text(X(0.5 + pierW) + 6, Y(0) - 4, 'SPRINGING LINE', 'class="t-small"'))
