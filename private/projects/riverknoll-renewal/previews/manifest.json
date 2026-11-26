@@ -1,13 +1,22 @@
 {
   "items": [
     {
-      "id": "pitch-v27",
-      "title": "Pitch deck v27 (current): System 3E at the maker's speed",
+      "id": "pitch-v28",
+      "title": "Pitch deck v28 (current): slab with vinyl and timber upper floors",
       "group": "Pitch decks",
       "kind": "pages",
       "pages": 32,
-      "summary": "Matches model v24.2: about $174M for 744 beds, $233k a bed, $299 a sq ft for a two-story row; System 3E costs about $5.6M more than a code-compliant wood-frame building. Numbers are from model v24.2; v24.3 with timber upper floors is about $3.9M lower.",
+      "summary": "Matches model v24.3: about $170M for 744 beds, $228k a bed, $292 a sq ft for a two-story row, timber upper floors; System 3E about $1.7M more than a code-compliant wood-frame building.",
       "current": true
+    },
+    {
+      "id": "pitch-v27",
+      "title": "Pitch deck v27",
+      "group": "Pitch decks",
+      "kind": "pages",
+      "pages": 32,
+      "summary": "Matches model v24.2: about $174M for 744 beds, $233k a bed, $299 a sq ft for a two-story row. Replaced by v28.",
+      "current": false
     },
     {
       "id": "pitch-v26",

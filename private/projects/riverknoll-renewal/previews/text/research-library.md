@@ -2,7 +2,7 @@
 
 Draft for review, November 26 2026. Concept research by the initiative organizer and collaborators. Not an approved RIT project, bid or permit set. Every figure is an estimate from the feasibility model unless it says otherwise, and each section names where to check it.
 
-Latest working files: feasibility model v24.2 (System 3E stacked at the maker's speed) with its wood-frame comparison plan, material list v2, the System 3E vs wood frame life cycle v2 and pitch deck v27 (November 26 2026). Every earlier version is listed in version-history.md.
+Latest working files: feasibility model v24.2 (System 3E stacked at the maker's speed) with its wood-frame comparison plan, material list v2, the System 3E vs wood frame life cycle v2 and pitch deck v28 with the model v24.3 numbers (November 26 2026). Every earlier version is listed in version-history.md.
 
 ## 1. What happens to Riverknoll
 

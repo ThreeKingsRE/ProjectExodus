@@ -6,7 +6,7 @@ Live at Riverknoll, or want to? Tell us what matters most to you in upperclass h
 
 Riverknoll Renewal is a student-led proposal for affordable upperclass housing at RIT. RIT plans to close Riverknoll after the 2026–27 year. This page asks what it would take to rebuild it as affordable, all-electric townhomes, and shows all of our work, every version and every option, so anyone can check it and choose for themselves.
 
-The initiative is independent. RIT has not approved or funded it. Figures are concept research and allowances, not bids. Updated November 26, 2026 (model v24.3 with timber upper floors, walls compared three ways v1, material list v2, deck v27).
+The initiative is independent. RIT has not approved or funded it. Figures are concept research and allowances, not bids. Updated November 26, 2026 (model v24.3 with timber upper floors, walls compared three ways v1, material list v2, deck v28).
 
 ## Latest version: model v24.3, timber upper floors, and the walls compared three ways
 
@@ -188,7 +188,7 @@ We keep every model, deck and study, so you can follow how the plan moved and ch
 | v24.2 wood-frame plan | Same model in 2x6 wood framing with R-5 outside insulation, for comparison | 744 beds, $168.1M, $225,948 a bed |
 | v24.3 (latest) | Concrete slab with vinyl plank and timber upper floors; System 3E from Poland and prefab wood panels added as comparisons | 744 beds, $169.8M, $228,266 a bed |
 
-Pitch decks: v19 (513-bed concept), v20 (long run and neighbors), v21 (744 beds), v22 (rows of 10, cost per building), v23 (value engineering, RIT decommissioning), v24 (funding and all options), v25 (v22 numbers with System 3E panels), v26 (v24 numbers, whole building in System 3E), v27 (v24.2 numbers, latest; not yet updated to v24.3). Material list v1 prices one townhome, an accessible end unit and a row of 10 with local suppliers; material list v2 (latest) matches the design exactly, 3-story homes included. The System 3E vs wood frame life cycle v1 ran at ordinary laying speed and v2 used the maker's speed with concrete plank floors; walls compared v1 (latest) sets System 3E, wood stick framing and prefab panels side by side with timber floors. The written Feasibility and Viability Study v16 covers the v16 and v17 work.
+Pitch decks: v19 (513-bed concept), v20 (long run and neighbors), v21 (744 beds), v22 (rows of 10, cost per building), v23 (value engineering, RIT decommissioning), v24 (funding and all options), v25 (v22 numbers with System 3E panels), v26 (v24 numbers, whole building in System 3E), v27 (v24.2 numbers), v28 (v24.3 numbers, latest). Material list v1 prices one townhome, an accessible end unit and a row of 10 with local suppliers; material list v2 (latest) matches the design exactly, 3-story homes included. The System 3E vs wood frame life cycle v1 ran at ordinary laying speed and v2 used the maker's speed with concrete plank floors; walls compared v1 (latest) sets System 3E, wood stick framing and prefab panels side by side with timber floors. The written Feasibility and Viability Study v16 covers the v16 and v17 work.
 
 Anyone can preview every model and deck version, both material lists, both life-cycle comparisons, the wall comparison, the study, the version history, the research library and the options comparison on this page, with or without an account. Previews can't be downloaded. Signed-in team members download the original files from this initiative's Workspace, so ask to join the team if you need them.
 
