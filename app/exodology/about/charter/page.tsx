@@ -36,8 +36,6 @@ export default function CharterPage() {
 
             <div className="flex items-center gap-4 mt-6 text-sm text-white/70">
               <span>Version {exodologyCharter.version}</span>
-              <span>•</span>
-              <span>Adopted {new Date(exodologyCharter.adoptedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
             </div>
           </div>
         </div>
