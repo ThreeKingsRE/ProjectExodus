@@ -302,7 +302,7 @@ export function build(c: Pair): SheetSpec {
   const z = zoomInContext(L, { id: c.id, draw: c.draw, whole: { scale: sW, ox, oy }, focus: c.at, regionR: c.r, window: win, detail: c.detail })
   const at = (u: number, v: number): Pt => [z.zoom.X(u), z.zoom.Y(v)]
   B.add([ox + c.whole.w[0] * sW - 4, oy - c.whole.h[1] * sW - 6], [ox + c.whole.w[1] * sW + 4, oy - c.whole.h[0] * sW + 8], [win.cx - win.r, win.cy - win.r], [win.cx + win.r, win.cy + win.r])
-  L.notes.push(text(ox + c.whole.w[0] * sW, oy - c.whole.h[0] * sW + 20, c.whole.caption, 'class="t-small"'), text(win.cx, win.cy + win.r + 16, `CLOSE-UP · ×${Math.round(z.zoom.scale / sW)} · ${c.note}`, 'text-anchor="middle" class="t-small"'))
+  L.notes.push(text(ox + c.whole.w[0] * sW, Math.min(oy - c.whole.h[0] * sW + 20, win.cy - win.r - 8), c.whole.caption, 'class="t-small"'), text(win.cx, win.cy + win.r + 16, `CLOSE-UP · ×${Math.round(z.zoom.scale / sW)} · ${c.note}`, 'text-anchor="middle" class="t-small"'))
   const { items, dims } = c.customItems ? c.customItems(win) : c.items(at, z.zoom)
   callouts(L, items.filter((it) => Math.hypot(it.at[0] - win.cx, it.at[1] - win.cy) < win.r - 4), win.cx - win.r - 6)
   L.dims.push(...dims)
