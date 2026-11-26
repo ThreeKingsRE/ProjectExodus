@@ -12,7 +12,7 @@ The initiative is independent. RIT has not approved or funded it. Figures are co
 
 The newest work comes first; every earlier version stays on this page below. v24.1 keeps the whole building in System 3E and assumes crews stack the blocks as fast as System 3E says (145 square meters of wall in 1 day instead of 14). The same model built in ordinary wood framing stays here as a second plan, so you can compare the two and choose.
 
-| | System 3E plan (base) | Wood-frame plan (comparison) |
+| What | System 3E plan (base) | Wood-frame plan (comparison) |
 | --- | --- | --- |
 | Walls and floors | Dry-stacked perlite blocks for outside walls, walls between homes and partitions; concrete plank floors | 2x6 wood framing with insulation, wood party walls and partitions, wood floor joists, advanced framing |
 | Total | $173.7M | $167.6M |
@@ -28,7 +28,7 @@ Does System 3E pay for itself over time? The walls alone cost about $2,600 a bed
 
 Material list v2 counts every material the design needs, nothing more and nothing less: about $162 a sq ft to build and $320 all in, $130,049 a bed, from national installed list prices. The model keeps the more cautious $294 until a Rochester contractor prices it.
 
-### v24: why the whole building is System 3E
+## Model v24: why the whole building is System 3E
 
 | What changed in v24 | Result |
 | --- | --- |
