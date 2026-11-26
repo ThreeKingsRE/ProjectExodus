@@ -6,23 +6,25 @@ Live at Riverknoll, or want to? Tell us what matters most to you in upperclass h
 
 Riverknoll Renewal is a student-led proposal for affordable upperclass housing at RIT. RIT plans to close Riverknoll after the 2026–27 year. This page asks what it would take to rebuild it as affordable, all-electric townhomes, and shows all of our work, every version and every option, so anyone can check it and choose for themselves.
 
-The initiative is independent. RIT has not approved or funded it. Figures are concept research and allowances, not bids. Updated November 26, 2026 (model v24.1 with its wood-frame comparison plan, material list v2, System 3E vs wood frame life cycle v2, deck v26).
+The initiative is independent. RIT has not approved or funded it. Figures are concept research and allowances, not bids. Updated November 26, 2026 (model v24.2 with its wood-frame comparison plan, material list v2, System 3E vs wood frame life cycle v2, deck v27).
 
-## Latest version: model v24.1, System 3E and wood frame side by side
+## Latest version: model v24.2, System 3E and wood frame side by side
 
-The newest work comes first; every earlier version stays on this page below. v24.1 keeps the whole building in System 3E and assumes crews stack the blocks as fast as System 3E says (145 square meters of wall in 1 day instead of 14). The same model built in ordinary wood framing stays here as a second plan, so you can compare the two and choose.
+The newest work comes first; every earlier version stays on this page below. v24.2 keeps the whole building in System 3E and assumes crews stack the blocks as fast as System 3E says (145 square meters of wall in 1 day instead of 14). The same model built in ordinary wood framing stays here as a second plan, so you can compare the two and choose.
 
 | What | System 3E plan (base) | Wood-frame plan (comparison) |
 | --- | --- | --- |
-| Walls and floors | Dry-stacked perlite blocks for outside walls, walls between homes and partitions; concrete plank floors | 2x6 wood framing with insulation, wood party walls and partitions, wood floor joists, advanced framing |
-| Total | $173.7M | $167.6M |
-| Per bed | $233,442 | $225,240 |
-| Per sq ft, buildings only | About $294 | About $284 |
-| Per sq ft, all in | About $575 | About $555 |
-| RIT's share (base funding) | About $123.2M | About $117.1M |
+| Walls and floors | Dry-stacked perlite blocks for outside walls, walls between homes and partitions; concrete plank floors | 2x6 wood framing with insulation plus R-5 insulation outside the sheathing (needed for NY's energy code), wood party walls and partitions, wood floor joists, advanced framing |
+| Total | $173.7M | $168.1M |
+| Per bed | $233,442 | $225,948 |
+| Per sq ft, buildings only | About $294 | About $285 |
+| Per sq ft, all in | About $575 | About $557 |
+| RIT's share (base funding) | About $123.2M | About $117.6M |
 | Wall labor | About 49,800 hours, mostly trained general labor | About 62,900 hours of framing carpentry |
 | Schedule | About 1.3 weeks faster per phase; homes still open each fall | Base calendar |
 | Upkeep over the years | About $133 a bed a year less (insurance, refinishing, wall holes, energy, hidden wet walls) | Base |
+
+What v24.2 fixed: each home now has 4 closets, matching the material list and the bedroom egress check (no cost change, since closets sit inside the price per square foot). The wood-frame plan now has R-5 insulation outside the sheathing, which NY's energy code needs on a wood wall; that adds about $0.5M, so System 3E now costs about $5.6M ($7,500 a bed) more than a code-compliant wood building. The System 3E plan itself did not change.
 
 Does System 3E pay for itself over time? The walls alone cost about $2,600 a bed more up front and pay that back in about year 28 (worth about $1,300 a bed over 50 years at 5.15%). The whole System 3E building with concrete floors costs about $7,800 a bed more and doesn't pay back within 50 years on upkeep alone; the concrete floors buy fire separation, quiet and a wood-free building. More than half the yearly saving is insurance, so an RIT insurance quote by building type matters, and so does a real System 3E price: each $1 a sq ft of wall moves the answer about $660 a bed. If the first US crews stack no faster than ordinary block, System 3E walls run about $13,800 a bed behind.
 
@@ -80,7 +82,7 @@ Every option keeps 744 beds so they compare like with like. RIT's share is what 
 | D4 | All rows three-story | $169.4M | $119.0M | Option |
 | D5 | Peer-sized homes (on the System 3E base) | $145.9M | $95.4M | Option |
 | D6 | System 3E perlite blocks, whole building | $173.7M | $123.2M | Adopted |
-| D7 | Conventional wood framing (the wood-frame plan) | $167.6M | $117.1M | Replaced |
+| D7 | Conventional wood framing (the wood-frame plan) | $168.1M | $117.6M | Replaced |
 | D8 | Earlier detached-home mix (v18) | $253.1M | $202.7M | Replaced |
 | P1 | Pilot of 2 rows, then 4 a year | $173.7M | $123.2M | Adopted |
 | P2 | Three even phases of 6 rows | $163.5M | $113.1M | Option |
@@ -107,7 +109,7 @@ Every option keeps 744 beds so they compare like with like. RIT's share is what 
 | F9 | Stack E: D with high gifts and grants | $145.9M | $31.9M | Best case |
 | F10 | Stack F: D through a nonprofit owner | $145.9M | $71.7M | Option |
 
-Each option's description, risks and sources are in the options comparison and in model v24.1 (Options_Compared tab). Which would you choose?
+Each option's description, risks and sources are in the options comparison and in model v24.2 (Options_Compared tab). Which would you choose?
 
 ## Every earlier version
 
@@ -129,10 +131,12 @@ We keep every model, deck and study, so you can follow how the plan moved and ch
 | v22 | System 3E prebuilt panels in the base (later corrected: System 3E is blocks, not panels) | 744 beds, $159.3M, $214k a bed |
 | v23 | System 3E wall meets the energy code with no added insulation | 744 beds, $158.4M, $212,839 a bed |
 | v24 | Whole building in System 3E perlite blocks at ordinary laying speed, local materials | 744 beds, $177.0M, $237,854 a bed |
-| v24.1 (latest) | System 3E blocks stacked at the maker's speed; life-cycle comparison with wood | 744 beds, $173.7M, $233,442 a bed |
-| v24.1 wood-frame plan | Same model in 2x6 wood framing, for comparison | 744 beds, $167.6M, $225,240 a bed |
+| v24.1 | System 3E blocks stacked at the maker's speed; life-cycle comparison with wood | 744 beds, $173.7M, $233,442 a bed |
+| v24.1 wood-frame plan | Same model in 2x6 wood framing, for comparison, without the outside insulation NY's code needs | 744 beds, $167.6M, $225,240 a bed |
+| v24.2 (latest) | 4 closets per home to match the material list; outside insulation added to the wood-frame plan; deck matched | 744 beds, $173.7M, $233,442 a bed |
+| v24.2 wood-frame plan | Same model in 2x6 wood framing with R-5 outside insulation, for comparison | 744 beds, $168.1M, $225,948 a bed |
 
-Pitch decks: v19 (513-bed concept), v20 (long run and neighbors), v21 (744 beds), v22 (rows of 10, cost per building), v23 (value engineering, RIT decommissioning), v24 (funding and all options), v25 (v22 numbers with System 3E panels), v26 (v24 numbers, whole building in System 3E, latest). Material list v1 prices one townhome, an accessible end unit and a row of 10 with local suppliers; material list v2 (latest) matches the design exactly, 3-story homes included. The System 3E vs wood frame life cycle v1 ran at ordinary laying speed; v2 (latest) uses the maker's speed. The written Feasibility and Viability Study v16 covers the v16 and v17 work.
+Pitch decks: v19 (513-bed concept), v20 (long run and neighbors), v21 (744 beds), v22 (rows of 10, cost per building), v23 (value engineering, RIT decommissioning), v24 (funding and all options), v25 (v22 numbers with System 3E panels), v26 (v24 numbers, whole building in System 3E), v27 (v24.2 numbers, latest). Material list v1 prices one townhome, an accessible end unit and a row of 10 with local suppliers; material list v2 (latest) matches the design exactly, 3-story homes included. The System 3E vs wood frame life cycle v1 ran at ordinary laying speed; v2 (latest) uses the maker's speed. The written Feasibility and Viability Study v16 covers the v16 and v17 work.
 
 Anyone can preview every model and deck version, both material lists, both life-cycle comparisons, the study, the version history, the research library and the options comparison on this page, with or without an account. Previews can't be downloaded. Signed-in team members download the original files from this initiative's Workspace, so ask to join the team if you need them.
 

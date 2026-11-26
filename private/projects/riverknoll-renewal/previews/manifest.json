@@ -1,13 +1,22 @@
 {
   "items": [
     {
-      "id": "pitch-v26",
-      "title": "Pitch deck v26 (current): built in System 3E",
+      "id": "pitch-v27",
+      "title": "Pitch deck v27 (current): System 3E at the maker's speed",
       "group": "Pitch decks",
       "kind": "pages",
       "pages": 32,
-      "summary": "Matches model v24: whole building in System 3E perlite blocks, about $177M for 744 beds, $237,854 a bed, $305 a square foot to build and $595 all in.",
+      "summary": "Matches model v24.2: about $174M for 744 beds, $233k a bed, $299 a sq ft for a two-story row; System 3E costs about $5.6M more than a code-compliant wood-frame building.",
       "current": true
+    },
+    {
+      "id": "pitch-v26",
+      "title": "Pitch deck v26",
+      "group": "Pitch decks",
+      "kind": "pages",
+      "pages": 32,
+      "summary": "Matches model v24: whole building in System 3E, about $177M for 744 beds, $237,854 a bed. Replaced by v27.",
+      "current": false
     },
     {
       "id": "pitch-v25",
@@ -73,22 +82,40 @@
       "current": false
     },
     {
-      "id": "feasibility-v24.1",
-      "title": "Feasibility model v24.1 (current): System 3E stacked at the maker's speed",
+      "id": "feasibility-v24.2",
+      "title": "Feasibility model v24.2 (current): System 3E stacked at the maker's speed",
       "group": "Feasibility models",
       "kind": "sheets",
-      "source": "models/feasibility-v24.1.json",
-      "summary": "Same design as v24 with blocks stacked as fast as System 3E says: $173,680,817, $233,442 a bed, $294 a sq ft to build, $575 all in. Has the 3E vs wood life-cycle tab.",
+      "source": "models/feasibility-v24.2.json",
+      "summary": "Same System 3E plan as v24.1: $173,680,817, $233,442 a bed, $294 a sq ft to build, $575 all in. Fixes: 4 closets per home to match the material list, and the wood-frame comparison now has R-5 outside insulation for NY's code.",
       "current": true
     },
     {
+      "id": "feasibility-v24.2-wood-frame",
+      "title": "Feasibility model v24.2, wood-frame plan (for comparison)",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v24.2-wood-frame.json",
+      "summary": "The same model with 2x6 wood-frame walls plus R-5 outside insulation (needed for NY's energy code) and wood floor joists: $168,105,079, $225,948 a bed, $285 a sq ft to build, $557 all in.",
+      "current": true
+    },
+    {
+      "id": "feasibility-v24.1",
+      "title": "Feasibility model v24.1",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v24.1.json",
+      "summary": "System 3E stacked at the maker's speed: $173,680,817, $233,442 a bed. Its wood-frame comparison lacked the outside insulation NY's code needs; replaced by v24.2.",
+      "current": false
+    },
+    {
       "id": "feasibility-v24.1-wood-frame",
-      "title": "Feasibility model v24.1, wood-frame plan (for comparison)",
+      "title": "Feasibility model v24.1, wood-frame plan",
       "group": "Feasibility models",
       "kind": "sheets",
       "source": "models/feasibility-v24.1-wood-frame.json",
-      "summary": "The same model with 2x6 wood-frame walls and wood floor joists instead of System 3E: $167,578,545, $225,240 a bed, $284 a sq ft to build, $555 all in.",
-      "current": true
+      "summary": "Wood-frame comparison without outside wall insulation: $167,578,545, $225,240 a bed. Replaced by the v24.2 wood-frame plan, which meets NY's energy code.",
+      "current": false
     },
     {
       "id": "feasibility-v24",
@@ -240,7 +267,7 @@
       "group": "Material lists",
       "kind": "sheets",
       "source": "models/material-list-v2.json",
-      "summary": "Every material the design needs, nothing more: 2- and 3-story townhomes, end units and whole rows. About $162 a sq ft to build and $320 all in from list prices, against model v24's $300 and $586 (v24.1: $294 and $575).",
+      "summary": "Every material the design needs, nothing more: 2- and 3-story townhomes, end units and whole rows. About $162 a sq ft to build and $320 all in from list prices, against model v24's $300 and $586 (v24.2: $294 and $575).",
       "current": true
     },
     {

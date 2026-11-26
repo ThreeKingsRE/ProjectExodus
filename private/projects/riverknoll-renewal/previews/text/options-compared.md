@@ -1,6 +1,6 @@
 # Riverknoll Renewal: every option, side by side
 
-Draft for review, November 26 2026 (model v24.1, the latest version: the whole building in System 3E perlite blocks, stacked at the speed System 3E gives). Not an approved RIT project. Every option below keeps the same demand-led program of 744 new beds, so the numbers compare like with like. Earlier versions of this comparison live in models v21.1 to v24, all still on this page.
+Draft for review, November 26 2026 (model v24.2, the latest version: the whole building in System 3E perlite blocks, stacked at the speed System 3E gives; the wood-frame comparison now has the outside insulation NY's energy code needs). Not an approved RIT project. Every option below keeps the same demand-led program of 744 new beds, so the numbers compare like with like. Earlier versions of this comparison live in models v21.1 to v24.1, all still on this page.
 
 How to read it:
 
@@ -9,7 +9,7 @@ How to read it:
 - **RIT net share:** what is left for RIT after the debt that rent can carry and the base outside money ($10.7M of grants and gifts). RIT's own decommissioning of old Riverknoll (our estimate about $22.6M all in) is not in these totals: the plan assumes RIT carries it as the site's owner, since Riverknoll closes after the 2026–27 year either way. RIT has not published a demolition plan. Options C6 and C7 show the totals if this project paid it instead.
 - **Status:** *Adopted* means it is in the current base plan; *Option* means it is costed but not chosen.
 
-Source workbook: Riverknoll feasibility model v24.1, Options_Compared tab, where each line points to the cells and sources behind it.
+Source workbook: Riverknoll feasibility model v24.2, Options_Compared tab, where each line points to the cells and sources behind it.
 
 
 ## Design
@@ -24,7 +24,7 @@ How the homes are shaped.
 | D4 | All rows three-story | Every row three-story (6-bed townhomes): fewer rows and less roof and slab per bed. | $169.4M | $228k | $119.0M (70%) | Option | Stairs in every home; fewer accessible ground-floor beds; taller next to neighbors. |
 | D5 | Peer-sized homes | About 340 SF a student (peer median) and 1 bath per 2, against 400 GSF a bed in the base. Measured on the v24 System 3E block base. | $145.9M | $196k | $95.4M (65%) | Option | Smaller rooms than the compact base; still near peer schools. |
 | D6 | System 3E perlite block walls | Whole building in System 3E: dry-stacked perlite block exterior walls (13.9 in, R-27.8, no added insulation) with thin render, System 3E party walls and partitions plastered inside, and precast concrete plank floors on ring beams, each priced against the wood part it replaces (Assumptions rows 92-138). Estimate until a System 3E USA quote; floors poured on site are an unpriced option. | $173.7M | $233k | $123.2M (71%) | Adopted (v24 base) | Needs a System 3E USA quote, a US plant and freight, and US code acceptance of a fire test done to a European standard. |
-| D7 | Conventional site framing (v21.1 base) | Stick framing, sheathing, insulation and fiber cement siding built on site, as in v21.1; kept for comparison. | $167.6M | $225k | $117.1M (70%) | Replaced by D6 | No new-product or freight risk. |
+| D7 | Conventional site framing (v21.1 base) | Stick framing, sheathing, insulation and fiber cement siding built on site, as in v21.1; kept for comparison. v24.2 adds the R-5 continuous insulation NY's energy code needs on a wood wall. | $168.1M | $226k | $117.6M (70%) | Replaced by D6 | No new-product or freight risk. |
 | D8 | Earlier detached-home mix (v18) | 132 two-story homes plus 18 three-story buildings, as modeled in v18. | $253.1M | $340k | $202.7M (80%) | Replaced by D1 | Costs about $76M more than the v24 base and covers more ground. |
 
 ## Phasing
@@ -74,6 +74,6 @@ Who pays and who borrows.
 
 ## What it adds up to
 
-Design and cost choices move the total by tens of millions of dollars; who borrows moves RIT's share by a few. v24.1 builds the whole building in System 3E perlite blocks (D6): exterior walls, walls between townhomes and partitions, with precast concrete plank floors, and assumes crews stack the blocks as fast as System 3E says. Priced part by part against the wood framing it replaces, that costs about $6.1M more than conventional 2x6 framing with wood floors (D7), about 4% of the total. The wood-frame plan is kept as its own model file so anyone can compare the two side by side. Those are US prices we built up, not a System 3E quote; with every System 3E part at its low or high end the total runs from about $162.5M to $198.8M. Floors poured on site are an option not yet priced, and wood floor joists instead of plank would bring the total to about $169.8M ($228,267 a bed).
+Design and cost choices move the total by tens of millions of dollars; who borrows moves RIT's share by a few. v24.2 builds the whole building in System 3E perlite blocks (D6): exterior walls, walls between townhomes and partitions, with precast concrete plank floors, and assumes crews stack the blocks as fast as System 3E says. Priced part by part against the wood framing it replaces, that costs about $5.6M more than 2x6 framing with wood floors and the R-5 outside insulation NY's energy code needs on wood walls (D7), about 3% of the total. The wood-frame plan is kept as its own model file so anyone can compare the two side by side. Those are US prices we built up, not a System 3E quote; with every System 3E part at its low or high end the total runs from about $162.5M to $198.8M. Floors poured on site are an option not yet priced, and wood floor joists instead of plank would bring the total to about $169.8M ($228,267 a bed).
 
 The biggest single lever on RIT's share is rent. At today's Riverknoll rent, grown 3% a year, RIT carries roughly two-thirds or more of the cost under every ownership structure. RIT's share gets near $60M only by combining peer-sized homes and rent near what students pay off campus today (about 1.5 times Riverknoll's rate), and about $32M if every gift and grant also lands at its high end. That trades away some of the affordability the plan is for, so the plan shows both: about $95M to $133M at Riverknoll-level rent, or about $32M to $88M at off-campus-level rent.

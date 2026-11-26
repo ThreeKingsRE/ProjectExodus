@@ -2,7 +2,7 @@
 
 Draft for review, November 26 2026. Concept research by the initiative organizer and collaborators. Not an approved RIT project, bid or permit set. Every figure is an estimate from the feasibility model unless it says otherwise, and each section names where to check it.
 
-Latest working files: feasibility model v24.1 (System 3E stacked at the maker's speed) with its wood-frame comparison plan, material list v2 and the System 3E vs wood frame life cycle v2 (November 26 2026). Pitch deck v26 still shows the v24 numbers. Every earlier version is listed in version-history.md.
+Latest working files: feasibility model v24.2 (System 3E stacked at the maker's speed) with its wood-frame comparison plan, material list v2, the System 3E vs wood frame life cycle v2 and pitch deck v27 (November 26 2026). Every earlier version is listed in version-history.md.
 
 ## 1. What happens to Riverknoll
 
@@ -30,11 +30,11 @@ The plan is demand-led at 744 new beds, with a sourced range of 444 to 871 from 
 
 ## 4. Cost
 
-- Base (v24.1): $173.7M total, $233,442 a new bed, about $294 a sq ft for the buildings alone and about $575 a sq ft all in across the project ($299 and $584 for a two-story row), after RIT's decommissioning takes demolition and asbestos off this budget. v24.1 is v24 with System 3E's blocks stacked as fast as the maker says (its FAQ: 145 square meters of wall in 1 day instead of 14), which the organizer chose to assume on Nov 26. Model v24 was $177.0M ($237,854 a bed, $305 and $595 a sq ft for a two-story row); v23 was $158.4M ($212,839 a bed).
+- Base (v24.2, same System 3E plan as v24.1): $173.7M total, $233,442 a new bed, about $294 a sq ft for the buildings alone and about $575 a sq ft all in across the project ($299 and $584 for a two-story row), after RIT's decommissioning takes demolition and asbestos off this budget. v24.1 is v24 with System 3E's blocks stacked as fast as the maker says (its FAQ: 145 square meters of wall in 1 day instead of 14), which the organizer chose to assume on Nov 26. Model v24 was $177.0M ($237,854 a bed, $305 and $595 a sq ft for a two-story row); v23 was $158.4M ($212,839 a bed).
 - Wood-frame plan, kept for comparison: the same model with 2x6 wood-frame walls, wood party walls and partitions, wood floor joists and advanced framing comes to $167.6M, $225,240 a bed, about $284 a sq ft for the buildings and $555 all in ($288 and $564 for a two-story row). System 3E costs about $6.1M (about $8,200 a bed) more up front; its life-cycle case is in section 4a.
-- Were the walls counted twice? No. Walls were always counted once, inside the $300 a sq ft building price, as wood-frame walls. v22 then credited a wrong 5% prefab-panel saving and v23 took wall insulation out, but System 3E's own cost was never added. v24 swaps each wood part for its System 3E part: exterior wall about $23.50 a sq ft of wall installed (blocks, ring beams and lintels, dry-stack labor, render) against about $22.50 for the framed wall with siding; party wall $25.50 against $23; partitions $12.92 against $10.25; plank floors $21 a sq ft against $8 for wood joists. At ordinary block-laying speed that was about $9.4M more than conventional framing (v24); at the maker's stacking speed it is about $6.1M more (v24.1).
+- Were the walls counted twice? No. Walls were always counted once, inside the $300 a sq ft building price, as wood-frame walls. v22 then credited a wrong 5% prefab-panel saving and v23 took wall insulation out, but System 3E's own cost was never added. v24 swaps each wood part for its System 3E part: exterior wall about $23.50 a sq ft of wall installed (blocks, ring beams and lintels, dry-stack labor, render) against about $22.50 for the framed wall with siding; party wall $25.50 against $23; partitions $12.92 against $10.25; plank floors $21 a sq ft against $8 for wood joists. At ordinary block-laying speed that was about $9.4M more than conventional framing (v24); at the maker's stacking speed it is about $6.1M more (v24.1). v24.2 adds the R-5 continuous insulation outside the sheathing that NY's 2025 energy code needs on a wood wall (an R-20 cavity wall alone is about U-0.060 against the U-0.045 limit), about $1.75 a sq ft of wall; against that code-compliant wood building System 3E costs about $5.6M more ($7,500 a bed). The wood plan comes to $168.1M, $225,948 a bed, $285 a sq ft for the buildings and $557 all in. v24.2 also sets 4 closets per home, as material list v2 and the bedroom egress check have; closets sit inside the per square foot price, so the totals do not move.
 - None of these are System 3E quotes: System 3E prices each project and publishes no US price. With every part at its low or high end the total is $162.5M ($218k a bed) to $198.8M ($267k a bed). Wood floor joists instead of plank would bring it to $169.8M ($228,267 a bed); floors poured on site are an option not yet priced. System 3E's own online calculator gives about $154 a sq ft for a simple 1,600 sq ft house from European data, without site, permits or US labor.
-- Material list check (v2, matched to the design: every material the drawings need, nothing more, including the 3-story homes v1 missed): about $162 a sq ft to build at mid ($97 to $258) and about $320 a sq ft all in, $130,049 a bed, from national installed list prices. That sits near national benchmarks ($162 NAHB, $176 ICC). The model keeps the conservative, institutional figure ($294 a sq ft in v24.1) until a Rochester contractor prices it.
+- Material list check (v2, matched to the design: every material the drawings need, nothing more, including the 3-story homes v1 missed): about $162 a sq ft to build at mid ($97 to $258) and about $320 a sq ft all in, $130,049 a bed, from national installed list prices. That sits near national benchmarks ($162 NAHB, $176 ICC). The model keeps the conservative, institutional figure ($294 a sq ft in v24.1 and v24.2) until a Rochester contractor prices it.
 - Next levers: a contractor price near $250 a sq ft or peer-sized homes ($145.9M, $196k a bed); P3 phasing (pilot, then two phases of 8) saves about $7.9M but needs much more money in a single year.
 - From v19 to v20.1: compact plan −$44.6M; reused roads and parking −$6.1M; one drawing set −$7.5M; advanced framing −$2.4M; pilot then 4 rows a year +$12.2M; RIT's decommissioning −$22.7M.
 - Utilities: inspect and line old sewer mains, replace what fails; new laterals, water services and electric service are needed either way. Flow rises about 45% at 744 beds, so the sewer and electric capacity must be checked with RIT Facilities, MCWA, Henrietta Sewer District and RG&E.
@@ -43,7 +43,7 @@ The plan is demand-led at 744 new beds, with a sourced range of 444 to 871 from 
 
 ## 4a. System 3E vs wood frame: does System 3E pay for itself?
 
-Asked by the organizer on Nov 26: does System 3E earn back its higher price through less upkeep, less mold and damage, and faster dry-stack building by less skilled crews? Worked out in the life-cycle file (System 3E vs wood frame life cycle v2) and the 3E_vs_Wood_Lifecycle tab of model v24.1. Each case is per bed, all in, in 2026 dollars.
+Asked by the organizer on Nov 26: does System 3E earn back its higher price through less upkeep, less mold and damage, and faster dry-stack building by less skilled crews? Worked out in the life-cycle file (System 3E vs wood frame life cycle v2) and the 3E_vs_Wood_Lifecycle tab of models v24.1 and v24.2. Each case is per bed, all in, in 2026 dollars.
 
 | | System 3E (base) | Wood frame (comparison) |
 | --- | --- | --- |
@@ -72,7 +72,7 @@ Year 1 is design, permits and surveys. A 2-row, 72-bed pilot opens August 2029, 
 
 ## 6. Funding: who pays, and how little can RIT pay
 
-Who borrows changes RIT's share only a little. Today's Riverknoll rent can repay about $33M to $51M of debt, depending on who borrows, against a $173.7M cost (v24.1).
+Who borrows changes RIT's share only a little. Today's Riverknoll rent can repay about $33M to $51M of debt, depending on who borrows, against a $173.7M cost (v24.1 and v24.2).
 
 | Who owns and borrows | RIT net share | Share of cost |
 | --- | --- | --- |
