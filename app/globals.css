@@ -497,6 +497,17 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Exodology classroom: headings take their own text-* size and color utilities.
+   The unlayered heading rules above win over every Tailwind utility, which made
+   lesson headings oversized and hero titles dark on colored backgrounds.
+   revert-layer hands these properties back to the layered (utility) styles,
+   so every heading inside .exo-classroom must carry its own text-* size. */
+.exo-classroom :is(h1, h2, h3, h4, h5, h6) {
+  font-size: revert-layer;
+  line-height: revert-layer;
+  color: revert-layer;
+}
+
 /* Links - growing interaction. In the base layer so a link's own text-* utility
    (e.g. a button-styled link) wins; unlayered, this beat every Tailwind color. */
 @layer base {

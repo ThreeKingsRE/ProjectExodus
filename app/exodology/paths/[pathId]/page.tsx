@@ -1850,6 +1850,13 @@ const pathsData: Record<string, ExodologyPath> = {
 // PAGE COMPONENT
 // ============================================================================
 
+// Static class names per path color: Tailwind only generates classes it can read in full
+const PATH_STYLES: Record<string, { text: string; icon: string; soft: string; border: string; line: string }> = {
+  amber: { text: 'text-amber-600', icon: 'text-amber-500', soft: 'bg-amber-500/10', border: 'border-amber-500/40', line: 'bg-amber-500/30' },
+  teal: { text: 'text-teal-600', icon: 'text-teal-500', soft: 'bg-teal-500/10', border: 'border-teal-500/40', line: 'bg-teal-500/30' },
+  purple: { text: 'text-purple-600', icon: 'text-purple-500', soft: 'bg-purple-500/10', border: 'border-purple-500/40', line: 'bg-purple-500/30' },
+}
+
 // Type for progress data
 type LessonProgressData = {
   lessonId: string
@@ -1943,6 +1950,7 @@ export default function ExodologyPathPage() {
     })
   }
 
+  const accent = PATH_STYLES[path.color] ?? PATH_STYLES.amber
   const totalLessons = path.modules.reduce((acc, m) => acc + m.lessons.length, 0)
   const totalModules = path.modules.length
 
@@ -2004,7 +2012,7 @@ export default function ExodologyPathPage() {
             cy={size / 2}
           />
           <circle
-            className={progress === 100 ? 'text-green-500' : `text-${path.color}-500`}
+            className={progress === 100 ? 'text-green-500' : accent.icon}
             strokeWidth={strokeWidth}
             strokeDasharray={circumference}
             strokeDashoffset={offset}
@@ -2031,73 +2039,93 @@ export default function ExodologyPathPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <div className="exo-classroom min-h-screen bg-[var(--background)]">
       {/* Hero Section */}
-      <section className={`py-20 bg-gradient-to-br ${path.gradient} text-white relative overflow-hidden`}>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-72 h-72 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-10 left-10 w-96 h-96 bg-white rounded-full blur-3xl" />
+      <section className={`py-12 sm:py-16 lg:py-20 bg-gradient-to-br ${path.gradient} text-white relative overflow-hidden`}>
+        <div className="pointer-events-none absolute inset-0 opacity-15" aria-hidden="true">
+          <div className="absolute -top-16 right-0 w-80 h-80 bg-white rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 left-10 w-96 h-96 bg-white rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <Link href="/exodology" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 font-bold">
-              <ArrowLeft className="w-5 h-5" />
+          <div className="max-w-6xl mx-auto">
+            <Link href="/exodology" className="no-min-size inline-flex items-center gap-2 text-sm text-white/80 hover:text-white mb-8 font-semibold">
+              <ArrowLeft className="w-4 h-4" />
               Back to Exodology
             </Link>
 
-            <div className="flex items-center gap-6 mb-6">
-              <div className="text-8xl">{path.heroEmoji}</div>
-              <div>
-                <span className="inline-block px-3 py-1 rounded-full text-sm font-bold bg-white/20 mb-2">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-6">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 rounded-3xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-5xl sm:text-6xl shadow-lg" aria-hidden="true">
+                {path.heroEmoji}
+              </div>
+              <div className="min-w-0">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wider bg-white/20 mb-3">
                   {course ? `${course.code} · ` : ''}{path.level.toUpperCase()}
                 </span>
-                <h1 className="text-4xl sm:text-5xl font-black mb-2">{path.title}</h1>
-                <p className="text-xl font-medium opacity-90">{path.subtitle}</p>
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl leading-tight font-black tracking-tight text-white">{path.title}</h1>
+                <p className="mt-1 text-lg sm:text-xl font-medium text-white/90">{path.subtitle}</p>
               </div>
             </div>
 
-            <p className="text-lg opacity-90 mb-8 max-w-2xl">{path.description}</p>
+            <p className="text-base sm:text-lg text-white/90 mb-8 max-w-2xl leading-relaxed">{path.description}</p>
 
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <Clock className="w-5 h-5" />
-                <span className="font-bold">{path.duration}</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <Clock className="w-5 h-5" />
-                <span className="font-bold">{studyHours}</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <BookOpen className="w-5 h-5" />
-                <span className="font-bold">{totalModules} Modules</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <Target className="w-5 h-5" />
-                <span className="font-bold">{totalLessons} Lessons</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <Award className="w-5 h-5" />
-                <span className="font-bold">Certification</span>
-              </div>
+            <div className="flex flex-wrap gap-2 sm:gap-3">
+              {[
+                { icon: Clock, label: path.duration },
+                { icon: Clock, label: studyHours },
+                { icon: BookOpen, label: `${totalModules} Modules` },
+                { icon: Target, label: `${totalLessons} Lessons` },
+                { icon: Award, label: 'Certification' },
+              ].map(({ icon: ChipIcon, label }) => (
+                <div key={label} className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full text-sm font-semibold">
+                  <ChipIcon className="w-4 h-4" />
+                  {label}
+                </div>
+              ))}
             </div>
+
+            {/* Path progress */}
+            {session && (
+              <div className="mt-8 max-w-xl rounded-2xl bg-white/15 backdrop-blur-sm border border-white/25 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline justify-between gap-3 text-sm mb-2">
+                    <span className="font-semibold">Your progress</span>
+                    <span className="text-white/90">{completedCount} of {totalLessons} lessons</span>
+                  </div>
+                  <div className="h-2 rounded-full bg-white/25 overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${totalLessons ? (completedCount / totalLessons) * 100 : 0}%` }}
+                      transition={{ duration: 0.6 }}
+                      className="h-full rounded-full bg-white"
+                    />
+                  </div>
+                </div>
+                <Link
+                  href={`/exodology/paths/${pathId}/lessons/${hasProgress ? getNextLesson() : (path.modules[0]?.lessons[0]?.id || 'f-m1-l1')}`}
+                  className="no-min-size inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-bold text-[var(--earth-900)] hover:bg-white/90 transition-colors"
+                >
+                  {hasProgress ? 'Continue' : 'Begin'} <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-10 lg:gap-12">
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-12">
+            <div className="min-w-0 lg:col-span-2 space-y-12">
               {/* Overview */}
               <section>
-                <h2 className="text-3xl font-black mb-4 text-[var(--foreground)]">Overview</h2>
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-4 text-[var(--foreground)]">Overview</h2>
                 <p className="text-lg text-[var(--muted-foreground)] leading-relaxed mb-4">
                   {path.overview}
                 </p>
-                <div className="p-4 rounded-xl bg-[var(--muted)]/30 border border-[var(--border)]">
-                  <p className="text-sm italic text-[var(--foreground)]">
+                <div className={`p-5 rounded-2xl border-l-4 ${accent.border} ${accent.soft}`}>
+                  <p className="font-body-serif italic text-[var(--foreground)] leading-relaxed">
                     <strong>Philosophy:</strong> {path.philosophy}
                   </p>
                 </div>
@@ -2106,7 +2134,7 @@ export default function ExodologyPathPage() {
               {/* Course facts */}
               {course && (
                 <section>
-                  <h2 className="text-3xl font-black mb-6 text-[var(--foreground)]">Course Facts</h2>
+                  <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-6 text-[var(--foreground)]">Course Facts</h2>
                   <dl className="grid sm:grid-cols-2 gap-4">
                     {[
                       ['Course', `${course.code}: ${course.title}`],
@@ -2116,9 +2144,9 @@ export default function ExodologyPathPage() {
                       ['Assessment', 'A knowledge check for every module (pass at 70%)'],
                       ['Certificate', course.credential],
                     ].map(([label, value]) => (
-                      <div key={label} className="p-4 rounded-xl bg-[var(--card)] border-2 border-[var(--border)]">
+                      <div key={label} className="p-4 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
                         <dt className="text-xs font-bold uppercase tracking-wide text-[var(--muted-foreground)]">{label}</dt>
-                        <dd className="font-bold text-[var(--foreground)]">{value}</dd>
+                        <dd className="mt-1 font-semibold text-[var(--foreground)]">{value}</dd>
                       </div>
                     ))}
                   </dl>
@@ -2128,13 +2156,13 @@ export default function ExodologyPathPage() {
 
               {/* Learning outcomes */}
               <section>
-                <h2 className="text-3xl font-black mb-2 text-[var(--foreground)]">Learning Outcomes</h2>
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-2 text-[var(--foreground)]">Learning Outcomes</h2>
                 <p className="mb-6 text-[var(--muted-foreground)]">By the end of {course ? course.code : 'this path'}, you will be able to:</p>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {(course?.outcomes ?? path.whatYoullLearn).map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-[var(--card)] border-2 border-[var(--border)]">
-                      <CheckCircle2 className={`w-6 h-6 text-${path.color}-500 flex-shrink-0`} />
-                      <span className="font-medium text-[var(--muted-foreground)]">{item}</span>
+                    <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                      <CheckCircle2 className={`w-5 h-5 mt-0.5 flex-shrink-0 ${accent.icon}`} />
+                      <span className="text-[var(--foreground)]/90 leading-snug">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -2142,14 +2170,17 @@ export default function ExodologyPathPage() {
 
               {/* Curriculum */}
               <section>
-                <h2 className="text-3xl font-black mb-6 text-[var(--foreground)]">Curriculum</h2>
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-6 text-[var(--foreground)]">Curriculum</h2>
                 <div className="space-y-8">
                   {Object.entries(modulesByWeek).map(([week, modules]) => (
                     <div key={week}>
-                      <h3 className={`text-lg font-black text-${path.color}-600 mb-4`}>
-                        Week {week}
-                      </h3>
-                      <div className="space-y-4">
+                      <div className="flex items-center gap-3 mb-3">
+                        <h3 className={`text-xs font-bold uppercase tracking-[0.18em] ${accent.text}`}>
+                          Week {week}
+                        </h3>
+                        <div className={`h-px flex-1 ${accent.line}`} />
+                      </div>
+                      <div className="space-y-3">
                         {modules.map((courseModule) => {
                           const Icon = courseModule.icon
                           const isExpanded = expandedModules.has(courseModule.id)
@@ -2157,18 +2188,18 @@ export default function ExodologyPathPage() {
                           const moduleProgress = getModuleProgress(courseModule)
 
                           return (
-                            <div key={courseModule.id} className={`border-2 rounded-xl overflow-hidden ${
+                            <div key={courseModule.id} className={`border rounded-2xl overflow-hidden shadow-sm transition-shadow hover:shadow-md ${
                               moduleProgress.percentage === 100
                                 ? 'border-green-500/50 bg-green-500/5'
-                                : 'border-[var(--border)]'
+                                : isExpanded ? accent.border : 'border-[var(--border)]'
                             }`}>
                               {/* Module Header */}
                               <button
                                 onClick={() => toggleModule(courseModule.id)}
                                 aria-expanded={isExpanded}
-                                className="w-full flex items-center gap-4 p-4 bg-[var(--card)] hover:bg-[var(--muted)]/50 transition-colors text-left"
+                                className="w-full flex items-center gap-3 sm:gap-4 p-4 sm:p-5 bg-[var(--card)] hover:bg-[var(--muted)]/40 transition-colors text-left"
                               >
-                                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${
+                                <div className={`w-11 h-11 sm:w-12 sm:h-12 flex-shrink-0 rounded-xl bg-gradient-to-br ${
                                   moduleProgress.percentage === 100 ? 'from-green-500 to-emerald-600' : path.gradient
                                 } flex items-center justify-center shadow-lg`}>
                                   {moduleProgress.percentage === 100 ? (
@@ -2177,14 +2208,17 @@ export default function ExodologyPathPage() {
                                     <Icon className="w-6 h-6 text-white" />
                                   )}
                                 </div>
-                                <div className="flex-1">
-                                  <h4 className="font-bold text-[var(--foreground)]">{courseModule.title}</h4>
-                                  <p className="text-sm text-[var(--muted-foreground)]">{courseModule.subtitle}</p>
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">
+                                    Module {path.modules.indexOf(courseModule) + 1} · {courseModule.lessons.length} lessons
+                                  </p>
+                                  <h4 className="text-base font-bold leading-snug text-[var(--foreground)]">{courseModule.title}</h4>
+                                  <p className="text-sm text-[var(--muted-foreground)] truncate">{courseModule.subtitle}</p>
                                 </div>
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
                                   {/* Progress Ring */}
                                   {session && <ProgressRing progress={moduleProgress.percentage} />}
-                                  <span className="text-sm text-[var(--muted-foreground)]">
+                                  <span className="hidden sm:inline text-sm text-[var(--muted-foreground)]">
                                     {moduleProgress.completed}/{courseModule.lessons.length}
                                   </span>
                                   <ChevronDown className={`w-5 h-5 text-[var(--muted-foreground)] transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
@@ -2201,7 +2235,7 @@ export default function ExodologyPathPage() {
                                     transition={{ duration: 0.3 }}
                                     className="overflow-hidden"
                                   >
-                                    <div className="p-4 border-t border-[var(--border)] bg-[var(--muted)]/20">
+                                    <div className="p-4 sm:p-5 border-t border-[var(--border)] bg-[var(--muted)]/20">
                                       <p className="text-sm text-[var(--muted-foreground)] mb-4">
                                         {courseModule.description}
                                       </p>
@@ -2216,7 +2250,7 @@ export default function ExodologyPathPage() {
 
                                           const lessonContent = (
                                             <div
-                                              className={`flex items-center gap-3 p-3 rounded-lg border transition-all ${
+                                              className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${
                                                 isLocked
                                                   ? 'bg-[var(--muted)]/30 border-[var(--border)] cursor-not-allowed opacity-60'
                                                   : completed
@@ -2330,7 +2364,7 @@ export default function ExodologyPathPage() {
               {/* Capstone (for Strategic path) */}
               {path.capstone && (
                 <section>
-                  <h2 className="text-3xl font-black mb-6 text-[var(--foreground)]">Capstone Project</h2>
+                  <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-6 text-[var(--foreground)]">Capstone Project</h2>
                   <Card className="border-4 border-purple-500/30 bg-gradient-to-br from-purple-500/10 to-indigo-500/10">
                     <CardContent className="p-6">
                       <h3 className="text-xl font-black text-[var(--foreground)] mb-2">{path.capstone.title}</h3>
@@ -2351,7 +2385,7 @@ export default function ExodologyPathPage() {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-8">
+            <div className="min-w-0 space-y-6 lg:sticky lg:top-24 lg:self-start lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:pb-4">
               {/* Sign In / Enroll CTA */}
               {!session ? (
                 <Card className="border-4 border-[var(--primary)]/50 bg-gradient-to-br from-[var(--primary)]/10 to-[var(--accent)]/10">
@@ -2359,7 +2393,7 @@ export default function ExodologyPathPage() {
                     <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[var(--primary)]/20 flex items-center justify-center">
                       <Lock className="w-8 h-8 text-[var(--primary)]" />
                     </div>
-                    <h3 className="text-xl font-black mb-2 text-[var(--foreground)]">Sign In to Learn</h3>
+                    <h3 className="text-xl font-black tracking-tight mb-2 text-[var(--foreground)]">Sign In to Learn</h3>
                     <p className="text-[var(--muted-foreground)] mb-4 text-sm">
                       Create a free account to access all {totalLessons} lessons and track your progress.
                     </p>
@@ -2377,7 +2411,7 @@ export default function ExodologyPathPage() {
                   </CardContent>
                 </Card>
               ) : (
-                <Card className={`border-4 border-${path.color}-400 bg-gradient-to-br from-${path.color}-50 to-white dark:from-[var(--card)] dark:to-[var(--muted)]`}>
+                <Card className={`border-2 ${accent.border} bg-[var(--card)]`}>
                   <CardContent className="p-6 text-center">
                     <div className="text-5xl mb-4">{path.heroEmoji}</div>
                     <h3 className="text-xl font-black mb-2 text-[var(--foreground)]">
@@ -2424,7 +2458,7 @@ export default function ExodologyPathPage() {
               <Card className="border-2 border-[var(--border)]">
                 <CardContent className="p-6">
                   <h3 className="text-xl font-black mb-4 text-[var(--foreground)] flex items-center gap-2">
-                    <Award className={`w-6 h-6 text-${path.color}-500`} />
+                    <Award className={`w-6 h-6 ${accent.icon}`} />
                     Certification
                   </h3>
                   <p className="font-bold text-[var(--foreground)] mb-2">{path.certification.name}</p>
@@ -2433,7 +2467,7 @@ export default function ExodologyPathPage() {
                   <ul className="space-y-2">
                     {path.certification.requirements.map((req, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-[var(--muted-foreground)]">
-                        <CheckCircle2 className={`w-4 h-4 text-${path.color}-500 flex-shrink-0 mt-0.5`} />
+                        <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${accent.icon}`} />
                         {req}
                       </li>
                     ))}

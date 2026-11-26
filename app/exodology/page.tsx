@@ -93,7 +93,7 @@ export default function ExodologyPage() {
   const [hoveredPath, setHoveredPath] = useState<string | null>(null)
 
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <div className="exo-classroom min-h-screen bg-[var(--background)]">
       {/* Hero Section */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
         {/* Background gradient */}
@@ -121,7 +121,7 @@ export default function ExodologyPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-amber-500 via-teal-500 to-purple-500 bg-clip-text text-transparent"
+              className="text-5xl sm:text-6xl lg:text-7xl leading-none tracking-tight font-black mb-6 bg-gradient-to-r from-amber-500 via-teal-500 to-purple-500 bg-clip-text text-transparent"
             >
               EXODOLOGY
             </motion.h1>
@@ -141,13 +141,11 @@ export default function ExodologyPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="relative max-w-2xl mx-auto mb-12"
+              className="max-w-[42rem] mx-auto mb-12"
             >
-              <div className="absolute -left-4 top-0 text-4xl text-amber-500/30">"</div>
-              <p className="text-lg text-[var(--foreground)] italic px-8">
-                Sustainability focuses on improving systems. Exodology focuses on designing ethical exits from systems that no longer serve people or the planet.
-              </p>
-              <div className="absolute -right-4 bottom-0 text-4xl text-purple-500/30">"</div>
+              <blockquote className="font-body-serif text-lg sm:text-xl italic leading-relaxed text-[var(--foreground)]">
+                <span className="text-amber-500" aria-hidden="true">&ldquo;</span>Sustainability focuses on improving systems. Exodology focuses on designing ethical exits from systems that no longer serve people or the planet.<span className="text-purple-500" aria-hidden="true">&rdquo;</span>
+              </blockquote>
             </motion.div>
 
             {/* Key focus areas */}
@@ -234,7 +232,7 @@ export default function ExodologyPage() {
                           <item.icon className={`w-6 h-6 ${item.color}`} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-bold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                          <h3 className="text-base font-bold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
                             {item.title}
                           </h3>
                           <p className="text-xs text-[var(--muted-foreground)]">{item.subtitle}</p>
@@ -672,7 +670,7 @@ export default function ExodologyPage() {
                       <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${resource.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                         <resource.icon className="w-6 h-6 text-white" />
                       </div>
-                      <h3 className="font-bold text-[var(--foreground)] mb-2 group-hover:text-[var(--primary)] transition-colors">
+                      <h3 className="text-base font-bold text-[var(--foreground)] mb-2 group-hover:text-[var(--primary)] transition-colors">
                         {resource.title}
                       </h3>
                       <p className="text-sm text-[var(--muted-foreground)]">
