@@ -6,7 +6,7 @@
       "group": "Pitch decks",
       "kind": "pages",
       "pages": 32,
-      "summary": "Matches model v24.2: about $174M for 744 beds, $233k a bed, $299 a sq ft for a two-story row; System 3E costs about $5.6M more than a code-compliant wood-frame building.",
+      "summary": "Matches model v24.2: about $174M for 744 beds, $233k a bed, $299 a sq ft for a two-story row; System 3E costs about $5.6M more than a code-compliant wood-frame building. Numbers are from model v24.2; v24.3 with timber upper floors is about $3.9M lower.",
       "current": true
     },
     {
@@ -82,13 +82,22 @@
       "current": false
     },
     {
+      "id": "feasibility-v24.3",
+      "title": "Feasibility model v24.3 (current): timber upper floors, walls compared",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v24.3.json",
+      "summary": "Nov 26 2026. Concrete slab with vinyl plank and timber upper floors in the System 3E plan: $169.8M, $228,266 a bed, about $288 a sq ft for the buildings and $562 all in. Adds System 3E shipped from Poland and prefab wood wall panels as comparisons. The wood-frame plan is this file with Assumptions B94 and B111 set to 0.",
+      "current": true
+    },
+    {
       "id": "feasibility-v24.2",
-      "title": "Feasibility model v24.2 (current): System 3E stacked at the maker's speed",
+      "title": "Feasibility model v24.2: System 3E stacked at the maker's speed",
       "group": "Feasibility models",
       "kind": "sheets",
       "source": "models/feasibility-v24.2.json",
       "summary": "Same System 3E plan as v24.1: $173,680,817, $233,442 a bed, $294 a sq ft to build, $575 all in. Fixes: 4 closets per home to match the material list, and the wood-frame comparison now has R-5 outside insulation for NY's code.",
-      "current": true
+      "current": false
     },
     {
       "id": "feasibility-v24.2-wood-frame",
@@ -97,7 +106,7 @@
       "kind": "sheets",
       "source": "models/feasibility-v24.2-wood-frame.json",
       "summary": "The same model with 2x6 wood-frame walls plus R-5 outside insulation (needed for NY's energy code) and wood floor joists: $168,105,079, $225,948 a bed, $285 a sq ft to build, $557 all in.",
-      "current": true
+      "current": false
     },
     {
       "id": "feasibility-v24.1",
@@ -288,13 +297,22 @@
       "summary": "The written v16 audit, extended with long-run payback, wider value and neighbors (v17)."
     },
     {
+      "id": "wall-comparison-v1",
+      "title": "Walls compared: System 3E, wood stick, prefab panels v1 (current)",
+      "group": "System 3E vs wood frame",
+      "kind": "sheets",
+      "source": "models/wall-comparison-v1.json",
+      "summary": "Nov 26 2026. Exterior walls alone, line by line per sq ft of wall (blocks or framing, shipping, tariff, install, insulation, finish), per bed and for the project, with payback and 50-year totals; then the whole building with timber floors. Replaces the payback figures in life cycle v2.",
+      "current": true
+    },
+    {
       "id": "wall-lifecycle-v2",
-      "title": "System 3E vs wood frame, 30 and 50 year life cycle v2 (current)",
+      "title": "System 3E vs wood frame, 30 and 50 year life cycle v2",
       "group": "System 3E vs wood frame",
       "kind": "sheets",
       "source": "models/wall-lifecycle-v2.json",
       "summary": "Blocks at the maker's speed, wood with advanced framing: System 3E walls cost about $2,600 a bed more, save about $133 a bed a year and pay back in about year 28.",
-      "current": true
+      "current": false
     },
     {
       "id": "wall-lifecycle-v1",

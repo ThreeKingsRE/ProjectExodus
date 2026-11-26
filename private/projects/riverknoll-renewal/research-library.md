@@ -66,6 +66,28 @@ Asked by the organizer on Nov 26: does System 3E earn back its higher price thro
 - Sources read: System 3E FAQ; Lanthier-Veilleux et al., dampness and mold among university students (IJERPH 2016); HomeGuide drywall repair, mold removal and block wall costs; Loyola University Maryland and Fordham University room damage charges; BLS Rochester wages (May 2025); RSMeans for BASF time and motion study (2006); InterNACHI life expectancy chart; NRMCA and Boston College multifamily insurance survey (2024); Multihousing News on student housing turns; Insulation Institute N112 (NY 2025 code); Graduate School USA on general conditions.
 - Version 1 of this comparison (ordinary laying speed, no advanced framing on the wood side) stays on this page for checking.
 
+## 4b. Walls compared three ways, and timber upper floors (v24.3)
+
+Asked by the organizer on Nov 26: put the walls side by side in plain dollars, System 3E against 2x6 wood framing and prefab wood panels, and build on a concrete slab with vinyl plank and timber upper floors. Worked out in walls compared v1 and model v24.3. All in, 744 beds, 2026 dollars.
+
+| Outside walls only | System 3E from Poland today | System 3E, future US plant | 2x6 stick + R-5 | Prefab panels |
+| --- | --- | --- | --- | --- |
+| Per sq ft of wall, installed and finished | $35.22 | $20.50 | $24.25 | $25.24 |
+| All in, per bed | $14,652 | $8,527 | $10,087 | $10,499 |
+| Payback | Not in 50 years | Cheaper from day one | Base | No yearly saving |
+
+| Whole building | System 3E, US plant (base) | System 3E from Poland | 2x6 stick + R-5 | Prefab panels |
+| --- | --- | --- | --- | --- |
+| Total, per bed | $169.8M, $228,266 | $180.8M, $243,017 | $168.1M, $225,948 | $169.0M, $227,183 |
+| Per sq ft, buildings / all in | $288 / $562 | $307 / $599 | $285 / $557 | $286 / $560 |
+| Pays back | About year 23 with the insurance saving, never without | Never | Base | No yearly saving |
+
+- Imported blocks: System 3E's European list price works out to about $14.93 a sq ft of wall at EUR/USD 1.0978; with 5% breakage, about 75 m2 of wall per 40 ft container, ocean freight $3,083 (Drewry, Nov 12 2026), port $800, US truck $2,000, broker $60 and a 15% tariff (US-EU framework), they land at about $26.72 a sq ft, against the $12 the model assumes from a future US plant.
+- Prefab panels: the nearest panel plant found is Barden Building Products in Middleport NY (about 55 miles by road, our estimate), which ships wall panels without siding or windows. A study of 14 apartment buildings measured panels at about 10% more than stick framing for the framing itself ($18.54 vs $16.79 a sq ft, Dec 2020) and about 39% fewer framing days (882 vs 541 sq ft a day).
+- Why the whole System 3E building costs more than its walls: at the US price the outside walls save about $1,560 a bed, block party walls and partitions add about $470, and the wood plan's 1.5% advanced-framing saving (about $3,400 a bed) is lost. The concrete plank floors were the main reason v24.2 never paid back; timber floors remove about $5,200 a bed.
+- Insurance is more than half the yearly saving ($74 of $133 a bed). Without it the System 3E building never pays back.
+- Sources read: System 3E price list and container offer; Trading Economics EUR/USD; Drewry World Container Index; Thomson Reuters on US-EU tariffs; Kuzdas, prefab wall panel schedule and cost analysis (UW-Stout, 2021); Barden Building Products; IBACOS for ENERGY STAR panelized construction primer (2019); NAHB construction cost survey (2024, via SimplyWise).
+
 ## 5. Phasing
 
 Year 1 is design, permits and surveys. A 2-row, 72-bed pilot opens August 2029, then 4 rows a year, last homes August 2033. Year 1 spend is about $6.3M and the largest year about $41.9M. Faster patterns cost less overall but need much more in a single year (model v24, Phase_Plan).

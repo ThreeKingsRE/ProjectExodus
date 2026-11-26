@@ -4,11 +4,16 @@ Every model, deck and study we have made, oldest to newest, so anyone can see ho
 
 ## Latest version (start here)
 
+- **Feasibility model v24.3** (Nov 26, 2026): the organizer's call that the System 3E plan sits on a concrete slab with vinyl plank inside the homes and has timber upper floors on the ring beams, not concrete plank. 744 beds, **$169.8M, $228,266 a bed**; **$288 a sq ft** for the buildings and **$562 a sq ft** all in ($292 and $571 for a two-story row); RIT's net share about $119.4M (70%). Adds two comparisons: System 3E with blocks shipped from Poland today ($180.8M, $243,017 a bed) and the wood-frame plan built with prefab wall panels from the nearest plant found, in Middleport NY ($169.0M, $227,183 a bed). The code-compliant wood-frame plan is unchanged at $168.1M, $225,948 a bed. Concrete plank floors stay as a comparison ($173.7M).
+- **Walls compared v1** (Nov 26, 2026): the outside walls alone, line by line per sq ft of wall, in System 3E from Poland ($35.22), System 3E from a future US plant ($20.50), 2x6 stick framing with R-5 outside insulation ($24.25) and prefab panels ($25.24), with per bed, project, payback and 50-year totals, then the whole building with timber floors. Replaces the payback figures in life cycle v2.
+
+Earlier the same day:
+
 - **Feasibility model v24.2** (Nov 26, 2026): fixes three mismatches in v24.1. Each home now has 4 closets, matching material list v2 and the bedroom egress need (no cost change, since closets sit inside the per square foot price). The wood-frame comparison now has R-5 continuous insulation outside the sheathing, which NY's energy code needs for wood walls (System 3E walls already meet it). The deck now shows these numbers. The System 3E plan is unchanged: 744 beds, **$173.7M, $233,442 a bed**; **$294 a sq ft** for the buildings and **$575 a sq ft** all in ($299 and $584 for a two-story row); RIT's net share about $123.2M (71%).
 - **Feasibility model v24.2, wood-frame plan** (Nov 26, 2026): the same model with 2x6 wood-frame walls plus R-5 outside insulation, wood party walls and partitions, wood floor joists and advanced framing, kept so anyone can compare: **$168.1M, $225,948 a bed, $285 a sq ft** for the buildings, **$557** all in; RIT's share about $117.6M. System 3E costs about $5.6M ($7,500 a bed) more than this code-compliant wood plan.
 - **System 3E vs wood frame life cycle v2** (Nov 26, 2026): 30 and 50 year comparison, already with the outside insulation on the wood walls. System 3E walls cost about $2,600 a bed more, save about $133 a bed a year and pay back in about year 28; the whole System 3E building with plank floors does not pay back within 50 years at 5.15%. Labor: about 13,100 fewer wall hours, about 1.3 weeks faster a phase.
 - **Material list v2** (Nov 26, 2026): every material the design needs, nothing more, including the 3-story homes: about **$162 a sq ft** to build and **$320 all in**, $130,049 a bed, from national installed list prices.
-- **Pitch deck v27** (Nov 26, 2026): the v24.2 numbers.
+- **Pitch deck v27** (Nov 26, 2026): the v24.2 numbers (not yet updated to v24.3).
 
 Everything below is an earlier version, kept so you can see how the work progressed.
 
@@ -36,8 +41,9 @@ Dollar figures are total project cost ("uses") in nominal dollars unless noted.
 | v24 | Nov 26, 2026 | Whole building in System 3E perlite blocks (exterior, party walls, partitions) with precast plank floors, each priced against the wood part it replaces; the wrong 5% panel saving removed; local sourcing within a couple of miles. | 744 beds, $177.0M, $237,854 a bed; $305 a sq ft building, $595 all in; gap $137.2M; RIT's share about $126.5M; options range $147.8M to $253.1M. |
 | v24.1 | Nov 26, 2026 | System 3E blocks stacked at the maker's speed (exterior, party walls and partitions); adds the System 3E vs wood frame life-cycle tab. | 744 beds, $173.7M, $233,442 a bed; $294 a sq ft building, $575 all in ($299 and $584 for a two-story row); gap $131.9M; RIT's share about $123.2M. |
 | v24.1 wood-frame plan | Nov 26, 2026 | Comparison plan: v24.1 with 2x6 wood-frame walls, wood party walls and partitions, wood floor joists and advanced framing. Lacked the outside insulation NY's code needs for wood walls; corrected in v24.2. | 744 beds, $167.6M, $225,240 a bed; $284 a sq ft building, $555 all in; gap $125.8M; RIT's share about $117.1M. |
-| **v24.2 (latest)** | Nov 26, 2026 | Fixes three mismatches: 4 closets per home to match material list v2 and egress (no cost change); R-5 outside insulation on wood-frame walls in the comparison plan for NY's energy code; deck brought to these numbers. System 3E plan unchanged. | 744 beds, $173.7M, $233,442 a bed; $294 a sq ft building, $575 all in ($299 and $584 for a two-story row); gap $131.9M; RIT's share about $123.2M; options range $145.1M to $253.1M. |
+| v24.2 | Nov 26, 2026 | Fixes three mismatches: 4 closets per home to match material list v2 and egress (no cost change); R-5 outside insulation on wood-frame walls in the comparison plan for NY's energy code; deck brought to these numbers. System 3E plan unchanged. | 744 beds, $173.7M, $233,442 a bed; $294 a sq ft building, $575 all in ($299 and $584 for a two-story row); gap $131.9M; RIT's share about $123.2M; options range $145.1M to $253.1M. |
 | v24.2 wood-frame plan | Nov 26, 2026 | Comparison plan: v24.2 with 2x6 wood-frame walls plus R-5 outside insulation, wood party walls and partitions, wood floor joists and advanced framing. | 744 beds, $168.1M, $225,948 a bed; $285 a sq ft building, $557 all in; gap $126.3M; RIT's share about $117.6M. |
+| **v24.3 (latest)** | Nov 26, 2026 | Slab on grade with vinyl plank and timber upper floors in the System 3E plan; adds System 3E shipped from Poland (W1), prefab wood wall panels (W2) and concrete plank floors (W3) as comparisons. The wood-frame plan is this file with Assumptions B94 and B111 set to 0. | 744 beds, $169.8M, $228,266 a bed; $288 a sq ft building, $562 all in ($292 and $571 for a two-story row); RIT's share about $119.4M. |
 
 ## Pitch decks (PowerPoint)
 
@@ -71,7 +77,13 @@ Dollar figures are total project cost ("uses") in nominal dollars unless noted.
 | Version | Date | What it covers |
 | --- | --- | --- |
 | v1 | Nov 26, 2026 | First 30 and 50 year comparison at ordinary block-laying speed, without advanced framing on the wood side. |
-| **v2 (latest)** | Nov 26, 2026 | Blocks at the maker's speed, wood with advanced framing: walls about $2,600 a bed more, about $133 a bed a year saved, pays back about year 28; whole building does not pay back within 50 years. |
+| v2 | Nov 26, 2026 | Blocks at the maker's speed, wood with advanced framing: walls about $2,600 a bed more, about $133 a bed a year saved, pays back about year 28; whole building (with concrete plank floors) does not pay back within 50 years. Payback replaced by walls compared v1. |
+
+## Walls compared (Excel)
+
+| Version | Date | What it covers |
+| --- | --- | --- |
+| **v1 (latest)** | Nov 26, 2026 | Outside walls alone in System 3E (from Poland and from a future US plant), 2x6 stick framing and prefab panels: materials, shipping, tariff, install, insulation and finish per sq ft of wall; per bed and project; payback and 50-year totals; the whole building with timber floors; pros and cons. |
 
 ## Other files
 
