@@ -89,4 +89,4 @@ Dollar figures are total project cost ("uses") in nominal dollars unless noted.
 
 - **Architecture pin-up v10** and **technical drawing v1 (DXF):** the earlier design set.
 - **Research library:** every source and finding behind the numbers.
-- **Options compared:** all 32 options in one table.
+- **Options compared:** all 35 options in one table.

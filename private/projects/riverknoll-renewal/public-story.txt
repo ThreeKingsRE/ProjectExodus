@@ -94,10 +94,10 @@ Material list v2 counts every material the design needs, nothing more and nothin
 | Item | Current plan |
 | --- | --- |
 | New beds | 744, sized from RIT's own enrollment and housing data (sourced range 444 to 871) |
-| Homes | 18 identical rows of 10 townhomes, private bedrooms, one repeated design, built in System 3E perlite blocks |
+| Homes | 18 identical rows of 10 townhomes, private bedrooms, one repeated design, built in System 3E perlite blocks on a concrete slab with vinyl plank inside and timber upper floors |
 | Accessible beds | 72 single-level ground-floor beds, against about 38 required |
 | Phasing | Design and permits first, a 72-bed pilot in fall 2029, then 4 rows a year, last homes 2033 |
-| Total cost | About $174M, or $233k a bed (System 3E stacked at the maker's speed); about $168M in wood frame |
+| Total cost | About $170M, or $228k a bed (System 3E stacked at the maker's speed, timber upper floors); about $168M in wood frame |
 | Old buildings | Assumed cleared by RIT's own decommissioning; our estimate of that is about $22.6M, shown separately and not in the total |
 
 The bed count comes first and the design meets it. 744 beds would house about 53% of RIT undergraduates on campus, against a peer median of about 60%.
@@ -108,54 +108,57 @@ Today's Riverknoll rent can repay about a fifth to a quarter of the cost, whoeve
 
 | Scenario | RIT's share |
 | --- | --- |
-| RIT borrows (base), Riverknoll-level rent | About $123M |
-| Other owners and loan terms, same rent | About $112M to $133M |
-| Smaller peer-sized homes | About $95M |
-| Plus rent near off-campus levels (about 1.5 times today) | About $60M |
-| Plus every gift and grant at its high end | About $32M |
+| RIT borrows (base), Riverknoll-level rent | About $119M |
+| Other owners and loan terms, same rent | About $108M to $129M |
+| Smaller peer-sized homes | About $92M |
+| Plus rent near off-campus levels (about 1.5 times today) | About $57M |
+| Plus every gift and grant at its high end | About $29M |
 
 Grants and gifts we found add about $10.7M in the base case and up to $38.6M at best. Low-income housing tax credits and HUD college loans do not apply to student housing. The trade-off is clear: the less RIT pays, the more students pay or the smaller the homes.
 
-## All 32 options, side by side
+## All 35 options, side by side
 
 Every option keeps 744 beds so they compare like with like. RIT's share is what is left after rent-backed debt and $10.7M of outside money.
 
 | ID | Option | Total | RIT share | Status |
 | --- | --- | --- | --- | --- |
-| D1 | Rows of 10, two- and three-story | $173.7M | $123.2M | Adopted |
-| D2 | Rows of 20 | $171.2M | $120.8M | Option |
-| D3 | L-shaped rows of 20 | $171.5M | $121.1M | Option |
-| D4 | All rows three-story | $169.4M | $119.0M | Option |
-| D5 | Peer-sized homes (on the System 3E base) | $145.9M | $95.4M | Option |
-| D6 | System 3E perlite blocks, whole building | $173.7M | $123.2M | Adopted |
+| D1 | Rows of 10, two- and three-story | $169.8M | $119.4M | Adopted |
+| D2 | Rows of 20 | $167.4M | $117.0M | Option |
+| D3 | L-shaped rows of 20 | $167.7M | $117.3M | Option |
+| D4 | All rows three-story | $165.7M | $115.2M | Option |
+| D5 | Peer-sized homes (on the System 3E base) | $142.7M | $92.2M | Option |
+| D6 | System 3E perlite blocks, whole building | $169.8M | $119.4M | Adopted |
 | D7 | Conventional wood framing (the wood-frame plan) | $168.1M | $117.6M | Replaced |
 | D8 | Earlier detached-home mix (v18) | $253.1M | $202.7M | Replaced |
-| P1 | Pilot of 2 rows, then 4 a year | $173.7M | $123.2M | Adopted |
-| P2 | Three even phases of 6 rows | $163.5M | $113.1M | Option |
-| P3 | Pilot, then two phases of 8 | $165.9M | $115.5M | Option |
-| P4 | Pilot, then 3 a year | $179.6M | $129.1M | Option |
-| P5 | 2 rows a year | $190.7M | $140.3M | Option |
-| P6 | All 18 rows at once | $158.6M | $108.2M | Option |
-| C1 | New slabs, reuse roads and tested mains | $173.7M | $123.2M | Adopted |
-| C2 | Reuse old slabs where they fit | $172.0M | $121.5M | Upside |
-| C3 | Reuse all utility mains | $172.3M | $121.9M | Best case |
-| C4 | Replace all utility mains | $175.9M | $125.4M | Worst case |
-| C5 | Salvage fittings | $173.6M | $123.2M | Option |
-| C6 | We pay demolition and asbestos | $196.3M | $145.8M | Reference |
-| C7 | Same, whole site cleared in year 1 | $193.6M | $143.1M | Reference |
-| C8 | Contractor price near $250 a sq ft | $145.1M | $94.6M | Price check |
-| F1 | RIT bonds through DASNY, 30 years | $173.7M | $123.2M | Base |
-| F2 | RIT bonds, 40 years | $173.7M | $117.8M | Option |
-| F3 | Nonprofit owner on a ground lease | $173.7M | $129.5M | Option |
-| F4 | Nonprofit owner, weaker terms | $173.7M | $132.7M | Stress |
-| F5 | Private developer on a ground lease | $173.7M | $111.9M | Option |
-| F6 | Stack B: peer-sized homes | $145.9M | $95.4M | Option |
-| F7 | Stack C: off-campus-level rent | $173.7M | $87.5M | Option |
-| F8 | Stack D: B and C together | $145.9M | $59.7M | Option |
-| F9 | Stack E: D with high gifts and grants | $145.9M | $31.9M | Best case |
-| F10 | Stack F: D through a nonprofit owner | $145.9M | $71.7M | Option |
+| P1 | Pilot of 2 rows, then 4 a year | $169.8M | $119.4M | Adopted |
+| P2 | Three even phases of 6 rows | $159.9M | $109.4M | Option |
+| P3 | Pilot, then two phases of 8 | $162.2M | $111.8M | Option |
+| P4 | Pilot, then 3 a year | $175.6M | $125.2M | Option |
+| P5 | 2 rows a year | $186.6M | $136.1M | Option |
+| P6 | All 18 rows at once | $155.1M | $104.6M | Option |
+| C1 | New slabs, reuse roads and tested mains | $169.8M | $119.4M | Adopted |
+| C2 | Reuse old slabs where they fit | $168.2M | $117.7M | Upside |
+| C3 | Reuse all utility mains | $168.5M | $118.0M | Best case |
+| C4 | Replace all utility mains | $172.0M | $121.6M | Worst case |
+| C5 | Salvage fittings | $169.8M | $119.3M | Option |
+| C6 | We pay demolition and asbestos | $192.4M | $142.0M | Reference |
+| C7 | Same, whole site cleared in year 1 | $189.8M | $139.3M | Reference |
+| C8 | Contractor price near $250 a sq ft | $141.9M | $91.4M | Price check |
+| F1 | RIT bonds through DASNY, 30 years | $169.8M | $119.4M | Base |
+| F2 | RIT bonds, 40 years | $169.8M | $114.0M | Option |
+| F3 | Nonprofit owner on a ground lease | $169.8M | $125.7M | Option |
+| F4 | Nonprofit owner, weaker terms | $169.8M | $128.9M | Stress |
+| F5 | Private developer on a ground lease | $169.8M | $108.1M | Option |
+| F6 | Stack B: peer-sized homes | $142.7M | $92.2M | Option |
+| F7 | Stack C: off-campus-level rent | $169.8M | $83.7M | Option |
+| F8 | Stack D: B and C together | $142.7M | $56.5M | Option |
+| F9 | Stack E: D with high gifts and grants | $142.7M | $28.7M | Best case |
+| F10 | Stack F: D through a nonprofit owner | $142.7M | $68.5M | Option |
+| W1 | System 3E, blocks shipped from Poland today | $180.8M | $130.3M | Comparison |
+| W2 | Wood frame with prefab wall panels | $169.0M | $118.6M | Comparison |
+| W3 | System 3E with concrete plank upper floors | $173.7M | $123.2M | Not chosen |
 
-Each option's description, risks and sources are in the options comparison and in model v24.2 (Options_Compared tab). Which would you choose?
+Each option's description, risks and sources are in the options comparison and in model v24.3 (Options_Compared tab). Which would you choose?
 
 ## Every earlier version
 
@@ -179,12 +182,13 @@ We keep every model, deck and study, so you can follow how the plan moved and ch
 | v24 | Whole building in System 3E perlite blocks at ordinary laying speed, local materials | 744 beds, $177.0M, $237,854 a bed |
 | v24.1 | System 3E blocks stacked at the maker's speed; life-cycle comparison with wood | 744 beds, $173.7M, $233,442 a bed |
 | v24.1 wood-frame plan | Same model in 2x6 wood framing, for comparison, without the outside insulation NY's code needs | 744 beds, $167.6M, $225,240 a bed |
-| v24.2 (latest) | 4 closets per home to match the material list; outside insulation added to the wood-frame plan; deck matched | 744 beds, $173.7M, $233,442 a bed |
+| v24.2 | 4 closets per home to match the material list; outside insulation added to the wood-frame plan; deck matched | 744 beds, $173.7M, $233,442 a bed |
 | v24.2 wood-frame plan | Same model in 2x6 wood framing with R-5 outside insulation, for comparison | 744 beds, $168.1M, $225,948 a bed |
+| v24.3 (latest) | Concrete slab with vinyl plank and timber upper floors; System 3E from Poland and prefab wood panels added as comparisons | 744 beds, $169.8M, $228,266 a bed |
 
-Pitch decks: v19 (513-bed concept), v20 (long run and neighbors), v21 (744 beds), v22 (rows of 10, cost per building), v23 (value engineering, RIT decommissioning), v24 (funding and all options), v25 (v22 numbers with System 3E panels), v26 (v24 numbers, whole building in System 3E), v27 (v24.2 numbers, latest). Material list v1 prices one townhome, an accessible end unit and a row of 10 with local suppliers; material list v2 (latest) matches the design exactly, 3-story homes included. The System 3E vs wood frame life cycle v1 ran at ordinary laying speed; v2 (latest) uses the maker's speed. The written Feasibility and Viability Study v16 covers the v16 and v17 work.
+Pitch decks: v19 (513-bed concept), v20 (long run and neighbors), v21 (744 beds), v22 (rows of 10, cost per building), v23 (value engineering, RIT decommissioning), v24 (funding and all options), v25 (v22 numbers with System 3E panels), v26 (v24 numbers, whole building in System 3E), v27 (v24.2 numbers, latest; not yet updated to v24.3). Material list v1 prices one townhome, an accessible end unit and a row of 10 with local suppliers; material list v2 (latest) matches the design exactly, 3-story homes included. The System 3E vs wood frame life cycle v1 ran at ordinary laying speed and v2 used the maker's speed with concrete plank floors; walls compared v1 (latest) sets System 3E, wood stick framing and prefab panels side by side with timber floors. The written Feasibility and Viability Study v16 covers the v16 and v17 work.
 
-Anyone can preview every model and deck version, both material lists, both life-cycle comparisons, the study, the version history, the research library and the options comparison on this page, with or without an account. Previews can't be downloaded. Signed-in team members download the original files from this initiative's Workspace, so ask to join the team if you need them.
+Anyone can preview every model and deck version, both material lists, both life-cycle comparisons, the wall comparison, the study, the version history, the research library and the options comparison on this page, with or without an account. Previews can't be downloaded. Signed-in team members download the original files from this initiative's Workspace, so ask to join the team if you need them.
 
 ## Still to confirm
 
