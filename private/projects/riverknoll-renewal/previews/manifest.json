@@ -1,13 +1,22 @@
 {
   "items": [
     {
-      "id": "pitch-v25",
-      "title": "Pitch deck v25 (current)",
+      "id": "pitch-v26",
+      "title": "Pitch deck v26 (current): built in System 3E",
       "group": "Pitch decks",
       "kind": "pages",
       "pages": 32,
-      "summary": "Latest: System 3E prebuilt panels in the base, $159.3M, $214k a bed, RIT's share about $109M.",
+      "summary": "Matches model v24: whole building in System 3E perlite blocks, about $177M for 744 beds, $237,854 a bed, $305 a square foot to build and $595 all in.",
       "current": true
+    },
+    {
+      "id": "pitch-v25",
+      "title": "Pitch deck v25",
+      "group": "Pitch decks",
+      "kind": "pages",
+      "pages": 32,
+      "summary": "System 3E prebuilt panels in the base, $159.3M, $214k a bed, RIT's share about $109M. Replaced by v26.",
+      "current": false
     },
     {
       "id": "pitch-v24",
@@ -64,13 +73,31 @@
       "current": false
     },
     {
+      "id": "feasibility-v24",
+      "title": "Feasibility model v24 (current): built in System 3E",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v24.json",
+      "summary": "Whole building in System 3E perlite blocks with no added wall insulation: $176,963,659 total, $237,854 a bed, $305 a square foot to build, $595 all in. Poured-on-site floors noted as an option.",
+      "current": true
+    },
+    {
+      "id": "feasibility-v23",
+      "title": "Feasibility model v23",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v23.json",
+      "summary": "System 3E walls with the insulation check: $212,839 a bed. Replaced by v24, which builds the whole building in System 3E.",
+      "current": false
+    },
+    {
       "id": "feasibility-v22",
-      "title": "Feasibility model v22 (current)",
+      "title": "Feasibility model v22",
       "group": "Feasibility models",
       "kind": "sheets",
       "source": "models/feasibility-v22.json",
-      "summary": "Latest: System 3E prebuilt facade and floor panels in the base (5% saving from general panel research, not a quote): $159.3M, $214k a bed.",
-      "current": true
+      "summary": "System 3E prebuilt facade and floor panels in the base (5% saving from general panel research, not a quote): $159.3M, $214k a bed. Replaced by v23 and v24.",
+      "current": false
     },
     {
       "id": "feasibility-v21.1",
@@ -188,6 +215,15 @@
       "source": "models/feasibility-v11.json",
       "summary": "First concept cost plan: 513 beds, $158.9M.",
       "current": false
+    },
+    {
+      "id": "material-list-v1",
+      "title": "Material list v1 (current, matches model v24)",
+      "group": "Material lists",
+      "kind": "sheets",
+      "source": "models/material-list-v1.json",
+      "summary": "Quantities and prices for one 4-bed townhome, an accessible end unit and a row of 10, with local suppliers within a couple of miles of the site (System 3E blocks are the one import).",
+      "current": true
     },
     {
       "id": "feasibility-study-v16",

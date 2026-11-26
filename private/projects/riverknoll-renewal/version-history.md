@@ -4,8 +4,9 @@ Every model, deck and study we have made, oldest to newest, so anyone can see ho
 
 ## Latest version (start here)
 
-- **Feasibility model v22** (Nov 26, 2026): System 3E prebuilt facade and floor panels in the base. 744 beds, **$159.3M, $214k a bed**; gap after rent-backed debt $119.6M; RIT's net share about $108.8M (68%). The panel saving is 5% of building cost (about $8.3M), taken from general panel research (Terner Center 2017, PHRC 2024, HUD 1994), not a System 3E quote; it could be $0 ($167.6M) or 10% ($151.0M) until System 3E bids. Next levers: a contractor price near $250 a sq ft ($133.1M, $179k a bed) and peer-sized homes ($133.8M, $180k a bed).
-- **Pitch deck v25** (Nov 26, 2026): the v24 deck updated to the v22 numbers, with the System 3E panels in the base.
+- **Feasibility model v24** (Nov 26, 2026): the whole building in System 3E perlite blocks from Poland: exterior walls, walls between townhomes and inside partitions, dry-stacked with no added wall insulation, plastered inside and rendered outside, with precast concrete plank floors. 744 beds, **$177.0M, $237,854 a bed**; **$305 a sq ft** to build a two-story row and **$595 a sq ft** all in; gap after rent-backed debt $137.2M; RIT's net share about $126.5M (72%). Every System 3E part is a US price we built up, not a System 3E quote: low $164.5M ($221k a bed), high $198.8M ($267k a bed). Walls were counted once, not twice. Wood floor joists instead of plank would be $173.1M ($232,679 a bed); floors poured on site are an option not yet priced.
+- **Pitch deck v26** (Nov 26, 2026): deck v25 updated to the v24 numbers and the System 3E block build.
+- **Material list v1** (Nov 26, 2026): quantities and installed prices for one 4-bed townhome, an accessible end unit and a row of 10, with the nearest suppliers within a couple of miles of the site (System 3E blocks are the one import). It comes to about $164 a sq ft at mid against the model's $305.
 
 Everything below is an earlier version, kept so you can see how the work progressed.
 
@@ -28,7 +29,9 @@ Dollar figures are total project cost ("uses") in nominal dollars unless noted.
 | v20.1 | Nov 25, 2026 | Assumes RIT's decommissioning pays demolition and asbestos; our estimate of that stays visible but out of the budget. | 744 beds, $167.6M, $225k a bed; gap $127.9M; pilot fall 2029, last homes 2033; removal estimate about $22.6M all in. |
 | v21 | Nov 25, 2026 | Funding structures (RIT bonds, nonprofit owner, private developer, ground lease) and funding stacks. | RIT's share $106M–$127M at Riverknoll-level rent; about $41M with smaller homes, panels and rent near off-campus levels; about $13M with large gifts too. |
 | v21.1 | Nov 25, 2026 | Adds 32 titled options compared side by side (design, phasing, cost, funding). | Same base as v20.1; options range from $126.9M to $253.1M. |
-| **v22 (latest)** | Nov 26, 2026 | System 3E prebuilt facade and floor panels in the base (5% saving from general panel research, not a quote); System 3E wall energy savings counted in wider value. | 744 beds, $159.3M, $214k a bed; gap $119.6M; RIT's share about $108.8M; options range $133.1M to $253.1M. |
+| v22 | Nov 26, 2026 | System 3E prebuilt facade and floor panels in the base (5% saving from general panel research, not a quote); System 3E wall energy savings counted in wider value. Later corrected: System 3E is perlite blocks, not panels. | 744 beds, $159.3M, $214k a bed; gap $119.6M; RIT's share about $108.8M; options range $133.1M to $253.1M. |
+| v23 | Nov 26, 2026 | Checks whether the System 3E wall needs added insulation: it meets the NY energy code alone on the maker's data (U-0.0345 against U-0.045), so wall insulation comes out; extra insulation does not pay back, air sealing does (about 14 years). | 744 beds, $158.4M, $212,839 a bed; $272 a sq ft building, $533 all in; RIT's share about $107.9M. |
+| **v24 (latest)** | Nov 26, 2026 | Whole building in System 3E perlite blocks (exterior, party walls, partitions) with precast plank floors, each priced against the wood part it replaces; the wrong 5% panel saving removed; local sourcing within a couple of miles. | 744 beds, $177.0M, $237,854 a bed; $305 a sq ft building, $595 all in; gap $137.2M; RIT's share about $126.5M; options range $147.8M to $253.1M. |
 
 ## Pitch decks (PowerPoint)
 
@@ -40,13 +43,20 @@ Dollar figures are total project cost ("uses") in nominal dollars unless noted.
 | v22 | Nov 25, 2026 | Rows of 10 townhomes, existing conditions, what one building costs, phasing and levers. |
 | v23 | Nov 25, 2026 | Value engineering, year-by-year spending, RIT pays decommissioning ($167.6M). |
 | v24 | Nov 25, 2026 | Who could fund it, funding stacks, and the 32 options compared. |
-| **v25 (latest)** | Nov 26, 2026 | v22 numbers: System 3E prebuilt panels in the base, $159.3M, $214k a bed. |
+| v25 | Nov 26, 2026 | v22 numbers: System 3E prebuilt panels in the base, $159.3M, $214k a bed. |
+| **v26 (latest)** | Nov 26, 2026 | v24 numbers: whole building in System 3E perlite blocks, $177.0M, $238k a bed, with the fire test, insulation and local sourcing findings. |
 
 ## Written study
 
 | Version | Date | What it covers |
 | --- | --- | --- |
 | Feasibility and Viability Study v16 | Nov 25, 2026 | The written v16 audit (513 beds, $168.6M), later extended with long-run payback, wider value and neighbors (v17). Numbers after v17 are in the models and decks above. |
+
+## Material lists (Excel)
+
+| Version | Date | What it covers |
+| --- | --- | --- |
+| **v1 (latest)** | Nov 26, 2026 | Bill of materials by area for the townhome, the accessible end unit and a row of 10, built in System 3E, with local suppliers and a check against model v24. |
 
 ## Other files
 

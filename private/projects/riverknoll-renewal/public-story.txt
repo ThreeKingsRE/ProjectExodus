@@ -6,29 +6,32 @@ Live at Riverknoll, or want to? Tell us what matters most to you in upperclass h
 
 Riverknoll Renewal is a student-led proposal for affordable upperclass housing at RIT. RIT plans to close Riverknoll after the 2026–27 year. This page asks what it would take to rebuild it as affordable, all-electric townhomes, and shows all of our work, every version and every option, so anyone can check it and choose for themselves.
 
-The initiative is independent. RIT has not approved or funded it. Figures are concept research and allowances, not bids. Updated November 26, 2026 (model v22, deck v25).
+The initiative is independent. RIT has not approved or funded it. Figures are concept research and allowances, not bids. Updated November 26, 2026 (model v24, deck v26, material list v1).
 
-## Latest version: model v22 and deck v25
+## Latest version: model v24 and deck v26
 
 The newest work comes first; every earlier version stays on this page below.
 
-| What changed in v22 | Result |
+| What changed in v24 | Result |
 | --- | --- |
-| System 3E prebuilt facade and floor panels are now in the base plan | About $8.3M less: $159.3M, or $214k a bed (was $167.6M, $225k a bed) |
-| Cost per square foot | About $274 a sq ft for the buildings alone, about $536 a sq ft all in (design, contingency, inflation, financing) |
-| How sure the panel saving is | The 5% saving comes from general panel research, not a System 3E quote. It could be nothing ($167.6M) or about 10% ($151.0M) until System 3E prices the same homes |
-| Energy | System 3E's better-insulated walls save about $6,600 a year in utilities, now counted in the wider value |
-| Next ways to cut cost | A contractor price near $250 a sq ft ($133.1M, $179k a bed) or peer-sized homes ($133.8M, $180k a bed) |
+| The whole building is System 3E: dry-stacked perlite blocks from Poland for outside walls, walls between homes and partitions, with concrete plank floors | $177.0M, or $237,854 a bed (v23 was $158.4M, $212,839 a bed) |
+| Cost per square foot | About $305 a sq ft for the buildings alone, about $595 a sq ft all in (design, contingency, inflation, financing) |
+| Were walls counted twice? | No. Walls were counted once, as wood framing inside the building price. v24 swaps each wood part for its System 3E part, about $9.4M more than wood framing, and drops the earlier, wrong 5% panel saving |
+| How sure the System 3E price is | US prices we built up part by part, not a System 3E quote: $221k to $267k a bed between the low and high cases |
+| Floors | Concrete plank in the base. Wood joists would be $232,679 a bed; floors poured on site are an option we have not priced yet |
+| Insulation | On the maker's data the block wall meets the NY energy code with no added insulation. More insulation doesn't pay back; air sealing does, in about 14 years |
+| Fire | The wall lasted 244 minutes in a European fire test, well past the 1 to 2 hours a townhouse wall needs, but a code official must accept the European test or ask for a US one |
+| Local materials | Everything but the System 3E blocks comes from suppliers within a couple of miles of the site, listed in material list v1 |
 
 ## What we propose now
 
 | Item | Current plan |
 | --- | --- |
 | New beds | 744, sized from RIT's own enrollment and housing data (sourced range 444 to 871) |
-| Homes | 18 identical rows of 10 townhomes, private bedrooms, one repeated design, built with System 3E prebuilt panels |
+| Homes | 18 identical rows of 10 townhomes, private bedrooms, one repeated design, built in System 3E perlite blocks |
 | Accessible beds | 72 single-level ground-floor beds, against about 38 required |
 | Phasing | Design and permits first, a 72-bed pilot in fall 2029, then 4 rows a year, last homes 2033 |
-| Total cost | About $159M, or $214k a bed |
+| Total cost | About $177M, or $238k a bed |
 | Old buildings | Assumed cleared by RIT's own decommissioning; our estimate of that is about $22.6M, shown separately and not in the total |
 
 The bed count comes first and the design meets it. 744 beds would house about 53% of RIT undergraduates on campus, against a peer median of about 60%.
@@ -39,11 +42,11 @@ Today's Riverknoll rent can repay about a quarter of the cost, whoever borrows. 
 
 | Scenario | RIT's share |
 | --- | --- |
-| RIT borrows (base), Riverknoll-level rent | About $109M |
-| Other owners and loan terms, same rent | About $98M to $118M |
-| Smaller peer-sized homes | About $83M |
-| Plus rent near off-campus levels (about 1.5 times today) | About $48M |
-| Plus every gift and grant at its high end | About $20M |
+| RIT borrows (base), Riverknoll-level rent | About $126M |
+| Other owners and loan terms, same rent | About $115M to $136M |
+| Smaller peer-sized homes | About $98M |
+| Plus rent near off-campus levels (about 1.5 times today) | About $62M |
+| Plus every gift and grant at its high end | About $35M |
 
 Grants and gifts we found add about $10.7M in the base case and up to $38.6M at best. Low-income housing tax credits and HUD college loans do not apply to student housing. The trade-off is clear: the less RIT pays, the more students pay or the smaller the homes.
 
@@ -53,40 +56,40 @@ Every option keeps 744 beds so they compare like with like. RIT's share is what 
 
 | ID | Option | Total | RIT share | Status |
 | --- | --- | --- | --- | --- |
-| D1 | Rows of 10, two- and three-story | $159.3M | $108.8M | Adopted |
-| D2 | Rows of 20 | $157.1M | $106.6M | Option |
-| D3 | L-shaped rows of 20 | $157.3M | $106.9M | Option |
-| D4 | All rows three-story | $155.4M | $104.9M | Option |
-| D5 | Peer-sized homes (on the panel base) | $133.8M | $83.4M | Option |
-| D6 | System 3E prebuilt facade and floor panels | $159.3M | $108.8M | Adopted |
-| D7 | Conventional site framing (v21.1 base) | $167.6M | $117.1M | Replaced |
+| D1 | Rows of 10, two- and three-story | $177.0M | $126.5M | Adopted |
+| D2 | Rows of 20 | $174.5M | $124.0M | Option |
+| D3 | L-shaped rows of 20 | $174.8M | $124.3M | Option |
+| D4 | All rows three-story | $172.6M | $122.2M | Option |
+| D5 | Peer-sized homes (on the System 3E base) | $148.6M | $98.2M | Option |
+| D6 | System 3E perlite blocks, whole building | $177.0M | $126.5M | Adopted |
+| D7 | Conventional wood framing (v21.1 base) | $167.6M | $117.1M | Replaced |
 | D8 | Earlier detached-home mix (v18) | $253.1M | $202.7M | Replaced |
-| P1 | Pilot of 2 rows, then 4 a year | $159.3M | $108.8M | Adopted |
-| P2 | Three even phases of 6 rows | $149.9M | $99.5M | Option |
-| P3 | Pilot, then two phases of 8 | $152.1M | $101.7M | Option |
-| P4 | Pilot, then 3 a year | $164.8M | $114.4M | Option |
-| P5 | 2 rows a year | $175.1M | $124.7M | Option |
-| P6 | All 18 rows at once | $145.4M | $94.9M | Option |
-| C1 | New slabs, reuse roads and tested mains | $159.3M | $108.8M | Adopted |
-| C2 | Reuse old slabs where they fit | $157.7M | $107.3M | Upside |
-| C3 | Reuse all utility mains | $158.0M | $107.5M | Best case |
-| C4 | Replace all utility mains | $161.5M | $111.1M | Worst case |
-| C5 | Salvage fittings | $159.2M | $108.8M | Option |
-| C6 | We pay demolition and asbestos | $181.9M | $131.5M | Reference |
-| C7 | Same, whole site cleared in year 1 | $179.2M | $128.8M | Reference |
-| C8 | Contractor price near $250 a sq ft | $133.1M | $82.7M | Price check |
-| F1 | RIT bonds through DASNY, 30 years | $159.3M | $108.8M | Base |
-| F2 | RIT bonds, 40 years | $159.3M | $103.5M | Option |
-| F3 | Nonprofit owner on a ground lease | $159.3M | $115.2M | Option |
-| F4 | Nonprofit owner, weaker terms | $159.3M | $118.4M | Stress |
-| F5 | Private developer on a ground lease | $159.3M | $97.6M | Option |
-| F6 | Stack B: peer-sized homes | $133.8M | $83.4M | Option |
-| F7 | Stack C: off-campus-level rent | $159.3M | $73.2M | Option |
-| F8 | Stack D: B and C together | $133.8M | $47.7M | Option |
-| F9 | Stack E: D with high gifts and grants | $133.8M | $19.9M | Best case |
-| F10 | Stack F: D through a nonprofit owner | $133.8M | $59.7M | Option |
+| P1 | Pilot of 2 rows, then 4 a year | $177.0M | $126.5M | Adopted |
+| P2 | Three even phases of 6 rows | $166.6M | $116.2M | Option |
+| P3 | Pilot, then two phases of 8 | $169.1M | $118.6M | Option |
+| P4 | Pilot, then 3 a year | $183.0M | $132.5M | Option |
+| P5 | 2 rows a year | $194.3M | $143.8M | Option |
+| P6 | All 18 rows at once | $161.6M | $111.2M | Option |
+| C1 | New slabs, reuse roads and tested mains | $177.0M | $126.5M | Adopted |
+| C2 | Reuse old slabs where they fit | $175.2M | $124.8M | Upside |
+| C3 | Reuse all utility mains | $175.6M | $125.2M | Best case |
+| C4 | Replace all utility mains | $179.2M | $128.7M | Worst case |
+| C5 | Salvage fittings | $176.9M | $126.4M | Option |
+| C6 | We pay demolition and asbestos | $199.6M | $149.1M | Reference |
+| C7 | Same, whole site cleared in year 1 | $196.9M | $146.4M | Reference |
+| C8 | Contractor price near $250 a sq ft | $147.8M | $97.4M | Price check |
+| F1 | RIT bonds through DASNY, 30 years | $177.0M | $126.5M | Base |
+| F2 | RIT bonds, 40 years | $177.0M | $121.1M | Option |
+| F3 | Nonprofit owner on a ground lease | $177.0M | $132.8M | Option |
+| F4 | Nonprofit owner, weaker terms | $177.0M | $136.0M | Stress |
+| F5 | Private developer on a ground lease | $177.0M | $115.2M | Option |
+| F6 | Stack B: peer-sized homes | $148.6M | $98.2M | Option |
+| F7 | Stack C: off-campus-level rent | $177.0M | $90.8M | Option |
+| F8 | Stack D: B and C together | $148.6M | $62.5M | Option |
+| F9 | Stack E: D with high gifts and grants | $148.6M | $34.6M | Best case |
+| F10 | Stack F: D through a nonprofit owner | $148.6M | $74.5M | Option |
 
-Each option's description, risks and sources are in the options comparison and in model v22 (Options_Compared tab). Which would you choose?
+Each option's description, risks and sources are in the options comparison and in model v24 (Options_Compared tab). Which would you choose?
 
 ## Every earlier version
 
@@ -105,15 +108,17 @@ We keep every model, deck and study, so you can follow how the plan moved and ch
 | v20.1 | RIT's decommissioning clears the old buildings | 744 beds, $167.6M, $225k a bed |
 | v21 | Funding structures and stacks | RIT's share $13M to $127M by scenario |
 | v21.1 | 32 options compared | Same base as v20.1 |
-| v22 (latest) | System 3E prebuilt panels in the base | 744 beds, $159.3M, $214k a bed |
+| v22 | System 3E prebuilt panels in the base (later corrected: System 3E is blocks, not panels) | 744 beds, $159.3M, $214k a bed |
+| v23 | System 3E wall meets the energy code with no added insulation | 744 beds, $158.4M, $212,839 a bed |
+| v24 (latest) | Whole building in System 3E perlite blocks, local materials | 744 beds, $177.0M, $237,854 a bed |
 
-Pitch decks: v19 (513-bed concept), v20 (long run and neighbors), v21 (744 beds), v22 (rows of 10, cost per building), v23 (value engineering, RIT decommissioning), v24 (funding and all options), v25 (v22 numbers with System 3E panels, latest). The written Feasibility and Viability Study v16 covers the v16 and v17 work.
+Pitch decks: v19 (513-bed concept), v20 (long run and neighbors), v21 (744 beds), v22 (rows of 10, cost per building), v23 (value engineering, RIT decommissioning), v24 (funding and all options), v25 (v22 numbers with System 3E panels), v26 (v24 numbers, whole building in System 3E, latest). Material list v1 prices one townhome, an accessible end unit and a row of 10 with local suppliers. The written Feasibility and Viability Study v16 covers the v16 and v17 work.
 
 Anyone can preview every model and deck version, the study, the version history, the research library and the options comparison on this page, with or without an account. Previews can't be downloaded. Signed-in team members download the original files from this initiative's Workspace, so ask to join the team if you need them.
 
 ## Still to confirm
 
-RIT's decommissioning plan and asbestos survey, the current bed count, utility condition and capacity, zoning, real contractor bids, and a System 3E price for the same homes. We will update this page and add a new version, never overwrite an old one, as each answer comes in.
+RIT's decommissioning plan and asbestos survey, the current bed count, utility condition and capacity, zoning, real contractor bids, a System 3E USA price and US plant for the same homes, code acceptance of the European fire test, and prices from the local suppliers. We will update this page and add a new version, never overwrite an old one, as each answer comes in.
 
 ## Help shape the next revision
 
