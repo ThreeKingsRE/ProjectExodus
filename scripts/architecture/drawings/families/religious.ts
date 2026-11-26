@@ -447,6 +447,19 @@ function shikhara(): SheetSpec {
   const sideR = (o: number, t: number) => `M${f(cx + o)} ${wallTop}Q${f(cx + o + 6)} ${f((wallTop + top) / 2)} ${f(cx + t)} ${top}`
   L.profile.push(el(`${side(hw + 6, thw)}H${f(cx + thw)}`), el(sideR(hw + 6, thw)))
   for (const [o, t] of [[hw - 22, thw - 10], [22, 10]]) L.fine.push(el(side(o, t)), el(sideR(o, t)))
+  // modelling: the tower darkens toward the edge away from the light (the right)
+  {
+    const curve = (o: number, t: number, steps = 14): Pt[] => Array.from({ length: steps + 1 }, (_, i) => {
+      const u = i / steps
+      const yy = wallTop + (top - wallTop) * u
+      const xx = (1 - u) * (1 - u) * o + 2 * (1 - u) * u * (o + 6) + u * u * t
+      return [cx + xx, yy] as Pt
+    })
+    const outerC = curve(hw + 6, thw)
+    const band = (k: number) => path([...outerC, ...[...outerC].reverse().map(([x, y]) => [cx + (x - cx) * k, y] as Pt)], true)
+    L.shading.push(`<path d="${band(0.5)}" fill="url(#h-tone)" stroke="none"/>`, `<path d="${band(0.84)}" fill="url(#h-tone-d)" stroke="none"/>`)
+    L.shading.push(`<path d="${path([[cx + 20, wallTop], [cx + hw + 14, wallTop], [cx + hw + 14, plinth], [cx + 20, plinth]], true)}" fill="url(#h-tone)" stroke="none"/>`)
+  }
   // bhumi-amalakas: storey markers on the corners
   const n = 6
   for (let k = 1; k < n; k++) {
@@ -547,6 +560,16 @@ function stupa(): SheetSpec {
   // anda (dome)
   const domeBase = ground - 72
   L.profile.push(el(`M${cx - 140} ${domeBase}C${cx - 140} ${domeBase - 110} ${cx - 70} ${domeBase - 150} ${cx} ${domeBase - 150}C${cx + 70} ${domeBase - 150} ${cx + 140} ${domeBase - 110} ${cx + 140} ${domeBase}`))
+  // modelling: the dome darkens toward the edge away from the light (the right)
+  {
+    const arc = Array.from({ length: 21 }, (_, i) => {
+      const t = (i / 20) * (Math.PI / 2)
+      return [Math.cos(t) * 140, Math.sin(t) * 150] as Pt
+    })
+    const band = (k: number) => path([...arc.map(([x, y]) => [cx + x, domeBase - y] as Pt).reverse(), ...arc.map(([x, y]) => [cx + x * k, domeBase - y] as Pt)], true)
+    L.shading.push(`<path d="${band(0.5)}" fill="url(#h-tone)" stroke="none"/>`, `<path d="${band(0.84)}" fill="url(#h-tone-d)" stroke="none"/>`)
+    L.shading.push(`<path d="${path([[cx + 60, ground - 60], [cx + 160, ground - 60], [cx + 160, ground], [cx + 60, ground]], true)}" fill="url(#h-tone)" stroke="none"/>`)
+  }
   // harmika and chattras
   const hy = domeBase - 150
   L.profile.push(el(path(rect(cx - 22, hy - 26, 44, 26), true)))

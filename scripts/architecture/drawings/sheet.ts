@@ -195,16 +195,17 @@ export function sheetFit(spec: SheetSpec): { s: number; transform: string } {
  * with their own shading (close-ups in context, the figures) are left alone.
  */
 function withShade(spec: SheetSpec): SheetSpec {
-  if (/CLOSE-UP/.test(spec.view) || (spec.layers as Record<string, unknown>).noShade) return spec
+  if (/CLOSE-UP/.test(spec.view) || /^COL-0[1-5]$/.test(spec.sheetNo) /* the orders are modelled by hand */ || (spec.layers as Record<string, unknown>).noShade) return spec
   const chunks = spec.layers.profile
   if (!chunks?.length) return spec
   const found: Array<{ chunk: number; match: string; area: number; shade: string }> = []
   const clips: string[] = []
   let n = 0
   chunks.forEach((chunk, ci) => {
-    for (const m of chunk.matchAll(/<path d="(M[-\d.\s]+(?:L[-\d.\s]+)+Z?\s*)"\/>/g)) {
+    for (const m of chunk.matchAll(/<path d="(M[-\d.\s]+(?:L[-\d.\s]+)+Z?\s*)"( clip-path="url\(#[^)]+\)")?\/>/g)) {
       const nums = m[1].replace(/[ML]/g, ' ').replace('Z', '').trim().split(/\s+/).map(Number)
-      if (nums.length < 8 || nums.some((v) => !Number.isFinite(v)) || !/Z\s*$/.test(m[1])) continue
+      if (nums.length < 8 || nums.some((v) => !Number.isFinite(v))) continue
+      const isClosed = /Z\s*$/.test(m[1])
       const xs: number[] = []
       const ys: number[] = []
       for (let i = 0; i + 1 < nums.length; i += 2) { xs.push(nums[i]); ys.push(nums[i + 1]) }
@@ -213,22 +214,34 @@ function withShade(spec: SheetSpec): SheetSpec {
       let a = 0
       for (let i = 0; i < xs.length; i++) { const j = (i + 1) % xs.length; a += xs[i] * ys[j] - xs[j] * ys[i] }
       const area = Math.abs(a) / 2
-      if (area / (w * h || 1) < 0.72) continue
+      const ratio = area / (w * h || 1)
+      const pts = xs.length
+      // an open outline that nearly returns to where it began (a dome or tower silhouette) is treated as closed
+      if (!isClosed && !(pts >= 14 && ratio >= 0.3 && w >= 40 && h >= 30)) continue
       let band: [number, number, number, number] | null = null
-      if (h >= 22 && w >= 9 && w <= 95 && h / w >= 1.1) band = [x1 - w * 0.34, y0, w * 0.34, h]
-      else if (h >= 6 && h <= 46 && w >= 26 && w <= 280 && w / h >= 2.2) band = [x0, y1 - h * 0.4, w, h * 0.4]
+      if (pts <= 8 && ratio >= 0.72) {
+        // plain boxes: tall and narrow ones are shaded down the right; low and wide ones along the underside
+        if (h >= 22 && w >= 9 && w <= 95 && h / w >= 1.1) band = [x1 - w * 0.34, y0, w * 0.34, h]
+        else if (h >= 6 && h <= 46 && w >= 26 && w <= 280 && w / h >= 2.2) band = [x0, y1 - h * 0.4, w, h * 0.4]
+      } else if (pts >= 10 && w >= 30 && w <= 340 && h >= 30 && ratio >= 0.3) {
+        // curved silhouettes (domes, towers, vessels): tone down the right third, but not discs (rosettes, rings, wheels)
+        const round = w / h > 0.82 && w / h < 1.22 && ratio > 0.68
+        if (!round) band = [x1 - w * 0.32, y0, w * 0.32, h]
+      }
       if (!band) continue
       const id = `as-${n++}`
       clips.push(`<clipPath id="${id}"><path d="${m[1].trim()}"/></clipPath>`)
-      found.push({ chunk: ci, match: m[0], area, shade: `<g clip-path="url(#${id})"><rect x="${f(band[0])}" y="${f(band[1])}" width="${f(band[2])}" height="${f(band[3])}" fill="url(#h-tone)" stroke="none"/>${band[2] < band[3] ? `<rect x="${f(band[0] + band[2] * 0.62)}" y="${f(band[1])}" width="${f(band[2] * 0.38)}" height="${f(band[3])}" fill="url(#h-tone-d)" stroke="none"/>` : ''}</g>` })
+      const dark = band[2] < band[3] ? `<rect x="${f(band[0] + band[2] * 0.62)}" y="${f(band[1])}" width="${f(band[2] * 0.38)}" height="${f(band[3])}" fill="url(#h-tone-d)" stroke="none"/>` : ''
+      const inner = `<g clip-path="url(#${id})"><rect x="${f(band[0])}" y="${f(band[1])}" width="${f(band[2])}" height="${f(band[3])}" fill="url(#h-tone)" stroke="none"/>${dark}</g>`
+      found.push({ chunk: ci, match: m[0], area, shade: m[2] ? `<g${m[2]}>${inner}</g>` : inner })
     }
   })
   if (!found.length) return spec
-  const keep = [...found].sort((p, q) => q.area - p.area).slice(0, 46)
+  const keep = [...found].sort((p, q) => q.area - p.area).slice(0, 34)
   const out = [...chunks]
   const used = new Set<string>()
   for (const k of keep) {
-    const id = /clip-path="url\(#([^)]+)\)"/.exec(k.shade)![1]
+    const id = /clip-path="url\(#(as-\d+)\)"/.exec(k.shade)![1]
     used.add(id)
     out[k.chunk] = out[k.chunk].replace(k.match, k.match + k.shade)
   }

@@ -36,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    <clipPath id="as-0"><path d="M99 424 L113 424 L113 470 L99 470 Z"/></clipPath><clipPath id="as-1"><path d="M507 424 L521 424 L521 470 L507 470 Z"/></clipPath>
+    <clipPath id="as-0"><path d="M250 371 L250 371 L250 382 L234 382 L234 382 L234 393 L218 393 L218 393 L218 404 L202 404 L202 404 L202 415 L186 415 L186 415 L186 426 L170 426 L170 426 L170 437 L154 437 L154 437 L154 448 L138 448 L138 448 L138 459 L122 459 L122 459 L122 470 L106 470 L106 470 L250 470"/></clipPath><clipPath id="as-1"><path d="M370 371 L370 371 L370 382 L386 382 L386 382 L386 393 L402 393 L402 393 L402 404 L418 404 L418 404 L418 415 L434 415 L434 415 L434 426 L450 426 L450 426 L450 437 L466 437 L466 437 L466 448 L482 448 L482 448 L482 459 L498 459 L498 459 L498 470 L514 470 L514 470 L370 470"/></clipPath><clipPath id="as-2"><path d="M99 424 L113 424 L113 470 L99 470 Z"/></clipPath><clipPath id="as-3"><path d="M507 424 L521 424 L521 470 L507 470 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -70,13 +70,13 @@
   <g class="layer-profile ink l-profile">
     <path d="M280 371V261A30 30 0 0 1 340 261V371"/>
     <path d="M250 371 L370 371 L370 470 L250 470 Z"/>
-    <path d="M250 371 L250 371 L250 382 L234 382 L234 382 L234 393 L218 393 L218 393 L218 404 L202 404 L202 404 L202 415 L186 415 L186 415 L186 426 L170 426 L170 426 L170 437 L154 437 L154 437 L154 448 L138 448 L138 448 L138 459 L122 459 L122 459 L122 470 L106 470 L106 470 L250 470"/>
+    <path d="M250 371 L250 371 L250 382 L234 382 L234 382 L234 393 L218 393 L218 393 L218 404 L202 404 L202 404 L202 415 L186 415 L186 415 L186 426 L170 426 L170 426 L170 437 L154 437 L154 437 L154 448 L138 448 L138 448 L138 459 L122 459 L122 459 L122 470 L106 470 L106 470 L250 470"/><g clip-path="url(#as-0)"><rect x="203.92" y="371" width="46.08" height="99" fill="url(#h-tone)" stroke="none"/><rect x="232.49" y="371" width="17.51" height="99" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M250 335L106 434"/>
-    <path d="M370 371 L370 371 L370 382 L386 382 L386 382 L386 393 L402 393 L402 393 L402 404 L418 404 L418 404 L418 415 L434 415 L434 415 L434 426 L450 426 L450 426 L450 437 L466 437 L466 437 L466 448 L482 448 L482 448 L482 459 L498 459 L498 459 L498 470 L514 470 L514 470 L370 470"/>
+    <path d="M370 371 L370 371 L370 382 L386 382 L386 382 L386 393 L402 393 L402 393 L402 404 L418 404 L418 404 L418 415 L434 415 L434 415 L434 426 L450 426 L450 426 L450 437 L466 437 L466 437 L466 448 L482 448 L482 448 L482 459 L498 459 L498 459 L498 470 L514 470 L514 470 L370 470"/><g clip-path="url(#as-1)"><rect x="467.92" y="371" width="46.08" height="99" fill="url(#h-tone)" stroke="none"/><rect x="496.49" y="371" width="17.51" height="99" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M370 335L514 434"/>
     <path d="M250 335L370 335"/>
-    <path d="M99 424 L113 424 L113 470 L99 470 Z"/><g clip-path="url(#as-0)"><rect x="108.24" y="424" width="4.76" height="46" fill="url(#h-tone)" stroke="none"/><rect x="111.19" y="424" width="1.81" height="46" fill="url(#h-tone-d)" stroke="none"/></g>
-    <path d="M507 424 L521 424 L521 470 L507 470 Z"/><g clip-path="url(#as-1)"><rect x="516.24" y="424" width="4.76" height="46" fill="url(#h-tone)" stroke="none"/><rect x="519.19" y="424" width="1.81" height="46" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M99 424 L113 424 L113 470 L99 470 Z"/><g clip-path="url(#as-2)"><rect x="108.24" y="424" width="4.76" height="46" fill="url(#h-tone)" stroke="none"/><rect x="111.19" y="424" width="1.81" height="46" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M507 424 L521 424 L521 470 L507 470 Z"/><g clip-path="url(#as-3)"><rect x="516.24" y="424" width="4.76" height="46" fill="url(#h-tone)" stroke="none"/><rect x="519.19" y="424" width="1.81" height="46" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M95 470L525 470"/>
   </g>
   <g class="layer-dims ink l-dims">

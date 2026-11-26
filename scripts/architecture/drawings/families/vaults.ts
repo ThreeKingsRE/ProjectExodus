@@ -341,6 +341,10 @@ function domeSheet(o: DomeOpts): SheetSpec {
     const frac = Math.sin((k / o.gores) * (Math.PI / 2))
     L.fine.push(el(path(outer.slice(0, -1).map(([x, y]) => P([x * frac, y])))))
   }
+  // modelling on the elevation half: the dome and drum darken toward the edge away from the light
+  const band = (f0: number, f1: number) => path([...outer.map(([x, y]) => P([x * f1, y])), ...[...outer].reverse().map(([x, y]) => P([x * f0, y]))], true)
+  L.shading.push(`<path d="${band(0.55, 1)}" fill="url(#h-tone)" stroke="none"/>`, `<path d="${band(0.86, 1)}" fill="url(#h-tone-d)" stroke="none"/>`)
+  L.shading.push(`<path d="${path([P([drumOut * 0.55, 0]), P([drumOut, 0]), P([drumOut, -drumH / R]), P([drumOut * 0.55, -drumH / R])], true)}" fill="url(#h-tone)" stroke="none"/>`)
   L.profile.push(el(path([P([drumOut, 0]), P([drumOut, -drumH / R]), P([0, -drumH / R])])))
   L.profile.push(el(path([P([0, 0]), P([drumOut + 0.06, 0]), P([drumOut + 0.06, 0.04]), P([0, 0.04])])))
   for (const wx of [0.22, 0.62]) {

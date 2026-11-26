@@ -37,7 +37,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    <clipPath id="cg"><path d="M190 180 L530 180 L530 500 L190 500 Z"/></clipPath>
+    <clipPath id="cg"><path d="M190 180 L530 180 L530 500 L190 500 Z"/></clipPath><clipPath id="as-0"><path d="M315 500 L315 360 L315 360 L315.55 352.96 L317.2 346.09 L319.9 339.57 L323.59 333.55 L328.18 328.18 L333.55 323.59 L339.57 319.9 L346.09 317.2 L352.96 315.55 L360 315 L367.04 315.55 L373.91 317.2 L380.43 319.9 L386.45 323.59 L391.82 328.18 L396.41 333.55 L400.1 339.57 L402.8 346.09 L404.45 352.96 L405 360 L405 500"/></clipPath>
   </defs>
   <rect class="paper" x="122" y="146" width="476" height="398"/>
   <g class="layer-shading ink l-shading">
@@ -65,7 +65,7 @@
     <path d="M330 236 L350 236 L350 250 L330 250 Z"/>
     <path d="M364 236 L384 236 L384 250 L364 250 Z"/>
     <path d="M398 236 L418 236 L418 250 L398 250 Z"/>
-    <path d="M315 500 L315 360 L315 360 L315.55 352.96 L317.2 346.09 L319.9 339.57 L323.59 333.55 L328.18 328.18 L333.55 323.59 L339.57 319.9 L346.09 317.2 L352.96 315.55 L360 315 L367.04 315.55 L373.91 317.2 L380.43 319.9 L386.45 323.59 L391.82 328.18 L396.41 333.55 L400.1 339.57 L402.8 346.09 L404.45 352.96 L405 360 L405 500"/>
+    <path d="M315 500 L315 360 L315 360 L315.55 352.96 L317.2 346.09 L319.9 339.57 L323.59 333.55 L328.18 328.18 L333.55 323.59 L339.57 319.9 L346.09 317.2 L352.96 315.55 L360 315 L367.04 315.55 L373.91 317.2 L380.43 319.9 L386.45 323.59 L391.82 328.18 L396.41 333.55 L400.1 339.57 L402.8 346.09 L404.45 352.96 L405 360 L405 500"/><g clip-path="url(#as-0)"><rect x="376.2" y="315" width="28.8" height="185" fill="url(#h-tone)" stroke="none"/><rect x="394.06" y="315" width="10.94" height="185" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M140 500L580 500"/>
   </g>
   <text class="t-credit" x="128" y="533">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this form; no</text>
