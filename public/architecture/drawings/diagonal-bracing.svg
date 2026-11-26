@@ -19,6 +19,8 @@
     .t-accent { fill: var(--_accent); }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -34,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M200 376 L440 376 L440 384 L200 384 Z"/></clipPath><clipPath id="as-1"><path d="M200 276 L440 276 L440 284 L200 284 Z"/></clipPath><clipPath id="as-2"><path d="M200 176 L440 176 L440 184 L200 184 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -53,9 +55,9 @@
     <path d="M196 180 L204 180 L204 480 L196 480 Z"/>
     <path d="M316 180 L324 180 L324 480 L316 480 Z"/>
     <path d="M436 180 L444 180 L444 480 L436 480 Z"/>
-    <path d="M200 376 L440 376 L440 384 L200 384 Z"/>
-    <path d="M200 276 L440 276 L440 284 L200 284 Z"/>
-    <path d="M200 176 L440 176 L440 184 L200 184 Z"/>
+    <path d="M200 376 L440 376 L440 384 L200 384 Z"/><g clip-path="url(#as-0)"><rect x="200" y="380.8" width="240" height="3.2" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M200 276 L440 276 L440 284 L200 284 Z"/><g clip-path="url(#as-1)"><rect x="200" y="280.8" width="240" height="3.2" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M200 176 L440 176 L440 184 L200 184 Z"/><g clip-path="url(#as-2)"><rect x="200" y="180.8" width="240" height="3.2" fill="url(#h-tone)" stroke="none"/></g>
     <path d="M160 480 L480 480 L480 498 L160 498 Z"/>
   </g>
   <g class="layer-cut ink l-cut">

@@ -19,6 +19,8 @@
     .t-accent { fill: var(--_accent); }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -34,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    <clipPath id="w-sh"><path d="M140 90 L580 90 L580 450 L140 450 Z"/></clipPath>
+    <clipPath id="w-sh"><path d="M140 90 L580 90 L580 450 L140 450 Z"/></clipPath><clipPath id="as-0"><path d="M238 257 L290 257 L290 263 L238 263 Z"/></clipPath><clipPath id="as-1"><path d="M430 257 L482 257 L482 263 L430 263 Z"/></clipPath><clipPath id="as-2"><path d="M230 372 L490 372 L490 382 L230 382 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -113,9 +115,9 @@
   </g>
   <g class="layer-profile ink l-profile">
     <path d="M300 150 L420 150 L420 370 L300 370 Z"/>
-    <path d="M238 257 L290 257 L290 263 L238 263 Z"/>
-    <path d="M430 257 L482 257 L482 263 L430 263 Z"/>
-    <path d="M230 372 L490 372 L490 382 L230 382 Z"/>
+    <path d="M238 257 L290 257 L290 263 L238 263 Z"/><g clip-path="url(#as-0)"><rect x="238" y="260.6" width="52" height="2.4" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M430 257 L482 257 L482 263 L430 263 Z"/><g clip-path="url(#as-1)"><rect x="430" y="260.6" width="52" height="2.4" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M230 372 L490 372 L490 382 L230 382 Z"/><g clip-path="url(#as-2)"><rect x="230" y="378" width="260" height="4" fill="url(#h-tone)" stroke="none"/></g>
   </g>
   <g class="layer-cut ink l-cut">
     <path d="M234 150 L294 150 L294 370 L234 370 Z" style="stroke: var(--_accent)"/>

@@ -20,6 +20,8 @@
     .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -35,7 +37,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M280 280 L292 280 L292 590 L280 590 Z"/></clipPath><clipPath id="as-1"><path d="M468 280 L480 280 L480 590 L468 590 Z"/></clipPath>
   </defs>
   <rect class="paper" x="172" y="166" width="416" height="468"/>
   <g class="layer-fine ink l-fine">
@@ -93,9 +95,9 @@
     <path d="M250 200l8 -16l8 16M266 200l8 -16l8 16M282 200l8 -16l8 16M298 200l8 -16l8 16M314 200l8 -16l8 16M330 200l8 -16l8 16M346 200l8 -16l8 16M362 200l8 -16l8 16M378 200l8 -16l8 16M394 200l8 -16l8 16M410 200l8 -16l8 16M426 200l8 -16l8 16M442 200l8 -16l8 16M458 200l8 -16l8 16M474 200l8 -16l8 16M490 200l8 -16l8 16M506 200l8 -16l8 16"/>
     <path d="M320 590V420C320 366 370 375 380 330C390 375 440 366 440 420V590"/>
     <path d="M307 590V420C307 354 370 365 380 310C390 365 453 354 453 420V590"/>
-    <path d="M280 280 L292 280 L292 590 L280 590 Z"/>
+    <path d="M280 280 L292 280 L292 590 L280 590 Z"/><g clip-path="url(#as-0)"><rect x="287.92" y="280" width="4.08" height="310" fill="url(#h-tone)" stroke="none"/><rect x="290.45" y="280" width="1.55" height="310" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M277 280 L286 236 L295 280 Z"/>
-    <path d="M468 280 L480 280 L480 590 L468 590 Z"/>
+    <path d="M468 280 L480 280 L480 590 L468 590 Z"/><g clip-path="url(#as-1)"><rect x="475.92" y="280" width="4.08" height="310" fill="url(#h-tone)" stroke="none"/><rect x="478.45" y="280" width="1.55" height="310" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M465 280 L474 236 L483 280 Z"/>
     <path d="M358 228h44v26q0 22 -22 30q-22 -8 -22 -30Z" style="fill: var(--_paper)"/>
     <path d="M190 590L570 590"/>

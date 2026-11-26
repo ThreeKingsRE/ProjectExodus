@@ -109,7 +109,7 @@ function drawGargoyle(T: Layers, s: number, ox: number, oy: number) {
 const gargoyle: Pair = {
   id: 'gargoyle', title: 'Gargoyle', subtitle: 'Carved water spout projecting from a roof', sheetNo: 'DEC-10', view: 'SECTION · CLOSE-UP IN CONTEXT',
   description: 'Section through a parapet gutter and gargoyle: rain runs off the lead roof into the gutter, through a channel inside a stone beast that projects far enough to throw the water clear of the wall, with a shaded round close-up of the carved head: mane, brow, eye, snarling mouth with fangs, and ear.',
-  draw: drawGargoyle, whole: { scale: 0.04, ox: 330, oy: 292, w: [-3400, 1800], h: [0, 5500], caption: 'WALL, GUTTER AND SPOUT · SECTION' }, at: [680, 3650], r: 780, note: 'HEAD PROJECTS 1300 mm · LIGHT FROM THE UPPER LEFT',
+  draw: drawGargoyle, win: { cx: 300, cy: 526, r: 112 }, whole: { scale: 0.058, ox: 262, oy: 347, w: [-3400, 1800], h: [0, 5500], caption: 'WALL, GUTTER AND SPOUT · SECTION' }, at: [680, 3650], r: 780, note: 'HEAD PROJECTS 1300 mm · LIGHT FROM THE UPPER LEFT',
   defs: AXO_DEFS,
   items: (at) => ({ items: [{ text: 'EAR', at: at(700, 4080) }, { text: 'MANE LOCKS', at: at(380, 3930) }, { text: 'BROW AND EYE', at: at(905, 3880) }, { text: 'SNARLING MOUTH, FANGS', at: at(1180, 3560) }, { text: 'JAW (IN SHADE)', at: at(700, 3250) }, { text: 'THROAT (WATER CHANNEL)', at: at(500, 3415) }], dims: [] }),
   scaleUnit: { mm: 1000, name: '1 m', count: 3 },
@@ -186,7 +186,7 @@ function drawCaryatid(T: Layers, s: number, ox: number, oy: number) {
 const caryatid: Pair = {
   id: 'caryatid', title: 'Caryatid', subtitle: 'Draped female figure serving as a column', sheetNo: 'FAC-05', view: 'ELEVATION · CLOSE-UP IN CONTEXT',
   description: 'Elevation of a draped female figure standing in place of a column, weight on one leg, carrying an entablature on a basket capital, with light shading on the side away from the light, and a shaded round close-up of her head, braids and capital.',
-  draw: drawCaryatid, whole: { scale: 0.079, ox: 300, oy: 312, w: [-520, 520], h: [-320, 3020], caption: 'WHOLE FIGURE · ELEVATION' }, at: [0, 2300], r: 440, note: 'FIGURE 2.3 m TALL · LIGHT FROM THE UPPER LEFT',
+  draw: drawCaryatid, win: { cx: 300, cy: 526, r: 112 }, whole: { scale: 0.1, ox: 300, oy: 330, w: [-520, 520], h: [-320, 3020], caption: 'WHOLE FIGURE · ELEVATION' }, at: [0, 2300], r: 440, note: 'FIGURE 2.3 m TALL · LIGHT FROM THE UPPER LEFT',
   defs: AXO_DEFS,
   items: (at) => ({ items: [{ text: 'ENTABLATURE', at: at(-330, 2750) }, { text: 'ABACUS', at: at(-250, 2545) }, { text: 'BASKET CAPITAL', at: at(-160, 2400) }, { text: 'HAIR AND BRAIDS', at: at(-100, 2230) }, { text: 'FACE', at: at(-34, 2160) }, { text: 'NECK (IN SHADE)', at: at(-58, 2030) }], dims: [] }),
   scaleUnit: { mm: 500, name: '500 mm', count: 3 },
@@ -267,7 +267,7 @@ function drawWildMan(T: Layers, s: number, ox: number, oy: number) {
 const wild: Pair = {
   id: 'wild-men-savage-men', title: 'Wild Men / Savage Men', subtitle: 'Hairy club-bearing figures guarding arms', sheetNo: 'DEC-18', view: 'ELEVATION · CLOSE-UP IN CONTEXT',
   description: 'Elevation of a carved hairy man with a leafy wreath and a long forked beard, a studded club raised in one hand and a heraldic shield on the other arm, standing on a stepped corbel, with light shading on the side away from the light, and a shaded round close-up of his head and beard.',
-  draw: drawWildMan, whole: { scale: 0.07, ox: 300, oy: 262, w: [-900, 650], h: [-900, 2250], caption: 'WHOLE FIGURE ON ITS CORBEL · ELEVATION' }, at: [0, 1500], r: 470, note: 'FIGURE ABOUT 1.7 m TALL · LIGHT FROM THE UPPER LEFT',
+  draw: drawWildMan, win: { cx: 300, cy: 526, r: 112 }, whole: { scale: 0.104, ox: 300, oy: 264, w: [-900, 650], h: [-900, 2250], caption: 'WHOLE FIGURE ON ITS CORBEL · ELEVATION' }, at: [0, 1500], r: 470, note: 'FIGURE ABOUT 1.7 m TALL · LIGHT FROM THE UPPER LEFT',
   defs: AXO_DEFS,
   items: (at) => ({ items: [{ text: 'LEAFY WREATH', at: at(-104, 1740) }, { text: 'FACE', at: at(-30, 1580) }, { text: 'LONG FORKED BEARD', at: at(-100, 1340) }, { text: 'SHAGGY FUR (TUFTS)', at: at(-212, 1250) }, { text: 'CLUB', at: at(432, 1700) }], dims: [] }),
   scaleUnit: { mm: 500, name: '500 mm', count: 3 },
@@ -379,7 +379,7 @@ function drawGrotto(T: Layers, s: number, ox: number, oy: number) {
 const grotto: Pair = {
   id: 'grotto', title: 'Grotto', subtitle: 'Artificial cave of rockwork and shells', sheetNo: 'GDN-12', view: 'ELEVATION · CLOSE-UP IN CONTEXT',
   description: 'Elevation of a garden grotto: a mound of rough boulders with a deep, dark cave mouth hung with drips, a ring of scallop shells set into the stones round the opening, and a pool in front, shaded on the side away from the light, with a shaded round close-up of the boulders and shells beside the opening.',
-  draw: drawGrotto, whole: { scale: 0.0345, ox: 300, oy: 192, w: [-4900, 4900], h: [-600, 4500], caption: 'WHOLE GROTTO · ELEVATION' }, at: [-1650, 2500], r: 1200, note: 'CAVE MOUTH 3 m WIDE · SHELLS ABOUT 380 mm · LIGHT FROM THE UPPER LEFT',
+  draw: drawGrotto, win: { cx: 300, cy: 526, r: 112 }, whole: { scale: 0.05, ox: 300, oy: 268, w: [-4900, 4900], h: [-600, 4500], caption: 'WHOLE GROTTO · ELEVATION' }, at: [-1650, 2500], r: 1200, note: 'CAVE MOUTH 3 m WIDE · SHELLS ABOUT 380 mm · LIGHT FROM THE UPPER LEFT',
   defs: AXO_DEFS,
   items: (at) => ({ items: [{ text: 'SCALLOP SHELLS', at: at(-1500, 2800) }, { text: 'ROUGH BOULDERS', at: at(-2300, 2300) }, { text: 'DEEP CAVE MOUTH (DARK)', at: at(-1200, 1500) }, { text: 'DRIPS (STALACTITES)', at: at(-900, 2150) }, { text: 'SHADED UNDERSIDES', at: at(-2200, 1700) }], dims: [] }),
   scaleUnit: { mm: 2000, name: '2 m', count: 3 },

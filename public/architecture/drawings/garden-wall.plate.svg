@@ -20,6 +20,8 @@
     .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -35,7 +37,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    <clipPath id="gw"><path d="M160 470 L160 230 L570 230 L570 470 Z"/></clipPath>
+    <clipPath id="gw"><path d="M160 470 L160 230 L570 230 L570 470 Z"/></clipPath><clipPath id="as-0"><path d="M276 230 L304 230 L304 470 L276 470 Z"/></clipPath><clipPath id="as-1"><path d="M406 230 L434 230 L434 470 L406 470 Z"/></clipPath>
   </defs>
   <rect class="paper" x="122" y="196" width="476" height="318"/>
   <g class="layer-shading ink l-shading">
@@ -61,8 +63,8 @@
   <g class="layer-profile ink l-profile">
     <path d="M160 470 L160 230 L570 230 L570 470 Z"/>
     <path d="M152 214 L578 214 L578 230 L152 230 Z"/>
-    <path d="M276 230 L304 230 L304 470 L276 470 Z"/>
-    <path d="M406 230 L434 230 L434 470 L406 470 Z"/>
+    <path d="M276 230 L304 230 L304 470 L276 470 Z"/><g clip-path="url(#as-0)"><rect x="294.48" y="230" width="9.52" height="240" fill="url(#h-tone)" stroke="none"/><rect x="300.38" y="230" width="3.62" height="240" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M406 230 L434 230 L434 470 L406 470 Z"/><g clip-path="url(#as-1)"><rect x="424.48" y="230" width="9.52" height="240" fill="url(#h-tone)" stroke="none"/><rect x="430.38" y="230" width="3.62" height="240" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M140 470L580 470"/>
   </g>
   <text class="t-credit" x="128" y="503">SOURCE: Original drawing by Project Exodus from the standard geometric construction of this form; no</text>

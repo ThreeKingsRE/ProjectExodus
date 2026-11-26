@@ -19,6 +19,8 @@
     .t-accent { fill: var(--_accent); }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -34,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M250 140 L280 140 L280 200 L250 200 Z"/></clipPath><clipPath id="as-1"><path d="M370 140 L400 140 L400 200 L370 200 Z"/></clipPath><clipPath id="as-2"><path d="M490 140 L520 140 L520 200 L490 200 Z"/></clipPath><clipPath id="as-3"><path d="M250 260 L280 260 L280 320 L250 320 Z"/></clipPath><clipPath id="as-4"><path d="M370 260 L400 260 L400 320 L370 320 Z"/></clipPath><clipPath id="as-5"><path d="M490 260 L520 260 L520 320 L490 320 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -52,27 +54,27 @@
   </g>
   <g class="layer-profile ink l-profile">
     <path d="M250 140 L280 140 L280 200 L250 200 Z" style="fill: var(--_paper)"/>
-    <path d="M250 140 L280 140 L280 200 L250 200 Z"/>
+    <path d="M250 140 L280 140 L280 200 L250 200 Z"/><g clip-path="url(#as-0)"><rect x="269.8" y="140" width="10.2" height="60" fill="url(#h-tone)" stroke="none"/><rect x="276.12" y="140" width="3.88" height="60" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M250 140L280 200"/>
     <path d="M280 140L250 200"/>
     <path d="M370 140 L400 140 L400 200 L370 200 Z" style="fill: var(--_paper)"/>
-    <path d="M370 140 L400 140 L400 200 L370 200 Z"/>
+    <path d="M370 140 L400 140 L400 200 L370 200 Z"/><g clip-path="url(#as-1)"><rect x="389.8" y="140" width="10.2" height="60" fill="url(#h-tone)" stroke="none"/><rect x="396.12" y="140" width="3.88" height="60" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M370 140L400 200"/>
     <path d="M400 140L370 200"/>
     <path d="M490 140 L520 140 L520 200 L490 200 Z" style="fill: var(--_paper)"/>
-    <path d="M490 140 L520 140 L520 200 L490 200 Z"/>
+    <path d="M490 140 L520 140 L520 200 L490 200 Z"/><g clip-path="url(#as-2)"><rect x="509.8" y="140" width="10.2" height="60" fill="url(#h-tone)" stroke="none"/><rect x="516.12" y="140" width="3.88" height="60" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M490 140L520 200"/>
     <path d="M520 140L490 200"/>
     <path d="M250 260 L280 260 L280 320 L250 320 Z" style="fill: var(--_paper)"/>
-    <path d="M250 260 L280 260 L280 320 L250 320 Z"/>
+    <path d="M250 260 L280 260 L280 320 L250 320 Z"/><g clip-path="url(#as-3)"><rect x="269.8" y="260" width="10.2" height="60" fill="url(#h-tone)" stroke="none"/><rect x="276.12" y="260" width="3.88" height="60" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M250 260L280 320"/>
     <path d="M280 260L250 320"/>
     <path d="M370 260 L400 260 L400 320 L370 320 Z" style="fill: var(--_paper)"/>
-    <path d="M370 260 L400 260 L400 320 L370 320 Z"/>
+    <path d="M370 260 L400 260 L400 320 L370 320 Z"/><g clip-path="url(#as-4)"><rect x="389.8" y="260" width="10.2" height="60" fill="url(#h-tone)" stroke="none"/><rect x="396.12" y="260" width="3.88" height="60" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M370 260L400 320"/>
     <path d="M400 260L370 320"/>
     <path d="M490 260 L520 260 L520 320 L490 320 Z" style="fill: var(--_paper)"/>
-    <path d="M490 260 L520 260 L520 320 L490 320 Z"/>
+    <path d="M490 260 L520 260 L520 320 L490 320 Z"/><g clip-path="url(#as-5)"><rect x="509.8" y="260" width="10.2" height="60" fill="url(#h-tone)" stroke="none"/><rect x="516.12" y="260" width="3.88" height="60" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M490 260L520 320"/>
     <path d="M520 260L490 320"/>
     <path d="M310 200 L340 200 L340 230 L310 230 Z" style="fill: var(--_paper)"/>

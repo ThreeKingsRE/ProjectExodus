@@ -20,6 +20,8 @@
     .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -35,7 +37,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    <clipPath id="w-tr"><path d="M160 60 L560 60 L560 530 L160 530 Z"/></clipPath>
+    <clipPath id="w-tr"><path d="M160 60 L560 60 L560 530 L160 530 Z"/></clipPath><clipPath id="as-0"><path d="M250 500 L470 500 L470 512 L250 512 Z"/></clipPath>
   </defs>
   <rect class="paper" x="142" y="42" width="436" height="532"/>
   <g class="layer-hatch ink l-hair">
@@ -60,7 +62,7 @@
     <path d="M276 500 L276 290 L276 290 L276.11 285.81 L276.44 281.64 L276.98 277.49 L277.75 273.37 L278.73 269.29 L279.92 265.28 L281.31 261.33 L282.92 257.46 L284.72 253.68 L286.72 250 L288.91 246.43 L291.28 242.98 L293.83 239.65 L296.55 236.47 L299.43 233.43 L302.47 230.55 L305.65 227.83 L308.98 225.28 L312.43 222.91 L316 220.72 L316 220.72 L319.57 222.91 L323.02 225.28 L326.35 227.83 L329.53 230.55 L332.57 233.43 L335.45 236.47 L338.17 239.65 L340.72 242.98 L343.09 246.43 L345.28 250 L347.28 253.68 L349.08 257.46 L350.69 261.33 L352.08 265.28 L353.27 269.29 L354.25 273.37 L355.02 277.49 L355.56 281.64 L355.89 285.81 L356 290 L356 500"/>
     <path d="M364 500 L364 290 L364 290 L364.11 285.81 L364.44 281.64 L364.98 277.49 L365.75 273.37 L366.73 269.29 L367.92 265.28 L369.31 261.33 L370.92 257.46 L372.72 253.68 L374.72 250 L376.91 246.43 L379.28 242.98 L381.83 239.65 L384.55 236.47 L387.43 233.43 L390.47 230.55 L393.65 227.83 L396.98 225.28 L400.43 222.91 L404 220.72 L404 220.72 L407.57 222.91 L411.02 225.28 L414.35 227.83 L417.53 230.55 L420.57 233.43 L423.45 236.47 L426.17 239.65 L428.72 242.98 L431.09 246.43 L433.28 250 L435.28 253.68 L437.08 257.46 L438.69 261.33 L440.08 265.28 L441.27 269.29 L442.25 273.37 L443.02 277.49 L443.56 281.64 L443.89 285.81 L444 290 L444 500"/>
     <circle cx="360" cy="215.2" r="36"/>
-    <path d="M250 500 L470 500 L470 512 L250 512 Z"/>
+    <path d="M250 500 L470 500 L470 512 L250 512 Z"/><g clip-path="url(#as-0)"><rect x="250" y="507.2" width="220" height="4.8" fill="url(#h-tone)" stroke="none"/></g>
   </g>
   <g class="layer-cut ink l-cut">
     <path d="M356 290 L364 290 L364 500 L356 500 Z" style="stroke: var(--_accent)"/>

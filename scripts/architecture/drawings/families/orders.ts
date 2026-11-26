@@ -170,6 +170,13 @@ export function buildOrder(o: OrderSpec): SheetSpec {
     layers.fine!.push(el(`M${f(AX)} ${f(Y(h1))}H${f(X(rAt(h1)))}`, 'stroke-dasharray="2 3"'))
   }
 
+  // shaft modelling: the round shaft darkens toward the edge away from the light (the right)
+  const bandPath = (f0: number, f1: number, h0b: number, h1b: number) => {
+    const a = shaftLine(f0, h0b, h1b)
+    const b = shaftLine(f1, h0b, h1b).reverse()
+    return path([...a, ...b], true)
+  }
+  layers.shading!.push(`<path d="${bandPath(0.5, 1, shaftBottom + 0.1, shaftTop - 0.05)}" fill="url(#h-tone)" stroke="none"/>`, `<path d="${bandPath(0.82, 1, shaftBottom + 0.1, shaftTop - 0.05)}" fill="url(#h-tone-d)" stroke="none"/>`)
   capitalOrnament(o.capital, layers, { X, Y: (h) => Y(C + h), M }, ru, `cr-${o.id}`, true)
 
   // ---- Entablature ----
@@ -357,6 +364,10 @@ function detailViews(o: OrderSpec, layers: NonNullable<SheetSpec['layers']>): { 
     }
   }
 
+  // shaft piece: tone toward the right edge, darker at the very edge
+  const sb = `${f(Xd(ru * 0.5))} ${f(Yd(-0.2))}`
+  layers.shading!.push(`<path d="${path([[Xd(ru * 0.5), Yd(h0)], [Xd(ru), Yd(h0)], [Xd(ru), Yd(-0.25)], [Xd(ru * 0.5), Yd(-0.25)]], true)}" fill="url(#h-tone)" stroke="none"/>`, `<path d="${path([[Xd(ru * 0.82), Yd(h0)], [Xd(ru), Yd(h0)], [Xd(ru), Yd(-0.25)], [Xd(ru * 0.82), Yd(-0.25)]], true)}" fill="url(#h-tone-d)" stroke="none"/>`)
+  void sb
   capitalOrnament(kind, layers, { X: Xd, Y: Yd, M: Md }, ru, clipR)
 
   // architrave fragment above the abacus

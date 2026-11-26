@@ -20,6 +20,8 @@
     .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -35,7 +37,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M260 170 L312 186 L312 234 L260 234 Z"/></clipPath><clipPath id="as-1"><path d="M260 240 L312 256 L312 304 L260 304 Z"/></clipPath><clipPath id="as-2"><path d="M260 310 L312 326 L312 374 L260 374 Z"/></clipPath><clipPath id="as-3"><path d="M260 380 L312 396 L312 444 L260 444 Z"/></clipPath><clipPath id="as-4"><path d="M260 450 L312 466 L312 514 L260 514 Z"/></clipPath><clipPath id="as-5"><path d="M260 520 L312 536 L312 584 L260 584 Z"/></clipPath>
   </defs>
   <rect class="paper" x="182" y="142" width="206" height="510"/>
   <g class="layer-hatch ink l-hair">
@@ -64,12 +66,12 @@
   </g>
   <g class="layer-profile ink l-profile">
     <path d="M252 160 L258 160 L258 590 L252 590 Z"/>
-    <path d="M260 170 L312 186 L312 234 L260 234 Z"/>
-    <path d="M260 240 L312 256 L312 304 L260 304 Z"/>
-    <path d="M260 310 L312 326 L312 374 L260 374 Z"/>
-    <path d="M260 380 L312 396 L312 444 L260 444 Z"/>
-    <path d="M260 450 L312 466 L312 514 L260 514 Z"/>
-    <path d="M260 520 L312 536 L312 584 L260 584 Z"/>
+    <path d="M260 170 L312 186 L312 234 L260 234 Z"/><g clip-path="url(#as-0)"><rect x="294.32" y="170" width="17.68" height="64" fill="url(#h-tone)" stroke="none"/><rect x="305.28" y="170" width="6.72" height="64" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M260 240 L312 256 L312 304 L260 304 Z"/><g clip-path="url(#as-1)"><rect x="294.32" y="240" width="17.68" height="64" fill="url(#h-tone)" stroke="none"/><rect x="305.28" y="240" width="6.72" height="64" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M260 310 L312 326 L312 374 L260 374 Z"/><g clip-path="url(#as-2)"><rect x="294.32" y="310" width="17.68" height="64" fill="url(#h-tone)" stroke="none"/><rect x="305.28" y="310" width="6.72" height="64" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M260 380 L312 396 L312 444 L260 444 Z"/><g clip-path="url(#as-3)"><rect x="294.32" y="380" width="17.68" height="64" fill="url(#h-tone)" stroke="none"/><rect x="305.28" y="380" width="6.72" height="64" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M260 450 L312 466 L312 514 L260 514 Z"/><g clip-path="url(#as-4)"><rect x="294.32" y="450" width="17.68" height="64" fill="url(#h-tone)" stroke="none"/><rect x="305.28" y="450" width="6.72" height="64" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M260 520 L312 536 L312 584 L260 584 Z"/><g clip-path="url(#as-5)"><rect x="294.32" y="520" width="17.68" height="64" fill="url(#h-tone)" stroke="none"/><rect x="305.28" y="520" width="6.72" height="64" fill="url(#h-tone-d)" stroke="none"/></g>
   </g>
   <g class="layer-cut ink l-cut">
     <path d="M200 160 L240 160 L240 590 L200 590 Z"/>

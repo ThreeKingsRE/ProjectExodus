@@ -72,6 +72,8 @@ const STYLE = `
     .t-accent { fill: var(--_accent); }`
 
 const PATTERNS = `
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -186,7 +188,56 @@ export function sheetFit(spec: SheetSpec): { s: number; transform: string } {
   return { s, transform: `translate(${f(tx)} ${f(ty)})${s === 1 ? '' : ` scale(${f(s)})`}` }
 }
 
-export function renderSheet(spec: SheetSpec): string {
+/**
+ * Light shading for the older single-view drawings: simple closed outlines that are narrow and tall (columns, piers,
+ * towers, shafts) get a strip of tone hatching down the side away from the light (the right), and low, wide ones
+ * (beams, slabs, lintels, cornices) get tone along the underside. Light comes from the upper left. Drawings built
+ * with their own shading (close-ups in context, the figures) are left alone.
+ */
+function withShade(spec: SheetSpec): SheetSpec {
+  if (/CLOSE-UP/.test(spec.view) || (spec.layers as Record<string, unknown>).noShade) return spec
+  const chunks = spec.layers.profile
+  if (!chunks?.length) return spec
+  const found: Array<{ chunk: number; match: string; area: number; shade: string }> = []
+  const clips: string[] = []
+  let n = 0
+  chunks.forEach((chunk, ci) => {
+    for (const m of chunk.matchAll(/<path d="(M[-\d.\s]+(?:L[-\d.\s]+)+Z?\s*)"\/>/g)) {
+      const nums = m[1].replace(/[ML]/g, ' ').replace('Z', '').trim().split(/\s+/).map(Number)
+      if (nums.length < 8 || nums.some((v) => !Number.isFinite(v)) || !/Z\s*$/.test(m[1])) continue
+      const xs: number[] = []
+      const ys: number[] = []
+      for (let i = 0; i + 1 < nums.length; i += 2) { xs.push(nums[i]); ys.push(nums[i + 1]) }
+      const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys)
+      const w = x1 - x0, h = y1 - y0
+      let a = 0
+      for (let i = 0; i < xs.length; i++) { const j = (i + 1) % xs.length; a += xs[i] * ys[j] - xs[j] * ys[i] }
+      const area = Math.abs(a) / 2
+      if (area / (w * h || 1) < 0.72) continue
+      let band: [number, number, number, number] | null = null
+      if (h >= 22 && w >= 9 && w <= 95 && h / w >= 1.1) band = [x1 - w * 0.34, y0, w * 0.34, h]
+      else if (h >= 6 && h <= 46 && w >= 26 && w <= 280 && w / h >= 2.2) band = [x0, y1 - h * 0.4, w, h * 0.4]
+      if (!band) continue
+      const id = `as-${n++}`
+      clips.push(`<clipPath id="${id}"><path d="${m[1].trim()}"/></clipPath>`)
+      found.push({ chunk: ci, match: m[0], area, shade: `<g clip-path="url(#${id})"><rect x="${f(band[0])}" y="${f(band[1])}" width="${f(band[2])}" height="${f(band[3])}" fill="url(#h-tone)" stroke="none"/>${band[2] < band[3] ? `<rect x="${f(band[0] + band[2] * 0.62)}" y="${f(band[1])}" width="${f(band[2] * 0.38)}" height="${f(band[3])}" fill="url(#h-tone-d)" stroke="none"/>` : ''}</g>` })
+    }
+  })
+  if (!found.length) return spec
+  const keep = [...found].sort((p, q) => q.area - p.area).slice(0, 46)
+  const out = [...chunks]
+  const used = new Set<string>()
+  for (const k of keep) {
+    const id = /clip-path="url\(#([^)]+)\)"/.exec(k.shade)![1]
+    used.add(id)
+    out[k.chunk] = out[k.chunk].replace(k.match, k.match + k.shade)
+  }
+  const defs = clips.filter((c) => used.has(/id="([^"]+)"/.exec(c)![1])).join('')
+  return { ...spec, layers: { ...spec.layers, profile: out }, defs: (spec.defs ?? '') + defs }
+}
+
+export function renderSheet(rawSpec: SheetSpec): string {
+  const spec = withShade(rawSpec)
   assertSource(spec)
   const fit = sheetFit(spec)
   const tbTop = PAGE_H - 116
@@ -230,7 +281,8 @@ ${fit.transform ? `  <g transform="${fit.transform}">\n${layersSvg(spec, LAYERS)
 `
 }
 
-export function renderPlate(spec: SheetSpec): string {
+export function renderPlate(rawSpec: SheetSpec): string {
+  const spec = withShade(rawSpec)
   assertSource(spec)
   const pad = 14
   const [bx0, by0, bx1, by1] = spec.bounds

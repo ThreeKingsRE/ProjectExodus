@@ -19,6 +19,8 @@
     .t-accent { fill: var(--_accent); }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -34,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M216 330 L234 330 L234 366 L216 366 Z"/></clipPath><clipPath id="as-1"><path d="M243 330 L261 330 L261 366 L243 366 Z"/></clipPath><clipPath id="as-2"><path d="M270 330 L288 330 L288 366 L270 366 Z"/></clipPath><clipPath id="as-3"><path d="M297 330 L315 330 L315 366 L297 366 Z"/></clipPath><clipPath id="as-4"><path d="M324 330 L342 330 L342 366 L324 366 Z"/></clipPath><clipPath id="as-5"><path d="M351 330 L369 330 L369 366 L351 366 Z"/></clipPath><clipPath id="as-6"><path d="M378 330 L396 330 L396 366 L378 366 Z"/></clipPath><clipPath id="as-7"><path d="M405 330 L423 330 L423 366 L405 366 Z"/></clipPath><clipPath id="as-8"><path d="M432 330 L450 330 L450 366 L432 366 Z"/></clipPath><clipPath id="as-9"><path d="M459 330 L477 330 L477 366 L459 366 Z"/></clipPath><clipPath id="as-10"><path d="M486 330 L504 330 L504 366 L486 366 Z"/></clipPath><clipPath id="as-11"><path d="M513 330 L531 330 L531 366 L513 366 Z"/></clipPath><clipPath id="as-12"><path d="M540 330 L558 330 L558 366 L540 366 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -68,19 +70,19 @@
     <path d="M210 316 L560 316 L560 330 L210 330 Z"/>
     <path d="M210 330L560 330"/>
     <path d="M210 366L560 366"/>
-    <path d="M216 330 L234 330 L234 366 L216 366 Z"/>
-    <path d="M243 330 L261 330 L261 366 L243 366 Z"/>
-    <path d="M270 330 L288 330 L288 366 L270 366 Z"/>
-    <path d="M297 330 L315 330 L315 366 L297 366 Z"/>
-    <path d="M324 330 L342 330 L342 366 L324 366 Z"/>
-    <path d="M351 330 L369 330 L369 366 L351 366 Z"/>
-    <path d="M378 330 L396 330 L396 366 L378 366 Z"/>
-    <path d="M405 330 L423 330 L423 366 L405 366 Z"/>
-    <path d="M432 330 L450 330 L450 366 L432 366 Z"/>
-    <path d="M459 330 L477 330 L477 366 L459 366 Z"/>
-    <path d="M486 330 L504 330 L504 366 L486 366 Z"/>
-    <path d="M513 330 L531 330 L531 366 L513 366 Z"/>
-    <path d="M540 330 L558 330 L558 366 L540 366 Z"/>
+    <path d="M216 330 L234 330 L234 366 L216 366 Z"/><g clip-path="url(#as-0)"><rect x="227.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="231.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M243 330 L261 330 L261 366 L243 366 Z"/><g clip-path="url(#as-1)"><rect x="254.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="258.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M270 330 L288 330 L288 366 L270 366 Z"/><g clip-path="url(#as-2)"><rect x="281.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="285.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M297 330 L315 330 L315 366 L297 366 Z"/><g clip-path="url(#as-3)"><rect x="308.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="312.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M324 330 L342 330 L342 366 L324 366 Z"/><g clip-path="url(#as-4)"><rect x="335.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="339.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M351 330 L369 330 L369 366 L351 366 Z"/><g clip-path="url(#as-5)"><rect x="362.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="366.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M378 330 L396 330 L396 366 L378 366 Z"/><g clip-path="url(#as-6)"><rect x="389.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="393.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M405 330 L423 330 L423 366 L405 366 Z"/><g clip-path="url(#as-7)"><rect x="416.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="420.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M432 330 L450 330 L450 366 L432 366 Z"/><g clip-path="url(#as-8)"><rect x="443.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="447.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M459 330 L477 330 L477 366 L459 366 Z"/><g clip-path="url(#as-9)"><rect x="470.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="474.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M486 330 L504 330 L504 366 L486 366 Z"/><g clip-path="url(#as-10)"><rect x="497.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="501.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M513 330 L531 330 L531 366 L513 366 Z"/><g clip-path="url(#as-11)"><rect x="524.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="528.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M540 330 L558 330 L558 366 L540 366 Z"/><g clip-path="url(#as-12)"><rect x="551.88" y="330" width="6.12" height="36" fill="url(#h-tone)" stroke="none"/><rect x="555.67" y="330" width="2.33" height="36" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M210 366 L560 366 L560 380 L210 380 Z"/>
     <path d="M210 380 L560 380 L560 490 L210 490 Z"/>
     <path d="M210 506H560"/>

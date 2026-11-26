@@ -20,6 +20,8 @@
     .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -35,13 +37,13 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M256 520 L404 520 L404 538 L256 538 Z"/></clipPath><clipPath id="as-1"><path d="M266 98 L394 98 L394 120 L266 120 Z"/></clipPath>
   </defs>
   <rect class="paper" x="232" y="62" width="196" height="550"/>
   <g class="layer-profile ink l-profile">
     <path d="M390 520 L390.32 510 L390.63 500 L390.94 490 L391.24 480 L391.53 470 L391.8 460 L392.05 450 L392.29 440 L392.5 430 L392.69 420 L392.85 410 L392.98 400 L393.08 390 L393.14 380 L393.17 370 L393.16 360 L393.11 350 L393.03 340 L392.9 330 L392.72 320 L392.51 310 L392.25 300 L391.94 290 L391.6 280 L391.2 270 L390.76 260 L390.28 250 L389.76 240 L389.19 230 L388.58 220 L387.93 210 L387.24 200 L386.52 190 L385.75 180 L384.96 170 L384.13 160 L383.27 150 L382.39 140 L381.47 130 L380.54 120 L279.46 120 L278.53 130 L277.61 140 L276.73 150 L275.87 160 L275.04 170 L274.25 180 L273.48 190 L272.76 200 L272.07 210 L271.42 220 L270.81 230 L270.24 240 L269.72 250 L269.24 260 L268.8 270 L268.4 280 L268.06 290 L267.75 300 L267.49 310 L267.28 320 L267.1 330 L266.97 340 L266.89 350 L266.84 360 L266.83 370 L266.86 380 L266.92 390 L267.02 400 L267.15 410 L267.31 420 L267.5 430 L267.71 440 L267.95 450 L268.2 460 L268.47 470 L268.76 480 L269.06 490 L269.37 500 L269.68 510 L270 520 Z"/>
-    <path d="M256 520 L404 520 L404 538 L256 538 Z"/>
-    <path d="M266 98 L394 98 L394 120 L266 120 Z"/>
+    <path d="M256 520 L404 520 L404 538 L256 538 Z"/><g clip-path="url(#as-0)"><rect x="256" y="530.8" width="148" height="7.2" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M266 98 L394 98 L394 120 L266 120 Z"/><g clip-path="url(#as-1)"><rect x="266" y="111.2" width="128" height="8.8" fill="url(#h-tone)" stroke="none"/></g>
   </g>
   <g class="layer-center ink l-center">
     <path d="M390 520L376 120"/>

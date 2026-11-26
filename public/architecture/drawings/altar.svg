@@ -19,6 +19,8 @@
     .t-accent { fill: var(--_accent); }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -34,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M250 515 L510 515 L510 530 L250 530 Z"/></clipPath><clipPath id="as-1"><path d="M260 408 L500 408 L500 420 L260 420 Z"/></clipPath><clipPath id="as-2"><path d="M280 394 L480 394 L480 408 L280 408 Z"/></clipPath><clipPath id="as-3"><path d="M350 220 L410 220 L410 226 L350 226 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -75,14 +77,14 @@
   <g class="layer-profile ink l-profile">
     <path d="M210 545 L550 545 L550 560 L210 560 Z"/>
     <path d="M230 530 L530 530 L530 545 L230 545 Z"/>
-    <path d="M250 515 L510 515 L510 530 L250 530 Z"/>
+    <path d="M250 515 L510 515 L510 530 L250 530 Z"/><g clip-path="url(#as-0)"><rect x="250" y="524" width="260" height="6" fill="url(#h-tone)" stroke="none"/></g>
     <path d="M270 420 L490 420 L490 515 L270 515 Z"/>
-    <path d="M260 408 L500 408 L500 420 L260 420 Z"/>
-    <path d="M280 394 L480 394 L480 408 L280 408 Z"/>
+    <path d="M260 408 L500 408 L500 420 L260 420 Z"/><g clip-path="url(#as-1)"><rect x="260" y="415.2" width="240" height="4.8" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M280 394 L480 394 L480 408 L280 408 Z"/><g clip-path="url(#as-2)"><rect x="280" y="402.4" width="200" height="5.6" fill="url(#h-tone)" stroke="none"/></g>
     <path d="M356 394V346H404V394Z"/>
     <path d="M352 346H408M360 346Q380 318 400 346"/>
     <path d="M377 194 L383 194 L383 312 L377 312 Z"/>
-    <path d="M350 220 L410 220 L410 226 L350 226 Z"/>
+    <path d="M350 220 L410 220 L410 226 L350 226 Z"/><g clip-path="url(#as-3)"><rect x="350" y="223.6" width="60" height="2.4" fill="url(#h-tone)" stroke="none"/></g>
     <path d="M324 394h16l-5 -6h-6Z"/>
     <path d="M332 388L332 324"/>
     <path d="M302 394h16l-5 -6h-6Z"/>

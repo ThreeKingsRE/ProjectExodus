@@ -20,6 +20,8 @@
     .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -35,7 +37,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    <clipPath id="dm-roof"><path d="M140 420 L140 160 L580 160 L580 420 Z"/></clipPath>
+    <clipPath id="dm-roof"><path d="M140 420 L140 160 L580 160 L580 420 Z"/></clipPath><clipPath id="as-0"><path d="M326 280 L394 280 L394 380 L326 380 Z"/></clipPath>
   </defs>
   <rect class="paper" x="102" y="142" width="516" height="342"/>
   <g class="layer-shading ink l-shading">
@@ -49,7 +51,7 @@
     <path d="M140 420 L140 160 L580 160 L580 420 Z"/>
     <path d="M300 390 L300 270 L360 220 L420 270 L420 390"/>
     <path d="M288 278 L360 208 L432 278"/>
-    <path d="M326 280 L394 280 L394 380 L326 380 Z"/>
+    <path d="M326 280 L394 280 L394 380 L326 380 Z"/><g clip-path="url(#as-0)"><rect x="370.88" y="280" width="23.12" height="100" fill="url(#h-tone)" stroke="none"/><rect x="385.21" y="280" width="8.79" height="100" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M280 400 L440 400"/>
     <path d="M120 420L600 420"/>
   </g>

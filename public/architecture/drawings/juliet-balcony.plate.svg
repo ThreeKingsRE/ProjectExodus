@@ -20,6 +20,8 @@
     .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -35,7 +37,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M324 514 L376 514 L376 520 L324 520 Z"/></clipPath><clipPath id="as-1"><path d="M340 490 L356 490 L356 514 L340 514 Z"/></clipPath>
   </defs>
   <rect class="paper" x="182" y="132" width="244" height="561"/>
   <g class="layer-hatch ink l-hair">
@@ -52,9 +54,9 @@
   </g>
   <g class="layer-profile ink l-profile">
     <path d="M330 296 L370 296 L370 300 L330 300 Z"/>
-    <path d="M324 514 L376 514 L376 520 L324 520 Z"/>
+    <path d="M324 514 L376 514 L376 520 L324 520 Z"/><g clip-path="url(#as-0)"><rect x="324" y="517.6" width="52" height="2.4" fill="url(#h-tone)" stroke="none"/></g>
     <path d="M340 300 L356 300 L356 312 L340 312 Z"/>
-    <path d="M340 490 L356 490 L356 514 L340 514 Z"/>
+    <path d="M340 490 L356 490 L356 514 L340 514 Z"/><g clip-path="url(#as-1)"><rect x="350.56" y="490" width="5.44" height="24" fill="url(#h-tone)" stroke="none"/><rect x="353.93" y="490" width="2.07" height="24" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M375 404 L385 404 L385 410 L375 410 Z"/>
     <path d="M370 440 L378 440" style="stroke-width: 3"/>
     <path d="M370 510 L378 510" style="stroke-width: 3"/>

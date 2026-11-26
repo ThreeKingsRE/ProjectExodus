@@ -20,6 +20,8 @@
     .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -35,7 +37,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern><pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
+    <clipPath id="as-0"><path d="M380 405.66 L362.44 415.8 L362.44 322.2 L380 312.06 Z"/></clipPath><clipPath id="as-1"><path d="M380 405.66 L397.56 415.8 L397.56 322.2 L380 312.06 Z"/></clipPath><clipPath id="as-2"><path d="M528.61 319.86 L511.05 330 L511.05 236.4 L528.61 226.26 Z"/></clipPath><clipPath id="as-3"><path d="M528.61 319.86 L546.17 330 L546.17 236.4 L528.61 226.26 Z"/></clipPath><clipPath id="as-4"><path d="M231.39 319.86 L213.83 330 L213.83 236.4 L231.39 226.26 Z"/></clipPath><clipPath id="as-5"><path d="M231.39 319.86 L248.95 330 L248.95 236.4 L231.39 226.26 Z"/></clipPath>
   </defs>
   <rect class="paper" x="195.83" y="46.8" width="368.35" height="432.14"/>
   <g class="layer-fine ink l-fine">
@@ -135,10 +137,10 @@
     <path d="M491.46 183.55 L479.07 184.11"/>
     <path d="M380 405.66 L362.44 415.8 L362.44 322.2 L380 312.06 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>
     <path d="M380 405.66 L362.44 415.8 L362.44 322.2 L380 312.06 Z" fill="url(#h-tone-d)" stroke="none"/>
-    <path d="M380 405.66 L362.44 415.8 L362.44 322.2 L380 312.06 Z"/>
+    <path d="M380 405.66 L362.44 415.8 L362.44 322.2 L380 312.06 Z"/><g clip-path="url(#as-0)"><rect x="374.03" y="312.06" width="5.97" height="103.74" fill="url(#h-tone)" stroke="none"/><rect x="377.73" y="312.06" width="2.27" height="103.74" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M380 405.66 L397.56 415.8 L397.56 322.2 L380 312.06 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>
     <path d="M380 405.66 L397.56 415.8 L397.56 322.2 L380 312.06 Z" fill="url(#h-tone)" stroke="none"/>
-    <path d="M380 405.66 L397.56 415.8 L397.56 322.2 L380 312.06 Z"/>
+    <path d="M380 405.66 L397.56 415.8 L397.56 322.2 L380 312.06 Z"/><g clip-path="url(#as-1)"><rect x="391.59" y="312.06" width="5.97" height="103.74" fill="url(#h-tone)" stroke="none"/><rect x="395.29" y="312.06" width="2.27" height="103.74" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M342.85 158.95 L355.23 164.9 L342.85 172.05 L330.46 166.1 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>
     <path d="M367.62 157.75 L380 166.1 L367.62 173.25 L355.23 164.9 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>
     <path d="M392.38 157.75 L404.77 164.9 L392.38 173.25 L380 166.1 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>
@@ -346,16 +348,16 @@
     <path d="M409.72 99.12 L424.58 97.7 L424.58 88.34 L409.72 89.76 Z"/>
     <path d="M528.61 319.86 L511.05 330 L511.05 236.4 L528.61 226.26 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>
     <path d="M528.61 319.86 L511.05 330 L511.05 236.4 L528.61 226.26 Z" fill="url(#h-tone-d)" stroke="none"/>
-    <path d="M528.61 319.86 L511.05 330 L511.05 236.4 L528.61 226.26 Z"/>
+    <path d="M528.61 319.86 L511.05 330 L511.05 236.4 L528.61 226.26 Z"/><g clip-path="url(#as-2)"><rect x="522.64" y="226.26" width="5.97" height="103.74" fill="url(#h-tone)" stroke="none"/><rect x="526.34" y="226.26" width="2.27" height="103.74" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M528.61 319.86 L546.17 330 L546.17 236.4 L528.61 226.26 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>
     <path d="M528.61 319.86 L546.17 330 L546.17 236.4 L528.61 226.26 Z" fill="url(#h-tone)" stroke="none"/>
-    <path d="M528.61 319.86 L546.17 330 L546.17 236.4 L528.61 226.26 Z"/>
+    <path d="M528.61 319.86 L546.17 330 L546.17 236.4 L528.61 226.26 Z"/><g clip-path="url(#as-3)"><rect x="540.2" y="226.26" width="5.97" height="103.74" fill="url(#h-tone)" stroke="none"/><rect x="543.9" y="226.26" width="2.27" height="103.74" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M231.39 319.86 L213.83 330 L213.83 236.4 L231.39 226.26 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>
     <path d="M231.39 319.86 L213.83 330 L213.83 236.4 L231.39 226.26 Z" fill="url(#h-tone-d)" stroke="none"/>
-    <path d="M231.39 319.86 L213.83 330 L213.83 236.4 L231.39 226.26 Z"/>
+    <path d="M231.39 319.86 L213.83 330 L213.83 236.4 L231.39 226.26 Z"/><g clip-path="url(#as-4)"><rect x="225.42" y="226.26" width="5.97" height="103.74" fill="url(#h-tone)" stroke="none"/><rect x="229.12" y="226.26" width="2.27" height="103.74" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M231.39 319.86 L248.95 330 L248.95 236.4 L231.39 226.26 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>
     <path d="M231.39 319.86 L248.95 330 L248.95 236.4 L231.39 226.26 Z" fill="url(#h-tone)" stroke="none"/>
-    <path d="M231.39 319.86 L248.95 330 L248.95 236.4 L231.39 226.26 Z"/>
+    <path d="M231.39 319.86 L248.95 330 L248.95 236.4 L231.39 226.26 Z"/><g clip-path="url(#as-5)"><rect x="242.98" y="226.26" width="5.97" height="103.74" fill="url(#h-tone)" stroke="none"/><rect x="246.68" y="226.26" width="2.27" height="103.74" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M355.23 100.95 L367.62 108.1 L355.23 104.9 L342.85 97.75 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>
     <path d="M342.85 97.75 L355.23 100.95"/>
     <path d="M404.77 100.95 L417.15 97.75 L404.77 104.9 L392.38 108.1 Z" style="fill: var(--_paper); stroke: var(--_paper); stroke-width: 0.8"/>

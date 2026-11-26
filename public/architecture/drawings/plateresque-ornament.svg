@@ -19,6 +19,8 @@
     .t-accent { fill: var(--_accent); }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -34,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M275 520 L307 520 L307 570 L275 570 Z"/></clipPath><clipPath id="as-1"><path d="M453 520 L485 520 L485 570 L453 570 Z"/></clipPath><clipPath id="as-2"><path d="M265 276 L495 276 L495 316 L265 316 Z"/></clipPath><clipPath id="as-3"><path d="M259 266 L501 266 L501 276 L259 276 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -55,14 +57,14 @@
   </g>
   <g class="layer-profile ink l-profile">
     <path d="M325 330 L435 330 L435 520 L325 520 Z"/>
-    <path d="M275 520 L307 520 L307 570 L275 570 Z"/>
+    <path d="M275 520 L307 520 L307 570 L275 570 Z"/><g clip-path="url(#as-0)"><rect x="296.12" y="520" width="10.88" height="50" fill="url(#h-tone)" stroke="none"/><rect x="302.87" y="520" width="4.13" height="50" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M283 520q-10 -30 -2 -50q-8 -20 0 -40q-10 -24 -2 -50q-4 -14 2 -32h20q6 18 2 32q8 26 -2 50q8 20 0 40q8 20 -2 50Z" style="fill: var(--_paper)"/>
     <path d="M279 316 L303 316 L303 326 L279 326 Z"/>
-    <path d="M453 520 L485 520 L485 570 L453 570 Z"/>
+    <path d="M453 520 L485 520 L485 570 L453 570 Z"/><g clip-path="url(#as-1)"><rect x="474.12" y="520" width="10.88" height="50" fill="url(#h-tone)" stroke="none"/><rect x="480.87" y="520" width="4.13" height="50" fill="url(#h-tone-d)" stroke="none"/></g>
     <path d="M461 520q-10 -30 -2 -50q-8 -20 0 -40q-10 -24 -2 -50q-4 -14 2 -32h20q6 18 2 32q8 26 -2 50q8 20 0 40q8 20 -2 50Z" style="fill: var(--_paper)"/>
     <path d="M457 316 L481 316 L481 326 L457 326 Z"/>
-    <path d="M265 276 L495 276 L495 316 L265 316 Z"/>
-    <path d="M259 266 L501 266 L501 276 L259 276 Z"/>
+    <path d="M265 276 L495 276 L495 316 L265 316 Z"/><g clip-path="url(#as-2)"><rect x="265" y="300" width="230" height="16" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M259 266 L501 266 L501 276 L259 276 Z"/><g clip-path="url(#as-3)"><rect x="259" y="272" width="242" height="4" fill="url(#h-tone)" stroke="none"/></g>
     <circle cx="380" cy="210" r="40" style="fill: var(--_paper)"/>
     <circle cx="380" cy="210" r="32"/>
     <path d="M340 220c-30 0 -60 20 -80 46c16 -8 26 0 20 10"/>

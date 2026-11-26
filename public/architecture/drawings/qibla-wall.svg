@@ -19,6 +19,8 @@
     .t-accent { fill: var(--_accent); }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -34,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M420 172 L436 172 L436 256 L420 256 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -57,7 +59,7 @@
     <path d="M230 490L530 490" stroke-dasharray="6 3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <path d="M420 172 L436 172 L436 256 L420 256 Z"/>
+    <path d="M420 172 L436 172 L436 256 L420 256 Z"/><g clip-path="url(#as-0)"><rect x="430.56" y="172" width="5.44" height="84" fill="url(#h-tone)" stroke="none"/><rect x="433.93" y="172" width="2.07" height="84" fill="url(#h-tone-d)" stroke="none"/></g>
     <circle cx="284" cy="270" r="7"/>
     <circle cx="284" cy="360" r="7"/>
     <circle cx="284" cy="450" r="7"/>

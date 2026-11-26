@@ -19,6 +19,8 @@
     .t-accent { fill: var(--_accent); }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -34,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M356 176 L390 176 L390 186 L356 186 Z"/></clipPath><clipPath id="as-1"><path d="M356 250 L390 250 L390 260 L356 260 Z"/></clipPath><clipPath id="as-2"><path d="M356 396 L390 396 L390 406 L356 406 Z"/></clipPath><clipPath id="as-3"><path d="M356 470 L390 470 L390 480 L356 480 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -59,10 +61,10 @@
     <path d="M330 404 L354 404 L354 420"/>
     <path d="M360 120L360 520"/>
     <path d="M386 120L386 520"/>
-    <path d="M356 176 L390 176 L390 186 L356 186 Z"/>
-    <path d="M356 250 L390 250 L390 260 L356 260 Z"/>
-    <path d="M356 396 L390 396 L390 406 L356 406 Z"/>
-    <path d="M356 470 L390 470 L390 480 L356 480 Z"/>
+    <path d="M356 176 L390 176 L390 186 L356 186 Z"/><g clip-path="url(#as-0)"><rect x="356" y="182" width="34" height="4" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M356 250 L390 250 L390 260 L356 260 Z"/><g clip-path="url(#as-1)"><rect x="356" y="256" width="34" height="4" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M356 396 L390 396 L390 406 L356 406 Z"/><g clip-path="url(#as-2)"><rect x="356" y="402" width="34" height="4" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M356 470 L390 470 L390 480 L356 480 Z"/><g clip-path="url(#as-3)"><rect x="356" y="476" width="34" height="4" fill="url(#h-tone)" stroke="none"/></g>
   </g>
   <g class="layer-cut ink l-cut">
     <path d="M160 180 L330 180 L330 204 L160 204 Z"/>

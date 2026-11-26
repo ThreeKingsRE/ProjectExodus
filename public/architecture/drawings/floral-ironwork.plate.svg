@@ -20,6 +20,8 @@
     .t-credit { font-size: 7.5px; opacity: 0.75; letter-spacing: 0.04em; }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -35,7 +37,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M205 260 L215 260 L215 506 L205 506 Z"/></clipPath><clipPath id="as-1"><path d="M375 260 L385 260 L385 506 L375 506 Z"/></clipPath><clipPath id="as-2"><path d="M545 260 L555 260 L555 506 L545 506 Z"/></clipPath>
   </defs>
   <rect class="paper" x="184" y="232" width="392" height="318"/>
   <g class="layer-fine ink l-fine">
@@ -50,9 +52,9 @@
     <path d="M202 250 L558 250 L558 260 L202 260 Z"/>
     <path d="M210 500L550 500"/>
     <path d="M210 506L550 506"/>
-    <path d="M205 260 L215 260 L215 506 L205 506 Z"/>
-    <path d="M375 260 L385 260 L385 506 L375 506 Z"/>
-    <path d="M545 260 L555 260 L555 506 L545 506 Z"/>
+    <path d="M205 260 L215 260 L215 506 L205 506 Z"/><g clip-path="url(#as-0)"><rect x="211.6" y="260" width="3.4" height="246" fill="url(#h-tone)" stroke="none"/><rect x="213.71" y="260" width="1.29" height="246" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M375 260 L385 260 L385 506 L375 506 Z"/><g clip-path="url(#as-1)"><rect x="381.6" y="260" width="3.4" height="246" fill="url(#h-tone)" stroke="none"/><rect x="383.71" y="260" width="1.29" height="246" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M545 260 L555 260 L555 506 L545 506 Z"/><g clip-path="url(#as-2)"><rect x="551.6" y="260" width="3.4" height="246" fill="url(#h-tone)" stroke="none"/><rect x="553.71" y="260" width="1.29" height="246" fill="url(#h-tone-d)" stroke="none"/></g>
     <g transform="translate(295 500) scale(1 1)"><path d="M0 0C0 -40 -10 -80 -40 -110C-60 -130 -70 -160 -50 -180M0 0C6 -60 30 -100 60 -140C70 -152 66 -170 52 -170M-40 -110C-60 -100 -74 -80 -72 -60"/></g>
     <g transform="translate(295 500) scale(-1 1)"><path d="M0 0C0 -40 -10 -80 -40 -110C-60 -130 -70 -160 -50 -180M0 0C6 -60 30 -100 60 -140C70 -152 66 -170 52 -170M-40 -110C-60 -100 -74 -80 -72 -60"/></g>
     <g transform="translate(295 500) scale(1 1)"><path d="M-50 -180c-12 -8 -12 -24 0 -30c12 6 12 22 0 30M-50 -180c-16 2 -24 -8 -22 -18M-50 -180c16 2 24 -8 22 -18M52 -170c-6 -14 4 -26 14 -22c4 10 -4 22 -14 22M-72 -60c-10 -10 -4 -26 8 -24c4 10 -2 20 -8 24"/></g>

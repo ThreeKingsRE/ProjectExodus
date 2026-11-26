@@ -19,6 +19,8 @@
     .t-accent { fill: var(--_accent); }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -34,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    <clipPath id="bh"><path d="M230 140 L490 140 L490 500 L230 500 Z"/></clipPath>
+    <clipPath id="bh"><path d="M230 140 L490 140 L490 500 L230 500 Z"/></clipPath><clipPath id="as-0"><path d="M270 180 L450 180 L450 210 L270 210 Z"/></clipPath><clipPath id="as-1"><path d="M247 450 L247 340 L247 340 L247.31 335.3 L248.23 330.68 L249.74 326.22 L251.82 322 L254.44 318.08 L257.54 314.54 L261.08 311.44 L265 308.82 L265 308.82 L268.92 311.44 L272.46 314.54 L275.56 318.08 L278.18 322 L280.26 326.22 L281.77 330.68 L282.69 335.3 L283 340 L283 450 Z"/></clipPath><clipPath id="as-2"><path d="M437 450 L437 340 L437 340 L437.31 335.3 L438.23 330.68 L439.74 326.22 L441.82 322 L444.44 318.08 L447.54 314.54 L451.08 311.44 L455 308.82 L455 308.82 L458.92 311.44 L462.46 314.54 L465.56 318.08 L468.18 322 L470.26 326.22 L471.77 330.68 L472.69 335.3 L473 340 L473 450 Z"/></clipPath><clipPath id="as-3"><path d="M220 126 L500 126 L500 140 L220 140 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -46,10 +48,10 @@
   <g class="layer-profile ink l-profile">
     <path d="M230 140 L490 140 L490 500 L230 500 Z"/>
     <path d="M305 500 L305 310 L305 310 L305.24 302.81 L305.94 295.64 L307.11 288.54 L308.75 281.53 L310.84 274.64 L313.37 267.9 L316.34 261.35 L319.74 255 L323.54 248.89 L327.73 243.04 L332.3 237.47 L337.22 232.22 L342.47 227.3 L348.04 222.73 L353.89 218.54 L360 214.74 L360 214.74 L366.11 218.54 L371.96 222.73 L377.53 227.3 L382.78 232.22 L387.7 237.47 L392.27 243.04 L396.46 248.89 L400.26 255 L403.66 261.35 L406.63 267.9 L409.16 274.64 L411.25 281.53 L412.89 288.54 L414.06 295.64 L414.76 302.81 L415 310 L415 500"/>
-    <path d="M270 180 L450 180 L450 210 L270 210 Z"/>
-    <path d="M247 450 L247 340 L247 340 L247.31 335.3 L248.23 330.68 L249.74 326.22 L251.82 322 L254.44 318.08 L257.54 314.54 L261.08 311.44 L265 308.82 L265 308.82 L268.92 311.44 L272.46 314.54 L275.56 318.08 L278.18 322 L280.26 326.22 L281.77 330.68 L282.69 335.3 L283 340 L283 450 Z"/>
-    <path d="M437 450 L437 340 L437 340 L437.31 335.3 L438.23 330.68 L439.74 326.22 L441.82 322 L444.44 318.08 L447.54 314.54 L451.08 311.44 L455 308.82 L455 308.82 L458.92 311.44 L462.46 314.54 L465.56 318.08 L468.18 322 L470.26 326.22 L471.77 330.68 L472.69 335.3 L473 340 L473 450 Z"/>
-    <path d="M220 126 L500 126 L500 140 L220 140 Z"/>
+    <path d="M270 180 L450 180 L450 210 L270 210 Z"/><g clip-path="url(#as-0)"><rect x="270" y="198" width="180" height="12" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M247 450 L247 340 L247 340 L247.31 335.3 L248.23 330.68 L249.74 326.22 L251.82 322 L254.44 318.08 L257.54 314.54 L261.08 311.44 L265 308.82 L265 308.82 L268.92 311.44 L272.46 314.54 L275.56 318.08 L278.18 322 L280.26 326.22 L281.77 330.68 L282.69 335.3 L283 340 L283 450 Z"/><g clip-path="url(#as-1)"><rect x="270.76" y="308.82" width="12.24" height="141.18" fill="url(#h-tone)" stroke="none"/><rect x="278.35" y="308.82" width="4.65" height="141.18" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M437 450 L437 340 L437 340 L437.31 335.3 L438.23 330.68 L439.74 326.22 L441.82 322 L444.44 318.08 L447.54 314.54 L451.08 311.44 L455 308.82 L455 308.82 L458.92 311.44 L462.46 314.54 L465.56 318.08 L468.18 322 L470.26 326.22 L471.77 330.68 L472.69 335.3 L473 340 L473 450 Z"/><g clip-path="url(#as-2)"><rect x="460.76" y="308.82" width="12.24" height="141.18" fill="url(#h-tone)" stroke="none"/><rect x="468.35" y="308.82" width="4.65" height="141.18" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M220 126 L500 126 L500 140 L220 140 Z"/><g clip-path="url(#as-3)"><rect x="220" y="134.4" width="280" height="5.6" fill="url(#h-tone)" stroke="none"/></g>
     <path d="M140 500L580 500"/>
   </g>
   <g class="layer-dims ink l-dims">

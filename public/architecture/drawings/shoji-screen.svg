@@ -19,6 +19,8 @@
     .t-accent { fill: var(--_accent); }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -34,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M200 180 L290 180 L290 530 L200 530 Z"/></clipPath><clipPath id="as-1"><path d="M209 189 L281 189 L281 475 L209 475 Z"/></clipPath><clipPath id="as-2"><path d="M290 180 L380 180 L380 530 L290 530 Z"/></clipPath><clipPath id="as-3"><path d="M299 189 L371 189 L371 475 L299 475 Z"/></clipPath><clipPath id="as-4"><path d="M380 180 L470 180 L470 530 L380 530 Z"/></clipPath><clipPath id="as-5"><path d="M389 189 L461 189 L461 475 L389 475 Z"/></clipPath><clipPath id="as-6"><path d="M470 180 L560 180 L560 530 L470 530 Z"/></clipPath><clipPath id="as-7"><path d="M479 189 L551 189 L551 475 L479 475 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -63,14 +65,14 @@
   <g class="layer-profile ink l-profile">
     <path d="M190 164 L570 164 L570 180 L190 180 Z"/>
     <path d="M190 530 L570 530 L570 540 L190 540 Z"/>
-    <path d="M200 180 L290 180 L290 530 L200 530 Z"/>
-    <path d="M209 189 L281 189 L281 475 L209 475 Z"/>
-    <path d="M290 180 L380 180 L380 530 L290 530 Z"/>
-    <path d="M299 189 L371 189 L371 475 L299 475 Z"/>
-    <path d="M380 180 L470 180 L470 530 L380 530 Z"/>
-    <path d="M389 189 L461 189 L461 475 L389 475 Z"/>
-    <path d="M470 180 L560 180 L560 530 L470 530 Z"/>
-    <path d="M479 189 L551 189 L551 475 L479 475 Z"/>
+    <path d="M200 180 L290 180 L290 530 L200 530 Z"/><g clip-path="url(#as-0)"><rect x="259.4" y="180" width="30.6" height="350" fill="url(#h-tone)" stroke="none"/><rect x="278.37" y="180" width="11.63" height="350" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M209 189 L281 189 L281 475 L209 475 Z"/><g clip-path="url(#as-1)"><rect x="256.52" y="189" width="24.48" height="286" fill="url(#h-tone)" stroke="none"/><rect x="271.7" y="189" width="9.3" height="286" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M290 180 L380 180 L380 530 L290 530 Z"/><g clip-path="url(#as-2)"><rect x="349.4" y="180" width="30.6" height="350" fill="url(#h-tone)" stroke="none"/><rect x="368.37" y="180" width="11.63" height="350" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M299 189 L371 189 L371 475 L299 475 Z"/><g clip-path="url(#as-3)"><rect x="346.52" y="189" width="24.48" height="286" fill="url(#h-tone)" stroke="none"/><rect x="361.7" y="189" width="9.3" height="286" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M380 180 L470 180 L470 530 L380 530 Z"/><g clip-path="url(#as-4)"><rect x="439.4" y="180" width="30.6" height="350" fill="url(#h-tone)" stroke="none"/><rect x="458.37" y="180" width="11.63" height="350" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M389 189 L461 189 L461 475 L389 475 Z"/><g clip-path="url(#as-5)"><rect x="436.52" y="189" width="24.48" height="286" fill="url(#h-tone)" stroke="none"/><rect x="451.7" y="189" width="9.3" height="286" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M470 180 L560 180 L560 530 L470 530 Z"/><g clip-path="url(#as-6)"><rect x="529.4" y="180" width="30.6" height="350" fill="url(#h-tone)" stroke="none"/><rect x="548.37" y="180" width="11.63" height="350" fill="url(#h-tone-d)" stroke="none"/></g>
+    <path d="M479 189 L551 189 L551 475 L479 475 Z"/><g clip-path="url(#as-7)"><rect x="526.52" y="189" width="24.48" height="286" fill="url(#h-tone)" stroke="none"/><rect x="541.7" y="189" width="9.3" height="286" fill="url(#h-tone-d)" stroke="none"/></g>
   </g>
   <g class="layer-dims ink l-dims">
     <path d="M200 560L290 560M196 564L204 556M286 564L294 556M200 554L200 566M290 554L290 566"/><text x="245" y="574" text-anchor="middle">PANEL</text>

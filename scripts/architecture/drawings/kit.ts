@@ -134,7 +134,7 @@ export function axo(origin: Pt, kind: 'isometric' | 'planometric' | 'oblique' = 
 export type Axo = ReturnType<typeof axo>
 
 /** Tone patterns for shaded faces; pass AXO_DEFS to finish() when using face(..., 'mid'|'dark'). */
-export const AXO_DEFS = `<pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern><pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>`
+export const AXO_DEFS = '' // the tone patterns now live in sheet.ts (always available)
 
 /**
  * One planar face, painted in order (painter's algorithm: draw far faces first).

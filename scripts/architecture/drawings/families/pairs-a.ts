@@ -48,6 +48,8 @@ export interface Pair {
   /** Show a different view in the window (a section) instead of redrawing the whole larger */
   detail?: (T: Layers, win: { cx: number; cy: number; r: number }) => void
   /** Labels and dimensions positioned by the caller for a custom detail (page coordinates) */
+  /** A smaller round window lower on the sheet, to leave more room for the whole */
+  win?: { cx: number; cy: number; r: number }
   /** Extra <defs> content (clip paths and so on) */
   defs?: string
   customItems?: (win: { cx: number; cy: number; r: number }) => { items: Array<{ text: string; at: Pt }>; dims: string[] }
@@ -298,7 +300,7 @@ export function build(c: Pair): SheetSpec {
   const L = newLayers()
   const B = new Bounds()
   const { scale: sW, ox, oy } = c.whole
-  const win = { cx: 300, cy: 484, r: 144 }
+  const win = c.win ?? { cx: 300, cy: 484, r: 144 }
   const z = zoomInContext(L, { id: c.id, draw: c.draw, whole: { scale: sW, ox, oy }, focus: c.at, regionR: c.r, window: win, detail: c.detail })
   const at = (u: number, v: number): Pt => [z.zoom.X(u), z.zoom.Y(v)]
   B.add([ox + c.whole.w[0] * sW - 4, oy - c.whole.h[1] * sW - 6], [ox + c.whole.w[1] * sW + 4, oy - c.whole.h[0] * sW + 8], [win.cx - win.r, win.cy - win.r], [win.cx + win.r, win.cy + win.r])

@@ -19,6 +19,8 @@
     .t-accent { fill: var(--_accent); }
   </style>
   <defs>
+    <pattern id="h-tone" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="3.2" class="ink l-hair"/></pattern>
+    <pattern id="h-tone-d" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="2.2" class="ink l-hair"/></pattern>
     <pattern id="h-stone" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="6" class="ink l-hair"/>
     </pattern>
@@ -34,7 +36,7 @@
     <pattern id="h-timber" width="40" height="6" patternUnits="userSpaceOnUse">
       <path d="M0 3C10 1 20 5 40 3" class="ink l-hair"/>
     </pattern>
-    
+    <clipPath id="as-0"><path d="M329 326 L361 326 L361 340 L329 340 Z"/></clipPath><clipPath id="as-1"><path d="M329 162 L361 162 L361 176 L329 176 Z"/></clipPath><clipPath id="as-2"><path d="M329 38 L361 38 L361 52 L329 52 Z"/></clipPath>
   </defs>
   <rect class="paper" width="600" height="780"/>
   <rect class="ink l-fine" x="12" y="12" width="576" height="756"/>
@@ -89,9 +91,9 @@
     <circle cx="420" cy="64" r="3"/>
   </g>
   <g class="layer-profile ink l-profile">
-    <path d="M329 326 L361 326 L361 340 L329 340 Z"/>
-    <path d="M329 162 L361 162 L361 176 L329 176 Z"/>
-    <path d="M329 38 L361 38 L361 52 L329 52 Z"/>
+    <path d="M329 326 L361 326 L361 340 L329 340 Z"/><g clip-path="url(#as-0)"><rect x="329" y="334.4" width="32" height="5.6" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M329 162 L361 162 L361 176 L329 176 Z"/><g clip-path="url(#as-1)"><rect x="329" y="170.4" width="32" height="5.6" fill="url(#h-tone)" stroke="none"/></g>
+    <path d="M329 38 L361 38 L361 52 L329 52 Z"/><g clip-path="url(#as-2)"><rect x="329" y="46.4" width="32" height="5.6" fill="url(#h-tone)" stroke="none"/></g>
   </g>
   <g class="layer-cut ink l-cut">
     <path d="M166 340 L180 340 L180 540 L166 540 Z"/>
