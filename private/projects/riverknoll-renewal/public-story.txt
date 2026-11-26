@@ -12,7 +12,7 @@ The initiative is independent. RIT has not approved or funded it. Figures are co
 
 Asked by the organizer on November 26: build on a concrete slab with vinyl plank inside the homes and timber upper floors, and show plainly what the walls cost in System 3E, in ordinary 2x6 wood framing and in factory-built prefab wood wall panels. Every figure is all in (design, contingency, inflation, financing) for the same 744 beds. The concrete upper floors of v24 to v24.2 stay below as a comparison; timber floors save about $3.9M ($5,176 a bed).
 
-**The whole building, with the same slab, vinyl and timber floors in every plan**
+The whole building, with the same slab, vinyl and timber floors in every plan:
 
 | What | System 3E, future US block plant (base) | System 3E, blocks shipped from Poland today | 2x6 wood stick frame + R-5 outside insulation | Prefab wood wall panels (nearest plant, Middleport NY) |
 | --- | --- | --- | --- | --- |
@@ -24,7 +24,7 @@ Asked by the organizer on November 26: build on a concrete slab with vinyl plank
 | Pays back on upkeep | About year 23, only if block buildings get cheaper insurance; never without it | Not within 50 years | Base | No yearly saving |
 | 50-year total per bed (5.15%) | $224,330 | $239,082 | $225,948 | $227,183 |
 
-**The outside walls alone, per sq ft of wall**
+The outside walls alone, per sq ft of wall:
 
 | Line | System 3E from Poland today | System 3E, future US plant | 2x6 stick + R-5 | Prefab panels |
 | --- | --- | --- | --- | --- |
@@ -37,7 +37,7 @@ Asked by the organizer on November 26: build on a concrete slab with vinyl plank
 | Insulation to meet NY code | None needed | None needed | $4.25 | $4.25 |
 | Outside finish | Render $4.00 | Render $4.00 | Siding $10.50 | Siding $10.50 |
 | Extra inside plaster | $0.50 | $0.50 | $0 | $0 |
-| **Total per sq ft of wall** | **$35.22** | **$20.50** | **$24.25** | **$25.24** |
+| Total per sq ft of wall | $35.22 | $20.50 | $24.25 | $25.24 |
 | All in, per bed | $14,652 | $8,527 | $10,087 | $10,499 |
 | All in, whole project | $10.9M | $6.3M | $7.5M | $7.8M |
 | Yearly savings per bed | $42 | $42 | Base | $0 |
@@ -46,11 +46,13 @@ Asked by the organizer on November 26: build on a concrete slab with vinyl plank
 
 The straight answer: System 3E walls win only if the blocks come from a US plant near the model's $12 a sq ft, which is our assumption, not a quote, and no US plant is open yet. Bought at System 3E's European list price and shipped today, they land at about $26.72 a sq ft of wall before install, and the walls cost about $4,600 a bed more than wood with no payback in 50 years. Even at the US price, the whole System 3E building costs about $2,300 a bed more than wood: the outside walls save about $1,560 a bed, but block party walls and partitions cost a little more than wood ones (about +$470 a bed) and the wood plan's advanced-framing saving (about 1.5% of the building, about $3,400 a bed) is lost. More than half of the yearly saving is cheaper insurance for block buildings, which RIT has not confirmed.
 
-Pros and cons, briefly:
+Pros and cons, briefly.
 
-- **System 3E:** the wall meets NY code with no added insulation (R-27.8 on the maker's data), has nothing to rot or feed mold, and plaster takes dents and holes better than drywall; trained general labor stacks it fast. But there is no US plant, one maker, freight and tariff risk, a European fire test that a US code official must accept, and ring beams that still need trades.
-- **2x6 wood stick:** the cheapest proven way, with local lumber, local crews and inspectors who know it. It needs outside foam, wrap and siding to meet code, drywall dents, and a failed wrap can hide wet walls.
-- **Prefab wood panels:** about 39% fewer framing days on site and factory-square walls. They cost about 10% more for framing, come from about 55 miles away (our estimate), which breaks the couple-of-miles sourcing rule, need crane and truck access between rows, and have the same upkeep as stick.
+System 3E: the wall meets NY code with no added insulation (R-27.8 on the maker's data), has nothing to rot or feed mold, and plaster takes dents and holes better than drywall; trained general labor stacks it fast. But there is no US plant, one maker, freight and tariff risk, a European fire test that a US code official must accept, and ring beams that still need trades.
+
+2x6 wood stick: the cheapest proven way, with local lumber, local crews and inspectors who know it. It needs outside foam, wrap and siding to meet code, drywall dents, and a failed wrap can hide wet walls.
+
+Prefab wood panels: about 39% fewer framing days on site and factory-square walls. They cost about 10% more for framing, come from about 55 miles away (our estimate), which breaks the couple-of-miles sourcing rule, need crane and truck access between rows, and have the same upkeep as stick.
 
 These figures replace the payback figures in life cycle v2, which assumed concrete plank floors. Sources: System 3E price list and container offer; Drewry container index (Nov 12, 2026); Trading Economics EUR/USD (Nov 26, 2026); Thomson Reuters on the US-EU tariff framework; Kuzdas, prefab wall panel cost study (UW-Stout, 2021); Barden Building Products; IBACOS for ENERGY STAR; plus the sources already in the research library.
 
