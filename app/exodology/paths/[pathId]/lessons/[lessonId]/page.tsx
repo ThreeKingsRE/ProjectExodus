@@ -10,7 +10,7 @@ import {
   ArrowLeft, ArrowRight, BookOpen, Clock, CheckCircle2,
   Lightbulb, ChevronRight, Play, Brain, Gamepad2, FileText,
   Quote, ExternalLink, RefreshCw, Check, X, Shuffle, Timer,
-  Target, Lock, Loader2, Trophy, Keyboard, StickyNote, Save
+  Target, Lock, Loader2, Trophy, Keyboard, StickyNote, Save, Download, ClipboardCheck
 } from 'lucide-react'
 import Link from 'next/link'
 import { notFound, useParams, useRouter } from 'next/navigation'
@@ -233,6 +233,8 @@ type LessonData = {
     // Guided exercise
     steps?: Array<{ instruction: string; example?: string; tip?: string; prompt?: string; guidance?: string; options?: string[] }>
     synthesis?: string
+    // Self-assessment rubric for guided exercises (capstones)
+    rubric?: Array<{ criterion: string; developing: string; proficient: string; exemplary: string }>
     // Reflection - prompts can be strings or objects with question/guidance
     reflectionPrompts?: Array<string | { question: string; guidance?: string }>
     prompts?: Array<string | { question: string; guidance?: string }>
@@ -950,11 +952,42 @@ function ReflectionContent({ prompts }: { prompts: ReflectionPrompt[] }) {
   )
 }
 
-function GuidedExercisePlayer({ content }: { content: NonNullable<LessonData['content']> }) {
+function GuidedExercisePlayer({ content, lessonId, title }: { content: NonNullable<LessonData['content']>; lessonId: string; title: string }) {
   const [currentStep, setCurrentStep] = useState(0)
   const [responses, setResponses] = useState<Record<number, string>>({})
+  const storageKey = `exodology-exercise-${lessonId}`
+
+  // Keep answers in this browser so a long exercise survives a reload
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(storageKey)
+      if (saved) setResponses(JSON.parse(saved))
+    } catch { /* storage unavailable: answers stay in memory only */ }
+  }, [storageKey])
+  useEffect(() => {
+    try {
+      if (Object.keys(responses).length) window.localStorage.setItem(storageKey, JSON.stringify(responses))
+    } catch { /* ignore */ }
+  }, [responses, storageKey])
 
   const steps = content.steps || []
+
+  const downloadAnswers = () => {
+    const lines = [title, '', ...steps.flatMap((s, i) => [
+      `Step ${i + 1}: ${s.instruction}`,
+      ...(s.prompt ? [s.prompt] : []),
+      '',
+      responses[i] || '(no answer yet)',
+      '',
+    ])]
+    const blob = new Blob([lines.join('\n')], { type: 'text/plain' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${lessonId}-answers.txt`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
 
   if (steps.length === 0) return null
 
@@ -963,7 +996,7 @@ function GuidedExercisePlayer({ content }: { content: NonNullable<LessonData['co
       {/* Introduction */}
       {content.introduction && (
         <div className="p-6 rounded-2xl bg-gradient-to-br from-teal-500/10 to-cyan-500/10 border-2 border-teal-500/20">
-          <p className="text-[var(--muted-foreground)] leading-relaxed">{content.introduction}</p>
+          <p className="text-[var(--muted-foreground)] leading-relaxed whitespace-pre-line">{content.introduction}</p>
         </div>
       )}
 
@@ -1075,6 +1108,39 @@ function GuidedExercisePlayer({ content }: { content: NonNullable<LessonData['co
         )}
       </div>
 
+      <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--muted-foreground)]">
+        <span>Your answers are saved in this browser only.</span>
+        <Button variant="outline" onClick={downloadAnswers} disabled={!Object.values(responses).some(Boolean)}>
+          <Download className="w-4 h-4 mr-2" />
+          Download your answers
+        </Button>
+      </div>
+
+      {/* Self-assessment rubric */}
+      {content.rubric && content.rubric.length > 0 && (
+        <div className="p-6 rounded-2xl border-2 border-[var(--border)] bg-[var(--card)] space-y-4">
+          <div className="flex items-center gap-3">
+            <ClipboardCheck className="w-6 h-6 text-teal-500" />
+            <h3 className="text-xl font-black text-[var(--foreground)]">Check your work</h3>
+          </div>
+          <p className="text-sm text-[var(--muted-foreground)]">
+            Use this rubric to judge your own plan, or share it with a peer or mentor. Aim for Proficient on every row before you call the capstone done.
+          </p>
+          <div className="space-y-4">
+            {content.rubric.map((row, i) => (
+              <div key={i} className="rounded-xl border border-[var(--border)] p-4">
+                <p className="font-bold text-[var(--foreground)] mb-2">{row.criterion}</p>
+                <div className="grid sm:grid-cols-3 gap-3 text-sm">
+                  <div><p className="font-semibold text-[var(--muted-foreground)]">Developing</p><p className="text-[var(--muted-foreground)]">{row.developing}</p></div>
+                  <div><p className="font-semibold text-teal-600">Proficient</p><p className="text-[var(--foreground)]">{row.proficient}</p></div>
+                  <div><p className="font-semibold text-[var(--muted-foreground)]">Exemplary</p><p className="text-[var(--muted-foreground)]">{row.exemplary}</p></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Synthesis (shown at end) */}
       {currentStep === steps.length - 1 && Object.keys(responses).length === steps.length && content.synthesis && (
         <motion.div
@@ -1085,6 +1151,34 @@ function GuidedExercisePlayer({ content }: { content: NonNullable<LessonData['co
           <h3 className="text-xl font-black text-[var(--foreground)] mb-2">Synthesis</h3>
           <p className="text-[var(--muted-foreground)]">{content.synthesis}</p>
         </motion.div>
+      )}
+
+      {/* Further reading for guided exercises */}
+      {content.references && content.references.length > 0 && (
+        <div className="pt-6 border-t border-[var(--border)]">
+          <h3 className="text-lg font-bold text-[var(--foreground)] mb-3 flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-[var(--muted-foreground)]" />
+            Further Reading
+          </h3>
+          <div className="space-y-3">
+            {content.references.map((ref, i) => (
+              <div key={i} className="p-4 rounded-xl bg-[var(--muted)]/30 border border-[var(--border)]">
+                <p className="font-medium text-[var(--foreground)]">
+                  {ref.author} ({ref.year}).{' '}
+                  {ref.url ? (
+                    <a href={ref.url} target="_blank" rel="noopener noreferrer" className="underline decoration-dotted underline-offset-2 hover:text-[var(--primary)]">
+                      <em>{ref.title}</em>
+                    </a>
+                  ) : (
+                    <em>{ref.title}</em>
+                  )}
+                  . {ref.publisher}.
+                </p>
+                <p className="text-sm text-[var(--muted-foreground)] mt-1">{ref.relevance}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   )
@@ -1468,7 +1562,7 @@ export default function LessonPage() {
                         <MatchingPlayer content={lessonData.content} />
                       )}
                       {lessonData.content.gameType === 'guided-exercise' && (
-                        <GuidedExercisePlayer content={lessonData.content} />
+                        <GuidedExercisePlayer content={lessonData.content} lessonId={lessonData.id} title={lessonData.title} />
                       )}
                     </>
                   )}
@@ -1480,7 +1574,7 @@ export default function LessonPage() {
                         <ScenarioPlayer content={lessonData.content} />
                       )}
                       {lessonData.content.gameType === 'guided-exercise' && (
-                        <GuidedExercisePlayer content={lessonData.content} />
+                        <GuidedExercisePlayer content={lessonData.content} lessonId={lessonData.id} title={lessonData.title} />
                       )}
                       {/* Interactive without gameType - show instruction content if has sections */}
                       {!lessonData.content.gameType && lessonData.content.sections && (

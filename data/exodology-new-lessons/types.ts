@@ -25,8 +25,11 @@ export interface NewExodologyLesson {
     keyTakeaways?: string[]
     /** interactive lessons (guided exercises) */
     gameType?: 'guided-exercise'
-    steps?: { instruction: string; prompt: string }[]
+    steps?: { instruction: string; prompt: string; example?: string; guidance?: string; tip?: string }[]
     completionRequirement?: string
+    /** optional self-assessment rubric (capstones) */
+    rubric?: { criterion: string; developing: string; proficient: string; exemplary: string }[]
+    synthesis?: string
     /** reflection lessons */
     prompts?: { question: string; guidance: string }[]
     closingNote?: string
