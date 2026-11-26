@@ -2,7 +2,7 @@
 
 Draft for review, November 26 2026. Concept research by the initiative organizer and collaborators. Not an approved RIT project, bid or permit set. Every figure is an estimate from the feasibility model unless it says otherwise, and each section names where to check it.
 
-Latest working files: feasibility model v24, pitch deck v26 and material list v1 (November 26 2026). Every earlier version is listed in version-history.md.
+Latest working files: feasibility model v24.1 (System 3E stacked at the maker's speed) with its wood-frame comparison plan, material list v2 and the System 3E vs wood frame life cycle v2 (November 26 2026). Pitch deck v26 still shows the v24 numbers. Every earlier version is listed in version-history.md.
 
 ## 1. What happens to Riverknoll
 
@@ -30,15 +30,41 @@ The plan is demand-led at 744 new beds, with a sourced range of 444 to 871 from 
 
 ## 4. Cost
 
-- Base (v24): $177.0M total, $237,854 a new bed, about $305 a sq ft for a two-story row's building alone and about $595 a sq ft all in, after RIT's decommissioning takes demolition and asbestos off this budget. Model v23 was $158.4M ($212,839 a bed); v22 was $159.3M ($214k a bed).
-- Were the walls counted twice? No. Walls were always counted once, inside the $300 a sq ft building price, as wood-frame walls. v22 then credited a wrong 5% prefab-panel saving and v23 took wall insulation out, but System 3E's own cost was never added. v24 swaps each wood part for its System 3E part: exterior wall about $23.50 a sq ft of wall installed (blocks, ring beams and lintels, dry-stack labor, render) against about $22.50 for the framed wall with siding; party wall $25.50 against $23; partitions $12.92 against $10.25; plank floors $21 a sq ft against $8 for wood joists. Together that is about $9.4M more than conventional framing (about 4% of the building).
-- None of these are System 3E quotes: System 3E prices each project and publishes no US price. With every part at its low or high end the total is $164.5M ($221k a bed) to $198.8M ($267k a bed). Wood floor joists instead of plank would bring it to $173.1M ($232,679 a bed); floors poured on site are an option not yet priced. System 3E's own online calculator gives about $154 a sq ft for a simple 1,600 sq ft house from European data, without site, permits or US labor.
-- Material list check: building one townhome from installed national prices comes to about $164 a sq ft at mid ($98 to $260), close to national benchmarks ($162 NAHB, $176 ICC). The model keeps the conservative, institutional $305 until a Rochester contractor prices it.
-- Next levers: a contractor price near $250 a sq ft ($147.8M, $199k a bed) or peer-sized homes ($148.6M, $200k a bed); P3 phasing (pilot, then two phases of 8) saves about $7.9M but needs much more money in a single year.
+- Base (v24.1): $173.7M total, $233,442 a new bed, about $294 a sq ft for the buildings alone and about $575 a sq ft all in across the project ($299 and $584 for a two-story row), after RIT's decommissioning takes demolition and asbestos off this budget. v24.1 is v24 with System 3E's blocks stacked as fast as the maker says (its FAQ: 145 square meters of wall in 1 day instead of 14), which the organizer chose to assume on Nov 26. Model v24 was $177.0M ($237,854 a bed, $305 and $595 a sq ft for a two-story row); v23 was $158.4M ($212,839 a bed).
+- Wood-frame plan, kept for comparison: the same model with 2x6 wood-frame walls, wood party walls and partitions, wood floor joists and advanced framing comes to $167.6M, $225,240 a bed, about $284 a sq ft for the buildings and $555 all in ($288 and $564 for a two-story row). System 3E costs about $6.1M (about $8,200 a bed) more up front; its life-cycle case is in section 4a.
+- Were the walls counted twice? No. Walls were always counted once, inside the $300 a sq ft building price, as wood-frame walls. v22 then credited a wrong 5% prefab-panel saving and v23 took wall insulation out, but System 3E's own cost was never added. v24 swaps each wood part for its System 3E part: exterior wall about $23.50 a sq ft of wall installed (blocks, ring beams and lintels, dry-stack labor, render) against about $22.50 for the framed wall with siding; party wall $25.50 against $23; partitions $12.92 against $10.25; plank floors $21 a sq ft against $8 for wood joists. At ordinary block-laying speed that was about $9.4M more than conventional framing (v24); at the maker's stacking speed it is about $6.1M more (v24.1).
+- None of these are System 3E quotes: System 3E prices each project and publishes no US price. With every part at its low or high end the total is $162.5M ($218k a bed) to $198.8M ($267k a bed). Wood floor joists instead of plank would bring it to $169.8M ($228,267 a bed); floors poured on site are an option not yet priced. System 3E's own online calculator gives about $154 a sq ft for a simple 1,600 sq ft house from European data, without site, permits or US labor.
+- Material list check (v2, matched to the design: every material the drawings need, nothing more, including the 3-story homes v1 missed): about $162 a sq ft to build at mid ($97 to $258) and about $320 a sq ft all in, $130,049 a bed, from national installed list prices. That sits near national benchmarks ($162 NAHB, $176 ICC). The model keeps the conservative, institutional figure ($294 a sq ft in v24.1) until a Rochester contractor prices it.
+- Next levers: a contractor price near $250 a sq ft or peer-sized homes ($145.9M, $196k a bed); P3 phasing (pilot, then two phases of 8) saves about $7.9M but needs much more money in a single year.
 - From v19 to v20.1: compact plan −$44.6M; reused roads and parking −$6.1M; one drawing set −$7.5M; advanced framing −$2.4M; pilot then 4 rows a year +$12.2M; RIT's decommissioning −$22.7M.
 - Utilities: inspect and line old sewer mains, replace what fails; new laterals, water services and electric service are needed either way. Flow rises about 45% at 744 beds, so the sewer and electric capacity must be checked with RIT Facilities, MCWA, Henrietta Sewer District and RG&E.
 - Asbestos: certified survey before demolition and licensed abatement under NY Industrial Code Rule 56 (https://www.law.cornell.edu/regulations/new-york/title-12/chapter-I/subchapter-A/part-56; NYS DOL P231: https://dol.ny.gov/new-york-state-asbestos-survey-requirements-building-permit-applicants-p231).
 - Salvage saves almost nothing once removal labor is counted; donating to the Habitat ReStore in Henrietta is an option.
+
+## 4a. System 3E vs wood frame: does System 3E pay for itself?
+
+Asked by the organizer on Nov 26: does System 3E earn back its higher price through less upkeep, less mold and damage, and faster dry-stack building by less skilled crews? Worked out in the life-cycle file (System 3E vs wood frame life cycle v2) and the 3E_vs_Wood_Lifecycle tab of model v24.1. Each case is per bed, all in, in 2026 dollars.
+
+| | System 3E (base) | Wood frame (comparison) |
+| --- | --- | --- |
+| Total and per bed | $173.7M, $233,442 | $167.6M, $225,240 |
+| Cost per sq ft, buildings / all in | $294 / $575 | $284 / $555 |
+| Wall labor hours, all 744 beds | About 49,800 | About 62,900 |
+| Crew skill | Dry stack by trained general labor; ring beams, render and plaster still need trades | Framing carpenters |
+| Schedule | About 1.3 weeks faster per phase; openings stay each fall, so no semester is gained | Base calendar |
+| Walls only: extra upfront cost | About $2,600 a bed | — |
+| Whole building with plank floors: extra upfront cost | About $7,800 a bed | — |
+| Yearly savings | About $133 a bed (insurance $74, refinishing $28, wall holes $17, energy $9, hidden wet walls $6) | — |
+| Walls only: pays back | About year 28 at 5.15%; worth about +$1,300 a bed over 50 years (+$3,700 at 3%) | — |
+| Whole building: pays back | Not within 50 years at 5.15% (about −$3,900 a bed; −$1,400 at 3%) | — |
+
+- Faster, less skilled labor is real: about 13,100 fewer wall labor hours (about $617,000 at Rochester construction wages, BLS May 2025, $32.46 an hour before benefits). It is counted once, inside the installed price and the shorter schedule.
+- More than half the yearly saving is insurance, taken at half the gap in a concrete-industry survey (NRMCA and Boston College, 2024). If RIT's campus insurance doesn't price buildings by wall type, the saving drops to about $59 a bed a year and the walls never pay back.
+- The "idiot proof" point holds but is small in dollars: plaster on block shrugs off the wall holes and hidden wet walls that drywall gets (about $23 a bed a year). What students wear out most (paint, floors, doors, bathrooms, surface mold from showers) costs the same either way.
+- Risk: if the first US crews are no faster than ordinary block laying, System 3E walls run about $13,800 a bed behind and never catch up.
+- What would settle it: a System 3E USA quote on the drawings (each $1 a sq ft of wall moves the result about $660 a bed), a crew productivity guarantee, and an RIT insurance quote by construction type. Donated or discounted pilot blocks would make the walls cheaper from day one.
+- Sources read: System 3E FAQ; Lanthier-Veilleux et al., dampness and mold among university students (IJERPH 2016); HomeGuide drywall repair, mold removal and block wall costs; Loyola University Maryland and Fordham University room damage charges; BLS Rochester wages (May 2025); RSMeans for BASF time and motion study (2006); InterNACHI life expectancy chart; NRMCA and Boston College multifamily insurance survey (2024); Multihousing News on student housing turns; Insulation Institute N112 (NY 2025 code); Graduate School USA on general conditions.
+- Version 1 of this comparison (ordinary laying speed, no advanced framing on the wood side) stays on this page for checking.
 
 ## 5. Phasing
 
@@ -46,35 +72,35 @@ Year 1 is design, permits and surveys. A 2-row, 72-bed pilot opens August 2029, 
 
 ## 6. Funding: who pays, and how little can RIT pay
 
-Who borrows changes RIT's share only a little. Today's Riverknoll rent can repay about $33M to $51M of debt, depending on who borrows, against a $177M cost.
+Who borrows changes RIT's share only a little. Today's Riverknoll rent can repay about $33M to $51M of debt, depending on who borrows, against a $173.7M cost (v24.1).
 
 | Who owns and borrows | RIT net share | Share of cost |
 | --- | --- | --- |
-| RIT, DASNY bonds over 30 years (base) | $126.5M | 72% |
-| RIT, DASNY bonds over 40 years | $121.1M | 68% |
-| Nonprofit owner on an RIT ground lease | $132.8M | 75% |
-| Same nonprofit, weaker loan terms | $136.0M | 77% |
-| Private developer on a ground lease | $115.2M | 65% |
+| RIT, DASNY bonds over 30 years (base) | $123.2M | 71% |
+| RIT, DASNY bonds over 40 years | $117.8M | 68% |
+| Nonprofit owner on an RIT ground lease | $129.5M | 75% |
+| Same nonprofit, weaker loan terms | $132.7M | 76% |
+| Private developer on a ground lease | $111.9M | 64% |
 
 Outside money: about $10.7M in the base (NYSERDA heat-pump incentive and gifts), up to $38.6M if every source lands high.
 
 - Can qualify: NYSERDA New Efficient Homes heat-pump incentive (https://www.nyserda.ny.gov/All-Programs/New-Efficient-Homes-New-York/Heat-Pump-Incentive); NYSERDA Buildings of Excellence, uncertain for student housing; the federal geothermal heat-pump credit as cash for a tax-exempt owner, only with ground-source heat pumps (IRS elective pay: https://www.irs.gov/node/123396); RG&E ground-source rebate (https://www.rge.com/documents/d/global/building-electrification-rebate-catalog-pdf); HECap, uncertain because residence halls are not named (https://dasny.org/sites/default/files/cta-link-files/2025/HECap%20FAQ.pdf); philanthropy, with RIT's naming policy reserving residence halls for commemorative naming (https://www.rit.edu/giving/sites/rit.edu.giving/files/RIT%20Gift%20Acceptance%20and%20Naming%20Policy_Revised%202025_final.pdf).
 - Ruled out: low-income housing tax credits (full-time student rule, IRC 42(i)(3)(D), and the general public use rule, 26 CFR 1.42-9), HUD college housing loans, Empire State Development capital (excludes residential-only projects), NY-Sun upstate commercial, 45L and 179D (ended for construction after June 30 2026: https://www.irs.gov/newsroom/faqs-for-modification-of-sections-25c-25d-25e-30c-30d-45l-45w-and-179d-under-public-law-119-21-139-stat-72-july-4-2025-commonly-kno), and the 48E solar credit (must be in service by end of 2027).
 - Precedents for a nonprofit or developer partner on campus land: Lynn University and Provident ($81.6M, 743 beds), URI and Gilbane (about 1,100 beds, $210M tax-exempt bonds, Nov 2025: https://www.uri.edu/news/2025/11/uri-gilbane-reach-financial-close-on-partnership-to-build-and-operate-new-on-campus-student-housing/). Rating agencies count such debt with the university (Moody's higher education methodology), and partner housing debt has been downgraded when occupancy fell (Texas A&M Park West).
-- RIT's capacity (FY2026 audited statements: https://www.rit.edu/controller/sites/rit.edu.controller/files/2026-11/FY2026%20RIT%20Financial%20Statements%20Signed.pdf): endowment $1.683B, debt principal $377.7M, liquid assets within a year $464.8M. Borrowing the $137M gap at 5.15% over 30 years would add roughly $9M a year of debt service, about 1% of revenue (our estimate).
+- RIT's capacity (FY2026 audited statements: https://www.rit.edu/controller/sites/rit.edu.controller/files/2026-11/FY2026%20RIT%20Financial%20Statements%20Signed.pdf): endowment $1.683B, debt principal $377.7M, liquid assets within a year $464.8M. Borrowing the $132M gap at 5.15% over 30 years would add roughly $9M a year of debt service, about 1% of revenue (our estimate).
 
 What it takes for RIT to pay a minority share:
 
 | Combination | Total cost | RIT net share |
 | --- | --- | --- |
-| A. Base plan (System 3E blocks), Riverknoll-level rent | $177.0M | $126.5M |
-| B. A with peer-sized homes | $148.6M | $98.2M |
-| C. A with rent near off-campus (about 1.5x Riverknoll) | $177.0M | $90.8M |
-| D. B and C together | $148.6M | $62.5M |
-| E. D with every gift and grant landing high | $148.6M | $34.6M |
-| F. D through a nonprofit owner | $148.6M | $74.5M |
+| A. Base plan (System 3E blocks), Riverknoll-level rent | $173.7M | $123.2M |
+| B. A with peer-sized homes | $145.9M | $95.4M |
+| C. A with rent near off-campus (about 1.5x Riverknoll) | $173.7M | $87.5M |
+| D. B and C together | $145.9M | $59.7M |
+| E. D with every gift and grant landing high | $145.9M | $31.9M |
+| F. D through a nonprofit owner | $145.9M | $71.7M |
 
-To cap RIT at $50M on the base plan, rent would need about $14,100 a bed-year in today's dollars, more than twice Riverknoll's $6,762 and above APEX's about $10,188. Phasing helps cash flow, not the total: old Riverknoll closes after spring 2027, and each new phase's rent starts repaying its own loan.
+To cap RIT at $50M on the base plan, rent would need about $13,800 a bed-year in today's dollars, more than twice Riverknoll's $6,762 and above APEX's about $10,188. Phasing helps cash flow, not the total: old Riverknoll closes after spring 2027, and each new phase's rent starts repaying its own loan.
 
 The realistic route for the initiative: Projxodus as initiator and advocate; an RIT call for proposals that invites established nonprofit owners and developers; and a student and community advisory seat written into any ground lease. A student or a new nonprofit cannot realistically own or borrow for the project.
 

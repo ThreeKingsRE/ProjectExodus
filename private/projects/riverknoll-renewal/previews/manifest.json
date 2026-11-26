@@ -73,13 +73,31 @@
       "current": false
     },
     {
+      "id": "feasibility-v24.1",
+      "title": "Feasibility model v24.1 (current): System 3E stacked at the maker's speed",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v24.1.json",
+      "summary": "Same design as v24 with blocks stacked as fast as System 3E says: $173,680,817, $233,442 a bed, $294 a sq ft to build, $575 all in. Has the 3E vs wood life-cycle tab.",
+      "current": true
+    },
+    {
+      "id": "feasibility-v24.1-wood-frame",
+      "title": "Feasibility model v24.1, wood-frame plan (for comparison)",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v24.1-wood-frame.json",
+      "summary": "The same model with 2x6 wood-frame walls and wood floor joists instead of System 3E: $167,578,545, $225,240 a bed, $284 a sq ft to build, $555 all in.",
+      "current": true
+    },
+    {
       "id": "feasibility-v24",
-      "title": "Feasibility model v24 (current): built in System 3E",
+      "title": "Feasibility model v24",
       "group": "Feasibility models",
       "kind": "sheets",
       "source": "models/feasibility-v24.json",
-      "summary": "Whole building in System 3E perlite blocks with no added wall insulation: $176,963,659 total, $237,854 a bed, $305 a square foot to build, $595 all in. Poured-on-site floors noted as an option.",
-      "current": true
+      "summary": "Whole building in System 3E at ordinary block-laying speed: $176,963,659, $237,854 a bed, $305 a sq ft to build, $595 all in. Replaced by v24.1.",
+      "current": false
     },
     {
       "id": "feasibility-v23",
@@ -217,13 +235,22 @@
       "current": false
     },
     {
+      "id": "material-list-v2",
+      "title": "Material list v2 (current): matched to the design",
+      "group": "Material lists",
+      "kind": "sheets",
+      "source": "models/material-list-v2.json",
+      "summary": "Every material the design needs, nothing more: 2- and 3-story townhomes, end units and whole rows. About $162 a sq ft to build and $320 all in from list prices, against model v24's $300 and $586 (v24.1: $294 and $575).",
+      "current": true
+    },
+    {
       "id": "material-list-v1",
-      "title": "Material list v1 (current, matches model v24)",
+      "title": "Material list v1",
       "group": "Material lists",
       "kind": "sheets",
       "source": "models/material-list-v1.json",
-      "summary": "Quantities and prices for one 4-bed townhome, an accessible end unit and a row of 10, with local suppliers within a couple of miles of the site (System 3E blocks are the one import).",
-      "current": true
+      "summary": "First list: one 4-bed townhome, an accessible end unit and a row of 10. Missed the 3-story homes. Replaced by v2.",
+      "current": false
     },
     {
       "id": "feasibility-study-v16",
@@ -232,6 +259,24 @@
       "kind": "pages",
       "pages": 8,
       "summary": "The written v16 audit, extended with long-run payback, wider value and neighbors (v17)."
+    },
+    {
+      "id": "wall-lifecycle-v2",
+      "title": "System 3E vs wood frame, 30 and 50 year life cycle v2 (current)",
+      "group": "System 3E vs wood frame",
+      "kind": "sheets",
+      "source": "models/wall-lifecycle-v2.json",
+      "summary": "Blocks at the maker's speed, wood with advanced framing: System 3E walls cost about $2,600 a bed more, save about $133 a bed a year and pay back in about year 28.",
+      "current": true
+    },
+    {
+      "id": "wall-lifecycle-v1",
+      "title": "System 3E vs wood frame life cycle v1",
+      "group": "System 3E vs wood frame",
+      "kind": "sheets",
+      "source": "models/wall-lifecycle-v1.json",
+      "summary": "First run, at ordinary block-laying speed and without advanced framing on the wood side. Replaced by v2.",
+      "current": false
     },
     {
       "id": "options-compared",
