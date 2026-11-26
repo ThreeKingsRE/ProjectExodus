@@ -56,40 +56,9 @@ Prefab wood panels: about 39% fewer framing days on site and factory-square wall
 
 These figures replace the payback figures in life cycle v2, which assumed concrete plank floors. Sources: System 3E price list and container offer; Drewry container index (Nov 12, 2026); Trading Economics EUR/USD (Nov 26, 2026); Thomson Reuters on the US-EU tariff framework; Kuzdas, prefab wall panel cost study (UW-Stout, 2021); Barden Building Products; IBACOS for ENERGY STAR; plus the sources already in the research library.
 
-## Model v24.2: System 3E and wood frame side by side
+## Earlier plans: v24 to v24.2, with concrete upper floors
 
-The newest work comes first; every earlier version stays on this page below. v24.2 keeps the whole building in System 3E and assumes crews stack the blocks as fast as System 3E says (145 square meters of wall in 1 day instead of 14). The same model built in ordinary wood framing stays here as a second plan, so you can compare the two and choose.
-
-| What | System 3E plan (base) | Wood-frame plan (comparison) |
-| --- | --- | --- |
-| Walls and floors | Dry-stacked perlite blocks for outside walls, walls between homes and partitions; concrete plank floors | 2x6 wood framing with insulation plus R-5 insulation outside the sheathing (needed for NY's energy code), wood party walls and partitions, wood floor joists, advanced framing |
-| Total | $173.7M | $168.1M |
-| Per bed | $233,442 | $225,948 |
-| Per sq ft, buildings only | About $294 | About $285 |
-| Per sq ft, all in | About $575 | About $557 |
-| RIT's share (base funding) | About $123.2M | About $117.6M |
-| Wall labor | About 49,800 hours, mostly trained general labor | About 62,900 hours of framing carpentry |
-| Schedule | About 1.3 weeks faster per phase; homes still open each fall | Base calendar |
-| Upkeep over the years | About $133 a bed a year less (insurance, refinishing, wall holes, energy, hidden wet walls) | Base |
-
-What v24.2 fixed: each home now has 4 closets, matching the material list and the bedroom egress check (no cost change, since closets sit inside the price per square foot). The wood-frame plan now has R-5 insulation outside the sheathing, which NY's energy code needs on a wood wall; that adds about $0.5M, so System 3E now costs about $5.6M ($7,500 a bed) more than a code-compliant wood building. The System 3E plan itself did not change.
-
-Does System 3E pay for itself over time? The walls alone cost about $2,600 a bed more up front and pay that back in about year 28 (worth about $1,300 a bed over 50 years at 5.15%). The whole System 3E building with concrete floors costs about $7,800 a bed more and doesn't pay back within 50 years on upkeep alone; the concrete floors buy fire separation, quiet and a wood-free building. More than half the yearly saving is insurance, so an RIT insurance quote by building type matters, and so does a real System 3E price: each $1 a sq ft of wall moves the answer about $660 a bed. If the first US crews stack no faster than ordinary block, System 3E walls run about $13,800 a bed behind.
-
-Material list v2 counts every material the design needs, nothing more and nothing less: about $162 a sq ft to build and $320 all in, $130,049 a bed, from national installed list prices. The model keeps the more cautious $294 until a Rochester contractor prices it.
-
-## Model v24: why the whole building is System 3E
-
-| What changed in v24 | Result |
-| --- | --- |
-| The whole building is System 3E: dry-stacked perlite blocks from Poland for outside walls, walls between homes and partitions, with concrete plank floors | $177.0M, or $237,854 a bed (v23 was $158.4M, $212,839 a bed) |
-| Cost per square foot | About $305 a sq ft for the buildings alone, about $595 a sq ft all in (design, contingency, inflation, financing) |
-| Were walls counted twice? | No. Walls were counted once, as wood framing inside the building price. v24 swaps each wood part for its System 3E part, about $9.4M more than wood framing, and drops the earlier, wrong 5% panel saving |
-| How sure the System 3E price is | US prices we built up part by part, not a System 3E quote: $221k to $267k a bed between the low and high cases |
-| Floors | Concrete plank in the base. Wood joists would be $232,679 a bed; floors poured on site are an option we have not priced yet |
-| Insulation | On the maker's data the block wall meets the NY energy code with no added insulation. More insulation doesn't pay back; air sealing does, in about 14 years |
-| Fire | The wall lasted 244 minutes in a European fire test, well past the 1 to 2 hours a townhouse wall needs, but a code official must accept the European test or ask for a US one |
-| Local materials | Everything but the System 3E blocks comes from suppliers within a couple of miles of the site, listed in material list v1 |
+v24 put the whole building in System 3E perlite blocks at ordinary laying speed with concrete plank floors: $177.0M, $237,854 a bed, about $305 a sq ft for the buildings and $595 all in. v24.1 and v24.2 assumed crews stack the blocks at the maker's speed: $173.7M, $233,442 a bed, $294 and $575 a sq ft, against $168.1M, $225,948 a bed ($285 and $557) for a code-compliant wood-frame plan. On the maker's data the block wall meets NY's energy code with no added insulation, and it lasted 244 minutes in a European fire test that a US code official must still accept. Material list v2 counts every material the design needs, nothing more: about $162 a sq ft to build and $320 all in, $130,049 a bed, from national list prices. Each model's full figures are in its preview on this page.
 
 ## What we propose now
 
@@ -168,29 +137,26 @@ We keep every model, deck and study, so you can follow how the plan moved and ch
 
 | Model | What changed | Headline |
 | --- | --- | --- |
-| v11 | First concept cost plan | 513 beds, $158.9M, $310k a bed |
-| v12 | RIT 2026–27 rents added | 513 beds, $158.9M |
+| v11–v12 | First concept cost plan, then RIT 2026–27 rents | 513 beds, $158.9M, $310k a bed |
 | v13–v15 | Lifecycle, relocation, vendor pricing; 504 sq ft per resident | 513 beds, $221.7M, $432k a bed |
 | v16 | Full audit: sourced costs, all-electric code, accessible homes, 2027 closure | 513 beds, $168.6M; 444 beds $146.0M |
 | v17 | Long-run payback, wider value, effect on Henrietta rents | Pays back about 2089; about $1.5M a year of wider value |
 | v18 | Bed count set by demand | 744 beds, $253.1M |
 | v19 | Rows of 10 townhomes, cost per building | 744 beds, $236.9M |
-| v20 | Value engineering, pilot phase, yearly spending | 744 beds, $188.4M |
-| v20.1 | RIT's decommissioning clears the old buildings | 744 beds, $167.6M, $225k a bed |
-| v21 | Funding structures and stacks | RIT's share $13M to $127M by scenario |
-| v21.1 | 32 options compared | Same base as v20.1 |
+| v20–v20.1 | Value engineering and a pilot phase, then RIT's decommissioning clears the old buildings | 744 beds, $188.4M, then $167.6M |
+| v21–v21.1 | Funding structures and stacks; 32 options compared | RIT's share $13M to $127M by scenario |
 | v22 | System 3E prebuilt panels in the base (later corrected: System 3E is blocks, not panels) | 744 beds, $159.3M, $214k a bed |
 | v23 | System 3E wall meets the energy code with no added insulation | 744 beds, $158.4M, $212,839 a bed |
 | v24 | Whole building in System 3E perlite blocks at ordinary laying speed, local materials | 744 beds, $177.0M, $237,854 a bed |
 | v24.1 | System 3E blocks stacked at the maker's speed; life-cycle comparison with wood | 744 beds, $173.7M, $233,442 a bed |
-| v24.1 wood-frame plan | Same model in 2x6 wood framing, for comparison, without the outside insulation NY's code needs | 744 beds, $167.6M, $225,240 a bed |
+| v24.1 wood-frame plan | Same in 2x6 wood framing, without the outside insulation NY's code needs | 744 beds, $167.6M |
 | v24.2 | 4 closets per home to match the material list; outside insulation added to the wood-frame plan; deck matched | 744 beds, $173.7M, $233,442 a bed |
 | v24.2 wood-frame plan | Same model in 2x6 wood framing with R-5 outside insulation, for comparison | 744 beds, $168.1M, $225,948 a bed |
 | v24.3 (latest) | Concrete slab with vinyl plank and timber upper floors; System 3E from Poland and prefab wood panels added as comparisons | 744 beds, $169.8M, $228,266 a bed |
 
-Pitch decks: v19 (513-bed concept), v20 (long run and neighbors), v21 (744 beds), v22 (rows of 10, cost per building), v23 (value engineering, RIT decommissioning), v24 (funding and all options), v25 (v22 numbers with System 3E panels), v26 (v24 numbers, whole building in System 3E), v27 (v24.2 numbers), v28 (v24.3 numbers, latest). Material list v1 prices one townhome, an accessible end unit and a row of 10 with local suppliers; material list v2 (latest) matches the design exactly, 3-story homes included. The System 3E vs wood frame life cycle v1 ran at ordinary laying speed and v2 used the maker's speed with concrete plank floors; walls compared v1 (latest) sets System 3E, wood stick framing and prefab panels side by side with timber floors. The written Feasibility and Viability Study v16 covers the v16 and v17 work.
+Pitch decks: v19 to v26 track the models up to v24, v27 has the v24.2 numbers and v28 (latest) the v24.3 numbers. Material list v1 prices one townhome, an accessible end unit and a row of 10; v2 (latest) matches the design exactly, 3-story homes included. Life cycle v1 ran at ordinary laying speed and v2 at the maker's speed with concrete plank floors; walls compared v1 (latest) uses timber floors. The written Feasibility and Viability Study v16 covers the v16 and v17 work.
 
-Anyone can preview every model and deck version, both material lists, both life-cycle comparisons, the wall comparison, the study, the version history, the research library and the options comparison on this page, with or without an account. Previews can't be downloaded. Signed-in team members download the original files from this initiative's Workspace, so ask to join the team if you need them.
+Anyone can preview every model, deck, material list, comparison and study on this page, with or without an account. Previews can't be downloaded; signed-in team members download the originals from this initiative's Workspace.
 
 ## Still to confirm
 
