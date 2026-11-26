@@ -93,16 +93,19 @@ export function PublicInitiativeOverview({ project, previews = [] }: { project: 
 
 /** Read-only previews of the team's files, grouped as the organizer listed them. */
 function FilePreviews({ slug, items }: { slug: string; items: PreviewItem[] }) {
-  const groups = items.reduce<Record<string, PreviewItem[]>>((all, item) => ((all[item.group] ??= []).push(item), all), {})
+  // Latest versions lead each group and are marked, so readers start with what is current.
+  const ordered = [...items.filter((item) => item.current), ...items.filter((item) => !item.current)]
+  const groups = ordered.reduce<Record<string, PreviewItem[]>>((all, item) => ((all[item.group] ??= []).push(item), all), {})
   return <section id="files" aria-label="Files you can preview" className="scroll-mt-24 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4 sm:p-8">
     <h2 className="flex items-center gap-2 text-lg sm:text-2xl font-black"><Eye size={22} /> Files you can preview</h2>
-    <p className="mt-2 text-sm leading-6 sm:text-base sm:leading-7 text-[var(--muted-foreground)]">Read every version here, no account needed. Downloads are for signed-in team members.</p>
+    <p className="mt-2 text-sm leading-6 sm:text-base sm:leading-7 text-[var(--muted-foreground)]">Read every version here, no account needed. The latest version leads each group; earlier versions follow so you can see how the work progressed. Downloads are for signed-in team members.</p>
     <div className="mt-4 sm:mt-6 space-y-5 sm:space-y-7">
       {Object.entries(groups).map(([group, list]) => <div key={group}>
         <h3 className="mb-2 sm:mb-3 text-base sm:text-lg font-bold">{group}</h3>
         <ul className="grid gap-2 sm:gap-3 sm:grid-cols-2">
           {list.map((item) => <li key={item.id}>
-            <Link href={`/community/projects/${encodeURIComponent(slug)}/preview/${encodeURIComponent(item.id)}`} className="flex h-full flex-col gap-1 rounded-xl border border-[var(--border)] p-3 sm:p-4 transition hover:border-[var(--primary)]">
+            <Link href={`/community/projects/${encodeURIComponent(slug)}/preview/${encodeURIComponent(item.id)}`} className={`flex h-full flex-col gap-1 rounded-xl border p-3 sm:p-4 transition hover:border-[var(--primary)] ${item.current ? 'border-2 border-[var(--primary)] bg-[var(--primary)]/5' : 'border-[var(--border)]'}`}>
+              {item.current && <span className="self-start rounded-full bg-[var(--primary)] px-2 py-0.5 text-[10px] sm:text-xs font-black uppercase tracking-wider text-[var(--primary-foreground)]">Latest version</span>}
               <span className="font-bold">{item.title}</span>
               {item.summary && <span className="text-xs sm:text-sm leading-5 text-[var(--muted-foreground)]">{item.summary}</span>}
               <span className="mt-auto inline-flex items-center gap-1 pt-1 text-xs font-bold">Preview <ArrowRight size={14} /></span>

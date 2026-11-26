@@ -2,6 +2,13 @@
 
 Every model, deck and study we have made, oldest to newest, so anyone can see how the plan changed and why. Nothing is deleted: superseded versions stay here for checking. All are concept research by the initiative organizer, not an approved RIT project.
 
+## Latest version (start here)
+
+- **Feasibility model v22** (Nov 26, 2026): System 3E prebuilt facade and floor panels in the base. 744 beds, **$159.3M, $214k a bed**; gap after rent-backed debt $119.6M; RIT's net share about $108.8M (68%). The panel saving is 5% of building cost (about $8.3M), taken from general panel research (Terner Center 2017, PHRC 2024, HUD 1994), not a System 3E quote; it could be $0 ($167.6M) or 10% ($151.0M) until System 3E bids. Next levers: a contractor price near $250 a sq ft ($133.1M, $179k a bed) and peer-sized homes ($133.8M, $180k a bed).
+- **Pitch deck v25** (Nov 26, 2026): the v24 deck updated to the v22 numbers, with the System 3E panels in the base.
+
+Everything below is an earlier version, kept so you can see how the work progressed.
+
 Dollar figures are total project cost ("uses") in nominal dollars unless noted.
 
 ## Feasibility models (Excel)
@@ -21,6 +28,7 @@ Dollar figures are total project cost ("uses") in nominal dollars unless noted.
 | v20.1 | Nov 25, 2026 | Assumes RIT's decommissioning pays demolition and asbestos; our estimate of that stays visible but out of the budget. | 744 beds, $167.6M, $225k a bed; gap $127.9M; pilot fall 2029, last homes 2033; removal estimate about $22.6M all in. |
 | v21 | Nov 25, 2026 | Funding structures (RIT bonds, nonprofit owner, private developer, ground lease) and funding stacks. | RIT's share $106M–$127M at Riverknoll-level rent; about $41M with smaller homes, panels and rent near off-campus levels; about $13M with large gifts too. |
 | v21.1 | Nov 25, 2026 | Adds 32 titled options compared side by side (design, phasing, cost, funding). | Same base as v20.1; options range from $126.9M to $253.1M. |
+| **v22 (latest)** | Nov 26, 2026 | System 3E prebuilt facade and floor panels in the base (5% saving from general panel research, not a quote); System 3E wall energy savings counted in wider value. | 744 beds, $159.3M, $214k a bed; gap $119.6M; RIT's share about $108.8M; options range $133.1M to $253.1M. |
 
 ## Pitch decks (PowerPoint)
 
@@ -31,7 +39,8 @@ Dollar figures are total project cost ("uses") in nominal dollars unless noted.
 | v21 | Nov 25, 2026 | How many beds (744, demand-led) and the building mix. |
 | v22 | Nov 25, 2026 | Rows of 10 townhomes, existing conditions, what one building costs, phasing and levers. |
 | v23 | Nov 25, 2026 | Value engineering, year-by-year spending, RIT pays decommissioning ($167.6M). |
-| v24 | Nov 25, 2026 | Who could fund it, funding stacks, and the 32 options compared. Current deck. |
+| v24 | Nov 25, 2026 | Who could fund it, funding stacks, and the 32 options compared. |
+| **v25 (latest)** | Nov 26, 2026 | v22 numbers: System 3E prebuilt panels in the base, $159.3M, $214k a bed. |
 
 ## Written study
 

@@ -39,6 +39,7 @@ export default async function FilePreviewPage({ params, searchParams }: Props) {
   if (!item) notFound()
   const items = await getPreviewItems(slug)
   const siblings = items.filter((other) => other.group === item.group)
+  const latest = item.current ? null : siblings.find((other) => other.current)
   const back = `/community/projects/${encodeURIComponent(slug)}`
   const base = `${back}/preview/${encodeURIComponent(item.id)}`
 
@@ -55,6 +56,7 @@ export default async function FilePreviewPage({ params, searchParams }: Props) {
         <p className="mt-3 flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-wider"><Eye size={15} /> Preview · {item.group}</p>
         <h1 className="mt-2 text-2xl leading-tight font-black break-words sm:text-4xl">{item.title}</h1>
         {item.summary && <p className="mt-2 max-w-4xl text-sm leading-6 sm:text-base sm:leading-7 text-[var(--muted-foreground)]">{item.summary}</p>}
+        {latest && <p className="mt-3 rounded-lg border-2 border-[var(--primary)] px-3 py-2 text-sm font-semibold">This is an earlier version, kept to show progress. <Link href={`${back}/preview/${encodeURIComponent(latest.id)}`} className="underline">See the latest: {latest.title}</Link></p>}
         <p className="mt-3 flex items-center gap-2 text-xs sm:text-sm text-[var(--muted-foreground)]"><Lock size={14} /> Preview only. Signed-in team members can download the original from the initiative's Workspace.</p>
         {siblings.length > 1 && <nav aria-label={`Other ${item.group.toLowerCase()}`} className="mt-4 flex flex-wrap gap-2">
           {siblings.map((other) => <Link key={other.id} href={`${back}/preview/${encodeURIComponent(other.id)}`} aria-current={other.id === item.id ? 'page' : undefined} className={`rounded-lg border px-3 py-1.5 text-xs font-bold ${other.id === item.id ? 'border-[var(--primary)] bg-[var(--primary)] text-[var(--primary-foreground)]' : 'border-[var(--border)]'}`}>{other.title.replace(/^(Pitch deck|Feasibility model) /, '')}</Link>)}
