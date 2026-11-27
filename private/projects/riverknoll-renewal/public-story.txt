@@ -6,70 +6,61 @@ Live at Riverknoll, or want to? Tell us what matters most to you in upperclass h
 
 Riverknoll Renewal is a student-led proposal for affordable upperclass housing at RIT. RIT plans to close Riverknoll after the 2026–27 year. This page asks what it would take to rebuild it as affordable, all-electric townhomes, and shows all of our work, every version and every option, so anyone can check it and choose for themselves.
 
-The initiative is independent. RIT has not approved or funded it. Figures are concept research and allowances, not bids. Updated November 27, 2026 (model v24.4 with the approvals timeline and cost, walls compared three ways v1, material list v2, deck v28).
+The initiative is independent. RIT has not approved or funded it. Figures are concept research and allowances, not bids. Updated November 27, 2026 (model v24.4 with the approvals timeline, phase by phase).
 
-## Latest version: model v24.4, the approvals path and its cost
+## Latest version: model v24.4, the approvals path, phase by phase
 
-Why does the Town review housing on RIT's own land? New York gives towns zoning and site plan review over all private land, colleges included; courts stop towns from keeping colleges out, not from reviewing their plans. Only state campuses such as SUNY skip it. RIT went through the same steps for Riverknoll's 2019 renovation.
+Why does the Town review housing on RIT's own land? New York gives towns site plan review over all private land, colleges included; only state campuses such as SUNY skip it. RIT went through the same steps for Riverknoll's 2019 renovation.
 
-Cost: Town, state and county fees, legal work, hearings and a stormwater guarantee add about $1.5M in today's dollars beyond the design allowance, about $2.1M with contingency, inflation and financing. That makes $172.0M, $231,125 a bed, about $288 a sq ft for the buildings (unchanged) and $570 all in. About $0.9M is a Town surcharge that applies only if the Town counts campus housing as commercial. The bigger risk is delay: missing fall 2029 by a year adds about $7.7M ($10,400 a bed). The tables below are v24.3; v24.4 adds about $2.1M to each.
+Approve once, build in phases. State environmental rules (6 NYCRR 617.3(g)) treat every phase as one project; reviewing only the pilot is "segmentation", allowed only if the agency shows it is no less protective. So the plan is one environmental review, one site plan with a phasing diagram and one height permit for every 3-story row, then a building permit for each phase. Approving phase by phase would repeat lawyers, hearings and studies four more times (about $0.4M, our rough estimate) and risk a year's slip each round. Henrietta's code lets a site plan lapse if work stalls, so we will ask the Town to confirm in writing that starting the pilot keeps the whole plan valid.
 
-| Step | Who | Target |
-| --- | --- | --- |
-| 1. Meet RIT housing and facilities; RIT agrees to be owner and applicant | Organizer, RIT | Ask by Dec 11, 2026; letter by Feb 2027 |
-| 2. Ask the Town in writing whether campus housing counts as college use | Organizer drafts, RIT signs | Send by Jan 8, 2027 |
-| 3. Pre-application meeting with Town planning and engineering | Organizer, RIT | Ask by Feb 26; meet March 2027 |
-| 4. RIT trustees approve; design team hired | RIT | Spring to summer 2027 |
-| 5. Environmental review and state historic review | Town or DASNY; state | Nov 2027 to Jan 2028 |
-| 6. Planning Board site plan; Town Board height permit hearing | Town | Hearings Jan 2028; approval Mar 2028 |
-| 7. Stormwater permits; asbestos notices and demolition | RIT, Town, state | Mar to Jun 2028 |
-| 8. Pilot building permit, then build | Town, RIT | Permit Jul 2028; open fall 2029 |
+Cost: fees, legal work, hearings and a stormwater guarantee add about $1.5M in today's dollars beyond the design allowance, about $2.1M with contingency, inflation and financing. That makes $172.0M, $231,125 a bed, about $288 a sq ft for the buildings and $570 all in. About $0.9M is a Town surcharge that applies only if the Town counts campus housing as commercial. Missing fall 2029 by a year adds about $7.7M ($10,400 a bed).
 
-About one month of slack. A full environmental impact statement, or RIT signing on after summer 2027, moves the pilot to fall 2030. All 15 steps, with what to bring and the rules, are in model v24.4 (Approvals_Timeline tab).
+| # | Step | Who | Agency | Takes | After | Target |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | Meet RIT; letter naming RIT owner and applicant | Organizer, RIT | RIT housing, facilities, finance | 6 to 10 weeks | | Ask by Dec 11, 2026; letter by Feb 26, 2027 |
+| 2 | Ask in writing: is campus housing a college use, and commercial for fees? | Organizer drafts, RIT signs | Town Building and Fire Prevention | 2 to 6 weeks | 1 | Send by Jan 8; answer about Feb 12, 2027 |
+| 3 | Pre-application meeting: lead agency, height, stormwater, fees, phasing | Organizer, RIT | Town Engineering and Planning | 1 meeting | 1, 2 | Ask by Feb 26; meet March 2027 |
+| 4 | Trustees approve concept and financing | RIT | RIT Board of Trustees | 1 meeting | 1 to 3 | Spring 2027 (July fallback) |
+| 5 | Design team; survey, borings, traffic, wetlands | RIT, consultants | RIT | 3 to 4 months | 4 | Jul to Sep 2027 |
+| 6 | Close Riverknoll; asbestos survey | RIT, licensed contractor | State Labor Dept, EPA, Town | 2 to 3 months | 4 | Closed May 2027; survey by Aug 2027 |
+| 7 | Site plan set and environmental form, all 18 rows | Consultants | | 3 to 4 months | 5 | Jul to Oct 2027 |
+| 8 | Environmental review (SEQR), all phases | Town Planning Board or DASNY | Lead agency | About 2 months; a full EIS adds 9 to 12 | 7 | Nov 2027 to Jan 2028 |
+| 9 | State historic review | Consultant, RIT | State Historic Preservation Office | About 30 days | 7 | Dec 2027 |
+| 10 | Site plan with phasing diagram; county referral | RIT; organizer attends | Town Planning Board; Monroe County | Hearing within 62 days, decision within 62 after | 3, 7, 8 | Hearing Jan; approval Mar 2028 |
+| 11 | Height permit for every 3-story row | RIT; organizer attends | Town Board | About 2 months | 3, 8 | Hearing Jan to Feb; decision Mar 2028 |
+| 12 | Stormwater plan, guarantee and state permit | Civil engineer, RIT | Town, State DEC | 1 to 2 months | 10 | Mar to Apr 2028 |
+| 13 | DASNY financing, if used | RIT, DASNY | DASNY, state PACB | 2 to 4 months | 4 | Spring 2028 |
+| 14 | Pilot building permit | RIT, contractor | Town Building and Fire Prevention | 6 to 8 weeks | 10 to 12 | Submit May; issue Jul 2028 |
+| 15 | Building permit for each later phase, filed about a year ahead | RIT | Town Building and Fire Prevention | 6 to 8 weeks | 14 | See phases below |
+
+Then each phase, under the one approval:
+
+| Phase | Rows and beds | Old buildings cleared | Building permit | Build | Opens |
+| --- | --- | --- | --- | --- | --- |
+| Pilot | 2 two-story, 72 beds | 2, Apr to Jun 2028 | Issued Jul 2028 | Aug 2028 to Aug 2029 | Fall 2029 |
+| 2 | 3 two-story, 1 three-story, 160 beds | 6, spring 2029 | Filed fall 2028 | Aug 2029 to Aug 2030 | Fall 2030 |
+| 3 | 2 two-story, 2 three-story, 176 beds | 6, spring 2030 | Filed fall 2029 | Aug 2030 to Aug 2031 | Fall 2031 |
+| 4 | 3 two-story, 1 three-story, 160 beds | 5, spring 2031 | Filed fall 2030 | Aug 2031 to Aug 2032 | Fall 2032 |
+| 5 | 2 two-story, 2 three-story, 176 beds | 5, spring 2032 | Filed fall 2031 | Aug 2032 to Aug 2033 | Fall 2033 |
+
+About one month of slack before the pilot. A full environmental impact statement, or RIT signing on after summer 2027, moves everything a year. What to bring and the rules for each step are in model v24.4 (Approvals_Timeline and Approvals_Budget tabs).
 
 ## Walls compared three ways: model v24.3, timber upper floors
 
-Asked by the organizer on November 26: build on a concrete slab with vinyl plank inside the homes and timber upper floors, and show plainly what the walls cost in System 3E, in ordinary 2x6 wood framing and in factory-built prefab wood wall panels. Every figure is all in (design, contingency, inflation, financing) for the same 744 beds. The concrete upper floors of v24 to v24.2 stay below as a comparison; timber floors save about $3.9M ($5,176 a bed).
+Asked by the organizer on November 26: a concrete slab with vinyl plank, timber upper floors, and the walls in System 3E, ordinary 2x6 wood framing and factory-built prefab wood panels. Every figure is all in for the same 744 beds; v24.4 adds about $2.1M to each. Timber floors save about $3.9M over the concrete floors of v24 to v24.2.
 
-The whole building, with the same slab, vinyl and timber floors in every plan:
-
-| What | System 3E, future US block plant (base) | System 3E, blocks shipped from Poland today | 2x6 wood stick frame + R-5 outside insulation | Prefab wood wall panels (nearest plant, Middleport NY) |
+| What | System 3E, future US plant (base) | System 3E from Poland today | 2x6 wood + R-5 outside insulation | Prefab wood panels (Middleport NY) |
 | --- | --- | --- | --- | --- |
 | Total | $169.8M | $180.8M | $168.1M | $169.0M |
 | Per bed | $228,266 | $243,017 | $225,948 | $227,183 |
-| Per sq ft, buildings only | About $288 | About $307 | About $285 | About $286 |
-| Per sq ft, all in | About $562 | About $599 | About $557 | About $560 |
-| Extra per bed vs wood stick | $2,318 | $17,069 | Base | $1,235 |
-| Pays back on upkeep | About year 23, only if block buildings get cheaper insurance; never without it | Not within 50 years | Base | No yearly saving |
+| Per sq ft, buildings / all in | $288 / $562 | $307 / $599 | $285 / $557 | $286 / $560 |
+| Outside walls per sq ft of wall | $20.50 | $35.22 | $24.25 | $25.24 |
+| Walls alone, per bed | $8,527 | $14,652 | $10,087 | $10,499 |
+| Pays back on upkeep | About year 23, only with cheaper insurance | Not within 50 years | Base | No yearly saving |
 | 50-year total per bed (5.15%) | $224,330 | $239,082 | $225,948 | $227,183 |
 
-The outside walls alone, per sq ft of wall:
-
-| Line | System 3E from Poland today | System 3E, future US plant | 2x6 stick + R-5 | Prefab panels |
-| --- | --- | --- | --- | --- |
-| Blocks or framing | $15.68 | $12.00 | $2.15 | $7.63 |
-| Shipping | $7.57 | $0 | $0.18 | $0 |
-| Tariff, port and broker | $3.47 | $0 | $0 | $0 |
-| Install labor | $1.50 | $1.50 | $4.67 | $2.86 |
-| Ring beams and lintels | $2.50 | $2.50 | $0 | $0 |
-| Sheathing and wrap | $0 | $0 | $2.50 | In the panel |
-| Insulation to meet NY code | None needed | None needed | $4.25 | $4.25 |
-| Outside finish | Render $4.00 | Render $4.00 | Siding $10.50 | Siding $10.50 |
-| Extra inside plaster | $0.50 | $0.50 | $0 | $0 |
-| Total per sq ft of wall | $35.22 | $20.50 | $24.25 | $25.24 |
-| All in, per bed | $14,652 | $8,527 | $10,087 | $10,499 |
-| Payback | Not within 50 years | Cheaper from day one | Base | No yearly saving |
-| 50-year total per bed (5.15%) | $13,429 | $7,305 | $10,087 | $10,499 |
-
-The straight answer: System 3E walls win only if blocks come from a US plant near our assumed $12 a sq ft (not a quote; no US plant is open yet). Shipped from Poland today they cost about $4,600 a bed more than wood with no payback in 50 years. Even at the US price the whole building costs about $2,300 a bed more than wood, because block inner walls cost more and wood's advanced-framing saving is lost. Over half the yearly saving is cheaper insurance, which RIT has not confirmed.
-
-System 3E meets NY code with no added insulation and can't rot, but has one maker, freight and tariff risk, and a European fire test a US official must accept. 2x6 wood is the cheapest proven way. Prefab panels cut framing days about 39% but cost more and need a crane.
-
-These replace life cycle v2, which assumed concrete floors. Sources are in the research library.
-
-## Earlier plans: v24 to v24.2, with concrete upper floors
-
-v24 (ordinary laying speed) came to $177.0M, about $305 and $595 a sq ft; v24.1 and v24.2 (maker's speed) to $173.7M, $294 and $575, against $168.1M ($285 and $557) in wood frame. Material list v2 counts every material the design needs.
+The straight answer: System 3E walls win only if blocks come from a US plant near our assumed $12 a sq ft (not a quote; no US plant is open yet). From Poland they cost about $4,600 a bed more than wood. Even at the US price the whole building costs about $2,300 a bed more, because block inner walls cost more. Over half the yearly saving is cheaper insurance, which RIT has not confirmed. System 3E meets NY code with no added insulation and can't rot, but has one maker, freight and tariff risk, and a European fire test a US official must accept. The line-by-line wall costs are in walls compared v1.
 
 ## What we propose now
 
@@ -82,19 +73,19 @@ v24 (ordinary laying speed) came to $177.0M, about $305 and $595 a sq ft; v24.1 
 | Total cost | About $172M, or $231k a bed with approvals (v24.4); about $170M in wood frame |
 | Old buildings | Cleared by RIT's decommissioning (our estimate about $22.6M, not in the total) |
 
-The bed count comes first and the design meets it. 744 beds would house about 53% of RIT undergraduates on campus, against a peer median of about 60%.
+The bed count comes first and the design meets it: 744 beds would house about 53% of RIT undergraduates on campus (peer median about 60%).
 
 ## Zoning: what the Town of Henrietta allows
 
-Checked November 27, 2026 against the Town's zoning map and code. The Riverknoll area sits in the campus's R-1-15 residential zone. That zone allows colleges but not apartment complexes, so the 18 rows work as RIT's own campus housing. If another group owned or ran them, the site would first need rezoning to R-2-15.
+The Riverknoll area sits in the campus's R-1-15 residential zone. That zone allows colleges but not apartment complexes, so the 18 rows work as RIT's own campus housing. If another group owned or ran them, the site would first need rezoning to R-2-15.
 
-The 2-story rows fit the height rules. The 3-story rows would likely top the 35 ft limit and need a Town Board height permit after a public hearing; RIT won two such permits for campus buildings in 2022 and 2023. Still to confirm with the Town: that it counts student housing as a college use. Rules are in model v24.4 (Zoning tab).
+The 2-story rows fit the height rules; the 3-story rows likely top 35 ft and need a Town Board height permit after a hearing, as RIT won in 2022 and 2023. Still to confirm with the Town: that it counts student housing as a college use. Rules are in model v24.4 (Zoning tab).
 
 ## History: how Riverknoll got there
 
-RIT decided in 1961 to leave downtown Rochester for about 1,300 acres of Henrietta farmland, broke ground in 1964 and opened the campus in 1968. RIT's archives say Riverknoll (275 apartments and townhouses) and Perkins Green were built then (a 2019 state review says 1970) "because of demand for on campus housing for married students and staff." Over time it became mostly upperclass student housing. RIT now says further investment "is neither feasible nor sustainable" and will close it after spring 2027.
+RIT decided in 1961 to leave downtown Rochester for about 1,300 acres of Henrietta farmland, broke ground in 1964 and opened the campus in 1968. RIT's archives say Riverknoll (275 apartments and townhouses) and Perkins Green were built then (a 2019 state review says 1970) "because of demand for on campus housing for married students and staff." RIT now says further investment "is neither feasible nor sustainable" and will close it after spring 2027.
 
-Why is there housing in a zone that bars apartments? Riverknoll predates today's code (1978) and we found no record of its approval. Most likely the Town counts RIT's campus housing as part of the college use. If it were instead an old nonconforming use, that right ends a year after the use stops. Either way, RIT has to own and run the new rows.
+Why housing in a zone that bars apartments? Riverknoll predates today's code (1978) and we found no record of its approval. Most likely the Town counts campus housing as part of the college use; an old nonconforming use would lapse a year after closing. Either way, RIT has to own and run the new rows.
 
 ## Who could pay for it
 
@@ -108,11 +99,11 @@ Today's Riverknoll rent can repay about a fifth to a quarter of the cost, whoeve
 | Plus rent near off-campus levels (about 1.5 times today) | About $57M |
 | Plus every gift and grant at its high end | About $29M |
 
-Grants and gifts we found add about $10.7M in the base case and up to $38.6M at best. Low-income housing tax credits and HUD college loans do not apply to student housing. The trade-off is clear: the less RIT pays, the more students pay or the smaller the homes.
+Gifts and grants we found add about $10.7M, up to $38.6M at best; housing tax credits and HUD college loans don't apply to student housing. The less RIT pays, the more students pay or the smaller the homes.
 
 ## All 35 options, side by side
 
-Every option keeps 744 beds so they compare like with like. RIT's share is what is left after rent-backed debt and $10.7M of outside money.
+All keep 744 beds. RIT's share is what's left after rent-backed debt and $10.7M of outside money (v24.3, before approvals).
 
 | ID | Option | Total | RIT share | Status |
 | --- | --- | --- | --- | --- |
@@ -152,7 +143,7 @@ Every option keeps 744 beds so they compare like with like. RIT's share is what 
 | W2 | Wood frame with prefab wall panels | $169.0M | $118.6M | Comparison |
 | W3 | System 3E with concrete plank upper floors | $173.7M | $123.2M | Not chosen |
 
-Each option's description, risks and sources are in the options comparison and in model v24.3 (Options_Compared tab). Which would you choose?
+Descriptions, risks and sources are in model v24.3 (Options_Compared tab). Which would you choose?
 
 ## Every earlier version
 
@@ -160,30 +151,27 @@ We keep every model, deck and study, so you can follow how the plan moved and ch
 
 | Model | What changed | Headline |
 | --- | --- | --- |
-| v11–v15 | First concept cost plan, rents, lifecycle, relocation, vendor pricing | 513 beds, $158.9M to $221.7M |
-| v16–v17 | Full audit, 2027 closure, long-run payback, wider value | 513 beds, $168.6M; pays back about 2089 |
-| v18 | Bed count set by demand | 744 beds, $253.1M |
-| v19 | Rows of 10 townhomes, cost per building | 744 beds, $236.9M |
+| v11–v17 | Concept cost plans, audit, 2027 closure, payback | 513 beds, $158.9M to $221.7M |
+| v18–v19 | Bed count set by demand; rows of 10 townhomes | 744 beds, $253.1M to $236.9M |
 | v20–v21.1 | Value engineering, pilot phase, RIT clears old buildings; funding stacks | 744 beds, $167.6M |
 | v22–v23 | System 3E walls (v22 wrongly as panels); no added insulation needed | 744 beds, $158.4M |
-| v24 | Whole building in System 3E blocks at ordinary laying speed | 744 beds, $177.0M |
-| v24.1–v24.2 | Blocks at the maker's speed; wood-frame plans; closets match material list | 744 beds, $173.7M |
+| v24–v24.2 | Whole building in System 3E, concrete upper floors; wood-frame plans | 744 beds, $177.0M to $173.7M |
 | v24.3 | Timber upper floors; Poland and prefab comparisons | 744 beds, $169.8M, $228,266 a bed |
-| v24.4 (latest) | Approvals budget and timeline | 744 beds, $172.0M, $231,125 a bed |
+| v24.4 (latest) | Approvals budget and phase-by-phase timeline | 744 beds, $172.0M, $231,125 a bed |
 
-Decks v19 to v28 track the models (v28 has v24.3). Material list v2 matches the design. Life cycles v1 and v2 used concrete floors; walls compared v1 uses timber. The Feasibility and Viability Study v16 covers v16 and v17.
+Decks v19 to v28 track the models. Material list v2 matches the design. The Feasibility and Viability Study v16 covers v16 and v17.
 
-Anyone can preview every file on this page, with or without an account. Previews can't be downloaded; signed-in team members get the originals from the Workspace.
+Anyone can preview every file here; signed-in team members get the originals from the Workspace.
 
 ## Still to confirm
 
-RIT's sign-on as applicant, the Town's fee classification, RIT's decommissioning plan and asbestos survey, the current bed count, utility condition and capacity, Riverknoll's 1960s Town approval and the Town's reading of campus housing, real contractor bids, a System 3E USA price and US plant for the same homes, code acceptance of the European fire test, and prices from the local suppliers. As each answer comes in we add a new version and never overwrite an old one.
+RIT's sign-on as applicant, the Town's reading of campus housing and its fees, that the pilot keeps the whole site plan valid, RIT's decommissioning plan and asbestos survey, utility condition, Riverknoll's 1960s approval, contractor bids, a System 3E US price and plant, code acceptance of the European fire test, and local supplier prices. As each answer comes in we add a new version and never overwrite an old one.
 
 ## Help shape the next revision
 
 Students can share their housing priorities through the voluntary survey: https://forms.gle/ZZmocqQbpuf9BHMW8
 
-Residents, designers, engineers, builders, estimators, researchers, and alumni are invited to examine the plans and assumptions. Sign in to follow or collaborate. Joining expresses interest and does not imply institutional endorsement. For interviews or collaboration inquiries, message the organizer, Mr. Nobody, through Project Exodus.
+Residents, designers, builders, researchers and alumni are invited to check the plans. Sign in to follow or collaborate; joining does not imply institutional endorsement. For interviews or collaboration inquiries, message the organizer, Mr. Nobody, through Project Exodus.
 
 Riverknoll Renewal applies Exodology by considering housing, food, water, energy, and community decisions together.
 
