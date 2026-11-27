@@ -161,3 +161,17 @@ See options-compared.md for every titled option with its cost per bed, RIT's sha
 - New York courts: Cornell University v. Bagnardi, 68 N.Y.2d 583 (1986), and Trustees of Union College v. Schenectady City Council, 91 N.Y.2d 161 (1997): towns may not wholly exclude educational uses from residential zones and must weigh them case by case. Neither settles whether student housing always counts as educational use.
 - Not found: who designed or financed Riverknoll specifically, its exact opening year, and its original Town approval. Next sources: Town Clerk and Planning Board records from the late 1960s, RIT Archives (RITArc-0193 in person), and Monroe County property records.
 - Full table: model v24.3, Zoning tab (History rows).
+
+## Approvals budget and timeline (checked November 27, 2026; model v24.4)
+
+- Why the Town reviews RIT's land: NY Town Law 261 (zoning power over all private land) and 274-a (site plan review); Cornell University v. Bagnardi, 68 N.Y.2d 583 (1986), limits exclusion of colleges, not review. State-owned campuses (SUNY) are exempt from local zoning; RIT is private.
+- Precedent: DASNY 2019 SEQR record for RIT's Riverknoll renovation (DASNY lead agency, negative declaration; states Riverknoll was constructed in 1970) and DASNY 2022 RIT project record; RIT also won Town Board height permits in 2022 and 2023.
+- Town fees: Town of Henrietta fee schedule, ecode360.com/8226730 (latest amendment shown 9-13-2023, effective 1-1-2024; confirm current). Building permit $0.50 a sq ft; large project surcharge 0.8% of construction value if classed commercial; site plan, special use permit, certificates of occupancy, fire, plumbing, rental unit, erosion control inspections, zoning compliance letter $50, demolition per building.
+- Stormwater: Henrietta Code ch. 236 Article III, ecode360.com/8582851 (SWPPP acceptance before final site plan, financial guarantee); DEC Construction General Permit (eNOI, written OK to disturb more than 5 acres); ECL 72-0602 (initial and annual per-acre fees).
+- Environmental review: 6 NYCRR Part 617; 617.4(b)(6)(v) Type I over 100,000 sq ft; 617.6 lead agency within 30 days, determination within 20 days after; 617.20 Full EAF.
+- Historic review: NY Parks, Recreation and Historic Preservation Law 14.09, via CRIS (about 30 days).
+- County referral: General Municipal Law 239-m (near the town line on the Genesee River and county or state roads).
+- Boards: Henrietta Planning Board meets 3rd Tuesday, submittals about 5 weeks ahead; ZBA monthly with a 5-week closing date; hearings and decisions within 62 days (Town Law 274-a, 267-a).
+- Asbestos and demolition: 12 NYCRR Part 56 (Industrial Code Rule 56: survey, 10-day notice); 40 CFR 61 Subpart M (EPA asbestos NESHAP).
+- RIT trustees meet several times a year (RIT Reporter coverage of trustee meetings).
+- Result: base adds $1.48M (2026 $), $2.13M all in; $231,125 a bed; $287.87/sf buildings, $569.55/sf all in. A one-year delay adds about $7.7M. Full tables: model v24.4, Approvals_Budget and Approvals_Timeline tabs.
