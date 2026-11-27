@@ -135,7 +135,7 @@ The realistic route for the initiative: Projxodus as initiator and advocate; an 
 
 ## 8. Still to confirm
 
-RIT's decommissioning plan, asbestos survey and budget; the current bed inventory; utility as-builts and capacity; the Town of Henrietta's reading of campus student housing as a college use under R-1-15; contractor pricing; a System 3E USA quote, US plant and freight; code acceptance of the European fire test; prices from the local suppliers; and whether any grant program accepts student housing.
+RIT's decommissioning plan, asbestos survey and budget; the current bed inventory; utility as-builts and capacity; Riverknoll's original 1960s Town approval and opening year; the Town of Henrietta's reading of campus student housing as a college use under R-1-15; contractor pricing; a System 3E USA quote, US plant and freight; code acceptance of the European fire test; prices from the local suppliers; and whether any grant program accepts student housing.
 
 ## All options
 
@@ -149,3 +149,15 @@ See options-compared.md for every titled option with its cost per bed, RIT's sha
 - § 295-9 coverage 25%; § 295-10 setbacks 40 or 60 ft front, 8 ft side, 10 ft rear.
 - 6 NYCRR 617.4 (SEQR): 180 units sits under the 200-unit Type I threshold, so likely Unlisted.
 - Full check table and approvals list: model v24.3, Zoning tab.
+
+## Riverknoll history (checked November 27, 2026)
+
+- RIT Archives, Henrietta Campus planning documents (RITArc-0146): trustees voted November 20, 1961 to move; about 1,300 acres of Henrietta farmland; ground broken November 2, 1964; first classes September 1968; about $60M including residence halls.
+- Rochester Beacon, "RIT's decisive moment" (November 21, 2018): land at about $1,000 an acre from donor gifts; the rest from New York State Dormitory Authority bonds; campus dedicated October 1968.
+- RIT Archives, Married Student Housing collection (RITArc-0193, circa 1965-1977): Riverknoll and Perkins Green were built "because of demand for on campus housing for married students and staff"; Riverknoll had 275 apartments and townhouses; by 2011 mostly undergraduates.
+- Reporter (November 9, 2026), RochesterFirst (November 10, 2026), 13WHAM (November 2026): RIT says continued investment "is neither feasible nor sustainable"; closes after spring 2027; residents report power failures and disrepair.
+- Town of Henrietta: Zoning Board of Appeals first set up August 7, 1946 (Town FAQ); prior Zoning Ordinance adopted June 2, 1954; current Chapter 295 adopted July 19, 1978 (code history note and savings clause).
+- Town Code § 295-47: a use lawful before the chapter may continue; lost after one year of discontinuance; buildings damaged over 50% are rebuilt to current rules.
+- New York courts: Cornell University v. Bagnardi, 68 N.Y.2d 583 (1986), and Trustees of Union College v. Schenectady City Council, 91 N.Y.2d 161 (1997): towns may not wholly exclude educational uses from residential zones and must weigh them case by case. Neither settles whether student housing always counts as educational use.
+- Not found: who designed or financed Riverknoll specifically, its exact opening year, and its original Town approval. Next sources: Town Clerk and Planning Board records from the late 1960s, RIT Archives (RITArc-0193 in person), and Monroe County property records.
+- Full table: model v24.3, Zoning tab (History rows).
