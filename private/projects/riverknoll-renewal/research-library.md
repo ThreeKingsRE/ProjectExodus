@@ -135,8 +135,17 @@ The realistic route for the initiative: Projxodus as initiator and advocate; an 
 
 ## 8. Still to confirm
 
-RIT's decommissioning plan, asbestos survey and budget; the current bed inventory; utility as-builts and capacity; Henrietta zoning; contractor pricing; a System 3E USA quote, US plant and freight; code acceptance of the European fire test; prices from the local suppliers; and whether any grant program accepts student housing.
+RIT's decommissioning plan, asbestos survey and budget; the current bed inventory; utility as-builts and capacity; the Town of Henrietta's reading of campus student housing as a college use under R-1-15; contractor pricing; a System 3E USA quote, US plant and freight; code acceptance of the European fire test; prices from the local suppliers; and whether any grant program accepts student housing.
 
 ## All options
 
 See options-compared.md for every titled option with its cost per bed, RIT's share, status, main risk and where to check it.
+
+## Henrietta zoning (checked November 27, 2026)
+
+- Town of Henrietta zoning map (MapLink, he0056.zoninghub.com): the RIT campus around Riverknoll is in the R-1-15 district; the main RIT parcel is split between I Industrial and R-1-15. Riverknoll's own parcel was not looked up.
+- Town Code Chapter 295 (ecode360 and ZoningHub text): § 295-7A(6) allows institutions of higher education in R-1, with no building within 50 ft of an adjoining lot line; § 295-7C bars unlisted uses; multiple dwellings need R-2-15, B-2 or a mixed-use overlay plus a Town Board special use permit (§ 295-7B(4), § 295-13).
+- § 295-8 height: 2 stories, institutions up to 35 ft, taller by Town Board special use permit after a public hearing. Precedents: RIT Research Building, 54 ft (2023), and Music Performance Theater, 86.5 ft (2022).
+- § 295-9 coverage 25%; § 295-10 setbacks 40 or 60 ft front, 8 ft side, 10 ft rear.
+- 6 NYCRR 617.4 (SEQR): 180 units sits under the 200-unit Type I threshold, so likely Unlisted.
+- Full check table and approvals list: model v24.3, Zoning tab.

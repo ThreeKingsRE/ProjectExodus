@@ -6,7 +6,7 @@ Live at Riverknoll, or want to? Tell us what matters most to you in upperclass h
 
 Riverknoll Renewal is a student-led proposal for affordable upperclass housing at RIT. RIT plans to close Riverknoll after the 2026–27 year. This page asks what it would take to rebuild it as affordable, all-electric townhomes, and shows all of our work, every version and every option, so anyone can check it and choose for themselves.
 
-The initiative is independent. RIT has not approved or funded it. Figures are concept research and allowances, not bids. Updated November 26, 2026 (model v24.3 with timber upper floors, walls compared three ways v1, material list v2, deck v28).
+The initiative is independent. RIT has not approved or funded it. Figures are concept research and allowances, not bids. Updated November 27, 2026 (model v24.3 with timber upper floors and a zoning check, walls compared three ways v1, material list v2, deck v28).
 
 ## Latest version: model v24.3, timber upper floors, and the walls compared three ways
 
@@ -44,7 +44,7 @@ The outside walls alone, per sq ft of wall:
 | Payback | Not within 50 years | Cheaper from day one | Base | No yearly saving |
 | 50-year total per bed (5.15%) | $13,429 | $7,305 | $10,087 | $10,499 |
 
-The straight answer: System 3E walls win only if the blocks come from a US plant near the model's $12 a sq ft, which is our assumption, not a quote, and no US plant is open yet. Bought at System 3E's European list price and shipped today, they land at about $26.72 a sq ft of wall before install, and the walls cost about $4,600 a bed more than wood with no payback in 50 years. Even at the US price, the whole System 3E building costs about $2,300 a bed more than wood: the outside walls save about $1,560 a bed, but block party walls and partitions cost a little more than wood ones (about +$470 a bed) and the wood plan's advanced-framing saving (about 1.5% of the building, about $3,400 a bed) is lost. More than half of the yearly saving is cheaper insurance for block buildings, which RIT has not confirmed.
+The straight answer: System 3E walls win only if the blocks come from a US plant near the model's $12 a sq ft, which is our assumption, not a quote, and no US plant is open yet. Bought at System 3E's European list price and shipped today, they land at about $26.72 a sq ft of wall before install, and the walls cost about $4,600 a bed more than wood with no payback in 50 years. Even at the US price, the whole System 3E building costs about $2,300 a bed more than wood: the outside walls save about $1,560 a bed, but block inner walls cost a bit more and wood's advanced-framing saving (about $3,400 a bed) is lost. More than half of the yearly saving is cheaper insurance for block buildings, which RIT has not confirmed.
 
 Pros and cons, briefly.
 
@@ -54,11 +54,11 @@ System 3E: the wall meets NY code with no added insulation (R-27.8 on the maker'
 
 Prefab wood panels: about 39% fewer framing days on site and factory-square walls. They cost about 10% more for framing, come from about 55 miles away (our estimate), which breaks the couple-of-miles sourcing rule, need crane and truck access between rows, and have the same upkeep as stick.
 
-These figures replace the payback figures in life cycle v2, which assumed concrete plank floors. Sources: System 3E price list and container offer; Drewry container index (Nov 12, 2026); Trading Economics EUR/USD (Nov 26, 2026); Thomson Reuters on the US-EU tariff framework; Kuzdas, prefab wall panel cost study (UW-Stout, 2021); Barden Building Products; IBACOS for ENERGY STAR; plus the sources already in the research library.
+These figures replace the payback in life cycle v2, which assumed concrete floors. Sources: System 3E price list, Drewry freight index, EUR/USD rate, US-EU tariff terms, a UW-Stout prefab panel study and the research library.
 
 ## Earlier plans: v24 to v24.2, with concrete upper floors
 
-v24 put the whole building in System 3E perlite blocks at ordinary laying speed with concrete plank floors: $177.0M, $237,854 a bed, about $305 a sq ft for the buildings and $595 all in. v24.1 and v24.2 assumed crews stack the blocks at the maker's speed: $173.7M, $233,442 a bed, $294 and $575 a sq ft, against $168.1M, $225,948 a bed ($285 and $557) for a code-compliant wood-frame plan. On the maker's data the block wall meets NY's energy code with no added insulation, and it lasted 244 minutes in a European fire test that a US code official must still accept. Material list v2 counts every material the design needs, nothing more: about $162 a sq ft to build and $320 all in, $130,049 a bed, from national list prices. Each model's full figures are in its preview on this page.
+v24 put the whole building in System 3E perlite blocks at ordinary laying speed with concrete plank floors: $177.0M, $237,854 a bed, about $305 a sq ft for the buildings and $595 all in. v24.1 and v24.2 assumed crews stack the blocks at the maker's speed: $173.7M, $233,442 a bed, $294 and $575 a sq ft, against $168.1M, $225,948 a bed ($285 and $557) for a code-compliant wood-frame plan. Material list v2 counts every material the design needs, nothing more: about $162 a sq ft to build and $320 all in, $130,049 a bed, from national list prices. Each model's full figures are in its preview on this page.
 
 ## What we propose now
 
@@ -72,6 +72,12 @@ v24 put the whole building in System 3E perlite blocks at ordinary laying speed 
 | Old buildings | Assumed cleared by RIT's own decommissioning; our estimate of that is about $22.6M, shown separately and not in the total |
 
 The bed count comes first and the design meets it. 744 beds would house about 53% of RIT undergraduates on campus, against a peer median of about 60%.
+
+## Zoning: what the Town of Henrietta allows
+
+Checked November 27, 2026 against the Town's zoning map and code. The Riverknoll area sits in the campus's R-1-15 residential zone. That zone allows colleges but not apartment complexes, so the 18 rows work as RIT's own campus housing. If another group owned or ran them, the site would first need rezoning to R-2-15.
+
+The 2-story rows fit the height rules. The 3-story rows would likely top the 35 ft limit and need a Town Board height permit after a public hearing; RIT won two such permits for campus buildings in 2022 and 2023. Then: a Town meeting, environmental review, Planning Board site plan, demolition and building permits. Still to confirm with the Town: that it counts student housing as a college use. No cost changed. Rules and sources are in model v24.3 (Zoning tab).
 
 ## Who could pay for it
 
@@ -156,11 +162,11 @@ We keep every model, deck and study, so you can follow how the plan moved and ch
 
 Pitch decks: v19 to v26 track the models up to v24, v27 has the v24.2 numbers and v28 (latest) the v24.3 numbers. Material list v1 prices one townhome, an accessible end unit and a row of 10; v2 (latest) matches the design exactly, 3-story homes included. Life cycle v1 ran at ordinary laying speed and v2 at the maker's speed with concrete plank floors; walls compared v1 (latest) uses timber floors. The written Feasibility and Viability Study v16 covers the v16 and v17 work.
 
-Anyone can preview every model, deck, material list, comparison and study on this page, with or without an account. Previews can't be downloaded; signed-in team members download the originals from this initiative's Workspace.
+Anyone can preview every file on this page, with or without an account. Previews can't be downloaded; signed-in team members get the originals from the Workspace.
 
 ## Still to confirm
 
-RIT's decommissioning plan and asbestos survey, the current bed count, utility condition and capacity, zoning, real contractor bids, a System 3E USA price and US plant for the same homes, code acceptance of the European fire test, and prices from the local suppliers. We will update this page and add a new version, never overwrite an old one, as each answer comes in.
+RIT's decommissioning plan and asbestos survey, the current bed count, utility condition and capacity, the Town's reading of campus housing under zoning, real contractor bids, a System 3E USA price and US plant for the same homes, code acceptance of the European fire test, and prices from the local suppliers. We will update this page and add a new version, never overwrite an old one, as each answer comes in.
 
 ## Help shape the next revision
 
