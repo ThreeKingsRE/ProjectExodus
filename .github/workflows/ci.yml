@@ -2,7 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    # The repository's default branch is not named main, so list it too;
+    # otherwise CI never runs after a pull request is merged.
+    branches: [main, claude/create-progress-docs-01MAdXzhs1JLtTNeFKuw47ou]
   pull_request:
 
 concurrency:
