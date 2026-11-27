@@ -91,13 +91,22 @@
       "current": false
     },
     {
+      "id": "feasibility-v24.4",
+      "title": "Feasibility model v24.4 (current): approvals budget and timeline",
+      "group": "Feasibility models",
+      "kind": "sheets",
+      "source": "models/feasibility-v24.4.json",
+      "summary": "Nov 27 2026. Adds Town, state and county approval costs ($1.48M in 2026 dollars, about $2.2M all in) and a 15-step approvals timeline to the fall 2029 pilot, phase by phase. $172.0M, $231,125 a bed, $288 a sq ft for the buildings and $570 all in. Every comparison plan now carries the same approvals cost (wood frame $170.2M, $228,808 a bed). New Page_Tables tab feeds the live tables on the public page.",
+      "current": true
+    },
+    {
       "id": "feasibility-v24.3",
-      "title": "Feasibility model v24.3 (current): timber upper floors, walls compared",
+      "title": "Feasibility model v24.3: timber upper floors, walls compared",
       "group": "Feasibility models",
       "kind": "sheets",
       "source": "models/feasibility-v24.3.json",
       "summary": "Nov 26 2026. Concrete slab with vinyl plank and timber upper floors in the System 3E plan: $169.8M, $228,266 a bed, about $288 a sq ft for the buildings and $562 all in. Adds System 3E shipped from Poland and prefab wood wall panels as comparisons. The wood-frame plan is this file with Assumptions B94 and B111 set to 0.",
-      "current": true
+      "current": false
     },
     {
       "id": "feasibility-v24.2",
